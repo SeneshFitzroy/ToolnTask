@@ -7,10 +7,26 @@ import { useState } from 'react';
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
+    setShowFilterDropdown(false);
   };
+
+  const handleSearch = () => {
+    // Search functionality can be implemented here
+    console.log('Searching for:', searchTerm);
+  };
+
+  const filterOptions = [
+    { key: 'all', label: 'All Tools', count: 6 },
+    { key: 'power', label: 'Power Tools', count: 3 },
+    { key: 'garden', label: 'Garden Tools', count: 1 },
+    { key: 'hand', label: 'Hand Tools', count: 1 },
+    { key: 'equipment', label: 'Equipment', count: 1 }
+  ];
 
   const allTools = [
     {
@@ -77,8 +93,28 @@ export default function Tools() {
   ];
 
   const getFilteredTools = () => {
-    if (activeFilter === 'all') return allTools;
-    return allTools.filter(tool => tool.category === activeFilter);
+    let filtered = allTools;
+    
+    // Apply category filter
+    if (activeFilter !== 'all') {
+      filtered = filtered.filter(tool => tool.category === activeFilter);
+    }
+    
+    // Apply search filter
+    if (searchTerm.trim()) {
+      filtered = filtered.filter(tool => 
+        tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.brand.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  };
+
+  const getCurrentFilterLabel = () => {
+    const currentFilter = filterOptions.find(option => option.key === activeFilter);
+    return currentFilter ? currentFilter.label : 'All Tools';
   };
 
   return (
@@ -89,69 +125,74 @@ export default function Tools() {
       <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-6 sm:mb-8 text-center">Rent Tools</h1>
+          
+          {/* Search Bar with Filter */}
           <div className="flex flex-col md:flex-row gap-4 mb-6 sm:mb-8">
-            <input
-              type="text"
-              placeholder="Search for tools..."
-              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none text-base sm:text-lg shadow-sm bg-white dark:bg-gray-800 text-slate-800 dark:text-white"
-            />
-            <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl font-semibold shadow-lg">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                placeholder="Search for tools..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none text-base sm:text-lg shadow-sm bg-white dark:bg-gray-800 text-slate-800 dark:text-white"
+              />
+            </div>
+            
+            {/* Filter Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-gray-600 rounded-xl hover:border-blue-300 dark:hover:border-blue-500 text-slate-700 dark:text-gray-300 font-medium shadow-sm transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
+                </svg>
+                <span className="hidden sm:inline">{getCurrentFilterLabel()}</span>
+                <span className="sm:hidden">Filter</span>
+                <svg className={`w-4 h-4 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {showFilterDropdown && (
+                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50">
+                  <div className="p-2">
+                    {filterOptions.map((option) => (
+                      <button
+                        key={option.key}
+                        onClick={() => handleFilterChange(option.key)}
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left transition-colors ${
+                          activeFilter === option.key
+                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                            : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                        }`}
+                      >
+                        <span className="font-medium">{option.label}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                          {option.count}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <Button 
+              onClick={handleSearch}
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl font-semibold shadow-lg"
+            >
               Search
             </Button>
           </div>
           
-          {/* Filters */}
-          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
-            <Button 
-              onClick={() => handleFilterChange('all')}
-              className={`border-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base ${
-                activeFilter === 'all' 
-                  ? 'border-blue-500 bg-blue-500 text-white' 
-                  : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-300'
-              }`}
-            >
-              All Tools
-            </Button>
-            <Button 
-              onClick={() => handleFilterChange('power')}
-              className={`border-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base ${
-                activeFilter === 'power' 
-                  ? 'border-blue-500 bg-blue-500 text-white' 
-                  : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-300'
-              }`}
-            >
-              Power Tools
-            </Button>
-            <Button 
-              onClick={() => handleFilterChange('garden')}
-              className={`border-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base ${
-                activeFilter === 'garden' 
-                  ? 'border-blue-500 bg-blue-500 text-white' 
-                  : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-300'
-              }`}
-            >
-              Garden Tools
-            </Button>
-            <Button 
-              onClick={() => handleFilterChange('hand')}
-              className={`border-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base ${
-                activeFilter === 'hand' 
-                  ? 'border-blue-500 bg-blue-500 text-white' 
-                  : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-300'
-              }`}
-            >
-              Hand Tools
-            </Button>
-            <Button 
-              onClick={() => handleFilterChange('equipment')}
-              className={`border-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base ${
-                activeFilter === 'equipment' 
-                  ? 'border-blue-500 bg-blue-500 text-white' 
-                  : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-300'
-              }`}
-            >
-              Equipment
-            </Button>
+          {/* Results Summary */}
+          <div className="text-center">
+            <p className="text-slate-600 dark:text-gray-400">
+              {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
+              {searchTerm && ` for "${searchTerm}"`}
+              {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
+            </p>
           </div>
         </div>
       </div>
