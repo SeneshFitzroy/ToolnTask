@@ -379,132 +379,59 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 w-32 h-32 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-          <div className="absolute top-40 right-20 w-20 h-20 rounded-full" style={{ backgroundColor: '#001554' }}></div>
-          <div className="absolute bottom-20 left-32 w-24 h-24 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full" style={{ backgroundColor: '#001554' }}></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>📊 Our Impact</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Trusted by Communities Across{' '}
-              <span 
-                className="relative inline-block"
-                style={{ color: '#FF5E14' }}
-              >
-                Sri Lanka
-                <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 8" style={{ fill: '#FF5E14', opacity: 0.3 }}>
-                  <path d="M0 6 Q 50 0 100 6 L 100 8 L 0 8 Z" />
-                </svg>
-              </span>
+              <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed px-4 sm:px-0" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-              From coast to hill, across all of Sri Lanka, thousands are uniting to help each other every day!
+            <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              From coast to hill, thousands are uniting to help each other every day!
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { 
-                icon: '👥', 
-                number: '5,000+', 
-                label: 'Active Users', 
-                desc: 'Verified community members ready to help', 
-                color: '#FF5E14',
-                bgGradient: 'from-orange-500/10 to-red-500/10'
-              },
-              { 
-                icon: '🔧', 
-                number: '1,000+', 
-                label: 'Tools Available', 
-                desc: 'Professional-grade tools ready to rent', 
-                color: '#FF5E14',
-                bgGradient: 'from-orange-500/10 to-yellow-500/10'
-              },
-              { 
-                icon: '🏆', 
-                number: '500+', 
-                label: 'Tasks Completed', 
-                desc: 'Successfully finished projects with 5-star ratings', 
-                color: '#001554',
-                bgGradient: 'from-blue-600/10 to-purple-600/10'
-              }
+              { icon: '👥', number: '5,000+', label: 'Active Users', color: '#FF5E14' },
+              { icon: '🔧', number: '1,000+', label: 'Tools Available', color: '#FF5E14' },
+              { icon: '🏆', number: '500+', label: 'Tasks Completed', color: '#001554' }
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className={`relative p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-105 group cursor-pointer bg-gradient-to-br ${stat.bgGradient} backdrop-blur-sm border border-white/10`}
-                style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#FFFFFF' }}
+                className="text-center p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer relative overflow-hidden"
+                style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05) translateY(-8px)';
-                  e.currentTarget.style.boxShadow = `0 25px 50px rgba(${stat.color === '#FF5E14' ? '255, 94, 20' : '0, 21, 84'}, 0.3)`;
+                  e.currentTarget.style.transform = 'scale(1.05) translateY(-4px)';
+                  e.currentTarget.style.boxShadow = `0 20px 40px rgba(${stat.color === '#FF5E14' ? '255, 94, 20' : '0, 21, 84'}, 0.2)`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'scale(1) translateY(0px)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
                 }}
               >
-                {/* Animated Border */}
-                <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-transparent bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
                 
-                {/* Top Accent Line */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-full transition-all duration-500 group-hover:w-24" style={{ backgroundColor: stat.color }}></div>
-                
-                {/* Icon Container */}
-                <div className="relative mb-6 sm:mb-8">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" style={{ backgroundColor: `${stat.color}15`, border: `2px solid ${stat.color}30` }}>
-                    <span className="text-3xl sm:text-4xl md:text-5xl transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</span>
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-125 transition-all duration-300" style={{ backgroundColor: stat.color }}>
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                {/* Icon */}
+                <div className="text-4xl sm:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  {stat.icon}
                 </div>
                 
-                {/* Number Display */}
-                <div className="mb-4 sm:mb-6">
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-black mb-2 tracking-tight transform group-hover:scale-110 transition-all duration-300" style={{ color: stat.color, textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                    {stat.number}
-                  </div>
-                  <div className="h-1 w-12 mx-auto rounded-full transform group-hover:w-16 transition-all duration-500" style={{ backgroundColor: `${stat.color}50` }}></div>
+                {/* Number */}
+                <div className="text-3xl sm:text-4xl font-bold mb-2 transform group-hover:scale-105 transition-transform duration-300" style={{ color: stat.color }}>
+                  {stat.number}
                 </div>
                 
-                {/* Text Content */}
-                <div className="space-y-2 sm:space-y-3">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wide transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                    {stat.label}
-                  </h3>
-                  <p className="text-sm sm:text-base md:text-lg leading-relaxed opacity-90" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                    {stat.desc}
-                  </p>
-                </div>
+                {/* Label */}
+                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  {stat.label}
+                </h3>
                 
-                {/* Floating Elements */}
-                <div className="absolute top-4 right-4 w-2 h-2 rounded-full opacity-30 animate-pulse" style={{ backgroundColor: stat.color }}></div>
-                <div className="absolute bottom-4 left-4 w-3 h-3 rounded-full opacity-20 animate-pulse" style={{ backgroundColor: stat.color, animationDelay: '1s' }}></div>
-                
-                {/* Hover Glow Effect */}
-                <div className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl" style={{ background: `radial-gradient(circle at center, ${stat.color}40, transparent 70%)` }}></div>
+                {/* Subtle glow effect on hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${stat.color}, transparent 70%)` }}></div>
               </div>
             ))}
-          </div>
-          
-          {/* Bottom CTA */}
-          <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Join thousands of satisfied users today
-              </span>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '0.5s' }}></div>
-            </div>
           </div>
         </div>
       </div>
