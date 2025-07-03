@@ -63,20 +63,21 @@ const Footer = () => {
             
             {/* Brand Section */}
             <div className="lg:col-span-2">
-              {/* Official Logo */}
+              {/* Official Logo - Much Larger */}
               <div className="mb-6">
                 <Image 
                   src="/toolntask-logo.png" 
                   alt="ToolNTask Logo" 
-                  width={200}
-                  height={60}
-                  className="h-12 sm:h-14 lg:h-16 w-auto transition-all duration-300 hover:scale-105 drop-shadow-lg"
+                  width={280}
+                  height={84}
+                  className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto transition-all duration-300 hover:scale-105 drop-shadow-lg"
                   style={{ 
-                    filter: theme === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'brightness(1) contrast(1)',
-                    maxWidth: '240px'
+                    filter: theme === 'dark' ? 'brightness(1.2) contrast(1.2)' : 'brightness(1) contrast(1)',
+                    maxWidth: '350px',
+                    minHeight: '64px'
                   }}
                   onError={() => {
-                    console.log('Footer logo failed to load, using fallback');
+                    console.log('Footer logo failed to load, check file path and format');
                   }}
                 />
               </div>
