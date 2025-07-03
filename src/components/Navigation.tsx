@@ -109,9 +109,9 @@ const Navigation = () => {
             </button>
 
             {/* Auth Buttons - Hidden on small screens */}
-            <div className="hidden sm:flex items-center space-x-2">
+            <div className="hidden sm:flex items-center space-x-3">
               <Link href="/SignIn" 
-                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-md text-white border-0" 
+                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
                 style={{ backgroundColor: '#FE5F16' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
@@ -119,7 +119,7 @@ const Navigation = () => {
                 Sign In
               </Link>
               <Link href="/SignUp" 
-                className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 shadow-md text-white border-0" 
+                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
                 style={{ backgroundColor: '#001554' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
