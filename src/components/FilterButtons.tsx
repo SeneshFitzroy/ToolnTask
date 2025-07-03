@@ -50,7 +50,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 className={`
                   flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full 
                   text-xs sm:text-sm font-semibold tracking-wide
-                  transition-all duration-300 group
+                  transition-all duration-300 group transform-gpu
+                  active:scale-95 cursor-pointer
                   ${isActive ? 'filter-button-active' : ''}
                 `}
                 style={{
@@ -72,6 +73,27 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                     e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }
+                }}
+                onMouseDown={(e) => {
+                  // Blue press effect
+                  e.currentTarget.style.backgroundColor = '#001554';
+                  e.currentTarget.style.color = '#FFFFFF';
+                  e.currentTarget.style.transform = 'scale(0.95)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 21, 84, 0.4)';
+                }}
+                onMouseUp={(e) => {
+                  setTimeout(() => {
+                    if (isActive) {
+                      e.currentTarget.style.backgroundColor = '#FF5E14';
+                      e.currentTarget.style.color = '#FFFFFF';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.3)';
+                    } else {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                      e.currentTarget.style.color = '#FF5E14';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }, 150);
                 }}
               >
                 <span className="flex items-center justify-center relative z-10">
