@@ -129,3 +129,70 @@
     background-color: #0f172a;
   }
 }
+
+/* Hero Section Floating Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translateY(-10px) rotate(-3deg) scale(1.05);
+  }
+  66% {
+    transform: translateY(-6px) rotate(2deg) scale(0.95);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+  40% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  60% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+  80% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+/* Subtle hover effects for floating elements */
+.animate-float-slow:hover,
+.animate-float-medium:hover,
+.animate-float-fast:hover {
+  animation-play-state: paused;
+  transform: scale(1.2) translateY(-5px);
+  filter: brightness(1.1) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
