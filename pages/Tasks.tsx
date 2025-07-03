@@ -359,21 +359,23 @@ export default function Tasks() {
       </div>
 
       {/* Tasks Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {getFilteredTasks().map((task, index) => (
-            <TaskCard
-              key={index}
-              title={task.title}
-              description={task.description}
-              price={task.price}
-              time={task.time}
-              location={task.location}
-              isUrgent={task.isUrgent}
-              isPromoted={task.isPromoted}
-              image={task.image}
-            />
-          ))}
+      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            {getFilteredTasks().map((task, index) => (
+              <TaskCard
+                key={index}
+                title={task.title}
+                description={task.description}
+                price={task.price}
+                time={task.time}
+                location={task.location}
+                isUrgent={task.isUrgent}
+                isPromoted={task.isPromoted}
+                image={task.image}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

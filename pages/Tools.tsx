@@ -361,21 +361,23 @@ export default function Tools() {
       </div>
 
       {/* Tools Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {getFilteredTools().map((tool, index) => (
-            <ToolCard
-              key={index}
-              title={tool.title}
-              description={tool.description}
-              price={tool.price}
-              brand={tool.brand}
-              condition={tool.condition}
-              available={tool.available}
-              isPromoted={tool.isPromoted}
-              image={tool.image}
-            />
-          ))}
+      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            {getFilteredTools().map((tool, index) => (
+              <ToolCard
+                key={index}
+                title={tool.title}
+                description={tool.description}
+                price={tool.price}
+                brand={tool.brand}
+                condition={tool.condition}
+                available={tool.available}
+                isPromoted={tool.isPromoted}
+                image={tool.image}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
