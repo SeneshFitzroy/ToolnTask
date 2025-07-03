@@ -57,38 +57,44 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = async (_email: string, _password: string): Promise<void> => {
+  const login = async (email: string, password: string): Promise<void> => {
     // Mock login - in a real app, this would be an API call
     try {
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // For demo purposes, any email/password combination will work
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const credentials = { email, password };
       setUser(mockUser);
       setIsLoggedIn(true);
       localStorage.setItem('toolntask_user', JSON.stringify(mockUser));
-    } catch (_error) {
+    } catch (error) {
+      console.error('Login failed:', error);
       throw new Error('Login failed');
     }
   };
 
-  const signup = async (name: string, _email: string, _password: string): Promise<void> => {
+  const signup = async (name: string, email: string, password: string): Promise<void> => {
     // Mock signup - in a real app, this would be an API call
     try {
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const credentials = { password };
       const newUser: User = {
         ...mockUser,
         name,
-        email: _email,
+        email,
         initials: name.split(' ').map(n => n[0]).join('').toUpperCase()
       };
       
       setUser(newUser);
       setIsLoggedIn(true);
       localStorage.setItem('toolntask_user', JSON.stringify(newUser));
-    } catch (_error) {
+    } catch (error) {
+      console.error('Signup failed:', error);
       throw new Error('Signup failed');
     }
   };
