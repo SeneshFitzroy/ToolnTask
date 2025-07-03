@@ -180,74 +180,91 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg mt-8 lg:mt-12">
-                {/* Background Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-blue-200 rounded-2xl filter blur-2xl opacity-30 animate-pulse"></div>
+              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl mt-8 lg:mt-12">
+                {/* Enhanced Background Effects */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-3xl filter blur-3xl opacity-40 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-blue-300/20 rounded-3xl animate-spin-slow"></div>
                 
-                {/* Floating Animated Tools */}
-                <div className="absolute -top-6 -left-8 z-20 animate-float-slow">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 0a1 1 0 100 2h.01a1 1 0 100-2H9zm2 0a1 1 0 100 2h.01a1 1 0 100-2H11z" clipRule="evenodd" />
+                {/* Mechanical Tool Animations - Left Side */}
+                <div className="absolute -top-8 -left-12 z-20 animate-float-slow group">
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-orange-500/50 group-hover:rotate-12">
+                    <svg className="w-8 h-8 text-white animate-pulse group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2L13.09 8.26L18 7L16.74 13.09L23 12L16.74 10.91L18 17L13.09 15.74L12 22L10.91 15.74L6 17L7.26 10.91L1 12L7.26 13.09L6 7L10.91 8.26L12 2Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-orange-400/20 rounded-2xl blur-md group-hover:bg-orange-400/40 transition-all duration-500"></div>
                 </div>
 
-                <div className="absolute -top-12 right-12 z-20 animate-float-medium">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                <div className="absolute top-16 -left-16 z-20 animate-float-medium group">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-blue-500/50 group-hover:-rotate-12">
+                    <svg className="w-7 h-7 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M22,9A7,7 0 0,0 15,2C13.06,2 11.21,2.64 9.81,3.76L7.41,6.16L16.84,15.59L19.24,13.19C20.36,11.79 21,9.94 21,8A7,7 0 0,0 22,9M20.71,2.29C21.1,2.68 21.1,3.32 20.71,3.71L3.71,20.71C3.32,21.1 2.68,21.1 2.29,20.71C1.9,20.32 1.9,19.68 2.29,19.29L19.29,2.29C19.68,1.9 20.32,1.9 20.71,2.29Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-blue-400/20 rounded-xl blur-md group-hover:bg-blue-400/40 transition-all duration-500"></div>
                 </div>
 
-                <div className="absolute top-1/4 -right-12 z-20 animate-float-fast">
-                  <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                <div className="absolute bottom-20 -left-10 z-20 animate-float-fast group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-green-500/50 group-hover:rotate-45">
+                    <svg className="w-6 h-6 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-green-400/20 rounded-full blur-md group-hover:bg-green-400/40 transition-all duration-500"></div>
                 </div>
 
-                <div className="absolute bottom-8 -left-6 z-20 animate-float-slow">
-                  <div className="w-11 h-11 bg-gradient-to-br from-green-400 to-green-600 rounded-xl shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                {/* Mechanical Tool Animations - Right Side */}
+                <div className="absolute -top-12 -right-16 z-20 animate-float-medium group">
+                  <div className="w-15 h-15 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-purple-500/50 group-hover:-rotate-45">
+                    <svg className="w-8 h-8 text-white group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11.15,5.25L10.5,1.5L12.5,1.5L11.85,5.25C15.1,5.82 17.5,8.69 17.5,12.1A6.5,6.5 0 0,1 11,18.6A6.5,6.5 0 0,1 4.5,12.1C4.5,8.69 6.9,5.82 10.15,5.25M11,7.5A4.5,4.5 0 0,0 6.5,12A4.5,4.5 0 0,0 11,16.5A4.5,4.5 0 0,0 15.5,12A4.5,4.5 0 0,0 11,7.5M11,9A3,3 0 0,1 14,12A3,3 0 0,1 11,15A3,3 0 0,1 8,12A3,3 0 0,1 11,9Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-purple-400/20 rounded-2xl blur-md group-hover:bg-purple-400/40 transition-all duration-500"></div>
                 </div>
 
-                <div className="absolute bottom-16 -right-8 z-20 animate-float-medium">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                <div className="absolute top-20 -right-12 z-20 animate-float-slow group">
+                  <div className="w-13 h-13 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-red-500/50 group-hover:rotate-90">
+                    <svg className="w-7 h-7 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11.5,1L11.91,4.5C9.66,4.73 7.64,5.71 6.08,7.27C4.5,8.86 3.5,10.9 3.27,13.18L1,12.77C1.31,9.75 2.61,6.94 4.64,4.91C6.67,2.88 9.48,1.58 11.5,1M12.5,1C14.52,1.58 17.33,2.88 19.36,4.91C21.39,6.94 22.69,9.75 23,12.77L20.73,13.18C20.5,10.9 19.5,8.86 17.92,7.27C16.36,5.71 14.34,4.73 12.09,4.5L12.5,1M12.77,20.73C9.75,22.69 6.94,21.39 4.91,19.36C2.88,17.33 1.58,14.52 1,12.5L4.5,12.09C4.73,14.34 5.71,16.36 7.27,17.92C8.86,19.5 10.9,20.5 13.18,20.73L12.77,23M11.23,20.73L10.82,23C12.25,22.89 15.06,21.59 17.09,19.56C19.12,17.53 20.42,14.72 20.73,11.77L20.32,12.18C20.09,14.43 19.11,16.45 17.55,18.01C15.99,19.57 13.97,20.55 11.23,20.73Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-red-400/20 rounded-xl blur-md group-hover:bg-red-400/40 transition-all duration-500"></div>
                 </div>
 
-                {/* Floating Task Icons */}
-                <div className="absolute top-8 left-20 z-20 animate-float-fast">
-                  <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                      <path fillRule="evenodd" d="M4 5a2 2 0 012-2v1a2 2 0 002 2h6a2 2 0 002-2V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45.15a1.5 1.5 0 102.1-2.1L9 12.1z" clipRule="evenodd" />
+                <div className="absolute bottom-12 -right-14 z-20 animate-float-fast group">
+                  <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-yellow-500/50 group-hover:-rotate-12">
+                    <svg className="w-7 h-7 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-yellow-400/20 rounded-2xl blur-md group-hover:bg-yellow-400/40 transition-all duration-500"></div>
                 </div>
 
-                <div className="absolute top-20 right-4 z-20 animate-float-slow">
-                  <div className="w-9 h-9 bg-gradient-to-br from-pink-400 to-red-500 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-all duration-300 cursor-pointer">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                {/* Top Floating Elements */}
+                <div className="absolute -top-4 left-1/3 z-20 animate-float-medium group">
+                  <div className="w-11 h-11 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-teal-500/50 group-hover:rotate-180">
+                    <svg className="w-5 h-5 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.71,4.04C21.1,3.65 21.1,3 20.71,2.63L18.37,0.29C18,-0.1 17.35,-0.1 16.96,0.29L15.12,2.12L21.88,8.88M3,17.25V21H6.75L17.81,9.94L11.06,3.19L3,17.25Z"/>
                     </svg>
                   </div>
+                  <div className="absolute -inset-2 bg-teal-400/20 rounded-full blur-md group-hover:bg-teal-400/40 transition-all duration-500"></div>
                 </div>
 
-                {/* Video Container - moved down */}
-                <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl border-2 border-white/10 backdrop-blur-sm">
+                <div className="absolute -top-6 right-1/4 z-20 animate-float-slow group">
+                  <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-indigo-500/50 group-hover:rotate-45">
+                    <svg className="w-5 h-5 text-white group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -inset-2 bg-indigo-400/20 rounded-xl blur-md group-hover:bg-indigo-400/40 transition-all duration-500"></div>
+                </div>
+
+                {/* Enhanced Video Container - Increased Height */}
+                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-lg">
                   <video
-                    className="w-full h-auto rounded-xl object-cover"
-                    style={{ aspectRatio: '16/9', maxHeight: '350px' }}
+                    className="w-full h-auto rounded-2xl object-cover"
+                    style={{ aspectRatio: '4/3', minHeight: '400px', maxHeight: '500px' }}
                     autoPlay
                     muted
                     loop
@@ -266,27 +283,41 @@ export default function Home() {
                     Your browser does not support the video tag.
                   </video>
                   
-                  {/* Fallback Image */}
+                  {/* Enhanced Fallback Image */}
                   <div 
-                    className="hidden w-full h-auto rounded-2xl bg-cover bg-center bg-no-repeat"
+                    className="hidden w-full h-auto rounded-3xl bg-cover bg-center bg-no-repeat"
                     style={{ 
                       backgroundImage: `url('/hero-video-poster.png')`,
-                      aspectRatio: '16/9',
-                      minHeight: '300px'
+                      aspectRatio: '4/3',
+                      minHeight: '400px'
                     }}
                   >
-                    <div className="flex items-center justify-center h-full bg-black/30 rounded-2xl">
-                      <div className="text-center text-white p-6">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-orange-500/80 rounded-full flex items-center justify-center backdrop-blur-sm">
-                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="flex items-center justify-center h-full bg-gradient-to-br from-black/40 via-orange-900/20 to-blue-900/20 rounded-3xl backdrop-blur-sm">
+                      <div className="text-center text-white p-8">
+                        <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-orange-500/90 to-blue-500/90 rounded-full flex items-center justify-center backdrop-blur-sm shadow-2xl animate-pulse">
+                          <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M8 5v10l7-5z" />
                           </svg>
                         </div>
-                        <Logo size="medium" className="text-white" />
-                        <p className="text-sm opacity-90">Community Marketplace</p>
+                        <Logo size="large" className="text-white mb-2" />
+                        <p className="text-lg opacity-90 font-medium">Community Marketplace</p>
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Interactive Overlay Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 rounded-3xl pointer-events-none"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-400/20 to-blue-400/20 rounded-3xl blur-sm animate-pulse"></div>
+                </div>
+
+                {/* Bottom floating elements */}
+                <div className="absolute -bottom-8 left-1/4 z-20 animate-float-fast group">
+                  <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-rose-500/50 group-hover:-rotate-45">
+                    <svg className="w-6 h-6 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17,12C17,14.42 15.28,16.44 13,16.9V21H11V16.9C8.72,16.44 7,14.42 7,12C7,9.58 8.72,7.56 11,7.1V2H13V7.1C15.28,7.56 17,9.58 17,12M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -inset-2 bg-rose-400/20 rounded-xl blur-md group-hover:bg-rose-400/40 transition-all duration-500"></div>
                 </div>
               </div>
             </div>
