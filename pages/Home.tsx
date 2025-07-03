@@ -379,8 +379,17 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        {/* Interactive Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-32 h-32 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
+          <div className="absolute top-32 right-16 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s' }}></div>
+          <div className="absolute bottom-20 left-24 w-28 h-28 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s' }}></div>
+          <div className="absolute bottom-8 right-8 w-36 h-36 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '0.5s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '1.5s' }}></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Trusted by Communities Across{' '}
