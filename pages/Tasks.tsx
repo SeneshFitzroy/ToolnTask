@@ -203,89 +203,102 @@ export default function Tasks() {
 
       {/* Search Section */}
       <div className="py-8 sm:py-10 lg:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Search Header */}
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              Find Your Next Task
-            </h2>
-            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-              Search and filter through hundreds of opportunities
-            </p>
-          </div>
-          
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Enhanced Search Bar Container */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 shadow-xl border-2" 
+          <div className="rounded-3xl p-8 sm:p-10 md:p-12 shadow-2xl border-4" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
+                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.4)' : 'rgba(255, 94, 20, 0.3)',
                  boxShadow: theme === 'dark' 
-                   ? '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 94, 20, 0.1)'
-                   : '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 94, 20, 0.05)'
+                   ? '0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 94, 20, 0.2)'
+                   : '0 25px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 94, 20, 0.1)'
                }}>
           
           {/* Search Bar with Filter */}
-          <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col gap-6 sm:gap-8">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
               <div className="flex-1 relative">
                 <input
                   type="text"
-                  placeholder="Search for tasks..."
+                  placeholder="Search for tasks, locations, or categories..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-lg sm:rounded-xl focus:outline-none text-base sm:text-lg shadow-sm transition-colors"
+                  className="w-full px-6 sm:px-8 py-4 sm:py-6 border-4 rounded-2xl focus:outline-none text-lg sm:text-xl font-semibold shadow-lg transition-all duration-300"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                     color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
                   }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#FF5E14';
+                    e.currentTarget.style.transform = 'scale(1.02)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 94, 20, 0.3)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                  }}
                 />
+                {/* Search Icon */}
+                <div className="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
               </div>
               
-              {/* Filter Dropdown */}
-              <div className="relative sm:w-auto">
+              {/* Enhanced Filter Dropdown */}
+              <div className="relative lg:w-auto">
                 <button
                   onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-lg sm:rounded-xl font-medium shadow-sm transition-colors"
+                  className="w-full lg:w-auto flex items-center justify-center gap-3 px-6 sm:px-8 py-4 sm:py-6 border-4 rounded-2xl font-bold shadow-lg transition-all duration-300 transform hover:scale-105 text-lg sm:text-xl"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                     color: theme === 'dark' ? '#D1D5DB' : '#4B5563'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = '#3B82F6';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                  }}
                 >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
                   </svg>
-                  <span className="hidden sm:inline text-sm sm:text-base">{getCurrentFilterLabel()}</span>
-                  <span className="sm:hidden text-sm">Category</span>
-                  <svg className={`w-4 h-4 ml-1 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <span className="font-black">{getCurrentFilterLabel()}</span>
+                  <svg className={`w-5 h-5 transition-transform duration-300 ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
                 
                 {showFilterDropdown && (
-                  <div className="absolute right-0 mt-2 w-48 sm:w-64 border rounded-lg sm:rounded-xl shadow-lg z-50" style={{ backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' }}>
-                    <div className="p-2">
+                  <div className="absolute right-0 mt-4 w-72 sm:w-80 border-4 rounded-2xl shadow-2xl z-50" 
+                       style={{ 
+                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', 
+                         borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' 
+                       }}>
+                    <div className="p-4 sm:p-6">
                       {filterOptions.map((option) => (
                         <button
                           key={option.key}
                           onClick={() => handleFilterChange(option.key)}
-                          className={`w-full flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-left transition-colors text-sm sm:text-base ${
-                            activeFilter === option.key
-                              ? 'text-white'
-                              : 'hover:opacity-80'
+                          className={`w-full flex items-center justify-between p-4 rounded-xl mb-2 font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 ${
+                            activeFilter === option.key 
+                              ? 'shadow-lg' 
+                              : 'hover:shadow-md'
                           }`}
                           style={{
                             backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
                             color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
                           }}
                         >
-                          <span className="font-medium">{option.label}</span>
-                          <span className="text-xs px-2 py-1 rounded-full" style={{ 
+                          <span className="font-black">{option.label}</span>
+                          <span className="text-sm sm:text-base px-3 py-1.5 rounded-full font-bold" style={{ 
                             backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
                             color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
                           }}>
@@ -299,11 +312,39 @@ export default function Tasks() {
               </div>
             </div>
             
+            {/* Enhanced Search Button */}
             <Button 
               onClick={handleSearch}
-              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg sm:rounded-xl font-semibold shadow-lg"
+              className="w-full text-xl sm:text-2xl font-black px-8 sm:px-12 py-6 sm:py-8 rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 border-4"
+              style={{ 
+                background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)',
+                borderColor: '#FF5E14',
+                color: '#FFFFFF',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                boxShadow: '0 12px 40px rgba(255, 94, 20, 0.4)'
+              }}
+              onMouseEnter={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.transform = 'scale(1.05) translateY(-4px)';
+                target.style.boxShadow = '0 20px 60px rgba(255, 94, 20, 0.6)';
+                target.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF4500 50%, #FF3300 100%)';
+              }}
+              onMouseLeave={(e) => {
+                const target = e.currentTarget as HTMLButtonElement;
+                target.style.transform = 'scale(1) translateY(0px)';
+                target.style.boxShadow = '0 12px 40px rgba(255, 94, 20, 0.4)';
+                target.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)';
+              }}
             >
-              Search
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <span>SEARCH TASKS</span>
+                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
             </Button>
           </div>
           
