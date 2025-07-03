@@ -186,7 +186,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
-                    poster="/hero-video-poster.jpg" // Optional: Add a poster image
+                    poster="/hero-video-poster.png"
                   >
                     <source src="/hero-video.mp4" type="video/mp4" />
                     <source src="/hero-video.webm" type="video/webm" />
