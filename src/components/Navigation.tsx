@@ -190,11 +190,76 @@ const Navigation = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
             <div className="flex flex-col space-y-3">
-              <Link href="/" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-              <Link href="/Tasks" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>Tasks</Link>
-              <Link href="/Tools" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>Tools</Link>
-              <Link href="/About" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-              <Link href="/Contact" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+              <Link 
+                href="/" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                style={{ 
+                  color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
+                  borderLeft: isActiveLink('/') ? '3px solid #FF5E14' : 'none'
+                }} 
+                onMouseEnter={(e) => handleMouseEnter(e, '/')} 
+                onMouseLeave={(e) => handleMouseLeave(e, '/')} 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/Tasks" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                style={{ 
+                  color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
+                  borderLeft: isActiveLink('/Tasks') ? '3px solid #FF5E14' : 'none'
+                }} 
+                onMouseEnter={(e) => handleMouseEnter(e, '/Tasks')} 
+                onMouseLeave={(e) => handleMouseLeave(e, '/Tasks')} 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Tasks
+              </Link>
+              <Link 
+                href="/Tools" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                style={{ 
+                  color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
+                  borderLeft: isActiveLink('/Tools') ? '3px solid #FF5E14' : 'none'
+                }} 
+                onMouseEnter={(e) => handleMouseEnter(e, '/Tools')} 
+                onMouseLeave={(e) => handleMouseLeave(e, '/Tools')} 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Tools
+              </Link>
+              <Link 
+                href="/About" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                style={{ 
+                  color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
+                  borderLeft: isActiveLink('/About') ? '3px solid #FF5E14' : 'none'
+                }} 
+                onMouseEnter={(e) => handleMouseEnter(e, '/About')} 
+                onMouseLeave={(e) => handleMouseLeave(e, '/About')} 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About Us
+              </Link>
+              <Link 
+                href="/Contact" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                style={{ 
+                  color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  backgroundColor: isActiveLink('/Contact') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
+                  borderLeft: isActiveLink('/Contact') ? '3px solid #FF5E14' : 'none'
+                }} 
+                onMouseEnter={(e) => handleMouseEnter(e, '/Contact')} 
+                onMouseLeave={(e) => handleMouseLeave(e, '/Contact')} 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
               <div className="flex flex-col space-y-3 pt-3 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
                 <Link href="/SignIn" 
                   className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
