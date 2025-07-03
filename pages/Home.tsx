@@ -126,28 +126,34 @@ export default function Home() {
               <div className="flex justify-center lg:justify-start mb-8">
                 <Link href="/Tasks">
                   <Button 
-                    className="w-full sm:w-auto text-white px-12 py-5 text-xl font-bold rounded-2xl transition-all duration-500 hover:scale-110 shadow-2xl border-0 relative overflow-hidden group animate-pulse hover:animate-none"
+                    className="w-full sm:w-auto text-white px-12 py-5 text-xl font-bold rounded-2xl transition-all duration-500 hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FE5F16',
                       background: 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 50%, #FE5F16 100%)',
-                      boxShadow: '0 10px 30px rgba(254, 95, 22, 0.4), 0 0 0 1px rgba(254, 95, 22, 0.1)'
+                      boxShadow: '0 10px 30px rgba(254, 95, 22, 0.4), 0 5px 15px rgba(254, 95, 22, 0.2)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FE5F16 50%, #FF5D13 100%)';
-                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(254, 95, 22, 0.6), 0 0 0 2px rgba(255, 229, 20, 0.5)';
-                      e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 20px 50px rgba(254, 95, 22, 0.6), 0 10px 25px rgba(254, 95, 22, 0.3)';
+                      e.currentTarget.style.transform = 'scale(1.1) translateY(-3px)';
+                      e.currentTarget.style.border = '2px solid rgba(255, 229, 20, 0.8)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 50%, #FE5F16 100%)';
-                      e.currentTarget.style.boxShadow = '0 10px 30px rgba(254, 95, 22, 0.4), 0 0 0 1px rgba(254, 95, 22, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 10px 30px rgba(254, 95, 22, 0.4), 0 5px 15px rgba(254, 95, 22, 0.2)';
                       e.currentTarget.style.transform = 'scale(1.1)';
+                      e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.2)';
                     }}
                   >
-                    <span className="relative z-10 flex items-center gap-3">
-                      🚀 Get Started Today
+                    <span className="relative z-10 flex items-center justify-center gap-3 font-bold tracking-wide">
+                      Get Started Today
+                      <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transform -skew-x-12 group-hover:translate-x-full transition-all duration-1000"></div>
-                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-yellow-300 transition-all duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-1000"></div>
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-yellow-200 to-transparent opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
                   </Button>
                 </Link>
               </div>
