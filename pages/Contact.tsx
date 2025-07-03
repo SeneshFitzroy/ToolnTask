@@ -54,7 +54,7 @@ export default function Contact() {
             <div className="max-w-4xl mx-auto mb-8">
               <p className="text-lg sm:text-xl font-medium mb-4" 
                  style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
               </p>
               <p className="text-base sm:text-lg" 
                  style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
