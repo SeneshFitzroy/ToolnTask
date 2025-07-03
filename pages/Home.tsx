@@ -330,6 +330,51 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Hero Video Section */}
+      <div className="py-8 sm:py-12 md:py-16 lg:py-20 flex justify-center" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+              {/* Enhanced Background Effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-2xl sm:rounded-3xl filter blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-blue-300/20 rounded-2xl sm:rounded-3xl animate-spin-slow"></div>
+              
+              {/* Mechanical Tool Animations - Responsive Positioning */}
+              {/* Top-Left */}
+              <div className="absolute -top-3 -left-6 sm:-top-6 sm:-left-10 md:-top-8 md:-left-12 z-20 animate-float-slow group">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-orange-500/50 group-hover:rotate-12">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white animate-gear-rotate group-hover:animate-drill-spin" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,15.39L8.24,17.66L9.23,13.38L5.91,10.5L10.29,10.13L12,6.09L13.71,10.13L18.09,10.5L14.77,13.38L15.76,17.66M22,9.24L14.81,8.63L12,2L9.19,8.63L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/>
+                  </svg>
+                </div>
+                <div className="absolute -inset-1 sm:-inset-2 bg-orange-400/20 rounded-xl sm:rounded-2xl blur-sm group-hover:bg-orange-400/40 transition-all duration-500"></div>
+              </div>
+
+              {/* Video Container */}
+              <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
+                <div className="relative w-full" style={{ height: '240px' }}>
+                  <div className="responsive-video-container relative w-full h-full">
+                    <video
+                      className="absolute top-0 left-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
+                      style={{ objectPosition: 'center 20%' }}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      poster="/hero-video-poster.png"
+                    >
+                      <source src="/hero-video.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
               <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-4 sm:mt-6 lg:mt-8 xl:mt-12">
                 {/* Enhanced Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-2xl sm:rounded-3xl filter blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
@@ -1018,6 +1063,25 @@ export default function Home() {
       </div>
 
       <Footer />
+      
+      {/* Floating Bottom Banner */}
+      <div className="fixed bottom-4 right-4 z-50 max-w-xs">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg shadow-2xl border border-white/20 backdrop-blur-sm">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl">💰</div>
+            <div className="flex-1">
+              <div className="font-bold text-sm">Earn Extra Income!</div>
+              <div className="text-xs opacity-90">Join as a service provider</div>
+            </div>
+            <Button 
+              className="bg-white text-blue-600 px-2 py-1 text-xs rounded font-bold hover:bg-gray-100"
+              onClick={() => window.open('/provider-signup', '_blank')}
+            >
+              Join
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
