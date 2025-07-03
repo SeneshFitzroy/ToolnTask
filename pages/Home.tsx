@@ -93,50 +93,83 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
       <Navigation />
       
       {/* Hero Section */}
-      <div className="py-12 sm:py-16" style={{ backgroundColor: '#F2F3F5' }}>
+      <div className="py-16 sm:py-20" style={{ backgroundColor: '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1A1818' }}>
-                Need a Hand or a Hammer?
+              <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: '#FFFFFF' }}>
+                <span className="text-sm font-semibold" style={{ color: '#FE5F16' }}>🎉 New in Sri Lanka</span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight" style={{ color: '#1A1818' }}>
+                Need a Hand or a{' '}
+                <span 
+                  className="relative inline-block"
+                  style={{ color: '#FFE514' }}
+                >
+                  Hammer?
+                  <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FE5F16', opacity: 0.3 }}>
+                    <path d="M0 8 Q 50 0 100 8 L 100 10 L 0 10 Z" />
+                  </svg>
+                </span>
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: '#FFE514' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#001554' }}>
                 We&apos;ve Got Both!
               </h2>
-              <p className="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed" style={{ color: '#B3B5BC' }}>
-                Whether you need a quick helping hand or a power drill for the weekend, 
-                we&apos;ve got you covered. Browse one-time gigs like babysitting, gardening, 
-                or minor repairs — or rent out home tools neighbours need year.
+              <p className="text-lg sm:text-xl mb-8 leading-relaxed" style={{ color: '#B3B5BC' }}>
+                Sri Lanka&apos;s first community marketplace where neighbors help neighbors. 
+                Get quick tasks done or rent the tools you need from people nearby.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <Link href="/Tasks">
                   <Button 
-                    className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
+                    className="w-full sm:w-auto text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
                     style={{ backgroundColor: '#FE5F16' }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
                   >
-                    Get Started
+                    <span className="relative z-10">Get Started Today</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
                   </Button>
                 </Link>
                 <Link href="/About">
                   <Button 
-                    className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
-                    style={{ backgroundColor: '#001554' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-2"
+                    style={{ 
+                      backgroundColor: 'transparent',
+                      color: '#001554',
+                      borderColor: '#001554'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#001554';
+                      e.currentTarget.style.color = '#FFFFFF';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = '#001554';
+                    }}
                   >
-                    Learn More
+                    How It Works
                   </Button>
                 </Link>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+                  <span style={{ color: '#B3B5BC' }}>5,000+ Happy Users</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FE5F16' }}></div>
+                  <span style={{ color: '#B3B5BC' }}>100% Secure</span>
+                </div>
               </div>
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
                 <WorkerAnimation />
               </div>
             </div>
