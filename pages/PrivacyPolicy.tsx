@@ -161,10 +161,10 @@ export default function PrivacyPolicy() {
             <section id="how-we-use" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔄</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">2. How We Use Your Information</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>2. How We Use Your Information</h2>
               </div>
-              <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 mb-4">
-                <p className="text-slate-600 dark:text-gray-300 mb-4">
+              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
+                <p className="mb-4" style={{ color: '#B3B5BC' }}>
                   We use the information we collect to provide, maintain, and improve our services:
                 </p>
               </div>
@@ -176,9 +176,9 @@ export default function PrivacyPolicy() {
                   { icon: '📈', text: 'To improve our platform and user experience' },
                   { icon: '🛡️', text: 'To prevent fraud and ensure platform safety' }
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-white dark:bg-gray-700 rounded-lg hover:shadow-md transition-shadow">
+                  <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:shadow-md transition-shadow" style={{ backgroundColor: '#FFFFFF' }}>
                     <span className="text-xl">{item.icon}</span>
-                    <span className="text-slate-600 dark:text-gray-300">{item.text}</span>
+                    <span style={{ color: '#B3B5BC' }}>{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -187,10 +187,10 @@ export default function PrivacyPolicy() {
             <section id="information-sharing" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🤝</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">3. Information Sharing</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>3. Information Sharing</h2>
               </div>
-              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 mb-4 border border-red-200 dark:border-red-800">
-                <p className="text-slate-600 dark:text-gray-300 font-medium">
+              <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
+                <p className="font-medium" style={{ color: '#1A1818' }}>
                   🚫 We do not sell, rent, or share your personal information with third parties except in specific circumstances:
                 </p>
               </div>
@@ -203,10 +203,10 @@ export default function PrivacyPolicy() {
                   { icon: '🔧', title: 'Service Providers', desc: 'Trusted partners only' },
                   { icon: '🔒', title: 'Data Security', desc: 'All transfers encrypted' }
                 ].map((item, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-700 rounded-lg p-4 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                  <div key={index} className="rounded-lg p-4 text-center hover:shadow-lg transition-shadow cursor-pointer" style={{ backgroundColor: '#FFFFFF' }}>
                     <div className="text-2xl mb-2">{item.icon}</div>
-                    <h4 className="font-semibold text-slate-800 dark:text-white mb-1">{item.title}</h4>
-                    <p className="text-sm text-slate-600 dark:text-gray-300">{item.desc}</p>
+                    <h4 className="font-semibold mb-1" style={{ color: '#1A1818' }}>{item.title}</h4>
+                    <p className="text-sm" style={{ color: '#B3B5BC' }}>{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -215,14 +215,14 @@ export default function PrivacyPolicy() {
             <section id="data-security" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔒</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">4. Data Security</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>4. Data Security</h2>
               </div>
-              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 mb-6">
+              <div className="rounded-lg p-6 mb-6" style={{ backgroundColor: '#F2F3F5' }}>
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">🛡️</span>
                   <div>
-                    <h3 className="font-bold text-green-800 dark:text-green-300">Your Data is Protected</h3>
-                    <p className="text-green-700 dark:text-green-400 text-sm">We implement multiple layers of security</p>
+                    <h3 className="font-bold" style={{ color: '#001554' }}>Your Data is Protected</h3>
+                    <p className="text-sm" style={{ color: '#B3B5BC' }}>We implement multiple layers of security</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -232,9 +232,9 @@ export default function PrivacyPolicy() {
                     { icon: '🚪', label: 'Access Controls' },
                     { icon: '💾', label: 'Secure Backups' }
                   ].map((item, index) => (
-                    <div key={index} className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg">
+                    <div key={index} className="text-center p-3 rounded-lg" style={{ backgroundColor: '#FFFFFF' }}>
                       <div className="text-2xl mb-1">{item.icon}</div>
-                      <div className="text-xs text-slate-600 dark:text-gray-300">{item.label}</div>
+                      <div className="text-xs" style={{ color: '#B3B5BC' }}>{item.label}</div>
                     </div>
                   ))}
                 </div>
@@ -244,10 +244,10 @@ export default function PrivacyPolicy() {
             <section id="your-rights" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">⚖️</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">5. Your Rights</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>5. Your Rights</h2>
               </div>
-              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 mb-4">
-                <p className="text-slate-600 dark:text-gray-300 font-medium">
+              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
+                <p className="font-medium" style={{ color: '#1A1818' }}>
                   You have complete control over your personal information:
                 </p>
               </div>
@@ -259,15 +259,20 @@ export default function PrivacyPolicy() {
                   { icon: '🚫', title: 'Withdraw Consent', desc: 'Stop certain data processing activities', action: 'Manage Consent' },
                   { icon: '📦', title: 'Export Data', desc: 'Download your information in portable format', action: 'Export Data' }
                 ].map((right, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow">
+                  <div key={index} className="flex items-center justify-between p-4 rounded-lg border border-opacity-20 hover:shadow-md transition-shadow" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
                     <div className="flex items-center gap-4">
                       <span className="text-2xl">{right.icon}</span>
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-white">{right.title}</h4>
-                        <p className="text-sm text-slate-600 dark:text-gray-300">{right.desc}</p>
+                        <h4 className="font-semibold" style={{ color: '#1A1818' }}>{right.title}</h4>
+                        <p className="text-sm" style={{ color: '#B3B5BC' }}>{right.desc}</p>
                       </div>
                     </div>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    <button 
+                      className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
+                      style={{ backgroundColor: '#001554' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                    >
                       {right.action}
                     </button>
                   </div>
@@ -278,17 +283,22 @@ export default function PrivacyPolicy() {
             <section id="cookies-tracking" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🍪</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">6. Cookies and Tracking</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>6. Cookies and Tracking</h2>
               </div>
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4 mb-4 border border-yellow-200 dark:border-yellow-800">
-                <p className="text-slate-600 dark:text-gray-300">
+              <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FFE514' }}>
+                <p style={{ color: '#1A1818' }}>
                   We use cookies and similar technologies to enhance your experience and analyze platform usage. You can manage your cookie preferences through your browser settings.
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
+              <div className="rounded-lg p-4" style={{ backgroundColor: '#FFFFFF' }}>
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold text-slate-800 dark:text-white">Cookie Preferences</h4>
-                  <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                  <h4 className="font-semibold" style={{ color: '#1A1818' }}>Cookie Preferences</h4>
+                  <button 
+                    className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
+                    style={{ backgroundColor: '#FE5F16' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  >
                     Manage Cookies
                   </button>
                 </div>
@@ -298,18 +308,20 @@ export default function PrivacyPolicy() {
                     { type: 'Analytics', status: 'Optional', desc: 'Help us improve the platform' },
                     { type: 'Marketing', status: 'Optional', desc: 'Personalized advertisements' }
                   ].map((cookie, index) => (
-                    <div key={index} className="border border-gray-200 dark:border-gray-600 rounded-lg p-3">
+                    <div key={index} className="border border-opacity-20 rounded-lg p-3" style={{ borderColor: '#B3B5BC' }}>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-medium text-slate-800 dark:text-white">{cookie.type}</span>
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          cookie.status === 'Always On' 
-                            ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
-                            : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
-                        }`}>
+                        <span className="font-medium" style={{ color: '#1A1818' }}>{cookie.type}</span>
+                        <span 
+                          className={`text-xs px-2 py-1 rounded-full`}
+                          style={{
+                            backgroundColor: cookie.status === 'Always On' ? '#FFE514' : '#F2F3F5',
+                            color: '#1A1818'
+                          }}
+                        >
                           {cookie.status}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-600 dark:text-gray-300">{cookie.desc}</p>
+                      <p className="text-xs" style={{ color: '#B3B5BC' }}>{cookie.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -319,20 +331,25 @@ export default function PrivacyPolicy() {
             <section id="policy-updates" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔄</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">7. Updates to This Policy</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>7. Updates to This Policy</h2>
               </div>
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
-                <p className="text-slate-600 dark:text-gray-300 mb-4">
+              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
+                <p className="mb-4" style={{ color: '#B3B5BC' }}>
                   We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website and updating the &quot;Last updated&quot; date.
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
+              <div className="rounded-lg p-4 border-l-4" style={{ backgroundColor: '#FFFFFF', borderColor: '#001554' }}>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-xl">📧</span>
-                  <span className="font-semibold text-slate-800 dark:text-white">Stay Updated</span>
+                  <span className="font-semibold" style={{ color: '#1A1818' }}>Stay Updated</span>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-gray-300 mb-3">Get notified when we update our privacy policy</p>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                <p className="text-sm mb-3" style={{ color: '#B3B5BC' }}>Get notified when we update our privacy policy</p>
+                <button 
+                  className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
+                  style={{ backgroundColor: '#001554' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                >
                   Subscribe to Updates
                 </button>
               </div>
@@ -341,33 +358,43 @@ export default function PrivacyPolicy() {
             <section id="contact-us" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">📞</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">8. Contact Us</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>8. Contact Us</h2>
               </div>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
+              <p className="mb-4" style={{ color: '#B3B5BC' }}>
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6">
-                  <h4 className="font-semibold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <div className="rounded-lg p-6" style={{ backgroundColor: '#F2F3F5' }}>
+                  <h4 className="font-semibold mb-4 flex items-center gap-2" style={{ color: '#1A1818' }}>
                     <span>📧</span> Email Support
                   </h4>
-                  <p className="text-slate-600 dark:text-gray-300 mb-3">
+                  <p className="mb-3" style={{ color: '#B3B5BC' }}>
                     <strong>Email:</strong> privacy@toolntask.com<br/>
                     <strong>Response Time:</strong> Within 24 hours
                   </p>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                  <button 
+                    className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
+                    style={{ backgroundColor: '#001554' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                  >
                     Send Email
                   </button>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-6">
-                  <h4 className="font-semibold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <div className="rounded-lg p-6" style={{ backgroundColor: '#F2F3F5' }}>
+                  <h4 className="font-semibold mb-4 flex items-center gap-2" style={{ color: '#1A1818' }}>
                     <span>📍</span> Office Contact
                   </h4>
-                  <p className="text-slate-600 dark:text-gray-300 mb-3">
+                  <p className="mb-3" style={{ color: '#B3B5BC' }}>
                     <strong>Phone:</strong> +94 11 123 4567<br/>
                     <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
                   </p>
-                  <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                  <button 
+                    className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
+                    style={{ backgroundColor: '#FE5F16' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  >
                     Get Directions
                   </button>
                 </div>

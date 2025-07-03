@@ -1,4 +1,9 @@
-import Navigation from '../src/components/Navigation';
+import Navigation from '../src/c  return (
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
+      <Navigation />
+      
+      {/* Header Section */}
+      <div className="py-12 sm:py-16" style={{ backgroundColor: '#F2F3F5' }}>nts/Navigation';
 import Footer from '../src/components/Footer';
 import { useState } from 'react';
 
