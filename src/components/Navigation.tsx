@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -27,33 +26,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 group">
-            <div className="relative">
-              {/* Official Logo Image */}
-              <Image 
-                src="/toolntask-logo.png" 
-                alt="ToolNTask Logo" 
-                width={160}
-                height={48}
-                className="h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-lg"
-                style={{ 
-                  filter: theme === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'brightness(1) contrast(1)',
-                  maxWidth: '200px'
-                }}
-                priority
-                onError={() => {
-                  // Fallback handled by showing text logo below
-                  console.log('Logo image failed to load, using fallback text logo');
-                }}
-              />
-            </div>
-            {/* Optional: Text fallback (can be removed if logo always loads) */}
-            <div className="hidden">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold transition-all duration-300 group-hover:scale-105">
-                <span style={{ color: '#FF5E14' }}>Tool</span>
-                <span style={{ color: '#001554' }}>N</span>
-                <span style={{ color: '#FF5E14' }}>Task</span>
-              </div>
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-bold transition-colors duration-300">
+              <span style={{ color: '#FF5E14' }}>Tool</span>
+              <span style={{ color: '#001554' }}>N</span>
+              <span style={{ color: '#FF5E14' }}>Task</span>
             </div>
           </Link>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp, Heart, Users, Star } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -63,22 +62,10 @@ const Footer = () => {
             
             {/* Brand Section */}
             <div className="lg:col-span-2">
-              {/* Official Logo */}
-              <div className="mb-6">
-                <Image 
-                  src="/toolntask-logo.png" 
-                  alt="ToolNTask Logo" 
-                  width={200}
-                  height={60}
-                  className="h-12 sm:h-14 lg:h-16 w-auto transition-all duration-300 hover:scale-105 drop-shadow-lg"
-                  style={{ 
-                    filter: theme === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'brightness(1) contrast(1)',
-                    maxWidth: '240px'
-                  }}
-                  onError={() => {
-                    console.log('Footer logo failed to load, using fallback');
-                  }}
-                />
+              <div className="text-3xl sm:text-4xl font-bold mb-6">
+                <span style={{ color: '#FF5E14' }}>Tool</span>
+                <span style={{ color: '#001554' }}>N</span>
+                <span style={{ color: '#FF5E14' }}>Task</span>
               </div>
               <p className="text-lg mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 Sri Lanka&apos;s leading community marketplace connecting neighbors through shared tools and trusted services. 
