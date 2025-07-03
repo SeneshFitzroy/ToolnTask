@@ -541,90 +541,164 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
-        <div className="absolute inset-0 opacity-20" style={{ background: 'linear-gradient(135deg, rgba(0, 21, 84, 0.1) 0%, rgba(0, 21, 84, 0.3) 100%)' }}></div>
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-3 left-3 sm:top-5 sm:left-5 md:top-10 md:left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute top-8 right-6 sm:top-16 sm:right-10 md:top-32 md:right-20 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-6 left-8 sm:bottom-10 sm:left-16 md:bottom-20 md:left-32 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 md:bottom-10 md:right-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+      {/* Enhanced CTA Section */}
+      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
+        {/* Enhanced Background with Gradients and Animations */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #001554 0%, #001a6b 50%, #001554 100%)' }}></div>
+        <div className="absolute inset-0 opacity-30" style={{ background: 'radial-gradient(circle at 30% 20%, rgba(255, 94, 20, 0.2) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(255, 94, 20, 0.15) 0%, transparent 50%)' }}></div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.15, animationDelay: '0s', animationDuration: '4s' }}></div>
+          <div className="absolute top-20 right-16 w-12 h-12 sm:w-16 sm:h-16 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.12, animationDelay: '1.5s', animationDuration: '3.5s' }}></div>
+          <div className="absolute bottom-24 left-20 w-8 h-8 sm:w-12 sm:h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.1, animationDelay: '2s', animationDuration: '5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.18, animationDelay: '0.8s', animationDuration: '4.2s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-6 h-6 sm:w-8 sm:h-8 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.08, animationDelay: '3s', animationDuration: '3.8s' }}></div>
+          <div className="absolute top-1/3 right-1/3 w-14 h-14 sm:w-18 sm:h-18 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', opacity: 0.13, animationDelay: '2.5s', animationDuration: '4.5s' }}></div>
         </div>
         
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 md:mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 94, 20, 0.1)', border: '1px solid #FF5E14' }}>
-            <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          {/* Enhanced Badge with Animation */}
+          <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 rounded-full mb-6 sm:mb-8 md:mb-10 shadow-2xl backdrop-blur-sm border transform hover:scale-105 transition-all duration-300" 
+               style={{ 
+                 backgroundColor: 'rgba(255, 94, 20, 0.15)', 
+                 border: '2px solid rgba(255, 94, 20, 0.4)',
+                 boxShadow: '0 8px 32px rgba(255, 94, 20, 0.3)'
+               }}>
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
+            <span className="text-sm sm:text-base font-bold tracking-wide" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0.5s' }}></div>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight px-2 sm:px-0" style={{ color: '#FFFFFF' }}>
-            Ready to Transform Your{' '}
+          {/* Enhanced Headline with Better Typography */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight px-2 sm:px-0" style={{ color: '#FFFFFF' }}>
+            Ready to Transform{' '}
+            <br className="hidden sm:block" />
+            Your{' '}
             <span 
-              className="relative inline-block"
+              className="relative inline-block transform hover:scale-105 transition-transform duration-300"
               style={{ color: '#FF5E14' }}
             >
               Community?
-              <svg className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 w-full h-2 sm:h-3 md:h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.5 }}>
-                <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
+              <svg className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 left-0 w-full h-3 sm:h-4 md:h-5 animate-pulse" viewBox="0 0 100 16" style={{ fill: '#FF5E14', opacity: 0.6 }}>
+                <path d="M0 12 Q 25 4 50 8 Q 75 12 100 6 L 100 16 L 0 16 Z" />
               </svg>
             </span>
           </h2>
           
-          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Join thousands of Sri Lankans building stronger, more connected neighborhoods. 
-            Start earning, saving, and helping today.
+          {/* Enhanced Description */}
+          <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0 font-medium" style={{ color: 'rgba(255, 255, 255, 0.95)' }}>
+            Join{' '}
+            <span className="font-bold" style={{ color: '#FF5E14' }}>thousands of Sri Lankans</span>
+            {' '}building stronger, more connected neighborhoods.{' '}
+            <br className="hidden sm:block" />
+            Start earning, saving, and helping{' '}
+            <span className="font-bold" style={{ color: '#FF5E14' }}>today</span>.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center mb-6 sm:mb-8 md:mb-12 px-4 sm:px-0">
+          {/* Enhanced Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-8 justify-center mb-10 sm:mb-12 md:mb-16 px-4 sm:px-0">
             <Link href="/SignUp">
               <Button 
-                className="w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-0 relative overflow-hidden group"
-                style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
-              >
-                <span className="relative z-10">Join Now - It&apos;s Free</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
-              </Button>
-            </Link>
-            <Link href="/About">
-              <Button 
-                className="w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-2 relative overflow-hidden group"
+                className="w-full sm:w-auto text-base sm:text-lg md:text-xl font-bold px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-500 hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                 style={{ 
-                  backgroundColor: 'transparent',
+                  backgroundColor: '#FF5E14',
                   color: '#FFFFFF',
-                  borderColor: '#FFFFFF'
+                  background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
+                  boxShadow: '0 15px 35px rgba(255, 94, 20, 0.4), 0 8px 20px rgba(255, 94, 20, 0.3)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                  e.currentTarget.style.color = '#001554';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF5E14 50%, #FF5D13 100%)';
+                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(255, 94, 20, 0.6), 0 12px 30px rgba(255, 94, 20, 0.4)';
+                  e.currentTarget.style.transform = 'scale(1.1) translateY(-3px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FFFFFF';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)';
+                  e.currentTarget.style.boxShadow = '0 15px 35px rgba(255, 94, 20, 0.4), 0 8px 20px rgba(255, 94, 20, 0.3)';
+                  e.currentTarget.style.transform = 'scale(1.1)';
                 }}
               >
-                <span className="relative z-10">Learn More</span>
+                <span className="relative z-10 flex items-center gap-3 font-bold tracking-wide">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9.5 7.293 6.207a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L11.414 9.5l2.293-2.293z" clipRule="evenodd" />
+                  </svg>
+                  Join Now - It&apos;s Free
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-25 transform -skew-x-12 group-hover:translate-x-full transition-all duration-1000"></div>
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-transparent via-yellow-300 to-transparent opacity-0 group-hover:opacity-30 blur-xl transition-all duration-700"></div>
+              </Button>
+            </Link>
+            
+            <Link href="/About">
+              <Button 
+                className="w-full sm:w-auto text-base sm:text-lg md:text-xl font-bold px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-xl sm:rounded-2xl transition-all duration-500 hover:scale-105 shadow-2xl border-2 relative overflow-hidden group backdrop-blur-sm"
+                style={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  color: '#FFFFFF',
+                  borderColor: 'rgba(255, 255, 255, 0.5)',
+                  boxShadow: '0 8px 25px rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                  e.currentTarget.style.color = '#001554';
+                  e.currentTarget.style.borderColor = '#FFFFFF';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 255, 255, 0.3)';
+                  e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.color = '#FFFFFF';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+              >
+                <span className="relative z-10 flex items-center gap-3 font-bold tracking-wide">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  Learn More
+                </span>
               </Button>
             </Link>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8 text-xs sm:text-sm font-medium px-4 sm:px-0" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>No Hidden Fees</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>Verified Members</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>Secure Payments</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>24/7 Support</span>
-            </div>
+          {/* Enhanced Trust Indicators */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-4 sm:px-0">
+            {[
+              { icon: '💰', text: 'No Hidden Fees', color: '#FF5E14' },
+              { icon: '✅', text: 'Verified Members', color: '#FF5E14' },
+              { icon: '🔒', text: 'Secure Payments', color: '#FF5E14' },
+              { icon: '📞', text: '24/7 Support', color: '#FF5E14' }
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl backdrop-blur-sm hover:scale-105 transition-all duration-300 group cursor-pointer"
+                style={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 94, 20, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 94, 20, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                }}
+              >
+                <div className="text-xl sm:text-2xl mb-1 transform group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <div className="w-3 h-3 rounded-full mb-1 animate-pulse" style={{ backgroundColor: item.color, animationDelay: `${index * 0.2}s` }}></div>
+                <span className="text-xs sm:text-sm font-semibold text-center leading-tight" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                  {item.text}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
