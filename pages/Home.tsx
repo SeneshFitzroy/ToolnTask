@@ -180,7 +180,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl mt-8 lg:mt-12">
+              <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg mt-8 lg:mt-12">
                 {/* Enhanced Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-3xl filter blur-3xl opacity-40 animate-pulse"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-blue-300/20 rounded-3xl animate-spin-slow"></div>
@@ -260,9 +260,9 @@ export default function Home() {
                   <div className="absolute -inset-2 bg-indigo-400/20 rounded-xl blur-md group-hover:bg-indigo-400/40 transition-all duration-500"></div>
                 </div>
 
-                {/* Enhanced Video Container - Increased Height */}
+                {/* Enhanced Video Container - Reduced Size */}
                 <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-lg">
-                  <div className="relative w-full" style={{ height: '450px' }}>
+                  <div className="relative w-full" style={{ height: '320px' }}>
                     <video
                       className="absolute top-0 left-0 w-full h-full rounded-2xl object-cover object-top"
                       style={{ objectPosition: 'center top' }}
@@ -287,11 +287,11 @@ export default function Home() {
                   
                   {/* Enhanced Fallback Image */}
                   <div 
-                    className="hidden w-full h-auto rounded-3xl bg-cover bg-center bg-no-repeat"
+                    className="hidden relative w-full rounded-3xl bg-cover bg-center bg-no-repeat"
                     style={{ 
                       backgroundImage: `url('/hero-video-poster.png')`,
-                      aspectRatio: '4/3',
-                      minHeight: '400px'
+                      height: '320px',
+                      backgroundPosition: 'center top'
                     }}
                   >
                     <div className="flex items-center justify-center h-full bg-gradient-to-br from-black/40 via-orange-900/20 to-blue-900/20 rounded-3xl backdrop-blur-sm">
