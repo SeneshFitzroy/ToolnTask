@@ -127,10 +127,102 @@ export default function Tasks() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
+      {/* Hero Header Section */}
+      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '3s', animationDuration: '4.5s' }}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Badge */}
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? '#1F1F1F' : '#FFFFFF',
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
+                 }}>
+              <span className="text-lg sm:text-xl mr-2">🎯</span>
+              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
+                Find Your Perfect Task
+              </span>
+            </div>
+          </div>
+          
+          {/* Main Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              Explore{' '}
+            </span>
+            <span className="relative inline-block">
+              <span style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+                Tasks
+              </span>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"></div>
+            </span>
+          </h1>
+          
+          {/* Subheading */}
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+             style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+            Discover opportunities to help your community while earning extra income
+          </p>
+          
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#FF5E14' }}>
+                500+
+              </div>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Available Tasks
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#001554' }}>
+                24/7
+              </div>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                New Postings
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#FF5E14' }}>
+                1000+
+              </div>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Happy Helpers
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Search Section */}
-      <div className="py-10 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-8 sm:py-10 lg:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Find Tasks</h1>
+          {/* Search Header */}
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              Find Your Next Task
+            </h2>
+            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              Search and filter through hundreds of opportunities
+            </p>
+          </div>
+          
+          {/* Enhanced Search Bar Container */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 shadow-xl border-2" 
+               style={{ 
+                 backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
+                 boxShadow: theme === 'dark' 
+                   ? '0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 94, 20, 0.1)'
+                   : '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 94, 20, 0.05)'
+               }}>
           
           {/* Search Bar with Filter */}
           <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
@@ -222,6 +314,7 @@ export default function Tasks() {
               {searchTerm && ` for "${searchTerm}"`}
               {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
             </p>
+          </div>
           </div>
         </div>
       </div>
