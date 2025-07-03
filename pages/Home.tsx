@@ -219,7 +219,7 @@ export default function Home() {
                             <path d="M8 5v10l7-5z" />
                           </svg>
                         </div>
-                        <h3 className="text-lg font-bold mb-2 logo-font">ToolNTask</h3>
+                        <h3 className="text-lg font-bold mb-2 logo-medium" style={{ color: '#FF5E14' }}>ToolNTask</h3>
                         <p className="text-sm opacity-90">Community Marketplace</p>
                       </div>
                     </div>

@@ -3,9 +3,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Logo Font */
+/* Custom Logo Font Classes */
 .logo-font {
   font-family: 'Rubik Wet Paint', cursive;
+  font-display: swap;
+  letter-spacing: -0.02em;
+}
+
+/* Logo variants for different sizes */
+.logo-large {
+  font-family: 'Rubik Wet Paint', cursive;
+  font-display: swap;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-medium {
+  font-family: 'Rubik Wet Paint', cursive;
+  font-display: swap;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.logo-small {
+  font-family: 'Rubik Wet Paint', cursive;
+  font-display: swap;
+  letter-spacing: -0.01em;
 }
 
 @layer base {
