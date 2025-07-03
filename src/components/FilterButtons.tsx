@@ -33,9 +33,12 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   ];
 
   return (
-    <div className="w-full max-w-lg mx-auto mb-16">
+    <div className="w-full max-w-md mx-auto mb-16">
       {/* Professional Filter Tabs */}
-      <div className="p-1.5 rounded-2xl shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#F2F3F5' }}>
+      <div className="p-1 rounded-xl shadow-lg border" style={{ 
+        backgroundColor: theme === 'dark' ? '#1A1818' : '#F2F3F5',
+        borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+      }}>
         <div className="flex">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
@@ -45,39 +48,38 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  flex-1 relative px-3 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold
-                  transition-all duration-200 ease-in-out hover:scale-105
+                  flex-1 relative px-4 sm:px-6 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold
+                  transition-all duration-300 ease-in-out hover:scale-105 group
                 `}
                 style={{
-                  backgroundColor: isActive ? (theme === 'dark' ? '#333333' : '#FFF') : 'transparent',
-                  color: isActive ? (theme === 'dark' ? '#FFFFFF' : '#1A1818') : (theme === 'dark' ? '#B3B5BC' : '#B3B5BC'),
-                  boxShadow: isActive ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none'
+                  backgroundColor: isActive ? '#FF5E14' : 'transparent',
+                  color: isActive ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                  boxShadow: isActive ? '0 4px 8px rgba(255, 94, 20, 0.3)' : 'none'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FFF';
+                    e.currentTarget.style.color = '#FF5E14';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#FFFFFF';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC';
+                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }
                 }}
               >
-                <div className="flex items-center justify-center gap-2 sm:gap-3">
-                  <span className="text-sm sm:text-lg">{option.label}</span>
-                  <span 
-                    className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full font-medium"
-                    style={{
-                      backgroundColor: isActive ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#B3B5BC'),
-                      color: isActive ? '#FFFFFF' : (theme === 'dark' ? '#FFFFFF' : '#FFF')
-                    }}
-                  >
-                    {option.count}
-                  </span>
-                </div>
+                <span className="flex items-center justify-center">
+                  {option.label}
+                </span>
+                
+                {/* Active indicator line */}
+                {isActive && (
+                  <div 
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full"
+                    style={{ backgroundColor: '#FFFFFF' }}
+                  />
+                )}
               </button>
             );
           })}
