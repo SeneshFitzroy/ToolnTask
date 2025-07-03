@@ -451,7 +451,7 @@ export default function Home() {
       </div>
 
       {/* Promotional Banner Section */}
-      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl border-2 group hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
@@ -476,35 +476,33 @@ export default function Home() {
             
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-8 right-8 w-24 h-24 rounded-full animate-pulse" 
+              <div className="absolute top-4 right-4 w-16 h-16 rounded-full animate-pulse" 
                    style={{ background: 'radial-gradient(circle, rgba(255, 94, 20, 0.1) 0%, transparent 70%)' }}></div>
-              <div className="absolute bottom-8 left-8 w-20 h-20 rounded-full animate-pulse delay-1000" 
+              <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full animate-pulse delay-1000" 
                    style={{ background: 'radial-gradient(circle, rgba(0, 21, 84, 0.1) 0%, transparent 70%)' }}></div>
-              <div className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full animate-pulse delay-500 transform -translate-x-1/2 -translate-y-1/2" 
-                   style={{ background: 'radial-gradient(circle, rgba(255, 94, 20, 0.03) 0%, transparent 70%)' }}></div>
             </div>
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 items-center p-8 sm:p-10 md:p-12 lg:p-16">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 items-center p-4 sm:p-5 md:p-6">
               {/* Animated Icon Badge */}
               <div className="flex justify-center lg:justify-start">
                 <div className="relative group">
                   <div className="absolute inset-0 rounded-full animate-ping" 
                        style={{ backgroundColor: 'rgba(255, 94, 20, 0.3)' }}></div>
-                  <div className="relative inline-flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 border-2" 
+                  <div className="relative inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 border-2" 
                        style={{ 
                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
                          borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.4)' : 'rgba(255, 94, 20, 0.3)',
                          boxShadow: '0 8px 25px rgba(255, 94, 20, 0.2)'
                        }}>
-                    <span className="text-2xl sm:text-3xl animate-bounce">🎯</span>
+                    <span className="text-lg sm:text-xl animate-bounce">🎯</span>
                   </div>
                 </div>
               </div>
               
               {/* Enhanced Content */}
               <div className="lg:col-span-2 text-center lg:text-left">
-                <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 sm:mb-6">
-                  <span className="text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full animate-pulse border" 
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-2 sm:mb-3">
+                  <span className="text-xs font-bold px-2 sm:px-3 py-1 rounded-full animate-pulse border" 
                         style={{ 
                           backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)',
                           color: '#FF5E14',
@@ -516,7 +514,7 @@ export default function Home() {
                   </span>
                 </div>
                 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 tracking-tight leading-tight" 
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mb-1 sm:mb-2 tracking-tight leading-tight" 
                     style={{ 
                       color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
                       textShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(0,0,0,0.1)'
@@ -531,12 +529,12 @@ export default function Home() {
                   </span>
                 </h3>
                 
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0" 
+                <p className="text-xs sm:text-sm md:text-base font-medium leading-relaxed" 
                    style={{ 
                      color: theme === 'dark' ? '#B3B5BC' : '#4B5563',
                      textShadow: '0 1px 2px rgba(0,0,0,0.05)'
                    }}>
-                  Join thousands of users already connecting with their community across Sri Lanka
+                  Join thousands connecting across Sri Lanka
                 </p>
               </div>
               
@@ -544,7 +542,7 @@ export default function Home() {
               <div className="flex justify-center lg:justify-end">
                 <Link href="/SignUp">
                   <Button 
-                    className="relative text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg overflow-hidden group border-2"
+                    className="relative text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg overflow-hidden group border-2"
                     style={{ 
                       backgroundColor: '#FF5E14',
                       color: '#FFFFFF',
@@ -569,9 +567,9 @@ export default function Home() {
                   >
                     {/* Button shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                    <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                    <span className="relative z-10 flex items-center gap-1 sm:gap-2">
                       <span>Claim Now</span>
-                      <span className="text-sm sm:text-base animate-bounce delay-200">🚀</span>
+                      <span className="text-xs sm:text-sm animate-bounce delay-200">🚀</span>
                     </span>
                   </Button>
                 </Link>
@@ -579,12 +577,12 @@ export default function Home() {
             </div>
             
             {/* Corner Decorations */}
-            <div className="absolute top-0 right-0 w-8 h-8 sm:w-10 sm:h-10 transform rotate-45 translate-x-4 sm:translate-x-5 -translate-y-4 sm:-translate-y-5" 
+            <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 transform rotate-45 translate-x-3 sm:translate-x-4 -translate-y-3 sm:-translate-y-4" 
                  style={{ 
                    backgroundColor: 'rgba(255, 94, 20, 0.1)',
                    border: `1px solid rgba(255, 94, 20, 0.2)`
                  }}></div>
-            <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 transform rotate-45 -translate-x-3 sm:-translate-x-4 translate-y-3 sm:translate-y-4" 
+            <div className="absolute bottom-0 left-0 w-4 h-4 sm:w-6 sm:h-6 transform rotate-45 -translate-x-2 sm:-translate-x-3 translate-y-2 sm:translate-y-3" 
                  style={{ 
                    backgroundColor: 'rgba(0, 21, 84, 0.1)',
                    border: `1px solid rgba(0, 21, 84, 0.2)`
