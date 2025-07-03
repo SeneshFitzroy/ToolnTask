@@ -131,7 +131,7 @@ const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg transition-colors duration-200 hover:scale-105"
+              className="lg:hidden p-2.5 rounded-lg transition-colors duration-200 hover:scale-105"
               style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5'}
