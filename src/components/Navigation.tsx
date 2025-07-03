@@ -24,10 +24,10 @@ const Navigation = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
+        <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-1 sm:space-x-2">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold transition-colors duration-300">
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold transition-colors duration-300">
               <span style={{ color: '#FF5E14' }}>Tool</span>
               <span style={{ color: '#001554' }}>N</span>
               <span style={{ color: '#FF5E14' }}>Task</span>
@@ -35,49 +35,49 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <div className="hidden lg:flex items-center space-x-5 xl:space-x-7">
             <Link 
               href="/" 
-              className="px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
-              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
-              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
             >
               Home
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
-              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
-              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
             >
               Tasks
             </Link>
             <Link 
               href="/Tools" 
-              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
-              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
-              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
             >
               Tools
             </Link>
             <Link 
               href="/About" 
-              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
-              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
-              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
             >
               About Us
             </Link>
             <Link 
               href="/Contact" 
-              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
-              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
-              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
             >
               Contact
             </Link>
