@@ -1,0 +1,161 @@
+
+import Navigation from '../src/components/Navigation';
+import Footer from '../src/components/Footer';
+import TaskCard from '../src/components/TaskCard';
+import ToolCard from '../src/components/ToolCard';
+import FilterButtons from '../src/components/FilterButtons';
+import { Button } from '../src/components/ui/button';
+import Link from 'next/link';
+import { useState } from 'react';
+
+export default function Home() {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
+
+  const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
+    setActiveFilter(filter);
+  };
+
+  const taskCards = [
+    <TaskCard
+      key="task1"
+      title="Garden Maintenance"
+      description="Looking for someone to help with weekly garden maintenance including weeding, pruning, and lawn care."
+      price="Rs. 5,000"
+      time="2-3 hours"
+      location="Colombo 03"
+      isUrgent={true}
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop"
+    />,
+    <TaskCard
+      key="task2"
+      title="House Cleaning"
+      description="Need help with deep cleaning of 3-bedroom house. All supplies provided."
+      price="Rs. 8,000"
+      time="4-5 hours"
+      location="Kandy"
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"
+    />,
+    <TaskCard
+      key="task3"
+      title="Babysitting Service"
+      description="Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings."
+      price="Rs. 3,000"
+      time="4 hours"
+      location="Galle"
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop"
+    />
+  ];
+
+  const toolCards = [
+    <ToolCard
+      key="tool1"
+      title="Power Drill Set"
+      description="Professional Bosch power drill with multiple bits. Perfect for home improvement projects."
+      price="Rs. 1,500/day"
+      brand="Bosch"
+      condition="Excellent"
+      available={true}
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop"
+    />,
+    <ToolCard
+      key="tool2"
+      title="Lawn Mower"
+      description="Electric lawn mower in great condition. Ideal for medium to large gardens."
+      price="Rs. 2,000/day"
+      brand="Honda"
+      condition="Good"
+      available={true}
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop"
+    />,
+    <ToolCard
+      key="tool3"
+      title="Angle Grinder"
+      description="Heavy-duty angle grinder for metal cutting and grinding projects."
+      price="Rs. 1,200/day"
+      brand="Makita"
+      condition="Excellent"
+      available={false}
+      isPromoted={true}
+      image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop"
+    />
+  ];
+
+  const getFilteredCards = () => {
+    if (activeFilter === 'tasks') return taskCards;
+    if (activeFilter === 'tools') return toolCards;
+    return [...taskCards, ...toolCards];
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Navigation />
+      
+      {/* Hero Section */}
+      <div className="bg-white dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4">
+                Need a Hand or a Hammer?
+              </h1>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500 mb-4 sm:mb-6">
+                We&apos;ve Got Both!
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+                Whether you need a quick helping hand or a power drill for the weekend, 
+                we&apos;ve got you covered. Browse one-time gigs like babysitting, gardening, 
+                or minor repairs — or rent out home tools neighbours need year.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="/Tasks">
+                  <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                    Get Started
+                  </Button>
+                </Link>
+                <Link href="/About">
+                  <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 to-blue-500 rounded-full flex items-center justify-center shadow-2xl">
+                  <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-xl">
+                    <span className="text-6xl sm:text-8xl lg:text-9xl">🔧</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Section */}
+      <div className="bg-white dark:bg-gray-800 py-12 shadow-sm border-t border-gray-100 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
+        </div>
+      </div>
+
+      {/* Promoted Cards Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {getFilteredCards()}
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
