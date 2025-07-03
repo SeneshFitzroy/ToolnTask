@@ -43,41 +43,42 @@ export default function About() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-100 to-blue-100 dark:from-orange-900 dark:to-blue-900 rounded-3xl flex items-center justify-center">
-                <span className="text-6xl sm:text-7xl lg:text-8xl">🤝</span>
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl flex items-center justify-center shadow-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FFE514 0%, #FE5F16 100%)' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                <span className="text-6xl sm:text-7xl lg:text-8xl relative z-10">🤝</span>
               </div>
             </div>
           </div>
 
           {/* Values Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
-            <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg text-center">
-              <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 mb-16 sm:mb-20">
+            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#FE5F16' }}>
                 <span className="text-2xl">🎯</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4">Trust & Safety</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1A1818' }}>Trust & Safety</h3>
+              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Every user is verified, and we maintain high standards for safety and reliability 
                 in all transactions.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg text-center">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#FFE514' }}>
                 <span className="text-2xl">🌱</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4">Sustainability</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1A1818' }}>Sustainability</h3>
+              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg text-center">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#001554' }}>
                 <span className="text-2xl">👥</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4">Community</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1A1818' }}>Community</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
