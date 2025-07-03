@@ -96,20 +96,21 @@ export default function About() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Meet Our Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4" style={{ borderColor: '#FF5E14' }}>
-                  <img 
-                    src="/ceo.jpg" 
-                    alt="Mandira De Silva - Founder & CEO"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback to initials if image fails to load
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center" style={{ display: 'none' }}>
-                    <span className="text-white text-2xl sm:text-3xl font-bold">MD</span>
-                  </div>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#FF5E14' }}>
+                  {!ceoImageError ? (
+                    <Image 
+                      src="/ceo.jpg" 
+                      alt="Mandira De Silva - Founder & CEO"
+                      width={112}
+                      height={112}
+                      className="w-full h-full object-cover"
+                      onError={() => setCeoImageError(true)}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                      <span className="text-white text-2xl sm:text-3xl font-bold">MD</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Mandira De Silva</h3>
                 <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Founder & CEO</p>
@@ -119,20 +120,21 @@ export default function About() {
               </div>
 
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4" style={{ borderColor: '#001554' }}>
-                  <img 
-                    src="/cto.jpg" 
-                    alt="Senesh Fitzroy - CTO"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback to initials if image fails to load
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center" style={{ display: 'none' }}>
-                    <span className="text-white text-2xl sm:text-3xl font-bold">SF</span>
-                  </div>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#001554' }}>
+                  {!ctoImageError ? (
+                    <Image 
+                      src="/cto.jpg" 
+                      alt="Senesh Fitzroy - CTO"
+                      width={112}
+                      height={112}
+                      className="w-full h-full object-cover"
+                      onError={() => setCtoImageError(true)}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                      <span className="text-white text-2xl sm:text-3xl font-bold">SF</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Senesh Fitzroy</h3>
                 <p className="font-semibold mb-4" style={{ color: '#001554' }}>CTO</p>
