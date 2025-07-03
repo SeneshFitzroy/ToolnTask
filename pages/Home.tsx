@@ -420,20 +420,20 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16 sm:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
             {[
               { 
                 step: '1', 
@@ -458,27 +458,27 @@ export default function Home() {
               }
             ].map((step, index) => (
               <div key={index} className="text-center relative group">
-                <div className="relative mb-6 sm:mb-8">
+                <div className="relative mb-4 sm:mb-6 md:mb-8">
                   <div 
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-bold text-white mx-auto shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
+                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center text-base sm:text-xl md:text-2xl font-bold text-white mx-auto shadow-lg sm:shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
                     style={{ backgroundColor: step.color }}
                   >
                     {step.step}
                   </div>
-                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
-                    <span className="text-lg sm:text-xl">{step.icon}</span>
+                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
+                    <span className="text-sm sm:text-base md:text-lg lg:text-xl">{step.icon}</span>
                   </div>
                 </div>
                 
-                <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl transition-all duration-300 group-hover:shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{step.title}</h3>
-                  <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{step.desc}</p>
+                <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-300 group-hover:shadow-lg sm:group-hover:shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{step.title}</h3>
+                  <p className="text-xs sm:text-sm md:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{step.desc}</p>
                 </div>
                 
                 {index < 2 && (
-                  <div className="hidden sm:block absolute top-8 sm:top-10 left-1/2 w-full h-1 transform translate-x-8 z-10">
+                  <div className="hidden sm:block absolute top-6 sm:top-8 md:top-10 left-1/2 w-full h-1 transform translate-x-4 sm:translate-x-8 z-10">
                     <div 
-                      className="w-16 sm:w-20 h-1 rounded-full relative overflow-hidden"
+                      className="w-12 sm:w-16 md:w-20 h-1 rounded-full relative overflow-hidden"
                       style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
                     >
                       <div 
