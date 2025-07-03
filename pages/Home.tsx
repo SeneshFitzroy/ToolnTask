@@ -177,22 +177,58 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-2xl filter blur-3xl opacity-30 animate-pulse"></div>
-                <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
+                {/* Background Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-blue-200 rounded-3xl filter blur-3xl opacity-40 animate-pulse"></div>
+                
+                {/* Video Container */}
+                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                   <video
-                    className="w-full h-auto rounded-2xl"
+                    className="w-full h-auto rounded-2xl object-cover"
                     autoPlay
                     muted
                     loop
                     playsInline
+                    preload="auto"
                     poster="/hero-video-poster.png"
+                    onError={(e) => {
+                      console.error('Video failed to load:', e);
+                      // Fallback: hide video and show poster
+                      e.currentTarget.style.display = 'none';
+                      const fallback = e.currentTarget.nextElementSibling;
+                      if (fallback) fallback.style.display = 'block';
+                    }}
                   >
                     <source src="/hero-video.mp4" type="video/mp4" />
-                    <source src="/hero-video.webm" type="video/webm" />
                     Your browser does not support the video tag.
                   </video>
+                  
+                  {/* Fallback Image */}
+                  <div 
+                    className="hidden w-full h-auto rounded-2xl bg-cover bg-center bg-no-repeat"
+                    style={{ 
+                      backgroundImage: `url('/hero-video-poster.png')`,
+                      aspectRatio: '16/9',
+                      minHeight: '300px'
+                    }}
+                  >
+                    <div className="flex items-center justify-center h-full bg-black/30 rounded-2xl">
+                      <div className="text-center text-white p-6">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-orange-500/80 rounded-full flex items-center justify-center backdrop-blur-sm">
+                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 5v10l7-5z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-bold mb-2">ToolNTask</h3>
+                        <p className="text-sm opacity-90">Community Marketplace</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-orange-500/30 rounded-full animate-bounce"></div>
+                <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-blue-500/20 rounded-full animate-pulse"></div>
               </div>
             </div>
           </div>
