@@ -79,7 +79,7 @@ export default function About() {
                 <span className="text-2xl">👥</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: '#1A1818' }}>Community</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
               </p>
@@ -87,38 +87,38 @@ export default function About() {
           </div>
 
           {/* Team Section */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-8 sm:mb-12">Meet Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-              <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl sm:text-2xl font-bold">JD</span>
+          <div className="text-center mb-16 sm:mb-20">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: '#1A1818' }}>Meet Our Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 100%)' }}>
+                  <span className="text-white text-2xl sm:text-3xl font-bold">JD</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">John Doe</h3>
-                <p className="text-orange-600 font-semibold mb-3">Founder & CEO</p>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>John Doe</h3>
+                <p className="font-semibold mb-4" style={{ color: '#FE5F16' }}>Founder & CEO</p>
+                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl sm:text-2xl font-bold">JS</span>
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #001554 0%, #011659 100%)' }}>
+                  <span className="text-white text-2xl sm:text-3xl font-bold">JS</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Jane Smith</h3>
-                <p className="text-blue-600 font-semibold mb-3">CTO</p>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>Jane Smith</h3>
+                <p className="font-semibold mb-4" style={{ color: '#001554' }}>CTO</p>
+                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Tech enthusiast dedicated to creating seamless user experiences.
                 </p>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-8 shadow-lg">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl sm:text-2xl font-bold">MP</span>
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ backgroundColor: '#FFE514' }}>
+                  <span className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>MP</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-2">Mike Peterson</h3>
-                <p className="text-green-600 font-semibold mb-3">Head of Operations</p>
-                <p className="text-gray-600 dark:text-gray-300">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>Mike Peterson</h3>
+                <p className="font-semibold mb-4" style={{ color: '#FFE514' }}>Head of Operations</p>
+                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Ensures smooth operations and exceptional customer service.
                 </p>
               </div>
@@ -126,18 +126,37 @@ export default function About() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-orange-500 to-blue-600 rounded-3xl p-8 sm:p-12 text-center text-white">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Ready to Join Our Community?</h2>
-            <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90">
-              Start earning by helping others or find the assistance you need today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-orange-600 hover:bg-orange-50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl">
-                Get Started
-              </Button>
-              <Button className="border-2 border-white text-white hover:bg-white hover:text-orange-600 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl">
-                Learn More
-              </Button>
+          <div className="rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ background: 'linear-gradient(135deg, #FE5F16 0%, #001554 100%)' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">Ready to Join Our Community?</h2>
+              <p className="text-xl sm:text-2xl mb-8 sm:mb-10 opacity-90 leading-relaxed">
+                Start earning by helping others or find the assistance you need today.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button 
+                  className="px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0"
+                  style={{ backgroundColor: '#FFFFFF', color: '#FE5F16' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F2F3F5'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
+                >
+                  Get Started
+                </Button>
+                <Button 
+                  className="border-2 px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
+                  style={{ borderColor: '#FFFFFF', color: '#FFFFFF', backgroundColor: 'transparent' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#FFFFFF';
+                    e.currentTarget.style.color = '#FE5F16';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = '#FFFFFF';
+                  }}
+                >
+                  Learn More
+                </Button>
+              </div>
             </div>
           </div>
         </div>
