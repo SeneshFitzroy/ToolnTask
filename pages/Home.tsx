@@ -378,6 +378,170 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Promotional Banner Section */}
+      <div className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)' }}>
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%)' }}></div>
+            </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-4 right-8 w-16 h-16 bg-white/10 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-6 left-6 w-12 h-12 bg-white/15 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-white/10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+            </div>
+            
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center p-6 sm:p-8 md:p-12">
+              {/* Left Content */}
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border border-white/30" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
+                  <span className="text-xs sm:text-sm font-bold text-white">🎯 Limited Time Offer</span>
+                </div>
+                
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+                  Get Your First Task{' '}
+                  <span className="relative inline-block">
+                    Free!
+                    <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 12" style={{ fill: 'rgba(255, 255, 255, 0.6)' }}>
+                      <path d="M0 8 Q 50 2 100 8 L 100 12 L 0 12 Z" />
+                    </svg>
+                  </span>
+                </h3>
+                
+                <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-xl">
+                  New users get their first task posting absolutely free. Join now and connect with your community instantly!
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                  <Link href="/SignUp">
+                    <Button 
+                      className="w-full sm:w-auto text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-2"
+                      style={{ 
+                        backgroundColor: '#FFFFFF',
+                        color: '#FF5E14',
+                        borderColor: '#FFFFFF'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                        e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.3)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#FFFFFF';
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                      }}
+                    >
+                      <span className="flex items-center gap-2 font-bold">
+                        Claim Free Task
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                    </Button>
+                  </Link>
+                  
+                  <Link href="/About">
+                    <Button 
+                      className="w-full sm:w-auto text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                      style={{ 
+                        backgroundColor: 'transparent',
+                        color: '#FFFFFF',
+                        borderColor: 'rgba(255, 255, 255, 0.5)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                        e.currentTarget.style.borderColor = '#FFFFFF';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                      }}
+                    >
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+                
+                {/* Promo Features */}
+                <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8 justify-center lg:justify-start">
+                  <div className="flex items-center gap-2 text-white/80 text-sm">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>No Credit Card</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/80 text-sm">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>Instant Setup</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/80 text-sm">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span>30 Days Support</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Visual */}
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative">
+                  {/* Main Visual Container */}
+                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                    {/* Background Circle */}
+                    <div className="absolute inset-0 rounded-full border-4 border-white/20" style={{ background: 'radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)' }}></div>
+                    
+                    {/* Floating Icons */}
+                    <div className="absolute top-8 left-8 w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm animate-float-slow">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                      </svg>
+                    </div>
+                    
+                    <div className="absolute top-16 right-8 w-10 h-10 bg-white/25 rounded-full flex items-center justify-center backdrop-blur-sm animate-float-medium">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9,11H15L13,13L15,15H9L7,13L9,11M11,8L13,10L11,12L9,10L11,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" />
+                      </svg>
+                    </div>
+                    
+                    <div className="absolute bottom-12 left-12 w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center backdrop-blur-sm animate-float-fast">
+                      <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.46,13.97L5.82,21L12,17.27Z" />
+                      </svg>
+                    </div>
+                    
+                    <div className="absolute bottom-8 right-16 w-8 h-8 bg-white/30 rounded-lg flex items-center justify-center backdrop-blur-sm animate-float-slow">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                      </svg>
+                    </div>
+                    
+                    {/* Center Content */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30">
+                          <svg className="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" />
+                          </svg>
+                        </div>
+                        <div className="text-white font-bold text-lg sm:text-xl">FREE</div>
+                        <div className="text-white/80 text-sm">First Task</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Stats Section */}
       <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         {/* Interactive Background Elements */}
