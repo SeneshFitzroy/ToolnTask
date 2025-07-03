@@ -233,7 +233,7 @@ export default function Home() {
                 {/* Top Floating Elements */}
                 <div className="absolute -top-4 left-1/3 z-20 animate-float-medium group">
                   <div className="w-11 h-11 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-teal-500/50 group-hover:rotate-180">
-                    <svg className="w-5 h-5 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-white animate-shovel-dig group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,13.5C15.53,14.14 16.05,14.78 16.5,15.5H21V17.5H15.5L12,22L8.5,17.5H3V15.5H7.5C7.95,14.78 8.47,14.14 9,13.5L3,7V9H1V7C1,6.45 1.45,6 2,6H7L9,9H15L17,6H22C22.55,6 23,6.45 23,7V9H21Z"/>
                     </svg>
                   </div>
