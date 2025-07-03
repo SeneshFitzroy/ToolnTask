@@ -304,7 +304,7 @@ export default function Home() {
                 {/* Bottom floating elements */}
                 <div className="absolute -bottom-8 left-1/4 z-20 animate-float-fast group">
                   <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-rose-500/50 group-hover:-rotate-45">
-                    <svg className="w-6 h-6 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-white animate-shovel-dig group-hover:animate-hammer-bounce" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M9,1A3,3 0 0,1 12,4V11.5L10.5,10H6.5L7.96,11.46C6.76,12.69 6.76,14.64 7.96,15.85L9.41,17.3L12,14.71L14.59,17.3L16.04,15.85C17.24,14.64 17.24,12.69 16.04,11.46L17.5,10H13.5L12,11.5V4A3,3 0 0,1 15,1A1,1 0 0,1 16,2A1,1 0 0,1 15,3A1,1 0 0,0 14,4A1,1 0 0,0 15,5A3,3 0 0,1 12,8A3,3 0 0,1 9,5A1,1 0 0,0 10,4A1,1 0 0,0 9,3A1,1 0 0,1 8,2A1,1 0 0,1 9,1M9,18.5A1.5,1.5 0 0,1 10.5,20A1.5,1.5 0 0,1 9,21.5A1.5,1.5 0 0,1 7.5,20A1.5,1.5 0 0,1 9,18.5M15,18.5A1.5,1.5 0 0,1 16.5,20A1.5,1.5 0 0,1 15,21.5A1.5,1.5 0 0,1 13.5,20A1.5,1.5 0 0,1 15,18.5Z"/>
                     </svg>
                   </div>
