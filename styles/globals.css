@@ -548,3 +548,48 @@
     padding: 1rem;
   }
 }
+
+/* ENHANCED FILTER BUTTONS STYLING */
+.filter-button-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.filter-button-glow:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.filter-button-active {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { 
+    box-shadow: 0 8px 20px rgba(255, 94, 20, 0.4), 0 4px 12px rgba(255, 94, 20, 0.3);
+  }
+  50% { 
+    box-shadow: 0 12px 28px rgba(255, 94, 20, 0.5), 0 6px 16px rgba(255, 94, 20, 0.4);
+  }
+}
+
+/* RESPONSIVE FILTER CONTAINER */
+@media (max-width: 640px) {
+  .filter-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .filter-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .filter-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}

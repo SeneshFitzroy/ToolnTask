@@ -33,13 +33,13 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   ];
 
   return (
-    <div className="w-full max-w-md mx-auto mb-16">
-      {/* Professional Filter Tabs */}
-      <div className="p-1 rounded-xl shadow-lg border" style={{ 
+    <div className="w-full max-w-4xl mx-auto mb-20 filter-container">
+      {/* Professional Wide Filter Tabs */}
+      <div className="p-2 rounded-2xl shadow-xl border-2" style={{ 
         backgroundColor: theme === 'dark' ? '#1A1818' : '#F2F3F5',
         borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
       }}>
-        <div className="flex">
+        <div className="flex gap-2">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
             
@@ -48,35 +48,46 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  flex-1 relative px-4 sm:px-6 py-3 sm:py-3.5 rounded-lg text-sm sm:text-base font-semibold
-                  transition-all duration-300 ease-in-out hover:scale-105 group
+                  flex-1 relative px-8 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-xl 
+                  text-base sm:text-lg lg:text-xl font-bold tracking-wide
+                  filter-button-glow group
+                  ${isActive ? 'filter-button-active' : ''}
                 `}
                 style={{
                   backgroundColor: isActive ? '#FF5E14' : 'transparent',
                   color: isActive ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  boxShadow: isActive ? '0 4px 8px rgba(255, 94, 20, 0.3)' : 'none'
+                  boxShadow: isActive 
+                    ? '0 8px 20px rgba(255, 94, 20, 0.4), 0 4px 12px rgba(255, 94, 20, 0.3)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.1)',
+                  border: isActive 
+                    ? '2px solid #FF5E14' 
+                    : `2px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}`
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.color = '#FF5E14';
                     e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#FFFFFF';
+                    e.currentTarget.style.borderColor = '#FF5E14';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(255, 94, 20, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
                     e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = theme === 'dark' ? '#333333' : '#E5E7EB';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
                   }
                 }}
               >
-                <span className="flex items-center justify-center">
+                <span className="flex items-center justify-center relative z-10">
                   {option.label}
                 </span>
                 
-                {/* Active indicator line */}
+                {/* Enhanced active indicator */}
                 {isActive && (
                   <div 
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full"
+                    className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-12 h-1 rounded-full"
                     style={{ backgroundColor: '#FFFFFF' }}
                   />
                 )}
@@ -84,6 +95,14 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
             );
           })}
         </div>
+      </div>
+      
+      {/* Subtle decorative element */}
+      <div className="flex justify-center mt-4">
+        <div 
+          className="w-16 h-1 rounded-full opacity-50"
+          style={{ backgroundColor: '#FF5E14' }}
+        />
       </div>
     </div>
   );
