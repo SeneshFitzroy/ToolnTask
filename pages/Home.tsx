@@ -310,6 +310,25 @@ export default function Home() {
                   </div>
                   <div className="absolute -inset-2 bg-rose-400/20 rounded-xl blur-md group-hover:bg-rose-400/40 transition-all duration-500"></div>
                 </div>
+
+                {/* Additional Electronic/Digital Tool Icons */}
+                <div className="absolute -bottom-4 right-1/3 z-20 animate-float-medium group">
+                  <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-cyan-500/50 group-hover:rotate-180">
+                    <svg className="w-5 h-5 text-white animate-gear-rotate group-hover:animate-drill-spin" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17,7H22V17H17V19A1,1 0 0,0 18,20H20V22H16A2,2 0 0,1 14,20H10A2,2 0 0,1 8,22H4V20H6A1,1 0 0,0 7,19V5A1,1 0 0,0 6,4H4V2H8A2,2 0 0,1 10,4H14A2,2 0 0,1 16,2H20V4H18A1,1 0 0,0 17,5V7M15,7V5H9V19H15V17H9V7H15Z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -inset-2 bg-cyan-400/20 rounded-full blur-md group-hover:bg-cyan-400/40 transition-all duration-500"></div>
+                </div>
+
+                <div className="absolute top-8 left-1/4 z-20 animate-float-slow group">
+                  <div className="w-9 h-9 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-emerald-500/50 group-hover:-rotate-90">
+                    <svg className="w-4 h-4 text-white animate-tool-vibrate group-hover:animate-wrench-swing" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16.5,16.5L19,19L20.5,17.5L18,15L16.5,16.5M14.5,10L16.5,8L15,6.5L13,8.5L14.5,10M7.5,10.5L9.5,8.5L8,7L6,9L7.5,10.5M5.5,13L7.5,15L6,16.5L4,14.5L5.5,13M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -inset-2 bg-emerald-400/20 rounded-xl blur-md group-hover:bg-emerald-400/40 transition-all duration-500"></div>
+                </div>
               </div>
             </div>
           </div>
