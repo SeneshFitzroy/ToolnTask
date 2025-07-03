@@ -42,12 +42,12 @@ export default function Contact() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
-            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Send us a Message</h2>
+            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Send us a Message</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>First Name</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>First Name</label>
                     <input
                       type="text"
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
