@@ -250,6 +250,165 @@
   transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+/* Advanced Mechanical Tool Animations */
+@keyframes gear-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wrench-swing {
+  0%, 100% {
+    transform: rotate(-15deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes drill-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes hammer-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-8px) rotate(-10deg);
+  }
+  40% {
+    transform: translateY(-4px) rotate(5deg);
+  }
+  60% {
+    transform: translateY(-12px) rotate(-5deg);
+  }
+  80% {
+    transform: translateY(-2px) rotate(8deg);
+  }
+}
+
+@keyframes shovel-dig {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-20deg) translateY(-5px);
+  }
+  50% {
+    transform: rotate(15deg) translateY(-10px);
+  }
+  75% {
+    transform: rotate(-10deg) translateY(-3px);
+  }
+}
+
+@keyframes tool-vibrate {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  20% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  30% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  50% {
+    transform: translateX(-1px) rotate(-0.5deg);
+  }
+  60% {
+    transform: translateX(1px) rotate(0.5deg);
+  }
+  70% {
+    transform: translateX(-1px) rotate(-0.5deg);
+  }
+  80% {
+    transform: translateX(1px) rotate(0.5deg);
+  }
+  90% {
+    transform: translateX(-0.5px) rotate(0deg);
+  }
+}
+
+/* Apply animations */
+.animate-gear-rotate {
+  animation: gear-rotate 4s linear infinite;
+}
+
+.animate-wrench-swing {
+  animation: wrench-swing 2s ease-in-out infinite;
+}
+
+.animate-drill-spin {
+  animation: drill-spin 1.5s ease-in-out infinite;
+}
+
+.animate-hammer-bounce {
+  animation: hammer-bounce 2.5s ease-in-out infinite;
+}
+
+.animate-shovel-dig {
+  animation: shovel-dig 3s ease-in-out infinite;
+}
+
+.animate-tool-vibrate {
+  animation: tool-vibrate 0.8s ease-in-out infinite;
+}
+
+/* Hover enhancement for mechanical tools */
+.group:hover .animate-gear-rotate {
+  animation-duration: 0.5s;
+}
+
+.group:hover .animate-wrench-swing {
+  animation-duration: 0.8s;
+}
+
+.group:hover .animate-drill-spin {
+  animation-duration: 0.3s;
+}
+
+.group:hover .animate-hammer-bounce {
+  animation-duration: 1s;
+}
+
+.group:hover .animate-shovel-dig {
+  animation-duration: 1.2s;
+}
+
+.group:hover .animate-tool-vibrate {
+  animation-duration: 0.2s;
+}
+
 /* Responsive animations - reduce on mobile */
 @media (max-width: 768px) {
   .animate-float-slow {
