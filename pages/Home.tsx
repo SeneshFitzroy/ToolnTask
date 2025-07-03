@@ -387,7 +387,7 @@ export default function Home() {
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
-              From Colombo to Kandy, thousands of neighbors are already helping each other every day
+              From coast to hill, across all of Sri Lanka, thousands are uniting to help each other every day!
             </p>
           </div>
           
