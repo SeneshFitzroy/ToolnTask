@@ -869,6 +869,81 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Floating Bottom-Right Banner */}
+      {showFloatingBanner && (
+        <div 
+          className="fixed bottom-6 right-6 z-50 max-w-xs sm:max-w-sm transform transition-all duration-500 ease-in-out hover:scale-105"
+          style={{ 
+            background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)',
+            boxShadow: '0 10px 30px rgba(0, 21, 84, 0.4), 0 4px 15px rgba(0, 21, 84, 0.2)'
+          }}
+        >
+          {/* Background Pattern */}
+          <div className="absolute inset-0 rounded-2xl opacity-10" style={{ background: 'radial-gradient(circle at 70% 30%, rgba(255, 94, 20, 0.3) 0%, transparent 50%)' }}></div>
+          
+          <div className="relative z-10 p-4 sm:p-5 rounded-2xl border border-white/10">
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-lg animate-pulse">💰</span>
+                <span className="text-xs font-bold text-orange-400 bg-orange-400/20 px-2 py-1 rounded-full">
+                  EARN MORE
+                </span>
+              </div>
+              <button
+                onClick={() => setShowFloatingBanner(false)}
+                className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 rounded-full transition-all duration-300"
+                aria-label="Close banner"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <h4 className="text-sm sm:text-base font-bold text-white mb-2">
+              Earn Extra Income!
+            </h4>
+            <p className="text-xs sm:text-sm text-white/80 mb-4 leading-relaxed">
+              Join as a service provider and start earning from your skills today.
+            </p>
+            
+            <Link href="/SignUp">
+              <Button 
+                className="w-full text-sm font-bold py-2.5 rounded-xl transition-all duration-300 hover:scale-105"
+                style={{ 
+                  backgroundColor: '#FF5E14',
+                  color: '#FFFFFF',
+                  boxShadow: '0 6px 20px rgba(255, 94, 20, 0.4)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF5D13';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.6)';
+                  e.currentTarget.style.transform = 'scale(1.05) translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF5E14';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.4)';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  Join Now
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </span>
+              </Button>
+            </Link>
+            
+            {/* Small features */}
+            <div className="flex justify-center gap-4 mt-3 text-xs text-white/60">
+              <span>✓ Flexible Hours</span>
+              <span>✓ Good Pay</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
