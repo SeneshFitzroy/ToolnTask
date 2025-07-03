@@ -21,19 +21,103 @@ export default function About() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '3s', animationDuration: '4.5s' }}></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8 flex items-baseline justify-center gap-2 sm:gap-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              <span>About</span>
-              <div className="relative">
-                <Logo size="large" showUnderline={true} className="inline-block" />
+            {/* Enhanced Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 sm:mb-8 shadow-lg animate-bounce" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)', 
+                   border: `1px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.4)' : 'rgba(255, 94, 20, 0.3)'}`,
+                   animationDuration: '3s'
+                 }}>
+              <span className="text-lg animate-pulse">🤝</span>
+              <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>Community Driven Platform</span>
+            </div>
+
+            {/* Enhanced Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 lg:mb-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 group" 
+                style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              <span className="relative">
+                <span className="relative z-10">About</span>
+                <div className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-orange-400/30 to-orange-600/30 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+              </span>
+              <div className="relative transform group-hover:scale-110 transition-all duration-500">
+                <Logo size="xl" showUnderline={true} className="inline-block" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-orange-400/20 to-blue-400/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
-              Connecting communities through shared tasks and tool rentals. 
-              Making everyday life easier, one helping hand at a time.
-            </p>
+
+            {/* Enhanced Description with Icons */}
+            <div className="max-w-5xl mx-auto">
+              <p className="text-xl sm:text-2xl lg:text-3xl leading-relaxed mb-6 sm:mb-8 font-medium" 
+                 style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                Connecting communities through shared tasks and tool rentals.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-lg sm:text-xl lg:text-2xl font-semibold" 
+                   style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                <div className="flex items-center gap-2 group cursor-pointer">
+                  <span className="text-2xl animate-bounce" style={{ animationDelay: '0.5s' }}>🏘️</span>
+                  <span className="group-hover:text-orange-500 transition-colors duration-300">Building Communities</span>
+                </div>
+                <span className="hidden sm:block text-orange-500">•</span>
+                <div className="flex items-center gap-2 group cursor-pointer">
+                  <span className="text-2xl animate-bounce" style={{ animationDelay: '1s' }}>🤝</span>
+                  <span className="group-hover:text-orange-500 transition-colors duration-300">Helping Neighbors</span>
+                </div>
+                <span className="hidden sm:block text-orange-500">•</span>
+                <div className="flex items-center gap-2 group cursor-pointer">
+                  <span className="text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>💰</span>
+                  <span className="group-hover:text-orange-500 transition-colors duration-300">Earning Together</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Action Elements */}
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8 sm:mt-10">
+              <div className="group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-500 cursor-pointer animate-float"
+                     style={{ 
+                       background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)',
+                       boxShadow: '0 10px 30px rgba(255, 94, 20, 0.4)'
+                     }}>
+                  <span className="text-2xl sm:text-3xl animate-pulse">🎯</span>
+                </div>
+                <p className="text-sm font-semibold mt-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Our Mission</p>
+              </div>
+              
+              <div className="group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-500 cursor-pointer animate-float"
+                     style={{ 
+                       background: 'linear-gradient(135deg, #001554 0%, #003385 100%)',
+                       boxShadow: '0 10px 30px rgba(0, 21, 84, 0.4)',
+                       animationDelay: '1s'
+                     }}>
+                  <span className="text-2xl sm:text-3xl animate-pulse">👥</span>
+                </div>
+                <p className="text-sm font-semibold mt-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Our Team</p>
+              </div>
+
+              <div className="group">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-500 cursor-pointer animate-float"
+                     style={{ 
+                       background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                       boxShadow: '0 10px 30px rgba(16, 185, 129, 0.4)',
+                       animationDelay: '2s'
+                     }}>
+                  <span className="text-2xl sm:text-3xl animate-pulse">🌱</span>
+                </div>
+                <p className="text-sm font-semibold mt-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Our Values</p>
+              </div>
+            </div>
           </div>
 
           {/* Mission Section */}
