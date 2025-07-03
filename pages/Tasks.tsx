@@ -310,37 +310,37 @@ export default function Tasks() {
               </div>
             </div>
             
-            {/* Enhanced Search Button */}
+            {/* Compact Search Button */}
             <Button 
               onClick={handleSearch}
-              className="w-full text-xl sm:text-2xl font-black px-8 sm:px-12 py-6 sm:py-8 rounded-2xl shadow-2xl transition-all duration-300 transform hover:scale-105 border-4"
+              className="w-full text-base sm:text-lg font-bold px-6 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-102"
               style={{ 
                 background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)',
                 borderColor: '#FF5E14',
                 color: '#FFFFFF',
-                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                boxShadow: '0 12px 40px rgba(255, 94, 20, 0.4)'
+                textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                boxShadow: '0 6px 20px rgba(255, 94, 20, 0.3)'
               }}
               onMouseEnter={(e) => {
                 const target = e.currentTarget as HTMLButtonElement;
-                target.style.transform = 'scale(1.05) translateY(-4px)';
-                target.style.boxShadow = '0 20px 60px rgba(255, 94, 20, 0.6)';
+                target.style.transform = 'scale(1.02) translateY(-2px)';
+                target.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
                 target.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF4500 50%, #FF3300 100%)';
               }}
               onMouseLeave={(e) => {
                 const target = e.currentTarget as HTMLButtonElement;
                 target.style.transform = 'scale(1) translateY(0px)';
-                target.style.boxShadow = '0 12px 40px rgba(255, 94, 20, 0.4)';
+                target.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.3)';
                 target.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)';
               }}
             >
-              <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                <span>SEARCH TASKS</span>
-                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <span>Search Tasks</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
             </Button>
