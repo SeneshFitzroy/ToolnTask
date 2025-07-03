@@ -2,27 +2,38 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function Profile() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-12 sm:py-16">
+      <div className="py-8 sm:py-12 lg:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden">
+          <div className="rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
             {/* Profile Header */}
-            <div className="bg-gradient-to-r from-slate-800 to-slate-900 dark:from-gray-700 dark:to-gray-800 px-6 sm:px-8 py-8 sm:py-12">
+            <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12" style={{ background: 'linear-gradient(135deg, #001554 0%, #031C56 100%)' }}>
               <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-orange-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl sm:text-3xl font-bold">JS</span>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                  <span className="text-white text-xl sm:text-2xl lg:text-3xl font-bold">JS</span>
                 </div>
                 <div className="text-white text-center sm:text-left">
-                  <h1 className="text-2xl sm:text-3xl font-bold">John Silva</h1>
-                  <p className="text-orange-300">Member since January 2024</p>
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">John Silva</h1>
+                  <p style={{ color: '#FF5E14' }}>Member since January 2024</p>
                   <div className="flex items-center justify-center sm:justify-start mt-2">
                     <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                    <span className="ml-2 text-gray-300">4.8 (24 reviews)</span>
+                    <span className="ml-2 text-gray-300 text-sm sm:text-base">4.8 (24 reviews)</span>
                   </div>
                 </div>
               </div>
