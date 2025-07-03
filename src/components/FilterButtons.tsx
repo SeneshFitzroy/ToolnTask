@@ -38,7 +38,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   return (
     <div className="w-full max-w-lg mx-auto mb-16">
       {/* Professional Filter Tabs */}
-      <div className="p-1.5 rounded-2xl shadow-lg" style={{ backgroundColor: '#F2F3F5' }}>
+      <div className="p-1.5 rounded-2xl shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#F2F3F5' }}>
         <div className="flex">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
@@ -52,19 +52,19 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                   transition-all duration-200 ease-in-out hover:scale-105
                 `}
                 style={{
-                  backgroundColor: isActive ? '#FFF' : 'transparent',
-                  color: isActive ? '#1A1818' : '#B3B5BC',
+                  backgroundColor: isActive ? (theme === 'dark' ? '#333333' : '#FFF') : 'transparent',
+                  color: isActive ? (theme === 'dark' ? '#FFFFFF' : '#1A1818') : (theme === 'dark' ? '#B3B5BC' : '#B3B5BC'),
                   boxShadow: isActive ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = '#1A1818';
-                    e.currentTarget.style.backgroundColor = '#FFF';
+                    e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FFF';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.color = '#B3B5BC';
+                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC';
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }
                 }}
@@ -74,8 +74,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                   <span 
                     className="px-3 py-1 text-sm rounded-full font-medium"
                     style={{
-                      backgroundColor: isActive ? '#FFE514' : '#B3B5BC',
-                      color: isActive ? '#1A1818' : '#FFF'
+                      backgroundColor: isActive ? '#FFE514' : (theme === 'dark' ? '#444444' : '#B3B5BC'),
+                      color: isActive ? '#1A1818' : (theme === 'dark' ? '#FFFFFF' : '#FFF')
                     }}
                   >
                     {option.count}
