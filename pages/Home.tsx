@@ -123,36 +123,31 @@ export default function Home() {
                 Sri Lanka&apos;s first community marketplace where neighbors help neighbors. 
                 Get quick tasks done or rent the tools you need from people nearby.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+              <div className="flex justify-center lg:justify-start mb-8">
                 <Link href="/Tasks">
                   <Button 
-                    className="w-full sm:w-auto text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
-                    style={{ backgroundColor: '#FE5F16' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-                  >
-                    <span className="relative z-10">Get Started Today</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
-                  </Button>
-                </Link>
-                <Link href="/About">
-                  <Button 
-                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-2"
+                    className="w-full sm:w-auto text-white px-12 py-5 text-xl font-bold rounded-2xl transition-all duration-500 hover:scale-110 shadow-2xl border-0 relative overflow-hidden group animate-pulse hover:animate-none"
                     style={{ 
-                      backgroundColor: 'transparent',
-                      color: '#001554',
-                      borderColor: '#001554'
+                      backgroundColor: '#FE5F16',
+                      background: 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 50%, #FE5F16 100%)',
+                      boxShadow: '0 10px 30px rgba(254, 95, 22, 0.4), 0 0 0 1px rgba(254, 95, 22, 0.1)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#001554';
-                      e.currentTarget.style.color = '#FFFFFF';
+                      e.currentTarget.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FE5F16 50%, #FF5D13 100%)';
+                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(254, 95, 22, 0.6), 0 0 0 2px rgba(255, 229, 20, 0.5)';
+                      e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#001554';
+                      e.currentTarget.style.background = 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 50%, #FE5F16 100%)';
+                      e.currentTarget.style.boxShadow = '0 10px 30px rgba(254, 95, 22, 0.4), 0 0 0 1px rgba(254, 95, 22, 0.1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
                     }}
                   >
-                    How It Works
+                    <span className="relative z-10 flex items-center gap-3">
+                      🚀 Get Started Today
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transform -skew-x-12 group-hover:translate-x-full transition-all duration-1000"></div>
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-yellow-300 transition-all duration-300"></div>
                   </Button>
                 </Link>
               </div>
