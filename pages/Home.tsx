@@ -451,126 +451,76 @@ export default function Home() {
       </div>
 
       {/* Promotional Banner Section */}
-      <div className="py-6 sm:py-8 md:py-10" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg border" 
+      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-lg sm:rounded-xl shadow-sm border" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
+                 borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'
                }}>
             
-            {/* Subtle Background Accent */}
-            <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #FF5E14 0%, #FF5D13 100%)' }}></div>
-            <div className="absolute inset-0 opacity-5" style={{ background: 'radial-gradient(circle at 80% 20%, rgba(255, 94, 20, 0.1) 0%, transparent 50%)' }}></div>
+            {/* Subtle Top Accent */}
+            <div className="absolute top-0 left-0 w-full h-0.5" style={{ background: 'linear-gradient(90deg, #FF5E14 0%, #001554 100%)' }}></div>
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 items-center p-4 sm:p-6 md:p-8">
-              {/* Left Content */}
-              <div className="lg:col-span-2 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3 border" 
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-4 items-center p-4 sm:p-5">
+              {/* Icon Badge */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full" 
                      style={{ 
-                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                       borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
-                       color: '#FF5E14'
+                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)',
+                       border: `1px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
                      }}>
                   <span className="text-sm">🎯</span>
-                  <span className="text-xs font-semibold">Limited Time Offer</span>
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="lg:col-span-2 text-center lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full" 
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                          color: '#FF5E14'
+                        }}>
+                    Limited Time
+                  </span>
                 </div>
                 
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3" 
+                <h3 className="text-lg sm:text-xl font-bold mb-1" 
                     style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   Get Your First Task{' '}
                   <span style={{ color: '#FF5E14' }}>Free!</span>
                 </h3>
                 
-                <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed max-w-lg mx-auto lg:mx-0" 
+                <p className="text-xs sm:text-sm leading-relaxed" 
                    style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  New users get their first task posting absolutely free. Join now and connect with your community instantly!
+                  New users get their first task posting absolutely free
                 </p>
-                
-                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                  <Link href="/SignUp">
-                    <Button 
-                      className="w-full sm:w-auto text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 shadow-md"
-                      style={{ 
-                        backgroundColor: '#FF5E14',
-                        color: '#FFFFFF'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#FF5D13';
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(255, 94, 20, 0.3)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#FF5E14';
-                        e.currentTarget.style.transform = 'scale(1)';
-                        e.currentTarget.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
-                      }}
-                    >
-                      Claim Free Task
-                    </Button>
-                  </Link>
-                  
-                  <Link href="/About">
-                    <Button 
-                      className="w-full sm:w-auto text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 border"
-                      style={{ 
-                        backgroundColor: 'transparent',
-                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
-                        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(26, 24, 24, 0.2)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(26, 24, 24, 0.05)';
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.transform = 'scale(1)';
-                      }}
-                    >
-                      Learn More
-                    </Button>
-                  </Link>
-                </div>
               </div>
               
-              {/* Right Visual - Compact */}
+              {/* CTA Button */}
               <div className="flex justify-center lg:justify-end">
-                <div className="relative">
-                  <div className="w-32 h-32 sm:w-40 sm:h-40 relative">
-                    {/* Background Circle */}
-                    <div className="absolute inset-0 rounded-full border-2" 
-                         style={{ 
-                           borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
-                           backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.02)'
-                         }}></div>
-                    
-                    {/* Floating Elements */}
-                    <div className="absolute top-2 right-2 w-6 h-6 rounded-lg flex items-center justify-center animate-float-slow" 
-                         style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)' }}>
-                      <span className="text-xs">✨</span>
-                    </div>
-                    
-                    <div className="absolute bottom-2 left-2 w-5 h-5 rounded-full flex items-center justify-center animate-float-medium" 
-                         style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.08)' }}>
-                      <span className="text-xs">🎁</span>
-                    </div>
-                    
-                    {/* Center Content */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-12 h-12 mx-auto mb-2 rounded-xl flex items-center justify-center border" 
-                             style={{ 
-                               backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                               borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
-                             }}>
-                          <span className="text-lg" style={{ color: '#FF5E14' }}>📝</span>
-                        </div>
-                        <div className="text-sm font-bold" style={{ color: '#FF5E14' }}>FREE</div>
-                        <div className="text-xs" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>First Task</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Link href="/SignUp">
+                  <Button 
+                    className="text-xs font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 shadow-sm"
+                    style={{ 
+                      backgroundColor: '#FF5E14',
+                      color: '#FFFFFF'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FF5D13';
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.25)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FF5E14';
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                    }}
+                  >
+                    Claim Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
