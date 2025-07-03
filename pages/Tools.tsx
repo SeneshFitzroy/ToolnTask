@@ -177,7 +177,36 @@ export default function Tools() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-              
+                
+                {showFilterDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 sm:w-64 border rounded-lg sm:rounded-xl shadow-lg z-50" style={{ backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' }}>
+                    <div className="p-2">
+                      {filterOptions.map((option) => (
+                        <button
+                          key={option.key}
+                          onClick={() => handleFilterChange(option.key)}
+                          className={`w-full flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-left transition-colors text-sm sm:text-base ${
+                            activeFilter === option.key
+                              ? 'text-white'
+                              : 'hover:opacity-80'
+                          }`}
+                          style={{
+                            backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
+                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
+                          }}
+                        >
+                          <span className="font-medium">{option.label}</span>
+                          <span className="text-xs px-2 py-1 rounded-full" style={{ 
+                            backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
+                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
+                          }}>
+                            {option.count}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             

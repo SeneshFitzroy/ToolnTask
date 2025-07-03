@@ -3,12 +3,21 @@ import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import { Button } from '../src/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -115,30 +124,87 @@ export default function Tasks() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Search Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 sm:py-16">
+      <div className="py-10 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-6 sm:mb-8 text-center">Find Tasks</h1>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Find Tasks</h1>
           
           {/* Search Bar with Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-6 sm:mb-8">
-            <div className="flex-1 relative">
-              <input
-                type="text"
-                placeholder="Search for tasks..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none text-base sm:text-lg shadow-sm bg-white dark:bg-gray-800 text-slate-800 dark:text-white"
-              />
-            </div>
-            
-            {/* Filter Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+          <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  placeholder="Search for tasks..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-lg sm:rounded-xl focus:outline-none text-base sm:text-lg shadow-sm transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                />
+              </div>
+              
+              {/* Filter Dropdown */}
+              <div className="relative sm:w-auto">
+                <button
+                  onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 border-2 rounded-lg sm:rounded-xl font-medium shadow-sm transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#D1D5DB' : '#4B5563'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
+                  </svg>
+                  <span className="hidden sm:inline text-sm sm:text-base">{getCurrentFilterLabel()}</span>
+                  <span className="sm:hidden text-sm">Category</span>
+                  <svg className={`w-4 h-4 ml-1 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {showFilterDropdown && (
+                  <div className="absolute right-0 mt-2 w-48 sm:w-64 border rounded-lg sm:rounded-xl shadow-lg z-50" style={{ backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' }}>
+                    <div className="p-2">
+                      {filterOptions.map((option) => (
+                        <button
+                          key={option.key}
+                          onClick={() => handleFilterChange(option.key)}
+                          className={`w-full flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-left transition-colors text-sm sm:text-base ${
+                            activeFilter === option.key
+                              ? 'text-white'
+                              : 'hover:opacity-80'
+                          }`}
+                          style={{
+                            backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
+                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
+                          }}
+                        >
+                          <span className="font-medium">{option.label}</span>
+                          <span className="text-xs px-2 py-1 rounded-full" style={{ 
+                            backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
+                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
+                          }}>
+                            {option.count}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
                 className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-gray-600 rounded-xl hover:border-orange-300 dark:hover:border-orange-500 text-slate-700 dark:text-gray-300 font-medium shadow-sm transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
