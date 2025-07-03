@@ -28,7 +28,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   return (
     <div className="w-full max-w-lg mx-auto mb-16">
       {/* Professional Filter Tabs */}
-      <div className="bg-gray-100 dark:bg-gray-800 p-1.5 rounded-2xl shadow-lg">
+      <div className="p-1.5 rounded-2xl shadow-lg" style={{ backgroundColor: '#F2F3F5' }}>
         <div className="flex">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
@@ -39,22 +39,35 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 onClick={() => onFilterChange(option.key)}
                 className={`
                   flex-1 relative px-6 py-4 rounded-xl text-base font-semibold
-                  transition-all duration-200 ease-in-out
-                  ${isActive 
-                    ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-md' 
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-750'
-                  }
+                  transition-all duration-200 ease-in-out hover:scale-105
                 `}
+                style={{
+                  backgroundColor: isActive ? '#FFF' : 'transparent',
+                  color: isActive ? '#1A1818' : '#B3B5BC',
+                  boxShadow: isActive ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = '#1A1818';
+                    e.currentTarget.style.backgroundColor = '#FFF';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = '#B3B5BC';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
               >
                 <div className="flex items-center justify-center gap-3">
                   <span className="text-lg">{option.label}</span>
-                  <span className={`
-                    px-3 py-1 text-sm rounded-full font-medium
-                    ${isActive 
-                      ? 'bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300' 
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
-                    }
-                  `}>
+                  <span 
+                    className="px-3 py-1 text-sm rounded-full font-medium"
+                    style={{
+                      backgroundColor: isActive ? '#FFE514' : '#B3B5BC',
+                      color: isActive ? '#1A1818' : '#FFF'
+                    }}
+                  >
                     {option.count}
                   </span>
                 </div>

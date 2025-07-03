@@ -93,33 +93,43 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-white dark:bg-gray-800">
+      <div className="bg-white" style={{ backgroundColor: '#FFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1A1818' }}>
                 Need a Hand or a Hammer?
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-500 mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: '#FFE514' }}>
                 We&apos;ve Got Both!
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Whether you need a quick helping hand or a power drill for the weekend, 
                 we&apos;ve got you covered. Browse one-time gigs like babysitting, gardening, 
                 or minor repairs — or rent out home tools neighbours need year.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href="/Tasks">
-                  <Button className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                  <Button 
+                    className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
+                    style={{ backgroundColor: '#FE5F16' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  >
                     Get Started
                   </Button>
                 </Link>
                 <Link href="/About">
-                  <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                  <Button 
+                    className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
+                    style={{ backgroundColor: '#001554' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                  >
                     Learn More
                   </Button>
                 </Link>
@@ -135,7 +145,7 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="bg-white dark:bg-gray-800 py-12 shadow-sm border-t border-gray-100 dark:border-gray-700">
+      <div className="py-12 shadow-sm border-t border-opacity-20" style={{ backgroundColor: '#FFF', borderColor: '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
@@ -144,7 +154,9 @@ export default function Home() {
       {/* Promoted Cards Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white">Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>
+            Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+          </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
