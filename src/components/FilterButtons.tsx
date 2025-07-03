@@ -20,18 +20,15 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   const filterOptions = [
     {
       key: 'all' as const,
-      label: 'All',
-      count: 247
+      label: 'All'
     },
     {
       key: 'tasks' as const,
-      label: 'Tasks',
-      count: 168
+      label: 'Tasks'
     },
     {
       key: 'tools' as const,
-      label: 'Tools',
-      count: 79
+      label: 'Tools'
     }
   ];
 
