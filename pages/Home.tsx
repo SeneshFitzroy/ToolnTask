@@ -4,7 +4,6 @@ import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
-import WorkerAnimation from '../src/components/WorkerAnimation';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -179,8 +178,21 @@ export default function Home() {
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full filter blur-3xl opacity-30 animate-pulse"></div>
-                <WorkerAnimation />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-purple-200 rounded-2xl filter blur-3xl opacity-30 animate-pulse"></div>
+                <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                  <video
+                    className="w-full h-auto rounded-2xl"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster="/hero-video-poster.jpg" // Optional: Add a poster image
+                  >
+                    <source src="/hero-video.mp4" type="video/mp4" />
+                    <source src="/hero-video.webm" type="video/webm" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </div>
             </div>
           </div>

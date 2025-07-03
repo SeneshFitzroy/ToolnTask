@@ -1,81 +1,220 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 const WorkerAnimation = () => {
+  const { theme } = useTheme();
+  const [activeTask, setActiveTask] = useState(0);
+  const [hoveredTool, setHoveredTool] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const interval = setInterval(() => {
+      setActiveTask((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!mounted) return null;
+
+  const tools = [
+    { icon: '🔧', name: 'Wrench', color: '#FF5E14', position: { top: '10%', left: '15%' } },
+    { icon: '🔨', name: 'Hammer', color: '#001554', position: { top: '20%', right: '10%' } },
+    { icon: '⚙️', name: 'Gear', color: '#FF5E14', position: { bottom: '25%', left: '8%' } },
+    { icon: '🪚', name: 'Saw', color: '#001554', position: { top: '15%', left: '50%' } },
+    { icon: '🪛', name: 'Screwdriver', color: '#FF5E14', position: { bottom: '30%', right: '15%' } },
+    { icon: '📐', name: 'Ruler', color: '#001554', position: { top: '45%', right: '5%' } },
+    { icon: '🪜', name: 'Ladder', color: '#FF5E14', position: { bottom: '10%', left: '45%' } },
+    { icon: '🔩', name: 'Bolt', color: '#001554', position: { top: '35%', left: '10%' } }
+  ];
+
+  const tasks = [
+    { title: 'Building', icon: '🏗️', progress: activeTask === 0 ? 100 : activeTask > 0 ? 100 : 30 },
+    { title: 'Fixing', icon: '🔧', progress: activeTask === 1 ? 100 : activeTask > 1 ? 100 : 20 },
+    { title: 'Creating', icon: '⚡', progress: activeTask === 2 ? 100 : 10 }
+  ];
+
   return (
-    <div className="relative w-80 h-80 lg:w-96 lg:h-96 transform hover:scale-105 transition-transform duration-300">
-      {/* Outer glow ring */}
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-300 via-blue-300 to-green-300 dark:from-orange-600 dark:via-blue-600 dark:to-green-600 rounded-full animate-pulse opacity-30 blur-sm"></div>
-      
-      {/* Animated background circle */}
-      <div className="absolute inset-2 bg-gradient-to-br from-orange-200 via-orange-300 to-blue-300 dark:from-orange-800 dark:via-orange-700 dark:to-blue-700 rounded-full animate-pulse opacity-40"></div>
+    <div className="relative w-80 h-80 lg:w-96 lg:h-96 transform hover:scale-105 transition-all duration-500 cursor-pointer">
+      {/* Dynamic background glow */}
+      <div 
+        className="absolute inset-0 rounded-full opacity-20 blur-2xl transition-all duration-1000"
+        style={{ 
+          background: theme === 'dark' 
+            ? 'linear-gradient(45deg, #FF5E14, #001554, #FF5E14)' 
+            : 'linear-gradient(45deg, #FFE5D6, #E8F4FD, #FFE5D6)',
+          animation: 'pulse 4s ease-in-out infinite'
+        }}
+      ></div>
       
       {/* Rotating border rings */}
-      <div className="absolute inset-4 border-4 border-dashed border-orange-400 dark:border-orange-500 rounded-full animate-spin opacity-60" style={{ animationDuration: '20s' }}></div>
-      <div className="absolute inset-6 border-2 border-dotted border-blue-400 dark:border-blue-500 rounded-full animate-spin opacity-40" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
-      
-      {/* Main content area */}
-      <div className="absolute inset-8 bg-white dark:bg-gray-800 rounded-full shadow-2xl flex items-center justify-center overflow-hidden border-2 border-gray-100 dark:border-gray-700">
-        {/* Worker illustration container */}
+      <div 
+        className="absolute inset-4 border-4 border-dashed rounded-full opacity-60 transition-colors duration-300"
+        style={{ 
+          borderColor: theme === 'dark' ? '#FF5E14' : '#001554',
+          animation: 'spin 20s linear infinite'
+        }}
+      ></div>
+      <div 
+        className="absolute inset-6 border-2 border-dotted rounded-full opacity-40 transition-colors duration-300"
+        style={{ 
+          borderColor: theme === 'dark' ? '#001554' : '#FF5E14',
+          animation: 'spin 15s linear infinite reverse'
+        }}
+      ></div>
+
+      {/* Main workshop area */}
+      <div 
+        className="absolute inset-8 rounded-full shadow-2xl flex items-center justify-center overflow-hidden border-2 transition-all duration-300"
+        style={{ 
+          backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+          borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+        }}
+      >
+        {/* Interactive floating tools */}
+        {tools.map((tool, index) => (
+          <div
+            key={index}
+            className="absolute transition-all duration-500 hover:scale-125 cursor-pointer z-10"
+            style={{
+              ...tool.position,
+              transform: hoveredTool === index ? 'scale(1.3) rotate(10deg)' : 'scale(1)',
+              animation: `bounce 3s ease-in-out infinite ${index * 0.5}s`
+            }}
+            onMouseEnter={() => setHoveredTool(index)}
+            onMouseLeave={() => setHoveredTool(null)}
+          >
+            <div 
+              className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center text-white text-xl lg:text-2xl shadow-lg transition-all duration-300 relative overflow-hidden"
+              style={{ 
+                backgroundColor: tool.color,
+                boxShadow: hoveredTool === index ? `0 10px 25px ${tool.color}40` : `0 4px 15px ${tool.color}20`
+              }}
+            >
+              <span className="relative z-10">{tool.icon}</span>
+              {hoveredTool === index && (
+                <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+              )}
+            </div>
+            {hoveredTool === index && (
+              <div 
+                className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap z-20"
+                style={{ 
+                  backgroundColor: tool.color,
+                  color: '#FFFFFF'
+                }}
+              >
+                {tool.name}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Central builder character */}
         <div className="relative">
-          {/* Enhanced floating tools */}
-          <div className="absolute -top-10 -left-10 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white text-xl transform rotate-12 shadow-lg hover:shadow-xl transition-shadow">
-              🔧
+          <div 
+            className="w-32 h-32 lg:w-36 lg:h-36 rounded-full flex items-center justify-center shadow-2xl border-4 relative overflow-hidden transition-all duration-500"
+            style={{ 
+              background: theme === 'dark' 
+                ? 'linear-gradient(135deg, #2D3748, #4A5568)' 
+                : 'linear-gradient(135deg, #F7FAFC, #EDF2F7)',
+              borderColor: theme === 'dark' ? '#4A5568' : '#E2E8F0',
+              animation: 'pulse 3s ease-in-out infinite'
+            }}
+          >
+            <div 
+              className="text-6xl lg:text-7xl transition-transform duration-500 hover:scale-110"
+              style={{
+                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
+                transform: activeTask === 0 ? 'rotate(5deg)' : activeTask === 1 ? 'rotate(-5deg)' : 'rotate(0deg)'
+              }}
+            >
+              👷‍♂️
+            </div>
+            
+            {/* Activity indicator */}
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center animate-pulse">
+              <div className="w-3 h-3 bg-white rounded-full"></div>
             </div>
           </div>
-          
-          <div className="absolute -top-8 right-2 animate-bounce" style={{ animationDelay: '1s', animationDuration: '2.5s' }}>
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center text-white text-lg transform -rotate-12 shadow-lg">
-              🔨
-            </div>
-          </div>
-          
-          <div className="absolute bottom-0 -left-8 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}>
-            <div className="w-9 h-9 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center text-white text-lg transform rotate-45 shadow-lg">
-              ⚙️
-            </div>
-          </div>
-          
-          <div className="absolute -top-4 left-8 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '4s' }}>
-            <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-sm transform rotate-90 shadow-lg">
-              🪚
-            </div>
-          </div>
-          
-          <div className="absolute bottom-4 right-2 animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }}>
-            <div className="w-7 h-7 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white text-base transform -rotate-30 shadow-lg">
-              🪛
-            </div>
-          </div>
-          
-          {/* Enhanced central worker icon */}
-          <div className="w-36 h-36 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 dark:from-slate-600 dark:via-slate-700 dark:to-slate-800 rounded-full flex items-center justify-center shadow-2xl animate-pulse border-4 border-gray-200 dark:border-gray-600">
-            <div className="text-7xl drop-shadow-lg">👷</div>
-          </div>
-          
-          {/* Enhanced skill badges */}
-          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-            <div className="flex space-x-3">
-              <div className="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-800 dark:to-orange-700 text-orange-700 dark:text-orange-300 rounded-full text-sm font-semibold animate-pulse shadow-md border border-orange-300 dark:border-orange-600" style={{ animationDelay: '0.5s' }}>
-                Tasks
-              </div>
-              <div className="px-4 py-2 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-800 dark:to-blue-700 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold animate-pulse shadow-md border border-blue-300 dark:border-blue-600" style={{ animationDelay: '1.5s' }}>
-                Tools
-              </div>
-              <div className="px-4 py-2 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-800 dark:to-green-700 text-green-700 dark:text-green-300 rounded-full text-sm font-semibold animate-pulse shadow-md border border-green-300 dark:border-green-600" style={{ animationDelay: '2.5s' }}>
-                Help
-              </div>
+
+          {/* Progress tasks at bottom */}
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-48">
+            <div className="flex justify-center space-x-2">
+              {tasks.map((task, index) => (
+                <div 
+                  key={index} 
+                  className="flex flex-col items-center transition-all duration-300"
+                  style={{
+                    transform: activeTask === index ? 'scale(1.1)' : 'scale(1)',
+                    opacity: activeTask >= index ? 1 : 0.6
+                  }}
+                >
+                  <div 
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-md mb-1 transition-all duration-300"
+                    style={{ 
+                      backgroundColor: activeTask >= index ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#F3F4F6'),
+                      color: activeTask >= index ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
+                    }}
+                  >
+                    {task.icon}
+                  </div>
+                  <div 
+                    className="text-xs font-semibold transition-colors duration-300"
+                    style={{ 
+                      color: activeTask >= index ? '#FF5E14' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
+                    }}
+                  >
+                    {task.title}
+                  </div>
+                  {/* Progress bar */}
+                  <div 
+                    className="w-12 h-1 rounded-full mt-1 overflow-hidden"
+                    style={{ backgroundColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}
+                  >
+                    <div 
+                      className="h-full rounded-full transition-all duration-1000"
+                      style={{ 
+                        width: `${task.progress}%`,
+                        backgroundColor: '#FF5E14'
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
       
       {/* Enhanced floating particles */}
-      <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-orange-400 rounded-full animate-ping shadow-lg"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-ping shadow-lg" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-green-400 rounded-full animate-ping shadow-lg" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/3 left-1/3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping shadow-lg" style={{ animationDelay: '3s' }}></div>
-      <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-ping shadow-lg" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-orange-400 rounded-full animate-ping opacity-60"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-blue-600 rounded-full animate-ping opacity-60" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping opacity-60" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/3 left-1/3 w-1.5 h-1.5 bg-blue-700 rounded-full animate-ping opacity-60" style={{ animationDelay: '3s' }}></div>
+      <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-orange-600 rounded-full animate-ping opacity-60" style={{ animationDelay: '4s' }}></div>
+
+      {/* Interactive connection lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+        <defs>
+          <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FF5E14" />
+            <stop offset="100%" stopColor="#001554" />
+          </linearGradient>
+        </defs>
+        {hoveredTool !== null && (
+          <line
+            x1="50%"
+            y1="50%"
+            x2={tools[hoveredTool].position.left || `${100 - parseInt(tools[hoveredTool].position.right || '0')}%`}
+            y2={tools[hoveredTool].position.top || `${100 - parseInt(tools[hoveredTool].position.bottom || '0')}%`}
+            stroke="url(#connectionGradient)"
+            strokeWidth="2"
+            strokeDasharray="5,5"
+            className="animate-pulse"
+          />
+        )}
+      </svg>
     </div>
   );
 };
