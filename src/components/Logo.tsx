@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from 'next-themes';
 
 interface LogoProps {
   size?: 'small' | 'medium' | 'large' | 'xl';
@@ -14,7 +13,6 @@ const Logo: React.FC<LogoProps> = ({
   showUnderline = false,
   interactive = false 
 }) => {
-  const { theme } = useTheme();
 
   const sizeClasses = {
     small: 'text-sm sm:text-base',
