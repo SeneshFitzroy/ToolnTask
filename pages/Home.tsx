@@ -408,27 +408,16 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer relative overflow-hidden"
+                className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05) translateY(-4px)';
-                  e.currentTarget.style.boxShadow = `0 20px 40px rgba(${stat.color === '#FF5E14' ? '255, 94, 20' : '0, 21, 84'}, 0.2)`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1) translateY(0px)';
-                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                }}
               >
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
-                
                 {/* Icon */}
-                <div className="text-4xl sm:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl mb-4">
                   {stat.icon}
                 </div>
                 
                 {/* Number */}
-                <div className="text-3xl sm:text-4xl font-bold mb-2 transform group-hover:scale-105 transition-transform duration-300" style={{ color: stat.color }}>
+                <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 
@@ -436,9 +425,6 @@ export default function Home() {
                 <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   {stat.label}
                 </h3>
-                
-                {/* Subtle glow effect on hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${stat.color}, transparent 70%)` }}></div>
               </div>
             ))}
           </div>
