@@ -3,12 +3,21 @@ import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolCard from '../src/components/ToolCard';
 import { Button } from '../src/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
@@ -164,39 +173,17 @@ export default function Tools() {
                   </svg>
                   <span className="hidden sm:inline text-sm sm:text-base">{getCurrentFilterLabel()}</span>
                   <span className="sm:hidden text-sm">Filter</span>
-                <span className="sm:hidden">Filter</span>
-                <svg className={`w-4 h-4 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+                  <svg className={`w-4 h-4 ml-1 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
               
-              {showFilterDropdown && (
-                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50">
-                  <div className="p-2">
-                    {filterOptions.map((option) => (
-                      <button
-                        key={option.key}
-                        onClick={() => handleFilterChange(option.key)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left transition-colors ${
-                          activeFilter === option.key
-                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                            : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                        }`}
-                      >
-                        <span className="font-medium">{option.label}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
-                          {option.count}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
             
             <Button 
               onClick={handleSearch}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl font-semibold shadow-lg"
+              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg sm:rounded-xl font-semibold shadow-lg"
             >
               Search
             </Button>
@@ -204,7 +191,7 @@ export default function Tools() {
           
           {/* Results Summary */}
           <div className="text-center">
-            <p className="text-slate-600 dark:text-gray-400">
+            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
               {searchTerm && ` for "${searchTerm}"`}
               {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
@@ -214,8 +201,8 @@ export default function Tools() {
       </div>
 
       {/* Tools Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {getFilteredTools().map((tool, index) => (
             <ToolCard
               key={index}
