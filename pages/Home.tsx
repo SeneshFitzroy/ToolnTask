@@ -363,17 +363,17 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-6 sm:py-8 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-6 sm:mb-8">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <div className="flex justify-between items-center mb-4 sm:mb-6 md:mb-8">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
             </h2>
           </div>
@@ -385,19 +385,19 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-16 sm:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Trusted by Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               From Colombo to Kandy, thousands of neighbors are already helping each other every day
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {[
               { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Verified community members', color: '#FF5E14' },
               { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FF5E14' },
@@ -405,14 +405,14 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group relative overflow-hidden"
+                className="text-center p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group relative overflow-hidden"
                 style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
               >
                 <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
-                <div className="text-4xl sm:text-5xl mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-                <div className="text-3xl sm:text-4xl font-bold mb-2 sm:mb-3 transform group-hover:scale-110 transition-transform duration-300" style={{ color: stat.color }}>{stat.number}</div>
-                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{stat.label}</h3>
-                <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{stat.desc}</p>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 md:mb-6 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300" style={{ color: stat.color }}>{stat.number}</div>
+                <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1 sm:mb-2 md:mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{stat.label}</h3>
+                <p className="text-xs sm:text-sm md:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{stat.desc}</p>
               </div>
             ))}
           </div>
