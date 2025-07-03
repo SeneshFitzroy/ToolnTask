@@ -262,26 +262,28 @@ export default function Home() {
 
                 {/* Enhanced Video Container - Increased Height */}
                 <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-lg">
-                  <video
-                    className="w-full h-auto rounded-2xl object-cover"
-                    style={{ aspectRatio: '4/3', minHeight: '400px', maxHeight: '500px' }}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    poster="/hero-video-poster.png"
-                    onError={(e) => {
-                      console.error('Video failed to load:', e);
-                      // Fallback: hide video and show poster
-                      e.currentTarget.style.display = 'none';
-                      const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                      if (fallback) fallback.style.display = 'block';
-                    }}
-                  >
-                    <source src="/hero-video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <div className="relative w-full" style={{ height: '450px' }}>
+                    <video
+                      className="absolute top-0 left-0 w-full h-full rounded-2xl object-cover object-top"
+                      style={{ objectPosition: 'center top' }}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      poster="/hero-video-poster.png"
+                      onError={(e) => {
+                        console.error('Video failed to load:', e);
+                        // Fallback: hide video and show poster
+                        e.currentTarget.style.display = 'none';
+                        const fallback = e.currentTarget.parentElement?.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = 'block';
+                      }}
+                    >
+                      <source src="/hero-video.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
                   
                   {/* Enhanced Fallback Image */}
                   <div 
