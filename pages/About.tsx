@@ -22,9 +22,9 @@ export default function About() {
       <div className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              About{' '}
-              <Logo size="xl" showUnderline={true} className="inline" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8 flex items-center justify-center gap-3 sm:gap-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              <span>About</span>
+              <Logo size="xl" showUnderline={true} className="inline-block" />
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Connecting communities through shared tasks and tool rentals. 
