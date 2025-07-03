@@ -91,11 +91,11 @@ export default function About() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: '#1A1818' }}>Meet Our Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #FE5F16 0%, #FF5D13 100%)' }}>
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 100%)' }}>
                   <span className="text-white text-2xl sm:text-3xl font-bold">JD</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>John Doe</h3>
-                <p className="font-semibold mb-4" style={{ color: '#FE5F16' }}>Founder & CEO</p>
+                <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Founder & CEO</p>
                 <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
                 </p>
@@ -126,7 +126,7 @@ export default function About() {
           </div>
 
           {/* CTA Section */}
-          <div className="rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ background: 'linear-gradient(135deg, #FE5F16 0%, #001554 100%)' }}>
+          <div className="rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #001554 100%)' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
             <div className="relative z-10">
               <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">Ready to Join Our Community?</h2>
@@ -136,7 +136,7 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button 
                   className="px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0"
-                  style={{ backgroundColor: '#FFFFFF', color: '#FE5F16' }}
+                  style={{ backgroundColor: '#FFFFFF', color: '#FF5E14' }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F2F3F5'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
                 >
@@ -147,7 +147,7 @@ export default function About() {
                   style={{ borderColor: '#FFFFFF', color: '#FFFFFF', backgroundColor: 'transparent' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#FE5F16';
+                    e.currentTarget.style.color = '#FF5E14';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
