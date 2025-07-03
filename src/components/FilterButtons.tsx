@@ -82,14 +82,6 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
           })}
         </div>
       </div>
-      
-      {/* Minimalist decorative element */}
-      <div className="flex justify-center mt-3">
-        <div 
-          className="w-8 h-0.5 rounded-full opacity-40"
-          style={{ backgroundColor: '#FF5E14' }}
-        />
-      </div>
     </div>
   );
 };
