@@ -145,41 +145,6 @@ export default function About() {
               </div>
             </div>
           </div>
-
-          {/* CTA Section */}
-          <div className="rounded-3xl p-12 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #001554 100%)' }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">Ready to Join Our Community?</h2>
-              <p className="text-xl sm:text-2xl mb-8 sm:mb-10 opacity-90 leading-relaxed">
-                Start earning by helping others or find the assistance you need today.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button 
-                  className="px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0"
-                  style={{ backgroundColor: '#FFFFFF', color: '#FF5E14' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F2F3F5'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
-                >
-                  Get Started
-                </Button>
-                <Button 
-                  className="border-2 px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
-                  style={{ borderColor: '#FFFFFF', color: '#FFFFFF', backgroundColor: 'transparent' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#FF5E14';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#FFFFFF';
-                  }}
-                >
-                  Learn More
-                </Button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
