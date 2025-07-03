@@ -224,7 +224,7 @@ export default function Home() {
                 <div className="absolute bottom-10 -right-10 z-20 animate-float-fast group">
                   <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-yellow-500/50 group-hover:-rotate-12">
                     <svg className="w-6 h-6 text-white animate-drill-spin group-hover:animate-gear-rotate" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M16.84,2.73C16.45,2.73 16.07,2.88 15.77,3.17L13.65,5.28C13.35,5.57 13.35,6.04 13.65,6.33L17.67,10.35C17.96,10.64 18.43,10.64 18.72,10.35L20.84,8.23C21.45,7.62 21.45,6.65 20.84,6.04L17.96,3.17C17.66,2.88 17.24,2.73 16.84,2.73M12.19,6.75L3,15.94V21H7.06L16.25,11.81L12.19,6.75Z"/>
+                      <path d="M19.78,17.5L18.36,16.09C19.45,14.96 20.09,13.46 20.09,11.81C20.09,8.26 17.34,5.36 13.91,5.07V3H10.09V5.07C6.66,5.36 3.91,8.26 3.91,11.81C3.91,13.46 4.55,14.96 5.64,16.09L4.22,17.5L5.64,18.91L7.05,17.5C8.18,18.59 9.68,19.23 11.33,19.23H12.67C14.32,19.23 15.82,18.59 16.95,17.5L18.36,18.91L19.78,17.5M12,17.73C8.97,17.73 6.5,15.26 6.5,12.23S8.97,6.73 12,6.73S17.5,9.2 17.5,12.23S15.03,17.73 12,17.73M12,8.23A4,4 0 0,0 8,12.23A4,4 0 0,0 12,16.23A4,4 0 0,0 16,12.23A4,4 0 0,0 12,8.23Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-yellow-400/20 rounded-2xl blur-md group-hover:bg-yellow-400/40 transition-all duration-500"></div>
