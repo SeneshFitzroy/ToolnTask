@@ -1,7 +1,31 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
+import { useState } from 'react';
 
 export default function PrivacyPolicy() {
+  const [activeSection, setActiveSection] = useState<string>('');
+  const [showTOC, setShowTOC] = useState<boolean>(false);
+
+  const sections = [
+    { id: 'information-collect', title: '1. Information We Collect', icon: '📊' },
+    { id: 'how-we-use', title: '2. How We Use Your Information', icon: '🔄' },
+    { id: 'information-sharing', title: '3. Information Sharing', icon: '🤝' },
+    { id: 'data-security', title: '4. Data Security', icon: '🔒' },
+    { id: 'your-rights', title: '5. Your Rights', icon: '⚖️' },
+    { id: 'cookies-tracking', title: '6. Cookies and Tracking', icon: '🍪' },
+    { id: 'policy-updates', title: '7. Updates to This Policy', icon: '🔄' },
+    { id: 'contact-us', title: '8. Contact Us', icon: '📞' }
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+      setShowTOC(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navigation />
@@ -9,113 +33,317 @@ export default function PrivacyPolicy() {
       {/* Header Section */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4 text-center">Privacy Policy</h1>
-          <p className="text-lg text-slate-600 dark:text-gray-400 text-center">
-            Last updated: July 3, 2025
-          </p>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4">Privacy Policy</h1>
+            <p className="text-lg text-slate-600 dark:text-gray-400 mb-6">
+              Last updated: July 3, 2025
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowTOC(!showTOC)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+              >
+                📋 Table of Contents
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+              >
+                🖨️ Print
+              </button>
+            </div>
+          </div>
+
+          {/* Interactive Table of Contents */}
+          {showTOC && (
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6 animate-in slide-in-from-top duration-300">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Quick Navigation</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    className={`flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${
+                      activeSection === section.id
+                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-slate-600 dark:text-gray-300'
+                    }`}
+                  >
+                    <span className="text-xl">{section.icon}</span>
+                    <span className="font-medium">{section.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative">
+        {/* Floating Progress Indicator */}
+        <div className="fixed right-4 top-1/2 transform -translate-y-1/2 hidden lg:block z-40">
+          <div className="bg-white dark:bg-gray-800 rounded-full shadow-lg p-2 border border-gray-200 dark:border-gray-700">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                className={`block w-3 h-3 rounded-full mb-2 last:mb-0 transition-colors ${
+                  activeSection === section.id
+                    ? 'bg-blue-600'
+                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-blue-400'
+                }`}
+                title={section.title}
+              />
+            ))}
+          </div>
+        </div>
+
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 sm:p-12">
           <div className="prose prose-slate dark:prose-invert max-w-none">
             
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">1. Information We Collect</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We collect information you provide directly to us, such as when you create an account, post a task, rent a tool, or contact us.
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>Personal information (name, email, phone number)</li>
-                <li>Profile information and preferences</li>
-                <li>Task and tool listings</li>
-                <li>Communication records</li>
-                <li>Payment information (processed securely)</li>
-              </ul>
+            <section id="information-collect" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">📊</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">1. Information We Collect</h2>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+                <p className="text-slate-600 dark:text-gray-300 mb-4">
+                  We collect information you provide directly to us, such as when you create an account, post a task, rent a tool, or contact us.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-2">Personal Data</h4>
+                  <ul className="list-disc pl-4 text-slate-600 dark:text-gray-300 space-y-1 text-sm">
+                    <li>Name, email, phone number</li>
+                    <li>Profile information and preferences</li>
+                  </ul>
+                </div>
+                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-green-500">
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-2">Platform Data</h4>
+                  <ul className="list-disc pl-4 text-slate-600 dark:text-gray-300 space-y-1 text-sm">
+                    <li>Task and tool listings</li>
+                    <li>Communication records</li>
+                    <li>Payment information (processed securely)</li>
+                  </ul>
+                </div>
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">2. How We Use Your Information</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We use the information we collect to provide, maintain, and improve our services:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>To facilitate connections between users</li>
-                <li>To process payments and transactions</li>
-                <li>To send you important updates and notifications</li>
-                <li>To improve our platform and user experience</li>
-                <li>To prevent fraud and ensure platform safety</li>
-              </ul>
+            <section id="how-we-use" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🔄</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">2. How We Use Your Information</h2>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 mb-4">
+                <p className="text-slate-600 dark:text-gray-300 mb-4">
+                  We use the information we collect to provide, maintain, and improve our services:
+                </p>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { icon: '🤝', text: 'To facilitate connections between users' },
+                  { icon: '💳', text: 'To process payments and transactions' },
+                  { icon: '📧', text: 'To send you important updates and notifications' },
+                  { icon: '📈', text: 'To improve our platform and user experience' },
+                  { icon: '🛡️', text: 'To prevent fraud and ensure platform safety' }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-3 p-3 bg-white dark:bg-gray-700 rounded-lg hover:shadow-md transition-shadow">
+                    <span className="text-xl">{item.icon}</span>
+                    <span className="text-slate-600 dark:text-gray-300">{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">3. Information Sharing</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We do not sell, rent, or share your personal information with third parties except in the following circumstances:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>With your explicit consent</li>
-                <li>To complete transactions you initiate</li>
-                <li>To comply with legal requirements</li>
-                <li>To protect our rights and prevent fraud</li>
-                <li>With service providers who assist in our operations</li>
-              </ul>
+            <section id="information-sharing" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🤝</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">3. Information Sharing</h2>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 mb-4 border border-red-200 dark:border-red-800">
+                <p className="text-slate-600 dark:text-gray-300 font-medium">
+                  🚫 We do not sell, rent, or share your personal information with third parties except in specific circumstances:
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { icon: '✅', title: 'With Your Consent', desc: 'When you explicitly agree' },
+                  { icon: '🛒', title: 'Transaction Completion', desc: 'To process your bookings' },
+                  { icon: '⚖️', title: 'Legal Requirements', desc: 'When required by law' },
+                  { icon: '🛡️', title: 'Rights Protection', desc: 'To prevent fraud and abuse' },
+                  { icon: '🔧', title: 'Service Providers', desc: 'Trusted partners only' },
+                  { icon: '🔒', title: 'Data Security', desc: 'All transfers encrypted' }
+                ].map((item, index) => (
+                  <div key={index} className="bg-white dark:bg-gray-700 rounded-lg p-4 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="text-2xl mb-2">{item.icon}</div>
+                    <h4 className="font-semibold text-slate-800 dark:text-white mb-1">{item.title}</h4>
+                    <p className="text-sm text-slate-600 dark:text-gray-300">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">4. Data Security</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We implement appropriate technical and organizational measures to protect your personal information:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>Encryption of sensitive data</li>
-                <li>Regular security audits and updates</li>
-                <li>Access controls and authentication</li>
-                <li>Secure payment processing</li>
-                <li>Regular backup and recovery procedures</li>
-              </ul>
+            <section id="data-security" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🔒</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">4. Data Security</h2>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🛡️</span>
+                  <div>
+                    <h3 className="font-bold text-green-800 dark:text-green-300">Your Data is Protected</h3>
+                    <p className="text-green-700 dark:text-green-400 text-sm">We implement multiple layers of security</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { icon: '🔐', label: 'SSL Encryption' },
+                    { icon: '🔍', label: 'Regular Audits' },
+                    { icon: '🚪', label: 'Access Controls' },
+                    { icon: '💾', label: 'Secure Backups' }
+                  ].map((item, index) => (
+                    <div key={index} className="text-center p-3 bg-white dark:bg-gray-700 rounded-lg">
+                      <div className="text-2xl mb-1">{item.icon}</div>
+                      <div className="text-xs text-slate-600 dark:text-gray-300">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">5. Your Rights</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                You have the following rights regarding your personal information:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>Access and review your personal data</li>
-                <li>Correct inaccurate or incomplete information</li>
-                <li>Delete your account and associated data</li>
-                <li>Withdraw consent for data processing</li>
-                <li>Request data portability</li>
-              </ul>
+            <section id="your-rights" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">⚖️</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">5. Your Rights</h2>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 mb-4">
+                <p className="text-slate-600 dark:text-gray-300 font-medium">
+                  You have complete control over your personal information:
+                </p>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { icon: '👁️', title: 'Access Your Data', desc: 'View all information we have about you', action: 'Request Access' },
+                  { icon: '✏️', title: 'Correct Information', desc: 'Update inaccurate or incomplete data', action: 'Update Profile' },
+                  { icon: '🗑️', title: 'Delete Account', desc: 'Remove your account and associated data', action: 'Delete Data' },
+                  { icon: '🚫', title: 'Withdraw Consent', desc: 'Stop certain data processing activities', action: 'Manage Consent' },
+                  { icon: '📦', title: 'Export Data', desc: 'Download your information in portable format', action: 'Export Data' }
+                ].map((right, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow">
+                    <div className="flex items-center gap-4">
+                      <span className="text-2xl">{right.icon}</span>
+                      <div>
+                        <h4 className="font-semibold text-slate-800 dark:text-white">{right.title}</h4>
+                        <p className="text-sm text-slate-600 dark:text-gray-300">{right.desc}</p>
+                      </div>
+                    </div>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                      {right.action}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">6. Cookies and Tracking</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We use cookies and similar technologies to enhance your experience and analyze platform usage. You can manage your cookie preferences through your browser settings.
-              </p>
+            <section id="cookies-tracking" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🍪</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">6. Cookies and Tracking</h2>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4 mb-4 border border-yellow-200 dark:border-yellow-800">
+                <p className="text-slate-600 dark:text-gray-300">
+                  We use cookies and similar technologies to enhance your experience and analyze platform usage. You can manage your cookie preferences through your browser settings.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-700 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-slate-800 dark:text-white">Cookie Preferences</h4>
+                  <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Manage Cookies
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { type: 'Essential', status: 'Always On', desc: 'Required for basic functionality' },
+                    { type: 'Analytics', status: 'Optional', desc: 'Help us improve the platform' },
+                    { type: 'Marketing', status: 'Optional', desc: 'Personalized advertisements' }
+                  ].map((cookie, index) => (
+                    <div key={index} className="border border-gray-200 dark:border-gray-600 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-slate-800 dark:text-white">{cookie.type}</span>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          cookie.status === 'Always On' 
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+                            : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+                        }`}>
+                          {cookie.status}
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-600 dark:text-gray-300">{cookie.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">7. Updates to This Policy</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website and updating the &quot;Last updated&quot; date.
-              </p>
+            <section id="policy-updates" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">🔄</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">7. Updates to This Policy</h2>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+                <p className="text-slate-600 dark:text-gray-300 mb-4">
+                  We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on our website and updating the &quot;Last updated&quot; date.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-xl">📧</span>
+                  <span className="font-semibold text-slate-800 dark:text-white">Stay Updated</span>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-gray-300 mb-3">Get notified when we update our privacy policy</p>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                  Subscribe to Updates
+                </button>
+              </div>
             </section>
 
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">8. Contact Us</h2>
+            <section id="contact-us" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">📞</span>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">8. Contact Us</h2>
+              </div>
               <p className="text-slate-600 dark:text-gray-300 mb-4">
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mt-4">
-                <p className="text-slate-600 dark:text-gray-300">
-                  <strong>Email:</strong> privacy@toolntask.com<br/>
-                  <strong>Phone:</strong> +94 11 123 4567<br/>
-                  <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-6">
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                    <span>📧</span> Email Support
+                  </h4>
+                  <p className="text-slate-600 dark:text-gray-300 mb-3">
+                    <strong>Email:</strong> privacy@toolntask.com<br/>
+                    <strong>Response Time:</strong> Within 24 hours
+                  </p>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Send Email
+                  </button>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-6">
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                    <span>📍</span> Office Contact
+                  </h4>
+                  <p className="text-slate-600 dark:text-gray-300 mb-3">
+                    <strong>Phone:</strong> +94 11 123 4567<br/>
+                    <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
+                  </p>
+                  <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                    Get Directions
+                  </button>
+                </div>
               </div>
             </section>
 
