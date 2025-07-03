@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = async (email: string, password: string): Promise<void> => {
+  const login = async (_email: string, _password: string): Promise<void> => {
     // Mock login - in a real app, this would be an API call
     try {
       // Simulate API delay
@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUser(mockUser);
       setIsLoggedIn(true);
       localStorage.setItem('toolntask_user', JSON.stringify(mockUser));
-    } catch (error) {
+    } catch (_error) {
       throw new Error('Login failed');
     }
   };
