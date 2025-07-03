@@ -23,11 +23,11 @@ const Navigation = () => {
         borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' 
       }}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-1 sm:space-x-2">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold transition-colors duration-300">
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-bold transition-colors duration-300">
               <span style={{ color: '#FF5E14' }}>Tool</span>
               <span style={{ color: '#001554' }}>N</span>
               <span style={{ color: '#FF5E14' }}>Task</span>
@@ -84,11 +84,11 @@ const Navigation = () => {
           </div>
 
           {/* Right side - Theme toggle and Auth buttons */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          <div className="flex items-center space-x-3 sm:space-x-3 flex-shrink-0">
             {/* Theme Toggle Button */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg transition-all duration-300 hover:scale-105"
+              className="p-2.5 rounded-lg transition-all duration-300 hover:scale-105"
               style={{ 
                 backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5',
                 border: `1px solid ${theme === 'dark' ? '#444444' : 'transparent'}`
