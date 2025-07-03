@@ -72,7 +72,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const signup = async (name: string, email: string, password: string): Promise<void> => {
+  const signup = async (name: string, _email: string, _password: string): Promise<void> => {
     // Mock signup - in a real app, this would be an API call
     try {
       // Simulate API delay
@@ -81,14 +81,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const newUser: User = {
         ...mockUser,
         name,
-        email,
+        email: _email,
         initials: name.split(' ').map(n => n[0]).join('').toUpperCase()
       };
       
       setUser(newUser);
       setIsLoggedIn(true);
       localStorage.setItem('toolntask_user', JSON.stringify(newUser));
-    } catch (error) {
+    } catch (_error) {
       throw new Error('Signup failed');
     }
   };
