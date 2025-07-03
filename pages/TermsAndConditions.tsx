@@ -1,16 +1,20 @@
-import Navigation from '../src/c  return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
-      <Navigation />
-      
-      {/* Header Section */}
-      <div className="py-12 sm:py-16" style={{ backgroundColor: '#F2F3F5' }}>nts/Navigation';
+import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function TermsAndConditions() {
   const [activeSection, setActiveSection] = useState<string>('');
   const [showTOC, setShowTOC] = useState<boolean>(false);
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const sections = [
     { id: 'acceptance', title: '1. Acceptance of Terms', icon: '✅' },
@@ -36,15 +40,15 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Header Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 sm:py-16">
+      <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4">Terms & Conditions</h1>
-            <p className="text-lg text-slate-600 dark:text-gray-400 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Terms & Conditions</h1>
+            <p className="text-lg mb-6" style={{ color: theme === 'dark' ? '#B3B4B6' : '#B3B5BC' }}>
               Last updated: July 3, 2025
             </p>
             <div className="flex justify-center gap-4 mb-6">
