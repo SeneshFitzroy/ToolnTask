@@ -1,51 +1,77 @@
 
 import Navigation from '../src/components/Navigation';
+import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function SignIn() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="flex items-center justify-center py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full">
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-6 sm:p-8">
+      <div className="flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-sm sm:max-w-md w-full">
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
-              <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-2">Welcome Back!</h1>
-              <p className="text-gray-600 dark:text-gray-300">Sign in to your ToolNTask account</p>
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Welcome Back!</h1>
+              <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Sign in to your ToolNTask account</p>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-4 sm:space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Email</label>
                 <input
                   type="email"
-                  className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
                   placeholder="your.email@example.com"
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Password</label>
                 <input
                   type="password"
-                  className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
                   placeholder="Enter your password"
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                 />
               </div>
               
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                 <label className="flex items-center">
-                  <input type="checkbox" className="rounded border-gray-300 dark:border-gray-600 text-orange-600 focus:ring-orange-600 dark:bg-gray-700" />
-                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">Remember me</span>
+                  <input type="checkbox" className="rounded mr-2" style={{ accentColor: '#FF5E14' }} />
+                  <span className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Remember me</span>
                 </label>
-                <Link href="#" className="text-sm text-orange-600 hover:text-orange-700">
+                <Link href="#" className="text-sm hover:underline" style={{ color: '#FF5E14' }}>
                   Forgot password?
                 </Link>
               </div>
               
-              <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl">
+              <Button className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#FF5E14' }}>
                 Sign In
               </Button>
             </form>
