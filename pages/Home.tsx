@@ -14,23 +14,16 @@ export default function Home() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [showTopBanner, setShowTopBanner] = useState(true);
-  const [currentAdIndex, setCurrentAdIndex] = useState(0);
 
   useEffect(() => {
     setMounted(true);
     
-    // Rotate ads every 8 seconds
-    const adRotationTimer = setInterval(() => {
-      setCurrentAdIndex((prev) => (prev + 1) % 3);
-    }, 8000);
-
     // Auto-hide top banner after 10 seconds
     const bannerTimer = setTimeout(() => {
       setShowTopBanner(false);
     }, 10000);
 
     return () => {
-      clearInterval(adRotationTimer);
       clearTimeout(bannerTimer);
     };
   }, []);
@@ -40,40 +33,6 @@ export default function Home() {
   const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
     setActiveFilter(filter);
   };
-
-  // Advertisement data
-  const advertisements = [
-    {
-      id: 1,
-      title: "Lanka Hardware Store",
-      subtitle: "Premium Tools & Equipment",
-      description: "Get 20% off on all power tools this month!",
-      cta: "Shop Now",
-      image: "🔧",
-      color: "#2563EB",
-      link: "/ads/lanka-hardware"
-    },
-    {
-      id: 2,
-      title: "Green Garden Services",
-      subtitle: "Professional Landscaping",
-      description: "Transform your garden with expert care",
-      cta: "Book Service",
-      image: "🌱",
-      color: "#059669",
-      link: "/ads/green-garden"
-    },
-    {
-      id: 3,
-      title: "Quick Fix Solutions",
-      subtitle: "Home Repair Experts",
-      description: "24/7 emergency repair services available",
-      cta: "Call Now",
-      image: "🔨",
-      color: "#DC2626",
-      link: "/ads/quick-fix"
-    }
-  ];
 
   const taskCards = [
     <TaskCard
@@ -480,48 +439,8 @@ export default function Home() {
       {/* Promoted Cards Section */}
       <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
-            {/* Cards - Takes 9 columns */}
-            <div className="lg:col-span-9">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                {getFilteredCards()}
-              </div>
-            </div>
-            
-            {/* Right Sidebar Ads - Takes 3 columns */}
-            <div className="lg:col-span-3">
-              <div className="sticky top-4 space-y-4">
-                {/* Service Provider Ad */}
-                <div className="bg-gradient-to-br from-green-500 to-teal-600 rounded-xl p-4 text-white text-center shadow-lg">
-                  <div className="text-3xl mb-2">🏠</div>
-                  <h4 className="font-bold text-sm mb-2">Home Pro Services</h4>
-                  <p className="text-xs opacity-90 mb-3">Professional cleaning, repairs & maintenance</p>
-                  <Button className="bg-white text-green-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
-                    Book Now
-                  </Button>
-                </div>
-
-                {/* Tool Rental Ad */}
-                <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-4 text-white text-center shadow-lg">
-                  <div className="text-3xl mb-2">🔧</div>
-                  <h4 className="font-bold text-sm mb-2">ToolMart Rentals</h4>
-                  <p className="text-xs opacity-90 mb-3">Premium tools at affordable daily rates</p>
-                  <Button className="bg-white text-purple-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
-                    Browse Tools
-                  </Button>
-                </div>
-
-                {/* Skills Training Ad */}
-                <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl p-4 text-white text-center shadow-lg">
-                  <div className="text-3xl mb-2">🎓</div>
-                  <h4 className="font-bold text-sm mb-2">SkillUp Academy</h4>
-                  <p className="text-xs opacity-90 mb-3">Learn new skills, earn more money</p>
-                  <Button className="bg-white text-pink-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
-                    Start Learning
-                  </Button>
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            {getFilteredCards()}
           </div>
         </div>
       </div>
