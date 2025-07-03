@@ -1,19 +1,41 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Menu, X, User, LogOut, Settings } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Function to check if a link is active
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return router.pathname === '/';
+    }
+    return router.pathname.startsWith(href);
+  };
+
+  // Function to handle hover effects for non-active links
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isActiveLink(href)) {
+      e.currentTarget.style.color = '#FF5E14';
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!isActiveLink(href)) {
+      e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818';
+    }
+  };
 
   if (!mounted) return null;
 
