@@ -93,12 +93,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-white" style={{ backgroundColor: '#FFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="py-12 sm:py-16" style={{ backgroundColor: '#F2F3F5' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1A1818' }}>
@@ -145,14 +145,14 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-12 shadow-sm border-t border-opacity-20" style={{ backgroundColor: '#FFF', borderColor: '#B3B5BC' }}>
+      <div className="py-12 shadow-sm border-t border-opacity-20" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>
             Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}

@@ -4,11 +4,11 @@ import { Facebook, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="text-white mt-16" style={{ background: 'linear-gradient(135deg, #1A1818 0%, #0C0F16 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <footer className="mt-16" style={{ backgroundColor: '#FFFFFF', color: '#1A1818' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 border-t border-opacity-20" style={{ borderColor: '#B3B5BC' }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           <div className="col-span-1 sm:col-span-2 lg:col-span-2">
-            <div className="text-2xl sm:text-3xl font-bold mb-4">
+            <div className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#1A1818' }}>
               Tool<span style={{ color: '#FFE514' }}>N</span>Task
             </div>
             <p className="mb-4 max-w-md text-sm sm:text-base" style={{ color: '#B3B5BC' }}>
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4" style={{ color: '#1A1818' }}>Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/About" className="transition-colors text-sm sm:text-base hover:scale-105 inline-block" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFE514'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>About Us</Link></li>
               <li><Link href="/Contact" className="transition-colors text-sm sm:text-base hover:scale-105 inline-block" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FFE514'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>Contact</Link></li>
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4" style={{ color: '#1A1818' }}>Contact Info</h3>
             <ul className="space-y-2 text-sm sm:text-base" style={{ color: '#B3B5BC' }}>
               <li>+94 11 123 4567</li>
               <li>info@toolntask.lk</li>

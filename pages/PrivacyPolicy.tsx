@@ -27,27 +27,33 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
       <Navigation />
       
       {/* Header Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-12 sm:py-16">
+      <div className="py-12 sm:py-16" style={{ backgroundColor: '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4">Privacy Policy</h1>
-            <p className="text-lg text-slate-600 dark:text-gray-400 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1A1818' }}>Privacy Policy</h1>
+            <p className="text-lg mb-6" style={{ color: '#B3B5BC' }}>
               Last updated: July 3, 2025
             </p>
             <div className="flex justify-center gap-4">
               <button
                 onClick={() => setShowTOC(!showTOC)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 border-0"
+                style={{ backgroundColor: '#001554' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
               >
                 📋 Table of Contents
               </button>
               <button
                 onClick={() => window.print()}
-                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 border-0"
+                style={{ backgroundColor: '#FE5F16' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
               >
                 🖨️ Print
               </button>
@@ -56,18 +62,30 @@ export default function PrivacyPolicy() {
 
           {/* Interactive Table of Contents */}
           {showTOC && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6 animate-in slide-in-from-top duration-300">
-              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">Quick Navigation</h3>
+            <div className="rounded-xl shadow-lg p-6 mb-6 animate-in slide-in-from-top duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#1A1818' }}>Quick Navigation</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {sections.map((section) => (
                   <button
                     key={section.id}
                     onClick={() => scrollToSection(section.id)}
-                    className={`flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${
-                      activeSection === section.id
-                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-slate-600 dark:text-gray-300'
-                    }`}
+                    className={`flex items-center gap-3 p-3 rounded-lg text-left transition-colors hover:scale-105`}
+                    style={{
+                      backgroundColor: activeSection === section.id ? '#FFE514' : 'transparent',
+                      color: activeSection === section.id ? '#1A1818' : '#B3B5BC'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (activeSection !== section.id) {
+                        e.currentTarget.style.backgroundColor = '#F2F3F5';
+                        e.currentTarget.style.color = '#1A1818';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeSection !== section.id) {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = '#B3B5BC';
+                      }
+                    }}
                   >
                     <span className="text-xl">{section.icon}</span>
                     <span className="font-medium">{section.title}</span>
@@ -83,46 +101,55 @@ export default function PrivacyPolicy() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative">
         {/* Floating Progress Indicator */}
         <div className="fixed right-4 top-1/2 transform -translate-y-1/2 hidden lg:block z-40">
-          <div className="bg-white dark:bg-gray-800 rounded-full shadow-lg p-2 border border-gray-200 dark:border-gray-700">
+          <div className="rounded-full shadow-lg p-2 border border-opacity-30" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
-                className={`block w-3 h-3 rounded-full mb-2 last:mb-0 transition-colors ${
-                  activeSection === section.id
-                    ? 'bg-blue-600'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-blue-400'
-                }`}
+                className={`block w-3 h-3 rounded-full mb-2 last:mb-0 transition-colors`}
+                style={{
+                  backgroundColor: activeSection === section.id ? '#001554' : '#B3B5BC'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeSection !== section.id) {
+                    e.currentTarget.style.backgroundColor = '#FE5F16';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeSection !== section.id) {
+                    e.currentTarget.style.backgroundColor = '#B3B5BC';
+                  }
+                }}
                 title={section.title}
               />
             ))}
           </div>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 sm:p-12">
-          <div className="prose prose-slate dark:prose-invert max-w-none">
+        <div className="rounded-2xl shadow-lg p-8 sm:p-12" style={{ backgroundColor: '#FFFFFF' }}>
+          <div className="prose prose-slate max-w-none">
             
             <section id="information-collect" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">📊</span>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">1. Information We Collect</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>1. Information We Collect</h2>
               </div>
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
-                <p className="text-slate-600 dark:text-gray-300 mb-4">
+              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
+                <p className="mb-4" style={{ color: '#B3B5BC' }}>
                   We collect information you provide directly to us, such as when you create an account, post a task, rent a tool, or contact us.
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
-                  <h4 className="font-semibold text-slate-800 dark:text-white mb-2">Personal Data</h4>
-                  <ul className="list-disc pl-4 text-slate-600 dark:text-gray-300 space-y-1 text-sm">
+                <div className="rounded-lg p-4 border-l-4" style={{ backgroundColor: '#FFFFFF', borderColor: '#001554' }}>
+                  <h4 className="font-semibold mb-2" style={{ color: '#1A1818' }}>Personal Data</h4>
+                  <ul className="list-disc pl-4 space-y-1 text-sm" style={{ color: '#B3B5BC' }}>
                     <li>Name, email, phone number</li>
                     <li>Profile information and preferences</li>
                   </ul>
                 </div>
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-green-500">
-                  <h4 className="font-semibold text-slate-800 dark:text-white mb-2">Platform Data</h4>
-                  <ul className="list-disc pl-4 text-slate-600 dark:text-gray-300 space-y-1 text-sm">
+                <div className="rounded-lg p-4 border-l-4" style={{ backgroundColor: '#FFFFFF', borderColor: '#FE5F16' }}>
+                  <h4 className="font-semibold mb-2" style={{ color: '#1A1818' }}>Platform Data</h4>
+                  <ul className="list-disc pl-4 space-y-1 text-sm" style={{ color: '#B3B5BC' }}>
                     <li>Task and tool listings</li>
                     <li>Communication records</li>
                     <li>Payment information (processed securely)</li>

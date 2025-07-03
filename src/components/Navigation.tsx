@@ -16,7 +16,7 @@ const Navigation = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="shadow-lg sticky top-0 z-50 border-b border-opacity-20" style={{ backgroundColor: '#FFF', borderColor: '#B3B5BC' }}>
+    <nav className="shadow-lg sticky top-0 z-50 border-b border-opacity-20" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
