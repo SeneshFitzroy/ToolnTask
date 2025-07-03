@@ -329,7 +329,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <div className="py-16 sm:py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 opacity-90"></div>
+        <div className="absolute inset-0 opacity-20" style={{ background: 'linear-gradient(135deg, rgba(0, 21, 84, 0.1) 0%, rgba(0, 21, 84, 0.3) 100%)' }}></div>
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-5 sm:top-10 left-5 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
           <div className="absolute top-16 sm:top-32 right-10 sm:right-20 w-12 h-12 sm:w-16 sm:h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
