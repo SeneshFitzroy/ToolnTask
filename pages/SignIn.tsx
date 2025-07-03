@@ -77,9 +77,9 @@ export default function SignIn() {
             </form>
 
             <div className="mt-6 sm:mt-8 text-center">
-              <p className="text-gray-600 dark:text-gray-300">
+              <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Don&apos;t have an account?{' '}
-                <Link href="/SignUp" className="text-orange-600 hover:text-orange-700 font-semibold">
+                <Link href="/SignUp" className="font-semibold hover:underline" style={{ color: '#FF5E14' }}>
                   Sign up
                 </Link>
               </p>
@@ -87,6 +87,8 @@ export default function SignIn() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }
