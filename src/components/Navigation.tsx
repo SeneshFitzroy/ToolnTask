@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Logo from './Logo';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
