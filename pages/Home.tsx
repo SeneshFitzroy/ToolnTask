@@ -491,73 +491,41 @@ export default function Home() {
                 className="text-center relative group"
                 style={{ animationDelay: step.delay }}
               >
-                {/* Step Card */}
+                {/* Simple Step Card */}
                 <div 
-                  className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 group cursor-pointer"
+                  className="relative p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
                   style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05) translateY(-8px)';
-                    e.currentTarget.style.boxShadow = `0 25px 50px rgba(${step.color === '#FF5E14' ? '255, 94, 20' : '0, 21, 84'}, 0.2)`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1) translateY(0px)';
-                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-                  }}
                 >
-                  {/* Top Border Accent */}
-                  <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl sm:rounded-t-3xl transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: step.color }}></div>
-                  
-                  {/* Step Number Badge */}
-                  <div className="relative mb-6 sm:mb-8">
-                    <div className="absolute -top-4 -left-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg z-10" style={{ backgroundColor: step.color }}>
-                      {step.step}
-                    </div>
-                    
-                    {/* Icon Container */}
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" style={{ backgroundColor: `${step.color}10`, border: `2px solid ${step.color}20` }}>
-                      <span className="text-4xl sm:text-5xl md:text-6xl transform group-hover:scale-110 transition-transform duration-300">{step.icon}</span>
-                    </div>
-                    
-                    {/* Floating Particles */}
-                    <div className="absolute top-2 right-2 w-2 h-2 rounded-full opacity-40 animate-pulse" style={{ backgroundColor: step.color }}></div>
-                    <div className="absolute bottom-2 left-2 w-1 h-1 rounded-full opacity-30 animate-pulse" style={{ backgroundColor: step.color, animationDelay: '1s' }}></div>
+                  {/* Step Number */}
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl mx-auto mb-4 shadow-lg" style={{ backgroundColor: step.color }}>
+                    {step.step}
                   </div>
                   
-                  {/* Content */}
-                  <div className="space-y-4">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      {step.title}
-                    </h3>
-                    
-                    {/* Underline */}
-                    <div className="w-12 h-1 mx-auto rounded-full transform group-hover:w-16 transition-all duration-500" style={{ backgroundColor: `${step.color}50` }}></div>
-                    
-                    <p className="text-sm sm:text-base md:text-lg leading-relaxed opacity-90" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                      {step.desc}
-                    </p>
+                  {/* Icon */}
+                  <div className="text-4xl sm:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {step.icon}
                   </div>
                   
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    {step.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    {step.desc}
+                  </p>
+                  
+                  {/* Subtle hover glow */}
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
                 </div>
                 
-                {/* Connection Arrow */}
+                {/* Simple Connection Arrow */}
                 {index < 2 && (
-                  <div className="hidden md:block absolute top-16 -right-6 lg:-right-8 z-20">
-                    <div className="relative">
-                      <svg className="w-12 h-8 lg:w-16 lg:h-10 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 64 32" style={{ color: step.color }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 16h48m0 0l-8-8m8 8l-8 8" />
-                      </svg>
-                      
-                      {/* Animated Dots */}
-                      <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
-                        <div className="flex space-x-1">
-                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0s' }}></div>
-                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0.3s' }}></div>
-                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0.6s' }}></div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="hidden md:block absolute top-12 -right-4 z-20">
+                    <svg className="w-8 h-6 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h20m0 0l-4-4m4 4l-4 4" />
+                    </svg>
                   </div>
                 )}
               </div>
