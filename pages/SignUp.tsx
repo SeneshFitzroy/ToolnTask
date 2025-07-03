@@ -25,7 +25,10 @@ export default function SignUp() {
         <div className="max-w-sm sm:max-w-md w-full">
           <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 logo-large" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Join <span style={{ color: '#FF5E14' }}>ToolNTask</span></h1>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Join</span>
+                <Logo size="large" />
+              </div>
               <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Create your account to get started</p>
             </div>
 
