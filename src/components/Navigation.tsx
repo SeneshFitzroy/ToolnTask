@@ -28,13 +28,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-            <div 
-              className="text-lg sm:text-2xl md:text-3xl font-bold transition-all duration-300 logo-large hover:scale-105"
-            >
-              <span style={{ color: '#FF5E14' }}>Tool</span>
-              <span style={{ color: '#001554' }}>N</span>
-              <span style={{ color: '#FF5E14' }}>Task</span>
-            </div>
+            <Logo size="large" interactive={true} />
           </Link>
 
           {/* Desktop Navigation */}
