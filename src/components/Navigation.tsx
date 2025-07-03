@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import Logo from './Logo';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
@@ -26,8 +25,16 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
-          {/* Logo - Perfect Rubik Wet Paint Implementation */}
-          <Logo size="large" className="space-x-1 sm:space-x-2" />
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            <div 
+              className="text-lg sm:text-2xl md:text-3xl font-bold transition-all duration-300 logo-large hover:scale-105"
+            >
+              <span style={{ color: '#FF5E14' }}>Tool</span>
+              <span style={{ color: '#001554' }}>N</span>
+              <span style={{ color: '#FF5E14' }}>Task</span>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-7">
