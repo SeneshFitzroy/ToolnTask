@@ -23,11 +23,11 @@ const Navigation = () => {
         borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' 
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="text-xl sm:text-2xl font-bold transition-colors duration-300">
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold transition-colors duration-300">
               <span style={{ color: '#FF5E14' }}>Tool</span>
               <span style={{ color: '#001554' }}>N</span>
               <span style={{ color: '#FF5E14' }}>Task</span>
@@ -35,10 +35,10 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link 
               href="/" 
-              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              className="px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
               style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
               onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
@@ -47,7 +47,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              className="px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
               style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
               onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
               onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
