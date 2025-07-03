@@ -24,9 +24,10 @@ const Footer = () => {
       <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              Stay Connected with <span className="logo-large" style={{ color: '#FF5E14' }}>ToolNTask</span>
-            </h3>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Stay Connected with</span>
+              <Logo size="large" />
+            </div>
             <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
             </p>
