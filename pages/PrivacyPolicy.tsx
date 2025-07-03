@@ -71,7 +71,7 @@ export default function PrivacyPolicy() {
                     onClick={() => scrollToSection(section.id)}
                     className={`flex items-center gap-3 p-3 rounded-lg text-left transition-colors hover:scale-105`}
                     style={{
-                      backgroundColor: activeSection === section.id ? '#FFE514' : 'transparent',
+                      backgroundColor: activeSection === section.id ? '#FF5E14' : 'transparent',
                       color: activeSection === section.id ? '#1A1818' : '#B3B5BC'
                     }}
                     onMouseEnter={(e) => {
@@ -285,7 +285,7 @@ export default function PrivacyPolicy() {
                 <span className="text-2xl">🍪</span>
                 <h2 className="text-2xl font-bold" style={{ color: '#1A1818' }}>6. Cookies and Tracking</h2>
               </div>
-              <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FFE514' }}>
+              <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FF5E14' }}>
                 <p style={{ color: '#1A1818' }}>
                   We use cookies and similar technologies to enhance your experience and analyze platform usage. You can manage your cookie preferences through your browser settings.
                 </p>
@@ -314,7 +314,7 @@ export default function PrivacyPolicy() {
                         <span 
                           className={`text-xs px-2 py-1 rounded-full`}
                           style={{
-                            backgroundColor: cookie.status === 'Always On' ? '#FFE514' : '#F2F3F5',
+                            backgroundColor: cookie.status === 'Always On' ? '#FF5E14' : '#F2F3F5',
                             color: '#1A1818'
                           }}
                         >

@@ -157,7 +157,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FFE514' }}>
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                       <span className="text-xl" style={{ color: '#1A1818' }}>📞</span>
                     </div>
                     <div>
@@ -197,7 +197,7 @@ export default function Contact() {
                     <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How do I start using ToolNTask?</h3>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>Simply create an account and start browsing available tasks or tools in your area.</p>
                   </div>
-                  <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FFE514' }}>
+                  <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FF5E14' }}>
                     <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>Is there a service fee?</h3>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>We charge a small service fee to maintain the platform and ensure quality service.</p>
                   </div>

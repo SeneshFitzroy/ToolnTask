@@ -4,12 +4,8 @@ import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
-import WorkerAnimation from '../src/components/WorkerAnimati        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute top-32 right-20 w-16 h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-20 left-32 w-12 h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-        </div>import { Button } from '../src/components/ui/button';
+import WorkerAnimation from '../src/components/WorkerAnimation';
+import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
