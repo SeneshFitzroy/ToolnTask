@@ -133,7 +133,7 @@ const Footer = () => {
                       onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
                       onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FFE514' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
                       {link.label}
                     </Link>
                   </li>
@@ -159,7 +159,7 @@ const Footer = () => {
                       onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
                       onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FFE514' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
                       {link.label}
                     </Link>
                   </li>

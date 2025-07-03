@@ -14,7 +14,7 @@ export default function About() {
               About{' '}
               <span 
                 className="relative inline-block"
-                style={{ color: '#FFE514' }}
+                style={{ color: '#FF5E14' }}
               >
                 ToolNTask
                 <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.3 }}>

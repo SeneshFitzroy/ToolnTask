@@ -102,7 +102,7 @@ const Navigation = () => {
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
-                <Sun className="h-5 w-5" style={{ color: '#FFE514' }} />
+                <Sun className="h-5 w-5" style={{ color: '#FF5E14' }} />
               ) : (
                 <Moon className="h-5 w-5" style={{ color: '#001554' }} />
               )}
