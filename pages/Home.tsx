@@ -364,9 +364,9 @@ export default function Home() {
             <Link href="/SignUp">
               <Button 
                 className="w-full sm:w-auto text-lg font-bold px-10 py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-0 relative overflow-hidden group"
-                style={{ backgroundColor: '#FE5F16', color: '#FFFFFF' }}
+                style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
               >
                 <span className="relative z-10">Join Now - It&apos;s Free</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
@@ -400,7 +400,7 @@ export default function Home() {
               <span>No Hidden Fees</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FE5F16' }}></div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               <span>Verified Members</span>
             </div>
             <div className="flex items-center gap-2">
@@ -408,7 +408,7 @@ export default function Home() {
               <span>Secure Payments</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FE5F16' }}></div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               <span>24/7 Support</span>
             </div>
           </div>
