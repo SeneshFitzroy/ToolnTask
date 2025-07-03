@@ -33,23 +33,19 @@ export default function About() {
           </div>
 
           {/* Mission Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
-              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
-                We believe that every community has untapped potential. Whether it&apos;s someone with 
-                time to spare looking for extra income, or a neighbor who needs a specific tool 
-                for a weekend project, ToolNTask bridges these gaps.
-              </p>
-              <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
-                Our platform empowers people to share resources, build connections, and create 
-                a more collaborative community where everyone benefits.
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5E14 100%)' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                <span className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl relative z-10">🤝</span>
+          <div className="mb-12 sm:mb-16 lg:mb-20">
+            <div className="p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 lg:mb-10 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
+              <div className="max-w-5xl mx-auto">
+                <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+                  We believe that every community has untapped potential. Whether it&apos;s someone with 
+                  time to spare looking for extra income, or a neighbor who needs a specific tool 
+                  for a weekend project, ToolNTask bridges these gaps.
+                </p>
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+                  Our platform empowers people to share resources, build connections, and create 
+                  a more collaborative community where everyone benefits.
+                </p>
               </div>
             </div>
           </div>
