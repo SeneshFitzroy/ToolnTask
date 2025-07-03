@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp, Heart, Users, Star } from 'lucide-react';
 import { useState, useEffect } from 'react';
