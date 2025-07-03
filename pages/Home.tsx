@@ -223,8 +223,8 @@ export default function Home() {
 
                 <div className="absolute bottom-10 -right-10 z-20 animate-float-fast group">
                   <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-yellow-500/50 group-hover:-rotate-12">
-                    <svg className="w-6 h-6 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"/>
+                    <svg className="w-6 h-6 text-white group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16.84,2.73C16.45,2.73 16.07,2.88 15.77,3.17L13.65,5.28C13.35,5.57 13.35,6.04 13.65,6.33L17.67,10.35C17.96,10.64 18.43,10.64 18.72,10.35L20.84,8.23C21.45,7.62 21.45,6.65 20.84,6.04L17.96,3.17C17.66,2.88 17.24,2.73 16.84,2.73M12.19,6.75L3,15.94V21H7.06L16.25,11.81L12.19,6.75Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-yellow-400/20 rounded-2xl blur-md group-hover:bg-yellow-400/40 transition-all duration-500"></div>
