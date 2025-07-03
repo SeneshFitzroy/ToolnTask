@@ -22,10 +22,10 @@ export default function About() {
       <div className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-4 sm:mb-6 lg:mb-8 flex items-baseline justify-center gap-2 sm:gap-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8 flex items-baseline justify-center gap-2 sm:gap-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               <span>About</span>
               <div className="relative">
-                <Logo size="xl" showUnderline={true} className="inline-block" />
+                <Logo size="large" showUnderline={true} className="inline-block" />
               </div>
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
