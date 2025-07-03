@@ -205,45 +205,11 @@ export default function Tasks() {
                   </div>
                 )}
               </div>
-                className="flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-gray-600 rounded-xl hover:border-orange-300 dark:hover:border-orange-500 text-slate-700 dark:text-gray-300 font-medium shadow-sm transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
-                </svg>
-                <span className="hidden sm:inline">{getCurrentFilterLabel()}</span>
-                <span className="sm:hidden">Filter</span>
-                <svg className={`w-4 h-4 transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              
-              {showFilterDropdown && (
-                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg z-50">
-                  <div className="p-2">
-                    {filterOptions.map((option) => (
-                      <button
-                        key={option.key}
-                        onClick={() => handleFilterChange(option.key)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-left transition-colors ${
-                          activeFilter === option.key
-                            ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300'
-                            : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
-                        }`}
-                      >
-                        <span className="font-medium">{option.label}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
-                          {option.count}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
             
             <Button 
               onClick={handleSearch}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-xl font-semibold shadow-lg"
+              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg sm:rounded-xl font-semibold shadow-lg"
             >
               Search
             </Button>
@@ -251,7 +217,7 @@ export default function Tasks() {
           
           {/* Results Summary */}
           <div className="text-center">
-            <p className="text-slate-600 dark:text-gray-400">
+            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               {getFilteredTasks().length} {getFilteredTasks().length === 1 ? 'task' : 'tasks'} found
               {searchTerm && ` for "${searchTerm}"`}
               {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
@@ -261,8 +227,8 @@ export default function Tasks() {
       </div>
 
       {/* Tasks Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {getFilteredTasks().map((task, index) => (
             <TaskCard
               key={index}
