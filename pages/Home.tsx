@@ -205,8 +205,8 @@ export default function Home() {
                 {/* Mechanical Tool Animations - Right Side */}
                 <div className="absolute -top-10 -right-12 z-20 animate-float-medium group">
                   <div className="w-13 h-13 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-purple-500/50 group-hover:-rotate-45">
-                    <svg className="w-7 h-7 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M3,3H21V5H3V3M4,6H20V8H4V6M2,9H22V11H2V9M6,12H18V21H16V14H8V21H6V12Z"/>
+                    <svg className="w-7 h-7 text-white animate-gear-rotate group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9,3V5.5L10.5,7L9,8.5V11H7V8.5L5.5,7L7,5.5V3H9M9,1H7A2,2 0 0,0 5,3V5.5L3.5,7L5,8.5V11A2,2 0 0,0 7,13H9A2,2 0 0,0 11,11V8.5L12.5,7L11,5.5V3A2,2 0 0,0 9,1Z M17,11V13.5L15.5,15L17,16.5V19H19V16.5L20.5,15L19,13.5V11H17M19,9H17A2,2 0 0,0 15,11V13.5L13.5,15L15,16.5V19A2,2 0 0,0 17,21H19A2,2 0 0,0 21,19V16.5L22.5,15L21,13.5V11A2,2 0 0,0 19,9Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-purple-400/20 rounded-2xl blur-md group-hover:bg-purple-400/40 transition-all duration-500"></div>
