@@ -48,7 +48,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  flex-1 relative px-6 py-4 rounded-xl text-base font-semibold
+                  flex-1 relative px-3 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-semibold
                   transition-all duration-200 ease-in-out hover:scale-105
                 `}
                 style={{
@@ -69,10 +69,10 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                   }
                 }}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <span className="text-lg">{option.label}</span>
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <span className="text-sm sm:text-lg">{option.label}</span>
                   <span 
-                    className="px-3 py-1 text-sm rounded-full font-medium"
+                    className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full font-medium"
                     style={{
                       backgroundColor: isActive ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#B3B5BC'),
                       color: isActive ? '#FFFFFF' : (theme === 'dark' ? '#FFFFFF' : '#FFF')
