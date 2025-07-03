@@ -200,32 +200,34 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-16" style={{ backgroundColor: '#F2F3F5' }}>
+      <div className="py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
-              Changing Lives, Shaping Sri Lanka
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1A1818' }}>
+              Trusted by Communities Across{' '}
+              <span style={{ color: '#FFE514' }}>Sri Lanka</span>
             </h2>
-            <p className="text-lg" style={{ color: '#B3B5BC' }}>
-              Join thousands of users who trust ToolNTask for their daily needs
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#B3B5BC' }}>
+              From Colombo to Kandy, thousands of neighbors are already helping each other every day
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Trusted community members' },
-              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime' },
-              { icon: '🏆', number: '500+', label: 'Tasks Completed', desc: 'Successfully finished projects' }
+              { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Verified community members', color: '#FE5F16' },
+              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FFE514' },
+              { icon: '🏆', number: '500+', label: 'Tasks Completed', desc: 'Successfully finished projects', color: '#001554' }
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: '#FFFFFF' }}
+                className="text-center p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group relative overflow-hidden"
+                style={{ backgroundColor: '#F2F3F5' }}
               >
-                <div className="text-4xl mb-4">{stat.icon}</div>
-                <div className="text-3xl font-bold mb-2" style={{ color: '#FFE514' }}>{stat.number}</div>
-                <h3 className="text-xl font-semibold mb-2" style={{ color: '#1A1818' }}>{stat.label}</h3>
-                <p className="text-sm" style={{ color: '#B3B5BC' }}>{stat.desc}</p>
+                <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
+                <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+                <div className="text-4xl font-bold mb-3 transform group-hover:scale-110 transition-transform duration-300" style={{ color: stat.color }}>{stat.number}</div>
+                <h3 className="text-xl font-semibold mb-3" style={{ color: '#1A1818' }}>{stat.label}</h3>
+                <p className="text-base" style={{ color: '#B3B5BC' }}>{stat.desc}</p>
               </div>
             ))}
           </div>
@@ -233,54 +235,81 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16" style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="py-20" style={{ backgroundColor: '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
-              How It Works
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: '#1A1818' }}>
+              How{' '}
+              <span 
+                className="relative inline-block"
+                style={{ color: '#FFE514' }}
+              >
+                ToolNTask
+                <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FE5F16', opacity: 0.3 }}>
+                  <path d="M0 8 Q 50 0 100 8 L 100 10 L 0 10 Z" />
+                </svg>
+              </span>
+              {' '}Works
             </h2>
-            <p className="text-lg" style={{ color: '#B3B5BC' }}>
-              Getting help or lending a hand has never been easier
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#B3B5BC' }}>
+              Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {[
               { 
                 step: '1', 
                 icon: '📝', 
                 title: 'Post or Browse', 
-                desc: 'Create a task or browse available tools in your area'
+                desc: 'Create a task listing or browse available tools and services in your neighborhood',
+                color: '#FE5F16'
               },
               { 
                 step: '2', 
                 icon: '🤝', 
                 title: 'Connect & Agree', 
-                desc: 'Chat with providers, agree on terms and pricing'
+                desc: 'Chat with providers, negotiate terms, and agree on fair pricing that works for everyone',
+                color: '#FFE514'
               },
               { 
                 step: '3', 
                 icon: '✅', 
                 title: 'Complete & Review', 
-                desc: 'Finish the task, make payment, and leave reviews'
+                desc: 'Finish the task safely, complete secure payment, and build trust through honest reviews',
+                color: '#001554'
               }
             ].map((step, index) => (
-              <div key={index} className="text-center relative">
-                <div 
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 shadow-lg"
-                  style={{ backgroundColor: '#001554' }}
-                >
-                  {step.step}
+              <div key={index} className="text-center relative group">
+                <div className="relative mb-8">
+                  <div 
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-bold text-white mx-auto shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
+                    style={{ backgroundColor: step.color }}
+                  >
+                    {step.step}
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-all duration-300" style={{ backgroundColor: '#FFFFFF', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
+                    <span className="text-xl">{step.icon}</span>
+                  </div>
                 </div>
-                <div className="text-4xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A1818' }}>{step.title}</h3>
-                <p style={{ color: '#B3B5BC' }}>{step.desc}</p>
+                
+                <div className="p-6 rounded-2xl transition-all duration-300 group-hover:shadow-xl" style={{ backgroundColor: '#FFFFFF' }}>
+                  <h3 className="text-xl font-bold mb-4 group-hover:scale-105 transition-transform duration-300" style={{ color: '#1A1818' }}>{step.title}</h3>
+                  <p className="leading-relaxed" style={{ color: '#B3B5BC' }}>{step.desc}</p>
+                </div>
                 
                 {index < 2 && (
-                  <div 
-                    className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 transform translate-x-6"
-                    style={{ backgroundColor: '#FFE514' }}
-                  />
+                  <div className="hidden md:block absolute top-10 left-1/2 w-full h-1 transform translate-x-8 z-10">
+                    <div 
+                      className="w-20 h-1 rounded-full relative overflow-hidden"
+                      style={{ backgroundColor: '#F2F3F5' }}
+                    >
+                      <div 
+                        className="absolute inset-0 rounded-full transform origin-left group-hover:scale-x-100 transition-transform duration-1000"
+                        style={{ backgroundColor: '#FFE514', transform: 'scaleX(0.7)' }}
+                      ></div>
+                    </div>
+                  </div>
                 )}
               </div>
             ))}
@@ -289,45 +318,89 @@ export default function Home() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16" style={{ backgroundColor: '#F2F3F5' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
-            Ready to Get Started?
+      <div className="py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 opacity-90"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full" style={{ backgroundColor: '#FFE514', opacity: 0.1 }}></div>
+          <div className="absolute top-32 right-20 w-16 h-16 rounded-full" style={{ backgroundColor: '#FE5F16', opacity: 0.1 }}></div>
+          <div className="absolute bottom-20 left-32 w-12 h-12 rounded-full" style={{ backgroundColor: '#FFE514', opacity: 0.1 }}></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full" style={{ backgroundColor: '#FE5F16', opacity: 0.1 }}></div>
+        </div>
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center px-4 py-2 rounded-full mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 229, 20, 0.1)', border: '1px solid #FFE514' }}>
+            <span className="text-sm font-semibold" style={{ color: '#FFE514' }}>🚀 Join the Movement</span>
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
+            Ready to Transform Your{' '}
+            <span 
+              className="relative inline-block"
+              style={{ color: '#FFE514' }}
+            >
+              Community?
+              <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FE5F16', opacity: 0.5 }}>
+                <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
+              </svg>
+            </span>
           </h2>
-          <p className="text-lg mb-8" style={{ color: '#B3B5BC' }}>
-            Join our community today and discover the power of collaborative living
+          
+          <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            Join thousands of Sri Lankans building stronger, more connected neighborhoods. 
+            Start earning, saving, and helping today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <Link href="/SignUp">
               <Button 
-                className="w-full sm:w-auto text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
-                style={{ backgroundColor: '#FE5F16' }}
+                className="w-full sm:w-auto text-lg font-bold px-10 py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-0 relative overflow-hidden group"
+                style={{ backgroundColor: '#FE5F16', color: '#FFFFFF' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
               >
-                Join Now - It's Free
+                <span className="relative z-10">Join Now - It&apos;s Free</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 group-hover:translate-x-full transition-all duration-700"></div>
               </Button>
             </Link>
             <Link href="/About">
               <Button 
-                className="w-full sm:w-auto px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-2"
+                className="w-full sm:w-auto text-lg font-bold px-10 py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-2 relative overflow-hidden group"
                 style={{ 
                   backgroundColor: 'transparent',
-                  color: '#001554',
-                  borderColor: '#001554'
+                  color: '#FFFFFF',
+                  borderColor: '#FFFFFF'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#001554';
-                  e.currentTarget.style.color = '#FFFFFF';
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                  e.currentTarget.style.color = '#001554';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#001554';
+                  e.currentTarget.style.color = '#FFFFFF';
                 }}
               >
-                Learn More
+                <span className="relative z-10">Learn More</span>
               </Button>
             </Link>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-8 text-sm font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+              <span>No Hidden Fees</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FE5F16' }}></div>
+              <span>Verified Members</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+              <span>Secure Payments</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FE5F16' }}></div>
+              <span>24/7 Support</span>
+            </div>
           </div>
         </div>
       </div>

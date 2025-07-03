@@ -4,29 +4,40 @@ import { Button } from '../src/components/ui/button';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-12 sm:py-16">
+      <div className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-800 dark:text-white mb-4 sm:mb-6">About ToolNTask</h1>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <div className="text-center mb-16 sm:mb-20">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8" style={{ color: '#1A1818' }}>
+              About{' '}
+              <span 
+                className="relative inline-block"
+                style={{ color: '#FFE514' }}
+              >
+                ToolNTask
+                <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FE5F16', opacity: 0.3 }}>
+                  <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
+                </svg>
+              </span>
+            </h1>
+            <p className="text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: '#B3B5BC' }}>
               Connecting communities through shared tasks and tool rentals. 
               Making everyday life easier, one helping hand at a time.
             </p>
           </div>
 
           {/* Mission Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 dark:text-white mb-4 sm:mb-6">Our Mission</h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center mb-16 sm:mb-20">
+            <div className="p-8 rounded-3xl shadow-xl" style={{ backgroundColor: '#FFFFFF' }}>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#1A1818' }}>Our Mission</h2>
+              <p className="text-lg mb-6 leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We believe that every community has untapped potential. Whether it&apos;s someone with 
                 time to spare looking for extra income, or a neighbor who needs a specific tool 
                 for a weekend project, ToolNTask bridges these gaps.
               </p>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Our platform empowers people to share resources, build connections, and create 
                 a more collaborative community where everyone benefits.
               </p>
