@@ -128,6 +128,7 @@ export default function About() {
                       width={112}
                       height={112}
                       className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 20%' }}
                       onError={() => setCtoImageError(true)}
                     />
                   ) : (
