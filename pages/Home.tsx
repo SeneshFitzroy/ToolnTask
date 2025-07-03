@@ -453,76 +453,129 @@ export default function Home() {
       {/* Promotional Banner Section */}
       <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-lg sm:rounded-xl shadow-sm border" 
+          <div className="relative overflow-hidden rounded-xl shadow-xl border-2 group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                 borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)'
+                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
+                 background: theme === 'dark' 
+                   ? 'linear-gradient(135deg, #1A1818 0%, #1F1F1F 100%)' 
+                   : 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)'
                }}>
             
-            {/* Subtle Top Accent */}
-            <div className="absolute top-0 left-0 w-full h-0.5" style={{ background: 'linear-gradient(90deg, #FF5E14 0%, #001554 100%)' }}></div>
+            {/* Animated Top Accent */}
+            <div className="absolute top-0 left-0 w-full h-1 overflow-hidden">
+              <div className="h-full animate-shimmer" 
+                   style={{ 
+                     background: 'linear-gradient(90deg, #FF5E14 0%, #001554 50%, #FF5E14 100%)',
+                     backgroundSize: '200% 100%'
+                   }}></div>
+            </div>
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-4 items-center p-4 sm:p-5">
-              {/* Icon Badge */}
+            {/* Animated Background Pattern */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-4 right-4 w-20 h-20 rounded-full animate-pulse" 
+                   style={{ background: 'radial-gradient(circle, rgba(255, 94, 20, 0.1) 0%, transparent 70%)' }}></div>
+              <div className="absolute bottom-4 left-4 w-16 h-16 rounded-full animate-pulse delay-1000" 
+                   style={{ background: 'radial-gradient(circle, rgba(0, 21, 84, 0.1) 0%, transparent 70%)' }}></div>
+            </div>
+            
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-4 items-center p-5 sm:p-6">
+              {/* Animated Icon Badge */}
               <div className="flex justify-center lg:justify-start">
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full" 
-                     style={{ 
-                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)',
-                       border: `1px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
-                     }}>
-                  <span className="text-sm">🎯</span>
+                <div className="relative group">
+                  <div className="absolute inset-0 rounded-full animate-ping" 
+                       style={{ backgroundColor: 'rgba(255, 94, 20, 0.4)' }}></div>
+                  <div className="relative inline-flex items-center justify-center w-12 h-12 rounded-full transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" 
+                       style={{ 
+                         backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
+                         border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.4)' : 'rgba(255, 94, 20, 0.3)'}`,
+                         boxShadow: '0 4px 15px rgba(255, 94, 20, 0.2)'
+                       }}>
+                    <span className="text-lg animate-bounce">🎯</span>
+                  </div>
                 </div>
               </div>
               
-              {/* Content */}
+              {/* Enhanced Content */}
               <div className="lg:col-span-2 text-center lg:text-left">
-                <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full" 
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
+                  <span className="text-xs font-bold px-3 py-1 rounded-full animate-pulse border" 
                         style={{ 
-                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                          color: '#FF5E14'
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)',
+                          color: '#FF5E14',
+                          borderColor: 'rgba(255, 94, 20, 0.3)',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.1)'
                         }}>
-                    Limited Time
+                    ⚡ LIMITED TIME OFFER
                   </span>
                 </div>
                 
-                <h3 className="text-lg sm:text-xl font-bold mb-1" 
-                    style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <h3 className="text-xl sm:text-2xl font-black mb-2 tracking-tight leading-tight" 
+                    style={{ 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      textShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(0,0,0,0.1)'
+                    }}>
                   Get Your First Task{' '}
-                  <span style={{ color: '#FF5E14' }}>Free!</span>
+                  <span className="inline-block transform hover:scale-110 transition-transform duration-300" 
+                        style={{ 
+                          color: '#FF5E14',
+                          textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)'
+                        }}>
+                    FREE!
+                  </span>
                 </h3>
                 
-                <p className="text-xs sm:text-sm leading-relaxed" 
-                   style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  New users get their first task posting absolutely free
+                <p className="text-sm font-medium leading-relaxed" 
+                   style={{ 
+                     color: theme === 'dark' ? '#B3B5BC' : '#4B5563',
+                     textShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                   }}>
+                  Join thousands of users already connecting with their community
                 </p>
               </div>
               
-              {/* CTA Button */}
+              {/* Enhanced CTA Button */}
               <div className="flex justify-center lg:justify-end">
                 <Link href="/SignUp">
                   <Button 
-                    className="text-xs font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 shadow-sm"
+                    className="relative text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FF5E14',
-                      color: '#FFFFFF'
+                      color: '#FFFFFF',
+                      border: '2px solid #FF5E14',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.2)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FF5D13';
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.25)';
+                      const target = e.currentTarget as HTMLButtonElement;
+                      target.style.backgroundColor = '#FF5D13';
+                      target.style.transform = 'scale(1.05) translateY(-2px)';
+                      target.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
+                      target.style.borderColor = '#FF5D13';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                      const target = e.currentTarget as HTMLButtonElement;
+                      target.style.backgroundColor = '#FF5E14';
+                      target.style.transform = 'scale(1) translateY(0px)';
+                      target.style.boxShadow = '0 4px 15px rgba(255, 94, 20, 0.2)';
+                      target.style.borderColor = '#FF5E14';
                     }}
                   >
-                    Claim Now
+                    {/* Button shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      <span>Claim Now</span>
+                      <span className="text-xs animate-bounce delay-200">🚀</span>
+                    </span>
                   </Button>
                 </Link>
               </div>
             </div>
+            
+            {/* Corner Decorations */}
+            <div className="absolute top-0 right-0 w-8 h-8 transform rotate-45 translate-x-4 -translate-y-4" 
+                 style={{ backgroundColor: 'rgba(255, 94, 20, 0.1)' }}></div>
+            <div className="absolute bottom-0 left-0 w-6 h-6 transform rotate-45 -translate-x-3 translate-y-3" 
+                 style={{ backgroundColor: 'rgba(0, 21, 84, 0.1)' }}></div>
           </div>
         </div>
       </div>
