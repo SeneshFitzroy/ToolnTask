@@ -88,38 +88,27 @@ export default function About() {
 
           {/* Team Section */}
           <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: '#1A1818' }}>Meet Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Meet Our Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 100%)' }}>
-                  <span className="text-white text-2xl sm:text-3xl font-bold">JD</span>
+                  <span className="text-white text-2xl sm:text-3xl font-bold">MD</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>John Doe</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Mandira De Silva</h3>
                 <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Founder & CEO</p>
                 <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
                 </p>
               </div>
 
-              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #001554 0%, #011659 100%)' }}>
-                  <span className="text-white text-2xl sm:text-3xl font-bold">JS</span>
+                  <span className="text-white text-2xl sm:text-3xl font-bold">SF</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>Jane Smith</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Senesh Fitzroy</h3>
                 <p className="font-semibold mb-4" style={{ color: '#001554' }}>CTO</p>
                 <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Tech enthusiast dedicated to creating seamless user experiences.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
-                  <span className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>MP</span>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>Mike Peterson</h3>
-                <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Head of Operations</p>
-                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
-                  Ensures smooth operations and exceptional customer service.
                 </p>
               </div>
             </div>
