@@ -363,14 +363,14 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-6 sm:py-8 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-3 sm:py-4 md:py-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-4 sm:mb-6 md:mb-8">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
