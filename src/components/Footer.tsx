@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              Stay Connected with ToolNTask
+              Stay Connected with <span className="logo-font" style={{ color: '#FF5E14' }}>ToolNTask</span>
             </h3>
             <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
@@ -213,7 +213,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-center sm:text-left" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
-              &copy; 2025 ToolNTask. All rights reserved. Made with{' '}
+              &copy; 2025 <span className="logo-font" style={{ color: '#FF5E14' }}>ToolNTask</span>. All rights reserved. Made with{' '}
               <Heart className="w-4 h-4 inline mx-1" style={{ color: '#FE5F16' }} />{' '}
               for Sri Lankan communities.
             </p>
