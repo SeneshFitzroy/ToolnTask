@@ -24,7 +24,7 @@ export default function About() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               About{' '}
               <span 
-                className="relative inline-block logo-font"
+                className="relative inline-block logo-large"
                 style={{ color: '#FF5E14' }}
               >
                 ToolNTask
