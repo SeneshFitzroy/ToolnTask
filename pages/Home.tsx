@@ -393,9 +393,9 @@ export default function Home() {
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {[
-              { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Verified community members', color: '#FF5E14' },
-              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FF5E14' },
-              { icon: '🏆', number: '500+', label: 'Tasks Completed', desc: 'Successfully finished projects', color: '#001554' }
+              { icon: '👥', label: 'Active Users', desc: 'Verified community members', color: '#FF5E14' },
+              { icon: '🔧', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FF5E14' },
+              { icon: '🏆', label: 'Tasks Completed', desc: 'Successfully finished projects', color: '#001554' }
             ].map((stat, index) => (
               <div 
                 key={index} 
@@ -403,10 +403,9 @@ export default function Home() {
                 style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
               >
                 <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
-                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 md:mb-6 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 md:mb-3 transform group-hover:scale-110 transition-transform duration-300" style={{ color: stat.color }}>{stat.number}</div>
-                <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-1 sm:mb-2 md:mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{stat.label}</h3>
-                <p className="text-xs sm:text-sm md:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{stat.desc}</p>
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 md:mb-8 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{stat.label}</h3>
+                <p className="text-sm sm:text-base md:text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{stat.desc}</p>
               </div>
             ))}
           </div>
