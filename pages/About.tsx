@@ -17,7 +17,7 @@ export default function About() {
                 style={{ color: '#FFE514' }}
               >
                 ToolNTask
-                <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FE5F16', opacity: 0.3 }}>
+                <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.3 }}>
                   <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
                 </svg>
               </span>
