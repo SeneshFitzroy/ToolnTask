@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Logo Font */
+.logo-font {
+  font-family: 'Rubik Wet Paint', cursive;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
