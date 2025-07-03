@@ -1,51 +1,62 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function About() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-16 sm:py-20">
+      <div className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 sm:mb-20">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8" style={{ color: '#1A1818' }}>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               About{' '}
               <span 
                 className="relative inline-block"
                 style={{ color: '#FF5E14' }}
               >
                 ToolNTask
-                <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.3 }}>
+                <svg className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.3 }}>
                   <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
                 </svg>
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: '#B3B5BC' }}>
+            <p className="text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Connecting communities through shared tasks and tool rentals. 
               Making everyday life easier, one helping hand at a time.
             </p>
           </div>
 
           {/* Mission Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center mb-16 sm:mb-20">
-            <div className="p-8 rounded-3xl shadow-xl" style={{ backgroundColor: '#FFFFFF' }}>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8" style={{ color: '#1A1818' }}>Our Mission</h2>
-              <p className="text-lg mb-6 leading-relaxed" style={{ color: '#B3B5BC' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
+            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 We believe that every community has untapped potential. Whether it&apos;s someone with 
                 time to spare looking for extra income, or a neighbor who needs a specific tool 
                 for a weekend project, ToolNTask bridges these gaps.
               </p>
-              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+              <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 Our platform empowers people to share resources, build connections, and create 
                 a more collaborative community where everyone benefits.
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl flex items-center justify-center shadow-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5E14 100%)' }}>
+              <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5E14 100%)' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                <span className="text-6xl sm:text-7xl lg:text-8xl relative z-10">🤝</span>
+                <span className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl relative z-10">🤝</span>
               </div>
             </div>
           </div>

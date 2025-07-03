@@ -82,48 +82,69 @@ export default function SignUp() {
                 <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Phone Number</label>
                 <input
                   type="tel"
-                  className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
                   placeholder="+94 71 234 5678"
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Password</label>
                 <input
                   type="password"
-                  className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
                   placeholder="Create a strong password"
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Confirm Password</label>
                 <input
                   type="password"
-                  className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                  }}
                   placeholder="Confirm your password"
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                 />
               </div>
               
-              <div className="flex items-center">
-                <input type="checkbox" className="rounded border-gray-300 dark:border-gray-600 text-orange-600 focus:ring-orange-600 dark:bg-gray-700" />
-                <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
+              <div className="flex items-start gap-2">
+                <input type="checkbox" className="mt-1 rounded" style={{ accentColor: '#FF5E14' }} />
+                <span className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   I agree to the{' '}
-                  <Link href="#" className="text-orange-600 hover:text-orange-700">Terms of Service</Link>
+                  <Link href="/TermsAndConditions" className="hover:underline" style={{ color: '#FF5E14' }}>Terms of Service</Link>
                   {' '}and{' '}
-                  <Link href="#" className="text-orange-600 hover:text-orange-700">Privacy Policy</Link>
+                  <Link href="/PrivacyPolicy" className="hover:underline" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
                 </span>
               </div>
               
-              <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl">
+              <Button className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#FF5E14' }}>
                 Create Account
               </Button>
             </form>
 
             <div className="mt-6 sm:mt-8 text-center">
-              <p className="text-gray-600 dark:text-gray-300">
+              <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Already have an account?{' '}
-                <Link href="/SignIn" className="text-orange-600 hover:text-orange-700 font-semibold">
+                <Link href="/SignIn" className="font-semibold hover:underline" style={{ color: '#FF5E14' }}>
                   Sign in
                 </Link>
               </p>
@@ -131,6 +152,8 @@ export default function SignUp() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }
