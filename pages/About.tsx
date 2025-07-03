@@ -44,7 +44,7 @@ export default function About() {
             {/* Clean Title */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 flex items-center justify-center gap-3 group" 
                 style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              <span>About</span>
+              <span>About Us</span>
               <div className="transform group-hover:scale-105 transition-transform duration-300">
                 <Logo size="large" showUnderline={true} className="inline-block" />
               </div>
