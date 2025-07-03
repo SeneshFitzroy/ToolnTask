@@ -399,39 +399,8 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group relative overflow-hidden cursor-pointer active:scale-95 active:shadow-md transform-gpu"
+                className="text-center p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group relative overflow-hidden"
                 style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
-                onClick={() => {
-                  // Add click feedback with blue color
-                  const element = document.activeElement as HTMLElement;
-                  if (element) {
-                    element.style.backgroundColor = '#001554';
-                    element.style.transform = 'scale(0.98)';
-                    element.style.boxShadow = '0 8px 25px rgba(0, 21, 84, 0.4)';
-                    setTimeout(() => {
-                      element.style.backgroundColor = theme === 'dark' ? '#0C0F16' : '#F2F3F5';
-                      element.style.transform = 'scale(1.05)';
-                      element.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-                    }, 150);
-                  }
-                }}
-                onMouseDown={(e) => {
-                  e.currentTarget.style.backgroundColor = '#001554';
-                  e.currentTarget.style.transform = 'scale(0.98)';
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 21, 84, 0.4)';
-                }}
-                onMouseUp={(e) => {
-                  setTimeout(() => {
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#0C0F16' : '#F2F3F5';
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-                  }, 150);
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#0C0F16' : '#F2F3F5';
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-                }}
               >
                 <div className="absolute top-0 left-0 w-full h-1 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: stat.color }}></div>
                 <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 md:mb-6 transform group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
