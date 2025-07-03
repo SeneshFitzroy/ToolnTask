@@ -14,9 +14,26 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [showTopBanner, setShowTopBanner] = useState(true);
+  const [currentAdIndex, setCurrentAdIndex] = useState(0);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Rotate ads every 8 seconds
+    const adRotationTimer = setInterval(() => {
+      setCurrentAdIndex((prev) => (prev + 1) % 3);
+    }, 8000);
+
+    // Auto-hide top banner after 10 seconds
+    const bannerTimer = setTimeout(() => {
+      setShowTopBanner(false);
+    }, 10000);
+
+    return () => {
+      clearInterval(adRotationTimer);
+      clearTimeout(bannerTimer);
+    };
   }, []);
 
   if (!mounted) return null;
@@ -24,6 +41,40 @@ export default function Home() {
   const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
     setActiveFilter(filter);
   };
+
+  // Advertisement data
+  const advertisements = [
+    {
+      id: 1,
+      title: "Lanka Hardware Store",
+      subtitle: "Premium Tools & Equipment",
+      description: "Get 20% off on all power tools this month!",
+      cta: "Shop Now",
+      image: "🔧",
+      color: "#2563EB",
+      link: "/ads/lanka-hardware"
+    },
+    {
+      id: 2,
+      title: "Green Garden Services",
+      subtitle: "Professional Landscaping",
+      description: "Transform your garden with expert care",
+      cta: "Book Service",
+      image: "🌱",
+      color: "#059669",
+      link: "/ads/green-garden"
+    },
+    {
+      id: 3,
+      title: "Quick Fix Solutions",
+      subtitle: "Home Repair Experts",
+      description: "24/7 emergency repair services available",
+      cta: "Call Now",
+      image: "🔨",
+      color: "#DC2626",
+      link: "/ads/quick-fix"
+    }
+  ];
 
   const taskCards = [
     <TaskCard
@@ -103,13 +154,33 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      {/* Top Advertisement Banner */}
+      {showTopBanner && (
+        <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 text-center transition-all duration-500">
+          <div className="flex items-center justify-center gap-4 text-sm sm:text-base">
+            <span className="font-semibold">🎉 Special Offer:</span>
+            <span>Get 50% off your first business listing!</span>
+            <Link href="/business-signup" className="bg-white text-blue-600 px-3 py-1 rounded-full font-bold hover:bg-blue-50 transition-colors">
+              Claim Now
+            </Link>
+            <button 
+              onClick={() => setShowTopBanner(false)}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-200"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       <Navigation />
       
       {/* Hero Section */}
       <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
-            <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center">
+            {/* Hero Content - Takes 8 columns */}
+            <div className="lg:col-span-8 text-center lg:text-left order-2 lg:order-1">
               <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
               </div>
@@ -168,7 +239,97 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+            
+            {/* Sidebar Advertisement - Takes 4 columns */}
+            <div className="lg:col-span-4 order-1 lg:order-2">
+              <div className="sticky top-4 space-y-4">
+                {/* Rotating Business Ad */}
+                <div 
+                  className="rounded-2xl p-6 shadow-xl transition-all duration-500 hover:scale-105 cursor-pointer"
+                  style={{ backgroundColor: advertisements[currentAdIndex].color }}
+                  onClick={() => window.open(advertisements[currentAdIndex].link, '_blank')}
+                >
+                  <div className="text-center text-white">
+                    <div className="text-4xl mb-3">{advertisements[currentAdIndex].image}</div>
+                    <h3 className="font-bold text-lg mb-2">{advertisements[currentAdIndex].title}</h3>
+                    <p className="text-sm opacity-90 mb-1">{advertisements[currentAdIndex].subtitle}</p>
+                    <p className="text-xs opacity-80 mb-4">{advertisements[currentAdIndex].description}</p>
+                    <div className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-100 transition-colors inline-block">
+                      {advertisements[currentAdIndex].cta}
+                    </div>
+                  </div>
+                  
+                  {/* Ad indicator dots */}
+                  <div className="flex justify-center mt-4 gap-2">
+                    {advertisements.map((_, index) => (
+                      <div 
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentAdIndex ? 'bg-white' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Static Business Directory Ad */}
+                <div className="rounded-xl p-4 border-2 border-dashed border-gray-300 bg-white/50 backdrop-blur-sm text-center">
+                  <div className="text-2xl mb-2">📢</div>
+                  <h4 className="font-bold text-sm mb-2" style={{ color: theme === 'dark' ? '#1A1818' : '#1A1818' }}>
+                    Advertise Here
+                  </h4>
+                  <p className="text-xs text-gray-600 mb-3">
+                    Reach thousands of local customers
+                  </p>
+                  <Link href="/advertise">
+                    <Button 
+                      className="text-xs px-4 py-2 rounded-lg"
+                      style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
+                    >
+                      Get Started
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Horizontal Business Spotlight Banner */}
+      <div className="py-4" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-xl p-4 sm:p-6 shadow-lg">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-2xl">
+                  ⭐
+                </div>
+                <div className="text-white text-center sm:text-left">
+                  <h3 className="font-bold text-lg">Business Spotlight</h3>
+                  <p className="text-sm opacity-90">Featured local services and tools</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <Link href="/businesses">
+                  <Button 
+                    className="bg-white text-orange-600 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+                  >
+                    Browse All
+                  </Button>
+                </Link>
+                <Link href="/list-business">
+                  <Button 
+                    className="bg-transparent border-2 border-white text-white px-4 py-2 rounded-lg font-bold hover:bg-white hover:text-orange-600 transition-colors"
+                  >
+                    List Your Business
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
               <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-4 sm:mt-6 lg:mt-8 xl:mt-12">
                 {/* Enhanced Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-2xl sm:rounded-3xl filter blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
@@ -372,8 +533,67 @@ export default function Home() {
       {/* Promoted Cards Section */}
       <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {getFilteredCards()}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+            {/* Cards - Takes 9 columns */}
+            <div className="lg:col-span-9">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {getFilteredCards()}
+              </div>
+            </div>
+            
+            {/* Right Sidebar Ads - Takes 3 columns */}
+            <div className="lg:col-span-3">
+              <div className="sticky top-4 space-y-4">
+                {/* Service Provider Ad */}
+                <div className="bg-gradient-to-br from-green-500 to-teal-600 rounded-xl p-4 text-white text-center shadow-lg">
+                  <div className="text-3xl mb-2">🏠</div>
+                  <h4 className="font-bold text-sm mb-2">Home Pro Services</h4>
+                  <p className="text-xs opacity-90 mb-3">Professional cleaning, repairs & maintenance</p>
+                  <Button className="bg-white text-green-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
+                    Book Now
+                  </Button>
+                </div>
+
+                {/* Tool Rental Ad */}
+                <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-4 text-white text-center shadow-lg">
+                  <div className="text-3xl mb-2">🔧</div>
+                  <h4 className="font-bold text-sm mb-2">ToolMart Rentals</h4>
+                  <p className="text-xs opacity-90 mb-3">Premium tools at affordable daily rates</p>
+                  <Button className="bg-white text-purple-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
+                    Browse Tools
+                  </Button>
+                </div>
+
+                {/* Skills Training Ad */}
+                <div className="bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl p-4 text-white text-center shadow-lg">
+                  <div className="text-3xl mb-2">🎓</div>
+                  <h4 className="font-bold text-sm mb-2">SkillUp Academy</h4>
+                  <p className="text-xs opacity-90 mb-3">Learn new skills, earn more money</p>
+                  <Button className="bg-white text-pink-600 px-3 py-1 text-xs rounded-lg font-bold hover:bg-gray-100">
+                    Start Learning
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Bottom Banner */}
+      <div className="fixed bottom-4 right-4 z-50 max-w-xs">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg shadow-2xl border border-white/20 backdrop-blur-sm">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl">💰</div>
+            <div className="flex-1">
+              <div className="font-bold text-sm">Earn Extra Income!</div>
+              <div className="text-xs opacity-90">Join as a service provider</div>
+            </div>
+            <Button 
+              className="bg-white text-blue-600 px-2 py-1 text-xs rounded font-bold hover:bg-gray-100"
+              onClick={() => window.open('/provider-signup', '_blank')}
+            >
+              Join
+            </Button>
           </div>
         </div>
       </div>
