@@ -114,6 +114,69 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
+      {/* Top Special Offer Banner */}
+      {showTopBanner && (
+        <div 
+          className="relative overflow-hidden transition-all duration-500 ease-in-out"
+          style={{ 
+            background: 'linear-gradient(90deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
+            boxShadow: '0 4px 20px rgba(255, 94, 20, 0.3)'
+          }}
+        >
+          {/* Animated Background Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-full h-full animate-pulse" style={{ background: 'repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 255, 255, 0.1) 20px, rgba(255, 255, 255, 0.1) 40px)' }}></div>
+          </div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg sm:text-xl animate-bounce">🎉</span>
+                  <span className="text-xs sm:text-sm font-bold text-white bg-white/20 px-2 py-1 rounded-full">
+                    TOP SPECIAL OFFER
+                  </span>
+                </div>
+                <div className="text-sm sm:text-base md:text-lg font-bold text-white">
+                  Get <span className="text-yellow-200 font-black">50% off</span> your first business listing!
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Link href="/SignUp">
+                  <Button 
+                    className="text-xs sm:text-sm font-bold px-3 sm:px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                    style={{ 
+                      backgroundColor: '#FFFFFF',
+                      color: '#FF5E14'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FFFFFF';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    Claim Now
+                  </Button>
+                </Link>
+                <button
+                  onClick={() => setShowTopBanner(false)}
+                  className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 rounded-full transition-all duration-300"
+                  aria-label="Close banner"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Hero Section */}
       <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
