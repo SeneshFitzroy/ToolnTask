@@ -21,7 +21,7 @@ export default function Home() {
 
   if (!mounted) return null;
 
-  const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => 
+  const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
     setActiveFilter(filter);
   };
 
