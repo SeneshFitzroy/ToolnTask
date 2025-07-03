@@ -47,8 +47,8 @@ const Navigation = () => {
                 }}
               />
             </div>
-            {/* Fallback text logo in case image fails */}
-            <div className="hidden">
+            {/* Temporary visible fallback text logo for debugging */}
+            <div className="block">
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold transition-all duration-300 group-hover:scale-105">
                 <span style={{ color: '#FF5E14' }}>Tool</span>
                 <span style={{ color: '#001554' }}>N</span>
