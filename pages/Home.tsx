@@ -4,8 +4,12 @@ import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
-import WorkerAnimation from '../src/components/WorkerAnimation';
-import { Button } from '../src/components/ui/button';
+import WorkerAnimation from '../src/components/WorkerAnimati        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute top-32 right-20 w-16 h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-20 left-32 w-12 h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+        </div>import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -117,7 +121,7 @@ export default function Home() {
                 Need a Hand or a{' '}
                 <span 
                   className="relative inline-block"
-                  style={{ color: '#FFE514' }}
+                  style={{ color: '#FF5E14' }}
                 >
                   Hammer?
                   <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>
@@ -125,7 +129,7 @@ export default function Home() {
                   </svg>
                 </span>
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFE514' : '#001554' }}>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FF5E14' : '#001554' }}>
                 We&apos;ve Got Both!
               </h2>
               <p className="text-lg sm:text-xl mb-8 leading-relaxed" style={{ color: '#B3B5BC' }}>
@@ -168,7 +172,7 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                   <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>5,000+ Happy Users</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -215,7 +219,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Trusted by Communities Across{' '}
-              <span style={{ color: '#FFE514' }}>Sri Lanka</span>
+              <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               From Colombo to Kandy, thousands of neighbors are already helping each other every day
@@ -225,7 +229,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Verified community members', color: '#FF5E14' },
-              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FFE514' },
+              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime', color: '#FF5E14' },
               { icon: '🏆', number: '500+', label: 'Tasks Completed', desc: 'Successfully finished projects', color: '#001554' }
             ].map((stat, index) => (
               <div 
@@ -252,7 +256,7 @@ export default function Home() {
               How{' '}
               <span 
                 className="relative inline-block"
-                style={{ color: '#FFE514' }}
+                style={{ color: '#FF5E14' }}
               >
                 ToolNTask
                 <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>
@@ -280,7 +284,7 @@ export default function Home() {
                 icon: '🤝', 
                 title: 'Connect & Agree', 
                 desc: 'Chat with providers, negotiate terms, and agree on fair pricing that works for everyone',
-                color: '#FFE514'
+                color: '#FF5E14'
               },
               { 
                 step: '3', 
@@ -316,7 +320,7 @@ export default function Home() {
                     >
                       <div 
                         className="absolute inset-0 rounded-full transform origin-left group-hover:scale-x-100 transition-transform duration-1000"
-                        style={{ backgroundColor: '#FFE514', transform: 'scaleX(0.7)' }}
+                        style={{ backgroundColor: '#FF5E14', transform: 'scaleX(0.7)' }}
                       ></div>
                     </div>
                   </div>
@@ -331,25 +335,25 @@ export default function Home() {
       <div className="py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 opacity-90"></div>
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full" style={{ backgroundColor: '#FFE514', opacity: 0.1 }}></div>
-          <div className="absolute top-32 right-20 w-16 h-16 rounded-full" style={{ backgroundColor: '#FE5F16', opacity: 0.1 }}></div>
-          <div className="absolute bottom-20 left-32 w-12 h-12 rounded-full" style={{ backgroundColor: '#FFE514', opacity: 0.1 }}></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full" style={{ backgroundColor: '#FE5F16', opacity: 0.1 }}></div>
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute top-32 right-20 w-16 h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-20 left-32 w-12 h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
         </div>
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 rounded-full mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 229, 20, 0.1)', border: '1px solid #FFE514' }}>
-            <span className="text-sm font-semibold" style={{ color: '#FFE514' }}>🚀 Join the Movement</span>
+          <div className="inline-flex items-center px-4 py-2 rounded-full mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 94, 20, 0.1)', border: '1px solid #FF5E14' }}>
+            <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
           </div>
           
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
             Ready to Transform Your{' '}
             <span 
               className="relative inline-block"
-              style={{ color: '#FFE514' }}
+              style={{ color: '#FF5E14' }}
             >
               Community?
-              <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FE5F16', opacity: 0.5 }}>
+              <svg className="absolute -bottom-3 left-0 w-full h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.5 }}>
                 <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
               </svg>
             </span>
@@ -396,7 +400,7 @@ export default function Home() {
           
           <div className="flex flex-wrap justify-center gap-8 text-sm font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               <span>No Hidden Fees</span>
             </div>
             <div className="flex items-center gap-2">
@@ -404,7 +408,7 @@ export default function Home() {
               <span>Verified Members</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FFE514' }}></div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               <span>Secure Payments</span>
             </div>
             <div className="flex items-center gap-2">

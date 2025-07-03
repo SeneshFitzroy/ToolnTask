@@ -74,8 +74,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                   <span 
                     className="px-3 py-1 text-sm rounded-full font-medium"
                     style={{
-                      backgroundColor: isActive ? '#FFE514' : (theme === 'dark' ? '#444444' : '#B3B5BC'),
-                      color: isActive ? '#1A1818' : (theme === 'dark' ? '#FFFFFF' : '#FFF')
+                      backgroundColor: isActive ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#B3B5BC'),
+                      color: isActive ? '#FFFFFF' : (theme === 'dark' ? '#FFFFFF' : '#FFF')
                     }}
                   >
                     {option.count}

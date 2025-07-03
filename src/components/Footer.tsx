@@ -39,7 +39,7 @@ const Footer = () => {
                   color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
                   backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF'
                 }}
-                onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FFE514`}
+                onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
                 onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
               />
               <button
@@ -79,7 +79,7 @@ const Footer = () => {
                   <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>5,000+ Members</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5" style={{ color: '#FFE514' }} />
+                  <Star className="w-5 h-5" style={{ color: '#FF5E14' }} />
                   <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>4.8★ Rating</span>
                 </div>
                 <div className="flex items-center gap-2">
