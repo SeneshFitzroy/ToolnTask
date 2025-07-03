@@ -1,7 +1,5 @@
-import React from 'react';            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Stay Connected with</span>
-              <Logo size="large" />
-            </div>mport Link from 'next/link';
+import React from 'react';
+import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp, Heart, Users, Star } from 'lucide-react';
 import { useState, useEffect } from 'react';
