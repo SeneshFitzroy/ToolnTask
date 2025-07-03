@@ -15,7 +15,7 @@ export default function Contact() {
               Get in{' '}
               <span 
                 className="relative inline-block"
-                style={{ color: '#FFE514' }}
+                style={{ color: '#FF5E14' }}
               >
                 Touch
                 <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FE5F16', opacity: 0.3 }}>

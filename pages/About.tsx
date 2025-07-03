@@ -117,7 +117,7 @@ export default function About() {
                   <span className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>MP</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: '#1A1818' }}>Mike Peterson</h3>
-                <p className="font-semibold mb-4" style={{ color: '#FFE514' }}>Head of Operations</p>
+                <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Head of Operations</p>
                 <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Ensures smooth operations and exceptional customer service.
                 </p>
