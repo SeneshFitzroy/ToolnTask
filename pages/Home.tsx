@@ -219,7 +219,7 @@ export default function Home() {
                             <path d="M8 5v10l7-5z" />
                           </svg>
                         </div>
-                        <h3 className="text-lg font-bold mb-2">ToolNTask</h3>
+                        <h3 className="text-lg font-bold mb-2 logo-font">ToolNTask</h3>
                         <p className="text-sm opacity-90">Community Marketplace</p>
                       </div>
                     </div>
@@ -299,7 +299,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               How{' '}
               <span 
-                className="relative inline-block"
+                className="relative inline-block logo-font"
                 style={{ color: '#FF5E14' }}
               >
                 ToolNTask
