@@ -372,12 +372,6 @@ export default function Home() {
       {/* Promoted Cards Section */}
       <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-4 sm:mb-6 md:mb-8">
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
-            </h2>
-          </div>
-          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {getFilteredCards()}
           </div>
