@@ -8,8 +8,10 @@ import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
+  const { user, isLoggedIn, logout } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
