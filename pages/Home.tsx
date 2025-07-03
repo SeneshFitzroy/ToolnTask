@@ -177,8 +177,8 @@ export default function Home() {
                 {/* Mechanical Tool Animations - Left Side */}
                 <div className="absolute -top-6 -left-10 z-20 animate-float-slow group">
                   <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-orange-500/50 group-hover:rotate-12">
-                    <svg className="w-7 h-7 text-white animate-pulse group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L13.09 8.26L18 7L16.74 13.09L23 12L16.74 10.91L18 17L13.09 15.74L12 22L10.91 15.74L6 17L7.26 10.91L1 12L7.26 13.09L6 7L10.91 8.26L12 2Z"/>
+                    <svg className="w-7 h-7 text-white animate-spin group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-orange-400/20 rounded-2xl blur-md group-hover:bg-orange-400/40 transition-all duration-500"></div>
