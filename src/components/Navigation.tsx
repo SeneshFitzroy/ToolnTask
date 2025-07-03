@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, User, LogOut, Settings } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
