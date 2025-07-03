@@ -16,23 +16,71 @@ const Navigation = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="shadow-lg sticky top-0 z-50 border-b border-opacity-20" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
+    <nav 
+      className="shadow-lg sticky top-0 z-50 border-b border-opacity-20 transition-colors duration-300" 
+      style={{ 
+        backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', 
+        borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' 
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-xl sm:text-2xl font-bold" style={{ color: '#1A1818' }}>
-              Tool<span style={{ color: '#FFE514' }}>N</span>Task
+            <div className="text-xl sm:text-2xl font-bold transition-colors duration-300">
+              <span style={{ color: '#FF5E14' }}>Tool</span>
+              <span style={{ color: '#001554' }}>N</span>
+              <span style={{ color: '#FF5E14' }}>Task</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6">
-            <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>Home</Link>
-            <Link href="/Tasks" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>Tasks</Link>
-            <Link href="/Tools" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>Tools</Link>
-            <Link href="/About" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>About Us</Link>
-            <Link href="/Contact" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'}>Contact</Link>
+            <Link 
+              href="/" 
+              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/Tasks" 
+              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+            >
+              Tasks
+            </Link>
+            <Link 
+              href="/Tools" 
+              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+            >
+              Tools
+            </Link>
+            <Link 
+              href="/About" 
+              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+            >
+              About Us
+            </Link>
+            <Link 
+              href="/Contact" 
+              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105" 
+              style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} 
+              onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} 
+              onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Right side - Theme toggle and Auth buttons */}
@@ -40,14 +88,25 @@ const Navigation = () => {
             {/* Theme Toggle Button */}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg transition-colors duration-200 hover:scale-105"
-              style={{ backgroundColor: '#F2F3F5' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B3B5BC'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F2F3F5'}
+              className="p-2 rounded-lg transition-all duration-300 hover:scale-105"
+              style={{ 
+                backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5',
+                border: `1px solid ${theme === 'dark' ? '#444444' : 'transparent'}`
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5';
+              }}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
                 <Sun className="h-5 w-5" style={{ color: '#FFE514' }} />
+              ) : (
+                <Moon className="h-5 w-5" style={{ color: '#001554' }} />
+              )}
+            </button>
               ) : (
                 <Moon className="h-5 w-5" style={{ color: '#1A1818' }} />
               )}
