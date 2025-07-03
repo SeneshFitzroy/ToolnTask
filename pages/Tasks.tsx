@@ -275,28 +275,28 @@ export default function Tasks() {
                 </button>
                 
                 {showFilterDropdown && (
-                  <div className="absolute right-0 mt-4 w-72 sm:w-80 border-4 rounded-2xl shadow-2xl z-50" 
+                  <div className="absolute right-0 mt-2 w-64 sm:w-72 border rounded-xl shadow-lg z-50" 
                        style={{ 
                          backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', 
                          borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' 
                        }}>
-                    <div className="p-4 sm:p-6">
+                    <div className="p-3 sm:p-4">
                       {filterOptions.map((option) => (
                         <button
                           key={option.key}
                           onClick={() => handleFilterChange(option.key)}
-                          className={`w-full flex items-center justify-between p-4 rounded-xl mb-2 font-bold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 ${
+                          className={`w-full flex items-center justify-between p-3 rounded-lg mb-1.5 font-medium text-sm sm:text-base transition-all duration-300 ${
                             activeFilter === option.key 
-                              ? 'shadow-lg' 
-                              : 'hover:shadow-md'
+                              ? 'shadow-md' 
+                              : 'hover:shadow-sm'
                           }`}
                           style={{
                             backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
                             color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
                           }}
                         >
-                          <span className="font-black">{option.label}</span>
-                          <span className="text-sm sm:text-base px-3 py-1.5 rounded-full font-bold" style={{ 
+                          <span className="font-semibold">{option.label}</span>
+                          <span className="text-xs sm:text-sm px-2 py-1 rounded-full font-medium" style={{ 
                             backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
                             color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
                           }}>
