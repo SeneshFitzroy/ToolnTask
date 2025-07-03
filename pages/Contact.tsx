@@ -205,7 +205,7 @@ export default function Contact() {
                 <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
-                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How do I start using ToolNTask?</h3>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How do I start using <span className="logo-small" style={{ color: '#FF5E14' }}>ToolNTask</span>?</h3>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>Simply create an account and start browsing available tasks or tools in your area.</p>
                   </div>
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FF5E14' }}>

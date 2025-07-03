@@ -195,7 +195,7 @@ export default function Home() {
                       console.error('Video failed to load:', e);
                       // Fallback: hide video and show poster
                       e.currentTarget.style.display = 'none';
-                      const fallback = e.currentTarget.nextElementSibling;
+                      const fallback = e.currentTarget.nextElementSibling as HTMLElement;
                       if (fallback) fallback.style.display = 'block';
                     }}
                   >
