@@ -4,6 +4,7 @@ import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
+import WorkerAnimation from '../src/components/WorkerAnimation';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -126,11 +127,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-orange-400 to-blue-500 rounded-full flex items-center justify-center shadow-2xl">
-                  <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-xl">
-                    <span className="text-6xl sm:text-8xl lg:text-9xl">🔧</span>
-                  </div>
-                </div>
+                <WorkerAnimation />
               </div>
             </div>
           </div>
