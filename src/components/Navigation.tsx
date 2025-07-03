@@ -25,31 +25,31 @@ const Navigation = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 sm:h-24 md:h-28 lg:h-32">
+        <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 group">
             <div className="relative">
-              {/* Official Logo Image - Much Larger */}
+              {/* Official Logo Image */}
               <Image 
                 src="/toolntask-logo.png" 
                 alt="ToolNTask Logo" 
-                width={200}
-                height={60}
-                className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-lg"
+                width={160}
+                height={48}
+                className="h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-lg"
                 style={{ 
-                  filter: theme === 'dark' ? 'brightness(1.2) contrast(1.2)' : 'brightness(1) contrast(1)',
-                  maxWidth: '300px',
-                  minHeight: '48px'
+                  filter: theme === 'dark' ? 'brightness(1.1) contrast(1.1)' : 'brightness(1) contrast(1)',
+                  maxWidth: '200px'
                 }}
                 priority
                 onError={() => {
-                  console.log('Logo image failed to load, check file path and format');
+                  // Fallback handled by showing text logo below
+                  console.log('Logo image failed to load, using fallback text logo');
                 }}
               />
             </div>
-            {/* Temporary visible fallback text logo for debugging */}
-            <div className="block">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold transition-all duration-300 group-hover:scale-105">
+            {/* Optional: Text fallback (can be removed if logo always loads) */}
+            <div className="hidden">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold transition-all duration-300 group-hover:scale-105">
                 <span style={{ color: '#FF5E14' }}>Tool</span>
                 <span style={{ color: '#001554' }}>N</span>
                 <span style={{ color: '#FF5E14' }}>Task</span>

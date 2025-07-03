@@ -191,9 +191,12 @@ export default function Home() {
                     playsInline
                     preload="auto"
                     poster="/hero-video-poster.png"
-                    onError={() => {
-                      console.error('Video failed to load');
-                      // Video will be hidden and fallback shown via CSS
+                    onError={(e) => {
+                      console.error('Video failed to load:', e);
+                      // Fallback: hide video and show poster
+                      e.currentTarget.style.display = 'none';
+                      const fallback = e.currentTarget.nextElementSibling;
+                      if (fallback) fallback.style.display = 'block';
                     }}
                   >
                     <source src="/hero-video.mp4" type="video/mp4" />
