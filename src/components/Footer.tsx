@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp, Heart, Users, Star } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Logo from './Logo';
 
 const Footer = () => {
   const { theme } = useTheme();
