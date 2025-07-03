@@ -5,147 +5,205 @@ import { Button } from '../src/components/ui/button';
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-12 sm:py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">Get in Touch</h1>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">
+      <div className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#1A1818' }}>
+              Get in{' '}
+              <span 
+                className="relative inline-block"
+                style={{ color: '#FFE514' }}
+              >
+                Touch
+                <svg className="absolute -bottom-2 left-0 w-full h-3" viewBox="0 0 100 10" style={{ fill: '#FE5F16', opacity: 0.3 }}>
+                  <path d="M0 8 Q 50 0 100 8 L 100 10 L 0 10 Z" />
+                </svg>
+              </span>
+            </h1>
+            <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#B3B5BC' }}>
               We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
-            <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-6">Send us a Message</h2>
+            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Send us a Message</h2>
               <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">First Name</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>First Name</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                      className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
+                      style={{ 
+                        borderColor: '#B3B5BC', 
+                        color: '#1A1818',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Last Name</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                      className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
+                      style={{ 
+                        borderColor: '#B3B5BC', 
+                        color: '#1A1818',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                       placeholder="Doe"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Email</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
+                    style={{ 
+                      borderColor: '#B3B5BC', 
+                      color: '#1A1818',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                     placeholder="john@example.com"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Phone</label>
                   <input
                     type="tel"
-                    className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
+                    style={{ 
+                      borderColor: '#B3B5BC', 
+                      color: '#1A1818',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                     placeholder="+94 71 234 5678"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Subject</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
+                    style={{ 
+                      borderColor: '#B3B5BC', 
+                      color: '#1A1818',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                     placeholder="How can we help you?"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Message</label>
                   <textarea
-                    rows={5}
-                    className="w-full px-4 py-3 border-2 border-slate-200 dark:border-gray-600 rounded-xl focus:border-orange-600 focus:outline-none bg-white dark:bg-gray-700 text-slate-800 dark:text-white"
+                    rows={6}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300 resize-none"
+                    style={{ 
+                      borderColor: '#B3B5BC', 
+                      color: '#1A1818',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
                 
-                <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl">
+                <Button 
+                  className="w-full py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0"
+                  style={{ backgroundColor: '#FE5F16', color: '#FFFFFF' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                >
                   Send Message
                 </Button>
               </form>
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-6">Contact Information</h2>
+            <div className="space-y-8 sm:space-y-10">
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Contact Information</h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 dark:text-orange-400 text-xl">📍</span>
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FE5F16' }}>
+                      <span className="text-white text-xl">📍</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800 dark:text-white">Address</h3>
-                      <p className="text-gray-600 dark:text-gray-300">123, Galle Road, Colombo 03, Sri Lanka</p>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Address</h3>
+                      <p className="text-lg" style={{ color: '#B3B5BC' }}>123, Galle Road, Colombo 03, Sri Lanka</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 dark:text-orange-400 text-xl">📞</span>
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FFE514' }}>
+                      <span className="text-xl" style={{ color: '#1A1818' }}>📞</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800 dark:text-white">Phone</h3>
-                      <p className="text-gray-600 dark:text-gray-300">+94 11 123 4567</p>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Phone</h3>
+                      <p className="text-lg" style={{ color: '#B3B5BC' }}>+94 11 123 4567</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 dark:text-orange-400 text-xl">✉️</span>
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#001554' }}>
+                      <span className="text-white text-xl">✉️</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800 dark:text-white">Email</h3>
-                      <p className="text-gray-600 dark:text-gray-300">info@toolntask.lk</p>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Email</h3>
+                      <p className="text-lg" style={{ color: '#B3B5BC' }}>hello@toolntask.lk</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 dark:text-orange-400 text-xl">🕒</span>
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FE5F16' }}>
+                      <span className="text-white text-xl">🕒</span>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800 dark:text-white">Business Hours</h3>
-                      <p className="text-gray-600 dark:text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                      <p className="text-gray-600 dark:text-gray-300">Sat: 9:00 AM - 2:00 PM</p>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Business Hours</h3>
+                      <p className="text-lg" style={{ color: '#B3B5BC' }}>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                      <p className="text-lg" style={{ color: '#B3B5BC' }}>Sat: 9:00 AM - 2:00 PM</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* FAQ Section */}
-              <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold text-slate-800 dark:text-white mb-2">How do I start using ToolNTask?</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">Simply create an account and start browsing available tasks or tools in your area.</p>
+              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How do I start using ToolNTask?</h3>
+                    <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>Simply create an account and start browsing available tasks or tools in your area.</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 dark:text-white mb-2">Is there a service fee?</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">We charge a small service fee to maintain the platform and ensure quality service.</p>
+                  <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FFE514' }}>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>Is there a service fee?</h3>
+                    <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>We charge a small service fee to maintain the platform and ensure quality service.</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 dark:text-white mb-2">How are payments handled?</h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">All payments are processed securely through our platform for your protection.</p>
+                  <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#001554' }}>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How are payments handled?</h3>
+                    <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>All payments are processed securely through our platform for your protection.</p>
                   </div>
                 </div>
               </div>
