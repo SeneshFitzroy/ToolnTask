@@ -264,8 +264,8 @@ export default function Home() {
                 <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 backdrop-blur-lg">
                   <div className="relative w-full" style={{ height: '320px' }}>
                     <video
-                      className="absolute top-0 left-0 w-full h-full rounded-2xl object-cover object-top"
-                      style={{ objectPosition: 'center top' }}
+                      className="absolute top-0 left-0 w-full h-full rounded-2xl object-cover"
+                      style={{ objectPosition: 'center 20%' }}
                       autoPlay
                       muted
                       loop
@@ -291,7 +291,7 @@ export default function Home() {
                     style={{ 
                       backgroundImage: `url('/hero-video-poster.png')`,
                       height: '320px',
-                      backgroundPosition: 'center top'
+                      backgroundPosition: 'center 20%'
                     }}
                   >
                     <div className="flex items-center justify-center h-full bg-gradient-to-br from-black/40 via-orange-900/20 to-blue-900/20 rounded-3xl backdrop-blur-sm">
