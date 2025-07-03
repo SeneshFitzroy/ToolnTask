@@ -437,76 +437,142 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-12 sm:py-16 md:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full" style={{ backgroundColor: '#001554' }}></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+              <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
             {[
               { 
                 step: '1', 
                 icon: '📝', 
                 title: 'Post or Browse', 
                 desc: 'Create a task listing or browse available tools and services in your neighborhood',
-                color: '#FF5E14'
+                color: '#FF5E14',
+                delay: '0ms'
               },
               { 
                 step: '2', 
                 icon: '🤝', 
                 title: 'Connect & Agree', 
                 desc: 'Chat with providers, negotiate terms, and agree on fair pricing that works for everyone',
-                color: '#FF5E14'
+                color: '#FF5E14',
+                delay: '200ms'
               },
               { 
                 step: '3', 
                 icon: '✅', 
                 title: 'Complete & Review', 
                 desc: 'Finish the task safely, complete secure payment, and build trust through honest reviews',
-                color: '#001554'
+                color: '#001554',
+                delay: '400ms'
               }
             ].map((step, index) => (
-              <div key={index} className="text-center relative group">
-                <div className="relative mb-4 sm:mb-6 md:mb-8">
-                  <div 
-                    className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center text-base sm:text-xl md:text-2xl font-bold text-white mx-auto shadow-lg sm:shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
-                    style={{ backgroundColor: step.color }}
-                  >
-                    {step.step}
+              <div 
+                key={index} 
+                className="text-center relative group"
+                style={{ animationDelay: step.delay }}
+              >
+                {/* Step Card */}
+                <div 
+                  className="relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 hover:scale-105 group cursor-pointer"
+                  style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05) translateY(-8px)';
+                    e.currentTarget.style.boxShadow = `0 25px 50px rgba(${step.color === '#FF5E14' ? '255, 94, 20' : '0, 21, 84'}, 0.2)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1) translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                  }}
+                >
+                  {/* Top Border Accent */}
+                  <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl sm:rounded-t-3xl transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" style={{ backgroundColor: step.color }}></div>
+                  
+                  {/* Step Number Badge */}
+                  <div className="relative mb-6 sm:mb-8">
+                    <div className="absolute -top-4 -left-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg z-10" style={{ backgroundColor: step.color }}>
+                      {step.step}
+                    </div>
+                    
+                    {/* Icon Container */}
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" style={{ backgroundColor: `${step.color}10`, border: `2px solid ${step.color}20` }}>
+                      <span className="text-4xl sm:text-5xl md:text-6xl transform group-hover:scale-110 transition-transform duration-300">{step.icon}</span>
+                    </div>
+                    
+                    {/* Floating Particles */}
+                    <div className="absolute top-2 right-2 w-2 h-2 rounded-full opacity-40 animate-pulse" style={{ backgroundColor: step.color }}></div>
+                    <div className="absolute bottom-2 left-2 w-1 h-1 rounded-full opacity-30 animate-pulse" style={{ backgroundColor: step.color, animationDelay: '1s' }}></div>
                   </div>
-                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center transform group-hover:scale-125 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
-                    <span className="text-sm sm:text-base md:text-lg lg:text-xl">{step.icon}</span>
+                  
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                      {step.title}
+                    </h3>
+                    
+                    {/* Underline */}
+                    <div className="w-12 h-1 mx-auto rounded-full transform group-hover:w-16 transition-all duration-500" style={{ backgroundColor: `${step.color}50` }}></div>
+                    
+                    <p className="text-sm sm:text-base md:text-lg leading-relaxed opacity-90" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                      {step.desc}
+                    </p>
                   </div>
+                  
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
                 </div>
                 
-                <div className="p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-300 group-hover:shadow-lg sm:group-hover:shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>{step.title}</h3>
-                  <p className="text-xs sm:text-sm md:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{step.desc}</p>
-                </div>
-                
+                {/* Connection Arrow */}
                 {index < 2 && (
-                  <div className="hidden sm:block absolute top-6 sm:top-8 md:top-10 left-1/2 w-full h-1 transform translate-x-4 sm:translate-x-8 z-10">
-                    <div 
-                      className="w-12 sm:w-16 md:w-20 h-1 rounded-full relative overflow-hidden"
-                      style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
-                    >
-                      <div 
-                        className="absolute inset-0 rounded-full transform origin-left group-hover:scale-x-100 transition-transform duration-1000"
-                        style={{ backgroundColor: '#FF5E14', transform: 'scaleX(0.7)' }}
-                      ></div>
+                  <div className="hidden md:block absolute top-16 -right-6 lg:-right-8 z-20">
+                    <div className="relative">
+                      <svg className="w-12 h-8 lg:w-16 lg:h-10 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 64 32" style={{ color: step.color }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M4 16h48m0 0l-8-8m8 8l-8 8" />
+                      </svg>
+                      
+                      {/* Animated Dots */}
+                      <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
+                        <div className="flex space-x-1">
+                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0s' }}></div>
+                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0.3s' }}></div>
+                          <div className="w-1 h-1 rounded-full animate-pulse" style={{ backgroundColor: step.color, animationDelay: '0.6s' }}></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
             ))}
+          </div>
+          
+          {/* Bottom CTA */}
+          <div className="text-center mt-12 sm:mt-16 md:mt-20">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
+              <span className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Ready to get started? It only takes 2 minutes to begin!
+              </span>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '0.5s' }}></div>
+            </div>
           </div>
         </div>
       </div>
