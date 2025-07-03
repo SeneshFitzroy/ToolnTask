@@ -495,42 +495,42 @@ export default function Home() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 sm:py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
+      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
         <div className="absolute inset-0 opacity-20" style={{ background: 'linear-gradient(135deg, rgba(0, 21, 84, 0.1) 0%, rgba(0, 21, 84, 0.3) 100%)' }}></div>
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-5 sm:top-10 left-5 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute top-16 sm:top-32 right-10 sm:right-20 w-12 h-12 sm:w-16 sm:h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-10 sm:bottom-20 left-16 sm:left-32 w-8 h-8 sm:w-12 sm:h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
-          <div className="absolute bottom-5 sm:bottom-10 right-5 sm:right-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute top-3 left-3 sm:top-5 sm:left-5 md:top-10 md:left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute top-8 right-6 sm:top-16 sm:right-10 md:top-32 md:right-20 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-6 left-8 sm:bottom-10 sm:left-16 md:bottom-20 md:left-32 w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
+          <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 md:bottom-10 md:right-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full" style={{ backgroundColor: '#FF5E14', opacity: 0.1 }}></div>
         </div>
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-6 sm:mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 94, 20, 0.1)', border: '1px solid #FF5E14' }}>
+          <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 md:mb-8 shadow-lg" style={{ backgroundColor: 'rgba(255, 94, 20, 0.1)', border: '1px solid #FF5E14' }}>
             <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight px-2 sm:px-0" style={{ color: '#FFFFFF' }}>
             Ready to Transform Your{' '}
             <span 
               className="relative inline-block"
               style={{ color: '#FF5E14' }}
             >
               Community?
-              <svg className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.5 }}>
+              <svg className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 w-full h-2 sm:h-3 md:h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.5 }}>
                 <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
               </svg>
             </span>
           </h2>
           
-          <p className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
             Join thousands of Sri Lankans building stronger, more connected neighborhoods. 
             Start earning, saving, and helping today.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center mb-6 sm:mb-8 md:mb-12 px-4 sm:px-0">
             <Link href="/SignUp">
               <Button 
-                className="w-full sm:w-auto text-base sm:text-lg font-bold px-8 sm:px-10 py-4 sm:py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-0 relative overflow-hidden group"
+                className="w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-0 relative overflow-hidden group"
                 style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
@@ -541,7 +541,7 @@ export default function Home() {
             </Link>
             <Link href="/About">
               <Button 
-                className="w-full sm:w-auto text-base sm:text-lg font-bold px-8 sm:px-10 py-4 sm:py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-2 relative overflow-hidden group"
+                className="w-full sm:w-auto text-sm sm:text-base md:text-lg font-bold px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl border-2 relative overflow-hidden group"
                 style={{ 
                   backgroundColor: 'transparent',
                   color: '#FFFFFF',
@@ -561,7 +561,7 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8 text-xs sm:text-sm font-medium px-4 sm:px-0" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               <span>No Hidden Fees</span>
