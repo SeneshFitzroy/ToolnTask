@@ -152,15 +152,150 @@ export default function Home() {
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>
-            Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
-          </h2>
+      <div className="py-16" style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: '#1A1818' }}>
+              Featured {activeFilter === 'all' ? '' : activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1)}
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {getFilteredCards()}
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {getFilteredCards()}
+      </div>
+
+      {/* Stats Section */}
+      <div className="py-16" style={{ backgroundColor: '#F2F3F5' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
+              Changing Lives, Shaping Sri Lanka
+            </h2>
+            <p className="text-lg" style={{ color: '#B3B5BC' }}>
+              Join thousands of users who trust ToolNTask for their daily needs
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: '👥', number: '5,000+', label: 'Active Users', desc: 'Trusted community members' },
+              { icon: '🔧', number: '1,000+', label: 'Tools Available', desc: 'Ready to rent anytime' },
+              { icon: '🏆', number: '500+', label: 'Tasks Completed', desc: 'Successfully finished projects' }
+            ].map((stat, index) => (
+              <div 
+                key={index} 
+                className="text-center p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                style={{ backgroundColor: '#FFFFFF' }}
+              >
+                <div className="text-4xl mb-4">{stat.icon}</div>
+                <div className="text-3xl font-bold mb-2" style={{ color: '#FFE514' }}>{stat.number}</div>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: '#1A1818' }}>{stat.label}</h3>
+                <p className="text-sm" style={{ color: '#B3B5BC' }}>{stat.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
+      <div className="py-16" style={{ backgroundColor: '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
+              How It Works
+            </h2>
+            <p className="text-lg" style={{ color: '#B3B5BC' }}>
+              Getting help or lending a hand has never been easier
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                step: '1', 
+                icon: '📝', 
+                title: 'Post or Browse', 
+                desc: 'Create a task or browse available tools in your area'
+              },
+              { 
+                step: '2', 
+                icon: '🤝', 
+                title: 'Connect & Agree', 
+                desc: 'Chat with providers, agree on terms and pricing'
+              },
+              { 
+                step: '3', 
+                icon: '✅', 
+                title: 'Complete & Review', 
+                desc: 'Finish the task, make payment, and leave reviews'
+              }
+            ].map((step, index) => (
+              <div key={index} className="text-center relative">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold text-white mx-auto mb-6 shadow-lg"
+                  style={{ backgroundColor: '#001554' }}
+                >
+                  {step.step}
+                </div>
+                <div className="text-4xl mb-4">{step.icon}</div>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A1818' }}>{step.title}</h3>
+                <p style={{ color: '#B3B5BC' }}>{step.desc}</p>
+                
+                {index < 2 && (
+                  <div 
+                    className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 transform translate-x-6"
+                    style={{ backgroundColor: '#FFE514' }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-16" style={{ backgroundColor: '#F2F3F5' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#1A1818' }}>
+            Ready to Get Started?
+          </h2>
+          <p className="text-lg mb-8" style={{ color: '#B3B5BC' }}>
+            Join our community today and discover the power of collaborative living
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/SignUp">
+              <Button 
+                className="w-full sm:w-auto text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-0"
+                style={{ backgroundColor: '#FE5F16' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+              >
+                Join Now - It's Free
+              </Button>
+            </Link>
+            <Link href="/About">
+              <Button 
+                className="w-full sm:w-auto px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg border-2"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  color: '#001554',
+                  borderColor: '#001554'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#001554';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#001554';
+                }}
+              >
+                Learn More
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
