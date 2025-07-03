@@ -299,15 +299,7 @@ export default function Home() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               How{' '}
-              <span 
-                className="relative inline-block logo-large"
-                style={{ color: '#FF5E14' }}
-              >
-                ToolNTask
-                <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>
-                  <path d="M0 8 Q 50 0 100 8 L 100 10 L 0 10 Z" />
-                </svg>
-              </span>
+              <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
             <p className="text-lg sm:text-xl max-w-3xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
