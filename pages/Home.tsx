@@ -214,8 +214,8 @@ export default function Home() {
 
                 <div className="absolute top-16 -right-10 z-20 animate-float-slow group">
                   <div className="w-11 h-11 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-red-500/50 group-hover:rotate-90">
-                    <svg className="w-6 h-6 text-white group-hover:animate-spin" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"/>
+                    <svg className="w-6 h-6 text-white animate-hammer-bounce group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M2,12A2,2 0 0,0 4,14H6V20A2,2 0 0,0 8,22H16A2,2 0 0,0 18,20V14H20A2,2 0 0,0 22,12V10A2,2 0 0,0 20,8V7A3,3 0 0,0 17,4H7A3,3 0 0,0 4,7V8A2,2 0 0,0 2,10V12M6,7A1,1 0 0,1 7,6H17A1,1 0 0,1 18,7V8H6V7M4,10H20V12H18V20H16V12H8V20H6V12H4V10Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-red-400/20 rounded-xl blur-md group-hover:bg-red-400/40 transition-all duration-500"></div>
