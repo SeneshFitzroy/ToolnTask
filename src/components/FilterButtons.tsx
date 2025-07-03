@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { useTheme } from 'next-themes';
+import { useState, useEffect } from 'react';
 
 interface FilterButtonsProps {
   onFilterChange: (filter: 'all' | 'tasks' | 'tools') => void;
@@ -7,6 +9,14 @@ interface FilterButtonsProps {
 }
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFilter }) => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   const filterOptions = [
     {
       key: 'all' as const,
