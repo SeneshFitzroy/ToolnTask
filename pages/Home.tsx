@@ -187,7 +187,7 @@ export default function Home() {
                 <div className="absolute top-14 -left-12 z-20 animate-float-medium group">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-blue-500/50 group-hover:-rotate-12">
                     <svg className="w-6 h-6 text-white animate-wrench-swing group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M21.71,5.29L18.71,2.29C18.32,1.9 17.68,1.9 17.29,2.29L15,4.59L19.41,9L21.71,6.71C22.1,6.32 22.1,5.68 21.71,5.29M3,17.25L14.06,6.19L17.81,9.94L6.75,21H3V17.25Z"/>
+                      <path d="M22.7,19L13.6,9.9C14.5,7.6 14,4.9 12.1,3C10.1,1 7.1,0.6 4.7,1.7L9,6L6,9L1.6,4.7C0.4,7.1 0.9,10.1 2.9,12.1C4.8,14 7.5,14.5 9.8,13.6L18.9,22.7C19.3,23.1 19.9,23.1 20.3,22.7L22.6,20.4C23.1,20 23.1,19.3 22.7,19Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-blue-400/20 rounded-xl blur-md group-hover:bg-blue-400/40 transition-all duration-500"></div>
