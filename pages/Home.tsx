@@ -14,9 +14,18 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [showTopBanner, setShowTopBanner] = useState(true);
+  const [showFloatingBanner, setShowFloatingBanner] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Auto-hide top banner after 10 seconds
+    const timer = setTimeout(() => {
+      setShowTopBanner(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) return null;
