@@ -195,8 +195,8 @@ export default function Home() {
 
                 <div className="absolute bottom-16 -left-8 z-20 animate-float-fast group">
                   <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-green-500/50 group-hover:rotate-45">
-                    <svg className="w-5 h-5 text-white animate-hammer-bounce group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M2,12H4V17H6V12H7V10H6V9C6,8.45 6.45,8 7,8H9V6H7A2,2 0 0,0 5,8V9H4V10H5V12H2V14H22V12H20V10H18V12H17V9A2,2 0 0,0 15,7H13V9H15C15.55,9 16,9.45 16,10V12H14V17H16V12H18V14H2Z"/>
+                    <svg className="w-5 h-5 text-white animate-drill-spin group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.73,13.36L15.24,14.46L16.84,13.73L16.33,12.63L14.73,13.36M12.35,11.85L10.75,12.58L11.26,13.68L12.86,12.95L12.35,11.85M8.39,16.78L13.68,14.5L11.56,9.5L6.27,11.78L8.39,16.78M15.84,8.21L20.5,6.5L19.84,4.94L15.18,6.65L15.84,8.21M4.27,5.44L8.93,3.73L8.27,2.17L3.61,3.88L4.27,5.44M16.5,10.5C17.88,9.96 18.59,8.46 18.05,7.08C17.51,5.7 16,5 14.62,5.54C13.24,6.08 12.54,7.58 13.08,8.96C13.62,10.34 15.12,11.04 16.5,10.5Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-green-400/20 rounded-full blur-md group-hover:bg-green-400/40 transition-all duration-500"></div>
