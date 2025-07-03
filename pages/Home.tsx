@@ -233,8 +233,8 @@ export default function Home() {
                 {/* Top Floating Elements */}
                 <div className="absolute -top-4 left-1/3 z-20 animate-float-medium group">
                   <div className="w-11 h-11 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-teal-500/50 group-hover:rotate-180">
-                    <svg className="w-5 h-5 text-white animate-shovel-dig group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,13.5C15.53,14.14 16.05,14.78 16.5,15.5H21V17.5H15.5L12,22L8.5,17.5H3V15.5H7.5C7.95,14.78 8.47,14.14 9,13.5L3,7V9H1V7C1,6.45 1.45,6 2,6H7L9,9H15L17,6H22C22.55,6 23,6.45 23,7V9H21Z"/>
+                    <svg className="w-5 h-5 text-white animate-gear-rotate group-hover:animate-tool-vibrate" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8A4,4 0 0,1 16,12M18.7,12.4C18.8,12.3 18.9,12.1 18.9,12C18.9,11.9 18.8,11.7 18.7,11.6L17.1,10L18.7,8.4C18.8,8.3 18.9,8.1 18.9,8C18.9,7.9 18.8,7.7 18.7,7.6L17.1,6L15.5,7.6C15.4,7.7 15.2,7.8 15.1,7.8C15,7.8 14.8,7.7 14.7,7.6L13.1,6L14.7,4.4C14.8,4.3 14.9,4.1 14.9,4C14.9,3.9 14.8,3.7 14.7,3.6L13.1,2L11.5,3.6C11.4,3.7 11.2,3.8 11.1,3.8C11,3.8 10.8,3.7 10.7,3.6L9.1,2L7.5,3.6C7.4,3.7 7.2,3.8 7.1,3.8C7,3.8 6.8,3.7 6.7,3.6L5.1,2L3.5,3.6C3.4,3.7 3.2,3.8 3.1,3.8C3,3.8 2.8,3.7 2.7,3.6L1.1,2L2.7,0.4C2.8,0.3 2.9,0.1 2.9,0C2.9,-0.1 2.8,-0.3 2.7,-0.4L1.1,-2L-0.5,-0.4C-0.6,-0.3 -0.8,-0.2 -0.9,-0.2C-1,-0.2 -1.2,-0.3 -1.3,-0.4L-2.9,-2L-1.3,-3.6C-1.2,-3.7 -1.1,-3.9 -1.1,-4C-1.1,-4.1 -1.2,-4.3 -1.3,-4.4L-2.9,-6H24V6C24,9.3 21.3,12 18,12H18.7C18.8,12.1 18.9,12.2 18.9,12.4H18.7Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-teal-400/20 rounded-full blur-md group-hover:bg-teal-400/40 transition-all duration-500"></div>
@@ -242,8 +242,8 @@ export default function Home() {
 
                 <div className="absolute -top-6 right-1/4 z-20 animate-float-slow group">
                   <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-2xl flex items-center justify-center transform hover:scale-125 transition-all duration-500 cursor-pointer hover:shadow-indigo-500/50 group-hover:rotate-45">
-                    <svg className="w-5 h-5 text-white group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z"/>
+                    <svg className="w-5 h-5 text-white animate-drill-spin group-hover:animate-gear-rotate" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V8H11V6M11,10H13V18H11V10Z"/>
                     </svg>
                   </div>
                   <div className="absolute -inset-2 bg-indigo-400/20 rounded-xl blur-md group-hover:bg-indigo-400/40 transition-all duration-500"></div>
