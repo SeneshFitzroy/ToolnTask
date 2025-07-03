@@ -33,13 +33,13 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto mb-20 filter-container">
-      {/* Professional Wide Filter Tabs */}
-      <div className="p-3 rounded-2xl shadow-xl border-2" style={{ 
-        backgroundColor: theme === 'dark' ? '#1A1818' : '#F2F3F5',
+    <div className="w-full max-w-5xl mx-auto mb-20 filter-container">
+      {/* Elegant Thin Wide Filter Widget */}
+      <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+        backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
         borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
       }}>
-        <div className="flex justify-center gap-8 sm:gap-12 lg:gap-16">
+        <div className="flex justify-between gap-1">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
             
@@ -48,9 +48,9 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl 
-                  text-sm sm:text-base lg:text-lg font-bold tracking-wide
-                  filter-button-glow group transition-all duration-300
+                  flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full 
+                  text-xs sm:text-sm font-semibold tracking-wide
+                  transition-all duration-300 group
                   ${isActive ? 'filter-button-active' : ''}
                 `}
                 style={{
