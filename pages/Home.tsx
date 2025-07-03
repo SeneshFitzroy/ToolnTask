@@ -7,10 +7,19 @@ import FilterButtons from '../src/components/FilterButtons';
 import WorkerAnimation from '../src/components/WorkerAnimation';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
     setActiveFilter(filter);
@@ -93,7 +102,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Hero Section */}

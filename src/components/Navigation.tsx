@@ -107,10 +107,6 @@ const Navigation = () => {
                 <Moon className="h-5 w-5" style={{ color: '#001554' }} />
               )}
             </button>
-              ) : (
-                <Moon className="h-5 w-5" style={{ color: '#1A1818' }} />
-              )}
-            </button>
 
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-2">
@@ -136,26 +132,30 @@ const Navigation = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg transition-colors duration-200 hover:scale-105"
-              style={{ backgroundColor: '#F2F3F5' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B3B5BC'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F2F3F5'}
+              style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5'}
               aria-label="Toggle mobile menu"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" style={{ color: '#1A1818' }} /> : <Menu className="h-6 w-6" style={{ color: '#1A1818' }} />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} />
+              ) : (
+                <Menu className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-opacity-20" style={{ borderColor: '#B3B5BC' }}>
+          <div className="lg:hidden py-4 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
             <div className="flex flex-col space-y-2">
-              <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-              <Link href="/Tasks" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Tasks</Link>
-              <Link href="/Tools" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Tools</Link>
-              <Link href="/About" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-              <Link href="/Contact" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'} onMouseLeave={(e) => e.currentTarget.style.color = '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-              <div className="flex flex-col space-y-2 pt-2 border-t border-opacity-20" style={{ borderColor: '#B3B5BC' }}>
+              <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Home</Link>
+              <Link href="/Tasks" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Tasks</Link>
+              <Link href="/Tools" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Tools</Link>
+              <Link href="/About" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+              <Link href="/Contact" className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+              <div className="flex flex-col space-y-2 pt-2 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
                 <Link href="/SignIn" 
                   className="px-4 py-2 rounded-full text-sm font-medium text-center transition-all duration-300 text-white border-0" 
                   style={{ backgroundColor: '#FE5F16' }}
