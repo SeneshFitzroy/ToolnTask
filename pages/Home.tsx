@@ -178,7 +178,7 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-12 shadow-sm border-t border-opacity-20" style={{ backgroundColor: '#FFFFFF', borderColor: '#B3B5BC' }}>
+      <div className="py-12" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
