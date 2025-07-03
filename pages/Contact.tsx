@@ -20,84 +20,79 @@ export default function Contact() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+      {/* Hero Header Section */}
+      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         {/* Background Elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDuration: '4s' }}></div>
-          <div className="absolute top-20 right-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '2s', animationDuration: '5s' }}></div>
-          <div className="absolute bottom-20 left-20 w-10 h-10 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '1s', animationDuration: '4.5s' }}></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '3s', animationDuration: '4.5s' }}></div>
         </div>
-
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            {/* Simple Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 shadow-sm" 
+          {/* Badge */}
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2" 
                  style={{ 
-                   backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)', 
-                   border: `1px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                   backgroundColor: theme === 'dark' ? '#1F1F1F' : '#FFFFFF',
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <span className="text-sm">📞</span>
-              <span className="text-xs font-semibold" style={{ color: '#FF5E14' }}>Contact Support</span>
+              <span className="text-lg sm:text-xl mr-2">📞</span>
+              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
+                Get in Touch
+              </span>
             </div>
-
-            {/* Clean Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 flex flex-col sm:flex-row items-center justify-center gap-3 group" 
-                style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              <span>Get in</span>
-              <div className="relative transform group-hover:scale-105 transition-transform duration-300">
-                <span style={{ color: '#FF5E14' }}>Touch</span>
-                <div className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full"></div>
+          </div>
+          
+          {/* Main Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              Contact{' '}
+            </span>
+            <span className="relative inline-block">
+              <span style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+                Support
+              </span>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"></div>
+            </span>
+          </h1>
+          
+          {/* Subheading */}
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+             style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+            We&apos;re here to help with any questions or support you need
+          </p>
+          
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#FF5E14' }}>
+                24/7
               </div>
-            </h1>
-
-            {/* Sharp Description */}
-            <div className="max-w-4xl mx-auto mb-8">
-              <p className="text-lg sm:text-xl font-medium mb-4" 
-                 style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
-              </p>
-              <p className="text-base sm:text-lg" 
-                 style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
-                Choose your preferred way to get in touch with our team.
-              </p>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Support Available
+              </div>
             </div>
-
-            {/* Quick Action Icons */}
-            <div className="flex justify-center gap-6 sm:gap-8">
-              <div className="text-center group cursor-pointer">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 mb-2"
-                     style={{ 
-                       backgroundColor: '#FF5E14',
-                       boxShadow: '0 4px 15px rgba(255, 94, 20, 0.3)'
-                     }}>
-                  <span className="text-lg sm:text-xl">📧</span>
-                </div>
-                <p className="text-xs font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Email</p>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#001554' }}>
+                &lt;1hr
               </div>
-              
-              <div className="text-center group cursor-pointer">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 mb-2"
-                     style={{ 
-                       backgroundColor: '#001554',
-                       boxShadow: '0 4px 15px rgba(0, 21, 84, 0.3)'
-                     }}>
-                  <span className="text-lg sm:text-xl">📞</span>
-                </div>
-                <p className="text-xs font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Phone</p>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Response Time
               </div>
-
-              <div className="text-center group cursor-pointer">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 mb-2"
-                     style={{ 
-                       backgroundColor: '#10B981',
-                       boxShadow: '0 4px 15px rgba(16, 185, 129, 0.3)'
-                     }}>
-                  <span className="text-lg sm:text-xl">📍</span>
-                </div>
-                <p className="text-xs font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Location</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#FF5E14' }}>
+                100%
+              </div>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Satisfaction Rate
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
