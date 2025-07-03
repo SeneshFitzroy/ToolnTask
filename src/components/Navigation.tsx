@@ -1,17 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Menu, X, User, LogOut, Settings } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { useAuth } from '../contexts/AuthContext';
 
 const Navigation = () => {
   const { theme, setTheme } = useTheme();
-  const { user, isLoggedIn, logout } = useAuth();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -108,92 +105,24 @@ const Navigation = () => {
               )}
             </button>
 
-            {/* Auth Buttons or Profile - Hidden on small screens */}
+            {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-3">
-              {isLoggedIn && user ? (
-                <div className="relative">
-                  <button
-                    onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                    className="flex items-center space-x-2 p-2 rounded-full transition-all duration-300 hover:scale-105"
-                    style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5'}
-                  >
-                    <div 
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                      style={{ backgroundColor: '#FF5E14' }}
-                    >
-                      {user.initials}
-                    </div>
-                    <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      {user.name.split(' ')[0]}
-                    </span>
-                  </button>
-
-                  {/* Profile Dropdown */}
-                  {profileDropdownOpen && (
-                    <div 
-                      className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg z-50 border"
-                      style={{ 
-                        backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                        borderColor: theme === 'dark' ? '#333333' : '#B3B5BC'
-                      }}
-                    >
-                      <div className="py-1">
-                        <Link 
-                          href="/Profile" 
-                          className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
-                          onClick={() => setProfileDropdownOpen(false)}
-                        >
-                          <User className="h-4 w-4 mr-2" style={{ color: '#FF5E14' }} />
-                          View Profile
-                        </Link>
-                        <Link 
-                          href="/Profile" 
-                          className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
-                          onClick={() => setProfileDropdownOpen(false)}
-                        >
-                          <Settings className="h-4 w-4 mr-2" style={{ color: '#001554' }} />
-                          Settings
-                        </Link>
-                        <hr className="my-1" style={{ borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' }} />
-                        <button 
-                          onClick={() => {
-                            logout();
-                            setProfileDropdownOpen(false);
-                          }}
-                          className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
-                        >
-                          <LogOut className="h-4 w-4 mr-2" style={{ color: '#FF5E14' }} />
-                          Sign Out
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <>
-                  <Link href="/SignIn" 
-                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#FE5F16' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-                  >
-                    Sign In
-                  </Link>
-                  <Link href="/SignUp" 
-                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#001554' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
-                  >
-                    Sign Up
-                  </Link>
-                </>
-              )}
+              <Link href="/SignIn" 
+                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
+                style={{ backgroundColor: '#FE5F16' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+              >
+                Sign In
+              </Link>
+              <Link href="/SignUp" 
+                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
+                style={{ backgroundColor: '#001554' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+              >
+                Sign Up
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -224,70 +153,24 @@ const Navigation = () => {
               <Link href="/About" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>About Us</Link>
               <Link href="/Contact" className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'} onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
               <div className="flex flex-col space-y-3 pt-3 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
-                {isLoggedIn && user ? (
-                  <>
-                    <div className="flex items-center space-x-3 px-4 py-2">
-                      <div 
-                        className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                        style={{ backgroundColor: '#FF5E14' }}
-                      >
-                        {user.initials}
-                      </div>
-                      <div>
-                        <div className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                          {user.name}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                          {user.email}
-                        </div>
-                      </div>
-                    </div>
-                    <Link href="/Profile" 
-                      className="flex items-center px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <User className="h-5 w-5 mr-2" />
-                      Profile
-                    </Link>
-                    <button 
-                      onClick={() => {
-                        logout();
-                        setMobileMenuOpen(false);
-                      }}
-                      className="flex items-center px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 text-left"
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#FF5E14'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#1A1818'}
-                    >
-                      <LogOut className="h-5 w-5 mr-2" />
-                      Sign Out
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link href="/SignIn" 
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#FE5F16' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Sign In
-                    </Link>
-                    <Link href="/SignUp" 
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#001554' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Sign Up
-                    </Link>
-                  </>
-                )}
+                <Link href="/SignIn" 
+                  className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                  style={{ backgroundColor: '#FE5F16' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link href="/SignUp" 
+                  className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                  style={{ backgroundColor: '#001554' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign Up
+                </Link>
               </div>
             </div>
           </div>
