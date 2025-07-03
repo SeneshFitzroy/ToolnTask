@@ -114,18 +114,7 @@ export default function Home() {
                 <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight" style={{ color: '#001554' }}>
-                Need a{' '}
-                <span style={{ color: '#FF5E14' }}>Hand</span>
-                {' '}or a{' '}
-                <span 
-                  className="relative inline-block"
-                  style={{ color: '#FF5E14' }}
-                >
-                  Hammer?
-                  <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>
-                    <path d="M0 8 Q 50 0 100 8 L 100 10 L 0 10 Z" />
-                  </svg>
-                </span>
+                Need a Hand or a Hammer?
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6" style={{ color: '#FF5E14' }}>
                 We&apos;ve Got Both!
