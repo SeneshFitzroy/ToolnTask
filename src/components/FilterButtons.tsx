@@ -76,23 +76,27 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 }}
                 onMouseDown={(e) => {
                   // Blue press effect
-                  e.currentTarget.style.backgroundColor = '#001554';
-                  e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.transform = 'scale(0.95)';
-                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 21, 84, 0.4)';
+                  const target = e.currentTarget;
+                  target.style.backgroundColor = '#001554';
+                  target.style.color = '#FFFFFF';
+                  target.style.transform = 'scale(0.95)';
+                  target.style.boxShadow = '0 4px 15px rgba(0, 21, 84, 0.4)';
                 }}
                 onMouseUp={(e) => {
+                  const target = e.currentTarget;
                   setTimeout(() => {
-                    if (isActive) {
-                      e.currentTarget.style.backgroundColor = '#FF5E14';
-                      e.currentTarget.style.color = '#FFFFFF';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.3)';
-                    } else {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
-                      e.currentTarget.style.color = '#FF5E14';
-                      e.currentTarget.style.boxShadow = 'none';
+                    if (target) {
+                      if (isActive) {
+                        target.style.backgroundColor = '#FF5E14';
+                        target.style.color = '#FFFFFF';
+                        target.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.3)';
+                      } else {
+                        target.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                        target.style.color = '#FF5E14';
+                        target.style.boxShadow = 'none';
+                      }
+                      target.style.transform = 'scale(1)';
                     }
-                    e.currentTarget.style.transform = 'scale(1)';
                   }, 150);
                 }}
               >
