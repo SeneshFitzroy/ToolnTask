@@ -133,16 +133,16 @@
 /* Hero Section Floating Animations */
 @keyframes float-slow {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px) rotate(0deg) scale(1);
   }
   25% {
-    transform: translateY(-8px) rotate(2deg);
+    transform: translateY(-12px) rotate(3deg) scale(1.02);
   }
   50% {
-    transform: translateY(-4px) rotate(-1deg);
+    transform: translateY(-6px) rotate(-2deg) scale(0.98);
   }
   75% {
-    transform: translateY(-12px) rotate(1deg);
+    transform: translateY(-15px) rotate(1deg) scale(1.01);
   }
 }
 
@@ -150,49 +150,123 @@
   0%, 100% {
     transform: translateY(0px) rotate(0deg) scale(1);
   }
-  33% {
-    transform: translateY(-10px) rotate(-3deg) scale(1.05);
+  20% {
+    transform: translateY(-8px) rotate(-4deg) scale(1.05);
   }
-  66% {
-    transform: translateY(-6px) rotate(2deg) scale(0.95);
+  40% {
+    transform: translateY(-14px) rotate(2deg) scale(0.95);
+  }
+  60% {
+    transform: translateY(-4px) rotate(-1deg) scale(1.02);
+  }
+  80% {
+    transform: translateY(-10px) rotate(3deg) scale(0.98);
   }
 }
 
 @keyframes float-fast {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px) rotate(0deg) scale(1);
   }
-  20% {
-    transform: translateY(-15px) rotate(3deg);
+  16% {
+    transform: translateY(-18px) rotate(5deg) scale(1.08);
   }
-  40% {
-    transform: translateY(-8px) rotate(-2deg);
+  32% {
+    transform: translateY(-8px) rotate(-3deg) scale(0.92);
   }
-  60% {
-    transform: translateY(-12px) rotate(1deg);
+  48% {
+    transform: translateY(-16px) rotate(2deg) scale(1.05);
+  }
+  64% {
+    transform: translateY(-5px) rotate(-4deg) scale(0.95);
   }
   80% {
-    transform: translateY(-5px) rotate(-1deg);
+    transform: translateY(-12px) rotate(1deg) scale(1.02);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 94, 20, 0.3), 0 0 40px rgba(255, 94, 20, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 94, 20, 0.6), 0 0 60px rgba(255, 94, 20, 0.2);
   }
 }
 
 .animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
+  animation: float-slow 8s ease-in-out infinite;
 }
 
 .animate-float-medium {
-  animation: float-medium 4s ease-in-out infinite;
+  animation: float-medium 5s ease-in-out infinite;
 }
 
 .animate-float-fast {
   animation: float-fast 3s ease-in-out infinite;
 }
 
-/* Subtle hover effects for floating elements */
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Enhanced hover effects for floating elements */
 .animate-float-slow:hover,
 .animate-float-medium:hover,
 .animate-float-fast:hover {
   animation-play-state: paused;
-  transform: scale(1.2) translateY(-5px);
-  filter: brightness(1.1) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transform: scale(1.3) translateY(-8px) rotate(15deg);
+  filter: brightness(1.2) drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3));
+  z-index: 30;
+}
+
+/* Interactive tool icon effects */
+.animate-float-slow .group:hover,
+.animate-float-medium .group:hover,
+.animate-float-fast .group:hover {
+  transform: scale(1.4) rotate(360deg);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Responsive animations - reduce on mobile */
+@media (max-width: 768px) {
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+  }
+  
+  .animate-float-medium {
+    animation: float-medium 7s ease-in-out infinite;
+  }
+  
+  .animate-float-fast {
+    animation: float-fast 4s ease-in-out infinite;
+  }
+  
+  .animate-float-slow:hover,
+  .animate-float-medium:hover,
+  .animate-float-fast:hover {
+    transform: scale(1.1) translateY(-4px) rotate(8deg);
+  }
 }
