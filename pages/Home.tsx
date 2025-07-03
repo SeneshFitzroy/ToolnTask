@@ -299,7 +299,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               How{' '}
               <span 
-                className="relative inline-block logo-font"
+                className="relative inline-block logo-large"
                 style={{ color: '#FF5E14' }}
               >
                 ToolNTask
