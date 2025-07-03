@@ -180,14 +180,15 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
+              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
                 {/* Background Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-blue-200 rounded-3xl filter blur-3xl opacity-40 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-200 to-blue-200 rounded-2xl filter blur-2xl opacity-30 animate-pulse"></div>
                 
                 {/* Video Container */}
-                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
+                <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl border-2 border-white/10 backdrop-blur-sm">
                   <video
-                    className="w-full h-auto rounded-2xl object-cover"
+                    className="w-full h-auto rounded-xl object-cover"
+                    style={{ aspectRatio: '16/9', maxHeight: '350px' }}
                     autoPlay
                     muted
                     loop
@@ -230,8 +231,8 @@ export default function Home() {
                 </div>
                 
                 {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-orange-500/30 rounded-full animate-bounce"></div>
-                <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-blue-500/20 rounded-full animate-pulse"></div>
+                <div className="absolute -top-3 -right-3 w-6 h-6 bg-orange-500/30 rounded-full animate-bounce"></div>
+                <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-blue-500/20 rounded-full animate-pulse"></div>
               </div>
             </div>
           </div>
