@@ -24,15 +24,7 @@ export default function About() {
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               About{' '}
-              <span 
-                className="relative inline-block logo-large"
-                style={{ color: '#FF5E14' }}
-              >
-                ToolNTask
-                <svg className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4" viewBox="0 0 100 12" style={{ fill: '#FF5E14', opacity: 0.3 }}>
-                  <path d="M0 10 Q 50 0 100 10 L 100 12 L 0 12 Z" />
-                </svg>
-              </span>
+              <Logo size="xl" showUnderline={true} className="inline" />
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               Connecting communities through shared tasks and tool rentals. 
