@@ -114,7 +114,9 @@ export default function Home() {
                 <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                Need a Hand or a{' '}
+                Need a{' '}
+                <span style={{ color: '#FF5E14' }}>Hand</span>
+                {' '}or a{' '}
                 <span 
                   className="relative inline-block"
                   style={{ color: '#FF5E14' }}
