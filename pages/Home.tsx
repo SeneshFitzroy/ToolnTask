@@ -451,159 +451,122 @@ export default function Home() {
       </div>
 
       {/* Promotional Banner Section */}
-      <div className="py-8 sm:py-12 md:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl" style={{ background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)' }}>
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%)' }}></div>
-            </div>
+      <div className="py-6 sm:py-8 md:py-10" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-lg border" 
+               style={{ 
+                 backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
+               }}>
             
-            {/* Floating Elements */}
-            <div className="absolute inset-0">
-              <div className="absolute top-4 right-8 w-16 h-16 bg-white/10 rounded-full animate-pulse"></div>
-              <div className="absolute bottom-6 left-6 w-12 h-12 bg-white/15 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-white/10 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-            </div>
+            {/* Subtle Background Accent */}
+            <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, #FF5E14 0%, #FF5D13 100%)' }}></div>
+            <div className="absolute inset-0 opacity-5" style={{ background: 'radial-gradient(circle at 80% 20%, rgba(255, 94, 20, 0.1) 0%, transparent 50%)' }}></div>
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center p-6 sm:p-8 md:p-12">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 items-center p-4 sm:p-6 md:p-8">
               {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 border border-white/30" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
-                  <span className="text-xs sm:text-sm font-bold text-white">🎯 Limited Time Offer</span>
+              <div className="lg:col-span-2 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3 border" 
+                     style={{ 
+                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                       borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
+                       color: '#FF5E14'
+                     }}>
+                  <span className="text-sm">🎯</span>
+                  <span className="text-xs font-semibold">Limited Time Offer</span>
                 </div>
                 
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3" 
+                    style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   Get Your First Task{' '}
-                  <span className="relative inline-block">
-                    Free!
-                    <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 12" style={{ fill: 'rgba(255, 255, 255, 0.6)' }}>
-                      <path d="M0 8 Q 50 2 100 8 L 100 12 L 0 12 Z" />
-                    </svg>
-                  </span>
+                  <span style={{ color: '#FF5E14' }}>Free!</span>
                 </h3>
                 
-                <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed max-w-lg mx-auto lg:mx-0" 
+                   style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   New users get their first task posting absolutely free. Join now and connect with your community instantly!
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                   <Link href="/SignUp">
                     <Button 
-                      className="w-full sm:w-auto text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-2"
+                      className="w-full sm:w-auto text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 shadow-md"
                       style={{ 
-                        backgroundColor: '#FFFFFF',
-                        color: '#FF5E14',
-                        borderColor: '#FFFFFF'
+                        backgroundColor: '#FF5E14',
+                        color: '#FFFFFF'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-                        e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
-                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.3)';
+                        e.currentTarget.style.backgroundColor = '#FF5D13';
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 8px 20px rgba(255, 94, 20, 0.3)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#FFFFFF';
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                        e.currentTarget.style.backgroundColor = '#FF5E14';
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
                       }}
                     >
-                      <span className="flex items-center gap-2 font-bold">
-                        Claim Free Task
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </span>
+                      Claim Free Task
                     </Button>
                   </Link>
                   
                   <Link href="/About">
                     <Button 
-                      className="w-full sm:w-auto text-base sm:text-lg font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                      className="w-full sm:w-auto text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-300 hover:scale-105 border"
                       style={{ 
                         backgroundColor: 'transparent',
-                        color: '#FFFFFF',
-                        borderColor: 'rgba(255, 255, 255, 0.5)'
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(26, 24, 24, 0.2)'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                        e.currentTarget.style.borderColor = '#FFFFFF';
+                        e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(26, 24, 24, 0.05)';
+                        e.currentTarget.style.transform = 'scale(1.05)';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                        e.currentTarget.style.transform = 'scale(1)';
                       }}
                     >
                       Learn More
                     </Button>
                   </Link>
                 </div>
-                
-                {/* Promo Features */}
-                <div className="flex flex-wrap gap-4 sm:gap-6 mt-6 sm:mt-8 justify-center lg:justify-start">
-                  <div className="flex items-center gap-2 text-white/80 text-sm">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>No Credit Card</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white/80 text-sm">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>Instant Setup</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-white/80 text-sm">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>30 Days Support</span>
-                  </div>
-                </div>
               </div>
               
-              {/* Right Visual */}
+              {/* Right Visual - Compact */}
               <div className="flex justify-center lg:justify-end">
                 <div className="relative">
-                  {/* Main Visual Container */}
-                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 relative">
                     {/* Background Circle */}
-                    <div className="absolute inset-0 rounded-full border-4 border-white/20" style={{ background: 'radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)' }}></div>
+                    <div className="absolute inset-0 rounded-full border-2" 
+                         style={{ 
+                           borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
+                           backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.02)'
+                         }}></div>
                     
-                    {/* Floating Icons */}
-                    <div className="absolute top-8 left-8 w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm animate-float-slow">
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-                      </svg>
+                    {/* Floating Elements */}
+                    <div className="absolute top-2 right-2 w-6 h-6 rounded-lg flex items-center justify-center animate-float-slow" 
+                         style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)' }}>
+                      <span className="text-xs">✨</span>
                     </div>
                     
-                    <div className="absolute top-16 right-8 w-10 h-10 bg-white/25 rounded-full flex items-center justify-center backdrop-blur-sm animate-float-medium">
-                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M9,11H15L13,13L15,15H9L7,13L9,11M11,8L13,10L11,12L9,10L11,8M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2Z" />
-                      </svg>
-                    </div>
-                    
-                    <div className="absolute bottom-12 left-12 w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center backdrop-blur-sm animate-float-fast">
-                      <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.46,13.97L5.82,21L12,17.27Z" />
-                      </svg>
-                    </div>
-                    
-                    <div className="absolute bottom-8 right-16 w-8 h-8 bg-white/30 rounded-lg flex items-center justify-center backdrop-blur-sm animate-float-slow">
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
-                      </svg>
+                    <div className="absolute bottom-2 left-2 w-5 h-5 rounded-full flex items-center justify-center animate-float-medium" 
+                         style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.08)' }}>
+                      <span className="text-xs">🎁</span>
                     </div>
                     
                     {/* Center Content */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
-                        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30">
-                          <svg className="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" />
-                          </svg>
+                        <div className="w-12 h-12 mx-auto mb-2 rounded-xl flex items-center justify-center border" 
+                             style={{ 
+                               backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                               borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
+                             }}>
+                          <span className="text-lg" style={{ color: '#FF5E14' }}>📝</span>
                         </div>
-                        <div className="text-white font-bold text-lg sm:text-xl">FREE</div>
-                        <div className="text-white/80 text-sm">First Task</div>
+                        <div className="text-sm font-bold" style={{ color: '#FF5E14' }}>FREE</div>
+                        <div className="text-xs" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>First Task</div>
                       </div>
                     </div>
                   </div>
