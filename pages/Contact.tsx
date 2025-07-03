@@ -2,16 +2,27 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 export default function Contact() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#1A1818' }}>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Get in{' '}
               <span 
                 className="relative inline-block"
@@ -23,7 +34,7 @@ export default function Contact() {
                 </svg>
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#B3B5BC' }}>
+            <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B4B6' : '#B3B5BC' }}>
               We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </div>
