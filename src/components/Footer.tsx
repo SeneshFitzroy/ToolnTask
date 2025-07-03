@@ -64,10 +64,8 @@ const Footer = () => {
             
             {/* Brand Section */}
             <div className="lg:col-span-2">
-              <div className="text-3xl sm:text-4xl font-bold mb-6">
-                <span style={{ color: '#FF5E14' }}>Tool</span>
-                <span style={{ color: '#001554' }}>N</span>
-                <span style={{ color: '#FF5E14' }}>Task</span>
+              <div className="mb-6">
+                <Logo size="xl" />
               </div>
               <p className="text-lg mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 Sri Lanka&apos;s leading community marketplace connecting neighbors through shared tools and trusted services. 
