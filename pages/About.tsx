@@ -1,6 +1,5 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import Logo from '../src/components/Logo';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
