@@ -150,61 +150,83 @@ export default function About() {
             </div>
           </div>
 
-          {/* Advertisements Section */}
+          {/* Advertisement Spaces */}
           <div className="mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              <span className="flex items-center justify-center gap-3">
-                <span className="text-2xl">📢</span>
-                Advertisements
-              </span>
+              Advertisements
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {/* Premium Tools Ad */}
-              <div className="relative p-6 rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-all duration-300" 
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+              {/* Advertisement Space 1 */}
+              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                     background: theme === 'dark' 
-                       ? 'linear-gradient(135deg, #FF5E14 0%, #1A1818 100%)' 
-                       : 'linear-gradient(135deg, #FF5E14 0%, #FFFFFF 100%)'
+                     borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
                    }}>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">🔧</span>
-                    <h3 className="text-xl font-bold text-white">Premium Tool Rentals</h3>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                       style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
+                    <span className="text-white text-2xl">�</span>
                   </div>
-                  <p className="text-white/90 mb-4 leading-relaxed">
-                    Rent professional-grade tools from verified owners. Quality guaranteed, affordable prices.
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Advertisement Space
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
+                    Your business ad here
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-sm">Starting from Rs. 500/day</span>
-                    <button className="px-4 py-2 bg-white text-orange-600 rounded-lg font-semibold text-sm hover:bg-orange-50 transition-colors">
-                      Explore Tools
-                    </button>
+                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                    <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
+                      300x250 Banner Space
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Featured Tasks Ad */}
-              <div className="relative p-6 rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-all duration-300" 
+              {/* Advertisement Space 2 */}
+              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-                     background: theme === 'dark' 
-                       ? 'linear-gradient(135deg, #001554 0%, #1A1818 100%)' 
-                       : 'linear-gradient(135deg, #001554 0%, #FFFFFF 100%)'
+                     borderColor: theme === 'dark' ? '#001554' : '#001554'
                    }}>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">💼</span>
-                    <h3 className="text-xl font-bold text-white">Earn Extra Income</h3>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                       style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
+                    <span className="text-white text-2xl">🎯</span>
                   </div>
-                  <p className="text-white/90 mb-4 leading-relaxed">
-                    Help your neighbors with tasks and earn money. Flexible hours, choose your jobs.
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Advertisement Space
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
+                    Your business ad here
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-sm">Up to Rs. 10,000/week</span>
-                    <button className="px-4 py-2 bg-white text-blue-900 rounded-lg font-semibold text-sm hover:bg-blue-50 transition-colors">
-                      Find Tasks
-                    </button>
+                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                    <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
+                      300x250 Banner Space
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advertisement Space 3 */}
+              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
+                   style={{ 
+                     backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                     borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
+                   }}>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                       style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
+                    <span className="text-white text-2xl">💼</span>
+                  </div>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Advertisement Space
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
+                    Your business ad here
+                  </p>
+                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                    <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
+                      300x250 Banner Space
+                    </span>
                   </div>
                 </div>
               </div>
