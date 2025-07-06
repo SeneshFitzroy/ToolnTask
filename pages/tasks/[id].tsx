@@ -14,18 +14,21 @@ const AdSpace = () => {
     {
       title: "Premium Tools Rental",
       description: "Professional grade tools for your projects",
+      features: ["24/7 Support", "Quality Guarantee", "Flexible Rental"],
       icon: "🔧",
       bgColor: "#FF5E14"
     },
     {
       title: "Expert Services",
       description: "Connect with skilled professionals",
+      features: ["Verified Experts", "Competitive Rates", "Quick Response"],
       icon: "👨‍🔧",
       bgColor: "#001554"
     },
     {
       title: "Community Hub",
       description: "Join our growing community",
+      features: ["5K+ Members", "Local Network", "Safe Transactions"],
       icon: "🏘️",
       bgColor: "#FF5E14"
     }
@@ -40,37 +43,64 @@ const AdSpace = () => {
   }, [ads.length]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <h3 className="text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
         Advertisements
       </h3>
-      <div className="relative p-4 rounded-xl shadow-lg border-2 border-dashed transition-all duration-500"
+      <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed transition-all duration-500 min-h-[400px] flex flex-col justify-between"
            style={{ 
              backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
              borderColor: ads[currentAd].bgColor
            }}>
-        <div className="text-center">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+        <div className="text-center flex-1 flex flex-col justify-center">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
                style={{ backgroundColor: ads[currentAd].bgColor }}>
-            <span className="text-white text-xl">{ads[currentAd].icon}</span>
+            <span className="text-white text-2xl">{ads[currentAd].icon}</span>
           </div>
-          <h4 className="font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <h4 className="text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
             {ads[currentAd].title}
           </h4>
-          <p className="text-sm" style={{ color: '#B3B5BC' }}>
+          <p className="text-base mb-6 leading-relaxed" style={{ color: '#B3B5BC' }}>
             {ads[currentAd].description}
           </p>
+          
+          {/* Features List */}
+          <div className="space-y-3 mb-6">
+            {ads[currentAd].features.map((feature, index) => (
+              <div key={index} className="flex items-center justify-center gap-2">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: ads[currentAd].bgColor }}>
+                  <span className="text-white text-xs">✓</span>
+                </div>
+                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+          
+          {/* CTA Button */}
+          <button className="w-full py-3 px-6 rounded-xl font-bold text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: ads[currentAd].bgColor }}>
+            Learn More
+          </button>
         </div>
-        <div className="absolute top-2 right-2 flex space-x-1">
+        
+        {/* Ad Indicators */}
+        <div className="absolute top-4 right-4 flex space-x-2">
           {ads.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentAd ? 'opacity-100' : 'opacity-30'
               }`}
               style={{ backgroundColor: ads[currentAd].bgColor }}
             />
           ))}
+        </div>
+        
+        {/* Timer Bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-2xl overflow-hidden">
+          <div className="h-full bg-current animate-pulse" style={{ color: ads[currentAd].bgColor, width: '100%' }}></div>
         </div>
       </div>
     </div>
