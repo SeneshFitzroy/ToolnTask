@@ -483,13 +483,6 @@ export default function ToolDetail() {
         </div>
       </div>
 
-      {/* Advertisement Spaces */}
-      <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <BillboardSpace title="Featured Advertisement Spaces" />
-        </div>
-      </div>
-
       {/* Similar Tools Section */}
       <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
