@@ -108,6 +108,9 @@ export default function SignIn() {
                 <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Password</label>
                 <input
                   type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
@@ -117,6 +120,7 @@ export default function SignIn() {
                   placeholder="Enter your password"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                   onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                  required
                 />
               </div>
               
@@ -130,8 +134,13 @@ export default function SignIn() {
                 </Link>
               </div>
               
-              <Button className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#FF5E14' }}>
-                Sign In
+              <Button 
+                type="submit" 
+                disabled={loading}
+                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" 
+                style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+              >
+                {loading ? 'Signing In...' : 'Sign In'}
               </Button>
             </form>
 
