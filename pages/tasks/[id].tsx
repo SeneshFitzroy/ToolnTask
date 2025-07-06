@@ -542,60 +542,6 @@ export default function TaskDetail() {
               <div className="mb-6">
                 <BillboardSpace title="Advertisement Spaces" />
               </div>
-
-              {/* Action Buttons */}
-              <div className="p-8 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <h3 className="text-xl font-bold mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                  Ready to Take Action?
-                </h3>
-                
-                {/* Apply for Task Button */}
-                <button className="w-full py-4 px-8 rounded-xl font-bold text-white text-xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
-                        style={{ backgroundColor: '#FF5E14' }}>
-                  <div className="flex items-center justify-center gap-3">
-                    <span className="text-2xl">✅</span>
-                    <span>Apply for Task</span>
-                  </div>
-                  <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
-                </button>
-                
-                {/* Message Creator Button */}
-                <button className="w-full py-4 px-8 rounded-xl font-bold text-xl border-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
-                        style={{ 
-                          borderColor: '#001554',
-                          color: '#001554',
-                          backgroundColor: theme === 'dark' ? '#FFFFFF' : '#FFFFFF'
-                        }}>
-                  <div className="flex items-center justify-center gap-3">
-                    <span className="text-2xl">💬</span>
-                    <span>Message Creator</span>
-                  </div>
-                  <div className="absolute inset-0 bg-blue-500 opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
-                </button>
-                
-                {/* Quick Contact Info */}
-                <div className="mt-6 p-4 rounded-xl" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
-                  <div className="text-center">
-                    <p className="text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      Quick Response Guaranteed
-                    </p>
-                    <div className="flex items-center justify-center gap-4 text-xs" style={{ color: '#B3B5BC' }}>
-                      <span className="flex items-center gap-1">
-                        <span>⚡</span>
-                        <span>Fast Reply</span>
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <span>🛡️</span>
-                        <span>Secure</span>
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <span>✨</span>
-                        <span>Verified</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
