@@ -195,7 +195,7 @@ export default function ToolDetail() {
             <div>
               {/* Image Gallery */}
               <div className="mb-8">
-                <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl mb-4" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-6 border-4" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', borderColor: '#FF5E14' }}>
                   <Image
                     src={tool.images[currentImageIndex]}
                     alt={tool.title}
@@ -206,31 +206,36 @@ export default function ToolDetail() {
                     <>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => prev > 0 ? prev - 1 : tool.images.length - 1)}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
                       >
-                        <span className="text-lg font-bold">‹</span>
+                        <span className="text-xl font-bold">‹</span>
                       </button>
                       <button
                         onClick={() => setCurrentImageIndex((prev) => prev < tool.images.length - 1 ? prev + 1 : 0)}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
                       >
-                        <span className="text-lg font-bold">›</span>
+                        <span className="text-xl font-bold">›</span>
                       </button>
                     </>
                   )}
+                  
+                  {/* Image Counter */}
+                  <div className="absolute bottom-4 right-4 px-3 py-1 bg-black bg-opacity-50 text-white text-sm font-medium rounded-full">
+                    {currentImageIndex + 1} / {tool.images.length}
+                  </div>
                 </div>
                 
                 {/* Thumbnail Images */}
                 {tool.images.length > 1 && (
-                  <div className="flex gap-2 sm:gap-4">
+                  <div className="grid grid-cols-4 gap-3">
                     {tool.images.map((image, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`relative w-20 h-20 rounded-lg overflow-hidden shadow-md hover:scale-105 transition-all duration-300 ${
-                          index === currentImageIndex ? 'ring-2 ring-orange-500' : ''
+                        className={`relative aspect-square rounded-lg overflow-hidden shadow-md hover:scale-105 transition-all duration-300 border-2 ${
+                          index === currentImageIndex ? 'border-orange-500' : 'border-transparent'
                         }`}
                       >
                         <Image
@@ -239,6 +244,9 @@ export default function ToolDetail() {
                           fill
                           className="object-cover"
                         />
+                        {index === currentImageIndex && (
+                          <div className="absolute inset-0 bg-orange-500 bg-opacity-20"></div>
+                        )}
                       </button>
                     ))}
                   </div>
