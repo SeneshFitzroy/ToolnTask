@@ -8,7 +8,7 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
-// Dynamic Advertisement Component - Appears every 2 minutes for 15 seconds
+// Dynamic Advertisement Component - Left Side Only, No Content Coverage
 const DynamicAdvertisement = ({ side }: { side: 'left' | 'right' }) => {
   const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
@@ -36,15 +36,14 @@ const DynamicAdvertisement = ({ side }: { side: 'left' | 'right' }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-20 z-40 animate-fade-in"
+    <div className="fixed top-24 left-4 z-40 animate-fade-in hidden lg:block"
          style={{ 
-           [side]: '20px',
            transition: 'all 0.5s ease-in-out'
          }}>
-      <div className="w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-4 border-dashed overflow-hidden"
+      <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-4 border-dashed overflow-hidden"
            style={{ 
-             borderColor: side === 'left' ? '#FF5E14' : '#001554',
-             minHeight: '500px'
+             borderColor: '#FF5E14',
+             minHeight: '480px'
            }}>
         
         {/* Close Button */}
@@ -55,44 +54,42 @@ const DynamicAdvertisement = ({ side }: { side: 'left' | 'right' }) => {
           ×
         </button>
 
-        <div className="p-8 h-full flex flex-col items-center justify-center text-center">
+        <div className="p-6 h-full flex flex-col items-center justify-center text-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
-               style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
-            <span className="text-white text-2xl">
-              {side === 'left' ? '📢' : '🎯'}
-            </span>
+               style={{ backgroundColor: '#FF5E14' }}>
+            <span className="text-white text-2xl">📢</span>
           </div>
           
-          <h3 className="text-xl font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <h3 className="text-lg font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
             Advertisement<br />Space Available
           </h3>
           
-          <div className="p-4 rounded-xl border-2 border-dashed mb-6 w-full" 
-               style={{ borderColor: side === 'left' ? '#FF5E14' : '#001554' }}>
-            <p className="text-lg font-bold mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
-              Premium {side === 'left' ? 'Left' : 'Right'} Side
+          <div className="p-3 rounded-xl border-2 border-dashed mb-6 w-full" 
+               style={{ borderColor: '#FF5E14' }}>
+            <p className="text-base font-bold mb-2" style={{ color: '#FF5E14' }}>
+              Premium Left Side
             </p>
-            <p className="text-base font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              320 × 500 px
+            <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              280 × 480 px
             </p>
           </div>
           
           <button 
             onClick={() => setShowInfo(!showInfo)}
-            className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 mb-4"
+            className="px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 mb-4 text-sm"
             style={{ 
-              backgroundColor: side === 'left' ? '#FF5E14' : '#001554',
+              backgroundColor: '#FF5E14',
               color: '#FFFFFF'
             }}>
             📋 More Info
           </button>
           
           {showInfo && (
-            <div className="text-sm space-y-2" style={{ color: '#B3B5BC' }}>
+            <div className="text-xs space-y-1" style={{ color: '#B3B5BC' }}>
               <p>✓ Brand promotions</p>
               <p>✓ Product launches</p>
               <p>✓ Service advertising</p>
-              <p className="font-semibold mt-4" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+              <p className="font-semibold mt-3 text-sm" style={{ color: '#FF5E14' }}>
                 📞 Contact for rates
               </p>
             </div>
