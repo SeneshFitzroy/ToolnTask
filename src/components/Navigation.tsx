@@ -169,22 +169,44 @@ const Navigation = () => {
 
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-3">
-              <Link href="/SignIn" 
-                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                style={{ backgroundColor: '#FE5F16' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-              >
-                Sign In
-              </Link>
-              <Link href="/SignUp" 
-                className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                style={{ backgroundColor: '#001554' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
-              >
-                Sign Up
-              </Link>
+              {user ? (
+                // User is logged in
+                <>
+                  <span className="text-sm font-medium px-3 py-2 rounded-lg" 
+                        style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Welcome, {user.email?.split('@')[0]}
+                  </span>
+                  <button 
+                    onClick={handleSignOut}
+                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
+                    style={{ backgroundColor: '#DC2626' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B91C1C'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC2626'}
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                // User is not logged in
+                <>
+                  <Link href="/SignIn" 
+                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
+                    style={{ backgroundColor: '#FE5F16' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  >
+                    Sign In
+                  </Link>
+                  <Link href="/SignUp" 
+                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
+                    style={{ backgroundColor: '#001554' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
