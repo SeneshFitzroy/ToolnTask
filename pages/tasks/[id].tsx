@@ -159,9 +159,7 @@ export default function TaskDetail() {
             
             {/* Left Advertisement Column */}
             <div className="lg:col-span-2 hidden lg:block">
-              <div className="sticky top-8">
-                <BillboardSpace title="Left Ad Space" />
-              </div>
+              <BigBillboard side="left" />
             </div>
             
             {/* Main Content */}
