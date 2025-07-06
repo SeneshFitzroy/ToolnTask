@@ -138,24 +138,24 @@ The detail pages now feature an innovative dynamic advertisement system with ver
 
 ### Tool Detail Page:
 - **Enhanced Image Gallery**: Large main image with thumbnail navigation
-- **Left Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
+- **Dynamic Left Advertisement**: 320×500px smart-timing ad space (15s visible, 2min hidden)
 - Tool specifications (Power, Chuck Size, Speed, etc.)
 - Features list
 - Rental pricing and availability
 - Tool owner profile
-- Contact/rental form
-- **Right Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
+- Contact/rental actions prominently displayed
+- **Dynamic Right Advertisement**: 320×500px smart-timing ad space (15s visible, 2min hidden)
 - Similar tools grid
 
 ### Task Detail Page:
 - **Structured Image Gallery**: Featured image with secondary image grid
-- **Left Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
+- **Dynamic Left Advertisement**: 320×500px smart-timing ad space (15s visible, 2min hidden)
 - Task description and requirements
 - Duration, location, deadline info
 - Payment amount
 - Task creator profile
-- Application form
-- **Right Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
+- Application actions prominently displayed
+- **Dynamic Right Advertisement**: 320×500px smart-timing ad space (15s visible, 2min hidden)
 - Similar tasks grid
 
 ## Technical Implementation
