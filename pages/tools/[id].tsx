@@ -8,68 +8,69 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
-// Single Big Billboard Advertisement Component
-const BigBillboard = ({ side }: { side: 'left' | 'right' }) => {
+// Simple Clean Billboard Advertisement Component
+const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
   const { theme } = useTheme();
+  const [showInfo, setShowInfo] = useState(false);
   
   return (
     <div className="w-full">
       <div className="sticky top-8">
-        <div className="relative p-8 rounded-3xl shadow-2xl border-4 border-dashed min-h-[600px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-3xl"
+        <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed min-h-[500px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
              style={{ 
                backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
                borderColor: side === 'left' ? '#FF5E14' : '#001554'
              }}>
+          
+          {/* Simple Content */}
           <div className="text-center">
-            <div className="w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl" 
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" 
                  style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
-              <span className="text-white text-5xl">
-                {side === 'left' ? '📢' : '🎯'}
-              </span>
+              <span className="text-white text-2xl">📢</span>
             </div>
-            <h2 className="text-3xl font-black mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            
+            <h3 className="text-lg font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Advertisement Space Available
-            </h2>
-            <p className="text-lg mb-8 leading-relaxed max-w-sm mx-auto" style={{ color: '#B3B5BC' }}>
-              Premium {side} side billboard space for your business promotion and brand visibility
-            </p>
-            <div className="p-6 rounded-xl border-3 border-dashed mb-8 bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/20 dark:to-blue-900/20" 
-                 style={{ borderColor: side === 'left' ? '#FF5E14' : '#001554' }}>
-              <span className="text-xl font-bold block mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
-                Premium Billboard
-              </span>
-              <span className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                320 × 600 px
-              </span>
-            </div>
-            <div className="space-y-4">
-              <div className="text-base font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                Perfect for:
-              </div>
-              <ul className="text-sm space-y-2" style={{ color: '#B3B5BC' }}>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
-                  Brand promotions
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
-                  Product launches
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
-                  Service advertising
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
-                  Local business promotion
-                </li>
-              </ul>
-            </div>
-            <div className="mt-8 text-sm font-semibold px-4 py-3 rounded-full" 
-                 style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
-              Contact us for advertising rates
-            </div>
+            </h3>
+            
+            {/* Info Button */}
+            <button 
+              onClick={() => setShowInfo(!showInfo)}
+              className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300"
+              style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}
+            >
+              <span className="text-white text-lg">ℹ️</span>
+            </button>
           </div>
+
+          {/* Info Popup */}
+          {showInfo && (
+            <div className="absolute inset-0 bg-black bg-opacity-80 rounded-2xl flex items-center justify-center p-4 z-10">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-xs text-center">
+                <h4 className="text-lg font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  Premium Billboard Space
+                </h4>
+                <p className="text-sm mb-4" style={{ color: '#B3B5BC' }}>
+                  320 × 500 px advertisement space
+                </p>
+                <div className="text-xs space-y-1 mb-4" style={{ color: '#B3B5BC' }}>
+                  <div>• Brand promotions</div>
+                  <div>• Product launches</div>
+                  <div>• Service advertising</div>
+                </div>
+                <div className="text-xs font-bold mb-3" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+                  Contact us for rates
+                </div>
+                <button 
+                  onClick={() => setShowInfo(false)}
+                  className="px-4 py-2 rounded-lg text-white text-sm"
+                  style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -185,9 +186,9 @@ export default function ToolDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {/* Left Big Billboard */}
+            {/* Left Simple Billboard */}
             <div className="lg:col-span-2 hidden lg:block">
-              <BigBillboard side="left" />
+              <SimpleBillboard side="left" />
             </div>
             
             {/* Main Content Column */}
