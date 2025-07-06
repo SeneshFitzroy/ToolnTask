@@ -191,23 +191,56 @@ export default function TaskDetail() {
 
               {/* Image Gallery */}
               <div className="p-6 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <h2 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   Project Images
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {task.images.map((image, index) => (
-                    <div key={index} className="relative aspect-video rounded-lg overflow-hidden shadow-md">
-                      <Image
-                        src={image}
-                        alt={`Task image ${index + 1}`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Main Featured Image */}
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg border-4" style={{ borderColor: '#FF5E14' }}>
+                    <Image
+                      src={task.images[0]}
+                      alt="Featured project image"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-black bg-opacity-50 text-white text-sm font-medium rounded-full">
+                      Featured
                     </div>
-                  ))}
+                  </div>
+                  
+                  {/* Secondary Images Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {task.images.slice(1).map((image, index) => (
+                      <div key={index + 1} className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md border-2 hover:border-4 transition-all duration-300" style={{ borderColor: theme === 'dark' ? '#2A2A2A' : '#E5E7EB' }}>
+                        <Image
+                          src={image}
+                          alt={`Project image ${index + 2}`}
+                          fill
+                          className="object-cover hover:scale-110 transition-transform duration-300"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300"></div>
+                      </div>
+                    ))}
+                    
+                    {/* View More Button */}
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md border-2 border-dashed flex items-center justify-center cursor-pointer hover:border-4 transition-all duration-300"
+                         style={{ borderColor: '#FF5E14', backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                      <div className="text-center">
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2" style={{ backgroundColor: '#FF5E14' }}>
+                          <span className="text-white text-xl">📸</span>
+                        </div>
+                        <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                          View More
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
