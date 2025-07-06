@@ -39,6 +39,7 @@ export default function Tools() {
 
   const allTools = [
     {
+      id: 1,
       title: "Power Drill Set",
       description: "Professional Bosch power drill with multiple bits. Perfect for home improvement projects.",
       price: "Rs. 1,500/day",
@@ -50,6 +51,7 @@ export default function Tools() {
       category: "power"
     },
     {
+      id: 2,
       title: "Lawn Mower",
       description: "Electric lawn mower in great condition. Ideal for medium to large gardens.",
       price: "Rs. 2,000/day",
@@ -60,6 +62,7 @@ export default function Tools() {
       category: "garden"
     },
     {
+      id: 3,
       title: "Angle Grinder",
       description: "Heavy-duty angle grinder for metal cutting and grinding projects.",
       price: "Rs. 1,200/day",
@@ -70,6 +73,7 @@ export default function Tools() {
       category: "power"
     },
     {
+      id: 4,
       title: "Circular Saw",
       description: "Professional circular saw for woodworking and construction projects.",
       price: "Rs. 1,800/day",
@@ -80,6 +84,7 @@ export default function Tools() {
       category: "power"
     },
     {
+      id: 5,
       title: "Pressure Washer",
       description: "High-pressure washer for cleaning driveways, decks, and exterior surfaces.",
       price: "Rs. 2,500/day",
@@ -90,6 +95,7 @@ export default function Tools() {
       category: "equipment"
     },
     {
+      id: 6,
       title: "Tile Cutter",
       description: "Professional tile cutting machine for bathroom and kitchen renovations.",
       price: "Rs. 1,000/day",
