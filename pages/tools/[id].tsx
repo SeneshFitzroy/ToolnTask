@@ -215,10 +215,18 @@ export default function ToolDetail() {
       {/* Main Content */}
       <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
             
-            {/* Left Column - Images and Details */}
-            <div>
+            {/* Left Advertisement Column */}
+            <div className="lg:col-span-2 hidden lg:block">
+              <div className="sticky top-8">
+                <BillboardSpace title="Left Ad Space" />
+              </div>
+            </div>
+            
+            {/* Main Content Column */}
+            <div className="lg:col-span-8">
+              {/* Images and Details */}
               {/* Image Gallery */}
               <div className="mb-8">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl mb-6 border-4" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', borderColor: '#FF5E14' }}>
