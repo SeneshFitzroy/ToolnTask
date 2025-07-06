@@ -5,6 +5,101 @@ import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import Image from 'next/image';
 
+// Dynamic Advertisement Component - Appears every 2 minutes for 15 seconds
+const DynamicAdvertisement = ({ side }: { side: 'left' | 'right' }) => {
+  const { theme } = useTheme();
+  const [isVisible, setIsVisible] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+
+  useEffect(() => {
+    const showAd = () => {
+      setIsVisible(true);
+      // Hide after 15 seconds
+      setTimeout(() => {
+        setIsVisible(false);
+        setShowInfo(false);
+      }, 15000);
+    };
+
+    // Show immediately on mount
+    showAd();
+
+    // Then show every 2 minutes
+    const interval = setInterval(showAd, 120000); // 2 minutes = 120,000ms
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed top-20 z-40 animate-fade-in"
+         style={{ 
+           [side]: '20px',
+           transition: 'all 0.5s ease-in-out'
+         }}>
+      <div className="w-80 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-4 border-dashed overflow-hidden"
+           style={{ 
+             borderColor: side === 'left' ? '#FF5E14' : '#001554',
+             minHeight: '500px'
+           }}>
+        
+        {/* Close Button */}
+        <button 
+          onClick={() => setIsVisible(false)}
+          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 text-white flex items-center justify-center hover:bg-opacity-75 transition-all duration-300 z-10"
+        >
+          ×
+        </button>
+
+        <div className="p-8 h-full flex flex-col items-center justify-center text-center">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
+               style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+            <span className="text-white text-2xl">
+              {side === 'left' ? '📢' : '🎯'}
+            </span>
+          </div>
+          
+          <h3 className="text-xl font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            Advertisement<br />Space Available
+          </h3>
+          
+          <div className="p-4 rounded-xl border-2 border-dashed mb-6 w-full" 
+               style={{ borderColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+            <p className="text-lg font-bold mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+              Premium {side === 'left' ? 'Left' : 'Right'} Side
+            </p>
+            <p className="text-base font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              320 × 500 px
+            </p>
+          </div>
+          
+          <button 
+            onClick={() => setShowInfo(!showInfo)}
+            className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 mb-4"
+            style={{ 
+              backgroundColor: side === 'left' ? '#FF5E14' : '#001554',
+              color: '#FFFFFF'
+            }}>
+            📋 More Info
+          </button>
+          
+          {showInfo && (
+            <div className="text-sm space-y-2" style={{ color: '#B3B5BC' }}>
+              <p>✓ Brand promotions</p>
+              <p>✓ Product launches</p>
+              <p>✓ Service advertising</p>
+              <p className="font-semibold mt-4" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+                📞 Contact for rates
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function TaskDetail() {
   const router = useRouter();
   const { id } = router.query;
