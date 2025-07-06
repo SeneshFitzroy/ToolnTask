@@ -59,19 +59,16 @@ I've successfully created comprehensive detail pages for both Tools and Tasks th
 - **Professional Styling**: Orange borders, hover effects, and active state indicators
 - **Better Aspect Ratios**: Changed from square to 4:3 for better visual presentation
 
-### **Static Billboard Advertisement Spaces**
-- **Replaced rotating ads** with professional static billboard spaces for external companies
-- **Both sides of the page** - Left Ad Space and Right Ad Space with sticky positioning
-- **Three different sizes** - all clearly labeled "Advertisement Space Available":
-  - **Large Billboard**: 300 × 350 px - Premium space with prominent placement
-  - **Medium Banner**: 300 × 250 px - Medium billboard space for your business
-  - **Compact Space**: 300 × 180 px - Compact billboard space for your business
-- **Strategic Placement**: Advertisement spaces on both left and right sides for maximum visibility
-- **Sticky Positioning**: Advertisement spaces stay visible as users scroll through content
-- **Professional Design**: Clean dashed borders, clear sizing labels, and contact information
-- **Multiple Spaces**: 6 different billboard spaces per page (3 on each side) for variety
-- **Hover Effects**: Subtle shadow enhancements on hover
-- **Clear Messaging**: "Advertisement Space Available" with dimensions and contact details
+### **Big Billboard Advertisement Spaces - Premium Design**
+- **Only 2 billboards** - One big billboard on the left side and one on the right side
+- **Much larger size** - 320 × 600 px Premium Billboards for maximum impact
+- **Full vertical coverage** - Billboards extend fully downward with sticky positioning
+- **Professional design** with bigger icons, better spacing, and premium styling
+- **Improved structure** - Clean, well-spaced layout that doesn't crowd the main content
+- **Better visual hierarchy** - Larger text, bigger buttons, more prominent placement
+- **Strategic placement** - Left and right side positioning for maximum visibility without interfering with user experience
+- **Enhanced styling** - Rounded corners, shadow effects, gradient backgrounds, and professional borders
+- **Clear messaging** - "Advertisement Space Available" with detailed use cases and contact information
 
 ### **Enhanced Action Button Placement**
 - **Moved action buttons** to be positioned directly below the main image for immediate user access
