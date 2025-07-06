@@ -14,10 +14,88 @@ import { auth, db } from '../src/lib/firebase';
 export default function SignUp() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.password) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Create user with Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+
+      // Update display name
+      await updateProfile(user, {
+        displayName: `${formData.firstName} ${formData.lastName}`
+      });
+
+      // Save user data to Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        displayName: `${formData.firstName} ${formData.lastName}`,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        isActive: true,
+        role: 'user'
+      });
+
+      console.log('User created and data saved to Firestore:', user.uid);
+      
+      // Redirect to home page
+      router.push('/');
+    } catch (error: any) {
+      console.error('Error creating user:', error);
+      setError(error.message || 'An error occurred during registration');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
