@@ -472,6 +472,13 @@ export default function ToolDetail() {
                 </p>
               </div>
             </div>
+            
+            {/* Right Advertisement Column */}
+            <div className="lg:col-span-2 hidden lg:block">
+              <div className="sticky top-8">
+                <BillboardSpace title="Right Ad Space" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
