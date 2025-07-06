@@ -40,6 +40,7 @@ export default function Tasks() {
 
   const allTasks = [
     {
+      id: 1,
       title: "Garden Maintenance",
       description: "Looking for someone to help with weekly garden maintenance including weeding, pruning, and lawn care.",
       price: "Rs. 5,000",
@@ -51,6 +52,7 @@ export default function Tasks() {
       category: "gardening"
     },
     {
+      id: 2,
       title: "House Cleaning",
       description: "Need help with deep cleaning of 3-bedroom house. All supplies provided.",
       price: "Rs. 8,000",
@@ -60,6 +62,7 @@ export default function Tasks() {
       category: "cleaning"
     },
     {
+      id: 3,
       title: "Babysitting Service",
       description: "Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings.",
       price: "Rs. 3,000",
@@ -69,6 +72,7 @@ export default function Tasks() {
       category: "babysitting"
     },
     {
+      id: 4,
       title: "Furniture Assembly",
       description: "Need help assembling IKEA furniture including wardrobe and desk.",
       price: "Rs. 4,500",
@@ -78,6 +82,7 @@ export default function Tasks() {
       category: "repairs"
     },
     {
+      id: 5,
       title: "Pet Walking",
       description: "Looking for someone to walk my dog twice a day for a week.",
       price: "Rs. 2,500",
@@ -87,6 +92,7 @@ export default function Tasks() {
       category: "other"
     },
     {
+      id: 6,
       title: "Cooking Assistance",
       description: "Need help preparing meals for a family gathering of 20 people.",
       price: "Rs. 6,000",
@@ -362,9 +368,10 @@ export default function Tasks() {
       <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {getFilteredTasks().map((task, index) => (
+            {getFilteredTasks().map((task) => (
               <TaskCard
-                key={index}
+                key={task.id}
+                id={task.id}
                 title={task.title}
                 description={task.description}
                 price={task.price}
