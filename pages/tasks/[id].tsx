@@ -271,6 +271,92 @@ export default function TaskDetail() {
                   </div>
                 </div>
               </div>
+              
+              {/* Action Buttons - Positioned directly below image */}
+              <div className="p-6 sm:p-8 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <div className="space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Ready to Take Action?
+                  </h3>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <div className="text-2xl sm:text-3xl font-black" style={{ color: '#FF5E14' }}>
+                      {task.price}
+                    </div>
+                    <div className="px-3 py-1 text-sm font-medium rounded-full" 
+                         style={{ backgroundColor: '#001554', color: '#FFFFFF' }}>
+                      {task.category}
+                    </div>
+                    {task.urgent && (
+                      <span className="px-3 py-1 bg-red-500 text-white text-sm font-bold rounded-full">
+                        URGENT
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-6 text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    <span className="flex items-center gap-1">
+                      <span>⏰</span>
+                      <span>{task.duration}</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span>📍</span>
+                      <span>{task.location}</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span>📅</span>
+                      <span>{task.deadline}</span>
+                    </span>
+                  </div>
+                  
+                  {/* Apply for Task Button */}
+                  <button className="w-full py-4 px-8 rounded-xl font-bold text-white text-xl mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                          style={{ backgroundColor: '#FF5E14' }}>
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-2xl">✅</span>
+                      <span>Apply for Task</span>
+                    </div>
+                    <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
+                  </button>
+                  
+                  {/* Message Creator Button */}
+                  <button className="w-full py-4 px-8 rounded-xl font-bold text-xl border-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                          style={{ 
+                            borderColor: '#001554',
+                            color: '#001554',
+                            backgroundColor: theme === 'dark' ? '#FFFFFF' : '#FFFFFF'
+                          }}>
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-2xl">💬</span>
+                      <span>Message Creator</span>
+                    </div>
+                    <div className="absolute inset-0 bg-blue-500 opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
+                  </button>
+                  
+                  {/* Quick Contact Info */}
+                  <div className="p-4 rounded-xl" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                    <div className="text-center">
+                      <p className="text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                        Quick Application Process
+                      </p>
+                      <div className="flex items-center justify-center gap-4 text-xs" style={{ color: '#B3B5BC' }}>
+                        <span className="flex items-center gap-1">
+                          <span>⚡</span>
+                          <span>Fast Response</span>
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <span>🛡️</span>
+                          <span>Secure Payment</span>
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <span>✨</span>
+                          <span>Quality Assured</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Description */}
               <div className="p-6 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
