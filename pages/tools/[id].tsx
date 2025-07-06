@@ -457,5 +457,6 @@ export default function ToolDetail() {
 
       <Footer />
     </div>
+    </>
   );
 }
