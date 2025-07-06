@@ -278,6 +278,105 @@ export default function ToolDetail() {
                   </div>
                 )}
               </div>
+              
+              {/* Action Buttons - Positioned directly below image */}
+              <div className="mb-8 p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <div className="space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Ready to Rent This Tool?
+                  </h3>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <div className="text-2xl sm:text-3xl font-black" style={{ color: '#FF5E14' }}>
+                      {tool.price}
+                    </div>
+                    <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      tool.available 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-red-100 text-red-800'
+                    }`}>
+                      {tool.available ? 'Available' : 'Not Available'}
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-6 text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    <span className="flex items-center gap-1">
+                      <span>📍</span>
+                      <span>{tool.location}</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span>🏷️</span>
+                      <span>{tool.brand}</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span>⭐</span>
+                      <span>{tool.condition}</span>
+                    </span>
+                  </div>
+                  
+                  {/* Contact Owner Button */}
+                  <button 
+                    className="w-full text-xl font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                    style={{ 
+                      backgroundColor: tool.available ? '#FF5E14' : '#999999',
+                      color: '#FFFFFF',
+                      border: 'none'
+                    }}
+                    disabled={!tool.available}
+                  >
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-2xl">{tool.available ? '🔧' : '❌'}</span>
+                      <span>{tool.available ? 'Contact Owner' : 'Not Available'}</span>
+                    </div>
+                    {tool.available && (
+                      <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
+                    )}
+                  </button>
+                  
+                  {/* Message Owner Button */}
+                  {tool.available && (
+                    <button 
+                      className="w-full text-xl font-bold py-4 px-8 rounded-xl border-3 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                      style={{ 
+                        borderColor: '#001554',
+                        color: '#001554',
+                        backgroundColor: theme === 'dark' ? '#FFFFFF' : '#FFFFFF'
+                      }}
+                    >
+                      <div className="flex items-center justify-center gap-3">
+                        <span className="text-2xl">💬</span>
+                        <span>Message Owner</span>
+                      </div>
+                      <div className="absolute inset-0 bg-blue-500 opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
+                    </button>
+                  )}
+                  
+                  {/* Rental Info */}
+                  <div className="p-4 rounded-xl" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                    <div className="text-center">
+                      <p className="text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                        {tool.available ? 'Instant Booking Available' : 'Currently Unavailable'}
+                      </p>
+                      {tool.available && (
+                        <div className="flex items-center justify-center gap-4 text-xs" style={{ color: '#B3B5BC' }}>
+                          <span className="flex items-center gap-1">
+                            <span>⚡</span>
+                            <span>Quick Setup</span>
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <span>🛡️</span>
+                            <span>Insured</span>
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <span>✨</span>
+                            <span>Quality Guaranteed</span>
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Tool Details */}
               <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
