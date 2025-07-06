@@ -89,42 +89,43 @@ I've successfully created the final, cleanest, most professional industry-level 
 - **Light Mode:** Clean white background with grey accents
 - **Consistent Theming:** Matches all other pages perfectly
 
-## 🎯 **Enhanced Billboard Advertisement System - Final Version**
+## 🎯 **Dynamic Advertisement System - Final Version**
 
 ### **Purpose & Benefits**
-The detail pages now feature dedicated premium billboard advertisement spaces designed for external companies to showcase their business posters and promotional content. This creates substantial revenue opportunities while maintaining the professional aesthetic of the platform.
+The detail pages now feature an innovative dynamic advertisement system with vertically long, simple boxes that appear and disappear automatically. This creates revenue opportunities while maintaining an excellent user experience without constant visual distractions.
 
-### **Final Advertisement Design**
+### **Final Dynamic Advertisement Design**
 
-#### **Premium Enhanced Billboard (380 × 700 px)**
-- **Maximum visibility** with border-positioned placement for optimal exposure
-- **Professional enhanced design** with large icons, premium styling, and smooth animations
-- **Perfect for**: Major brand promotions, new product launches, service advertising, local business promotion
-- **Enhanced Features**: 
-  - Hover scale effects and shadow animations
-  - Larger interactive buttons with emoji icons
-  - Professional rounded corners and premium styling
-  - Sticky positioning that follows user scroll
-  - Clean "Advertisement Space Available" messaging
-  - Single info button that reveals all details in an enhanced popup
+#### **Smart Timing Advertisement Boxes (320 × 500 px)**
+- **Vertically long, simple design** with clean, professional appearance
+- **Smart timing system**: Appears for 15 seconds, then disappears for 2 minutes, then repeats
+- **Fixed positioning**: Left and right sides of the screen for maximum visibility
+- **User control**: Close button allows users to dismiss ads early
+- **Non-intrusive**: Automatically disappears to maintain user focus on content
 
-### **Enhanced Key Features**
-- ✅ **Border-Positioned Design**: Billboards positioned closer to page edges for maximum visibility
-- ✅ **Larger Size**: 380 × 700 px for much better impact and visibility
-- ✅ **Enhanced Animations**: Hover effects, scale animations, and smooth transitions
-- ✅ **Single Info Button**: Clean design with all details revealed in enhanced popup
-- ✅ **Professional Styling**: Consistent with ToolNTask brand colors and premium design
-- ✅ **Responsive**: All spaces adapt perfectly to mobile and desktop viewing
-- ✅ **Theme Support**: Works flawlessly in both light and dark modes
-- ✅ **Interactive Elements**: Enhanced buttons, hover effects, and user engagement features
+### **Dynamic Advertisement Features**
+- ✅ **Smart Timing**: Shows for 15 seconds every 2 minutes automatically
+- ✅ **Clean Design**: Simple, vertically long boxes with professional styling
+- ✅ **Fade-in Animation**: Smooth appearance with CSS animations
+- ✅ **User Control**: Close button for early dismissal
+- ✅ **Expandable Info**: "More Info" button reveals additional details
+- ✅ **Theme Support**: Works perfectly in both light and dark modes
+- ✅ **Non-Blocking**: Positioned as fixed overlays that don't affect page layout
+- ✅ **Brand Consistency**: Uses ToolNTask orange and blue brand colors
 
-### **Enhanced Revenue Opportunities**
-External companies can purchase these premium billboard spaces to:
-- Promote their products and services with maximum visibility
-- Build strong brand awareness in the ToolNTask community
-- Target users interested in tools and task-related services with larger, more engaging ads
-- Reach an engaged audience of DIY enthusiasts and professionals with premium placement
-- Benefit from enhanced positioning closer to page borders for better visibility
+### **Advertisement Content**
+- **Clear messaging**: "Advertisement Space Available"
+- **Size specifications**: 320 × 500 px clearly displayed
+- **Use cases**: Brand promotions, product launches, service advertising
+- **Contact information**: Easy access to advertising rates and availability
+- **Professional icons**: Different icons for left (📢) and right (🎯) sides
+
+### **Technical Implementation**
+- **Timer-based system**: useEffect with setInterval for automatic timing
+- **State management**: React hooks for visibility and info display
+- **CSS animations**: Smooth fade-in effects with professional transitions
+- **Fixed positioning**: Overlays that don't interfere with page scrolling
+- **Responsive design**: Adapts to different screen sizes and themes
 
 ## Navigation Flow
 
