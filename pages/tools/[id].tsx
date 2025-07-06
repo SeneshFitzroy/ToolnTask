@@ -336,6 +336,9 @@ export default function ToolDetail() {
                 </Button>
               </div>
 
+              {/* Advertisement Space */}
+              <AdSpace theme={theme} adIndex={adIndex} isVisible={showAd} />
+
               {/* Provider Info */}
               <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
