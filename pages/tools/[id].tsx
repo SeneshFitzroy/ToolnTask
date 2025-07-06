@@ -8,86 +8,100 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
-// Advertisement Component
-const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adIndex: number, isVisible: boolean }) => {
-  const ads = [
-    {
-      id: 1,
-      title: "Tool Rentals",
-      subtitle: "Quality tools for every project",
-      features: ["Professional Grade", "Affordable Rates", "Quick Delivery"],
-      icon: "🔧",
-      color: "#FF5E14"
-    },
-    {
-      id: 2,
-      title: "Professional Equipment",
-      subtitle: "Industrial grade solutions",
-      features: ["Heavy Duty", "Expert Support", "Maintenance Included"],
-      icon: "⚙️",
-      color: "#001554"
-    },
-    {
-      id: 3,
-      title: "Home & Garden",
-      subtitle: "Everything for your space",
-      features: ["DIY Projects", "Garden Tools", "Home Improvement"],
-      icon: "🏡",
-      color: "#FF5E14"
-    }
-  ];
-
-  const currentAd = ads[adIndex % ads.length];
-
+// Billboard Advertisement Space Component
+const BillboardSpace = ({ title }: { title: string }) => {
+  const { theme } = useTheme();
+  
   return (
-    <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
-      <div className="p-6 rounded-2xl shadow-xl border-2 border-dashed mb-6 min-h-[400px] flex flex-col justify-between" 
+    <div className="space-y-6">
+      <h3 className="text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+        {title}
+      </h3>
+      
+      {/* Large Billboard Space */}
+      <div className="relative p-8 rounded-2xl shadow-xl border-3 border-dashed min-h-[350px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
            style={{ 
              backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-             borderColor: currentAd.color
+             borderColor: '#FF5E14'
            }}>
-        <div className="text-center flex-1 flex flex-col justify-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
-               style={{ backgroundColor: currentAd.color }}>
-            <span className="text-white text-2xl">{currentAd.icon}</span>
+        <div className="text-center">
+          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
+               style={{ backgroundColor: '#FF5E14' }}>
+            <span className="text-white text-3xl">📢</span>
           </div>
-          <h3 className="text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            {currentAd.title}
-          </h3>
-          <p className="text-base mb-6 leading-relaxed" style={{ color: '#B3B5BC' }}>
-            {currentAd.subtitle}
+          <h4 className="text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            Advertisement Space Available
+          </h4>
+          <p className="text-base mb-4 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
+            Premium billboard space for your business promotion
           </p>
-          
-          {/* Features List */}
-          <div className="space-y-3 mb-6">
-            {currentAd.features.map((feature, index) => (
-              <div key={index} className="flex items-center justify-center gap-2">
-                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: currentAd.color }}>
-                  <span className="text-white text-xs">✓</span>
-                </div>
-                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                  {feature}
-                </span>
-              </div>
-            ))}
+          <div className="p-4 rounded-lg border-2 border-dashed mb-4" style={{ borderColor: '#FF5E14' }}>
+            <span className="text-sm font-medium" style={{ color: '#FF5E14' }}>
+              300 × 350 px Billboard
+            </span>
           </div>
-          
-          {/* CTA Button */}
-          <button className="w-full py-3 px-6 rounded-xl font-bold text-white hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: currentAd.color }}>
-            Explore Now
-          </button>
+          <div className="text-xs font-medium px-3 py-1 rounded-full" 
+               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
+            Contact us for advertising rates
+          </div>
         </div>
-        
-        {/* Ad Indicator */}
-        <div className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-             style={{ backgroundColor: currentAd.color }}>
-          {currentAd.id}
+      </div>
+      
+      {/* Medium Billboard Space */}
+      <div className="relative p-6 rounded-2xl shadow-xl border-3 border-dashed min-h-[250px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
+           style={{ 
+             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+             borderColor: '#001554'
+           }}>
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" 
+               style={{ backgroundColor: '#001554' }}>
+            <span className="text-white text-2xl">🎯</span>
+          </div>
+          <h4 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            Business Showcase
+          </h4>
+          <p className="text-sm mb-3 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
+            Promote your products and services
+          </p>
+          <div className="p-3 rounded-lg border-2 border-dashed mb-3" style={{ borderColor: '#001554' }}>
+            <span className="text-xs font-medium" style={{ color: '#001554' }}>
+              300 × 250 px Banner
+            </span>
+          </div>
+          <div className="text-xs font-medium px-3 py-1 rounded-full" 
+               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
+            Reserve your space today
+          </div>
         </div>
-        
-        {/* Timer Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-2xl overflow-hidden">
-          <div className="h-full bg-current animate-pulse" style={{ color: currentAd.color, width: '100%' }}></div>
+      </div>
+      
+      {/* Small Billboard Space */}
+      <div className="relative p-4 rounded-2xl shadow-xl border-3 border-dashed min-h-[180px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
+           style={{ 
+             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+             borderColor: '#FF5E14'
+           }}>
+        <div className="text-center">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg" 
+               style={{ backgroundColor: '#FF5E14' }}>
+            <span className="text-white text-lg">💼</span>
+          </div>
+          <h4 className="text-base font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            Compact Ad Space
+          </h4>
+          <p className="text-xs mb-2 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
+            Perfect for quick promotions
+          </p>
+          <div className="p-2 rounded-lg border-2 border-dashed mb-2" style={{ borderColor: '#FF5E14' }}>
+            <span className="text-xs font-medium" style={{ color: '#FF5E14' }}>
+              300 × 180 px Space
+            </span>
+          </div>
+          <div className="text-xs font-medium px-2 py-1 rounded-full" 
+               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
+            Affordable rates
+          </div>
         </div>
       </div>
     </div>
