@@ -380,22 +380,9 @@ export default function ToolDetail() {
 
               {/* Tool Details */}
               <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   {tool.title}
                 </h1>
-                
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="text-2xl sm:text-3xl font-black" style={{ color: '#FF5E14' }}>
-                    {tool.price}
-                  </div>
-                  <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    tool.available 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
-                  }`}>
-                    {tool.available ? 'Available' : 'Not Available'}
-                  </div>
-                </div>
 
                 <p className="text-lg leading-relaxed mb-6" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   {tool.description}
