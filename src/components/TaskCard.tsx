@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface TaskCardProps {
+  id?: string | number;
   title: string;
   description: string;
   price: string;
