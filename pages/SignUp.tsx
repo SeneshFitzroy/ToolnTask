@@ -226,6 +226,9 @@ export default function SignUp() {
                 <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Confirm Password</label>
                 <input
                   type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
@@ -235,6 +238,7 @@ export default function SignUp() {
                   placeholder="Confirm your password"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                   onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                  required
                 />
               </div>
               
