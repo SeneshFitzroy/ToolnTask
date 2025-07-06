@@ -435,9 +435,9 @@ export default function ToolDetail() {
               </div>
             </div>
             
-            {/* Right Big Billboard */}
-            <div className="lg:col-span-2 hidden lg:block">
-              <BigBillboard side="right" />
+            {/* Right Big Billboard - Moved closer to border */}
+            <div className="lg:col-span-3 hidden lg:block">
+              <SimpleBillboard side="right" />
             </div>
           </div>
         </div>
