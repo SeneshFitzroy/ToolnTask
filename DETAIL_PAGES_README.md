@@ -47,7 +47,8 @@ I've successfully created comprehensive detail pages for both Tools and Tasks th
 ### ✅ **Layout Structure**
 - **Navigation:** Same header/footer as all other pages
 - **Hero Section:** Back button and logo for easy navigation
-- **Two-Column Layout:** Details on left, contact/action on right
+- **Three-Column Layout:** Left Ad | Main Content | Right Ad
+- **Advertisement Spaces:** Both sides of the page feature dedicated advertisement spaces
 - **Similar Items:** Matching grid layout at bottom
 
 ## ✅ **Enhanced Features (Latest Updates)**

@@ -187,9 +187,17 @@ export default function TaskDetail() {
       
       <div className="py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            {/* Left Advertisement Column */}
+            <div className="lg:col-span-2 hidden lg:block">
+              <div className="sticky top-8">
+                <BillboardSpace title="Left Ad Space" />
+              </div>
+            </div>
+            
             {/* Main Content */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-6">
               {/* Header */}
               <div className="p-6 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <div className="flex flex-wrap items-start justify-between mb-4">
@@ -490,7 +498,7 @@ export default function TaskDetail() {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2">
               {/* Task Creator */}
               <div className="p-6 rounded-2xl shadow-xl mb-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
                 <h3 className="text-lg font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
@@ -537,10 +545,12 @@ export default function TaskDetail() {
                   </p>
                 </div>
               </div>
-
-              {/* Billboard Advertisement Space */}
-              <div className="mb-6">
-                <BillboardSpace title="Advertisement Spaces" />
+            </div>
+            
+            {/* Right Advertisement Column */}
+            <div className="lg:col-span-2 hidden lg:block">
+              <div className="sticky top-8">
+                <BillboardSpace title="Right Ad Space" />
               </div>
             </div>
           </div>
