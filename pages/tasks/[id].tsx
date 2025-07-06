@@ -171,11 +171,11 @@ export default function TaskDetail() {
       <Navigation />
       
       <div className="py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="max-w-8xl mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             
-            {/* Left Advertisement Column */}
-            <div className="lg:col-span-2 hidden lg:block">
+            {/* Left Enhanced Billboard - Moved closer to border */}
+            <div className="lg:col-span-3 hidden lg:block">
               <SimpleBillboard side="left" />
             </div>
             
