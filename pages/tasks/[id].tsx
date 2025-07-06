@@ -56,10 +56,10 @@ const BillboardSpace = ({ title }: { title: string }) => {
             <span className="text-white text-2xl">🎯</span>
           </div>
           <h4 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Business Showcase
+            Advertisement Space Available
           </h4>
           <p className="text-sm mb-3 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
-            Promote your products and services
+            Medium billboard space for your business
           </p>
           <div className="p-3 rounded-lg border-2 border-dashed mb-3" style={{ borderColor: '#001554' }}>
             <span className="text-xs font-medium" style={{ color: '#001554' }}>
@@ -85,10 +85,10 @@ const BillboardSpace = ({ title }: { title: string }) => {
             <span className="text-white text-lg">💼</span>
           </div>
           <h4 className="text-base font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Compact Ad Space
+            Advertisement Space Available
           </h4>
           <p className="text-xs mb-2 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
-            Perfect for quick promotions
+            Compact billboard space for your business
           </p>
           <div className="p-2 rounded-lg border-2 border-dashed mb-2" style={{ borderColor: '#FF5E14' }}>
             <span className="text-xs font-medium" style={{ color: '#FF5E14' }}>
