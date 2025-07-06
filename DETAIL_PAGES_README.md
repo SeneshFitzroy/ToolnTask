@@ -147,24 +147,24 @@ External companies can purchase these premium billboard spaces to:
 
 ### Tool Detail Page:
 - **Enhanced Image Gallery**: Large main image with thumbnail navigation
-- **Left Advertisement Space**: 3 professional billboard spaces with sticky positioning
+- **Left Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
 - Tool specifications (Power, Chuck Size, Speed, etc.)
 - Features list
 - Rental pricing and availability
 - Tool owner profile
 - Contact/rental form
-- **Right Advertisement Space**: 3 professional billboard spaces with sticky positioning
+- **Right Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
 - Similar tools grid
 
 ### Task Detail Page:
 - **Structured Image Gallery**: Featured image with secondary image grid
-- **Left Advertisement Space**: 3 professional billboard spaces with sticky positioning
+- **Left Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
 - Task description and requirements
 - Duration, location, deadline info
 - Payment amount
 - Task creator profile
 - Application form
-- **Right Advertisement Space**: 3 professional billboard spaces with sticky positioning
+- **Right Enhanced Billboard**: Premium 380×700px advertisement space with border positioning
 - Similar tasks grid
 
 ## Technical Implementation
