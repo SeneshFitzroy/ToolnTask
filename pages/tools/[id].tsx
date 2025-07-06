@@ -56,7 +56,7 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
                 </div>
                 
                 <h4 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                  Premium Billboard Space
+                  Premium Advertisement Space
                 </h4>
                 
                 <div className="p-4 rounded-xl border-2 border-dashed mb-4" 
