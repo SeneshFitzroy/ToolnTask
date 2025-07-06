@@ -89,9 +89,10 @@ export default function SignUp() {
       
       // Redirect to home page
       router.push('/');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error creating user:', error);
-      setError(error.message || 'An error occurred during registration');
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred during registration';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
