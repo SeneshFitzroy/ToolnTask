@@ -38,7 +38,6 @@ export default function About() {
                    backgroundColor: theme === 'dark' ? '#1F1F1F' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <span className="text-lg sm:text-xl mr-2">🤝</span>
               <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
                 Our Community Story
               </span>
