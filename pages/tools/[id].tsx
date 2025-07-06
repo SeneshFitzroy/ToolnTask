@@ -202,9 +202,8 @@ export default function ToolDetail() {
         }
       `}</style>
       
-      {/* Dynamic Advertisements */}
+      {/* Dynamic Advertisement - Left Side Only */}
       <DynamicAdvertisement side="left" />
-      <DynamicAdvertisement side="right" />
       
       <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <Navigation />
