@@ -37,7 +37,7 @@ const AdSpace = () => {
     }, 120000); // 2 minutes
 
     return () => clearInterval(interval);
-  }, []);
+  }, [ads.length]);
 
   return (
     <div className="space-y-4">
@@ -368,10 +368,14 @@ export default function TaskDetail() {
                       height={64}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        const div = document.createElement('div');
-                        div.className = 'w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center';
-                        div.innerHTML = `<span class="text-white text-xl font-bold">${task.creator.name.split(' ').map(n => n[0]).join('')}</span>`;
-                        e.currentTarget.parentNode.replaceChild(div, e.currentTarget);
+                        const target = e.currentTarget;
+                        const parent = target.parentNode;
+                        if (parent) {
+                          const div = document.createElement('div');
+                          div.className = 'w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center';
+                          div.innerHTML = `<span class="text-white text-xl font-bold">${task.creator.name.split(' ').map(n => n[0]).join('')}</span>`;
+                          parent.replaceChild(div, target);
+                        }
                       }}
                     />
                   </div>
