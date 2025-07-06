@@ -461,9 +461,9 @@ export default function TaskDetail() {
                 </div>
               </div>
 
-              {/* Advertisement Space */}
+              {/* Billboard Advertisement Space */}
               <div className="mb-6">
-                <AdSpace />
+                <BillboardSpace title="Advertisement Spaces" />
               </div>
 
               {/* Apply Button */}
