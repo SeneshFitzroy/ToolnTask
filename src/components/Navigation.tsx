@@ -302,24 +302,49 @@ const Navigation = () => {
                 Contact
               </Link>
               <div className="flex flex-col space-y-3 pt-3 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
-                <Link href="/SignIn" 
-                  className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                  style={{ backgroundColor: '#FE5F16' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign In
-                </Link>
-                <Link href="/SignUp" 
-                  className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                  style={{ backgroundColor: '#001554' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Sign Up
-                </Link>
+                {user ? (
+                  // User is logged in - Mobile
+                  <>
+                    <div className="px-4 py-2 text-center text-sm font-medium" 
+                         style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                      Welcome, {user.email?.split('@')[0]}
+                    </div>
+                    <button 
+                      onClick={() => {
+                        handleSignOut();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                      style={{ backgroundColor: '#DC2626' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B91C1C'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC2626'}
+                    >
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  // User is not logged in - Mobile
+                  <>
+                    <Link href="/SignIn" 
+                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                      style={{ backgroundColor: '#FE5F16' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sign In
+                    </Link>
+                    <Link href="/SignUp" 
+                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                      style={{ backgroundColor: '#001554' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sign Up
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
