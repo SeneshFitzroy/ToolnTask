@@ -532,7 +532,7 @@ export default function TaskDetail() {
             
             {/* Right Advertisement Column */}
             <div className="lg:col-span-2 hidden lg:block">
-              <BigBillboard side="right" />
+              <SimpleBillboard side="right" />
             </div>
           </div>
         </div>
