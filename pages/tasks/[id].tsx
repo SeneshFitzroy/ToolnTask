@@ -530,8 +530,8 @@ export default function TaskDetail() {
               </div>
             </div>
             
-            {/* Right Advertisement Column */}
-            <div className="lg:col-span-2 hidden lg:block">
+            {/* Right Enhanced Billboard - Moved closer to border */}
+            <div className="lg:col-span-3 hidden lg:block">
               <SimpleBillboard side="right" />
             </div>
           </div>
