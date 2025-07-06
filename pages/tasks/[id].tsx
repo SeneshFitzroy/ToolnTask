@@ -5,99 +5,67 @@ import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import Image from 'next/image';
 
-// Billboard Advertisement Space Component
-const BillboardSpace = ({ title }: { title: string }) => {
+// Single Big Billboard Advertisement Component
+const BigBillboard = ({ side }: { side: 'left' | 'right' }) => {
   const { theme } = useTheme();
   
   return (
-    <div className="space-y-6">
-      <h3 className="text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-        {title}
-      </h3>
-      
-      {/* Large Billboard Space */}
-      <div className="relative p-8 rounded-2xl shadow-xl border-3 border-dashed min-h-[350px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
-           style={{ 
-             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-             borderColor: '#FF5E14'
-           }}>
-        <div className="text-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
-               style={{ backgroundColor: '#FF5E14' }}>
-            <span className="text-white text-3xl">📢</span>
-          </div>
-          <h4 className="text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Advertisement Space Available
-          </h4>
-          <p className="text-base mb-4 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
-            Premium billboard space for your business promotion
-          </p>
-          <div className="p-4 rounded-lg border-2 border-dashed mb-4" style={{ borderColor: '#FF5E14' }}>
-            <span className="text-sm font-medium" style={{ color: '#FF5E14' }}>
-              300 × 350 px Billboard
-            </span>
-          </div>
-          <div className="text-xs font-medium px-3 py-1 rounded-full" 
-               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
-            Contact us for advertising rates
-          </div>
-        </div>
-      </div>
-      
-      {/* Medium Billboard Space */}
-      <div className="relative p-6 rounded-2xl shadow-xl border-3 border-dashed min-h-[250px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
-           style={{ 
-             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-             borderColor: '#001554'
-           }}>
-        <div className="text-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" 
-               style={{ backgroundColor: '#001554' }}>
-            <span className="text-white text-2xl">🎯</span>
-          </div>
-          <h4 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Advertisement Space Available
-          </h4>
-          <p className="text-sm mb-3 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
-            Medium billboard space for your business
-          </p>
-          <div className="p-3 rounded-lg border-2 border-dashed mb-3" style={{ borderColor: '#001554' }}>
-            <span className="text-xs font-medium" style={{ color: '#001554' }}>
-              300 × 250 px Banner
-            </span>
-          </div>
-          <div className="text-xs font-medium px-3 py-1 rounded-full" 
-               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
-            Reserve your space today
-          </div>
-        </div>
-      </div>
-      
-      {/* Small Billboard Space */}
-      <div className="relative p-4 rounded-2xl shadow-xl border-3 border-dashed min-h-[180px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl"
-           style={{ 
-             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
-             borderColor: '#FF5E14'
-           }}>
-        <div className="text-center">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg" 
-               style={{ backgroundColor: '#FF5E14' }}>
-            <span className="text-white text-lg">💼</span>
-          </div>
-          <h4 className="text-base font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Advertisement Space Available
-          </h4>
-          <p className="text-xs mb-2 leading-relaxed max-w-xs" style={{ color: '#B3B5BC' }}>
-            Compact billboard space for your business
-          </p>
-          <div className="p-2 rounded-lg border-2 border-dashed mb-2" style={{ borderColor: '#FF5E14' }}>
-            <span className="text-xs font-medium" style={{ color: '#FF5E14' }}>
-              300 × 180 px Space
-            </span>
-          </div>
-          <div className="text-xs font-medium px-2 py-1 rounded-full" 
-               style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
-            Affordable rates
+    <div className="w-full">
+      <div className="sticky top-8">
+        <div className="relative p-8 rounded-3xl shadow-2xl border-4 border-dashed min-h-[600px] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-3xl"
+             style={{ 
+               backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+               borderColor: side === 'left' ? '#FF5E14' : '#001554'
+             }}>
+          <div className="text-center">
+            <div className="w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl" 
+                 style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+              <span className="text-white text-5xl">
+                {side === 'left' ? '📢' : '🎯'}
+              </span>
+            </div>
+            <h2 className="text-3xl font-black mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              Advertisement Space Available
+            </h2>
+            <p className="text-lg mb-8 leading-relaxed max-w-sm mx-auto" style={{ color: '#B3B5BC' }}>
+              Premium {side} side billboard space for your business promotion and brand visibility
+            </p>
+            <div className="p-6 rounded-xl border-3 border-dashed mb-8 bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/20 dark:to-blue-900/20" 
+                 style={{ borderColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+              <span className="text-xl font-bold block mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+                Premium Billboard
+              </span>
+              <span className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                320 × 600 px
+              </span>
+            </div>
+            <div className="space-y-4">
+              <div className="text-base font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                Perfect for:
+              </div>
+              <ul className="text-sm space-y-2" style={{ color: '#B3B5BC' }}>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                  Brand promotions
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                  Product launches
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                  Service advertising
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                  Local business promotion
+                </li>
+              </ul>
+            </div>
+            <div className="mt-8 text-sm font-semibold px-4 py-3 rounded-full" 
+                 style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA', color: '#B3B5BC' }}>
+              Contact us for advertising rates
+            </div>
           </div>
         </div>
       </div>
