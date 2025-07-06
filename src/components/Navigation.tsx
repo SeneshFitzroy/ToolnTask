@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { auth } from '../lib/firebase';
+import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
 
 const Navigation = () => {
