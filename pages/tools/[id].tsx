@@ -183,16 +183,16 @@ export default function ToolDetail() {
 
       {/* Main Content with Big Billboards on Both Sides */}
       <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="max-w-8xl mx-auto px-2 sm:px-4 lg:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             
-            {/* Left Simple Billboard */}
-            <div className="lg:col-span-2 hidden lg:block">
+            {/* Left Simple Billboard - Moved closer to border */}
+            <div className="lg:col-span-3 hidden lg:block">
               <SimpleBillboard side="left" />
             </div>
             
             {/* Main Content Column */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-6">
               
               {/* Image Gallery */}
               <div className="mb-8">
