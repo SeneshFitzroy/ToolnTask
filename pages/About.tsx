@@ -21,7 +21,7 @@ export default function About() {
       <Navigation />
       
       {/* Hero Header Section */}
-      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-12 lg:py-16 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
@@ -94,11 +94,11 @@ export default function About() {
       </div>
 
       {/* Main Content Section */}
-      <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">
-            <div className="p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+            <div className="p-6 sm:p-8 lg:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
@@ -152,20 +152,20 @@ export default function About() {
 
           {/* Advertisement Spaces */}
           <div className="mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
               Advertisements
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Advertisement Space 1 */}
-              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
+              <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
                      borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
                    }}>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" 
                        style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
-                    <span className="text-white text-2xl">�</span>
+                    <span className="text-white text-xl">📸</span>
                   </div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                     Advertisement Space
@@ -173,7 +173,7 @@ export default function About() {
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
                     Your business ad here
                   </p>
-                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                  <div className="mt-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
                     <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
                       300x250 Banner Space
                     </span>
@@ -182,15 +182,15 @@ export default function About() {
               </div>
 
               {/* Advertisement Space 2 */}
-              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
+              <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
                      borderColor: theme === 'dark' ? '#001554' : '#001554'
                    }}>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" 
                        style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
-                    <span className="text-white text-2xl">🎯</span>
+                    <span className="text-white text-xl">🎯</span>
                   </div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                     Advertisement Space
@@ -198,7 +198,7 @@ export default function About() {
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
                     Your business ad here
                   </p>
-                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                  <div className="mt-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
                     <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
                       300x250 Banner Space
                     </span>
@@ -207,15 +207,15 @@ export default function About() {
               </div>
 
               {/* Advertisement Space 3 */}
-              <div className="relative p-8 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
+              <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
                      borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
                    }}>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" 
                        style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
-                    <span className="text-white text-2xl">💼</span>
+                    <span className="text-white text-xl">💼</span>
                   </div>
                   <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                     Advertisement Space
@@ -223,7 +223,7 @@ export default function About() {
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
                     Your business ad here
                   </p>
-                  <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+                  <div className="mt-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
                     <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
                       300x250 Banner Space
                     </span>
