@@ -116,35 +116,35 @@ export default function About() {
           </div>
 
           {/* Values Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 mb-16 sm:mb-20">
-            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
-                <span className="text-2xl">🎯</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
+                <span className="text-xl">🎯</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Trust & Safety</h3>
-              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Trust & Safety</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Every user is verified, and we maintain high standards for safety and reliability 
                 in all transactions.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
-                <span className="text-2xl">🌱</span>
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
+                <span className="text-xl">🌱</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Sustainability</h3>
-              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Sustainability</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
               </p>
             </div>
 
-            <div className="p-8 rounded-3xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#001554' }}>
-                <span className="text-2xl">👥</span>
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#001554' }}>
+                <span className="text-xl">👥</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Community</h3>
-              <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Community</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
               </p>
