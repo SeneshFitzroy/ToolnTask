@@ -9,7 +9,7 @@ import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
 // Dynamic Advertisement Component - Left Side Only, No Content Coverage
-const DynamicAdvertisement = ({ side }: { side: 'left' | 'right' }) => {
+const DynamicAdvertisement = () => {
   const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
