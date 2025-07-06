@@ -204,15 +204,6 @@ export default function TaskDetail() {
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-4 mb-3">
-                      <span className="text-3xl font-black" style={{ color: '#FF5E14' }}>
-                        {task.price}
-                      </span>
-                      <span className="px-3 py-1 text-sm font-medium rounded-full" 
-                            style={{ backgroundColor: '#001554', color: '#FFFFFF' }}>
-                        {task.category}
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
