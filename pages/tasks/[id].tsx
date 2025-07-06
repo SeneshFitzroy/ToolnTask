@@ -427,5 +427,6 @@ export default function TaskDetail() {
 
       <Footer />
     </div>
+    </>
   );
 }
