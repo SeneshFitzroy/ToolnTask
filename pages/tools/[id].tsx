@@ -15,6 +15,7 @@ const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adI
       id: 1,
       title: "Tool Rentals",
       subtitle: "Quality tools for every project",
+      features: ["Professional Grade", "Affordable Rates", "Quick Delivery"],
       icon: "🔧",
       color: "#FF5E14"
     },
@@ -22,6 +23,7 @@ const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adI
       id: 2,
       title: "Professional Equipment",
       subtitle: "Industrial grade solutions",
+      features: ["Heavy Duty", "Expert Support", "Maintenance Included"],
       icon: "⚙️",
       color: "#001554"
     },
@@ -29,6 +31,7 @@ const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adI
       id: 3,
       title: "Home & Garden",
       subtitle: "Everything for your space",
+      features: ["DIY Projects", "Garden Tools", "Home Improvement"],
       icon: "🏡",
       color: "#FF5E14"
     }
