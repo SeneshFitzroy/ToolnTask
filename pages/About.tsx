@@ -99,15 +99,15 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">
-            <div className="p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 lg:mb-10 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
-              <div className="max-w-5xl mx-auto">
-                <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <div className="p-6 sm:p-8 lg:p-10 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Our Mission</h2>
+              <div className="max-w-4xl mx-auto">
+                <p className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 
                   time to spare looking for extra income, or a neighbor who needs a specific tool 
                   for a weekend project, ToolNTask bridges these gaps.
                 </p>
-                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+                <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                   Our platform empowers people to share resources, build connections, and create 
                   a more collaborative community where everyone benefits.
                 </p>
