@@ -151,12 +151,73 @@ export default function About() {
             </div>
           </div>
 
+          {/* Advertisements Section */}
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              <span className="flex items-center justify-center gap-3">
+                <span className="text-2xl">📢</span>
+                Advertisements
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              {/* Premium Tools Ad */}
+              <div className="relative p-6 rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-all duration-300" 
+                   style={{ 
+                     backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                     background: theme === 'dark' 
+                       ? 'linear-gradient(135deg, #FF5E14 0%, #1A1818 100%)' 
+                       : 'linear-gradient(135deg, #FF5E14 0%, #FFFFFF 100%)'
+                   }}>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-2xl">🔧</span>
+                    <h3 className="text-xl font-bold text-white">Premium Tool Rentals</h3>
+                  </div>
+                  <p className="text-white/90 mb-4 leading-relaxed">
+                    Rent professional-grade tools from verified owners. Quality guaranteed, affordable prices.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/80 text-sm">Starting from Rs. 500/day</span>
+                    <button className="px-4 py-2 bg-white text-orange-600 rounded-lg font-semibold text-sm hover:bg-orange-50 transition-colors">
+                      Explore Tools
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Featured Tasks Ad */}
+              <div className="relative p-6 rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-all duration-300" 
+                   style={{ 
+                     backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                     background: theme === 'dark' 
+                       ? 'linear-gradient(135deg, #001554 0%, #1A1818 100%)' 
+                       : 'linear-gradient(135deg, #001554 0%, #FFFFFF 100%)'
+                   }}>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-2xl">💼</span>
+                    <h3 className="text-xl font-bold text-white">Earn Extra Income</h3>
+                  </div>
+                  <p className="text-white/90 mb-4 leading-relaxed">
+                    Help your neighbors with tasks and earn money. Flexible hours, choose your jobs.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/80 text-sm">Up to Rs. 10,000/week</span>
+                    <button className="px-4 py-2 bg-white text-blue-900 rounded-lg font-semibold text-sm hover:bg-blue-50 transition-colors">
+                      Find Tasks
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Team Section */}
-          <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Meet Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
-              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#FF5E14' }}>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-10" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Meet Our Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              <div className="p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#FF5E14' }}>
                   {!ceoImageError ? (
                     <Image 
                       src="/ceo.jpg" 
