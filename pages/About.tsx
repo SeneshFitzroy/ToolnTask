@@ -222,45 +222,45 @@ export default function About() {
                     <Image 
                       src="/ceo.jpg" 
                       alt="Mandira De Silva - Founder & CEO"
-                      width={112}
-                      height={112}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                       onError={() => setCeoImageError(true)}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                      <span className="text-white text-2xl sm:text-3xl font-bold">MD</span>
+                      <span className="text-white text-xl sm:text-2xl font-bold">MD</span>
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Mandira De Silva</h3>
-                <p className="font-semibold mb-4" style={{ color: '#FF5E14' }}>Founder & CEO</p>
-                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Mandira De Silva</h3>
+                <p className="font-semibold mb-3" style={{ color: '#FF5E14' }}>Founder & CEO</p>
+                <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
                 </p>
               </div>
 
-              <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#001554' }}>
+              <div className="p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#001554' }}>
                   {!ctoImageError ? (
                     <Image 
                       src="/cto.jpg" 
                       alt="Senesh Fitzroy - CTO"
-                      width={112}
-                      height={112}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                       style={{ objectPosition: 'center 20%' }}
                       onError={() => setCtoImageError(true)}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                      <span className="text-white text-2xl sm:text-3xl font-bold">SF</span>
+                      <span className="text-white text-xl sm:text-2xl font-bold">SF</span>
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Senesh Fitzroy</h3>
-                <p className="font-semibold mb-4" style={{ color: '#001554' }}>CTO</p>
-                <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Senesh Fitzroy</h3>
+                <p className="font-semibold mb-3" style={{ color: '#001554' }}>CTO</p>
+                <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Tech enthusiast dedicated to creating seamless user experiences.
                 </p>
               </div>
