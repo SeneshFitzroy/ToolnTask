@@ -252,8 +252,13 @@ export default function SignUp() {
                 </span>
               </div>
               
-              <Button className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105" style={{ backgroundColor: '#FF5E14' }}>
-                Create Account
+              <Button 
+                type="submit" 
+                disabled={loading}
+                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" 
+                style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+              >
+                {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
             </form>
 
