@@ -86,6 +86,47 @@ I've successfully created comprehensive detail pages for both Tools and Tasks th
 - **Light Mode:** Clean white background with grey accents
 - **Consistent Theming:** Matches all other pages perfectly
 
+## 🎯 **Billboard Advertisement System**
+
+### **Purpose & Benefits**
+The detail pages now feature dedicated billboard advertisement spaces designed for external companies to showcase their business posters and promotional content. This creates additional revenue opportunities while maintaining the professional aesthetic of the platform.
+
+### **Advertisement Space Types**
+
+#### **Large Billboard (300 × 350 px)**
+- **Premium placement** with maximum visibility
+- **Professional design** with prominent icon and clear messaging
+- **Perfect for**: Major brand promotions, new product launches
+- **Features**: Hover shadow effects, clear contact information
+
+#### **Medium Banner (300 × 250 px)**
+- **Business showcase space** for mid-size promotions
+- **Balanced visibility** without overwhelming the main content
+- **Perfect for**: Service promotions, local business advertising
+- **Features**: Professional styling with branded colors
+
+#### **Compact Space (300 × 180 px)**
+- **Affordable option** for smaller businesses
+- **Strategic placement** for targeted messaging
+- **Perfect for**: Quick promotions, contact information, special offers
+- **Features**: Clean design with essential information display
+
+### **Key Features**
+- ✅ **Static Design**: No rotating animations - clean, professional appearance
+- ✅ **Clear Sizing**: Each space shows exact pixel dimensions for advertisers
+- ✅ **Contact Information**: "Contact us for advertising rates" messaging
+- ✅ **Professional Styling**: Consistent with ToolNTask brand colors
+- ✅ **Responsive**: All spaces adapt to mobile and desktop viewing
+- ✅ **Theme Support**: Works perfectly in both light and dark modes
+- ✅ **Hover Effects**: Subtle interactions that enhance user experience
+
+### **Revenue Opportunities**
+External companies can purchase these billboard spaces to:
+- Promote their products and services
+- Build brand awareness in the ToolNTask community
+- Target users interested in tools and task-related services
+- Reach a engaged audience of DIY enthusiasts and professionals
+
 ## Navigation Flow
 
 1. **From Tools Page:** Click any tool card → Navigate to `/tools/{id}`
@@ -96,21 +137,23 @@ I've successfully created comprehensive detail pages for both Tools and Tasks th
 ## Key Sections per Detail Page
 
 ### Tool Detail Page:
-- Hero image gallery
+- **Enhanced Image Gallery**: Large main image with thumbnail navigation
 - Tool specifications (Power, Chuck Size, Speed, etc.)
 - Features list
 - Rental pricing and availability
 - Tool owner profile
 - Contact/rental form
+- **Billboard Advertisement Spaces**: 3 professional ad spaces for external companies
 - Similar tools grid
 
 ### Task Detail Page:
-- Task image gallery
+- **Structured Image Gallery**: Featured image with secondary image grid
 - Task description and requirements
 - Duration, location, deadline info
 - Payment amount
 - Task creator profile
 - Application form
+- **Billboard Advertisement Spaces**: 3 professional ad spaces for external companies
 - Similar tasks grid
 
 ## Technical Implementation
