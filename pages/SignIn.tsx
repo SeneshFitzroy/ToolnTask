@@ -13,10 +13,53 @@ import { auth } from '../src/lib/firebase';
 export default function SignIn() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Validation
+    if (!formData.email || !formData.password) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Sign in with Firebase Auth
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      console.log('User signed in successfully');
+      
+      // Redirect to home page
+      router.push('/');
+    } catch (error: unknown) {
+      console.error('Error signing in:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred during sign in';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
