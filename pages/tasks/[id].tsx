@@ -5,7 +5,7 @@ import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import Image from 'next/image';
 
-// Simple Clean Billboard Advertisement Component
+// Simple Clean Billboard Advertisement Component - Enhanced & Bigger
 const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
   const { theme } = useTheme();
   const [showPopup, setShowPopup] = useState(false);
@@ -13,73 +13,99 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
   return (
     <>
       <div className="w-full">
-        <div className="sticky top-8">
-          <div className="relative p-8 rounded-2xl border-4 border-dashed min-h-[600px] flex flex-col items-center justify-center transition-all duration-300"
+        <div className="sticky top-6">
+          <div className="relative p-10 rounded-3xl border-4 border-dashed min-h-[700px] flex flex-col items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
                  borderColor: side === 'left' ? '#FF5E14' : '#001554'
                }}>
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                Advertisement Space Available
+              <div className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl transition-all duration-300 hover:scale-110" 
+                   style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+                <span className="text-white text-4xl">
+                  {side === 'left' ? '📢' : '🎯'}
+                </span>
+              </div>
+              <h2 className="text-3xl font-bold mb-10 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                Advertisement<br />Space Available
               </h2>
               <button 
                 onClick={() => setShowPopup(true)}
-                className="px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+                className="px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-110 hover:shadow-lg transform active:scale-95"
                 style={{ 
                   backgroundColor: side === 'left' ? '#FF5E14' : '#001554',
                   color: '#FFFFFF'
                 }}>
-                Info
+                📋 Info
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Info Popup */}
+      {/* Enhanced Info Popup */}
       {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl p-10 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300 scale-105">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                 Advertisement Details
               </h3>
               <button 
                 onClick={() => setShowPopup(false)}
-                className="text-gray-500 hover:text-gray-700 text-2xl"
+                className="text-gray-500 hover:text-gray-700 text-3xl font-bold transition-all duration-300 hover:scale-110"
               >
                 ×
               </button>
             </div>
             
-            <div className="space-y-4">
-              <div className="p-4 rounded-xl border-2 border-dashed" 
+            <div className="space-y-6">
+              <div className="p-6 rounded-2xl border-3 border-dashed" 
                    style={{ borderColor: side === 'left' ? '#FF5E14' : '#001554' }}>
-                <span className="text-lg font-bold block mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
-                  Premium {side === 'left' ? 'Left' : 'Right'} Side Billboard
-                </span>
-                <span className="text-base font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                  320 × 600 px
-                </span>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" 
+                       style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}>
+                    <span className="text-white text-2xl">
+                      {side === 'left' ? '📢' : '🎯'}
+                    </span>
+                  </div>
+                  <span className="text-xl font-bold block mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
+                    Premium {side === 'left' ? 'Left' : 'Right'} Side Billboard
+                  </span>
+                  <span className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    380 × 700 px
+                  </span>
+                </div>
               </div>
               
               <div>
-                <h4 className="font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <h4 className="font-bold mb-4 text-xl" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                   Perfect for:
                 </h4>
-                <ul className="text-sm space-y-1" style={{ color: '#B3B5BC' }}>
-                  <li>• Brand promotions</li>
-                  <li>• Product launches</li>
-                  <li>• Service advertising</li>
-                  <li>• Local business promotion</li>
+                <ul className="text-base space-y-2" style={{ color: '#B3B5BC' }}>
+                  <li className="flex items-center gap-3">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                    Brand promotions & campaigns
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                    New product launches
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                    Service advertising
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-3 h-3 rounded-full" style={{ backgroundColor: side === 'left' ? '#FF5E14' : '#001554' }}></span>
+                    Local business promotion
+                  </li>
                 </ul>
               </div>
               
-              <div className="p-4 rounded-xl" 
+              <div className="p-6 rounded-2xl" 
                    style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
-                <p className="text-sm font-semibold" style={{ color: '#B3B5BC' }}>
-                  Contact us for advertising rates and availability
+                <p className="text-base font-semibold text-center" style={{ color: '#B3B5BC' }}>
+                  📞 Contact us for advertising rates and availability
                 </p>
               </div>
             </div>
