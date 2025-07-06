@@ -31,10 +31,6 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
               </span>
             </div>
             
-            <h3 className="text-3xl font-bold mb-10 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              Advertisement<br />Space Available
-            </h3>
-            
             {/* Enhanced Info Button */}
             <button 
               onClick={() => setShowInfo(!showInfo)}
@@ -44,7 +40,7 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
                 color: '#FFFFFF'
               }}
             >
-              📋 Info
+              ℹ️
             </button>
           </div>
 
