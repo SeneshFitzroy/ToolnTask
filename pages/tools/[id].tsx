@@ -114,27 +114,10 @@ export default function ToolDetail() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [adIndex, setAdIndex] = useState(0);
-  const [showAd, setShowAd] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Advertisement timer - changes every 2 minutes
-  useEffect(() => {
-    if (!mounted) return;
-
-    const adTimer = setInterval(() => {
-      setShowAd(false);
-      setTimeout(() => {
-        setAdIndex(prev => (prev + 1) % 3);
-        setShowAd(true);
-      }, 500);
-    }, 120000); // 2 minutes = 120,000 milliseconds
-
-    return () => clearInterval(adTimer);
-  }, [mounted]);
 
   if (!mounted) return null;
 
@@ -436,7 +419,7 @@ export default function ToolDetail() {
       {/* Advertisement Spaces */}
       <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AdSpace theme={theme} adIndex={adIndex} isVisible={showAd} />
+          <BillboardSpace title="Featured Advertisement Spaces" />
         </div>
       </div>
 
