@@ -8,16 +8,90 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
+// Advertisement Component
+const AdSpace = ({ theme, adIndex, isVisible }) => {
+  const ads = [
+    {
+      id: 1,
+      title: "Professional Services",
+      subtitle: "Quality work guaranteed",
+      icon: "🏢",
+      color: "#FF5E14"
+    },
+    {
+      id: 2,
+      title: "Home Improvement",
+      subtitle: "Transform your space",
+      icon: "🏠",
+      color: "#001554"
+    },
+    {
+      id: 3,
+      title: "Expert Solutions",
+      subtitle: "Trusted professionals",
+      icon: "⚡",
+      color: "#FF5E14"
+    }
+  ];
+
+  const currentAd = ads[adIndex % ads.length];
+
+  return (
+    <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
+      <div className="p-6 rounded-2xl shadow-xl border-2 border-dashed mb-6" 
+           style={{ 
+             backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+             borderColor: currentAd.color
+           }}>
+        <div className="text-center">
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" 
+               style={{ backgroundColor: currentAd.color }}>
+            <span className="text-white text-2xl">{currentAd.icon}</span>
+          </div>
+          <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            {currentAd.title}
+          </h3>
+          <p className="text-sm mb-4" style={{ color: '#B3B5BC' }}>
+            {currentAd.subtitle}
+          </p>
+          <div className="p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
+            <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
+              Advertisement Space
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function TaskDetail() {
   const router = useRouter();
   const { id } = router.query;
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [adIndex, setAdIndex] = useState(0);
+  const [showAd, setShowAd] = useState(true);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Advertisement timer - changes every 2 minutes
+  useEffect(() => {
+    if (!mounted) return;
+
+    const adTimer = setInterval(() => {
+      setShowAd(false);
+      setTimeout(() => {
+        setAdIndex(prev => (prev + 1) % 3);
+        setShowAd(true);
+      }, 500);
+    }, 120000); // 2 minutes = 120,000 milliseconds
+
+    return () => clearInterval(adTimer);
+  }, [mounted]);
 
   if (!mounted) return null;
 
@@ -364,6 +438,11 @@ export default function TaskDetail() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Advertisement Spaces */}
+      <div className="px-4 sm:px-6 lg:px-8">
+        <AdSpace theme={theme} adIndex={adIndex} isVisible={showAd} />
       </div>
 
       {/* Similar Tasks Section */}
