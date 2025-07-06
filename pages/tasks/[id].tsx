@@ -9,7 +9,7 @@ import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
 // Advertisement Component
-const AdSpace = ({ theme, adIndex, isVisible }) => {
+const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adIndex: number, isVisible: boolean }) => {
   const ads = [
     {
       id: 1,
@@ -391,6 +391,9 @@ export default function TaskDetail() {
                   Apply Now
                 </Button>
               </div>
+
+              {/* Advertisement Space */}
+              <AdSpace theme={theme} adIndex={adIndex} isVisible={showAd} />
 
               {/* Client Info */}
               <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
