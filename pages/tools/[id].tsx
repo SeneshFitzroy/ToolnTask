@@ -184,8 +184,30 @@ export default function ToolDetail() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-      <Navigation />
+    <>
+      {/* CSS for fade-in animation */}
+      <style jsx global>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-in-out;
+        }
+      `}</style>
+      
+      {/* Dynamic Advertisements */}
+      <DynamicAdvertisement side="left" />
+      <DynamicAdvertisement side="right" />
+      
+      <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <Navigation />
       
       {/* Hero Section with Back Button */}
       <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
