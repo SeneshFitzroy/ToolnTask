@@ -77,11 +77,20 @@ export default function SignIn() {
               </p>
             </div>
 
-            <form className="space-y-4 sm:space-y-6">
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+              {error && (
+                <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
+                  {error}
+                </div>
+              )}
+              
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
@@ -91,6 +100,7 @@ export default function SignIn() {
                   placeholder="your.email@example.com"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                   onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                  required
                 />
               </div>
               
