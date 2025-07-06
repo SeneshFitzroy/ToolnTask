@@ -8,7 +8,11 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 
-// Billboard Advertisement Space Component
+// Billboard Advertisement Space              {/* Tool Owner */}
+              <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  Tool Owner
+                </h3>nt
 const BillboardSpace = ({ title }: { title: string }) => {
   const { theme } = useTheme();
   
