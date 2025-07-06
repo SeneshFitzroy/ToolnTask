@@ -41,27 +41,53 @@ const AdSpace = ({ theme, adIndex, isVisible }: { theme: string | undefined, adI
 
   return (
     <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
-      <div className="p-6 rounded-2xl shadow-xl border-2 border-dashed mb-6" 
+      <div className="p-6 rounded-2xl shadow-xl border-2 border-dashed mb-6 min-h-[400px] flex flex-col justify-between" 
            style={{ 
              backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
              borderColor: currentAd.color
            }}>
-        <div className="text-center">
-          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" 
+        <div className="text-center flex-1 flex flex-col justify-center">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
                style={{ backgroundColor: currentAd.color }}>
             <span className="text-white text-2xl">{currentAd.icon}</span>
           </div>
-          <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+          <h3 className="text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
             {currentAd.title}
           </h3>
-          <p className="text-sm mb-4" style={{ color: '#B3B5BC' }}>
+          <p className="text-base mb-6 leading-relaxed" style={{ color: '#B3B5BC' }}>
             {currentAd.subtitle}
           </p>
-          <div className="p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#F8F9FA' }}>
-            <span className="text-xs font-medium" style={{ color: '#B3B5BC' }}>
-              Advertisement Space
-            </span>
+          
+          {/* Features List */}
+          <div className="space-y-3 mb-6">
+            {currentAd.features.map((feature, index) => (
+              <div key={index} className="flex items-center justify-center gap-2">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: currentAd.color }}>
+                  <span className="text-white text-xs">✓</span>
+                </div>
+                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  {feature}
+                </span>
+              </div>
+            ))}
           </div>
+          
+          {/* CTA Button */}
+          <button className="w-full py-3 px-6 rounded-xl font-bold text-white hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: currentAd.color }}>
+            Explore Now
+          </button>
+        </div>
+        
+        {/* Ad Indicator */}
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+             style={{ backgroundColor: currentAd.color }}>
+          {currentAd.id}
+        </div>
+        
+        {/* Timer Bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-2xl overflow-hidden">
+          <div className="h-full bg-current animate-pulse" style={{ color: currentAd.color, width: '100%' }}></div>
         </div>
       </div>
     </div>
