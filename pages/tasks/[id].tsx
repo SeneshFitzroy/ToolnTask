@@ -26,6 +26,9 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
                   {side === 'left' ? '📢' : '🎯'}
                 </span>
               </div>
+              <h2 className="text-3xl font-bold mb-10 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                Advertisement<br />Space Available
+              </h2>
               <button 
                 onClick={() => setShowPopup(true)}
                 className="px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-110 hover:shadow-lg transform active:scale-95"
@@ -33,7 +36,7 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
                   backgroundColor: side === 'left' ? '#FF5E14' : '#001554',
                   color: '#FFFFFF'
                 }}>
-                ℹ️
+                📋 Info
               </button>
             </div>
           </div>
@@ -67,7 +70,7 @@ const SimpleBillboard = ({ side }: { side: 'left' | 'right' }) => {
                     </span>
                   </div>
                   <span className="text-xl font-bold block mb-2" style={{ color: side === 'left' ? '#FF5E14' : '#001554' }}>
-                    Premium {side === 'left' ? 'Left' : 'Right'} Side Space
+                    Premium {side === 'left' ? 'Left' : 'Right'} Side Billboard
                   </span>
                   <span className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
                     380 × 700 px
