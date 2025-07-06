@@ -61,12 +61,15 @@ I've successfully created comprehensive detail pages for both Tools and Tasks th
 
 ### **Static Billboard Advertisement Spaces**
 - **Replaced rotating ads** with professional static billboard spaces for external companies
+- **Both sides of the page** - Left Ad Space and Right Ad Space with sticky positioning
 - **Three different sizes** - all clearly labeled "Advertisement Space Available":
   - **Large Billboard**: 300 × 350 px - Premium space with prominent placement
   - **Medium Banner**: 300 × 250 px - Medium billboard space for your business
   - **Compact Space**: 300 × 180 px - Compact billboard space for your business
+- **Strategic Placement**: Advertisement spaces on both left and right sides for maximum visibility
+- **Sticky Positioning**: Advertisement spaces stay visible as users scroll through content
 - **Professional Design**: Clean dashed borders, clear sizing labels, and contact information
-- **Multiple Spaces**: 3 different billboard spaces per page for variety
+- **Multiple Spaces**: 6 different billboard spaces per page (3 on each side) for variety
 - **Hover Effects**: Subtle shadow enhancements on hover
 - **Clear Messaging**: "Advertisement Space Available" with dimensions and contact details
 
@@ -147,22 +150,24 @@ External companies can purchase these billboard spaces to:
 
 ### Tool Detail Page:
 - **Enhanced Image Gallery**: Large main image with thumbnail navigation
+- **Left Advertisement Space**: 3 professional billboard spaces with sticky positioning
 - Tool specifications (Power, Chuck Size, Speed, etc.)
 - Features list
 - Rental pricing and availability
 - Tool owner profile
 - Contact/rental form
-- **Billboard Advertisement Spaces**: 3 professional ad spaces for external companies
+- **Right Advertisement Space**: 3 professional billboard spaces with sticky positioning
 - Similar tools grid
 
 ### Task Detail Page:
 - **Structured Image Gallery**: Featured image with secondary image grid
+- **Left Advertisement Space**: 3 professional billboard spaces with sticky positioning
 - Task description and requirements
 - Duration, location, deadline info
 - Payment amount
 - Task creator profile
 - Application form
-- **Billboard Advertisement Spaces**: 3 professional ad spaces for external companies
+- **Right Advertisement Space**: 3 professional billboard spaces with sticky positioning
 - Similar tasks grid
 
 ## Technical Implementation
