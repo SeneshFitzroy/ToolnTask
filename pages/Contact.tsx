@@ -264,7 +264,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Subject</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Subject</label>
                   <input
                     type="text"
                     name="subject"
@@ -272,31 +272,32 @@ export default function Contact() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
-                      borderColor: '#B3B5BC', 
-                      color: '#1A1818',
-                      backgroundColor: '#FFFFFF'
+                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#6B7280' : '#B3B5BC'}
                     placeholder="How can we help you?"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Message</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Message *</label>
                   <textarea
                     rows={6}
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300 resize-none"
                     style={{ 
-                      borderColor: '#B3B5BC', 
-                      color: '#1A1818',
-                      backgroundColor: '#FFFFFF'
+                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#6B7280' : '#B3B5BC'}
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
