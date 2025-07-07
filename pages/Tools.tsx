@@ -73,11 +73,11 @@ export default function Tools() {
   };
 
   const filterOptions = [
-    { key: 'all', label: 'All Tools', count: 6 },
-    { key: 'power', label: 'Power Tools', count: 3 },
-    { key: 'garden', label: 'Garden Tools', count: 1 },
-    { key: 'hand', label: 'Hand Tools', count: 1 },
-    { key: 'equipment', label: 'Equipment', count: 1 }
+    { key: 'all', label: 'All Tools', count: tools.length },
+    { key: 'power', label: 'Power Tools', count: tools.filter(t => t.category === 'power').length },
+    { key: 'garden', label: 'Garden Tools', count: tools.filter(t => t.category === 'garden').length },
+    { key: 'hand', label: 'Hand Tools', count: tools.filter(t => t.category === 'hand').length },
+    { key: 'equipment', label: 'Equipment', count: tools.filter(t => t.category === 'equipment').length }
   ];
 
   const getFilteredTools = () => {
