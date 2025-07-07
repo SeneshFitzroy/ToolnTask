@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes';
 import '../styles/globals.css';
 import { auth } from '../src/lib/firebase';
 import { useEffect } from 'react';
+import { initializeAllData } from '../src/lib/initializeData';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -10,6 +11,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       if (user) console.log('User logged in:', user.uid);
       else console.log('No user logged in');
     });
+    
+    // Initialize data on app start
+    initializeAllData();
+    
     return () => unsubscribe();
   }, []);
 
