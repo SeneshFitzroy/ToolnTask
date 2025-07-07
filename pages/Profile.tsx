@@ -178,6 +178,286 @@ export default function Profile() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
       <Navigation />
       
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>My Profile</span>
+              <Logo size="large" />
+            </div>
+            <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              Manage your account settings and preferences
+            </p>
+          </div>
+
+          {/* Profile Card */}
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+            
+            {/* Profile Header */}
+            <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
+              <div className="flex items-center gap-4">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold" style={{ backgroundColor: '#FF5E14' }}>
+                  {userProfile.firstName ? userProfile.firstName.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    {userProfile.displayName || user?.displayName || 'User'}
+                  </h2>
+                  <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    {userProfile.email || user?.email}
+                  </p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    <span className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                      {userProfile.isActive ? 'Active' : 'Inactive'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab Navigation */}
+            <div className="border-b" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
+              <nav className="flex">
+                <button
+                  onClick={() => setActiveTab('profile')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                    activeTab === 'profile'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'profile' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                >
+                  Profile Information
+                </button>
+                <button
+                  onClick={() => setActiveTab('password')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                    activeTab === 'password'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'password' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                >
+                  Change Password
+                </button>
+              </nav>
+            </div>
+
+            {/* Tab Content */}
+            <div className="p-6 sm:p-8">
+              {success && (
+                <div className="mb-6 p-4 rounded-lg text-sm" style={{ backgroundColor: '#DEF7EC', color: '#03543F' }}>
+                  {success}
+                </div>
+              )}
+              {error && (
+                <div className="mb-6 p-4 rounded-lg text-sm" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
+                  {error}
+                </div>
+              )}
+
+              {activeTab === 'profile' && (
+                <form onSubmit={handleProfileUpdate} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        value={userProfile.firstName}
+                        onChange={handleProfileChange}
+                        className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                        style={{ 
+                          borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                          backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                          color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                        }}
+                        onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                        placeholder="Enter your first name"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        value={userProfile.lastName}
+                        onChange={handleProfileChange}
+                        className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                        style={{ 
+                          borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                          backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                          color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                        }}
+                        onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                        placeholder="Enter your last name"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={userProfile.email}
+                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors opacity-50 cursor-not-allowed"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      }}
+                      disabled
+                    />
+                    <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                      Email cannot be changed
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={userProfile.phone}
+                      onChange={handleProfileChange}
+                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      placeholder="+94 71 234 5678"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                        Account Status
+                      </label>
+                      <div className="flex items-center gap-2 px-4 py-3 border-2 rounded-xl" style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
+                      }}>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                          {userProfile.isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                        Account Role
+                      </label>
+                      <div className="px-4 py-3 border-2 rounded-xl" style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      }}>
+                        {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}
+                      </div>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full sm:w-auto px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                  >
+                    {loading ? 'Updating...' : 'Update Profile'}
+                  </Button>
+                </form>
+              )}
+
+              {activeTab === 'password' && (
+                <form onSubmit={handlePasswordUpdate} className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      New Password
+                    </label>
+                    <input
+                      type="password"
+                      name="newPassword"
+                      value={passwordData.newPassword}
+                      onChange={handlePasswordChange}
+                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      placeholder="Enter new password"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      Confirm New Password
+                    </label>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      value={passwordData.confirmPassword}
+                      onChange={handlePasswordChange}
+                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      placeholder="Confirm new password"
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full sm:w-auto px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                  >
+                    {loading ? 'Updating...' : 'Update Password'}
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
+    </div>
+  );
+}
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <Navigation />
+      
       <div className="py-8 sm:py-12 lg:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
