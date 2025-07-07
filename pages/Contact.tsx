@@ -1,18 +1,84 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../src/lib/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../src/lib/firebase';
 
 export default function Contact() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    // Validate form
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+      setError('Please fill in all required fields');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Save contact submission to Firebase
+      await addDoc(collection(db, 'contact_submissions'), {
+        ...formData,
+        userId: user?.uid || null,
+        userEmail: user?.email || formData.email,
+        createdAt: serverTimestamp(),
+        status: 'new',
+        type: 'contact_form'
+      });
+
+      setSuccess('Message sent successfully! We\'ll get back to you soon.');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+      setTimeout(() => setSuccess(''), 5000);
+    } catch (error: unknown) {
+      console.error('Error saving contact submission:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred while sending your message';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -101,12 +167,15 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Send us a Message</h2>
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>First Name</label>
                     <input
                       type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
@@ -122,6 +191,9 @@ export default function Contact() {
                     <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Last Name</label>
                     <input
                       type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
@@ -139,6 +211,9 @@ export default function Contact() {
                   <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Email</label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: '#B3B5BC', 
@@ -155,6 +230,9 @@ export default function Contact() {
                   <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Phone</label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: '#B3B5BC', 
@@ -171,6 +249,9 @@ export default function Contact() {
                   <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Subject</label>
                   <input
                     type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: '#B3B5BC', 
@@ -187,6 +268,9 @@ export default function Contact() {
                   <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Message</label>
                   <textarea
                     rows={6}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300 resize-none"
                     style={{ 
                       borderColor: '#B3B5BC', 
@@ -199,13 +283,17 @@ export default function Contact() {
                   />
                 </div>
                 
+                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                {success && <p className="text-green-500 text-sm mt-2">{success}</p>}
+                
                 <Button 
                   className="w-full py-4 sm:py-5 text-lg sm:text-xl font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0"
                   style={{ backgroundColor: '#FE5F16', color: '#FFFFFF' }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>
