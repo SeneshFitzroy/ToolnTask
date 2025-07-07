@@ -172,10 +172,28 @@ const Navigation = () => {
               {user ? (
                 // User is logged in
                 <>
-                  <span className="text-sm font-medium px-3 py-2 rounded-lg" 
-                        style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                    Welcome, {user.email?.split('@')[0]}
-                  </span>
+                  <Link href="/Profile"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-medium transition-all duration-300 hover:scale-105" 
+                    style={{ 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                      border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)';
+                    }}
+                  >
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" 
+                         style={{ backgroundColor: '#FF5E14' }}>
+                      {user.email?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                    <span>Profile</span>
+                  </Link>
                   <button 
                     onClick={handleSignOut}
                     className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
