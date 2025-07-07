@@ -225,26 +225,27 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Email</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Email *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
-                      borderColor: '#B3B5BC', 
-                      color: '#1A1818',
-                      backgroundColor: '#FFFFFF'
+                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#6B7280' : '#B3B5BC'}
                     placeholder="john@example.com"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: '#1A1818' }}>Phone</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Phone</label>
                   <input
                     type="tel"
                     name="phone"
@@ -252,12 +253,12 @@ export default function Contact() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
-                      borderColor: '#B3B5BC', 
-                      color: '#1A1818',
-                      backgroundColor: '#FFFFFF'
+                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
+                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#B3B5BC'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#6B7280' : '#B3B5BC'}
                     placeholder="+94 71 234 5678"
                   />
                 </div>
