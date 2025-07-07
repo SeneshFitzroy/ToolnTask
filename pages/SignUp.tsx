@@ -87,8 +87,8 @@ export default function SignUp() {
 
       console.log('User created and data saved to Firestore:', user.uid);
       
-      // Redirect to home page
-      router.push('/');
+      // Redirect to sign in page after successful registration
+      router.push('/SignIn?message=registration-success');
     } catch (error: unknown) {
       console.error('Error creating user:', error);
       const errorMessage = error instanceof Error ? error.message : 'An error occurred during registration';

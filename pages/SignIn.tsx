@@ -15,6 +15,7 @@ export default function SignIn() {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -23,7 +24,12 @@ export default function SignIn() {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Check for registration success message
+    if (router.query.message === 'registration-success') {
+      setSuccessMessage('Account created successfully! Please sign in to continue.');
+    }
+  }, [router.query]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -78,6 +84,11 @@ export default function SignIn() {
             </div>
 
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+              {successMessage && (
+                <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#DEF7EC', color: '#03543F' }}>
+                  {successMessage}
+                </div>
+              )}
               {error && (
                 <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
                   {error}
