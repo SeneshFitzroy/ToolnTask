@@ -167,6 +167,21 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Send us a Message</h2>
+              
+              {/* Success Message */}
+              {success && (
+                <div className="mb-6 p-4 rounded-xl border-l-4 border-green-500 bg-green-50 text-green-700">
+                  <p className="font-semibold">{success}</p>
+                </div>
+              )}
+              
+              {/* Error Message */}
+              {error && (
+                <div className="mb-6 p-4 rounded-xl border-l-4 border-red-500 bg-red-50 text-red-700">
+                  <p className="font-semibold">{error}</p>
+                </div>
+              )}
+              
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
