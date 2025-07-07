@@ -5,14 +5,13 @@ import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../src/lib/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../src/lib/firebase';
+import { db, auth } from '../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 export default function CreateTool() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [user] = useAuthState(auth);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
@@ -38,11 +37,17 @@ export default function CreateTool() {
   useEffect(() => {
     setMounted(true);
     
-    // Redirect to login if not authenticated
-    if (mounted && !user) {
-      router.push('/SignIn');
-    }
-  }, [mounted, user, router]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      
+      // Redirect to login if not authenticated
+      if (mounted && !user) {
+        router.push('/SignIn');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [mounted, router]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
