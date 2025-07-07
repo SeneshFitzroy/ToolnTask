@@ -13,6 +13,7 @@ const Navigation = () => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showCreateDropdown, setShowCreateDropdown] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -23,7 +24,20 @@ const Navigation = () => {
       setUser(user);
     });
 
-    return () => unsubscribe();
+    // Close dropdowns when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.create-dropdown')) {
+        setShowCreateDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      unsubscribe();
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleSignOut = async () => {
