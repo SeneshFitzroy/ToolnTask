@@ -6,10 +6,9 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { updateProfile, updatePassword } from 'firebase/auth';
+import { updateProfile, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
 import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function Profile() {
   const { theme } = useTheme();
