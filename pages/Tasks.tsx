@@ -4,7 +4,7 @@ import TaskCard from '../src/components/TaskCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
 interface Task {
@@ -41,15 +41,20 @@ export default function Tasks() {
     try {
       setLoading(true);
       const tasksCollection = collection(db, 'tasks');
-      const tasksQuery = query(tasksCollection, where('status', '==', 'active'), orderBy('createdAt', 'desc'));
+      // First, get all tasks ordered by createdAt, then filter active ones in client
+      const tasksQuery = query(tasksCollection, orderBy('createdAt', 'desc'));
       const tasksSnapshot = await getDocs(tasksQuery);
       
       const loadedTasks: Task[] = [];
       tasksSnapshot.forEach((doc) => {
-        loadedTasks.push({
-          id: doc.id,
-          ...doc.data()
-        } as Task);
+        const taskData = doc.data() as Task;
+        // Only add active tasks (or tasks without status field for backwards compatibility)
+        if (!taskData.status || taskData.status === 'active') {
+          loadedTasks.push({
+            ...taskData,
+            id: doc.id
+          });
+        }
       });
       
       setTasks(loadedTasks);

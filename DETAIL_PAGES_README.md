@@ -380,3 +380,23 @@ The detail pages now feature an innovative dynamic advertisement system with ver
 - All IDs 1-6 are available for testing
 
 The implementation provides a premium, professional user experience that perfectly matches your existing ToolNTask brand and design system while adding the detailed functionality users expect from a modern marketplace platform.
+
+## 🔧 **Troubleshooting**
+
+### **Firebase Index Issues**
+If you encounter Firebase index errors like:
+```
+FirebaseError: The query requires an index. You can create it here: https://console.firebase.google.com/...
+```
+
+**Solution:** The application has been optimized to avoid composite index requirements by:
+1. Using single-field queries with `orderBy('createdAt', 'desc')`
+2. Client-side filtering for status and other fields
+3. This approach reduces Firebase index requirements and improves performance
+
+**Alternative:** If you prefer server-side filtering, you can create the suggested indexes in Firebase Console, but it's not necessary for the current implementation.
+
+### **Common Firebase Errors**
+- **Permission Denied**: Ensure Firebase Security Rules allow read/write access
+- **Missing Collection**: Initialize data using the `initializeAllData()` function
+- **Authentication Issues**: Check Firebase Auth configuration in `src/lib/firebase.ts`

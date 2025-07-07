@@ -4,7 +4,7 @@ import ToolCard from '../src/components/ToolCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
 interface Tool {
@@ -41,15 +41,20 @@ export default function Tools() {
     try {
       setLoading(true);
       const toolsCollection = collection(db, 'tools');
-      const toolsQuery = query(toolsCollection, where('status', '==', 'active'), orderBy('createdAt', 'desc'));
+      // First, get all tools ordered by createdAt, then filter active ones in client
+      const toolsQuery = query(toolsCollection, orderBy('createdAt', 'desc'));
       const toolsSnapshot = await getDocs(toolsQuery);
       
       const loadedTools: Tool[] = [];
       toolsSnapshot.forEach((doc) => {
-        loadedTools.push({
-          id: doc.id,
-          ...doc.data()
-        } as Tool);
+        const toolData = doc.data() as Tool;
+        // Only add active tools (or tools without status field for backwards compatibility)
+        if (!toolData.status || toolData.status === 'active') {
+          loadedTools.push({
+            ...toolData,
+            id: doc.id
+          });
+        }
       });
       
       setTools(loadedTools);
