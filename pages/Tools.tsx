@@ -1,21 +1,64 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolCard from '../src/components/ToolCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import { db } from '../src/lib/firebase';
+
+interface Tool {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  brand: string;
+  condition: string;
+  available: boolean;
+  isPromoted?: boolean;
+  image: string;
+  category: string;
+  createdAt?: any;
+  updatedAt?: any;
+  status?: string;
+}
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    loadTools();
   }, []);
+
+  const loadTools = async () => {
+    try {
+      setLoading(true);
+      const toolsCollection = collection(db, 'tools');
+      const toolsQuery = query(toolsCollection, where('status', '==', 'active'), orderBy('createdAt', 'desc'));
+      const toolsSnapshot = await getDocs(toolsQuery);
+      
+      const loadedTools: Tool[] = [];
+      toolsSnapshot.forEach((doc) => {
+        loadedTools.push({
+          id: doc.id,
+          ...doc.data()
+        } as Tool);
+      });
+      
+      setTools(loadedTools);
+    } catch (error) {
+      console.error('Error loading tools:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -37,78 +80,8 @@ export default function Tools() {
     { key: 'equipment', label: 'Equipment', count: 1 }
   ];
 
-  const allTools = [
-    {
-      id: 1,
-      title: "Power Drill Set",
-      description: "Professional Bosch power drill with multiple bits. Perfect for home improvement projects.",
-      price: "Rs. 1,500/day",
-      brand: "Bosch",
-      condition: "Excellent",
-      available: true,
-      isPromoted: true,
-      image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop",
-      category: "power"
-    },
-    {
-      id: 2,
-      title: "Lawn Mower",
-      description: "Electric lawn mower in great condition. Ideal for medium to large gardens.",
-      price: "Rs. 2,000/day",
-      brand: "Honda",
-      condition: "Good",
-      available: true,
-      image: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop",
-      category: "garden"
-    },
-    {
-      id: 3,
-      title: "Angle Grinder",
-      description: "Heavy-duty angle grinder for metal cutting and grinding projects.",
-      price: "Rs. 1,200/day",
-      brand: "Makita",
-      condition: "Excellent",
-      available: false,
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop",
-      category: "power"
-    },
-    {
-      id: 4,
-      title: "Circular Saw",
-      description: "Professional circular saw for woodworking and construction projects.",
-      price: "Rs. 1,800/day",
-      brand: "DeWalt",
-      condition: "Good",
-      available: true,
-      image: "https://images.unsplash.com/photo-1609010697446-11f2155278f0?w=400&h=300&fit=crop",
-      category: "power"
-    },
-    {
-      id: 5,
-      title: "Pressure Washer",
-      description: "High-pressure washer for cleaning driveways, decks, and exterior surfaces.",
-      price: "Rs. 2,500/day",
-      brand: "Karcher",
-      condition: "Excellent",
-      available: true,
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=300&fit=crop",
-      category: "equipment"
-    },
-    {
-      id: 6,
-      title: "Tile Cutter",
-      description: "Professional tile cutting machine for bathroom and kitchen renovations.",
-      price: "Rs. 1,000/day",
-      brand: "Rubi",
-      condition: "Good",
-      available: false,
-      image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop",
-      category: "hand"
-    }
-  ];
-
   const getFilteredTools = () => {
-    let filtered = allTools;
+    let filtered = tools;
     
     // Apply category filter
     if (activeFilter !== 'all') {
@@ -370,20 +343,28 @@ export default function Tools() {
       <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {getFilteredTools().map((tool) => (
-              <ToolCard
-                key={tool.id}
-                id={tool.id}
-                title={tool.title}
-                description={tool.description}
-                price={tool.price}
-                brand={tool.brand}
-                condition={tool.condition}
-                available={tool.available}
-                isPromoted={tool.isPromoted}
-                image={tool.image}
-              />
-            ))}
+            {loading ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-lg sm:text-xl font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                  Loading tools...
+                </p>
+              </div>
+            ) : (
+              getFilteredTools().map((tool) => (
+                <ToolCard
+                  key={tool.id}
+                  id={tool.id}
+                  title={tool.title}
+                  description={tool.description}
+                  price={tool.price}
+                  brand={tool.brand}
+                  condition={tool.condition}
+                  available={tool.available}
+                  isPromoted={tool.isPromoted}
+                  image={tool.image}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
