@@ -7,6 +7,39 @@ import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../src/lib/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../src/lib/firebase';
+
+// Function to track tool views
+const trackToolView = async (toolId: string, userId?: string) => {
+  try {
+    await addDoc(collection(db, 'tool_views'), {
+      toolId,
+      userId: userId || null,
+      timestamp: serverTimestamp(),
+      type: 'view'
+    });
+  } catch (error) {
+    console.error('Error tracking tool view:', error);
+  }
+};
+
+// Function to track contact clicks
+const trackContactClick = async (toolId: string, userId?: string, action: string = 'contact') => {
+  try {
+    await addDoc(collection(db, 'tool_interactions'), {
+      toolId,
+      userId: userId || null,
+      action,
+      timestamp: serverTimestamp(),
+      type: 'contact'
+    });
+  } catch (error) {
+    console.error('Error tracking contact click:', error);
+  }
+};
 
 // Dynamic Advertisement Component - Left Side Only, No Content Coverage
 const DynamicAdvertisement = () => {
@@ -106,10 +139,23 @@ export default function ToolDetail() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted && id) {
+      // Track tool view on mount
+      trackToolView(id as string, user?.uid);
+    }
+  }, [mounted, id, user]);
+
+  const handleContactOwner = () => {
+    // Track contact button click
+    trackContactClick(id as string, user?.uid, 'contact');
+  };
 
   if (!mounted) return null;
 
@@ -307,6 +353,7 @@ export default function ToolDetail() {
                 <Button 
                   className="px-8 py-4 text-lg font-bold rounded-full hover:scale-105 transition-all duration-300"
                   style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
+                  onClick={handleContactOwner}
                 >
                   Contact Owner
                 </Button>
