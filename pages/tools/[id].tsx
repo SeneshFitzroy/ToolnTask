@@ -361,6 +361,7 @@ export default function ToolDetail() {
                   variant="outline"
                   className="px-8 py-4 text-lg font-bold rounded-full hover:scale-105 transition-all duration-300"
                   style={{ borderColor: '#001554', color: '#001554' }}
+                  onClick={() => trackContactClick(id as string, user?.uid, 'message')}
                 >
                   Message Owner
                 </Button>

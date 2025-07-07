@@ -140,6 +140,48 @@ const Navigation = () => {
             >
               Contact
             </Link>
+            
+            {/* Create Dropdown for authenticated users */}
+            {user && (
+              <div className="relative">
+                <button
+                  onClick={() => setShowCreateDropdown(!showCreateDropdown)}
+                  className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                  style={{ 
+                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                    backgroundColor: 'transparent'
+                  }}
+                >
+                  Create
+                  <span className="text-xs">▼</span>
+                </button>
+                
+                {showCreateDropdown && (
+                  <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-lg border-2 z-50"
+                       style={{ 
+                         backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC'
+                       }}>
+                    <Link 
+                      href="/CreateTool"
+                      className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-t-lg"
+                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
+                      onClick={() => setShowCreateDropdown(false)}
+                    >
+                      📧 Create Tool Listing
+                    </Link>
+                    <Link 
+                      href="/CreateTask"
+                      className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg"
+                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
+                      onClick={() => setShowCreateDropdown(false)}
+                    >
+                      📋 Create Task
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Right side - Theme toggle and Auth buttons */}

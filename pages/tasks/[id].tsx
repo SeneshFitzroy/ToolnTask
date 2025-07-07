@@ -1,9 +1,45 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
-import Image from 'next/image';
+import Logo from '../../src/components/Logo';
+import { Button } from '../../src/components/ui/button';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../src/lib/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../src/lib/firebase';
+
+// Function to track task views
+const trackTaskView = async (taskId: string, userId?: string) => {
+  try {
+    await addDoc(collection(db, 'task_views'), {
+      taskId,
+      userId: userId || null,
+      timestamp: serverTimestamp(),
+      type: 'view'
+    });
+  } catch (error) {
+    console.error('Error tracking task view:', error);
+  }
+};
+
+// Function to track application clicks
+const trackApplicationClick = async (taskId: string, userId?: string, action: string = 'apply') => {
+  try {
+    await addDoc(collection(db, 'task_interactions'), {
+      taskId,
+      userId: userId || null,
+      action,
+      timestamp: serverTimestamp(),
+      type: 'application'
+    });
+  } catch (error) {
+    console.error('Error tracking application click:', error);
+  }
+};
 
 // Dynamic Advertisement Component - Left Side Only, No Content Coverage
 const DynamicAdvertisement = () => {
@@ -102,10 +138,23 @@ export default function TaskDetail() {
   const { id } = router.query;
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+
+    // Track task view on mount
+    if (id && user) {
+      trackTaskView(id as string, user.uid);
+    }
+  }, [id, user]);
+
+  const handleApplyClick = () => {
+    // Track application click
+    if (id && user) {
+      trackApplicationClick(id as string, user.uid, 'apply');
+    }
+  };
 
   if (!mounted) return null;
 
@@ -296,6 +345,7 @@ export default function TaskDetail() {
               <button 
                 className="px-12 py-4 text-xl font-black text-white rounded-full hover:scale-105 transition-all duration-300 mb-4"
                 style={{ backgroundColor: '#FF5E14' }}
+                onClick={handleApplyClick}
               >
                 ✓ Apply for Task
               </button>
