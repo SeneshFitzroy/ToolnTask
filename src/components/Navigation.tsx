@@ -323,10 +323,21 @@ const Navigation = () => {
                 {user ? (
                   // User is logged in - Mobile
                   <>
-                    <div className="px-4 py-2 text-center text-sm font-medium" 
-                         style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      Welcome, {user.email?.split('@')[0]}
-                    </div>
+                    <Link href="/Profile"
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
+                      style={{ 
+                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                        backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                        border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                      }}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" 
+                           style={{ backgroundColor: '#FF5E14' }}>
+                        {user.email?.charAt(0).toUpperCase() || 'U'}
+                      </div>
+                      <span>My Profile</span>
+                    </Link>
                     <button 
                       onClick={() => {
                         handleSignOut();
