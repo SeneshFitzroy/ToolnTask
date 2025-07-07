@@ -185,12 +185,13 @@ export default function Contact() {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>First Name</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>First Name *</label>
                     <input
                       type="text"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
@@ -203,12 +204,13 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Last Name</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Last Name *</label>
                     <input
                       type="text"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
+                      required
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
