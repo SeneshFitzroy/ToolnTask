@@ -4,7 +4,7 @@ import ToolCard from '../src/components/ToolCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
 interface Tool {
@@ -18,8 +18,8 @@ interface Tool {
   isPromoted?: boolean;
   image: string;
   category: string;
-  createdAt?: any;
-  updatedAt?: any;
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
   status?: string;
 }
 
