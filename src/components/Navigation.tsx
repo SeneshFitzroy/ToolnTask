@@ -157,7 +157,7 @@ const Navigation = () => {
             
             {/* Create Dropdown for authenticated users */}
             {user && (
-              <div className="relative">
+              <div className="relative create-dropdown">
                 <button
                   onClick={() => setShowCreateDropdown(!showCreateDropdown)}
                   className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
@@ -182,7 +182,7 @@ const Navigation = () => {
                       style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
-                      📧 Create Tool Listing
+                      � Create Tool Listing
                     </Link>
                     <Link 
                       href="/CreateTask"
