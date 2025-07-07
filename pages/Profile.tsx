@@ -13,12 +13,166 @@ import { auth, db } from '../src/lib/firebase';
 export default function Profile() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [user, setUser] = useState<User | null>(null);
+  const [userProfile, setUserProfile] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    displayName: '',
+    createdAt: null,
+    isActive: true,
+    role: 'user'
+  });
+  const [passwordData, setPasswordData] = useState({
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [activeTab, setActiveTab] = useState('profile');
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        fetchUserProfile(user);
+      } else {
+        router.push('/SignIn');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+
+  const fetchUserProfile = async (user: User) => {
+    try {
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setUserProfile({
+          firstName: userData.firstName || '',
+          lastName: userData.lastName || '',
+          email: userData.email || user.email || '',
+          phone: userData.phone || '',
+          displayName: userData.displayName || user.displayName || '',
+          createdAt: userData.createdAt,
+          isActive: userData.isActive || true,
+          role: userData.role || 'user'
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    }
+  };
+
+  const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserProfile(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setPasswordData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleProfileUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (!user) return;
+
+    try {
+      // Update Firebase Auth profile
+      await updateProfile(user, {
+        displayName: `${userProfile.firstName} ${userProfile.lastName}`
+      });
+
+      // Update Firestore document
+      await updateDoc(doc(db, 'users', user.uid), {
+        firstName: userProfile.firstName,
+        lastName: userProfile.lastName,
+        phone: userProfile.phone,
+        displayName: `${userProfile.firstName} ${userProfile.lastName}`,
+        updatedAt: serverTimestamp()
+      });
+
+      setSuccess('Profile updated successfully!');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (error: unknown) {
+      console.error('Error updating profile:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred while updating profile';
+      setError(errorMessage);
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (!user) return;
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setError('New passwords do not match');
+      setLoading(false);
+      setTimeout(() => setError(''), 3000);
+      return;
+    }
+
+    if (passwordData.newPassword.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setLoading(false);
+      setTimeout(() => setError(''), 3000);
+      return;
+    }
+
+    try {
+      await updatePassword(user, passwordData.newPassword);
+      setSuccess('Password updated successfully!');
+      setPasswordData({
+        newPassword: '',
+        confirmPassword: ''
+      });
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (error: unknown) {
+      console.error('Error updating password:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred while updating password';
+      setError(errorMessage);
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto mb-4"></div>
+          <p style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
