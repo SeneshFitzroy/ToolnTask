@@ -1,21 +1,64 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { collection, getDocs, query, where, orderBy, Timestamp } from 'firebase/firestore';
+import { db } from '../src/lib/firebase';
+
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  time: string;
+  location: string;
+  isUrgent?: boolean;
+  isPromoted?: boolean;
+  image: string;
+  category: string;
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
+  status?: string;
+}
 
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    loadTasks();
   }, []);
+
+  const loadTasks = async () => {
+    try {
+      setLoading(true);
+      const tasksCollection = collection(db, 'tasks');
+      const tasksQuery = query(tasksCollection, where('status', '==', 'active'), orderBy('createdAt', 'desc'));
+      const tasksSnapshot = await getDocs(tasksQuery);
+      
+      const loadedTasks: Task[] = [];
+      tasksSnapshot.forEach((doc) => {
+        loadedTasks.push({
+          id: doc.id,
+          ...doc.data()
+        } as Task);
+      });
+      
+      setTasks(loadedTasks);
+    } catch (error) {
+      console.error('Error loading tasks:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -30,82 +73,16 @@ export default function Tasks() {
   };
 
   const filterOptions = [
-    { key: 'all', label: 'All Categories', count: 6 },
-    { key: 'cleaning', label: 'Cleaning', count: 1 },
-    { key: 'gardening', label: 'Gardening', count: 1 },
-    { key: 'repairs', label: 'Repairs', count: 1 },
-    { key: 'babysitting', label: 'Babysitting', count: 1 },
-    { key: 'other', label: 'Other', count: 2 }
-  ];
-
-  const allTasks = [
-    {
-      id: 1,
-      title: "Garden Maintenance",
-      description: "Looking for someone to help with weekly garden maintenance including weeding, pruning, and lawn care.",
-      price: "Rs. 5,000",
-      time: "2-3 hours",
-      location: "Colombo 03",
-      isUrgent: true,
-      isPromoted: true,
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop",
-      category: "gardening"
-    },
-    {
-      id: 2,
-      title: "House Cleaning",
-      description: "Need help with deep cleaning of 3-bedroom house. All supplies provided.",
-      price: "Rs. 8,000",
-      time: "4-5 hours",
-      location: "Kandy",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-      category: "cleaning"
-    },
-    {
-      id: 3,
-      title: "Babysitting Service",
-      description: "Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings.",
-      price: "Rs. 3,000",
-      time: "4 hours",
-      location: "Galle",
-      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop",
-      category: "babysitting"
-    },
-    {
-      id: 4,
-      title: "Furniture Assembly",
-      description: "Need help assembling IKEA furniture including wardrobe and desk.",
-      price: "Rs. 4,500",
-      time: "3 hours",
-      location: "Colombo 07",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop",
-      category: "repairs"
-    },
-    {
-      id: 5,
-      title: "Pet Walking",
-      description: "Looking for someone to walk my dog twice a day for a week.",
-      price: "Rs. 2,500",
-      time: "1 hour/day",
-      location: "Mount Lavinia",
-      image: "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=400&h=300&fit=crop",
-      category: "other"
-    },
-    {
-      id: 6,
-      title: "Cooking Assistance",
-      description: "Need help preparing meals for a family gathering of 20 people.",
-      price: "Rs. 6,000",
-      time: "5-6 hours",
-      location: "Negombo",
-      isUrgent: true,
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
-      category: "other"
-    }
+    { key: 'all', label: 'All Categories', count: tasks.length },
+    { key: 'cleaning', label: 'Cleaning', count: tasks.filter(t => t.category === 'cleaning').length },
+    { key: 'gardening', label: 'Gardening', count: tasks.filter(t => t.category === 'gardening').length },
+    { key: 'repairs', label: 'Repairs', count: tasks.filter(t => t.category === 'repairs').length },
+    { key: 'babysitting', label: 'Babysitting', count: tasks.filter(t => t.category === 'babysitting').length },
+    { key: 'other', label: 'Other', count: tasks.filter(t => t.category === 'other').length }
   ];
 
   const getFilteredTasks = () => {
-    let filtered = allTasks;
+    let filtered = tasks;
     
     // Apply category filter
     if (activeFilter !== 'all') {
@@ -368,20 +345,28 @@ export default function Tasks() {
       <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {getFilteredTasks().map((task) => (
-              <TaskCard
-                key={task.id}
-                id={task.id}
-                title={task.title}
-                description={task.description}
-                price={task.price}
-                time={task.time}
-                location={task.location}
-                isUrgent={task.isUrgent}
-                isPromoted={task.isPromoted}
-                image={task.image}
-              />
-            ))}
+            {loading ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-lg sm:text-xl font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                  Loading tasks...
+                </p>
+              </div>
+            ) : (
+              getFilteredTasks().map((task) => (
+                <TaskCard
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  price={task.price}
+                  time={task.time}
+                  location={task.location}
+                  isUrgent={task.isUrgent}
+                  isPromoted={task.isPromoted}
+                  image={task.image}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
