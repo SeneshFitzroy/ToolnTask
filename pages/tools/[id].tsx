@@ -8,9 +8,8 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../src/lib/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../src/lib/firebase';
+import { db, auth } from '../../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
