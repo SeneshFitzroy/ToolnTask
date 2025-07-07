@@ -2,11 +2,8 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
-import Logo from '../../src/components/Logo';
-import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
@@ -137,16 +134,24 @@ export default function TaskDetail() {
   const { id } = router.query;
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [user] = useAuthState(auth);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
 
-    // Track task view on mount
-    if (id && user) {
-      trackTaskView(id as string, user.uid);
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (mounted && id) {
+      // Track task view on mount
+      trackTaskView(id as string, user?.uid);
     }
-  }, [id, user]);
+  }, [mounted, id, user]);
 
   const handleApplyClick = () => {
     // Track application click
