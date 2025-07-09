@@ -176,7 +176,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
@@ -187,13 +187,13 @@ export default function Profile() {
               <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>My Profile</span>
               <Logo size="large" />
             </div>
-            <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
               Manage your account settings and preferences
             </p>
           </div>
 
           {/* Profile Card */}
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
             {/* Profile Header */}
             <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
