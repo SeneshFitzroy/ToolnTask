@@ -76,7 +76,7 @@ const Navigation = () => {
     <nav 
       className="shadow-lg sticky top-0 z-50 border-b border-opacity-20 transition-colors duration-300" 
       style={{ 
-        backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', 
+        backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF', 
         borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' 
       }}
     >
