@@ -28,7 +28,7 @@ const Footer = () => {
               <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Stay Connected with</span>
               <Logo size="large" />
             </div>
-            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
               Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
@@ -39,7 +39,7 @@ const Footer = () => {
                 style={{ 
                   borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
                   color: theme === 'dark' ? '#FFFFFF' : '#001554',
-                  backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF'
+                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF'
                 }}
                 onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
                 onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
