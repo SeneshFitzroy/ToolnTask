@@ -109,7 +109,7 @@ export default function SignUp() {
           <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Join</span>
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Register</span>
                 <Logo size="large" />
               </div>
               <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Create your account to get started</p>
@@ -259,7 +259,7 @@ export default function SignUp() {
                 className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" 
                 style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
               >
-                {loading ? 'Creating Account...' : 'Create Account'}
+                {loading ? 'Registering...' : 'Register'}
               </Button>
             </form>
 
