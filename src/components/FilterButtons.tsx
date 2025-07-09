@@ -36,7 +36,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
     <div className="w-full max-w-5xl mx-auto mb-6 filter-container">
       {/* Elegant Thin Wide Filter Widget */}
       <div className="p-1.5 rounded-full shadow-lg border" style={{ 
-        backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
+        backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
         borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
       }}>
         <div className="flex justify-between gap-1">
@@ -77,7 +77,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 onMouseDown={(e) => {
                   // Blue press effect
                   const target = e.currentTarget;
-                  target.style.backgroundColor = '#001554';
+                  target.style.backgroundColor = '#1a1a1a';
                   target.style.color = '#FFFFFF';
                   target.style.transform = 'scale(0.95)';
                   target.style.boxShadow = '0 4px 15px rgba(0, 21, 84, 0.4)';
