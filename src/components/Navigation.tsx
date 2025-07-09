@@ -246,7 +246,7 @@ const Navigation = () => {
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
                   >
-                    Sign In
+                    Login
                   </Link>
                   <Link href="/SignUp" 
                     className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
@@ -254,7 +254,7 @@ const Navigation = () => {
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
                   >
-                    Sign Up
+                    Register
                   </Link>
                 </>
               )}
@@ -394,7 +394,7 @@ const Navigation = () => {
                       onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Sign In
+                      Login
                     </Link>
                     <Link href="/SignUp" 
                       className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
@@ -403,7 +403,7 @@ const Navigation = () => {
                       onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#001554'}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Sign Up
+                      Register
                     </Link>
                   </>
                 )}
