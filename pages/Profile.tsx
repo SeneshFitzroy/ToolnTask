@@ -243,6 +243,17 @@ export default function Profile() {
                 >
                   Change Password
                 </button>
+                <button
+                  onClick={() => setActiveTab('settings')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                    activeTab === 'settings'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'settings' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                >
+                  Settings
+                </button>
               </nav>
             </div>
 
