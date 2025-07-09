@@ -66,7 +66,7 @@ const Navigation = () => {
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isActiveLink(href)) {
-      e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#001554';
+      e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#2D3748';
     }
   };
 
