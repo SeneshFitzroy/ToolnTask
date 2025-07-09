@@ -19,9 +19,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+    <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
       {/* Newsletter Section */}
-      <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
+      <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
