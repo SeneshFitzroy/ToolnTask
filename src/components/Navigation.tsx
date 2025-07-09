@@ -93,7 +93,7 @@ const Navigation = () => {
               href="/" 
               className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
               style={{ 
-                color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                 borderBottom: isActiveLink('/') ? '2px solid #FF5E14' : 'none'
               }} 
@@ -106,7 +106,7 @@ const Navigation = () => {
               href="/Tasks" 
               className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
               style={{ 
-                color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                 borderBottom: isActiveLink('/Tasks') ? '2px solid #FF5E14' : 'none'
               }} 
@@ -119,7 +119,7 @@ const Navigation = () => {
               href="/Tools" 
               className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
               style={{ 
-                color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                 borderBottom: isActiveLink('/Tools') ? '2px solid #FF5E14' : 'none'
               }} 
@@ -132,7 +132,7 @@ const Navigation = () => {
               href="/About" 
               className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
               style={{ 
-                color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                 borderBottom: isActiveLink('/About') ? '2px solid #FF5E14' : 'none'
               }} 
@@ -145,7 +145,7 @@ const Navigation = () => {
               href="/Contact" 
               className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
               style={{ 
-                color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                 backgroundColor: isActiveLink('/Contact') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                 borderBottom: isActiveLink('/Contact') ? '2px solid #FF5E14' : 'none'
               }} 
@@ -162,7 +162,7 @@ const Navigation = () => {
                   onClick={() => setShowCreateDropdown(!showCreateDropdown)}
                   className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
                   style={{ 
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554',
                     backgroundColor: 'transparent'
                   }}
                 >
@@ -173,13 +173,13 @@ const Navigation = () => {
                 {showCreateDropdown && (
                   <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-lg border-2 z-50"
                        style={{ 
-                         backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                         backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
                          borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC'
                        }}>
                     <Link 
                       href="/CreateTool"
                       className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-t-lg"
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
+                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
                       � Create Tool Listing
@@ -187,7 +187,7 @@ const Navigation = () => {
                     <Link 
                       href="/CreateTask"
                       className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg"
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}
+                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
                       📋 Create Task
@@ -208,7 +208,7 @@ const Navigation = () => {
                   <Link href="/Profile"
                     className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-medium transition-all duration-300 hover:scale-105" 
                     style={{ 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
                       border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
                     }}
@@ -270,9 +270,9 @@ const Navigation = () => {
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} />
+                <X className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }} />
               ) : (
-                <Menu className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} />
+                <Menu className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }} />
               )}
             </button>
           </div>
@@ -286,7 +286,7 @@ const Navigation = () => {
                 href="/" 
                 className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
                 style={{ 
-                  color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                   backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                   borderLeft: isActiveLink('/') ? '3px solid #FF5E14' : 'none'
                 }} 
@@ -300,7 +300,7 @@ const Navigation = () => {
                 href="/Tasks" 
                 className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
                 style={{ 
-                  color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                   backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                   borderLeft: isActiveLink('/Tasks') ? '3px solid #FF5E14' : 'none'
                 }} 
@@ -314,7 +314,7 @@ const Navigation = () => {
                 href="/Tools" 
                 className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
                 style={{ 
-                  color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                   backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                   borderLeft: isActiveLink('/Tools') ? '3px solid #FF5E14' : 'none'
                 }} 
@@ -328,7 +328,7 @@ const Navigation = () => {
                 href="/About" 
                 className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
                 style={{ 
-                  color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                   backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                   borderLeft: isActiveLink('/About') ? '3px solid #FF5E14' : 'none'
                 }} 
@@ -342,7 +342,7 @@ const Navigation = () => {
                 href="/Contact" 
                 className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
                 style={{ 
-                  color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#1A1818'),
+                  color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#001554'),
                   backgroundColor: isActiveLink('/Contact') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
                   borderLeft: isActiveLink('/Contact') ? '3px solid #FF5E14' : 'none'
                 }} 
@@ -359,7 +359,7 @@ const Navigation = () => {
                     <Link href="/Profile"
                       className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
                       style={{ 
-                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                        color: theme === 'dark' ? '#FFFFFF' : '#001554',
                         backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
                         border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
                       }}
