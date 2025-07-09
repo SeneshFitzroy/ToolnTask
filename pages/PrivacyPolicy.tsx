@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
       <Navigation />
       
       {/* Header Section */}
-      <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
+      <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Privacy Policy</h1>
