@@ -284,12 +284,12 @@ export default function Profile() {
                         onChange={handleProfileChange}
                         className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
                         style={{ 
-                          borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                          backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                          borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                           color: theme === 'dark' ? '#FFFFFF' : '#001554'
                         }}
                         onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                        onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
                         placeholder="Enter your first name"
                         required
                       />
