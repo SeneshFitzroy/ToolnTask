@@ -195,7 +195,7 @@ export default function Tasks() {
           {/* Compact Search Bar Container */}
           <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
                style={{ 
-                 backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF',
+                 backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
                  boxShadow: theme === 'dark' 
                    ? '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 94, 20, 0.08)'
