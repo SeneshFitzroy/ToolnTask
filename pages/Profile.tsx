@@ -228,7 +228,7 @@ export default function Profile() {
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
-                  style={{ color: activeTab === 'profile' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                  style={{ color: activeTab === 'profile' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
                   Profile Information
                 </button>
@@ -239,7 +239,7 @@ export default function Profile() {
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
-                  style={{ color: activeTab === 'password' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                  style={{ color: activeTab === 'password' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
                   Change Password
                 </button>
@@ -250,7 +250,7 @@ export default function Profile() {
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
-                  style={{ color: activeTab === 'settings' ? '#FF5E14' : (theme === 'dark' ? '#B3B5BC' : '#6B7280') }}
+                  style={{ color: activeTab === 'settings' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
                   Settings
                 </button>
