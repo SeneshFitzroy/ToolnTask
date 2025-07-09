@@ -101,7 +101,7 @@ const DynamicAdvertisement = () => {
             <p className="text-base font-bold mb-2" style={{ color: '#FF5E14' }}>
               Premium Left Side
             </p>
-            <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
               280 × 480 px
             </p>
           </div>
