@@ -196,7 +196,7 @@ export default function Profile() {
           <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
             {/* Profile Header */}
-            <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
+            <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
               <div className="flex items-center gap-4">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold" style={{ backgroundColor: '#FF5E14' }}>
                   {userProfile.firstName ? userProfile.firstName.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
@@ -205,12 +205,12 @@ export default function Profile() {
                   <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {userProfile.displayName || user?.displayName || 'User'}
                   </h2>
-                  <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                     {userProfile.email || user?.email}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
                     <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    <span className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    <span className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                       {userProfile.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </div>
