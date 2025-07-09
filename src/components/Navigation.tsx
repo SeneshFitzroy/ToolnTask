@@ -2,14 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
 
 const Navigation = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -198,31 +198,8 @@ const Navigation = () => {
             )}
           </div>
 
-          {/* Right side - Theme toggle and Auth buttons */}
+          {/* Right side - Auth buttons */}
           <div className="flex items-center space-x-3 sm:space-x-3 flex-shrink-0">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2.5 rounded-lg transition-all duration-300 hover:scale-105"
-              style={{ 
-                backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5',
-                border: `1px solid ${theme === 'dark' ? '#444444' : 'transparent'}`
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5';
-              }}
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-5 w-5" style={{ color: '#FF5E14' }} />
-              ) : (
-                <Moon className="h-5 w-5" style={{ color: '#001554' }} />
-              )}
-            </button>
-
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-3">
               {user ? (
