@@ -67,7 +67,7 @@ const WorkerAnimation = () => {
       <div 
         className="absolute inset-8 rounded-full shadow-2xl flex items-center justify-center overflow-hidden border-2 transition-all duration-300"
         style={{ 
-          backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+          backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
           borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
         }}
       >

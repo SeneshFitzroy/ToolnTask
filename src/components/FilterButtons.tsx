@@ -36,7 +36,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
     <div className="w-full max-w-5xl mx-auto mb-6 filter-container">
       {/* Elegant Thin Wide Filter Widget */}
       <div className="p-1.5 rounded-full shadow-lg border" style={{ 
-        backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+        backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
         borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
       }}>
         <div className="flex justify-between gap-1">

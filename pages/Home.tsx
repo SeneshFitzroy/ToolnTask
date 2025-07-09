@@ -182,7 +182,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
-              <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+              <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
                 <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight" style={{ color: '#001554' }}>
@@ -435,14 +435,14 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-3 sm:py-4 md:py-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-3 sm:py-4 md:py-6" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {getFilteredCards()}
@@ -455,10 +455,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl border-2 group hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
-                 backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                 backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
                  background: theme === 'dark' 
-                   ? 'linear-gradient(135deg, #1A1818 0%, #1F1F1F 50%, #1A1818 100%)' 
+                   ? 'linear-gradient(135deg, #001554 0%, #1F1F1F 50%, #001554 100%)' 
                    : 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
                  boxShadow: theme === 'dark' 
                    ? '0 20px 40px rgba(255, 94, 20, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
@@ -516,7 +516,7 @@ export default function Home() {
                 
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mb-1 sm:mb-2 tracking-tight leading-tight" 
                     style={{ 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       textShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(0,0,0,0.1)'
                     }}>
                   Get Your First Task{' '}
@@ -592,7 +592,7 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
         {/* Interactive Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
@@ -605,7 +605,7 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Trusted by Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
@@ -636,7 +636,7 @@ export default function Home() {
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   {stat.label}
                 </h3>
               </div>
@@ -655,10 +655,10 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
               <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
@@ -703,7 +703,7 @@ export default function Home() {
                 {/* Simple Step Card */}
                 <div 
                   className="relative p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
-                  style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}
+                  style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}
                 >
                   {/* Step Number */}
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl mx-auto mb-4 shadow-lg" style={{ backgroundColor: step.color }}>
@@ -716,7 +716,7 @@ export default function Home() {
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {step.title}
                   </h3>
                   
@@ -743,7 +743,7 @@ export default function Home() {
           
           {/* Bottom CTA */}
           <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
               <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
               <span className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Ready to get started? It only takes 2 minutes to begin!

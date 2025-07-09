@@ -19,13 +19,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+    <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
       {/* Newsletter Section */}
       <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Stay Connected with</span>
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Stay Connected with</span>
               <Logo size="large" />
             </div>
             <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
@@ -38,8 +38,8 @@ const Footer = () => {
                 className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-base"
                 style={{ 
                   borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
-                  color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
-                  backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF'
+                  color: theme === 'dark' ? '#FFFFFF' : '#001554',
+                  backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF'
                 }}
                 onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
                 onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
@@ -58,7 +58,7 @@ const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="py-16" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-16" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
             
@@ -76,15 +76,15 @@ const Footer = () => {
               <div className="flex flex-wrap gap-6 mb-8">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5" style={{ color: '#FE5F16' }} />
-                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>5,000+ Members</span>
+                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>5,000+ Members</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5" style={{ color: '#FF5E14' }} />
-                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>4.8★ Rating</span>
+                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>4.8★ Rating</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Heart className="w-5 h-5" style={{ color: '#FE5F16' }} />
-                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>100% Secure</span>
+                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>100% Secure</span>
                 </div>
               </div>
 
@@ -109,7 +109,7 @@ const Footer = () => {
                     }}
                     aria-label={social.label}
                   >
-                    <social.icon className="w-6 h-6 transition-colors group-hover:text-white" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }} />
+                    <social.icon className="w-6 h-6 transition-colors group-hover:text-white" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }} />
                   </div>
                 ))}
               </div>
@@ -117,7 +117,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Explore</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Explore</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/Tasks', label: 'Browse Tasks' },
@@ -143,7 +143,7 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Legal</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/PrivacyPolicy', label: 'Privacy Policy' },
@@ -169,7 +169,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Get in Touch</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Get in Touch</h3>
               <div className="space-y-4">
                 {[
                   { icon: Phone, text: '+94 11 123 4567', href: 'tel:+94111234567' },

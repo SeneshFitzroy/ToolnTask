@@ -141,7 +141,7 @@ export default function Tools() {
           
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Explore{' '}
             </span>
             <span className="relative inline-block">
@@ -189,12 +189,12 @@ export default function Tools() {
       </div>
 
       {/* Search Section */}
-      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Compact Search Bar Container */}
           <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
                style={{ 
-                 backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF',
+                 backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
                  boxShadow: theme === 'dark' 
                    ? '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 94, 20, 0.08)'
@@ -214,7 +214,7 @@ export default function Tools() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   onFocus={(e) => {
                     e.currentTarget.style.borderColor = '#FF5E14';

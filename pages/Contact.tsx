@@ -118,7 +118,7 @@ export default function Contact() {
           
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Contact{' '}
             </span>
             <span className="relative inline-block">
@@ -170,8 +170,8 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
-            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Send us a Message</h2>
+            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Send us a Message</h2>
               
               {/* Success Message */}
               {success && (
@@ -190,7 +190,7 @@ export default function Contact() {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>First Name *</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>First Name *</label>
                     <input
                       type="text"
                       name="firstName"
@@ -200,7 +200,7 @@ export default function Contact() {
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                        color: theme === 'dark' ? '#FFFFFF' : '#001554',
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                       }}
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -209,7 +209,7 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Last Name *</label>
+                    <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Last Name *</label>
                     <input
                       type="text"
                       name="lastName"
@@ -219,7 +219,7 @@ export default function Contact() {
                       className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                        color: theme === 'dark' ? '#FFFFFF' : '#001554',
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                       }}
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -230,7 +230,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Email *</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Email *</label>
                   <input
                     type="email"
                     name="email"
@@ -240,7 +240,7 @@ export default function Contact() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -250,7 +250,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Phone</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Phone</label>
                   <input
                     type="tel"
                     name="phone"
@@ -259,7 +259,7 @@ export default function Contact() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -269,7 +269,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Subject</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Subject</label>
                   <input
                     type="text"
                     name="subject"
@@ -278,7 +278,7 @@ export default function Contact() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300"
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -288,7 +288,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Message *</label>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Message *</label>
                   <textarea
                     rows={6}
                     name="message"
@@ -298,7 +298,7 @@ export default function Contact() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none transition-all duration-300 resize-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC', 
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
                     }}
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FE5F16'}
@@ -325,24 +325,24 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8 sm:space-y-10">
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Contact Information</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#001554' }}>Contact Information</h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FE5F16' }}>
                       <span className="text-white text-xl">📍</span>
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Address</h3>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#001554' }}>Address</h3>
                       <p className="text-lg" style={{ color: '#B3B5BC' }}>123, Galle Road, Colombo 03, Sri Lanka</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
                     <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
-                      <span className="text-xl" style={{ color: '#1A1818' }}>📞</span>
+                      <span className="text-xl" style={{ color: '#001554' }}>📞</span>
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Phone</h3>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#001554' }}>Phone</h3>
                       <p className="text-lg" style={{ color: '#B3B5BC' }}>+94 11 123 4567</p>
                     </div>
                   </div>
@@ -352,7 +352,7 @@ export default function Contact() {
                       <span className="text-white text-xl">✉️</span>
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Email</h3>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#001554' }}>Email</h3>
                       <p className="text-lg" style={{ color: '#B3B5BC' }}>hello@toolntask.lk</p>
                     </div>
                   </div>
@@ -362,7 +362,7 @@ export default function Contact() {
                       <span className="text-white text-xl">🕒</span>
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg mb-2" style={{ color: '#1A1818' }}>Business Hours</h3>
+                      <h3 className="font-bold text-lg mb-2" style={{ color: '#001554' }}>Business Hours</h3>
                       <p className="text-lg" style={{ color: '#B3B5BC' }}>Mon - Fri: 9:00 AM - 6:00 PM</p>
                       <p className="text-lg" style={{ color: '#B3B5BC' }}>Sat: 9:00 AM - 2:00 PM</p>
                     </div>
@@ -372,22 +372,22 @@ export default function Contact() {
 
               {/* FAQ Section */}
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#1A1818' }}>Frequently Asked Questions</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#001554' }}>Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
                     <div className="flex items-center gap-1">
-                      <span className="font-bold text-lg" style={{ color: '#1A1818' }}>How do I start using</span>
+                      <span className="font-bold text-lg" style={{ color: '#001554' }}>How do I start using</span>
                       <Logo size="small" />
-                      <span className="font-bold text-lg" style={{ color: '#1A1818' }}>?</span>
+                      <span className="font-bold text-lg" style={{ color: '#001554' }}>?</span>
                     </div>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>Simply create an account and start browsing available tasks or tools in your area.</p>
                   </div>
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FF5E14' }}>
-                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>Is there a service fee?</h3>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#001554' }}>Is there a service fee?</h3>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>We charge a small service fee to maintain the platform and ensure quality service.</p>
                   </div>
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#001554' }}>
-                    <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1818' }}>How are payments handled?</h3>
+                    <h3 className="font-bold text-lg mb-3" style={{ color: '#001554' }}>How are payments handled?</h3>
                     <p className="text-lg leading-relaxed" style={{ color: '#B3B5BC' }}>All payments are processed securely through our platform for your protection.</p>
                   </div>
                 </div>
