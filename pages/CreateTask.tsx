@@ -395,7 +395,8 @@ export default function CreateTask() {
                 <button
                   type="button"
                   onClick={addRequirement}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                  className="px-4 py-2 text-white rounded-xl hover:bg-orange-600"
+                  style={{ backgroundColor: '#FF5E14' }}
                 >
                   Add Requirement
                 </button>
