@@ -166,10 +166,10 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto mb-4"></div>
-          <p style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Loading...</p>
+          <p style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Loading...</p>
         </div>
       </div>
     );
@@ -184,7 +184,7 @@ export default function Profile() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>My Profile</span>
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>My Profile</span>
               <Logo size="large" />
             </div>
             <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
@@ -202,7 +202,7 @@ export default function Profile() {
                   {userProfile.firstName ? userProfile.firstName.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     {userProfile.displayName || user?.displayName || 'User'}
                   </h2>
                   <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
@@ -286,7 +286,7 @@ export default function Profile() {
                         style={{ 
                           borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                           backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                          color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                         }}
                         onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                         onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
@@ -307,7 +307,7 @@ export default function Profile() {
                         style={{ 
                           borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                           backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                          color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                         }}
                         onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                         onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
@@ -329,7 +329,7 @@ export default function Profile() {
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
                       disabled
                     />
@@ -351,7 +351,7 @@ export default function Profile() {
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
@@ -370,7 +370,7 @@ export default function Profile() {
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF'
                       }}>
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                        <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                           {userProfile.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </div>
@@ -382,7 +382,7 @@ export default function Profile() {
                       <div className="px-4 py-3 border-2 rounded-xl" style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}>
                         {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}
                       </div>
@@ -415,7 +415,7 @@ export default function Profile() {
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
@@ -437,7 +437,7 @@ export default function Profile() {
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
@@ -461,7 +461,7 @@ export default function Profile() {
               {activeTab === 'settings' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                       Theme Settings
                     </h3>
                     <div className="space-y-4">
@@ -478,7 +478,7 @@ export default function Profile() {
                             style={{ 
                               backgroundColor: theme === 'light' ? '#FFF7ED' : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
                               borderColor: theme === 'light' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#E2E8F0'),
-                              color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                              color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                             }}
                           >
                             <Sun className="h-5 w-5" style={{ color: '#FF5E14' }} />
@@ -492,7 +492,7 @@ export default function Profile() {
                             style={{ 
                               backgroundColor: theme === 'dark' ? '#2a2a2a' : (theme === 'light' ? '#F9FAFB' : '#FFFFFF'),
                               borderColor: theme === 'dark' ? '#FF5E14' : (theme === 'light' ? '#444444' : '#E2E8F0'),
-                              color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                              color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                             }}
                           >
                             <Moon className="h-5 w-5" style={{ color: '#FF5E14' }} />
