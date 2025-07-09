@@ -381,6 +381,40 @@ The detail pages now feature an innovative dynamic advertisement system with ver
 
 The implementation provides a premium, professional user experience that perfectly matches your existing ToolNTask brand and design system while adding the detailed functionality users expect from a modern marketplace platform.
 
+## 🎨 **Recent UI/UX Improvements (Updated)**
+
+### **Theme Toggle Moved to Profile Settings**
+- **Location**: Moved from Navigation bar to Profile page → Settings tab
+- **Better UX**: Cleaner navigation bar, settings organized in logical location
+- **Visual Design**: Professional toggle buttons with Sun/Moon icons
+- **Auto-save**: Theme preference saved automatically across sessions
+
+### **Authentication Label Updates**
+- **"Sign In" → "Login"**: Updated throughout the application
+- **"Sign Up" → "Register"**: Updated throughout the application
+- **Consistent Messaging**: All authentication-related text updated
+- **Cross-references**: Updated redirect links and success messages
+
+### **Color Scheme Standardization**
+- **Primary Dark Color**: Changed from `#1A1818` to `#001554` (brand dark blue)
+- **Background Colors**: Updated `#0C0F16` to `#001554` for dark mode consistency
+- **Brand Consistency**: All dark elements now use the signature dark blue
+- **Applied Across**: Navigation, forms, cards, backgrounds, and all UI components
+
+### **Files Updated**
+- **Navigation**: `src/components/Navigation.tsx` - Removed theme toggle, updated colors
+- **Profile**: `pages/Profile.tsx` - Added Settings tab with theme toggle
+- **Authentication**: `pages/SignIn.tsx` & `pages/SignUp.tsx` - Updated labels and colors
+- **Forms**: `pages/CreateTask.tsx` & `pages/CreateTool.tsx` - Updated color scheme
+- **Global**: All `.tsx` files updated for color consistency
+
+### **User Experience Enhancements**
+- **Cleaner Navigation**: Removed theme toggle clutter from main navigation
+- **Organized Settings**: Theme preferences logically placed in Profile settings
+- **Consistent Branding**: Dark blue (#001554) used consistently across all dark elements
+- **Clear Authentication**: "Login" and "Register" are more intuitive than "Sign In/Sign Up"
+- **Professional Design**: Enhanced visual hierarchy and color consistency
+
 ## 🔧 **Troubleshooting**
 
 ### **Firebase Index Issues**
