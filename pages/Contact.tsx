@@ -170,7 +170,7 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
-            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
+            <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
               <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Send us a Message</h2>
               
               {/* Success Message */}
