@@ -184,7 +184,7 @@ export default function SignUp() {
               </div>
               
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Phone Number</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
@@ -204,7 +204,7 @@ export default function SignUp() {
               </div>
               
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Password</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Password</label>
                 <input
                   type="password"
                   name="password"
