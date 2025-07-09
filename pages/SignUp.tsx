@@ -267,7 +267,7 @@ export default function SignUp() {
               <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Already have an account?{' '}
                 <Link href="/SignIn" className="font-semibold hover:underline" style={{ color: '#FF5E14' }}>
-                  Sign in
+                  Login
                 </Link>
               </p>
             </div>
