@@ -25,9 +25,9 @@ export default function About() {
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
-          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#2D3748', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}></div>
           <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
-          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#2D3748', animationDelay: '3s', animationDuration: '4.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -74,7 +74,7 @@ export default function About() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#2D3748' }}>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#1a1a1a' }}>
                 98%
               </div>
               <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
@@ -99,7 +99,7 @@ export default function About() {
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">
             <div className="p-6 sm:p-8 lg:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Our Mission</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 
@@ -116,33 +116,33 @@ export default function About() {
 
           {/* Values Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                 <span className="text-xl">🎯</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Trust & Safety</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Trust & Safety</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Every user is verified, and we maintain high standards for safety and reliability 
                 in all transactions.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                 <span className="text-xl">🌱</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Sustainability</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Sustainability</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#2D3748' }}>
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#1a1a1a' }}>
                 <span className="text-xl">👥</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Community</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Community</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
@@ -152,14 +152,14 @@ export default function About() {
 
           {/* Advertisement Spaces */}
           <div className="mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
               Advertisements
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Advertisement Space 1 */}
               <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
-                     backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF',
+                     backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                      borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
                    }}>
                 <div className="text-center">
@@ -167,7 +167,7 @@ export default function About() {
                        style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
                     <span className="text-white text-xl">📸</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
                     Advertisement Space
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
@@ -184,15 +184,15 @@ export default function About() {
               {/* Advertisement Space 2 */}
               <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
-                     backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF',
-                     borderColor: theme === 'dark' ? '#2D3748' : '#2D3748'
+                     backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                     borderColor: theme === 'dark' ? '#1a1a1a' : '#1a1a1a'
                    }}>
                 <div className="text-center">
                   <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" 
-                       style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#2D3748' }}>
+                       style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#1a1a1a' }}>
                     <span className="text-white text-xl">🎯</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
                     Advertisement Space
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
@@ -209,7 +209,7 @@ export default function About() {
               {/* Advertisement Space 3 */}
               <div className="relative p-6 rounded-2xl shadow-xl border-2 border-dashed hover:scale-105 transition-all duration-300" 
                    style={{ 
-                     backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF',
+                     backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                      borderColor: theme === 'dark' ? '#FF5E14' : '#FF5E14'
                    }}>
                 <div className="text-center">
@@ -217,7 +217,7 @@ export default function About() {
                        style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FF5E14' }}>
                     <span className="text-white text-xl">💼</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
                     Advertisement Space
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
@@ -235,9 +235,9 @@ export default function About() {
 
           {/* Team Section */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Meet Our Team</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Meet Our Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
-              <div className="p-4 sm:p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
+              <div className="p-4 sm:p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 overflow-hidden shadow-lg border-3 relative" style={{ borderColor: '#FF5E14' }}>
                   {!ceoImageError ? (
                     <Image 
@@ -254,15 +254,15 @@ export default function About() {
                     </div>
                   )}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Mandira De Silva</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Mandira De Silva</h3>
                 <p className="font-semibold mb-2" style={{ color: '#FF5E14' }}>Founder & CEO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
                 </p>
               </div>
 
-              <div className="p-4 sm:p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 overflow-hidden shadow-lg border-3 relative" style={{ borderColor: '#2D3748' }}>
+              <div className="p-4 sm:p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 overflow-hidden shadow-lg border-3 relative" style={{ borderColor: '#1a1a1a' }}>
                   {!ctoImageError ? (
                     <Image 
                       src="/cto.jpg" 
@@ -279,8 +279,8 @@ export default function About() {
                     </div>
                   )}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Senesh Fitzroy</h3>
-                <p className="font-semibold mb-2" style={{ color: '#2D3748' }}>CTO</p>
+                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Senesh Fitzroy</h3>
+                <p className="font-semibold mb-2" style={{ color: '#1a1a1a' }}>CTO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Tech enthusiast dedicated to creating seamless user experiences.
                 </p>
