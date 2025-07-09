@@ -27,7 +27,7 @@ export default function SignIn() {
     
     // Check for registration success message
     if (router.query.message === 'registration-success') {
-      setSuccessMessage('Account created successfully! Please sign in to continue.');
+      setSuccessMessage('Account created successfully! Please login to continue.');
     }
   }, [router.query]);
 
