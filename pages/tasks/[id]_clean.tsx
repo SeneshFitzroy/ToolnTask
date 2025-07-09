@@ -103,7 +103,7 @@ export default function TaskDetail() {
                   <span className="text-2xl font-black" style={{ color: '#FF5E14' }}>
                     {task.price}
                   </span>
-                  <span className="px-4 py-2 text-sm font-bold text-white rounded-full" style={{ backgroundColor: '#001554' }}>
+                  <span className="px-4 py-2 text-sm font-bold text-white rounded-full" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}>
                     {task.category}
                   </span>
                 </div>
@@ -166,7 +166,7 @@ export default function TaskDetail() {
                 <span className="text-3xl font-black" style={{ color: '#FF5E14' }}>
                   {task.price}
                 </span>
-                <span className="px-4 py-2 text-sm font-bold text-white rounded-full" style={{ backgroundColor: '#001554' }}>
+                <span className="px-4 py-2 text-sm font-bold text-white rounded-full" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}>
                   {task.category}
                 </span>
                 {task.urgent && (
@@ -188,7 +188,7 @@ export default function TaskDetail() {
               </button>
               <div className="flex gap-4 justify-center">
                 <button className="px-8 py-3 text-lg font-bold rounded-full border-2 hover:scale-105 transition-all duration-300"
-                        style={{ borderColor: '#001554', color: '#001554' }}>
+                        style={{ borderColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                   Message Creator
                 </button>
               </div>
@@ -297,7 +297,7 @@ export default function TaskDetail() {
                     <p className="text-xl font-black" style={{ color: '#FF5E14' }}>
                       {similarTask.price}
                     </p>
-                    <span className="px-3 py-1 text-sm font-bold text-white rounded-full" style={{ backgroundColor: '#001554' }}>
+                    <span className="px-3 py-1 text-sm font-bold text-white rounded-full" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}>
                       {similarTask.category}
                     </span>
                   </div>

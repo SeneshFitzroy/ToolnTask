@@ -200,7 +200,7 @@ export default function ToolDetail() {
                 <Button 
                   variant="outline"
                   className="px-8 py-4 text-lg font-bold rounded-full hover:scale-105 transition-all duration-300"
-                  style={{ borderColor: '#001554', color: '#001554' }}
+                  style={{ borderColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}
                 >
                   Message Owner
                 </Button>

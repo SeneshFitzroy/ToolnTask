@@ -464,7 +464,7 @@ export default function TaskDetail() {
                     <p className="text-xl font-black" style={{ color: '#FF5E14' }}>
                       {similarTask.price}
                     </p>
-                    <span className="px-3 py-1 text-sm font-bold text-white rounded-full" style={{ backgroundColor: '#001554' }}>
+                    <span className="px-3 py-1 text-sm font-bold text-white rounded-full" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}>
                       {similarTask.category}
                     </span>
                   </div>
