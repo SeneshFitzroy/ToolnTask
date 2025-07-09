@@ -170,7 +170,7 @@ export default function CreateTask() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-12 sm:py-16 lg:py-20">
@@ -179,12 +179,12 @@ export default function CreateTask() {
             <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Create New Task
             </h1>
-            <p className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
               Post a task and find the right person for the job
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+          <div className="rounded-3xl shadow-xl p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             {/* Success Message */}
             {success && (
               <div className="mb-6 p-4 rounded-xl border-l-4 border-green-500 bg-green-50 text-green-700">
@@ -213,8 +213,8 @@ export default function CreateTask() {
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., House Cleaning Service"
@@ -233,8 +233,8 @@ export default function CreateTask() {
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Colombo 03"
