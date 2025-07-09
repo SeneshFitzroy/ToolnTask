@@ -189,9 +189,9 @@ const WorkerAnimation = () => {
       
       {/* Enhanced floating particles */}
       <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-orange-400 rounded-full animate-ping opacity-60"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-blue-600 rounded-full animate-ping opacity-60" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-orange-600 rounded-full animate-ping opacity-60" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-orange-500 rounded-full animate-ping opacity-60" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/3 left-1/3 w-1.5 h-1.5 bg-blue-700 rounded-full animate-ping opacity-60" style={{ animationDelay: '3s' }}></div>
+      <div className="absolute top-1/3 left-1/3 w-1.5 h-1.5 bg-orange-700 rounded-full animate-ping opacity-60" style={{ animationDelay: '3s' }}></div>
       <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-orange-600 rounded-full animate-ping opacity-60" style={{ animationDelay: '4s' }}></div>
 
       {/* Interactive connection lines */}

@@ -54,29 +54,32 @@ export default function TermsAndConditions() {
             <div className="flex justify-center gap-4 mb-6">
               <button
                 onClick={() => setShowTOC(!showTOC)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}
               >
                 📋 Table of Contents
               </button>
               <button
                 onClick={() => window.print()}
-                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+                style={{ backgroundColor: '#FF5E14' }}
               >
                 🖨️ Print
               </button>
             </div>
 
             {/* Terms Acceptance Widget */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 max-w-2xl mx-auto">
+            <div className="rounded-xl shadow-lg p-6 max-w-2xl mx-auto" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
               <div className="flex items-center gap-4">
                 <input
                   type="checkbox"
                   id="accept-terms"
                   checked={acceptedTerms}
                   onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="w-5 h-5 text-blue-600 rounded"
+                  className="w-5 h-5 rounded"
+                  style={{ accentColor: '#FF5E14' }}
                 />
-                <label htmlFor="accept-terms" className="text-slate-700 dark:text-gray-300">
+                <label htmlFor="accept-terms" style={{ color: theme === 'dark' ? '#CCCCCC' : '#374151' }}>
                   I have read and agree to the Terms & Conditions
                 </label>
                 {acceptedTerms && (
@@ -174,7 +177,7 @@ export default function TermsAndConditions() {
                 <span className="text-2xl">🏢</span>
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-white">2. Platform Description</h2>
               </div>
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED' }}>
                 <p className="text-slate-600 dark:text-gray-300 mb-4">
                   ToolnTask is a marketplace platform that connects people who need help with tasks or tools with those who can provide such services or rentals.
                 </p>
@@ -218,16 +221,24 @@ export default function TermsAndConditions() {
                 ].map((item, index) => (
                   <div key={index} className={`flex items-center gap-4 p-4 rounded-lg transition-colors ${
                     item.status === 'required' 
-                      ? 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800' 
-                      : 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'
-                  }`}>
+                      ? 'border' 
+                      : 'border'
+                  }`} style={{ 
+                    backgroundColor: item.status === 'required' 
+                      ? (theme === 'dark' ? '#2a1f1f' : '#FEF2F2') 
+                      : (theme === 'dark' ? '#2a2a2a' : '#FFF7ED'),
+                    borderColor: item.status === 'required' 
+                      ? (theme === 'dark' ? '#ff6b6b' : '#FCA5A5') 
+                      : (theme === 'dark' ? '#FF5E14' : '#FDBA74')
+                  }}>
                     <span className="text-xl">{item.icon}</span>
-                    <span className="flex-1 text-slate-600 dark:text-gray-300">{item.text}</span>
-                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${
-                      item.status === 'required' 
-                        ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' 
-                        : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
-                    }`}>
+                    <span className="flex-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#374151' }}>{item.text}</span>
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium`} style={{
+                      backgroundColor: item.status === 'required' 
+                        ? (theme === 'dark' ? '#ff6b6b' : '#F87171') 
+                        : (theme === 'dark' ? '#FF5E14' : '#FB923C'),
+                      color: theme === 'dark' ? '#FFFFFF' : '#FFFFFF'
+                    }}>
                       {item.status}
                     </span>
                   </div>
