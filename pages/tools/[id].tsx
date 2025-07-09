@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Fo                 style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF', borderColor: '#FF5E14' }}>ter';
+import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -287,7 +287,7 @@ export default function ToolDetail() {
           {/* Image Gallery */}
           <div className="mb-12">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl mb-8 border-4" 
-                 style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF', borderColor: '#FF5E14' }}>
+                 style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF', borderColor: '#FF5E14' }}>
               <Image
                 src={tool.images[currentImageIndex]}
                 alt={tool.title}
