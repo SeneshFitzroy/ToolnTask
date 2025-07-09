@@ -600,12 +600,12 @@ export default function Home() {
           <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
           <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
           <div className="absolute top-1/2 left-1/4 w-8 h-8 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '1.5s', animationDuration: '2.5s' }}></div>
-          <div className="absolute top-1/3 right-1/3 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '2.5s', animationDuration: '3.8s' }}></div>
+          <div className="absolute top-1/3 right-1/3 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '2.5s', animationDuration: '3.8s' }}></div>
         </div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
               Trusted by Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
@@ -618,12 +618,12 @@ export default function Home() {
             {[
               { icon: '👥', number: '5,000+', label: 'Active Users', color: '#FF5E14' },
               { icon: '🔧', number: '1,000+', label: 'Tools Available', color: '#FF5E14' },
-              { icon: '🏆', number: '500+', label: 'Tasks Completed', color: '#001554' }
+              { icon: '🏆', number: '500+', label: 'Tasks Completed', color: '#FF5E14' }
             ].map((stat, index) => (
               <div 
                 key={index} 
                 className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}
+                style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F2F3F5' }}
               >
                 {/* Icon */}
                 <div className="text-4xl sm:text-5xl mb-4">
@@ -636,7 +636,7 @@ export default function Home() {
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                   {stat.label}
                 </h3>
               </div>
