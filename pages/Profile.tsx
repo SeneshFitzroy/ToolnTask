@@ -500,8 +500,8 @@ export default function Profile() {
                           </button>
                         </div>
                       </div>
-                      <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
-                        <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                      <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                           Choose your preferred theme for the best experience. Your selection will be saved automatically.
                         </p>
                       </div>
