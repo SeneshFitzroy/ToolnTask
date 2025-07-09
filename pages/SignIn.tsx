@@ -75,9 +75,9 @@ export default function SignIn() {
       
       <div className="flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-sm sm:max-w-md w-full">
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Welcome Back!</h1>
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Welcome Back!</h1>
               <p className="flex items-center justify-center gap-1 flex-wrap" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Sign in to your <Logo size="small" /> account
               </p>
@@ -106,7 +106,7 @@ export default function SignIn() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="your.email@example.com"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -126,7 +126,7 @@ export default function SignIn() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="Enter your password"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}

@@ -168,7 +168,7 @@ export default function CreateTool() {
       <div className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+            <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Create New Tool Listing
             </h1>
             <p className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
@@ -194,7 +194,7 @@ export default function CreateTool() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Tool Title *
                   </label>
                   <input
@@ -207,14 +207,14 @@ export default function CreateTool() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Professional Power Drill"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Brand *
                   </label>
                   <input
@@ -227,7 +227,7 @@ export default function CreateTool() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Bosch, DeWalt, Makita"
                   />
@@ -235,7 +235,7 @@ export default function CreateTool() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   Description *
                 </label>
                 <textarea
@@ -248,7 +248,7 @@ export default function CreateTool() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="Describe your tool, its condition, and what it's best used for..."
                 />
@@ -256,7 +256,7 @@ export default function CreateTool() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Price per Day *
                   </label>
                   <input
@@ -269,14 +269,14 @@ export default function CreateTool() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Rs. 1,500/day"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Category
                   </label>
                   <select
@@ -287,7 +287,7 @@ export default function CreateTool() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                   >
                     <option value="power">Power Tools</option>
@@ -298,7 +298,7 @@ export default function CreateTool() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Condition
                   </label>
                   <select
@@ -309,7 +309,7 @@ export default function CreateTool() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                   >
                     <option value="Excellent">Excellent</option>
@@ -320,7 +320,7 @@ export default function CreateTool() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   Image URL
                 </label>
                 <input
@@ -332,14 +332,14 @@ export default function CreateTool() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="https://example.com/tool-image.jpg"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   Features
                 </label>
                 {formData.features.map((feature, index) => (
@@ -352,7 +352,7 @@ export default function CreateTool() {
                       style={{ 
                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                        color: theme === 'dark' ? '#FFFFFF' : '#001554'
                       }}
                       placeholder="Enter a feature..."
                     />

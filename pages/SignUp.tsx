@@ -106,10 +106,10 @@ export default function SignUp() {
       
       <div className="flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-sm sm:max-w-md w-full">
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>Join</span>
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Join</span>
                 <Logo size="large" />
               </div>
               <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Create your account to get started</p>
@@ -134,7 +134,7 @@ export default function SignUp() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="John"
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -153,7 +153,7 @@ export default function SignUp() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="Doe"
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -174,7 +174,7 @@ export default function SignUp() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="your.email@example.com"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -194,7 +194,7 @@ export default function SignUp() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="+94 71 234 5678"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -214,7 +214,7 @@ export default function SignUp() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="Create a strong password"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
@@ -234,7 +234,7 @@ export default function SignUp() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#1A1818'
+                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="Confirm your password"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
