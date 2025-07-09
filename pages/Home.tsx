@@ -442,7 +442,7 @@ export default function Home() {
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {getFilteredCards()}
@@ -451,7 +451,7 @@ export default function Home() {
       </div>
 
       {/* Promotional Banner Section */}
-      <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl border-2 group hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
