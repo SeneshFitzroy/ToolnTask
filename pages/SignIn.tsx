@@ -79,7 +79,7 @@ export default function SignIn() {
             <div className="text-center mb-6 sm:mb-8">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Welcome Back!</h1>
               <p className="flex items-center justify-center gap-1 flex-wrap" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Sign in to your <Logo size="small" /> account
+                Login to your <Logo size="small" /> account
               </p>
             </div>
 
