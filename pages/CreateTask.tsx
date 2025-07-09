@@ -276,7 +276,7 @@ export default function CreateTask() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Rs. 5,000"
@@ -295,7 +295,7 @@ export default function CreateTask() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., 2-3 hours"
@@ -313,7 +313,7 @@ export default function CreateTask() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                   >
@@ -337,7 +337,7 @@ export default function CreateTask() {
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                   />
@@ -356,7 +356,7 @@ export default function CreateTask() {
                   className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                   style={{ 
                     borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                     color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
                   placeholder="https://example.com/task-image.jpg"
@@ -376,7 +376,7 @@ export default function CreateTask() {
                       className="flex-1 px-4 py-2 border-2 rounded-xl focus:outline-none"
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#001554'
                       }}
                       placeholder="Enter a requirement..."
