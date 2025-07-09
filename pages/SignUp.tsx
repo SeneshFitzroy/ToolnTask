@@ -101,18 +101,18 @@ export default function SignUp() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-sm sm:max-w-md w-full">
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             <div className="text-center mb-6 sm:mb-8">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <span className="text-xl sm:text-2xl lg:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Register</span>
                 <Logo size="large" />
               </div>
-              <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Create your account to get started</p>
+              <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>Create your account to get started</p>
             </div>
 
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
@@ -124,7 +124,7 @@ export default function SignUp() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>First Name</label>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>First Name</label>
                   <input
                     type="text"
                     name="firstName"
