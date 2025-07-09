@@ -267,8 +267,8 @@ export default function CreateTool() {
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
                     placeholder="e.g., Rs. 1,500/day"
