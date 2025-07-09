@@ -119,9 +119,9 @@ export default function Tools() {
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
-          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#2D3748', animationDelay: '1s', animationDuration: '4s' }}></div>
           <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
-          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '3s', animationDuration: '4.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#2D3748', animationDelay: '3s', animationDuration: '4.5s' }}></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -141,7 +141,7 @@ export default function Tools() {
           
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
               Explore{' '}
             </span>
             <span className="relative inline-block">
@@ -169,7 +169,7 @@ export default function Tools() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#001554' }}>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#2D3748' }}>
                 24/7
               </div>
               <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
@@ -189,12 +189,12 @@ export default function Tools() {
       </div>
 
       {/* Search Section */}
-      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Compact Search Bar Container */}
           <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
                style={{ 
-                 backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
+                 backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
                  boxShadow: theme === 'dark' 
                    ? '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 94, 20, 0.08)'
@@ -214,7 +214,7 @@ export default function Tools() {
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#001554'
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                   }}
                   onFocus={(e) => {
                     e.currentTarget.style.borderColor = '#FF5E14';
@@ -345,7 +345,7 @@ export default function Tools() {
       </div>
 
       {/* Tools Grid */}
-      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {loading ? (
