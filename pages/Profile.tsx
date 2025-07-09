@@ -362,12 +362,12 @@ export default function Profile() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
                         Account Status
                       </label>
                       <div className="flex items-center gap-2 px-4 py-3 border-2 rounded-xl" style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF'
+                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF'
                       }}>
                         <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
@@ -376,12 +376,12 @@ export default function Profile() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>
+                      <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
                         Account Role
                       </label>
                       <div className="px-4 py-3 border-2 rounded-xl" style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#001554'
                       }}>
                         {userProfile.role.charAt(0).toUpperCase() + userProfile.role.slice(1)}
