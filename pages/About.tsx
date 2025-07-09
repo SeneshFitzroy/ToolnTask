@@ -99,7 +99,7 @@ export default function About() {
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">
             <div className="p-6 sm:p-8 lg:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Our Mission</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 
@@ -120,7 +120,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                 <span className="text-xl">🎯</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Trust & Safety</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Trust & Safety</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 Every user is verified, and we maintain high standards for safety and reliability 
                 in all transactions.
@@ -131,7 +131,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                 <span className="text-xl">🌱</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Sustainability</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Sustainability</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
@@ -142,7 +142,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#1a1a1a' }}>
                 <span className="text-xl">👥</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Community</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Community</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
@@ -152,7 +152,7 @@ export default function About() {
 
           {/* Advertisement Spaces */}
           <div className="mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
               Advertisements
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
