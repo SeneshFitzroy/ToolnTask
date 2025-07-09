@@ -455,10 +455,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl border-2 group hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
-                 backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
+                 backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
                  background: theme === 'dark' 
-                   ? 'linear-gradient(135deg, #001554 0%, #1F1F1F 50%, #001554 100%)' 
+                   ? 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #1a1a1a 100%)' 
                    : 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
                  boxShadow: theme === 'dark' 
                    ? '0 20px 40px rgba(255, 94, 20, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
@@ -469,7 +469,7 @@ export default function Home() {
             <div className="absolute top-0 left-0 w-full h-1 overflow-hidden">
               <div className="h-full animate-shimmer" 
                    style={{ 
-                     background: 'linear-gradient(90deg, #FF5E14 0%, #001554 25%, #FF5E14 50%, #001554 75%, #FF5E14 100%)',
+                     background: 'linear-gradient(90deg, #FF5E14 0%, #0a0a0a 25%, #FF5E14 50%, #0a0a0a 75%, #FF5E14 100%)',
                      backgroundSize: '400% 100%'
                    }}></div>
             </div>
@@ -516,7 +516,7 @@ export default function Home() {
                 
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mb-1 sm:mb-2 tracking-tight leading-tight" 
                     style={{ 
-                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                       textShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(0,0,0,0.1)'
                     }}>
                   Get Your First Task{' '}
@@ -592,11 +592,11 @@ export default function Home() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}>
+      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         {/* Interactive Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
-          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}></div>
           <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
           <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
           <div className="absolute top-1/2 left-1/4 w-8 h-8 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '1.5s', animationDuration: '2.5s' }}></div>
