@@ -166,7 +166,7 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto mb-4"></div>
           <p style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Loading...</p>
@@ -176,7 +176,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">

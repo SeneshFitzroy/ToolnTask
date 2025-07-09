@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
       {/* Newsletter Section */}
-      <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
+      <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -209,7 +209,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="py-6 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
+      <div className="py-6 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-center sm:text-left" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>

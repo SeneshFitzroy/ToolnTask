@@ -17,11 +17,11 @@ export default function About() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Hero Header Section */}
-      <div className="py-8 sm:py-12 lg:py-16 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-12 lg:py-16 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
@@ -94,7 +94,7 @@ export default function About() {
       </div>
 
       {/* Main Content Section */}
-      <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">

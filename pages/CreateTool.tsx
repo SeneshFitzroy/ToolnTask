@@ -162,7 +162,7 @@ export default function CreateTool() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-12 sm:py-16 lg:py-20">

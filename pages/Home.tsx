@@ -111,7 +111,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Top Special Offer Banner */}
@@ -178,7 +178,7 @@ export default function Home() {
       )}
       
       {/* Hero Section */}
-      <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
@@ -451,7 +451,7 @@ export default function Home() {
       </div>
 
       {/* Promotional Banner Section */}
-      <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl shadow-2xl border-2 group hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1" 
                style={{ 
@@ -623,7 +623,7 @@ export default function Home() {
               <div 
                 key={index} 
                 className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}
+                style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}
               >
                 {/* Icon */}
                 <div className="text-4xl sm:text-5xl mb-4">
@@ -646,7 +646,7 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
