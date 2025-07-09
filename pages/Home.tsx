@@ -650,15 +650,15 @@ export default function Home() {
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-          <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full" style={{ backgroundColor: '#001554' }}></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full" style={{ backgroundColor: '#2D3748' }}></div>
         </div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
               <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
@@ -691,7 +691,7 @@ export default function Home() {
                 icon: '✅', 
                 title: 'Complete & Review', 
                 desc: 'Finish the task safely, complete secure payment, and build trust through honest reviews',
-                color: '#001554',
+                color: '#2D3748',
                 delay: '400ms'
               }
             ].map((step, index) => (
@@ -703,7 +703,7 @@ export default function Home() {
                 {/* Simple Step Card */}
                 <div 
                   className="relative p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
-                  style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}
+                  style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF' }}
                 >
                   {/* Step Number */}
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl mx-auto mb-4 shadow-lg" style={{ backgroundColor: step.color }}>
@@ -716,7 +716,7 @@ export default function Home() {
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     {step.title}
                   </h3>
                   
@@ -743,21 +743,21 @@ export default function Home() {
           
           {/* Bottom CTA */}
           <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
               <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
               <span className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Ready to get started? It only takes 2 minutes to begin!
               </span>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#001554', animationDelay: '0.5s' }}></div>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#2D3748', animationDelay: '0.5s' }}></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Clean & Concise CTA Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#001554' }}>
+      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#2D3748' }}>
         {/* Simple Background */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)' }}></div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #2D3748 0%, #001a6b 100%)' }}></div>
         <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(255, 94, 20, 0.3) 0%, transparent 70%)' }}></div>
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -851,7 +851,7 @@ export default function Home() {
         <div 
           className="fixed bottom-6 right-6 z-50 max-w-xs sm:max-w-sm transform transition-all duration-500 ease-in-out hover:scale-105"
           style={{ 
-            background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)',
+            background: 'linear-gradient(135deg, #2D3748 0%, #001a6b 100%)',
             boxShadow: '0 10px 30px rgba(0, 21, 84, 0.4), 0 4px 15px rgba(0, 21, 84, 0.2)'
           }}
         >
