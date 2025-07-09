@@ -16,7 +16,7 @@ export default function NotFound() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="flex items-center justify-center py-16 sm:py-24 lg:py-32 px-4">

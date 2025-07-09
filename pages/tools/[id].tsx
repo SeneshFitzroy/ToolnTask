@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
+import Footer from '../../src/components/Fo                 style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF', borderColor: '#FF5E14' }}>ter';
 import Logo from '../../src/components/Logo';
 import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
