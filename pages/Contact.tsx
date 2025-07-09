@@ -166,7 +166,7 @@ export default function Contact() {
       </div>
 
       {/* Main Content Section */}
-      <div className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
+      <div className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
