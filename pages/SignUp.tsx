@@ -143,7 +143,7 @@ export default function SignUp() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#374151' }}>Last Name</label>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Last Name</label>
                   <input
                     type="text"
                     name="lastName"
