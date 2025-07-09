@@ -179,7 +179,7 @@ export default function CreateTask() {
             <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Create New Task
             </h1>
-            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#444444' }}>
               Post a task and find the right person for the job
             </p>
           </div>
@@ -275,7 +275,7 @@ export default function CreateTask() {
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
@@ -294,7 +294,7 @@ export default function CreateTask() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
@@ -312,7 +312,7 @@ export default function CreateTask() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
@@ -336,7 +336,7 @@ export default function CreateTask() {
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
-                      borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#001554'
                     }}
@@ -355,7 +355,7 @@ export default function CreateTask() {
                   onChange={handleInputChange}
                   className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                   style={{ 
-                    borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                     color: theme === 'dark' ? '#FFFFFF' : '#001554'
                   }}
@@ -375,7 +375,7 @@ export default function CreateTask() {
                       onChange={(e) => handleRequirementChange(index, e.target.value)}
                       className="flex-1 px-4 py-2 border-2 rounded-xl focus:outline-none"
                       style={{ 
-                        borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC',
+                        borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#001554'
                       }}
