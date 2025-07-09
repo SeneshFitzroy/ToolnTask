@@ -162,7 +162,7 @@ export default function CreateTool() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-12 sm:py-16 lg:py-20">
@@ -171,12 +171,12 @@ export default function CreateTool() {
             <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Create New Tool Listing
             </h1>
-            <p className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
               Share your tools with the community
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
+          <div className="rounded-3xl shadow-xl p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             {/* Success Message */}
             {success && (
               <div className="mb-6 p-4 rounded-xl border-l-4 border-green-500 bg-green-50 text-green-700">
