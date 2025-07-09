@@ -19,13 +19,13 @@ const WorkerAnimation = () => {
 
   const tools = [
     { icon: '🔧', name: 'Wrench', color: '#FF5E14', position: { top: '10%', left: '15%' } },
-    { icon: '🔨', name: 'Hammer', color: '#001554', position: { top: '20%', right: '10%' } },
+    { icon: '🔨', name: 'Hammer', color: '#2D3748', position: { top: '20%', right: '10%' } },
     { icon: '⚙️', name: 'Gear', color: '#FF5E14', position: { bottom: '25%', left: '8%' } },
-    { icon: '🪚', name: 'Saw', color: '#001554', position: { top: '15%', left: '50%' } },
+    { icon: '🪚', name: 'Saw', color: '#2D3748', position: { top: '15%', left: '50%' } },
     { icon: '🪛', name: 'Screwdriver', color: '#FF5E14', position: { bottom: '30%', right: '15%' } },
-    { icon: '📐', name: 'Ruler', color: '#001554', position: { top: '45%', right: '5%' } },
+    { icon: '📐', name: 'Ruler', color: '#2D3748', position: { top: '45%', right: '5%' } },
     { icon: '🪜', name: 'Ladder', color: '#FF5E14', position: { bottom: '10%', left: '45%' } },
-    { icon: '🔩', name: 'Bolt', color: '#001554', position: { top: '35%', left: '10%' } }
+    { icon: '🔩', name: 'Bolt', color: '#2D3748', position: { top: '35%', left: '10%' } }
   ];
 
   const tasks = [
@@ -41,7 +41,7 @@ const WorkerAnimation = () => {
         className="absolute inset-0 rounded-full opacity-20 blur-2xl transition-all duration-1000"
         style={{ 
           background: theme === 'dark' 
-            ? 'linear-gradient(45deg, #FF5E14, #001554, #FF5E14)' 
+            ? 'linear-gradient(45deg, #FF5E14, #2D3748, #FF5E14)' 
             : 'linear-gradient(45deg, #FFE5D6, #E8F4FD, #FFE5D6)',
           animation: 'pulse 4s ease-in-out infinite'
         }}
@@ -51,14 +51,14 @@ const WorkerAnimation = () => {
       <div 
         className="absolute inset-4 border-4 border-dashed rounded-full opacity-60 transition-colors duration-300"
         style={{ 
-          borderColor: theme === 'dark' ? '#FF5E14' : '#001554',
+          borderColor: theme === 'dark' ? '#FF5E14' : '#2D3748',
           animation: 'spin 20s linear infinite'
         }}
       ></div>
       <div 
         className="absolute inset-6 border-2 border-dotted rounded-full opacity-40 transition-colors duration-300"
         style={{ 
-          borderColor: theme === 'dark' ? '#001554' : '#FF5E14',
+          borderColor: theme === 'dark' ? '#2D3748' : '#FF5E14',
           animation: 'spin 15s linear infinite reverse'
         }}
       ></div>
@@ -67,7 +67,7 @@ const WorkerAnimation = () => {
       <div 
         className="absolute inset-8 rounded-full shadow-2xl flex items-center justify-center overflow-hidden border-2 transition-all duration-300"
         style={{ 
-          backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF',
+          backgroundColor: theme === 'dark' ? '#2D3748' : '#FFFFFF',
           borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
         }}
       >
@@ -199,7 +199,7 @@ const WorkerAnimation = () => {
         <defs>
           <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FF5E14" />
-            <stop offset="100%" stopColor="#001554" />
+            <stop offset="100%" stopColor="#2D3748" />
           </linearGradient>
         </defs>
         {hoveredTool !== null && (
