@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       {/* Header Section */}
