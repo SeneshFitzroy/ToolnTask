@@ -466,7 +466,7 @@ export default function Profile() {
                     </h3>
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-3" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                        <label className="block text-sm font-medium mb-3" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                           Appearance
                         </label>
                         <div className="flex items-center space-x-4">
@@ -476,8 +476,8 @@ export default function Profile() {
                               theme === 'light' ? 'ring-2 ring-orange-500' : ''
                             }`}
                             style={{ 
-                              backgroundColor: theme === 'light' ? '#FFF7ED' : (theme === 'dark' ? '#374151' : '#FFFFFF'),
-                              borderColor: theme === 'light' ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0'),
+                              backgroundColor: theme === 'light' ? '#FFF7ED' : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
+                              borderColor: theme === 'light' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#E2E8F0'),
                               color: theme === 'dark' ? '#FFFFFF' : '#001554'
                             }}
                           >
@@ -490,8 +490,8 @@ export default function Profile() {
                               theme === 'dark' ? 'ring-2 ring-orange-500' : ''
                             }`}
                             style={{ 
-                              backgroundColor: theme === 'dark' ? '#1F2937' : (theme === 'light' ? '#F9FAFB' : '#FFFFFF'),
-                              borderColor: theme === 'dark' ? '#FF5E14' : (theme === 'light' ? '#4B5563' : '#E2E8F0'),
+                              backgroundColor: theme === 'dark' ? '#2a2a2a' : (theme === 'light' ? '#F9FAFB' : '#FFFFFF'),
+                              borderColor: theme === 'dark' ? '#FF5E14' : (theme === 'light' ? '#444444' : '#E2E8F0'),
                               color: theme === 'dark' ? '#FFFFFF' : '#001554'
                             }}
                           >
