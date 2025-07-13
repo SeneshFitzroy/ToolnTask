@@ -235,7 +235,7 @@ export default function About() {
 
           {/* Team Section */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Meet Our Team</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Meet Our Team</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
               <div className="p-4 sm:p-6 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 overflow-hidden shadow-lg border-3 relative" style={{ borderColor: '#FF5E14' }}>
@@ -254,7 +254,7 @@ export default function About() {
                     </div>
                   )}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>Mandira De Silva</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Mandira De Silva</h3>
                 <p className="font-semibold mb-2" style={{ color: '#FF5E14' }}>Founder & CEO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Passionate about building communities and creating sustainable solutions.
