@@ -176,7 +176,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+    <div className="min-h-screen" style={{ backgroundColo: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
