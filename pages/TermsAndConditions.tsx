@@ -55,7 +55,7 @@ export default function TermsAndConditions() {
               <button
                 onClick={() => setShowTOC(!showTOC)}
                 className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
-                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#2D3748', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}
+                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}
               >
                 📋 Table of Contents
               </button>
