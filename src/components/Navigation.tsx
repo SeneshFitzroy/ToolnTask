@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Plus, Wrench, ClipboardList, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
@@ -155,42 +155,130 @@ const Navigation = () => {
               Contact
             </Link>
             
-            {/* Create Dropdown for authenticated users */}
+            {/* Enhanced Create Button for authenticated users */}
             {user && (
               <div className="relative create-dropdown">
                 <button
                   onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-                  className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                  className="group relative px-6 py-3 rounded-xl text-base font-bold transition-all duration-300 hover:scale-105 flex items-center gap-3 shadow-lg overflow-hidden"
                   style={{ 
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
-                    backgroundColor: 'transparent'
+                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
+                    color: '#FFFFFF',
+                    border: '2px solid transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 50%, #FF8552 100%)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 94, 20, 0.3)';
                   }}
                 >
-                  Create
-                  <span className="text-xs">▼</span>
+                  {/* Animated Background Sparkle */}
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full animate-ping"></div>
+                    <div className="absolute top-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute bottom-2 left-4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                  </div>
+                  
+                  {/* Icon with Rotation Animation */}
+                  <Plus 
+                    className={`h-5 w-5 transition-transform duration-300 ${showCreateDropdown ? 'rotate-45' : 'rotate-0'}`} 
+                    strokeWidth={2.5}
+                  />
+                  
+                  {/* Text */}
+                  <span className="font-bold tracking-wide">Create</span>
+                  
+                  {/* Chevron with Animation */}
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-300 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    strokeWidth={2.5}
+                  />
                 </button>
                 
+                {/* Enhanced Dropdown */}
                 {showCreateDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-48 rounded-lg shadow-lg border-2 z-50"
+                  <div className="absolute top-full left-0 mt-3 w-64 rounded-2xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-200"
                        style={{ 
                          backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                         borderColor: theme === 'dark' ? '#6B7280' : '#B3B5BC'
+                         borderColor: theme === 'dark' ? '#444444' : '#E5E7EB',
+                         boxShadow: theme === 'dark' 
+                           ? '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
+                           : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
                        }}>
+                    
+                    {/* Header */}
+                    <div className="p-4 border-b" style={{ 
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8FAFC',
+                      borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
+                    }}>
+                      <h3 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        What would you like to create?
+                      </h3>
+                      <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        Choose an option below to get started
+                      </p>
+                    </div>
+                    
+                    {/* Create Tool Option */}
                     <Link 
                       href="/CreateTool"
-                      className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-t-lg"
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}
+                      className="group flex items-center gap-4 px-4 py-4 transition-all duration-200 hover:scale-[1.02] border-b"
+                      style={{ 
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                        borderColor: theme === 'dark' ? '#333333' : '#F1F5F9'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                        e.currentTarget.style.borderColor = '#FF5E14';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.borderColor = theme === 'dark' ? '#333333' : '#F1F5F9';
+                      }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
-                      � Create Tool Listing
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
+                           style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FFF7ED' }}>
+                        <Wrench className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#FF5E14' }} strokeWidth={2} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-base" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                          Create Tool Listing
+                        </h4>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          List your tool for rent or sale
+                        </p>
+                      </div>
                     </Link>
+                    
+                    {/* Create Task Option */}
                     <Link 
                       href="/CreateTask"
-                      className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg"
+                      className="group flex items-center gap-4 px-4 py-4 transition-all duration-200 hover:scale-[1.02]"
                       style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                      }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
-                      📋 Create Task
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
+                           style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FFF7ED' }}>
+                        <ClipboardList className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#FF5E14' }} strokeWidth={2} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-base" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                          Create Task
+                        </h4>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          Post a task and hire workers
+                        </p>
+                      </div>
                     </Link>
                   </div>
                 )}
@@ -352,6 +440,78 @@ const Navigation = () => {
               >
                 Contact
               </Link>
+              
+              {/* Enhanced Create Options for Mobile */}
+              {user && (
+                <>
+                  <div className="px-4 py-2 mt-2">
+                    <h3 className="text-sm font-bold" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      Create New
+                    </h3>
+                  </div>
+                  <Link 
+                    href="/CreateTool"
+                    className="group flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all duration-300"
+                    style={{ 
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
+                      border: `2px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FED7AA';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
+                    }}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200"
+                         style={{ backgroundColor: '#FF5E14' }}>
+                      <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        Create Tool Listing
+                      </h4>
+                      <p className="text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        List your tool for rent or sale
+                      </p>
+                    </div>
+                  </Link>
+                  <Link 
+                    href="/CreateTask"
+                    className="group flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all duration-300 mb-3"
+                    style={{ 
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
+                      border: `2px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FED7AA';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
+                    }}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200"
+                         style={{ backgroundColor: '#FF5E14' }}>
+                      <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        Create Task
+                      </h4>
+                      <p className="text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        Post a task and hire workers
+                      </p>
+                    </div>
+                  </Link>
+                </>
+              )}
+              
               <div className="flex flex-col space-y-3 pt-3 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
                 {user ? (
                   // User is logged in - Mobile

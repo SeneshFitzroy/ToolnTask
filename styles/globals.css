@@ -627,10 +627,90 @@
   }
 }
 
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-float-gentle {
   animation: float-gentle 3s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-in {
+  animation: fade-in-up 0.2s ease-out;
+}
+
+/* Enhanced Create Button Styles */
+.create-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.create-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.create-button:hover::before {
+  left: 100%;
+}
+
+/* Dropdown Animation */
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.2s ease-out;
 }
