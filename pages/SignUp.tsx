@@ -58,22 +58,34 @@ export default function SignUp() {
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
+    // Password validation
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters long');
       setLoading(false);
       return;
     }
 
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    // Name validation
+    if (formData.firstName.trim().length < 2 || formData.lastName.trim().length < 2) {
+      setError('First and last names must be at least 2 characters long');
+      setLoading(false);
+      return;
+    }
+
     try {
+      console.log('Attempting to create user with email:', formData.email.trim());
+      
       // Create user with Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email.trim(), formData.password);
       const user = userCredential.user;
+
+      console.log('User created successfully:', user.uid);
 
       // Update display name
       await updateProfile(user, {
@@ -93,7 +105,7 @@ export default function SignUp() {
         role: 'user'
       });
 
-      console.log('User created and data saved to Firestore:', user.uid);
+      console.log('User data saved to Firestore successfully');
       
       // Redirect to sign in page after successful registration
       router.push('/SignIn?message=registration-success');
@@ -167,6 +179,13 @@ export default function SignUp() {
                     <span className="text-lg">⚠️</span>
                     <span>{error}</span>
                   </div>
+                  {error.includes('email is already registered') && (
+                    <div className="mt-2 text-xs">
+                      <Link href="/SignIn" className="underline font-semibold hover:text-red-800">
+                        Click here to sign in instead
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
               
@@ -318,6 +337,13 @@ export default function SignUp() {
                   Login
                 </Link>
               </p>
+              
+              <div className="mt-4 p-3 rounded-lg text-xs" style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6', color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}>
+                <p className="font-medium mb-1">Having trouble?</p>
+                <p>• If you already have an account, please use the Login link above</p>
+                <p>• Make sure your email is correct and not already registered</p>
+                <p>• Password must be at least 6 characters long</p>
+              </div>
             </div>
           </div>
         </div>
