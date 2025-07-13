@@ -335,6 +335,7 @@ const Navigation = () => {
                     <LogOut className="h-4 w-4" />
                   </button>
                 </div>
+              ) : (
                 // User is not logged in
                 <>
                   <Link href="/SignIn" 
