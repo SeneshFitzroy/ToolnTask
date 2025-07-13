@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Menu, X, Plus, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut } from 'lucide-react';
+import { Menu, X, Plus, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut, Bell, Settings, BookmarkCheck, Languages, Monitor, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
