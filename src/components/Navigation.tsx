@@ -413,16 +413,17 @@ const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2.5 rounded-lg transition-colors duration-200 hover:scale-105"
-              style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#444444' : '#B3B5BC'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#F2F3F5'}
+              className="lg:hidden p-2 rounded-lg transition-colors duration-200"
+              style={{ 
+                backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
+                border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
+              }}
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }} />
+                <X className="h-5 w-5" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
               ) : (
-                <Menu className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }} />
+                <Menu className="h-5 w-5" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
               )}
             </button>
           </div>
