@@ -108,14 +108,48 @@ export default function SignIn() {
   };
 
 
-  // --- No changes to the rest of the file ---
-
+  // Demo login function
   const handleDemoLogin = async () => {
-    // ... (rest of the function is unchanged)
+    setLoading(true);
+    setError('');
+    
+    try {
+      // Use demo credentials
+      await signInWithEmailAndPassword(auth, 'demo@toolntask.com', 'demo123');
+      console.log('Demo user signed in successfully');
+      router.push('/');
+    } catch (error: unknown) {
+      console.error('Demo login failed:', error);
+      setError('Demo login is temporarily unavailable. Please create your own account.');
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // Forgot password function
   const handleForgotPassword = async () => {
-    // ... (rest of the function is unchanged)
+    if (!formData.email) {
+      setError('Please enter your email address first');
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, formData.email.trim());
+      setSuccessMessage('Password reset email sent! Check your inbox.');
+      setError('');
+    } catch (error: unknown) {
+      console.error('Error sending password reset email:', error);
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+        if (firebaseError.code === 'auth/user-not-found') {
+          setError('No account found with this email address.');
+        } else {
+          setError('Error sending password reset email. Please try again.');
+        }
+      } else {
+        setError('Error sending password reset email. Please try again.');
+      }
+    }
   };
 
   if (!mounted) return null;
@@ -127,7 +161,6 @@ export default function SignIn() {
       <div className="flex items-center justify-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-sm sm:max-w-md w-full">
           <div className="rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-            {/* The rest of your JSX remains exactly the same */}
             <div className="text-center mb-6 sm:mb-8">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Welcome Back!</h1>
               <p className="flex items-center justify-center gap-1 flex-wrap" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
