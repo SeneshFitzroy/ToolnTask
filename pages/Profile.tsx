@@ -56,14 +56,17 @@ export default function Profile() {
   });
   const [activeTab, setActiveTab] = useState('profile');
   const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const [savedGigs, setSavedGigs] = useState([
+  const [savedGigs, setSavedGigs] = useState<SavedGig[]>([
     {
       id: '1',
       title: 'Power Drill Rental',
       type: 'tool',
       price: '$25/day',
       location: 'Downtown',
-      savedAt: '2025-01-10'
+      savedAt: '2025-01-10',
+      description: 'Professional grade power drill available for rent',
+      postedBy: 'John Smith',
+      status: 'available'
     },
     {
       id: '2',
@@ -71,9 +74,55 @@ export default function Profile() {
       type: 'task',
       price: '$150',
       location: 'Suburb',
-      savedAt: '2025-01-08'
+      savedAt: '2025-01-08',
+      description: 'Need professional house cleaning service',
+      postedBy: 'Jane Doe',
+      status: 'requested'
     }
   ]);
+  
+  const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: '1',
+      type: 'gig_match',
+      title: 'New Tool Match',
+      message: 'A power drill matching your search criteria is now available in your area.',
+      timestamp: '2025-01-14T10:30:00Z',
+      isRead: false,
+      relatedGig: 'tool_123'
+    },
+    {
+      id: '2',
+      type: 'request',
+      title: 'Task Request',
+      message: 'Someone has requested your house cleaning services.',
+      timestamp: '2025-01-14T09:15:00Z',
+      isRead: false,
+      relatedGig: 'task_456'
+    },
+    {
+      id: '3',
+      type: 'approval',
+      title: 'Listing Approved',
+      message: 'Your tool listing has been approved and is now live.',
+      timestamp: '2025-01-13T16:45:00Z',
+      isRead: true,
+      relatedGig: 'tool_789'
+    }
+  ]);
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+    { code: 'pt', name: 'Português', flag: '🇵🇹' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'zh', name: '中文', flag: '🇨🇳' },
+    { code: 'ja', name: '日本語', flag: '🇯🇵' },
+    { code: 'ko', name: '한국어', flag: '🇰🇷' }
+  ];
   const router = useRouter();
 
   useEffect(() => {
