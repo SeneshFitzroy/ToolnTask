@@ -503,7 +503,7 @@ const Navigation = () => {
                                 No new notifications
                               </p>
                               <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#64748b' : '#9ca3af' }}>
-                                We'll notify you when something important happens
+                                We&apos;ll notify you when something important happens
                               </p>
                             </div>
                           )}
@@ -765,6 +765,7 @@ const Navigation = () => {
                       </button>
                     </div>
                   )}
+                </div>
                 </div>
               ) : (
                 // User is not logged in - Premium Account Button
