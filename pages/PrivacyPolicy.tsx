@@ -1,4 +1,10 @@
-import Navigation from '../src/components/Navigation'                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554' }}
+import Navigation from '../src/components/Navigatio              <button
+                onClick={() => setShowTOC(!showTOC)}
+                className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 border-0"
+                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#FFFFFF' : '#001554'}
+              >           style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554' }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#FFFFFF' : '#001554'}import Footer from '../src/components/Footer';
 import { useState, useEffect } from 'react';
