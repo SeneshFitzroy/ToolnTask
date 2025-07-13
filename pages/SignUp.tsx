@@ -105,27 +105,39 @@ export default function SignUp() {
       
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };
+        console.log('Firebase error code:', firebaseError.code);
+        console.log('Firebase error message:', firebaseError.message);
+        
         switch (firebaseError.code) {
           case 'auth/email-already-in-use':
-            errorMessage = 'An account with this email already exists. Please sign in instead.';
+            errorMessage = 'This email is already registered. Please use a different email or sign in instead.';
             break;
           case 'auth/invalid-email':
-            errorMessage = 'Invalid email address format.';
+            errorMessage = 'Invalid email address format. Please check your email and try again.';
             break;
           case 'auth/weak-password':
-            errorMessage = 'Password is too weak. Please choose a stronger password.';
+            errorMessage = 'Password is too weak. Please choose a stronger password (at least 6 characters).';
             break;
           case 'auth/network-request-failed':
-            errorMessage = 'Network error. Please check your internet connection.';
+            errorMessage = 'Network error. Please check your internet connection and try again.';
+            break;
+          case 'auth/operation-not-allowed':
+            errorMessage = 'Email/password accounts are not enabled. Please contact support.';
+            break;
+          case 'auth/too-many-requests':
+            errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
             break;
           default:
-            errorMessage = firebaseError.message || 'An error occurred during registration';
+            errorMessage = firebaseError.message || 'An error occurred during registration. Please try again.';
         }
       } else if (error instanceof Error) {
         errorMessage = error.message;
       }
       
       setError(errorMessage);
+      
+      // Scroll to top to make error visible
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setLoading(false);
     }
