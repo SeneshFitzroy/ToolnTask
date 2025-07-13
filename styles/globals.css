@@ -721,93 +721,22 @@
   height: 300px;
 }
 
-/* Navigation Button Shine Effects */
+/* Simple Shine Effect */
 @keyframes shine {
   0% {
     left: -100%;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
   }
   100% {
     left: 100%;
-    opacity: 0;
   }
 }
 
-@keyframes pulse-active {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 94, 20, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(255, 94, 20, 0);
-  }
-}
-
-@keyframes pulse-active-dark {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 94, 20, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(255, 94, 20, 0);
-  }
-}
-
-/* Shine effect classes */
-.nav-shine-effect {
+.shine-effect {
   position: relative;
   overflow: hidden;
 }
 
-.nav-shine-effect::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-}
-
-.nav-shine-effect.animate-shine::before {
-  animation: shine 0.6s ease-out;
-}
-
-/* Dark mode shine effect */
-.dark .nav-shine-effect::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-}
-
-/* Pulse effect for active nav items */
-.nav-active {
-  animation: pulse-active 2s infinite;
-}
-
-.dark .nav-active {
-  animation: pulse-active-dark 2s infinite;
-}
-
-/* Enhanced button animations */
-.nav-button:hover {
-  box-shadow: 0 2px 8px rgba(255, 94, 20, 0.15);
-}
-
-/* Theme-aware glow effects */
-.dark .nav-button:hover {
-  box-shadow: 0 2px 8px rgba(255, 94, 20, 0.25);
-}
-
-/* Create button shine effect */
-.create-button {
-  position: relative;
-  overflow: hidden;
-}
-
-.create-button::before {
+.shine-effect::before {
   content: '';
   position: absolute;
   top: 0;
@@ -816,38 +745,17 @@
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
   opacity: 0;
 }
 
-.create-button.animate-shine::before {
+.shine-effect.animate::before {
+  opacity: 1;
   animation: shine 0.6s ease-out;
 }
 
-/* Profile button shine effect */
-.profile-button {
-  position: relative;
-  overflow: hidden;
-}
-
-.profile-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-}
-
-.profile-button.animate-shine::before {
-  animation: shine 0.6s ease-out;
-}
-
-.dark .profile-button::before {
+/* Dark theme shine */
+.dark .shine-effect::before {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 

@@ -76,12 +76,11 @@ const Navigation = () => {
     return router.pathname.startsWith(href);
   };
 
-  // Add shine effect on button press
+  // Simple shine effect
   const addShineEffect = (element: HTMLElement) => {
-    element.classList.add('animate-shine');
-    
+    element.classList.add('animate');
     setTimeout(() => {
-      element.classList.remove('animate-shine');
+      element.classList.remove('animate');
     }, 600);
   };
 
@@ -110,7 +109,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/') ? 'nav-active' : ''}`} 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -138,7 +137,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/Tasks') ? 'nav-active' : ''}`} 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -166,7 +165,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tools" 
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/Tools') ? 'nav-active' : ''}`} 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -230,7 +229,7 @@ const Navigation = () => {
                     setShowCreateDropdown(!showCreateDropdown);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 create-button"
+                  className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shine-effect"
                   style={{ 
                     background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 100%)',
                     color: '#FFFFFF',
@@ -343,7 +342,7 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 profile-button" 
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
@@ -428,7 +427,7 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 profile-button"
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect"
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
@@ -510,7 +509,7 @@ const Navigation = () => {
                 setMobileMenuOpen(!mobileMenuOpen);
                 addShineEffect(e.currentTarget);
               }}
-              className="lg:hidden p-2 rounded-lg transition-colors duration-200 nav-shine-effect"
+              className="lg:hidden p-2 rounded-lg transition-colors duration-200 shine-effect"
               style={{ 
                 backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
                 border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
@@ -532,7 +531,7 @@ const Navigation = () => {
             <div className="flex flex-col space-y-2">
               <Link 
                 href="/" 
-                className={`px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect ${isActiveLink('/') ? 'nav-active' : ''}`} 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
                 style={{ 
                   color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -546,7 +545,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/Tasks" 
-                className={`px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect ${isActiveLink('/Tasks') ? 'nav-active' : ''}`} 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
                 style={{ 
                   color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -560,7 +559,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/Tools" 
-                className={`px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect ${isActiveLink('/Tools') ? 'nav-active' : ''}`} 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
                 style={{ 
                   color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -574,7 +573,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/About" 
-                className={`px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect ${isActiveLink('/About') ? 'nav-active' : ''}`} 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
                 style={{ 
                   color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -636,7 +635,7 @@ const Navigation = () => {
                   <div className="space-y-2">
                     <Link 
                       href="/Profile"
-                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect"
                       style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
@@ -677,7 +676,7 @@ const Navigation = () => {
                   <div className="space-y-2">
                     <Link 
                       href="/SignIn" 
-                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg text-white nav-shine-effect" 
+                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg text-white shine-effect" 
                       style={{ backgroundColor: '#FF5E14' }}
                       onClick={(e) => {
                         setMobileMenuOpen(false);
@@ -688,7 +687,7 @@ const Navigation = () => {
                     </Link>
                     <Link 
                       href="/SignUp" 
-                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg nav-shine-effect" 
+                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg shine-effect" 
                       style={{ 
                         color: '#FF5E14',
                         backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
