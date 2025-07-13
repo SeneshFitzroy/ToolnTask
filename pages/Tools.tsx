@@ -657,13 +657,26 @@ export default function Tools() {
         </div>
 
         {/* Requested Tools Section */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Tool Requests ({getFilteredTools('requested').length})
-            </h2>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              People looking for specific tools to rent
+        <div className="mb-16">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-yellow-200 dark:border-yellow-800 mb-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🔍</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                    Tool Requests ({getFilteredTools('requested').length})
+                  </h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    People looking for specific tools to rent
+                  </p>
+                </div>
+              </div>
+              <div className="hidden md:flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span>Seeking Tools</span>
+              </div>
             </div>
           </div>
           
