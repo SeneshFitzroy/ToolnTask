@@ -340,7 +340,7 @@ export default function PrivacyPolicy() {
             <section id="policy-updates" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔄</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>7. Updates to This Policy</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>7. Updates to This Policy</h2>
               </div>
               <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
                 <p className="mb-4" style={{ color: '#B3B5BC' }}>
@@ -367,7 +367,7 @@ export default function PrivacyPolicy() {
             <section id="contact-us" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">📞</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>8. Contact Us</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>8. Contact Us</h2>
               </div>
               <p className="mb-4" style={{ color: '#B3B5BC' }}>
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
