@@ -531,19 +531,23 @@ const Navigation = () => {
                            style={{ backgroundColor: '#FF5E14' }}>
                         {user.email?.charAt(0).toUpperCase() || 'U'}
                       </div>
-                      <span>My Profile</span>
+                      <UserIcon className="h-4 w-4" />
+                      <span>Profile</span>
                     </Link>
                     <button 
                       onClick={() => {
                         handleSignOut();
                         setMobileMenuOpen(false);
                       }}
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#DC2626' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B91C1C'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC2626'}
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
+                      style={{ 
+                        color: '#DC2626',
+                        backgroundColor: theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)',
+                        border: `2px solid ${theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)'}`
+                      }}
                     >
-                      Sign Out
+                      <LogOut className="h-4 w-4" />
+                      <span>Sign Out</span>
                     </button>
                   </>
                 ) : (
