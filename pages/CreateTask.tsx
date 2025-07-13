@@ -163,7 +163,7 @@ export default function CreateTask() {
     }
   };
 
-  if (!mounted) return nul
+  if (!mounted) return null;
 
   if (!user) {
     return <div>Redirecting to login...</div>;
