@@ -633,7 +633,7 @@ const Navigation = () => {
                   <div className="space-y-2">
                     <Link 
                       href="/Profile"
-                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md nav-shine-effect"
                       style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
@@ -641,7 +641,10 @@ const Navigation = () => {
                       onMouseLeave={(e) => {
                         e.currentTarget.style.backgroundColor = 'transparent';
                       }}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        setMobileMenuOpen(false);
+                        addShineEffect(e.currentTarget);
+                      }}
                     >
                       <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold" 
                            style={{ backgroundColor: '#FF5E14' }}>
