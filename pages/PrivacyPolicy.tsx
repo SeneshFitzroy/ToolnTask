@@ -150,7 +150,7 @@ export default function PrivacyPolicy() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="rounded-lg p-4 border-l-4" style={{ backgroundColor: '#FFFFFF', borderColor: '#2D3748' }}>
-                  <h4 className="font-semibold mb-2" style={{ color: '#2D3748' }}>Personal Data</h4>
+                  <h4 className="font-semibold mb-2" style={{ color: '#001554' }}>Personal Data</h4>
                   <ul className="list-disc pl-4 space-y-1 text-sm" style={{ color: '#B3B5BC' }}>
                     <li>Name, email, phone number</li>
                     <li>Profile information and preferences</li>
