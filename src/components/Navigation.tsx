@@ -76,17 +76,32 @@ const Navigation = () => {
     return router.pathname.startsWith(href);
   };
 
-  // Function to handle hover effects for non-active links
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!isActiveLink(href)) {
-      e.currentTarget.style.color = '#FF5E14';
-    }
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!isActiveLink(href)) {
-      e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#2D3748';
-    }
+  // Add shine effect on button press
+  const addShineEffect = (element: HTMLElement) => {
+    element.style.position = 'relative';
+    element.style.overflow = 'hidden';
+    
+    const shine = document.createElement('div');
+    shine.style.position = 'absolute';
+    shine.style.top = '0';
+    shine.style.left = '-100%';
+    shine.style.width = '100%';
+    shine.style.height = '100%';
+    shine.style.background = 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)';
+    shine.style.transition = 'left 0.5s ease-out';
+    shine.style.pointerEvents = 'none';
+    
+    element.appendChild(shine);
+    
+    setTimeout(() => {
+      shine.style.left = '100%';
+    }, 10);
+    
+    setTimeout(() => {
+      if (element.contains(shine)) {
+        element.removeChild(shine);
+      }
+    }, 600);
   };
 
   if (!mounted) return null;
