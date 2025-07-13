@@ -306,13 +306,14 @@ const Navigation = () => {
                       e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)';
                     }}
                   >
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" 
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <ChevronDown 
                       className={`h-4 w-4 transition-transform duration-300 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
+                      style={{ color: '#FF5E14' }}
                     />
                   </button>
                   
