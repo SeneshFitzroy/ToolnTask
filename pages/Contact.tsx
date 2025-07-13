@@ -372,7 +372,7 @@ export default function Contact() {
 
               {/* FAQ Section */}
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#2D3748' }}>Frequently Asked Questions</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#001554' }}>Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   <div className="p-4 rounded-xl border-l-4" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
                     <div className="flex items-center gap-1">
