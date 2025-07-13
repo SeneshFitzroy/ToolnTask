@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { 
@@ -7,21 +7,16 @@ import {
   Eye, 
   EyeOff, 
   Trash2, 
-  Edit, 
-  Search, 
-  Filter,
+  Search,
   BarChart3,
   TrendingUp,
-  Calendar,
   MapPin,
   Clock,
   DollarSign,
   Star,
   Phone,
-  MessageCircle,
   CheckCircle,
-  XCircle,
-  AlertTriangle
+  XCircle
 } from 'lucide-react';
 
 interface Advertisement {
