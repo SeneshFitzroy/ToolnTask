@@ -394,6 +394,7 @@ const Navigation = () => {
                     <ChevronDown 
                       className={`h-4 w-4 transition-transform duration-300 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
+                      style={{ color: '#FF5E14' }}
                     />
                   </button>
                   
