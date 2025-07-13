@@ -330,19 +330,11 @@ const Navigation = () => {
                 <>
                   <Link href="/SignIn" 
                     className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#FE5F16' }}
+                    style={{ backgroundColor: '#FF5E14' }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
                   >
                     Login
-                  </Link>
-                  <Link href="/SignUp" 
-                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#2D3748' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a1a1a'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2D3748'}
-                  >
-                    Register
                   </Link>
                 </>
               )}
