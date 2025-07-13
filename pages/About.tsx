@@ -1,7 +1,12 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
+import Logo from '../src/components/Logo';
+import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db, auth } from '../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import Image from 'next/image';
 
 export default function About() {
