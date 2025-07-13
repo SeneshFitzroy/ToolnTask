@@ -218,85 +218,93 @@ const Navigation = () => {
                 
                 {/* Enhanced Dropdown */}
                 {showCreateDropdown && (
-                  <div className="absolute top-full left-0 mt-3 w-64 rounded-2xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-200"
+                  <div className="absolute top-full left-0 mt-4 w-72 rounded-3xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-300"
                        style={{ 
                          backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                          borderColor: theme === 'dark' ? '#444444' : '#E5E7EB',
                          boxShadow: theme === 'dark' 
-                           ? '0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
-                           : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                           ? '0 35px 60px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 94, 20, 0.3)' 
+                           : '0 35px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.05), 0 0 20px rgba(255, 94, 20, 0.2)'
                        }}>
                     
-                    {/* Header */}
-                    <div className="p-4 border-b" style={{ 
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8FAFC',
+                    {/* Enhanced Header */}
+                    <div className="p-6 border-b-2" style={{ 
+                      background: theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%)',
                       borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
                     }}>
-                      <h3 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        What would you like to create?
+                      <h3 className="font-black text-lg mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        🚀 What would you like to create?
                       </h3>
-                      <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        Choose an option below to get started
+                      <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        Choose an option below to start your journey
                       </p>
                     </div>
                     
-                    {/* Create Tool Option */}
+                    {/* Enhanced Create Tool Option */}
                     <Link 
                       href="/CreateTool"
-                      className="group flex items-center gap-4 px-4 py-4 transition-all duration-200 hover:scale-[1.02] border-b"
+                      className="group flex items-center gap-5 px-6 py-5 transition-all duration-300 hover:scale-[1.02] border-b-2 relative overflow-hidden"
                       style={{ 
                         color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                         borderColor: theme === 'dark' ? '#333333' : '#F1F5F9'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                        e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
                         e.currentTarget.style.borderColor = '#FF5E14';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.background = 'transparent';
                         e.currentTarget.style.borderColor = theme === 'dark' ? '#333333' : '#F1F5F9';
                       }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
-                           style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FFF7ED' }}>
-                        <Wrench className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#FF5E14' }} strokeWidth={2} />
+                      <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg"
+                           style={{ 
+                             background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
+                             boxShadow: '0 8px 25px rgba(255, 94, 20, 0.3)'
+                           }}>
+                        <Wrench className="h-8 w-8 text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-base" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                          Create Tool Listing
+                        <h4 className="font-black text-lg mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                          🔧 Create Tool Listing
                         </h4>
-                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                          List your tool for rent or sale
+                        <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          List your tools for rent or sale to the community
                         </p>
                       </div>
+                      <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     </Link>
                     
-                    {/* Create Task Option */}
+                    {/* Enhanced Create Task Option */}
                     <Link 
                       href="/CreateTask"
-                      className="group flex items-center gap-4 px-4 py-4 transition-all duration-200 hover:scale-[1.02]"
+                      className="group flex items-center gap-5 px-6 py-5 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden"
                       style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                        e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.background = 'transparent';
                       }}
                       onClick={() => setShowCreateDropdown(false)}
                     >
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
-                           style={{ backgroundColor: theme === 'dark' ? '#FF5E14' : '#FFF7ED' }}>
-                        <ClipboardList className="h-6 w-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#FF5E14' }} strokeWidth={2} />
+                      <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg"
+                           style={{ 
+                             background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%)',
+                             boxShadow: '0 8px 25px rgba(99, 102, 241, 0.3)'
+                           }}>
+                        <ClipboardList className="h-8 w-8 text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-bold text-base" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                          Create Task
+                        <h4 className="font-black text-lg mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                          📋 Create Task
                         </h4>
-                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                          Post a task and hire workers
+                        <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          Post a task and hire skilled workers nearby
                         </p>
                       </div>
+                      <div className="absolute top-0 right-0 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                     </Link>
                   </div>
                 )}
