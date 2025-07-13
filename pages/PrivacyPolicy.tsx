@@ -141,7 +141,7 @@ export default function PrivacyPolicy() {
             <section id="information-collect" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">📊</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>1. Information We Collect</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>1. Information We Collect</h2>
               </div>
               <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
                 <p className="mb-4" style={{ color: '#B3B5BC' }}>
