@@ -95,7 +95,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-7">
             <Link 
               href="/" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
@@ -104,7 +104,9 @@ const Navigation = () => {
               onMouseEnter={(e) => handleMouseEnter(e, '/')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/')}
             >
-              Home
+              <span className="group-hover:animate-pulse">🏠</span>
+              <span>Home</span>
+              {isActiveLink('/') && <span className="animate-pulse text-xs">🌟</span>}
             </Link>
             <Link 
               href="/Tasks" 
@@ -138,7 +140,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/About" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
@@ -147,7 +149,9 @@ const Navigation = () => {
               onMouseEnter={(e) => handleMouseEnter(e, '/About')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/About')}
             >
-              About Us
+              <span className="group-hover:animate-bounce">ℹ️</span>
+              <span>About Us</span>
+              {isActiveLink('/About') && <span className="animate-pulse text-xs">💼</span>}
             </Link>
 
             
