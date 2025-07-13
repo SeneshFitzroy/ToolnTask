@@ -1,10 +1,9 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
+import ChatAgent from '../src/components/ChatAgent';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
-import { db } from '../src/lib/firebase';
 
 interface Task {
   id: string;
@@ -15,57 +14,166 @@ interface Task {
   location: string;
   isUrgent?: boolean;
   isPromoted?: boolean;
-  image: string;
+  image?: string;
   category: string;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
   status?: string;
-  type?: 'available' | 'requested';
-  position?: string;
-  timeframe?: 'day' | 'week' | 'month';
-  experience?: string;
-  contact?: string;
-  postedBy?: string;
-  duration?: string;
+  type: 'available' | 'requested';
+  position: string;
+  timeframe: 'hours' | 'days' | 'weeks';
+  experience: string;
+  contact: string;
+  postedBy: string;
+  duration: string;
+  details: string;
 }
+
+// Mock data for tasks - both available and requested
+const mockTasks: Task[] = [
+  // Available Tasks
+  {
+    id: 'task1',
+    title: 'House Cleaning Service',
+    description: 'Professional deep cleaning service for 3-bedroom home. Kitchen, bathrooms, living areas.',
+    price: '$120-150',
+    time: '6 hours',
+    location: 'Queens, NY',
+    category: 'cleaning',
+    type: 'available',
+    position: 'Residential Property',
+    timeframe: 'hours',
+    experience: '3+ years cleaning experience',
+    contact: 'cleaning@email.com',
+    postedBy: 'CleanPro Services',
+    duration: '6',
+    details: 'Includes all cleaning supplies. Deep cleaning of kitchen appliances, bathroom sanitization, dusting, vacuuming.',
+    isUrgent: false,
+    image: '/api/placeholder/400/250'
+  },
+  {
+    id: 'task2',
+    title: 'Garden Maintenance',
+    description: 'Weekly garden upkeep including weeding, watering, and basic pruning.',
+    price: '$80-100',
+    time: '4 hours',
+    location: 'Brooklyn, NY',
+    category: 'gardening',
+    type: 'available',
+    position: 'Private Garden',
+    timeframe: 'hours',
+    experience: 'Basic gardening knowledge required',
+    contact: 'garden@email.com',
+    postedBy: 'Green Thumb Co.',
+    duration: '4',
+    details: 'Weekly maintenance service. Must provide own tools. Knowledge of seasonal plants preferred.',
+    isUrgent: false,
+    image: '/api/placeholder/400/250'
+  },
+  {
+    id: 'task3',
+    title: 'Plumbing Repair',
+    description: 'Fix leaky bathroom faucet and replace kitchen sink drain.',
+    price: '$150-200',
+    time: '3 hours',
+    location: 'Manhattan, NY',
+    category: 'repairs',
+    type: 'available',
+    position: 'Apartment Building',
+    timeframe: 'hours',
+    experience: 'Licensed plumber preferred',
+    contact: 'repair@email.com',
+    postedBy: 'FixIt Services',
+    duration: '3',
+    details: 'Materials provided. Must be licensed and insured. Evening availability preferred.',
+    isUrgent: true,
+    image: '/api/placeholder/400/250'
+  },
+  {
+    id: 'task4',
+    title: 'Babysitting Service',
+    description: 'Evening babysitting for 2 children (ages 5 and 8). Homework help included.',
+    price: '$60-80',
+    time: '4 hours',
+    location: 'Staten Island, NY',
+    category: 'babysitting',
+    type: 'available',
+    position: 'Family Home',
+    timeframe: 'hours',
+    experience: 'Childcare experience and references required',
+    contact: 'family@email.com',
+    postedBy: 'Johnson Family',
+    duration: '4',
+    details: 'Light meal preparation. Help with homework. Bedtime routine assistance.',
+    isUrgent: false,
+    image: '/api/placeholder/400/250'
+  },
+  // Requested Tasks
+  {
+    id: 'treq1',
+    title: 'Need House Cleaning Help',
+    description: 'Looking for reliable house cleaning service for weekly maintenance of 2-bedroom apartment.',
+    price: '$100-130',
+    time: '4-5 hours',
+    location: 'Queens, NY',
+    category: 'cleaning',
+    type: 'requested',
+    position: 'Apartment Complex',
+    timeframe: 'hours',
+    experience: 'Professional cleaning experience preferred',
+    contact: 'sarah@example.com',
+    postedBy: 'Sarah Johnson',
+    duration: '4-5',
+    details: 'Weekly service needed. Flexible scheduling. Pet-friendly cleaner preferred.',
+    isUrgent: false
+  },
+  {
+    id: 'treq2',
+    title: 'Garden Setup Required',
+    description: 'Need help setting up vegetable garden in backyard. Soil preparation and planting.',
+    price: '$200-250',
+    time: '8 hours',
+    location: 'Brooklyn, NY',
+    category: 'gardening',
+    type: 'requested',
+    position: 'Backyard Garden',
+    timeframe: 'hours',
+    experience: 'Experienced gardener with vegetable growing knowledge',
+    contact: 'mike@example.com',
+    postedBy: 'Mike Wilson',
+    duration: '8',
+    details: 'Spring garden setup. Soil testing and amendment. Plant selection guidance needed.',
+    isUrgent: false
+  },
+  {
+    id: 'treq3',
+    title: 'Furniture Assembly Needed',
+    description: 'Need help assembling IKEA furniture for new apartment. Multiple pieces.',
+    price: '$80-120',
+    time: '4-6 hours',
+    location: 'Manhattan, NY',
+    category: 'repairs',
+    type: 'requested',
+    position: 'Apartment',
+    timeframe: 'hours',
+    experience: 'Furniture assembly experience required',
+    contact: 'lisa@example.com',
+    postedBy: 'Lisa Chen',
+    duration: '4-6',
+    details: 'Multiple IKEA pieces including bed, dresser, and desk. Tools provided.',
+    isUrgent: true
+  }
+];
 
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    loadTasks();
   }, []);
-
-  const loadTasks = async () => {
-    try {
-      const tasksCollection = collection(db, 'tasks');
-      // First, get all tasks ordered by createdAt, then filter active ones in client
-      const tasksQuery = query(tasksCollection, orderBy('createdAt', 'desc'));
-      const tasksSnapshot = await getDocs(tasksQuery);
-      
-      const loadedTasks: Task[] = [];
-      tasksSnapshot.forEach((doc) => {
-        const taskData = doc.data() as Task;
-        // Only add active tasks (or tasks without status field for backwards compatibility)
-        if (!taskData.status || taskData.status === 'active') {
-          loadedTasks.push({
-            ...taskData,
-            id: doc.id
-          });
-        }
-      });
-      
-      setTasks(loadedTasks);
-    } catch (error) {
-      console.error('Error loading tasks:', error);
-    }
-  };
 
   if (!mounted) return null;
 
@@ -88,8 +196,13 @@ export default function Tasks() {
     { key: 'other', label: 'Other', count: tasks.filter(t => t.category === 'other').length }
   ];
 
-  const getFilteredTasks = () => {
+  const getFilteredTasks = (type?: 'available' | 'requested') => {
     let filtered = tasks;
+    
+    // Filter by type if specified
+    if (type) {
+      filtered = filtered.filter(task => task.type === type);
+    }
     
     // Apply category filter
     if (activeFilter !== 'all') {
@@ -101,7 +214,8 @@ export default function Tasks() {
       filtered = filtered.filter(task => 
         task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.location.toLowerCase().includes(searchTerm.toLowerCase())
+        task.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.details.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
@@ -394,50 +508,21 @@ export default function Tasks() {
         </div>
       </div>
 
-      {/* Enhanced Tasks Sections */}
+      {/* Tasks Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Available Tasks Section */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Available Tasks
+              Available Tasks ({getFilteredTasks('available').length})
             </h2>
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setActiveFilter('all')}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  activeFilter === 'all' 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                All Tasks
-              </button>
-              <button
-                onClick={() => setActiveFilter('cleaning')}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  activeFilter === 'cleaning' 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Cleaning
-              </button>
-              <button
-                onClick={() => setActiveFilter('repairs')}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  activeFilter === 'repairs' 
-                    ? 'bg-orange-500 text-white' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Repairs
-              </button>
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              Ready to be completed by skilled helpers
             </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTasks().filter(task => task.type !== 'requested').map((task) => (
+            {getFilteredTasks('available').map((task) => (
               <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
                 <div className="relative">
                   {task.image && (
@@ -467,27 +552,38 @@ export default function Tasks() {
                   <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
                     {task.description}
                   </p>
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-lg font-bold text-orange-500">
-                      {task.price}
-                    </span>
-                    <span className="text-sm text-gray-500">
-                      {task.time}
-                    </span>
-                  </div>
-                  {task.position && (
-                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
-                      <span>📍</span>
-                      <span>{task.position}</span>
+                  
+                  {/* Task Details */}
+                  <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
+                    <div className="flex items-center gap-2">
+                      <span>💰</span>
+                      <span className="text-lg font-bold text-orange-500">{task.price}</span>
                     </div>
-                  )}
-                  {task.duration && (
-                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
+                    <div className="flex items-center gap-2">
+                      <span>📍</span>
+                      <span>{task.position} • {task.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
                       <span>⏱️</span>
                       <span>{task.duration} {task.timeframe}</span>
                     </div>
-                  )}
-                  <div className="flex gap-2 mt-4">
+                    <div className="flex items-center gap-2">
+                      <span>👤</span>
+                      <span>{task.experience}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>�</span>
+                      <span>{task.contact}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 mb-4">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      <strong>Details:</strong> {task.details}
+                    </p>
+                  </div>
+                  
+                  <div className="flex gap-2">
                     <button
                       className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
                     >
@@ -503,83 +599,59 @@ export default function Tasks() {
               </div>
             ))}
           </div>
+          
+          {getFilteredTasks('available').length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 dark:text-gray-400 text-lg">
+                No available tasks match your filters. Try adjusting your search criteria.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Requested Tasks Section */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Task Requests
+              Task Requests ({getFilteredTasks('requested').length})
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="text-sm text-gray-600 dark:text-gray-300">
               People looking for help with various tasks
-            </p>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Mock requested tasks data */}
-            {[
-              {
-                id: 'treq1',
-                title: 'House Cleaning Needed',
-                description: 'Looking for professional house cleaning service for 3-bedroom home',
-                price: '$100-150',
-                position: 'Suburban Area',
-                duration: '4-6',
-                timeframe: 'day',
-                contact: 'sarah@example.com',
-                postedBy: 'Sarah Johnson',
-                experience: 'Professional cleaning experience required',
-                location: 'Queens'
-              },
-              {
-                id: 'treq2',
-                title: 'Garden Maintenance',
-                description: 'Need help with garden cleanup and basic maintenance',
-                price: '$75-100',
-                position: 'Backyard Garden',
-                duration: '1',
-                timeframe: 'day',
-                contact: 'mike@example.com',
-                postedBy: 'Mike Wilson',
-                experience: 'Basic gardening knowledge',
-                location: 'Brooklyn'
-              },
-              {
-                id: 'treq3',
-                title: 'Furniture Assembly',
-                description: 'Need help assembling IKEA furniture for new apartment',
-                price: '$50-80',
-                position: 'Apartment',
-                duration: '3-4',
-                timeframe: 'day',
-                contact: 'lisa@example.com',
-                postedBy: 'Lisa Chen',
-                experience: 'Furniture assembly experience preferred',
-                location: 'Manhattan'
-              }
-            ].map((request) => (
+            {getFilteredTasks('requested').map((request) => (
               <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
                       {request.title}
                     </h3>
-                    <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
-                      Requested
-                    </span>
+                    <div className="flex gap-2">
+                      <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
+                        Requested
+                      </span>
+                      {request.isUrgent && (
+                        <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
+                          Urgent
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
                     {request.description}
                   </p>
-                  <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  
+                  {/* Request Details */}
+                  <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
                     <div className="flex items-center gap-2">
                       <span>💰</span>
-                      <span>{request.price}</span>
+                      <span className="text-lg font-bold text-orange-500">{request.price}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span>📍</span>
-                      <span>{request.position}</span>
+                      <span>{request.position} • {request.location}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span>⏱️</span>
@@ -589,8 +661,23 @@ export default function Tasks() {
                       <span>👤</span>
                       <span>{request.experience}</span>
                     </div>
+                    <div className="flex items-center gap-2">
+                      <span>📧</span>
+                      <span>{request.contact}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>👨‍💼</span>
+                      <span>Posted by: {request.postedBy}</span>
+                    </div>
                   </div>
-                  <div className="flex gap-2 mt-4">
+                  
+                  <div className="bg-yellow-50 dark:bg-yellow-900 rounded-lg p-3 mb-4">
+                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                      <strong>Details:</strong> {request.details}
+                    </p>
+                  </div>
+                  
+                  <div className="flex gap-2">
                     <button
                       className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
                     >
@@ -606,68 +693,19 @@ export default function Tasks() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Chat/Call Agent Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Need Help Finding Tasks? Contact Our Agent
-            </h3>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              <span className="text-sm text-gray-600 dark:text-gray-300">Online</span>
+          
+          {getFilteredTasks('requested').length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 dark:text-gray-400 text-lg">
+                No task requests match your filters. Try adjusting your search criteria.
+              </p>
             </div>
-          </div>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Our agents can help you find the perfect tasks to complete or assist with posting your own task requests.
-          </p>
-          <div className="flex gap-4">
-            <button
-              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              <span>📞</span>
-              Call Agent
-            </button>
-            <button
-              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              <span>💬</span>
-              Chat Now
-            </button>
-          </div>
-        </div>
-
-        {/* Notifications Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-            Recent Task Notifications
-          </h3>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900 rounded-lg">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-              <div>
-                <p className="text-sm font-medium">New task posted in your area</p>
-                <p className="text-xs text-gray-600 dark:text-gray-300">A house cleaning task is available nearby</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900 rounded-lg">
-              <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-              <div>
-                <p className="text-sm font-medium">Task application accepted</p>
-                <p className="text-xs text-gray-600 dark:text-gray-300">You have been selected for the gardening task</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-3 bg-yellow-50 dark:bg-yellow-900 rounded-lg">
-              <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
-              <div>
-                <p className="text-sm font-medium">Task request match</p>
-                <p className="text-xs text-gray-600 dark:text-gray-300">Someone can help with your furniture assembly request</p>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
+
+      {/* Chat Agent */}
+      <ChatAgent pageType="tasks" />
 
       <Footer />
     </div>
