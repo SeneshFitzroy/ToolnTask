@@ -72,7 +72,7 @@ export default function PrivacyPolicy() {
           {/* Interactive Table of Contents */}
           {showTOC && (
             <div className="rounded-xl shadow-lg p-6 mb-6 animate-in slide-in-from-top duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-              <h3 className="text-xl font-bold mb-4" style={{ color: '#2D3748' }}>Quick Navigation</h3>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#001554' }}>Quick Navigation</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {sections.map((section) => (
                   <button
