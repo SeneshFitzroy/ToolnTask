@@ -225,9 +225,14 @@ export default function SignIn() {
                   <input type="checkbox" className="rounded mr-2" style={{ accentColor: '#FF5E14' }} />
                   <span className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Remember me</span>
                 </label>
-                <Link href="#" className="text-sm hover:underline" style={{ color: '#FF5E14' }}>
+                <button 
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="text-sm hover:underline"
+                  style={{ color: '#FF5E14' }}
+                >
                   Forgot password?
-                </Link>
+                </button>
               </div>
               
               <Button 
