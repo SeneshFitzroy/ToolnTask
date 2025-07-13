@@ -296,8 +296,9 @@ const Navigation = () => {
             <div className="hidden sm:flex items-center space-x-3">
               {user ? (
                 // User is logged in - Profile Icon with dropdown
-                <div className="relative flex items-center space-x-2">
-                  <Link href="/Profile"
+                <div className="relative profile-dropdown">
+                  <button
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                     className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105" 
                     style={{ 
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
@@ -317,40 +318,142 @@ const Navigation = () => {
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <UserIcon className="h-4 w-4" />
-                  </Link>
-                  <button 
-                    onClick={handleSignOut}
-                    className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105" 
-                    style={{ 
-                      color: '#DC2626',
-                      backgroundColor: theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)',
-                      border: `2px solid ${theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)'}`
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.2)' : 'rgba(220, 38, 38, 0.1)';
-                      e.currentTarget.style.borderColor = '#DC2626';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)';
-                    }}
-                  >
-                    <LogOut className="h-4 w-4" />
+                    <ChevronDown 
+                      className={`h-4 w-4 transition-transform duration-300 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      strokeWidth={2}
+                    />
                   </button>
+                  
+                  {/* Profile Dropdown */}
+                  {showProfileDropdown && (
+                    <div className="absolute right-0 top-full mt-3 w-48 rounded-xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-200"
+                         style={{ 
+                           backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                           borderColor: theme === 'dark' ? '#444444' : '#E5E7EB',
+                           boxShadow: theme === 'dark' 
+                             ? '0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
+                             : '0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                         }}>
+                      
+                      <Link 
+                        href="/Profile"
+                        className="flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:scale-[1.02] border-b"
+                        style={{ 
+                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                          borderColor: theme === 'dark' ? '#333333' : '#F1F5F9'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                          e.currentTarget.style.borderColor = '#FF5E14';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.borderColor = theme === 'dark' ? '#333333' : '#F1F5F9';
+                        }}
+                        onClick={() => setShowProfileDropdown(false)}
+                      >
+                        <UserIcon className="h-4 w-4" style={{ color: '#FF5E14' }} />
+                        <span className="font-medium">Profile</span>
+                      </Link>
+                      
+                      <button 
+                        onClick={() => {
+                          handleSignOut();
+                          setShowProfileDropdown(false);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:scale-[1.02]"
+                        style={{ color: '#DC2626' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FEF2F2';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                      >
+                        <LogOut className="h-4 w-4" />
+                        <span className="font-medium">Logout</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : (
-                // User is not logged in
-                <>
-                  <Link href="/SignIn" 
-                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#FF5E14' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
+                // User is not logged in - Profile button with dropdown
+                <div className="relative profile-dropdown">
+                  <button
+                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                    style={{ 
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                      border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)';
+                    }}
                   >
-                    Login
-                  </Link>
-                </>
+                    <UserIcon className="h-4 w-4" style={{ color: '#FF5E14' }} />
+                    <span className="font-medium">Profile</span>
+                    <ChevronDown 
+                      className={`h-4 w-4 transition-transform duration-300 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      strokeWidth={2}
+                    />
+                  </button>
+                  
+                  {/* Profile Dropdown for unauthenticated users */}
+                  {showProfileDropdown && (
+                    <div className="absolute right-0 top-full mt-3 w-48 rounded-xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-200"
+                         style={{ 
+                           backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                           borderColor: theme === 'dark' ? '#444444' : '#E5E7EB',
+                           boxShadow: theme === 'dark' 
+                             ? '0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
+                             : '0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                         }}>
+                      
+                      <Link 
+                        href="/SignIn"
+                        className="flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:scale-[1.02] border-b"
+                        style={{ 
+                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                          borderColor: theme === 'dark' ? '#333333' : '#F1F5F9'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                          e.currentTarget.style.borderColor = '#FF5E14';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.borderColor = theme === 'dark' ? '#333333' : '#F1F5F9';
+                        }}
+                        onClick={() => setShowProfileDropdown(false)}
+                      >
+                        <UserIcon className="h-4 w-4" style={{ color: '#FF5E14' }} />
+                        <span className="font-medium">Login</span>
+                      </Link>
+                      
+                      <Link 
+                        href="/SignUp"
+                        className="flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:scale-[1.02]"
+                        style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowProfileDropdown(false)}
+                      >
+                        <UserIcon className="h-4 w-4" style={{ color: '#6366F1' }} />
+                        <span className="font-medium">Register</span>
+                      </Link>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
 
