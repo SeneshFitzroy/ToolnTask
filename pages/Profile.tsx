@@ -81,7 +81,8 @@ export default function Profile() {
   ]);
   
   // Mock notifications for future implementation
-  const _notifications: Notification[] = [
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const notifications: Notification[] = [
     {
       id: '1',
       type: 'gig_match',
