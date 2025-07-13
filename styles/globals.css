@@ -703,37 +703,72 @@
   left: 100%;
 }
 
-/* Dropdown Animation */
-.dropdown-enter {
-  opacity: 0;
-  transform: translateY(-10px);
+.create-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
-.dropdown-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.2s ease-out;
+.create-button:active::after {
+  width: 300px;
+  height: 300px;
 }
 
-/* Smooth dropdown slide animations */
-.dropdown-slide-in {
-  animation: dropdown-slide-in 0.2s ease-out forwards;
+/* Navigation Button Shine Effects */
+.nav-button::before,
+.create-button::before,
+.profile-button::before,
+.account-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease-out;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes dropdown-slide-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
+.nav-button:active::before,
+.create-button:active::before,
+.profile-button:active::before,
+.account-button:active::before {
+  left: 100%;
+}
+
+/* Enhanced button animations */
+.nav-button:hover {
+  box-shadow: 0 2px 8px rgba(255, 94, 20, 0.15);
+}
+
+/* Theme-aware glow effects */
+@media (prefers-color-scheme: dark) {
+  .nav-button:hover {
+    box-shadow: 0 2px 8px rgba(255, 94, 20, 0.25);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
-
-/* PAGE TRANSITION IMPROVEMENTS */
 
 /* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
 .page-transition-enter {
   opacity: 0;
   transform: translateY(10px);
@@ -944,4 +979,49 @@
 
 .tool-icon-transition {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active navigation item pulse effect */
+.nav-active {
+  position: relative;
+}
+
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF5E14, transparent);
+  transform: translateX(-50%);
+  animation: nav-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nav-pulse {
+  0%, 100% { opacity: 0.7; width: 50%; }
+  50% { opacity: 1; width: 80%; }
+}
+
+/* Enhanced mobile menu */
+.mobile-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #FF5E14;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease-out;
+}
+
+.mobile-nav-item.active::before {
+  transform: scaleY(1);
 }

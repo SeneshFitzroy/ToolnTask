@@ -129,7 +129,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -157,7 +157,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/Tasks') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -185,7 +185,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tools" 
-              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/Tools') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -213,7 +213,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/About" 
-              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/About') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
