@@ -81,7 +81,7 @@ export default function Profile() {
   ]);
   
   // Mock notifications for future implementation
-  const notifications: Notification[] = [
+  const _notifications: Notification[] = [
     {
       id: '1',
       type: 'gig_match',
