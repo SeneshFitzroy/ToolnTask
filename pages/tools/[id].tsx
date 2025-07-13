@@ -92,7 +92,7 @@ const DynamicAdvertisement = () => {
             <span className="text-white text-2xl">📢</span>
           </div>
           
-          <h3 className="text-lg font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+          <h3 className="text-lg font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
             Advertisement<br />Space Available
           </h3>
           
