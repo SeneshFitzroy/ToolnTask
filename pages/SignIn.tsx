@@ -259,22 +259,33 @@ export default function SignIn() {
                 <Link href="/SignUp">
                   <Button
                     className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
-                    style={{ backgroundColor: '#6B7280' }}
+                    style={{ backgroundColor: '#6366F1' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
                   >
-                    Register New Account
+                    📝 Register New Account
                   </Button>
                 </Link>
               </div>
             </div>
 
             <div className="mt-4 sm:mt-6 text-center">
-              <Button
-                onClick={handleDemoLogin}
-                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: '#4CAF50' }}
-              >
-                {loading ? 'Logging In as Demo...' : 'Try Demo Login'}
-              </Button>
+              <div className="space-y-3">
+                <div className="flex items-center my-4">
+                  <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
+                  <span className="px-3 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>or</span>
+                  <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
+                </div>
+                <Button
+                  onClick={handleDemoLogin}
+                  className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ backgroundColor: '#059669' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#047857'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+                >
+                  {loading ? 'Logging In as Demo...' : '🚀 Try Demo Login'}
+                </Button>
+              </div>
             </div>
 
             <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA', border: `1px solid ${theme === 'dark' ? '#444444' : '#E2E8F0'}` }}>
