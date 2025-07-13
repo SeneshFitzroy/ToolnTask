@@ -21,6 +21,14 @@ interface Tool {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
   status?: string;
+  type?: 'available' | 'requested';
+  position?: string;
+  timeframe?: 'day' | 'week' | 'month';
+  experience?: string;
+  contact?: string;
+  postedBy?: string;
+  location?: string;
+  duration?: string;
 }
 
 export default function Tools() {

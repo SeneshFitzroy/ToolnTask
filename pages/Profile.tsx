@@ -1,4 +1,3 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
@@ -649,6 +648,113 @@ export default function Profile() {
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {/* Saved Gigs Tab */}
+              {activeTab === 'saved' && (
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Saved Gigs
+                    </h3>
+                    <p className="text-sm mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      View and manage your saved tools and tasks. You can remove items or contact the posters directly.
+                    </p>
+                  </div>
+
+                  {savedGigs.length === 0 ? (
+                    <div className="text-center py-12">
+                      <Bookmark className="h-12 w-12 mx-auto mb-4" style={{ color: theme === 'dark' ? '#666666' : '#9CA3AF' }} />
+                      <p className="text-lg font-medium mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        No saved gigs yet
+                      </p>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
+                        Start browsing tools and tasks to save your favorites here.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="grid gap-4">
+                      {savedGigs.map((gig) => (
+                        <div key={gig.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow" style={{
+                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                          borderColor: theme === 'dark' ? '#444444' : '#E2E8F0'
+                        }}>
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 mb-2">
+                                <h4 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                                  {gig.title}
+                                </h4>
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  gig.type === 'tool' 
+                                    ? 'bg-blue-100 text-blue-800' 
+                                    : 'bg-green-100 text-green-800'
+                                }`}>
+                                  {gig.type}
+                                </span>
+                                {gig.status && (
+                                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                    gig.status === 'available' 
+                                      ? 'bg-green-100 text-green-800' 
+                                      : 'bg-yellow-100 text-yellow-800'
+                                  }`}>
+                                    {gig.status}
+                                  </span>
+                                )}
+                              </div>
+                              
+                              {gig.description && (
+                                <p className="text-sm mb-3" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                                  {gig.description}
+                                </p>
+                              )}
+                              
+                              <div className="flex items-center gap-4 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                                <div className="flex items-center gap-1">
+                                  <DollarSign className="h-4 w-4" />
+                                  <span>{gig.price}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <MapPin className="h-4 w-4" />
+                                  <span>{gig.location}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <Clock className="h-4 w-4" />
+                                  <span>Saved {gig.savedAt}</span>
+                                </div>
+                              </div>
+                              
+                              {gig.postedBy && (
+                                <div className="mt-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                                  Posted by {gig.postedBy}
+                                </div>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => setSavedGigs(prev => prev.filter(g => g.id !== gig.id))}
+                                className="px-3 py-1 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                                style={{ backgroundColor: theme === 'dark' ? '#3a1f1f' : '#FEF2F2' }}
+                              >
+                                Remove
+                              </button>
+                              <button
+                                className="px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                                style={{ 
+                                  backgroundColor: '#FF5E14',
+                                  color: '#FFFFFF'
+                                }}
+                              >
+                                Contact
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
