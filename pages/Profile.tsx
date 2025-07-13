@@ -33,6 +33,25 @@ export default function Profile() {
     confirmPassword: ''
   });
   const [activeTab, setActiveTab] = useState('profile');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [savedGigs, setSavedGigs] = useState([
+    {
+      id: '1',
+      title: 'Power Drill Rental',
+      type: 'tool',
+      price: '$25/day',
+      location: 'Downtown',
+      savedAt: '2025-01-10'
+    },
+    {
+      id: '2',
+      title: 'House Cleaning Service',
+      type: 'task',
+      price: '$150',
+      location: 'Suburb',
+      savedAt: '2025-01-08'
+    }
+  ]);
   const router = useRouter();
 
   useEffect(() => {
