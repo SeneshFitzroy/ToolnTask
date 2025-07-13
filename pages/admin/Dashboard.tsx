@@ -30,6 +30,7 @@ interface Advertisement {
   url: string;
   category: 'tools' | 'tasks' | 'general';
   isActive: boolean;
+  isApproved: boolean;
   createdAt: string;
   deadline: string;
   views: number;
@@ -37,6 +38,10 @@ interface Advertisement {
   budget: number;
   userId: string;
   userName: string;
+  userEmail: string;
+  timezone: string;
+  description: string;
+  imageUrl?: string;
 }
 
 interface User {
@@ -49,6 +54,8 @@ interface User {
   joinedAt: string;
   toolsPosted: number;
   tasksPosted: number;
+  location: string;
+  phone: string;
 }
 
 interface Gig {
@@ -59,12 +66,15 @@ interface Gig {
   position: string;
   description: string;
   duration: string;
+  timeframe: 'day' | 'week' | 'month';
   amount: number;
   experience: string;
   contact: string;
   postedBy: string;
   createdAt: string;
   isActive: boolean;
+  location: string;
+  timezone: string;
 }
 
 const AdminDashboard = () => {
