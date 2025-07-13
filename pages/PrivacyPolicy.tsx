@@ -157,7 +157,7 @@ export default function PrivacyPolicy() {
                   </ul>
                 </div>
                 <div className="rounded-lg p-4 border-l-4" style={{ backgroundColor: '#FFFFFF', borderColor: '#FE5F16' }}>
-                  <h4 className="font-semibold mb-2" style={{ color: '#2D3748' }}>Platform Data</h4>
+                  <h4 className="font-semibold mb-2" style={{ color: '#001554' }}>Platform Data</h4>
                   <ul className="list-disc pl-4 space-y-1 text-sm" style={{ color: '#B3B5BC' }}>
                     <li>Task and tool listings</li>
                     <li>Communication records</li>
@@ -230,7 +230,7 @@ export default function PrivacyPolicy() {
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">🛡️</span>
                   <div>
-                    <h3 className="font-bold" style={{ color: '#2D3748' }}>Your Data is Protected</h3>
+                    <h3 className="font-bold" style={{ color: '#001554' }}>Your Data is Protected</h3>
                     <p className="text-sm" style={{ color: '#B3B5BC' }}>We implement multiple layers of security</p>
                   </div>
                 </div>
