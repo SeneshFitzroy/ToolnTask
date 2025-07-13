@@ -429,180 +429,118 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Clean Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
-            <div className="flex flex-col space-y-3">
+          <div className="lg:hidden py-4 border-t" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
+            <div className="flex flex-col space-y-2">
               <Link 
                 href="/" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 flex items-center gap-3 group" 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md" 
                 style={{ 
-                  color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                  backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                  borderLeft: isActiveLink('/') ? '3px solid #FF5E14' : 'none'
+                  color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                  backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
                 }} 
-                onMouseEnter={(e) => handleMouseEnter(e, '/')} 
-                onMouseLeave={(e) => handleMouseLeave(e, '/')} 
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="group-hover:animate-pulse">🏠</span>
-                <span>Home</span>
-                {isActiveLink('/') && <span className="animate-pulse text-xs ml-auto">🌟</span>}
+                Home
               </Link>
               <Link 
                 href="/Tasks" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 flex items-center gap-3 group" 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md" 
                 style={{ 
-                  color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                  backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                  borderLeft: isActiveLink('/Tasks') ? '3px solid #FF5E14' : 'none'
+                  color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                  backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
                 }} 
-                onMouseEnter={(e) => handleMouseEnter(e, '/Tasks')} 
-                onMouseLeave={(e) => handleMouseLeave(e, '/Tasks')} 
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="task-icon-transition group-hover:animate-bounce">📋</span>
-                <span>Tasks</span>
-                {isActiveLink('/Tasks') && <span className="animate-pulse text-xs ml-auto">✨</span>}
+                Tasks
               </Link>
               <Link 
                 href="/Tools" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 flex items-center gap-3 group" 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md" 
                 style={{ 
-                  color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                  backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                  borderLeft: isActiveLink('/Tools') ? '3px solid #FF5E14' : 'none'
+                  color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                  backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
                 }} 
-                onMouseEnter={(e) => handleMouseEnter(e, '/Tools')} 
-                onMouseLeave={(e) => handleMouseLeave(e, '/Tools')} 
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="tool-icon-transition group-hover:animate-spin" style={{ animationDuration: '1s' }}>🔧</span>
-                <span>Tools</span>
-                {isActiveLink('/Tools') && <span className="animate-pulse text-xs ml-auto">⚡</span>}
+                Tools
               </Link>
               <Link 
                 href="/About" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 flex items-center gap-3 group" 
+                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md" 
                 style={{ 
-                  color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                  backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                  borderLeft: isActiveLink('/About') ? '3px solid #FF5E14' : 'none'
+                  color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                  backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
                 }} 
-                onMouseEnter={(e) => handleMouseEnter(e, '/About')} 
-                onMouseLeave={(e) => handleMouseLeave(e, '/About')} 
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="group-hover:animate-bounce">ℹ️</span>
-                <span>About Us</span>
-                {isActiveLink('/About') && <span className="animate-pulse text-xs ml-auto">💼</span>}
+                About
               </Link>
 
-              
-              {/* Enhanced Create Options for Mobile */}
+              {/* Mobile Create Options */}
               {user && (
-                <>
-                  <div className="px-4 py-3 mt-4">
-                    <h3 className="text-lg font-black flex items-center gap-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                      🚀 Create New Listing
-                    </h3>
-                    <p className="text-sm font-medium mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                      Choose what you want to create
-                    </p>
-                  </div>
+                <div className="pt-4 border-t mt-4" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
+                  <p className="px-4 py-2 text-xs font-semibold uppercase tracking-wide" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
+                    Create
+                  </p>
                   <Link 
                     href="/CreateTool"
-                    className="group flex items-center gap-4 px-4 py-4 mx-2 rounded-2xl transition-all duration-300 mb-3 shadow-lg"
-                    style={{ 
-                      background: theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)',
-                      border: `3px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
-                    }}
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md"
+                    style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #333333 0%, #444444 100%)' : 'linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%)';
-                      e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'scale(1.02)';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
-                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <div className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg"
-                         style={{ 
-                           background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
-                           boxShadow: '0 8px 25px rgba(255, 94, 20, 0.3)'
-                         }}>
-                      <Wrench className="h-7 w-7 text-white" strokeWidth={2.5} />
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <Wrench className="h-4 w-4 text-white" strokeWidth={2} />
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-black text-base mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        🔧 Create Tool Listing
-                      </h4>
-                      <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        List your tools for rent or sale
-                      </p>
-                    </div>
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <span>Create Tool Listing</span>
                   </Link>
                   <Link 
                     href="/CreateTask"
-                    className="group flex items-center gap-4 px-4 py-4 mx-2 rounded-2xl transition-all duration-300 mb-4 shadow-lg"
-                    style={{ 
-                      background: theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)',
-                      border: `3px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
-                    }}
+                    className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md"
+                    style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #333333 0%, #444444 100%)' : 'linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%)';
-                      e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'scale(1.02)';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
-                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <div className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg"
-                         style={{ 
-                           background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%)',
-                           boxShadow: '0 8px 25px rgba(99, 102, 241, 0.3)'
-                         }}>
-                      <ClipboardList className="h-7 w-7 text-white" strokeWidth={2.5} />
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
+                      <ClipboardList className="h-4 w-4 text-white" strokeWidth={2} />
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-black text-base mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        📋 Create Task
-                      </h4>
-                      <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        Post a task and hire workers
-                      </p>
-                    </div>
-                    <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    <span>Create Task</span>
                   </Link>
-                </>
+                </div>
               )}
               
-              <div className="flex flex-col space-y-3 pt-3 border-t border-opacity-20" style={{ borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
+              {/* Mobile Auth */}
+              <div className="pt-4 border-t mt-4" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
                 {user ? (
-                  // User is logged in - Mobile
-                  <>
-                    <Link href="/Profile"
-                      className="flex items-center justify-center gap-3 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
-                      style={{ 
-                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
-                        backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                        border: `2px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                  <div className="space-y-2">
+                    <Link 
+                      href="/Profile"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md"
+                      style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
                       }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg" 
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold" 
                            style={{ backgroundColor: '#FF5E14' }}>
                         {user.email?.charAt(0).toUpperCase() || 'U'}
                       </div>
-                      <UserIcon className="h-4 w-4" style={{ color: '#FF5E14' }} />
                       <span>Profile</span>
                     </Link>
                     <button 
@@ -610,39 +548,42 @@ const Navigation = () => {
                         handleSignOut();
                         setMobileMenuOpen(false);
                       }}
-                      className="flex items-center justify-center gap-3 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
-                      style={{ 
-                        color: '#DC2626',
-                        backgroundColor: theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)',
-                        border: `2px solid ${theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)'}`
+                      className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md text-left"
+                      style={{ color: '#dc2626' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#fef2f2';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
                       }}
                     >
                       <LogOut className="h-4 w-4" />
                       <span>Sign Out</span>
                     </button>
-                  </>
+                  </div>
                 ) : (
-                  // User is not logged in - Mobile
-                  <>
-                    <Link href="/SignIn" 
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                  <div className="space-y-2">
+                    <Link 
+                      href="/SignIn" 
+                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg text-white" 
                       style={{ backgroundColor: '#FF5E14' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Login
                     </Link>
-                    <Link href="/SignUp" 
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#6366F1' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
+                    <Link 
+                      href="/SignUp" 
+                      className="block px-4 py-3 text-sm font-semibold text-center transition-colors duration-200 rounded-lg" 
+                      style={{ 
+                        color: '#FF5E14',
+                        backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                        border: `1px solid ${theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'}`
+                      }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Register
                     </Link>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
