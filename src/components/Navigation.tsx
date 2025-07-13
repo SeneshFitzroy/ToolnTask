@@ -669,6 +669,15 @@ const Navigation = () => {
                     >
                       Login
                     </Link>
+                    <Link href="/SignUp" 
+                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
+                      style={{ backgroundColor: '#6366F1' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Register
+                    </Link>
                   </>
                 )}
               </div>

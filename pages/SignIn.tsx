@@ -252,52 +252,19 @@ export default function SignIn() {
             </form>
 
             <div className="mt-6 sm:mt-8 text-center">
-              <div className="space-y-3">
-                <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  Don&apos;t have an account?
-                </p>
-                <Link href="/SignUp">
-                  <Button
-                    className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
-                    style={{ backgroundColor: '#6366F1' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
-                  >
-                    📝 Register New Account
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-4 sm:mt-6 text-center">
-              <div className="space-y-3">
-                <div className="flex items-center my-4">
-                  <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
-                  <span className="px-3 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>or</span>
-                  <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
-                </div>
+              <p className="text-sm mb-4" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Don&apos;t have an account?
+              </p>
+              <Link href="/SignUp">
                 <Button
-                  onClick={handleDemoLogin}
                   className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ backgroundColor: '#059669' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#047857'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+                  style={{ backgroundColor: '#6366F1' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
                 >
-                  {loading ? 'Logging In as Demo...' : '🚀 Try Demo Login'}
+                  📝 Register New Account
                 </Button>
-              </div>
-            </div>
-
-            <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA', border: `1px solid ${theme === 'dark' ? '#444444' : '#E2E8F0'}` }}>
-              <h4 className="text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                Having trouble logging in?
-              </h4>
-              <ul className="text-xs space-y-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                <li>• Make sure your email and password are correct</li>
-                <li>• Check if you have an account - use &quot;Register&quot; if you&apos;re new</li>
-                <li>• Try the &quot;Demo Login&quot; button to test the platform</li>
-                <li>• Use &quot;Forgot password?&quot; if you can&apos;t remember your password</li>
-              </ul>
+              </Link>
             </div>
           </div>
         </div>
