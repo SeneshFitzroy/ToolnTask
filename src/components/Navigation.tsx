@@ -506,8 +506,11 @@ const Navigation = () => {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg transition-colors duration-200"
+              onClick={(e) => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                addShineEffect(e.currentTarget);
+              }}
+              className="lg:hidden p-2 rounded-lg transition-colors duration-200 nav-shine-effect"
               style={{ 
                 backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
                 border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
