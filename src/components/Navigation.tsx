@@ -164,42 +164,56 @@ const Navigation = () => {
               <div className="relative create-dropdown">
                 <button
                   onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-                  className="group relative px-6 py-3 rounded-xl text-base font-bold transition-all duration-300 hover:scale-105 flex items-center gap-3 shadow-lg overflow-hidden"
+                  className="group relative px-8 py-4 rounded-2xl text-lg font-black transition-all duration-300 hover:scale-110 flex items-center gap-4 shadow-2xl overflow-hidden border-2 border-transparent"
                   style={{ 
-                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
+                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 25%, #FF9966 50%, #FFB366 75%, #FFCC66 100%)',
                     color: '#FFFFFF',
-                    border: '2px solid transparent'
+                    boxShadow: '0 8px 32px rgba(255, 94, 20, 0.4), 0 4px 16px rgba(255, 94, 20, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.3)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 50%, #FF8552 100%)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 25%, #FF8552 50%, #FFA352 75%, #FFC152 100%)';
+                    e.currentTarget.style.boxShadow = '0 12px 48px rgba(255, 94, 20, 0.6), 0 8px 24px rgba(255, 94, 20, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.4)';
+                    e.currentTarget.style.transform = 'scale(1.15) translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 94, 20, 0.3)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 25%, #FF9966 50%, #FFB366 75%, #FFCC66 100%)';
+                    e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 94, 20, 0.4), 0 4px 16px rgba(255, 94, 20, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.3)';
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
                   }}
                 >
-                  {/* Animated Background Sparkle */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full animate-ping"></div>
-                    <div className="absolute top-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="absolute bottom-2 left-4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                  {/* Animated Background Sparkles */}
+                  <div className="absolute inset-0 opacity-30">
+                    <div className="absolute top-2 left-3 w-2 h-2 bg-white rounded-full animate-ping"></div>
+                    <div className="absolute top-3 right-4 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute bottom-3 left-6 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute bottom-2 right-3 w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                    <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
                   </div>
                   
-                  {/* Icon with Rotation Animation */}
-                  <Plus 
-                    className={`h-5 w-5 transition-transform duration-300 ${showCreateDropdown ? 'rotate-45' : 'rotate-0'}`} 
-                    strokeWidth={2.5}
-                  />
+                  {/* Main Icon with Enhanced Animation */}
+                  <div className="relative">
+                    <Plus 
+                      className={`h-7 w-7 transition-all duration-500 ${showCreateDropdown ? 'rotate-180 scale-125' : 'rotate-0 scale-100'}`} 
+                      strokeWidth={3}
+                    />
+                    {/* Glowing Ring Effect */}
+                    <div className="absolute inset-0 rounded-full bg-white opacity-20 animate-pulse"></div>
+                  </div>
                   
-                  {/* Text */}
-                  <span className="font-bold tracking-wide">Create</span>
+                  {/* Enhanced Text */}
+                  <div className="flex flex-col items-start">
+                    <span className="font-black text-xl tracking-wide leading-tight">CREATE</span>
+                    <span className="text-xs opacity-90 font-semibold tracking-wider">NEW LISTING</span>
+                  </div>
                   
-                  {/* Chevron with Animation */}
+                  {/* Animated Chevron */}
                   <ChevronDown 
-                    className={`h-4 w-4 transition-transform duration-300 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
-                    strokeWidth={2.5}
+                    className={`h-6 w-6 transition-all duration-500 ${showCreateDropdown ? 'rotate-180 scale-110' : 'rotate-0 scale-100'}`}
+                    strokeWidth={3}
                   />
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </button>
                 
                 {/* Enhanced Dropdown */}
