@@ -263,6 +263,19 @@ export default function SignIn() {
                 {loading ? 'Logging In as Demo...' : 'Login as Demo'}
               </Button>
             </div>
+
+            {/* Troubleshooting Info */}
+            <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA', border: `1px solid ${theme === 'dark' ? '#444444' : '#E2E8F0'}` }}>
+              <h4 className="text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                Having trouble logging in?
+              </h4>
+              <ul className="text-xs space-y-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                <li>• Make sure your email and password are correct</li>
+                <li>• Check if you have an account - use &quot;Register&quot; if you&apos;re new</li>
+                <li>• Try the &quot;Demo Login&quot; button to test the platform</li>
+                <li>• Use &quot;Forgot password?&quot; if you can&apos;t remember your password</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
