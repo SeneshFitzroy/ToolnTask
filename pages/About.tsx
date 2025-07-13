@@ -131,7 +131,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
                 <span className="text-xl">🌱</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Sustainability</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Sustainability</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
@@ -142,7 +142,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#1a1a1a' }}>
                 <span className="text-xl">👥</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Community</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Community</h3>
               <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
