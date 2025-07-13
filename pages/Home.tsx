@@ -9,13 +9,15 @@ import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
   const { theme } = useTheme();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showTopBanner, setShowTopBanner] = useState(true);
-  const [showFloatingBanner, setShowFloatingBanner] = useState(true);
+  const [showFloatingBanner, setShowFloatingBanner] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -25,8 +27,26 @@ export default function Home() {
       setShowTopBanner(false);
     }, 10000);
 
+    // Show floating banner after a small delay to prevent flash
+    setTimeout(() => {
+      setShowFloatingBanner(true);
+    }, 1000);
+
     return () => clearTimeout(timer);
   }, []);
+
+  // Close floating banner when navigating away from Home
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setShowFloatingBanner(false);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events]);
 
   if (!mounted) return null;
 
@@ -849,7 +869,7 @@ export default function Home() {
       {/* Floating Bottom-Right Banner */}
       {showFloatingBanner && (
         <div 
-          className="fixed bottom-6 right-6 z-50 max-w-xs sm:max-w-sm transform transition-all duration-500 ease-in-out hover:scale-105"
+          className="fixed bottom-6 right-6 z-40 max-w-xs sm:max-w-sm transform transition-all duration-500 ease-in-out hover:scale-105 banner-fade-in"
           style={{ 
             background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)',
             boxShadow: '0 10px 30px rgba(0, 21, 84, 0.4), 0 4px 15px rgba(0, 21, 84, 0.2)'
