@@ -46,7 +46,7 @@ export default function About() {
           
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               About{' '}
             </span>
             <span className="relative inline-block">
@@ -99,7 +99,7 @@ export default function About() {
           {/* Mission Section */}
           <div className="mb-8 sm:mb-12">
             <div className="p-6 sm:p-8 lg:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Our Mission</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 

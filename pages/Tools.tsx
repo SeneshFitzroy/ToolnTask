@@ -141,7 +141,7 @@ export default function Tools() {
           
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Explore{' '}
             </span>
             <span className="relative inline-block">

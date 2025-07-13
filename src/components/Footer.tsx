@@ -117,7 +117,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Explore</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Explore</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/Tasks', label: 'Browse Tasks' },
@@ -143,7 +143,7 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Legal</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/PrivacyPolicy', label: 'Privacy Policy' },
@@ -169,7 +169,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Get in Touch</h3>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Get in Touch</h3>
               <div className="space-y-4">
                 {[
                   { icon: Phone, text: '+94 11 123 4567', href: 'tel:+94111234567' },
