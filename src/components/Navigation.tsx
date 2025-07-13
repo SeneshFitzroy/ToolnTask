@@ -483,7 +483,7 @@ const Navigation = () => {
             <div className="flex flex-col space-y-3">
               <Link 
                 href="/" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
+                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 flex items-center gap-3 group" 
                 style={{ 
                   color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
                   backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
@@ -493,7 +493,9 @@ const Navigation = () => {
                 onMouseLeave={(e) => handleMouseLeave(e, '/')} 
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Home
+                <span className="group-hover:animate-pulse">🏠</span>
+                <span>Home</span>
+                {isActiveLink('/') && <span className="animate-pulse text-xs ml-auto">🌟</span>}
               </Link>
               <Link 
                 href="/Tasks" 
