@@ -12,12 +12,83 @@ import Image from 'next/image';
 export default function About() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const [ceoImageError, setCeoImageError] = useState(false);
   const [ctoImageError, setCtoImageError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
 
   useEffect(() => {
     setMounted(true);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
+      setError('Please fill in all required fields');
+      setLoading(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'contacts'), {
+        ...formData,
+        userId: user?.uid || null,
+        userEmail: user?.email || null,
+        timestamp: serverTimestamp(),
+        status: 'new'
+      });
+
+      setSuccess('Thank you for your message! We\'ll get back to you soon.');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      setError('Error sending message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
