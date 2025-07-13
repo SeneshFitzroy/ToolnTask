@@ -116,39 +116,89 @@ export default function Tools() {
       
       {/* Hero Header Section */}
       <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        {/* Background Elements */}
+        {/* Enhanced Background Elements with Interactive Tool Animations */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
-          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}></div>
-          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
-          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}></div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Badge */}
-          <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2" 
-                 style={{ 
-                   backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
-                 }}>
-              <span className="text-lg sm:text-xl mr-2">🔧</span>
-              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
-                Rent Quality Tools
-              </span>
+          {/* Floating Tool Icons */}
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-bounce flex items-center justify-center text-3xl" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}>
+            🔨
+          </div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse flex items-center justify-center text-2xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}>
+            🪚
+          </div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-spin flex items-center justify-center text-xl" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '8s' }}>
+            🔧
+          </div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-bounce flex items-center justify-center text-xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}>
+            ⚡
+          </div>
+          
+          {/* Animated Toolbox */}
+          <div className="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-28 h-20 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg shadow-lg animate-float opacity-20 flex flex-col items-center justify-center text-white border-2 border-orange-400">
+              <span className="text-xs font-bold">TOOLBOX</span>
+              <div className="flex gap-1 mt-1">
+                <span className="text-xs">🔨</span>
+                <span className="text-xs">🔧</span>
+                <span className="text-xs">⚙️</span>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bottom-1/3 right-1/4 transform translate-x-1/2 translate-y-1/2">
+            <div className="w-24 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-lg animate-float-reverse opacity-20 flex items-center justify-center text-white font-bold text-xs" style={{ animationDelay: '2s' }}>
+              POWER
             </div>
           </div>
           
-          {/* Main Heading */}
+          {/* Animated Tool Grid Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="grid grid-cols-6 gap-6 h-full w-full">
+              {Array.from({ length: 24 }).map((_, i) => (
+                <div 
+                  key={i}
+                  className="border-2 border-gray-400 rounded-lg animate-pulse flex items-center justify-center text-2xl"
+                  style={{ 
+                    animationDelay: `${i * 0.2}s`,
+                    animationDuration: '4s'
+                  }}
+                >
+                  {['🔨', '🔧', '⚙️', '🪚', '⚡', '🔩'][i % 6]}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Enhanced Interactive Badge */}
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
+                   animationDuration: '2s'
+                 }}>
+              <span className="text-lg sm:text-xl mr-2 animate-spin" style={{ animationDuration: '3s' }}>🔧</span>
+              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
+                Rent Quality Tools
+              </span>
+              <span className="ml-2 animate-bounce text-lg">🛠️</span>
+            </div>
+          </div>
+          
+          {/* Enhanced Interactive Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <span className="inline-block hover:scale-110 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Explore{' '}
             </span>
-            <span className="relative inline-block">
-              <span style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+            <span className="relative inline-block group">
+              <span className="relative z-10 hover:scale-110 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
                 Tools
               </span>
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
+              {/* Animated tool icons around Tools */}
+              <div className="absolute -top-2 -right-2 text-gray-400 animate-ping opacity-75">🔨</div>
+              <div className="absolute -bottom-1 -left-2 text-gray-400 animate-pulse opacity-50" style={{ animationDelay: '0.5s' }}>⚙️</div>
+              <div className="absolute top-1 -right-6 text-gray-400 animate-bounce opacity-60" style={{ animationDelay: '1s' }}>🔧</div>
             </span>
           </h1>
           

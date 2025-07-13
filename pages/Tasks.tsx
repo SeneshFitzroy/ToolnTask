@@ -163,30 +163,36 @@ export default function Tasks() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Badge */}
+          {/* Enhanced Interactive Badge */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2" 
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
+                   animationDuration: '2s'
                  }}>
-              <span className="text-lg sm:text-xl mr-2">🎯</span>
+              <span className="text-lg sm:text-xl mr-2 animate-bounce">🎯</span>
               <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
                 Find Your Perfect Task
               </span>
+              <span className="ml-2 animate-spin text-lg">⚡</span>
             </div>
           </div>
           
-          {/* Main Heading */}
+          {/* Enhanced Interactive Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <span className="inline-block hover:scale-110 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Explore{' '}
             </span>
-            <span className="relative inline-block">
-              <span style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+            <span className="relative inline-block group">
+              <span className="relative z-10 hover:scale-110 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
                 Tasks
               </span>
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
+              {/* Animated sparkles around Tasks */}
+              <div className="absolute -top-2 -right-2 text-yellow-400 animate-ping opacity-75">✨</div>
+              <div className="absolute -bottom-1 -left-2 text-yellow-400 animate-pulse opacity-50" style={{ animationDelay: '0.5s' }}>⭐</div>
+              <div className="absolute top-1 -right-6 text-yellow-400 animate-bounce opacity-60" style={{ animationDelay: '1s' }}>💫</div>
             </span>
           </h1>
           
