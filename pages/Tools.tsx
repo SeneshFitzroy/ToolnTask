@@ -1,53 +1,167 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
+import ChatAgent from '../src/components/ChatAgent';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
-import { db } from '../src/lib/firebase';
+import { Search, Filter, MapPin, Clock, DollarSign, Star, Phone, MessageCircle, Eye } from 'lucide-react';
 
 interface Tool {
   id: string;
   title: string;
   description: string;
   price: string;
-  brand: string;
-  condition: string;
+  brand?: string;
+  condition?: string;
   available: boolean;
   isPromoted?: boolean;
-  image: string;
   category: string;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
-  status?: string;
-  type?: 'available' | 'requested';
+  type: 'available' | 'requested';
   position?: string;
-  timeframe?: 'day' | 'week' | 'month';
+  timeframe?: 'day' | 'week' | 'month' | 'hour';
   experience?: string;
   contact?: string;
   postedBy?: string;
   location?: string;
   duration?: string;
+  amount?: string;
+  rating?: number;
+  responseTime?: string;
+  verified?: boolean;
 }
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeSection, setActiveSection] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
-  const [tools, setTools] = useState<Tool[]>([]);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    loadTools();
   }, []);
 
-  const loadTools = async () => {
-    try {
-      const toolsCollection = collection(db, 'tools');
-      // First, get all tools ordered by createdAt, then filter active ones in client
-      const toolsQuery = query(toolsCollection, orderBy('createdAt', 'desc'));
+  // Mock data for demonstration
+  const availableTools: Tool[] = [
+    {
+      id: '1',
+      title: 'Professional Power Drill Set',
+      description: 'High-quality cordless drill with multiple bits and charger included. Perfect for home renovation projects.',
+      price: '$25',
+      brand: 'DeWalt',
+      condition: 'Excellent',
+      available: true,
+      category: 'Power Tools',
+      type: 'available',
+      location: 'Downtown, City Center',
+      timeframe: 'day',
+      contact: '+1 234-567-8901',
+      postedBy: 'Mike Johnson',
+      rating: 4.8,
+      responseTime: 'Usually responds within 2 hours',
+      verified: true
+    },
+    {
+      id: '2',
+      title: 'Industrial Concrete Mixer',
+      description: 'Heavy-duty concrete mixer for large construction projects. Includes all necessary accessories.',
+      price: '$150',
+      brand: 'CAT',
+      condition: 'Good',
+      available: true,
+      category: 'Construction',
+      type: 'available',
+      location: 'Industrial District',
+      timeframe: 'week',
+      contact: '+1 234-567-8902',
+      postedBy: 'BuildCorp LLC',
+      rating: 4.9,
+      responseTime: 'Usually responds within 1 hour',
+      verified: true
+    },
+    {
+      id: '3',
+      title: 'Garden Tool Set - Complete',
+      description: 'Complete gardening toolkit including shovels, pruners, hoses, and more. Great for landscaping.',
+      price: '$45',
+      condition: 'Very Good',
+      available: true,
+      category: 'Garden Tools',
+      type: 'available',
+      location: 'Suburban Area',
+      timeframe: 'week',
+      contact: '+1 234-567-8903',
+      postedBy: 'Green Thumb Gardens',
+      rating: 4.6,
+      responseTime: 'Usually responds within 4 hours',
+      verified: false
+    }
+  ];
+
+  const requestedTools: Tool[] = [
+    {
+      id: '4',
+      title: 'Looking for Tile Cutting Saw',
+      description: 'Need a professional tile cutting saw for bathroom renovation project. Wet cutting preferred.',
+      amount: '$80',
+      available: false,
+      category: 'Power Tools',
+      type: 'requested',
+      location: 'Northside',
+      duration: '3-4 days',
+      timeframe: 'week',
+      contact: '+1 234-567-8904',
+      postedBy: 'Sarah Wilson',
+      experience: 'Experienced with tile work'
+    },
+    {
+      id: '5',
+      title: 'Heavy Duty Ladder - 20ft+',
+      description: 'Urgent: Need tall ladder for roof inspection and minor repairs. Must be safety certified.',
+      amount: '$60',
+      available: false,
+      category: 'Safety Equipment',
+      type: 'requested',
+      location: 'City Heights',
+      duration: '1-2 days',
+      timeframe: 'day',
+      contact: '+1 234-567-8905',
+      postedBy: 'Property Management Co.',
+      experience: 'Professional use only'
+    },
+    {
+      id: '6',
+      title: 'Pressure Washer for Driveway',
+      description: 'Looking to rent a high-pressure washer for cleaning large concrete driveway and walkways.',
+      amount: '$40',
+      available: false,
+      category: 'Cleaning Equipment',
+      type: 'requested',
+      location: 'Westside',
+      duration: '1 day',
+      timeframe: 'day',
+      contact: '+1 234-567-8906',
+      postedBy: 'Home Owner',
+      experience: 'First time user - need brief instruction'
+    }
+  ];
+
+  const categories = ['all', 'Power Tools', 'Construction', 'Garden Tools', 'Safety Equipment', 'Cleaning Equipment'];
+
+  const currentTools = activeSection === 'available' ? availableTools : requestedTools;
+  
+  const filteredTools = currentTools.filter(tool => {
+    const matchesSearch = tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         tool.location?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilter = activeFilter === 'all' || tool.category === activeFilter;
+    return matchesSearch && matchesFilter;
+  });
+
+  if (!mounted) {
+    return null;
+  }
       const toolsSnapshot = await getDocs(toolsQuery);
       
       const loadedTools: Tool[] = [];
