@@ -108,7 +108,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
@@ -117,11 +117,13 @@ const Navigation = () => {
               onMouseEnter={(e) => handleMouseEnter(e, '/Tasks')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/Tasks')}
             >
-              Tasks
+              <span className="task-icon-transition group-hover:animate-bounce">📋</span>
+              <span>Tasks</span>
+              {isActiveLink('/Tasks') && <span className="animate-pulse text-xs">✨</span>}
             </Link>
             <Link 
               href="/Tools" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105" 
+              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
@@ -130,7 +132,9 @@ const Navigation = () => {
               onMouseEnter={(e) => handleMouseEnter(e, '/Tools')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/Tools')}
             >
-              Tools
+              <span className="tool-icon-transition group-hover:animate-spin" style={{ animationDuration: '1s' }}>🔧</span>
+              <span>Tools</span>
+              {isActiveLink('/Tools') && <span className="animate-pulse text-xs">⚡</span>}
             </Link>
             <Link 
               href="/About" 
