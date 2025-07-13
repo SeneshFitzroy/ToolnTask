@@ -138,6 +138,11 @@ const Navigation = () => {
               }} 
               onMouseEnter={(e) => handleMouseEnter(e, '/Tasks')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/Tasks')}
+              onClick={() => {
+                setShowCreateDropdown(false);
+                setShowProfileDropdown(false);
+                setMobileMenuOpen(false);
+              }}
             >
               <span className="task-icon-transition group-hover:animate-bounce">📋</span>
               <span>Tasks</span>
