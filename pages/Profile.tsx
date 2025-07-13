@@ -239,39 +239,54 @@ export default function Profile() {
 
             {/* Tab Navigation */}
             <div className="border-b" style={{ borderColor: theme === 'dark' ? '#374151' : '#E5E7EB' }}>
-              <nav className="flex">
+              <nav className="flex overflow-x-auto">
                 <button
                   onClick={() => setActiveTab('profile')}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'profile'
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
                   style={{ color: activeTab === 'profile' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
+                  <UserIcon className="h-4 w-4" />
                   Profile Information
                 </button>
                 <button
                   onClick={() => setActiveTab('password')}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'password'
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
                   style={{ color: activeTab === 'password' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
+                  <Key className="h-4 w-4" />
                   Change Password
                 </button>
                 <button
                   onClick={() => setActiveTab('settings')}
-                  className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'settings'
                       ? 'border-orange-500 text-orange-500'
                       : 'border-transparent hover:border-gray-300'
                   }`}
                   style={{ color: activeTab === 'settings' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
                 >
+                  <Settings className="h-4 w-4" />
                   Settings
+                </button>
+                <button
+                  onClick={() => setActiveTab('saved')}
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                    activeTab === 'saved'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'saved' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
+                >
+                  <Bookmark className="h-4 w-4" />
+                  Saved Gigs
                 </button>
               </nav>
             </div>
