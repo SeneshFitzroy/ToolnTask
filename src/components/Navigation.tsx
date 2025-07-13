@@ -129,60 +129,112 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
+              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onClick={() => {
+              onMouseEnter={(e) => {
+                if (!isActiveLink('/')) {
+                  e.currentTarget.style.color = '#FF5E14';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActiveLink('/')) {
+                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+              onClick={(e) => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
+                addShineEffect(e.currentTarget);
               }}
             >
               Home
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
+              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onClick={() => {
+              onMouseEnter={(e) => {
+                if (!isActiveLink('/Tasks')) {
+                  e.currentTarget.style.color = '#FF5E14';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActiveLink('/Tasks')) {
+                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+              onClick={(e) => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
+                addShineEffect(e.currentTarget);
               }}
             >
               Tasks
             </Link>
             <Link 
               href="/Tools" 
-              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
+              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onClick={() => {
+              onMouseEnter={(e) => {
+                if (!isActiveLink('/Tools')) {
+                  e.currentTarget.style.color = '#FF5E14';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActiveLink('/Tools')) {
+                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+              onClick={(e) => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
+                addShineEffect(e.currentTarget);
               }}
             >
               Tools
             </Link>
             <Link 
               href="/About" 
-              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
+              className="px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button" 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onClick={() => {
+              onMouseEnter={(e) => {
+                if (!isActiveLink('/About')) {
+                  e.currentTarget.style.color = '#FF5E14';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActiveLink('/About')) {
+                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+              onClick={(e) => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
+                addShineEffect(e.currentTarget);
               }}
             >
               About
