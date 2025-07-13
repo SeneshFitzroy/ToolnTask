@@ -527,20 +527,7 @@ const Navigation = () => {
               >
                 About Us
               </Link>
-              <Link 
-                href="/Contact" 
-                className="px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300" 
-                style={{ 
-                  color: isActiveLink('/Contact') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                  backgroundColor: isActiveLink('/Contact') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                  borderLeft: isActiveLink('/Contact') ? '3px solid #FF5E14' : 'none'
-                }} 
-                onMouseEnter={(e) => handleMouseEnter(e, '/Contact')} 
-                onMouseLeave={(e) => handleMouseLeave(e, '/Contact')} 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
+
               
               {/* Enhanced Create Options for Mobile */}
               {user && (
