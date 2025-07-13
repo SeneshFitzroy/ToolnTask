@@ -273,7 +273,7 @@ export default function SignIn() {
               <div className="space-y-3">
                 <div className="flex items-center my-4">
                   <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
-                  <span className="px-3 text-sm" style={ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>or</span>
+                  <span className="px-3 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>or</span>
                   <div className="flex-1 h-px" style={{ backgroundColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}></div>
                 </div>
                 <Button

@@ -14,6 +14,7 @@ const Navigation = () => {
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCreateDropdown, setShowCreateDropdown] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
