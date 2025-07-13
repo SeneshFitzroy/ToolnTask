@@ -241,16 +241,30 @@ const Navigation = () => {
             </Link>
 
             
-            {/* Clean Create Button for authenticated users */}
+            {/* Premium Create Button for authenticated users */}
             {user && (
               <div className="relative create-dropdown">
                 <button
-                  onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-                  className="px-6 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center gap-2"
+                  onClick={(e) => {
+                    setShowCreateDropdown(!showCreateDropdown);
+                    addShineEffect(e.currentTarget);
+                  }}
+                  className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 relative overflow-hidden create-button"
                   style={{ 
-                    background: '#FF5E14',
+                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 100%)',
                     color: '#FFFFFF',
-                    border: 'none'
+                    border: 'none',
+                    boxShadow: '0 4px 15px rgba(255, 94, 20, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 100%)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.4)';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 100%)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 94, 20, 0.3)';
+                    e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
                   <Plus className="h-4 w-4" strokeWidth={2} />
