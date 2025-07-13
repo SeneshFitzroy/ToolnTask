@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from 'next-themes';
 
 interface LogoProps {
   size?: 'small' | 'medium' | 'large' | 'xl';
@@ -13,6 +14,8 @@ const Logo: React.FC<LogoProps> = ({
   showUnderline = false,
   interactive = false 
 }) => {
+  const { theme } = useTheme();
+  
   const sizeClasses = {
     small: 'text-sm sm:text-base',
     medium: 'text-lg sm:text-xl lg:text-2xl',
@@ -27,7 +30,7 @@ const Logo: React.FC<LogoProps> = ({
   return (
     <span className={logoClass}>
       <span style={{ color: '#FF5E14' }}>Tool</span>
-      <span style={{ color: '#2D3748' }}>N</span>
+      <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>N</span>
       <span style={{ color: '#FF5E14' }}>Task</span>
       {showUnderline && (
         <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>

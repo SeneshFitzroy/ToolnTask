@@ -170,7 +170,7 @@ export default function Tasks() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#2D3748' }}>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 24/7
               </div>
               <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>

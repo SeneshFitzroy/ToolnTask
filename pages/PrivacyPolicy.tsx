@@ -1,5 +1,6 @@
-import Navigation from '../src/components/Navigation';
-import Footer from '../src/components/Footer';
+import Navigation from '../src/components/Navigation'                style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = theme === 'dark' ? '#FFFFFF' : '#001554'}import Footer from '../src/components/Footer';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 

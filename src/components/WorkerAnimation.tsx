@@ -1,4 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { use  const t  const tools = [
+    { icon: '🔧', name: 'Wrench', color: '#FF5E14', position: { top: '10%', left: '15%' } },
+    { icon: '🔨', name: 'Hammer', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '20%', right: '10%' } },
+    { icon: '⚙️', name: 'Gear', color: '#FF5E14', position: { bottom: '25%', left: '8%' } },
+    { icon: '🪚', name: 'Saw', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '15%', left: '50%' } },
+    { icon: '🪛', name: 'Screwdriver', color: '#FF5E14', position: { bottom: '30%', right: '15%' } },
+    { icon: '📐', name: 'Ruler', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '45%', right: '5%' } },
+    { icon: '🎯', name: 'Target', color: '#FF5E14', position: { top: '25%', left: '25%' } },
+    { icon: '🔩', name: 'Bolt', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '35%', left: '10%' } }
+  ];    { icon: '🔧', name: 'Wrench', color: '#FF5E14', position: { top: '10%', left: '15%' } },
+    { icon: '🔨', name: 'Hammer', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '20%', right: '10%' } },
+    { icon: '📝', name: 'Notepad', color: '#FF5E14', position: { top: '30%', left: '5%' } },
+    { icon: '🪚', name: 'Saw', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '15%', left: '50%' } },
+    { icon: '⚡', name: 'Power', color: '#FF5E14', position: { top: '40%', right: '20%' } },
+    { icon: '📐', name: 'Ruler', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '45%', right: '5%' } },
+    { icon: '🎯', name: 'Target', color: '#FF5E14', position: { top: '25%', left: '25%' } },
+    { icon: '🔩', name: 'Bolt', color: theme === 'dark' ? '#FFFFFF' : '#001554', position: { top: '35%', left: '10%' } }
+  ];Effect } from 'react';
 import { useTheme } from 'next-themes';
 
 const WorkerAnimation = () => {

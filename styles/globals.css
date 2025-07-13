@@ -11,9 +11,9 @@
   font-weight: bold;
 }
 
-/* EXACT COLOR SCHEME: Tool(#FF5E14) + N(#2D3748) + Task(#FF5E14) */
+/* EXACT COLOR SCHEME: Tool(#FF5E14) + N(#001554) + Task(#FF5E14) */
 .logo-font .tool-orange { color: #FF5E14; }
-.logo-font .n-blue { color: #2D3748; }
+.logo-font .n-blue { color: #001554; }
 .logo-font .task-orange { color: #FF5E14; }
 
 /* SIZE VARIANTS - RESPONSIVE & OPTIMIZED */
