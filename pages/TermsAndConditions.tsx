@@ -47,7 +47,7 @@ export default function TermsAndConditions() {
       <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#0a0a0a' }}>Terms & Conditions</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Terms & Conditions</h1>
             <p className="text-lg mb-6" style={{ color: theme === 'dark' ? '#B3B4B6' : '#B3B5BC' }}>
               Last updated: July 3, 2025
             </p>
