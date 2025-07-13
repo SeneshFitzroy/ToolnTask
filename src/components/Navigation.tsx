@@ -355,18 +355,34 @@ const Navigation = () => {
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-4">
               {user ? (
-                // User is logged in - Clean Profile Button
+                // User is logged in - Premium Profile Button
                 <div className="relative profile-dropdown">
                   <button
-                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200" 
+                    onClick={(e) => {
+                      setShowProfileDropdown(!showProfileDropdown);
+                      addShineEffect(e.currentTarget);
+                    }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative overflow-hidden profile-button" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
+                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`,
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#f3f4f6';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e5e7eb';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold" 
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold shadow-sm" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
@@ -424,15 +440,31 @@ const Navigation = () => {
                   )}
                 </div>
               ) : (
-                // User is not logged in - Clean Profile Button
+                // User is not logged in - Premium Account Button
                 <div className="relative profile-dropdown">
                   <button
-                    onClick={() => setShowProfileDropdown(!showProfileDropdown)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                    onClick={(e) => {
+                      setShowProfileDropdown(!showProfileDropdown);
+                      addShineEffect(e.currentTarget);
+                    }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative overflow-hidden account-button"
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
+                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`,
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#f3f4f6';
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e5e7eb';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
                     }}
                   >
                     <UserIcon className="h-4 w-4" />
