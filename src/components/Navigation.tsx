@@ -551,21 +551,12 @@ const Navigation = () => {
                   <>
                     <Link href="/SignIn" 
                       className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#FE5F16' }}
+                      style={{ backgroundColor: '#FF5E14' }}
                       onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FF5E14'}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Login
-                    </Link>
-                    <Link href="/SignUp" 
-                      className="px-5 py-3 rounded-full text-base font-semibold text-center transition-all duration-300 text-white border-0" 
-                      style={{ backgroundColor: '#2D3748' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#011659'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2D3748'}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Register
                     </Link>
                   </>
                 )}
