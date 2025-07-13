@@ -51,16 +51,58 @@ export default function SignIn() {
       return;
     }
 
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+
     try {
       // Sign in with Firebase Auth
-      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      await signInWithEmailAndPassword(auth, formData.email.trim(), formData.password);
       console.log('User signed in successfully');
       
       // Redirect to home page
       router.push('/');
     } catch (error: unknown) {
       console.error('Error signing in:', error);
-      const errorMessage = error instanceof Error ? error.message : 'An error occurred during sign in';
+      
+      // Handle specific Firebase Auth errors
+      let errorMessage = 'An error occurred during sign in';
+      
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+        switch (firebaseError.code) {
+          case 'auth/invalid-credential':
+            errorMessage = 'Invalid email or password. Please check your credentials and try again.';
+            break;
+          case 'auth/user-not-found':
+            errorMessage = 'No account found with this email address. Please sign up first.';
+            break;
+          case 'auth/wrong-password':
+            errorMessage = 'Incorrect password. Please try again.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid email address format.';
+            break;
+          case 'auth/user-disabled':
+            errorMessage = 'This account has been disabled. Please contact support.';
+            break;
+          case 'auth/too-many-requests':
+            errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
+            break;
+          case 'auth/network-request-failed':
+            errorMessage = 'Network error. Please check your internet connection.';
+            break;
+          default:
+            errorMessage = firebaseError.message || 'An error occurred during sign in';
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
       setError(errorMessage);
     } finally {
       setLoading(false);
