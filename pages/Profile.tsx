@@ -612,6 +612,43 @@ export default function Profile() {
                       </div>
                     </div>
                   </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Language Settings
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-3" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          Select Language
+                        </label>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                          {languages.map((language) => (
+                            <button
+                              key={language.code}
+                              onClick={() => setSelectedLanguage(language.code)}
+                              className={`flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${
+                                selectedLanguage === language.code ? 'ring-2 ring-orange-500' : ''
+                              }`}
+                              style={{ 
+                                backgroundColor: selectedLanguage === language.code ? '#FFF7ED' : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
+                                borderColor: selectedLanguage === language.code ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#E2E8F0'),
+                                color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                              }}
+                            >
+                              <span className="text-lg">{language.flag}</span>
+                              <span className="font-medium text-sm">{language.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          Choose your preferred language for the interface. Changes will be applied immediately.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
