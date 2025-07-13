@@ -126,6 +126,32 @@ export default function SignIn() {
     }
   };
 
+  // Forgot password function
+  const handleForgotPassword = async () => {
+    if (!formData.email) {
+      setError('Please enter your email address first');
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, formData.email.trim());
+      setSuccessMessage('Password reset email sent! Check your inbox.');
+      setError('');
+    } catch (error: unknown) {
+      console.error('Error sending password reset email:', error);
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+        if (firebaseError.code === 'auth/user-not-found') {
+          setError('No account found with this email address.');
+        } else {
+          setError('Error sending password reset email. Please try again.');
+        }
+      } else {
+        setError('Error sending password reset email. Please try again.');
+      }
+    }
+  };
+
   if (!mounted) return null;
 
   return (
