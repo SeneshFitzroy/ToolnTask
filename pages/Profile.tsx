@@ -9,7 +9,29 @@ import { useRouter } from 'next/router';
 import { updateProfile, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
 import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon, Globe, Monitor, Bookmark, Settings, User as UserIcon, Key } from 'lucide-react';
+import { Sun, Moon, Globe, Monitor, Bookmark, Settings, User as UserIcon, Key, Bell, Languages, MapPin, Clock, DollarSign, Star } from 'lucide-react';
+
+interface SavedGig {
+  id: string;
+  title: string;
+  type: 'tool' | 'task';
+  price: string;
+  location: string;
+  savedAt: string;
+  description?: string;
+  postedBy?: string;
+  status?: 'available' | 'requested';
+}
+
+interface Notification {
+  id: string;
+  type: 'gig_match' | 'request' | 'approval' | 'general';
+  title: string;
+  message: string;
+  timestamp: string;
+  isRead: boolean;
+  relatedGig?: string;
+}
 
 export default function Profile() {
   const { theme, setTheme } = useTheme();
