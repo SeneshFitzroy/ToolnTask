@@ -78,29 +78,10 @@ const Navigation = () => {
 
   // Add shine effect on button press
   const addShineEffect = (element: HTMLElement) => {
-    element.style.position = 'relative';
-    element.style.overflow = 'hidden';
-    
-    const shine = document.createElement('div');
-    shine.style.position = 'absolute';
-    shine.style.top = '0';
-    shine.style.left = '-100%';
-    shine.style.width = '100%';
-    shine.style.height = '100%';
-    shine.style.background = 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)';
-    shine.style.transition = 'left 0.5s ease-out';
-    shine.style.pointerEvents = 'none';
-    
-    element.appendChild(shine);
+    element.classList.add('animate-shine');
     
     setTimeout(() => {
-      shine.style.left = '100%';
-    }, 10);
-    
-    setTimeout(() => {
-      if (element.contains(shine)) {
-        element.removeChild(shine);
-      }
+      element.classList.remove('animate-shine');
     }, 600);
   };
 
@@ -129,7 +110,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/') ? 'nav-active' : ''}`} 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -157,7 +138,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md relative overflow-hidden nav-button ${isActiveLink('/Tasks') ? 'nav-active' : ''}`} 
+              className={`px-4 py-2 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/Tasks') ? 'nav-active' : ''}`} 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
