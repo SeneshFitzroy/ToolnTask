@@ -171,7 +171,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             {/* Contact Form */}
             <div className="p-8 sm:p-10 rounded-3xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Send us a Message</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Send us a Message</h2>
               
               {/* Success Message */}
               {success && (
@@ -325,7 +325,7 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8 sm:space-y-10">
               <div className="p-8 rounded-3xl shadow-xl hover:scale-105 transition-all duration-300" style={{ backgroundColor: '#FFFFFF' }}>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#2D3748' }}>Contact Information</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: '#001554' }}>Contact Information</h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{ backgroundColor: '#FE5F16' }}>
