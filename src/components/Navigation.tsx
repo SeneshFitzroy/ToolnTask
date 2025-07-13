@@ -575,70 +575,85 @@ const Navigation = () => {
               {/* Enhanced Create Options for Mobile */}
               {user && (
                 <>
-                  <div className="px-4 py-2 mt-2">
-                    <h3 className="text-sm font-bold" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                      Create New
+                  <div className="px-4 py-3 mt-4">
+                    <h3 className="text-lg font-black flex items-center gap-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                      🚀 Create New Listing
                     </h3>
+                    <p className="text-sm font-medium mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      Choose what you want to create
+                    </p>
                   </div>
                   <Link 
                     href="/CreateTool"
-                    className="group flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all duration-300"
+                    className="group flex items-center gap-4 px-4 py-4 mx-2 rounded-2xl transition-all duration-300 mb-3 shadow-lg"
                     style={{ 
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
-                      border: `2px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
+                      background: theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)',
+                      border: `3px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FED7AA';
+                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #333333 0%, #444444 100%)' : 'linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%)';
                       e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.transform = 'scale(1.02)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
+                      e.currentTarget.style.transform = 'scale(1)';
                     }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200"
-                         style={{ backgroundColor: '#FF5E14' }}>
-                      <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
+                    <div className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg"
+                         style={{ 
+                           background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
+                           boxShadow: '0 8px 25px rgba(255, 94, 20, 0.3)'
+                         }}>
+                      <Wrench className="h-7 w-7 text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Create Tool Listing
+                      <h4 className="font-black text-base mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        🔧 Create Tool Listing
                       </h4>
-                      <p className="text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        List your tool for rent or sale
+                      <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        List your tools for rent or sale
                       </p>
                     </div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                   </Link>
                   <Link 
                     href="/CreateTask"
-                    className="group flex items-center gap-3 px-4 py-3 mx-2 rounded-xl transition-all duration-300 mb-3"
+                    className="group flex items-center gap-4 px-4 py-4 mx-2 rounded-2xl transition-all duration-300 mb-4 shadow-lg"
                     style={{ 
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
-                      border: `2px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
+                      background: theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)',
+                      border: `3px solid ${theme === 'dark' ? '#444444' : '#FDBA74'}`
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#FED7AA';
+                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #333333 0%, #444444 100%)' : 'linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%)';
                       e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.transform = 'scale(1.02)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#FFF7ED';
+                      e.currentTarget.style.background = theme === 'dark' ? 'linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%)' : 'linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#FDBA74';
+                      e.currentTarget.style.transform = 'scale(1)';
                     }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200"
-                         style={{ backgroundColor: '#FF5E14' }}>
-                      <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
+                    <div className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg"
+                         style={{ 
+                           background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%)',
+                           boxShadow: '0 8px 25px rgba(99, 102, 241, 0.3)'
+                         }}>
+                      <ClipboardList className="h-7 w-7 text-white" strokeWidth={2.5} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Create Task
+                      <h4 className="font-black text-base mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        📋 Create Task
                       </h4>
-                      <p className="text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         Post a task and hire workers
                       </p>
                     </div>
+                    <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
                   </Link>
                 </>
               )}
