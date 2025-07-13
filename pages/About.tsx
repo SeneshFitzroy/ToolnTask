@@ -192,7 +192,7 @@ export default function About() {
                        style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#1a1a1a' }}>
                     <span className="text-white text-xl">🎯</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1a1a1a' }}>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     Advertisement Space
                   </h3>
                   <p className="text-sm leading-relaxed" style={{ color: '#B3B5BC' }}>
