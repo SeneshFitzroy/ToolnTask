@@ -37,18 +37,19 @@ export default function SignIn() {
     }));
   };
 
-  // --- CHANGE: The handleSubmit function is updated for more specific errors ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // --- Step 1: Basic validation (no change) ---
+    // Validation
     if (!formData.email || !formData.password) {
       setError('Please fill in all fields');
       setLoading(false);
       return;
     }
+
+    // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address');
@@ -57,45 +58,49 @@ export default function SignIn() {
     }
 
     try {
-      const email = formData.email.trim();
-      const password = formData.password;
-
-      // --- Step 2: Check if a user with this email exists ---
-      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-
-      if (signInMethods.length === 0) {
-        // User does not exist, so we can give a specific error.
-        setError('No account found with this email. Please sign up first.');
-        setLoading(false);
-        return;
-      }
-
-      // --- Step 3: If user exists, try to sign in ---
-      // If this fails, we can now be confident it's a password issue.
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        console.log('User signed in successfully');
-        router.push('/');
-      } catch (innerError: any) {
-         // This catch block handles the signInWithEmailAndPassword failure.
-         // Since we know the user exists, the most likely error is an incorrect password.
-        if (innerError.code === 'auth/wrong-password' || innerError.code === 'auth/invalid-credential') {
-            setError('Incorrect password. Please try again.');
-        } else if (innerError.code === 'auth/user-disabled') {
-            setError('This account has been disabled. Please contact support.');
-        } else {
-            setError('An unexpected error occurred. Please try again.');
-            console.error('Sign-in error after user check:', innerError);
-        }
-      }
-
-    } catch (outerError: any) {
-      // This catch block handles errors from fetchSignInMethodsForEmail or other unexpected issues.
-      console.error('Error during sign-in process:', outerError);
+      // Sign in with Firebase Auth
+      await signInWithEmailAndPassword(auth, formData.email.trim(), formData.password);
+      console.log('User signed in successfully');
+      
+      // Redirect to home page
+      router.push('/');
+    } catch (error: unknown) {
+      console.error('Error signing in:', error);
+      
+      // Handle specific Firebase Auth errors
       let errorMessage = 'An error occurred during sign in';
-      if (outerError.code === 'auth/network-request-failed') {
-          errorMessage = 'Network error. Please check your internet connection.';
+      
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+        switch (firebaseError.code) {
+          case 'auth/invalid-credential':
+            errorMessage = 'Incorrect password. Please check your password and try again.';
+            break;
+          case 'auth/user-not-found':
+            errorMessage = 'No account found with this email address. Please sign up first.';
+            break;
+          case 'auth/wrong-password':
+            errorMessage = 'Incorrect password. Please try again.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid email address format.';
+            break;
+          case 'auth/user-disabled':
+            errorMessage = 'This account has been disabled. Please contact support.';
+            break;
+          case 'auth/too-many-requests':
+            errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
+            break;
+          case 'auth/network-request-failed':
+            errorMessage = 'Network error. Please check your internet connection.';
+            break;
+          default:
+            errorMessage = 'Login failed. Please check your email and password.';
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
       }
+      
       setError(errorMessage);
     } finally {
       setLoading(false);
@@ -215,7 +220,7 @@ export default function SignIn() {
 
             <div className="mt-6 sm:mt-8 text-center">
               <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link href="/SignUp" className="font-semibold hover:underline" style={{ color: '#FF5E14' }}>
                   Register
                 </Link>
@@ -238,9 +243,9 @@ export default function SignIn() {
               </h4>
               <ul className="text-xs space-y-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                 <li>• Make sure your email and password are correct</li>
-                <li>• Check if you have an account - use "Register" if you're new</li>
-                <li>• Try the "Demo Login" button to test the platform</li>
-                <li>• Use "Forgot password?" if you can't remember your password</li>
+                <li>• Check if you have an account - use &quot;Register&quot; if you&apos;re new</li>
+                <li>• Try the &quot;Demo Login&quot; button to test the platform</li>
+                <li>• Use &quot;Forgot password?&quot; if you can&apos;t remember your password</li>
               </ul>
             </div>
           </div>
