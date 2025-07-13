@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { 
@@ -16,7 +16,12 @@ import {
   Star,
   Phone,
   CheckCircle,
-  XCircle
+  XCircle,
+  ExternalLink,
+  Calendar,
+  Filter,
+  RefreshCw,
+  Globe
 } from 'lucide-react';
 
 interface Advertisement {
