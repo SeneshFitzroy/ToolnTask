@@ -121,7 +121,8 @@ export default function Profile() {
     { code: 'ru', name: 'Русский', flag: '🇷🇺' },
     { code: 'zh', name: '中文', flag: '🇨🇳' },
     { code: 'ja', name: '日本語', flag: '🇯🇵' },
-    { code: 'ko', name: '한국어', flag: '🇰🇷' }
+    { code: 'ko', name: '한국어', flag: '🇰🇷' },
+    { code: 'si', name: 'සිංහල', flag: '🇱🇰' }
   ];
   const router = useRouter();
 
