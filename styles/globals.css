@@ -715,6 +715,22 @@
   transition: all 0.2s ease-out;
 }
 
+/* Smooth dropdown slide animations */
+.dropdown-slide-in {
+  animation: dropdown-slide-in 0.2s ease-out forwards;
+}
+
+@keyframes dropdown-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* PAGE TRANSITION IMPROVEMENTS */
 
 /* Smooth page transitions */
@@ -748,6 +764,25 @@
 
 .page-loaded {
   opacity: 1;
+}
+
+/* Page transition overlay */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #FF5E14, #FF7A3D);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.page-transition.active {
+  opacity: 0.1;
+  pointer-events: auto;
 }
 
 /* Improved navigation hover effects */
