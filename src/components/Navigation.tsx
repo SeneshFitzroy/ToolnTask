@@ -158,6 +158,11 @@ const Navigation = () => {
               }} 
               onMouseEnter={(e) => handleMouseEnter(e, '/Tools')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/Tools')}
+              onClick={() => {
+                setShowCreateDropdown(false);
+                setShowProfileDropdown(false);
+                setMobileMenuOpen(false);
+              }}
             >
               <span className="tool-icon-transition group-hover:animate-spin" style={{ animationDuration: '1s' }}>🔧</span>
               <span>Tools</span>
@@ -173,6 +178,11 @@ const Navigation = () => {
               }} 
               onMouseEnter={(e) => handleMouseEnter(e, '/About')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/About')}
+              onClick={() => {
+                setShowCreateDropdown(false);
+                setShowProfileDropdown(false);
+                setMobileMenuOpen(false);
+              }}
             >
               <span className="group-hover:animate-bounce">ℹ️</span>
               <span>About Us</span>
