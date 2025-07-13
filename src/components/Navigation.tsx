@@ -291,10 +291,10 @@ const Navigation = () => {
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-3">
               {user ? (
-                // User is logged in
-                <>
+                // User is logged in - Profile Icon with dropdown
+                <div className="relative flex items-center space-x-2">
                   <Link href="/Profile"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-medium transition-all duration-300 hover:scale-105" 
+                    className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105" 
                     style={{ 
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                       backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
@@ -313,19 +313,28 @@ const Navigation = () => {
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <span>Profile</span>
+                    <UserIcon className="h-4 w-4" />
                   </Link>
                   <button 
                     onClick={handleSignOut}
-                    className="px-6 py-3 rounded-full text-base font-semibold transition-all duration-300 hover:scale-105 shadow-lg text-white border-0" 
-                    style={{ backgroundColor: '#DC2626' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#B91C1C'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DC2626'}
+                    className="flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105" 
+                    style={{ 
+                      color: '#DC2626',
+                      backgroundColor: theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)',
+                      border: `2px solid ${theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)'}`
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.2)' : 'rgba(220, 38, 38, 0.1)';
+                      e.currentTarget.style.borderColor = '#DC2626';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? 'rgba(220, 38, 38, 0.3)' : 'rgba(220, 38, 38, 0.2)';
+                    }}
                   >
-                    Sign Out
+                    <LogOut className="h-4 w-4" />
                   </button>
-                </>
-              ) : (
+                </div>
                 // User is not logged in
                 <>
                   <Link href="/SignIn" 
