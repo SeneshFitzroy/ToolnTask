@@ -5,7 +5,11 @@ import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp, Heart, User
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
 
-const Footer = () => {
+interface FooterProps {
+  showNewsletter?: boolean;
+}
+
+const Footer = ({ showNewsletter = false }: FooterProps) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -20,42 +24,44 @@ const Footer = () => {
 
   return (
     <footer className="relative" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-      {/* Newsletter Section */}
-      <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Stay Connected with</span>
-              <Logo size="large" />
-            </div>
-            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
-              Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-base"
-                style={{ 
-                  borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
-                  color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
-                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF'
-                }}
-                onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
-                onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
-              />
-              <button
-                className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
-                style={{ backgroundColor: '#FE5F16' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
-              >
-                Subscribe
-              </button>
+      {/* Newsletter Section - Only show on specific pages */}
+      {showNewsletter && (
+        <div className="py-12 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Stay Connected with</span>
+                <Logo size="large" />
+              </div>
+              <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
+                Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-base"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
+                  onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
+                />
+                <button
+                  className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                  style={{ backgroundColor: '#FE5F16' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                >
+                  Subscribe
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Footer Content */}
       <div className="py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>

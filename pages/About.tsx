@@ -608,7 +608,7 @@ export default function About() {
         </div>
       </div>
 
-      <Footer />
+      <Footer showNewsletter={true} />
     </div>
   );
 }

@@ -952,7 +952,7 @@ export default function Home() {
         </div>
       )}
 
-      <Footer />
+      <Footer showNewsletter={true} />
     </div>
   );
 }
