@@ -93,100 +93,84 @@ const Navigation = () => {
 
   return (
     <nav 
-      className="shadow-lg sticky top-0 z-50 border-b border-opacity-20 transition-colors duration-300" 
+      className="shadow-sm sticky top-0 z-50 border-b transition-colors duration-200" 
       style={{ 
-        backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF', 
-        borderColor: theme === 'dark' ? '#333333' : '#B3B5BC' 
+        backgroundColor: theme === 'dark' ? '#0f0f0f' : '#FFFFFF', 
+        borderColor: theme === 'dark' ? '#2a2a2a' : '#e5e7eb' 
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-18 md:h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-            <Logo size="large" interactive={true} />
+          <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
+            setShowCreateDropdown(false);
+            setShowProfileDropdown(false);
+            setMobileMenuOpen(false);
+          }}>
+            <Logo size="large" interactive={false} />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-5 xl:space-x-7">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
               style={{ 
-                color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                borderBottom: isActiveLink('/') ? '2px solid #FF5E14' : 'none'
+                color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onMouseEnter={(e) => handleMouseEnter(e, '/')} 
-              onMouseLeave={(e) => handleMouseLeave(e, '/')}
               onClick={() => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
               }}
             >
-              <span className="group-hover:animate-pulse">🏠</span>
-              <span>Home</span>
-              {isActiveLink('/') && <span className="animate-pulse text-xs">🌟</span>}
+              Home
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
               style={{ 
-                color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                borderBottom: isActiveLink('/Tasks') ? '2px solid #FF5E14' : 'none'
+                color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onMouseEnter={(e) => handleMouseEnter(e, '/Tasks')} 
-              onMouseLeave={(e) => handleMouseLeave(e, '/Tasks')}
               onClick={() => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
               }}
             >
-              <span className="task-icon-transition group-hover:animate-bounce">📋</span>
-              <span>Tasks</span>
-              {isActiveLink('/Tasks') && <span className="animate-pulse text-xs">✨</span>}
+              Tasks
             </Link>
             <Link 
               href="/Tools" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
               style={{ 
-                color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                borderBottom: isActiveLink('/Tools') ? '2px solid #FF5E14' : 'none'
+                color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onMouseEnter={(e) => handleMouseEnter(e, '/Tools')} 
-              onMouseLeave={(e) => handleMouseLeave(e, '/Tools')}
               onClick={() => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
               }}
             >
-              <span className="tool-icon-transition group-hover:animate-spin" style={{ animationDuration: '1s' }}>🔧</span>
-              <span>Tools</span>
-              {isActiveLink('/Tools') && <span className="animate-pulse text-xs">⚡</span>}
+              Tools
             </Link>
             <Link 
               href="/About" 
-              className="px-3 xl:px-4 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:scale-105 nav-item-hover flex items-center gap-2 group" 
+              className="px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md" 
               style={{ 
-                color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
-                backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent',
-                borderBottom: isActiveLink('/About') ? '2px solid #FF5E14' : 'none'
+                color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }} 
-              onMouseEnter={(e) => handleMouseEnter(e, '/About')} 
-              onMouseLeave={(e) => handleMouseLeave(e, '/About')}
               onClick={() => {
                 setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
               }}
             >
-              <span className="group-hover:animate-bounce">ℹ️</span>
-              <span>About Us</span>
-              {isActiveLink('/About') && <span className="animate-pulse text-xs">💼</span>}
+              About
             </Link>
 
             
