@@ -50,6 +50,14 @@ export default function SignUp() {
       return;
     }
 
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       setLoading(false);
@@ -64,7 +72,7 @@ export default function SignUp() {
 
     try {
       // Create user with Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email.trim(), formData.password);
       const user = userCredential.user;
 
       // Update display name
@@ -74,11 +82,11 @@ export default function SignUp() {
 
       // Save user data to Firestore
       await setDoc(doc(db, 'users', user.uid), {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        displayName: `${formData.firstName} ${formData.lastName}`,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        displayName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         isActive: true,
@@ -91,7 +99,32 @@ export default function SignUp() {
       router.push('/SignIn?message=registration-success');
     } catch (error: unknown) {
       console.error('Error creating user:', error);
-      const errorMessage = error instanceof Error ? error.message : 'An error occurred during registration';
+      
+      // Handle specific Firebase Auth errors
+      let errorMessage = 'An error occurred during registration';
+      
+      if (error && typeof error === 'object' && 'code' in error) {
+        const firebaseError = error as { code: string; message?: string };
+        switch (firebaseError.code) {
+          case 'auth/email-already-in-use':
+            errorMessage = 'An account with this email already exists. Please sign in instead.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid email address format.';
+            break;
+          case 'auth/weak-password':
+            errorMessage = 'Password is too weak. Please choose a stronger password.';
+            break;
+          case 'auth/network-request-failed':
+            errorMessage = 'Network error. Please check your internet connection.';
+            break;
+          default:
+            errorMessage = firebaseError.message || 'An error occurred during registration';
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
       setError(errorMessage);
     } finally {
       setLoading(false);
