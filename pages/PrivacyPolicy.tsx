@@ -301,7 +301,7 @@ export default function PrivacyPolicy() {
               </div>
               <div className="rounded-lg p-4" style={{ backgroundColor: '#FFFFFF' }}>
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold" style={{ color: '#2D3748' }}>Cookie Preferences</h4>
+                  <h4 className="font-semibold" style={{ color: '#001554' }}>Cookie Preferences</h4>
                   <button 
                     className="text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors border-0"
                     style={{ backgroundColor: '#FE5F16' }}

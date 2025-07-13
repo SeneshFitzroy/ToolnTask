@@ -372,7 +372,6 @@ export default function CreateTool() {
                   onClick={addFeature}
                   className="px-4 py-2 text-white rounded-xl hover:bg-orange-600"
                   style={{ backgroundColor: '#FF5E14' }}
-                  style={{ backgroundColor: '#FF5E14' }}
                 >
                   Add Feature
                 </button>
