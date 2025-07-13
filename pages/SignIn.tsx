@@ -108,24 +108,6 @@ export default function SignIn() {
   };
 
 
-  // Demo login function
-  const handleDemoLogin = async () => {
-    setLoading(true);
-    setError('');
-    
-    try {
-      // Use demo credentials
-      await signInWithEmailAndPassword(auth, 'demo@toolntask.com', 'demo123');
-      console.log('Demo user signed in successfully');
-      router.push('/');
-    } catch (error: unknown) {
-      console.error('Demo login failed:', error);
-      setError('Demo login is temporarily unavailable. Please create your own account.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Forgot password function
   const handleForgotPassword = async () => {
     if (!formData.email) {
