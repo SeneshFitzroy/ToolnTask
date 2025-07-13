@@ -461,7 +461,7 @@ export default function Profile() {
               {activeTab === 'settings' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                       Theme Settings
                     </h3>
                     <div className="space-y-4">
