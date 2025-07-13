@@ -252,12 +252,19 @@ export default function SignIn() {
             </form>
 
             <div className="mt-6 sm:mt-8 text-center">
-              <p style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Don&apos;t have an account?{' '}
-                <Link href="/SignUp" className="font-semibold hover:underline" style={{ color: '#FF5E14' }}>
-                  Register
+              <div className="space-y-3">
+                <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  Don&apos;t have an account?
+                </p>
+                <Link href="/SignUp">
+                  <Button
+                    className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
+                    style={{ backgroundColor: '#6B7280' }}
+                  >
+                    Register New Account
+                  </Button>
                 </Link>
-              </p>
+              </div>
             </div>
 
             <div className="mt-4 sm:mt-6 text-center">
@@ -266,7 +273,7 @@ export default function SignIn() {
                 className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: '#4CAF50' }}
               >
-                {loading ? 'Logging In as Demo...' : 'Login as Demo'}
+                {loading ? 'Logging In as Demo...' : 'Try Demo Login'}
               </Button>
             </div>
 
