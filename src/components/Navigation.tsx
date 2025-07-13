@@ -8,16 +8,7 @@ import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
 
-                  {/* Profile Dropdown for unauthenticated users */}
-                  {showProfileDropdown && (
-                    <div className="absolute right-0 top-full mt-3 w-48 rounded-xl shadow-2xl border-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-5 duration-200 dropdown-slide-in"
-                         style={{ 
-                           backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                           borderColor: theme === 'dark' ? '#444444' : '#E5E7EB',
-                           boxShadow: theme === 'dark' 
-                             ? '0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
-                             : '0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
-                         }}>
+const Navigation = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
