@@ -54,6 +54,7 @@ const Navigation = () => {
     const handleRouteChange = () => {
       setShowCreateDropdown(false);
       setShowProfileDropdown(false);
+      setShowNotifications(false);
       setMobileMenuOpen(false);
     };
 
