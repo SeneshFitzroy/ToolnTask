@@ -378,14 +378,34 @@ const Navigation = () => {
                     />
                   </button>
                   
-                  {/* Clean Profile Dropdown */}
+                  {/* Enhanced Profile Dropdown */}
                   {showProfileDropdown && (
-                    <div className="absolute right-0 top-full mt-2 w-44 rounded-lg shadow-lg border z-50 overflow-hidden"
+                    <div className="absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-50 overflow-hidden"
                          style={{ 
                            backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
                            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
                          }}>
                       
+                      {/* User Info Header */}
+                      <div className="p-4 border-b" style={{ 
+                        borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                      }}>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-semibold" 
+                               style={{ backgroundColor: '#FF5E14' }}>
+                            {user.email?.charAt(0).toUpperCase() || 'U'}
+                          </div>
+                          <div>
+                            <p className="font-medium text-sm" style={{ color: theme === 'dark' ? '#f1f5f9' : '#1e293b' }}>
+                              {user.displayName || 'User'}
+                            </p>
+                            <p className="text-xs" style={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }}>
+                              {user.email}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
                       <Link 
                         href="/Profile"
                         className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
@@ -402,7 +422,157 @@ const Navigation = () => {
                         onClick={() => setShowProfileDropdown(false)}
                       >
                         <UserIcon className="h-4 w-4" />
-                        <span className="font-medium text-sm">Profile</span>
+                        <span className="font-medium text-sm">Profile & Settings</span>
+                      </Link>
+
+                      {/* Notifications Button */}
+                      <div className="relative notifications-dropdown">
+                        <button
+                          onClick={() => {
+                            setShowNotifications(!showNotifications);
+                            setNotificationCount(0); // Clear count when opened
+                          }}
+                          className="w-full flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
+                          style={{ 
+                            color: theme === 'dark' ? '#e5e7eb' : '#374151',
+                            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }}
+                        >
+                          <div className="relative">
+                            <Bell className="h-4 w-4" />
+                            {notificationCount > 0 && (
+                              <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                                {notificationCount}
+                              </span>
+                            )}
+                          </div>
+                          <span className="font-medium text-sm">Notifications</span>
+                        </button>
+
+                        {/* Notifications Dropdown */}
+                        {showNotifications && (
+                          <div className="absolute right-0 top-0 mt-0 mr-56 w-80 rounded-lg shadow-lg border z-50 overflow-hidden"
+                               style={{ 
+                                 backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
+                                 borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                               }}>
+                            <div className="p-4 border-b" style={{ 
+                              borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                            }}>
+                              <h3 className="font-semibold text-lg" style={{ color: theme === 'dark' ? '#f1f5f9' : '#1e293b' }}>
+                                Notifications
+                              </h3>
+                            </div>
+                            
+                            <div className="max-h-64 overflow-y-auto">
+                              {/* Mock notifications */}
+                              <div className="p-4 border-b hover:bg-opacity-50 transition-colors"
+                                   style={{ 
+                                     borderColor: theme === 'dark' ? '#374151' : '#e5e7eb',
+                                     backgroundColor: 'transparent'
+                                   }}
+                                   onMouseEnter={(e) => {
+                                     e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                                   }}
+                                   onMouseLeave={(e) => {
+                                     e.currentTarget.style.backgroundColor = 'transparent';
+                                   }}>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                  <div>
+                                    <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#f1f5f9' : '#1e293b' }}>
+                                      New tool rental request
+                                    </p>
+                                    <p className="text-xs" style={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }}>
+                                      Someone is interested in your power drill
+                                    </p>
+                                    <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#64748b' : '#9ca3af' }}>
+                                      5 minutes ago
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="p-4 border-b hover:bg-opacity-50 transition-colors"
+                                   style={{ 
+                                     borderColor: theme === 'dark' ? '#374151' : '#e5e7eb',
+                                     backgroundColor: 'transparent'
+                                   }}
+                                   onMouseEnter={(e) => {
+                                     e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                                   }}
+                                   onMouseLeave={(e) => {
+                                     e.currentTarget.style.backgroundColor = 'transparent';
+                                   }}>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                  <div>
+                                    <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#f1f5f9' : '#1e293b' }}>
+                                      Task completed successfully
+                                    </p>
+                                    <p className="text-xs" style={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }}>
+                                      Your house cleaning task has been completed
+                                    </p>
+                                    <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#64748b' : '#9ca3af' }}>
+                                      1 hour ago
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="p-4 hover:bg-opacity-50 transition-colors"
+                                   style={{ 
+                                     backgroundColor: 'transparent'
+                                   }}
+                                   onMouseEnter={(e) => {
+                                     e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                                   }}
+                                   onMouseLeave={(e) => {
+                                     e.currentTarget.style.backgroundColor = 'transparent';
+                                   }}>
+                                <div className="flex items-start gap-3">
+                                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                                  <div>
+                                    <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#f1f5f9' : '#1e293b' }}>
+                                      New message received
+                                    </p>
+                                    <p className="text-xs" style={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }}>
+                                      AI assistant has suggestions for your request
+                                    </p>
+                                    <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#64748b' : '#9ca3af' }}>
+                                      2 hours ago
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <Link 
+                        href="/saved-gigs"
+                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
+                        style={{ 
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151',
+                          borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowProfileDropdown(false)}
+                      >
+                        <BookmarkCheck className="h-4 w-4" />
+                        <span className="font-medium text-sm">Saved Gigs</span>
                       </Link>
                       
                       <button 

@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { updateProfile, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
 import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Languages, Monitor, BookmarkCheck, Settings, User as UserIcon, Key } from 'lucide-react';
 
 export default function Profile() {
   const { theme, setTheme } = useTheme();
