@@ -44,6 +44,21 @@ const Navigation = () => {
     };
   }, []);
 
+  // Close dropdowns and mobile menu when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setShowCreateDropdown(false);
+      setShowProfileDropdown(false);
+      setMobileMenuOpen(false);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events]);
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -103,6 +118,11 @@ const Navigation = () => {
               }} 
               onMouseEnter={(e) => handleMouseEnter(e, '/')} 
               onMouseLeave={(e) => handleMouseLeave(e, '/')}
+              onClick={() => {
+                setShowCreateDropdown(false);
+                setShowProfileDropdown(false);
+                setMobileMenuOpen(false);
+              }}
             >
               <span className="group-hover:animate-pulse">🏠</span>
               <span>Home</span>
