@@ -184,7 +184,7 @@ export default function Profile() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>My Profile</span>
+              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>My Profile</span>
               <Logo size="large" />
             </div>
             <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
