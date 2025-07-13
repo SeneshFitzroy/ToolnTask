@@ -170,13 +170,19 @@ export default function SignIn() {
 
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               {successMessage && (
-                <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#DEF7EC', color: '#03543F' }}>
-                  {successMessage}
+                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-green-300" style={{ backgroundColor: '#D1FAE5', color: '#047857' }}>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-lg">✅</span>
+                    <span>{successMessage}</span>
+                  </div>
                 </div>
               )}
               {error && (
-                <div className="p-3 rounded-lg text-sm text-center" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
-                  {error}
+                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300 animate-pulse" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-lg">⚠️</span>
+                    <span>{error}</span>
+                  </div>
                 </div>
               )}
               
