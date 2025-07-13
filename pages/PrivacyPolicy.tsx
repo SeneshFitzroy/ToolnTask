@@ -224,7 +224,7 @@ export default function PrivacyPolicy() {
             <section id="data-security" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔒</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>4. Data Security</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>4. Data Security</h2>
               </div>
               <div className="rounded-lg p-6 mb-6" style={{ backgroundColor: '#F2F3F5' }}>
                 <div className="flex items-center gap-3 mb-4">
@@ -253,7 +253,7 @@ export default function PrivacyPolicy() {
             <section id="your-rights" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">⚖️</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>5. Your Rights</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>5. Your Rights</h2>
               </div>
               <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
                 <p className="font-medium" style={{ color: '#2D3748' }}>
@@ -292,7 +292,7 @@ export default function PrivacyPolicy() {
             <section id="cookies-tracking" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🍪</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>6. Cookies and Tracking</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>6. Cookies and Tracking</h2>
               </div>
               <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FF5E14' }}>
                 <p style={{ color: '#2D3748' }}>
