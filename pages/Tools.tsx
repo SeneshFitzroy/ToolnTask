@@ -48,7 +48,7 @@ const mockTools: Tool[] = [
     duration: '1-7',
     details: 'Includes drill, charger, carrying case, and 20-piece bit set. Perfect for drilling holes and driving screws.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop'
   },
   {
     id: 'tool2',
@@ -67,7 +67,7 @@ const mockTools: Tool[] = [
     duration: '1-3',
     details: 'Gas-powered, self-propelled. Includes fuel and oil. Perfect for yards up to 1/2 acre.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop'
   },
   {
     id: 'tool3',
@@ -86,7 +86,7 @@ const mockTools: Tool[] = [
     duration: '1-5',
     details: 'Professional-grade aluminum ladder. Safety equipment included. Must demonstrate proper usage.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop'
   },
   {
     id: 'tool4',
@@ -105,7 +105,45 @@ const mockTools: Tool[] = [
     duration: '1-2',
     details: 'Professional carpet cleaner with attachments. Cleaning solution included. Training available.',
     isUrgent: true,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop'
+  },
+  {
+    id: 'tool5',
+    title: 'Angle Grinder',
+    description: 'Heavy-duty angle grinder for metal cutting and grinding projects.',
+    price: '$20/day',
+    time: '1-3 days',
+    location: 'Bronx, NY',
+    category: 'power-tools',
+    type: 'available',
+    position: 'Hardware Store',
+    timeframe: 'days',
+    experience: 'Power tool experience required',
+    contact: 'hardware@tools.com',
+    postedBy: 'Metro Hardware',
+    duration: '1-3',
+    details: 'Professional-grade angle grinder with multiple discs. Safety equipment included.',
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop'
+  },
+  {
+    id: 'tool6',
+    title: 'Welding Equipment',
+    description: 'Complete welding setup with all safety gear and accessories.',
+    price: '$60/day',
+    time: '1-5 days',
+    location: 'Queens, NY',
+    category: 'power-tools',
+    type: 'available',
+    position: 'Welding Shop',
+    timeframe: 'days',
+    experience: 'Certified welder only',
+    contact: 'weld@shop.com',
+    postedBy: 'Pro Welding Co.',
+    duration: '1-5',
+    details: 'Professional welding equipment with all safety gear. Certification verification required.',
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop'
   },
   // Requested Tools
   {
@@ -124,7 +162,8 @@ const mockTools: Tool[] = [
     postedBy: 'John Smith',
     duration: '2-3',
     details: 'Weekend project building deck. Need quality circular saw with guide. Can pick up Friday evening.',
-    isUrgent: false
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1567016376408-0226e4d7c1cb?w=400&h=300&fit=crop'
   },
   {
     id: 'treq2',
@@ -142,7 +181,8 @@ const mockTools: Tool[] = [
     postedBy: 'Maria Rodriguez',
     duration: '1',
     details: 'Spring cleaning project. Need pressure washer with various nozzles. Flexible on pickup time.',
-    isUrgent: false
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1581578831142-7239de344daa?w=400&h=300&fit=crop'
   },
   {
     id: 'treq3',
@@ -160,14 +200,33 @@ const mockTools: Tool[] = [
     postedBy: 'David Chen',
     duration: '3-4',
     details: 'Bathroom renovation. Need wet tile saw with diamond blade. Can provide deposit.',
-    isUrgent: true
+    isUrgent: true,
+    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop'
+  },
+  {
+    id: 'treq4',
+    title: 'Looking for Scaffolding',
+    description: 'Need scaffolding system for exterior house painting project.',
+    price: '$80-120/day',
+    time: '5-7 days',
+    location: 'Staten Island, NY',
+    category: 'construction',
+    type: 'requested',
+    position: 'Residential Property',
+    timeframe: 'days',
+    experience: 'Scaffolding setup knowledge',
+    contact: 'paint@project.com',
+    postedBy: 'HomeOwner Mike',
+    duration: '5-7',
+    details: 'Exterior painting project. Need complete scaffolding system with safety equipment.',
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop'
   }
 ];
 
 export default function Tools() {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
   const [tools] = useState<Tool[]>(mockTools);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -178,9 +237,8 @@ export default function Tools() {
 
   if (!mounted) return null;
 
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = (filter: 'available' | 'requested') => {
     setActiveFilter(filter);
-    setShowFilterDropdown(false);
   };
 
   const handleSearch = () => {
@@ -188,27 +246,8 @@ export default function Tools() {
     console.log('Searching for:', searchTerm);
   };
 
-  const filterOptions = [
-    { key: 'all', label: 'All Categories', count: tools.length },
-    { key: 'power-tools', label: 'Power Tools', count: tools.filter(t => t.category === 'power-tools').length },
-    { key: 'garden-tools', label: 'Garden Tools', count: tools.filter(t => t.category === 'garden-tools').length },
-    { key: 'construction', label: 'Construction', count: tools.filter(t => t.category === 'construction').length },
-    { key: 'cleaning', label: 'Cleaning', count: tools.filter(t => t.category === 'cleaning').length },
-    { key: 'other', label: 'Other', count: tools.filter(t => t.category === 'other').length }
-  ];
-
-  const getFilteredTools = (type?: 'available' | 'requested') => {
-    let filtered = tools;
-    
-    // Filter by type if specified
-    if (type) {
-      filtered = filtered.filter(tool => tool.type === type);
-    }
-    
-    // Apply category filter
-    if (activeFilter !== 'all') {
-      filtered = filtered.filter(tool => tool.category === activeFilter);
-    }
+  const getFilteredTools = () => {
+    let filtered = tools.filter(tool => tool.type === activeFilter);
     
     // Apply search filter
     if (searchTerm.trim()) {
@@ -221,11 +260,6 @@ export default function Tools() {
     }
     
     return filtered;
-  };
-
-  const getCurrentFilterLabel = () => {
-    const currentFilter = filterOptions.find(option => option.key === activeFilter);
-    return currentFilter ? currentFilter.label : 'All Categories';
   };
 
   return (
@@ -365,7 +399,7 @@ export default function Tools() {
                    : '0 8px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 94, 20, 0.03)'
                }}>
           
-          {/* Search Bar with Filter */}
+          {/* Search Bar */}
           <div className="flex flex-col gap-3">
             <div className="flex flex-col lg:flex-row gap-2 sm:gap-3">
               <div className="flex-1 relative">
@@ -395,69 +429,6 @@ export default function Tools() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-              </div>
-              
-              {/* Compact Filter Dropdown */}
-              <div className="relative lg:w-auto">
-                <button
-                  onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                  className="w-full lg:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg font-medium shadow-sm transition-all duration-300 text-sm sm:text-base"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#D1D5DB' : '#4B5563'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#3B82F6';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
-                    e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.08)';
-                  }}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
-                  </svg>
-                  <span className="font-semibold">{getCurrentFilterLabel()}</span>
-                  <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {showFilterDropdown && (
-                  <div className="absolute right-0 mt-2 w-64 sm:w-72 border rounded-xl shadow-lg z-50" 
-                       style={{ 
-                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', 
-                         borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' 
-                       }}>
-                    <div className="p-3 sm:p-4">
-                      {filterOptions.map((option) => (
-                        <button
-                          key={option.key}
-                          onClick={() => handleFilterChange(option.key)}
-                          className={`w-full flex items-center justify-between p-3 rounded-lg mb-1.5 font-medium text-sm sm:text-base transition-all duration-300 ${
-                            activeFilter === option.key 
-                              ? 'shadow-md' 
-                              : 'hover:shadow-sm'
-                          }`}
-                          style={{
-                            backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
-                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
-                          }}
-                        >
-                          <span className="font-semibold">{option.label}</span>
-                          <span className="text-xs sm:text-sm px-2 py-1 rounded-full font-medium" style={{ 
-                            backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
-                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
-                          }}>
-                            {option.count}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             
@@ -502,39 +473,77 @@ export default function Tools() {
             <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
               {searchTerm && ` for "${searchTerm}"`}
-              {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
             </p>
           </div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Filter Section */}
+      {/* Filter Toggle Section */}
       <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border" 
-               style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Filter Tools
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {filterOptions.map((option) => (
-                <button
-                  key={option.key}
-                  onClick={() => handleFilterChange(option.key)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    activeFilter === option.key 
-                      ? 'shadow-md transform scale-105' 
-                      : 'hover:shadow-sm'
-                  }`}
-                  style={{
-                    backgroundColor: activeFilter === option.key ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#f3f4f6'),
-                    color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
-                  }}
-                >
-                  {option.label} ({option.count})
-                </button>
-              ))}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Available/Requested Toggle Filter */}
+          <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+            backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+            borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+          }}>
+            <div className="flex justify-between gap-1">
+              <button
+                onClick={() => handleFilterChange('available')}
+                className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
+                style={{
+                  backgroundColor: activeFilter === 'available' ? '#FF5E14' : 'transparent',
+                  color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                  boxShadow: activeFilter === 'available' 
+                    ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
+                    : 'none',
+                  border: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeFilter !== 'available') {
+                    e.currentTarget.style.color = '#FF5E14';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeFilter !== 'available') {
+                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
+              >
+                <span className="flex items-center justify-center relative z-10">
+                  Available Tools
+                </span>
+              </button>
+              <button
+                onClick={() => handleFilterChange('requested')}
+                className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
+                style={{
+                  backgroundColor: activeFilter === 'requested' ? '#FF5E14' : 'transparent',
+                  color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                  boxShadow: activeFilter === 'requested' 
+                    ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
+                    : 'none',
+                  border: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeFilter !== 'requested') {
+                    e.currentTarget.style.color = '#FF5E14';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeFilter !== 'requested') {
+                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
+              >
+                <span className="flex items-center justify-center relative z-10">
+                  Requested Tools
+                </span>
+              </button>
             </div>
           </div>
         </div>
