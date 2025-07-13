@@ -232,22 +232,6 @@ export default function SignIn() {
                 {loading ? 'Logging In...' : 'Login'}
               </Button>
             </form>
-
-            <div className="mt-6 sm:mt-8 text-center">
-              <p className="text-sm mb-4" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Don&apos;t have an account?
-              </p>
-              <Link href="/SignUp">
-                <Button
-                  className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ backgroundColor: '#6366F1' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4F46E5'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6366F1'}
-                >
-                  📝 Register New Account
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
