@@ -366,6 +366,248 @@ export default function About() {
         </div>
       </div>
 
+      {/* Contact Section */}
+      <div className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Contact Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 rounded-full mb-4" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
+                   border: `2px solid ${theme === 'dark' ? '#FF5E14' : '#FDBA74'}`
+                 }}>
+              <span className="text-sm font-bold" style={{ color: '#FF5E14' }}>
+                📧 Get In Touch
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              Contact Us
+            </h2>
+            <p className="text-lg sm:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+              Have questions or need support? We're here to help you succeed on <Logo size="small" className="inline mx-1" />
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div className="p-6 rounded-2xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA' }}>
+                <h3 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  📍 Our Information
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <span className="text-white text-sm">📧</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Email</h4>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>hello@toolntask.lk</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <span className="text-white text-sm">📞</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Phone</h4>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>+94 77 123 4567</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <span className="text-white text-sm">📍</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Address</h4>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>Colombo, Sri Lanka</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 rounded-2xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA' }}>
+                <h3 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  ⏰ Response Time
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                  We typically respond to all inquiries within 24 hours during business days. 
+                  For urgent matters, please call us directly.
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF' }}>
+              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                💬 Send us a message
+              </h3>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {success && (
+                  <div className="p-4 rounded-lg border-2 border-green-300" style={{ backgroundColor: '#D1FAE5' }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-green-600">✅</span>
+                      <span className="text-green-700 font-medium">{success}</span>
+                    </div>
+                  </div>
+                )}
+
+                {error && (
+                  <div className="p-4 rounded-lg border-2 border-red-300" style={{ backgroundColor: '#FEE2E2' }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-red-600">⚠️</span>
+                      <span className="text-red-700 font-medium">{error}</span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      First Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="John"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="Doe"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="john@example.com"
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                    Phone (Optional)
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="+94 77 123 4567"
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="How can we help you?"
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                    Message *
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={5}
+                    className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none transition-colors resize-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="Tell us more about your inquiry..."
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
+                    required
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50"
+                  style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                >
+                  {loading ? 'Sending...' : '📤 Send Message'}
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
