@@ -4,6 +4,7 @@ import ChatAgent from '../src/components/ChatAgent';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 interface Task {
   id: string;
@@ -167,7 +168,7 @@ export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<Task[]>(mockTasks);
+  const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -526,9 +527,11 @@ export default function Tasks() {
               <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
                 <div className="relative">
                   {task.image && (
-                    <img 
+                    <Image 
                       src={task.image} 
                       alt={task.title}
+                      width={400}
+                      height={250}
                       className="w-full h-48 object-cover"
                     />
                   )}
