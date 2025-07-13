@@ -1,4 +1,3 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
@@ -109,6 +108,24 @@ export default function SignIn() {
     }
   };
 
+  // Demo login function
+  const handleDemoLogin = async () => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      // Use demo credentials
+      await signInWithEmailAndPassword(auth, 'demo@toolntask.com', 'demo123');
+      console.log('Demo user signed in successfully');
+      router.push('/');
+    } catch (error: unknown) {
+      console.error('Demo login failed:', error);
+      setError('Demo login is temporarily unavailable. Please create your own account.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!mounted) return null;
 
   return (
@@ -204,6 +221,16 @@ export default function SignIn() {
                   Register
                 </Link>
               </p>
+            </div>
+
+            <div className="mt-4 sm:mt-6 text-center">
+              <Button
+                onClick={handleDemoLogin}
+                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105"
+                style={{ backgroundColor: '#4CAF50' }}
+              >
+                {loading ? 'Logging In as Demo...' : 'Login as Demo'}
+              </Button>
             </div>
           </div>
         </div>
