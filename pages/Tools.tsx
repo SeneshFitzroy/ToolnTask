@@ -1,6 +1,5 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import ToolCard from '../src/components/ToolCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -36,7 +35,6 @@ export default function Tools() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
   const [tools, setTools] = useState<Tool[]>([]);
-  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -47,7 +45,6 @@ export default function Tools() {
 
   const loadTools = async () => {
     try {
-      setLoading(true);
       const toolsCollection = collection(db, 'tools');
       // First, get all tools ordered by createdAt, then filter active ones in client
       const toolsQuery = query(toolsCollection, orderBy('createdAt', 'desc'));
@@ -68,8 +65,6 @@ export default function Tools() {
       setTools(loadedTools);
     } catch (error) {
       console.error('Error loading tools:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -405,32 +400,223 @@ export default function Tools() {
         </div>
       </div>
 
-      {/* Tools Grid */}
-      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {loading ? (
-              <div className="col-span-full text-center py-8">
-                <p className="text-lg sm:text-xl font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-                  Loading tools...
-                </p>
+      {/* Enhanced Tools Sections */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Available Tools Section */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Available Tools
+            </h2>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setActiveFilter('all')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'all' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                All Tools
+              </button>
+              <button
+                onClick={() => setActiveFilter('power')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'power' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Power Tools
+              </button>
+              <button
+                onClick={() => setActiveFilter('hand')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'hand' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Hand Tools
+              </button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {getFilteredTools().filter(tool => tool.type !== 'requested').map((tool) => (
+              <div key={tool.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
+                <div className="relative">
+                  {tool.image && (
+                    <img 
+                      src={tool.image} 
+                      alt={tool.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+                  <div className="absolute top-2 right-2">
+                    <span className="px-2 py-1 bg-green-500 text-white text-xs rounded-full">
+                      Available
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                    {tool.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    {tool.description}
+                  </p>
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-lg font-bold text-orange-500">
+                      {tool.price}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {tool.brand}
+                    </span>
+                  </div>
+                  {tool.position && (
+                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
+                      <span>📍</span>
+                      <span>{tool.position}</span>
+                    </div>
+                  )}
+                  {tool.duration && (
+                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
+                      <span>⏱️</span>
+                      <span>{tool.duration} {tool.timeframe}</span>
+                    </div>
+                  )}
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                      Contact Owner
+                    </button>
+                    <button
+                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      💬 Chat
+                    </button>
+                  </div>
+                </div>
               </div>
-            ) : (
-              getFilteredTools().map((tool) => (
-                <ToolCard
-                  key={tool.id}
-                  id={tool.id}
-                  title={tool.title}
-                  description={tool.description}
-                  price={tool.price}
-                  brand={tool.brand}
-                  condition={tool.condition}
-                  available={tool.available}
-                  isPromoted={tool.isPromoted}
-                  image={tool.image}
-                />
-              ))
-            )}
+            ))}
+          </div>
+        </div>
+
+        {/* Requested Tools Section */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Tool Requests
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              People looking for tools to rent or borrow
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Mock requested tools data */}
+            {tools.filter(tool => tool.type === 'requested').map((request) => (
+              <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                      {request.title}
+                    </h3>
+                    <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
+                      Requested
+                    </span>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    {request.description}
+                  </p>
+                  <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                    <div className="flex items-center gap-2">
+                      <span>💰</span>
+                      <span>{request.price}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>📍</span>
+                      <span>{request.position}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>⏱️</span>
+                      <span>{request.duration} {request.timeframe}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>👤</span>
+                      <span>{request.experience}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                      Offer Tool
+                    </button>
+                    <button
+                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      💬 Chat
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Chat/Call Agent Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Need Help? Contact Our Agent
+            </h3>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">Online</span>
+            </div>
+          </div>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            Our agents are available to help you find the right tools or assist with any questions about rentals and requests.
+          </p>
+          <div className="flex gap-4">
+            <button
+              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <span>📞</span>
+              Call Agent
+            </button>
+            <button
+              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <span>💬</span>
+              Chat Now
+            </button>
+          </div>
+        </div>
+
+        {/* Notifications Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+            Recent Notifications
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900 rounded-lg">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p className="text-sm font-medium">New tool available in your area</p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">A power drill is now available for rent nearby</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900 rounded-lg">
+              <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p className="text-sm font-medium">Tool request matched</p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">Someone has a tool you requested</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

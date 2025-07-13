@@ -1,6 +1,5 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import TaskCard from '../src/components/TaskCard';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -21,6 +20,13 @@ interface Task {
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
   status?: string;
+  type?: 'available' | 'requested';
+  position?: string;
+  timeframe?: 'day' | 'week' | 'month';
+  experience?: string;
+  contact?: string;
+  postedBy?: string;
+  duration?: string;
 }
 
 export default function Tasks() {
@@ -28,7 +34,6 @@ export default function Tasks() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -39,7 +44,6 @@ export default function Tasks() {
 
   const loadTasks = async () => {
     try {
-      setLoading(true);
       const tasksCollection = collection(db, 'tasks');
       // First, get all tasks ordered by createdAt, then filter active ones in client
       const tasksQuery = query(tasksCollection, orderBy('createdAt', 'desc'));
@@ -60,8 +64,6 @@ export default function Tasks() {
       setTasks(loadedTasks);
     } catch (error) {
       console.error('Error loading tasks:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -392,32 +394,277 @@ export default function Tasks() {
         </div>
       </div>
 
-      {/* Tasks Grid */}
-      <div className="py-8 sm:py-12 lg:py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {loading ? (
-              <div className="col-span-full text-center py-8">
-                <p className="text-lg sm:text-xl font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-                  Loading tasks...
-                </p>
+      {/* Enhanced Tasks Sections */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Available Tasks Section */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Available Tasks
+            </h2>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setActiveFilter('all')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'all' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                All Tasks
+              </button>
+              <button
+                onClick={() => setActiveFilter('cleaning')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'cleaning' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Cleaning
+              </button>
+              <button
+                onClick={() => setActiveFilter('repairs')}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  activeFilter === 'repairs' 
+                    ? 'bg-orange-500 text-white' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Repairs
+              </button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {getFilteredTasks().filter(task => task.type !== 'requested').map((task) => (
+              <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
+                <div className="relative">
+                  {task.image && (
+                    <img 
+                      src={task.image} 
+                      alt={task.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+                  <div className="absolute top-2 right-2">
+                    <span className="px-2 py-1 bg-green-500 text-white text-xs rounded-full">
+                      Available
+                    </span>
+                  </div>
+                  {task.isUrgent && (
+                    <div className="absolute top-2 left-2">
+                      <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
+                        Urgent
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                    {task.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    {task.description}
+                  </p>
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-lg font-bold text-orange-500">
+                      {task.price}
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      {task.time}
+                    </span>
+                  </div>
+                  {task.position && (
+                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
+                      <span>📍</span>
+                      <span>{task.position}</span>
+                    </div>
+                  )}
+                  {task.duration && (
+                    <div className="flex items-center gap-2 mb-2 text-sm text-gray-600 dark:text-gray-300">
+                      <span>⏱️</span>
+                      <span>{task.duration} {task.timeframe}</span>
+                    </div>
+                  )}
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                      Apply for Task
+                    </button>
+                    <button
+                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      💬 Chat
+                    </button>
+                  </div>
+                </div>
               </div>
-            ) : (
-              getFilteredTasks().map((task) => (
-                <TaskCard
-                  key={task.id}
-                  id={task.id}
-                  title={task.title}
-                  description={task.description}
-                  price={task.price}
-                  time={task.time}
-                  location={task.location}
-                  isUrgent={task.isUrgent}
-                  isPromoted={task.isPromoted}
-                  image={task.image}
-                />
-              ))
-            )}
+            ))}
+          </div>
+        </div>
+
+        {/* Requested Tasks Section */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Task Requests
+            </h2>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              People looking for help with various tasks
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Mock requested tasks data */}
+            {[
+              {
+                id: 'treq1',
+                title: 'House Cleaning Needed',
+                description: 'Looking for professional house cleaning service for 3-bedroom home',
+                price: '$100-150',
+                position: 'Suburban Area',
+                duration: '4-6',
+                timeframe: 'day',
+                contact: 'sarah@example.com',
+                postedBy: 'Sarah Johnson',
+                experience: 'Professional cleaning experience required',
+                location: 'Queens'
+              },
+              {
+                id: 'treq2',
+                title: 'Garden Maintenance',
+                description: 'Need help with garden cleanup and basic maintenance',
+                price: '$75-100',
+                position: 'Backyard Garden',
+                duration: '1',
+                timeframe: 'day',
+                contact: 'mike@example.com',
+                postedBy: 'Mike Wilson',
+                experience: 'Basic gardening knowledge',
+                location: 'Brooklyn'
+              },
+              {
+                id: 'treq3',
+                title: 'Furniture Assembly',
+                description: 'Need help assembling IKEA furniture for new apartment',
+                price: '$50-80',
+                position: 'Apartment',
+                duration: '3-4',
+                timeframe: 'day',
+                contact: 'lisa@example.com',
+                postedBy: 'Lisa Chen',
+                experience: 'Furniture assembly experience preferred',
+                location: 'Manhattan'
+              }
+            ].map((request) => (
+              <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                      {request.title}
+                    </h3>
+                    <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
+                      Requested
+                    </span>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    {request.description}
+                  </p>
+                  <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                    <div className="flex items-center gap-2">
+                      <span>💰</span>
+                      <span>{request.price}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>📍</span>
+                      <span>{request.position}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>⏱️</span>
+                      <span>{request.duration} {request.timeframe}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>👤</span>
+                      <span>{request.experience}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                    >
+                      Offer Service
+                    </button>
+                    <button
+                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      💬 Chat
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Chat/Call Agent Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Need Help Finding Tasks? Contact Our Agent
+            </h3>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">Online</span>
+            </div>
+          </div>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            Our agents can help you find the perfect tasks to complete or assist with posting your own task requests.
+          </p>
+          <div className="flex gap-4">
+            <button
+              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <span>📞</span>
+              Call Agent
+            </button>
+            <button
+              className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <span>💬</span>
+              Chat Now
+            </button>
+          </div>
+        </div>
+
+        {/* Notifications Section */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+            Recent Task Notifications
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900 rounded-lg">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p className="text-sm font-medium">New task posted in your area</p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">A house cleaning task is available nearby</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900 rounded-lg">
+              <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p className="text-sm font-medium">Task application accepted</p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">You have been selected for the gardening task</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-3 bg-yellow-50 dark:bg-yellow-900 rounded-lg">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+              <div>
+                <p className="text-sm font-medium">Task request match</p>
+                <p className="text-xs text-gray-600 dark:text-gray-300">Someone can help with your furniture assembly request</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

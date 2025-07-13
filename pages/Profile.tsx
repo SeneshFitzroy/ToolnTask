@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { updateProfile, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
 import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon, Globe, Monitor, Bookmark, Settings, User as UserIcon, Key, Bell, Languages, MapPin, Clock, DollarSign, Star } from 'lucide-react';
+import { Sun, Moon, Bookmark, Settings, User as UserIcon, Key, MapPin, Clock, DollarSign } from 'lucide-react';
 
 interface SavedGig {
   id: string;
@@ -80,7 +80,8 @@ export default function Profile() {
     }
   ]);
   
-  const [notifications, setNotifications] = useState<Notification[]>([
+  // Mock notifications for future implementation
+  const notifications: Notification[] = [
     {
       id: '1',
       type: 'gig_match',
@@ -108,7 +109,7 @@ export default function Profile() {
       isRead: true,
       relatedGig: 'tool_789'
     }
-  ]);
+  ];
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
