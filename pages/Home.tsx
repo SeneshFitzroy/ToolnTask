@@ -29,12 +29,23 @@ export default function Home() {
     }, 10000);
 
     // Show floating banner after a small delay to prevent flash
-    setTimeout(() => {
+    const floatingTimer = setTimeout(() => {
       setShowFloatingBanner(true);
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+    // Close floating banner when navigating away
+    const handleRouteChange = () => {
+      setShowFloatingBanner(false);
+    };
+
+    router.events?.on('routeChangeStart', handleRouteChange);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(floatingTimer);
+      router.events?.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events]);
 
   // Close floating banner when navigating away from Home
   useEffect(() => {
