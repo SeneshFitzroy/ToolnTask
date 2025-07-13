@@ -621,7 +621,7 @@ const Navigation = () => {
                   // User is logged in - Mobile
                   <>
                     <Link href="/Profile"
-                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
+                      className="flex items-center justify-center gap-3 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
                       style={{ 
                         color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                         backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
@@ -629,11 +629,11 @@ const Navigation = () => {
                       }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" 
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg" 
                            style={{ backgroundColor: '#FF5E14' }}>
                         {user.email?.charAt(0).toUpperCase() || 'U'}
                       </div>
-                      <UserIcon className="h-4 w-4" />
+                      <UserIcon className="h-4 w-4" style={{ color: '#FF5E14' }} />
                       <span>Profile</span>
                     </Link>
                     <button 
@@ -641,7 +641,7 @@ const Navigation = () => {
                         handleSignOut();
                         setMobileMenuOpen(false);
                       }}
-                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
+                      className="flex items-center justify-center gap-3 px-4 py-3 rounded-full text-base font-medium transition-all duration-300" 
                       style={{ 
                         color: '#DC2626',
                         backgroundColor: theme === 'dark' ? 'rgba(220, 38, 38, 0.1)' : 'rgba(220, 38, 38, 0.05)',
