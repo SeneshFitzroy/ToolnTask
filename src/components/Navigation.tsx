@@ -36,6 +36,9 @@ const Navigation = () => {
       if (!target.closest('.profile-dropdown')) {
         setShowProfileDropdown(false);
       }
+      if (!target.closest('.notifications-dropdown')) {
+        setShowNotifications(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
