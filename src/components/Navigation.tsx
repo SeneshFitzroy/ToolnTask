@@ -164,78 +164,38 @@ const Navigation = () => {
               <div className="relative create-dropdown">
                 <button
                   onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-                  className="group relative px-10 py-5 rounded-3xl text-xl font-black transition-all duration-300 hover:scale-110 flex items-center gap-5 shadow-2xl overflow-hidden border-3 animate-pulse"
+                  className="group relative px-6 py-3 rounded-xl text-base font-bold transition-all duration-300 hover:scale-105 flex items-center gap-3 shadow-lg overflow-hidden"
                   style={{ 
-                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 20%, #FF6B35 40%, #FF8C00 60%, #FFA500 80%, #FFD700 100%)',
+                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)',
                     color: '#FFFFFF',
-                    border: '3px solid #FF5E14',
-                    boxShadow: '0 15px 40px rgba(255, 94, 20, 0.5), 0 8px 25px rgba(255, 69, 0, 0.3), inset 0 3px 8px rgba(255, 255, 255, 0.4), 0 0 0 4px rgba(255, 94, 20, 0.1)',
-                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-                    animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    border: '2px solid #FF5E14',
+                    boxShadow: '0 8px 25px rgba(255, 94, 20, 0.4), 0 4px 15px rgba(255, 94, 20, 0.3)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4500 0%, #FF3300 20%, #FF5722 40%, #FF7F00 60%, #FF9500 80%, #FFC500 100%)';
-                    e.currentTarget.style.boxShadow = '0 20px 60px rgba(255, 94, 20, 0.7), 0 12px 35px rgba(255, 69, 0, 0.5), inset 0 4px 12px rgba(255, 255, 255, 0.5), 0 0 0 6px rgba(255, 94, 20, 0.2)';
-                    e.currentTarget.style.transform = 'scale(1.15) translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#FF4500';
-                    e.currentTarget.style.animation = 'none';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 50%, #FF8552 100%)';
+                    e.currentTarget.style.boxShadow = '0 12px 35px rgba(255, 94, 20, 0.5), 0 8px 20px rgba(255, 94, 20, 0.4)';
+                    e.currentTarget.style.borderColor = '#FF4A00';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF4500 20%, #FF6B35 40%, #FF8C00 60%, #FFA500 80%, #FFD700 100%)';
-                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(255, 94, 20, 0.5), 0 8px 25px rgba(255, 69, 0, 0.3), inset 0 3px 8px rgba(255, 255, 255, 0.4), 0 0 0 4px rgba(255, 94, 20, 0.1)';
-                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 50%, #FF9966 100%)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4), 0 4px 15px rgba(255, 94, 20, 0.3)';
                     e.currentTarget.style.borderColor = '#FF5E14';
-                    e.currentTarget.style.animation = 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite';
                   }}
                 >
-                  {/* Enhanced Animated Background Effects */}
-                  <div className="absolute inset-0 opacity-40">
-                    <div className="absolute top-2 left-4 w-3 h-3 bg-white rounded-full animate-ping"></div>
-                    <div className="absolute top-4 right-6 w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                    <div className="absolute bottom-4 left-8 w-2 h-2 bg-white rounded-full animate-ping" style={{ animationDelay: '0.6s' }}></div>
-                    <div className="absolute bottom-3 right-4 w-2.5 h-2.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
-                    <div className="absolute top-1/2 left-1/3 w-1.5 h-1.5 bg-white rounded-full animate-ping" style={{ animationDelay: '1.2s' }}></div>
-                    <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-                  </div>
-                  
-                  {/* Enhanced Main Icon */}
-                  <div className="relative">
-                    <Plus 
-                      className={`h-8 w-8 transition-all duration-500 ${showCreateDropdown ? 'rotate-180 scale-150' : 'rotate-0 scale-110'}`} 
-                      strokeWidth={4}
-                    />
-                    {/* Multi-layer Glowing Effect */}
-                    <div className="absolute inset-0 rounded-full bg-white opacity-30 animate-pulse"></div>
-                    <div className="absolute inset-0 rounded-full bg-yellow-300 opacity-20 animate-ping"></div>
-                  </div>
-                  
-                  {/* Enhanced Text with Better Typography */}
-                  <div className="flex flex-col items-start">
-                    <span className="font-black text-2xl tracking-wider leading-tight" style={{ 
-                      fontFamily: 'Inter, system-ui, sans-serif',
-                      letterSpacing: '0.05em'
-                    }}>
-                      ✨ CREATE
-                    </span>
-                    <span className="text-sm opacity-95 font-bold tracking-widest uppercase" style={{ 
-                      color: '#FFF8DC',
-                      textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)'
-                    }}>
-                      NEW LISTING
-                    </span>
-                  </div>
-                  
-                  {/* Enhanced Animated Chevron */}
-                  <ChevronDown 
-                    className={`h-7 w-7 transition-all duration-500 ${showCreateDropdown ? 'rotate-180 scale-125' : 'rotate-0 scale-110'}`}
-                    strokeWidth={4}
+                  {/* Simple Icon */}
+                  <Plus 
+                    className={`h-5 w-5 transition-transform duration-300 ${showCreateDropdown ? 'rotate-45' : 'rotate-0'}`} 
+                    strokeWidth={2.5}
                   />
                   
-                  {/* Enhanced Shine Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1200"></div>
+                  {/* Clean Text */}
+                  <span className="font-bold tracking-wide">Create</span>
                   
-                  {/* Pulsing Border Effect */}
-                  <div className="absolute inset-0 rounded-3xl border-2 border-white opacity-20 animate-pulse"></div>
+                  {/* Simple Chevron */}
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-300 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    strokeWidth={2.5}
+                  />
                 </button>
                 
                 {/* Enhanced Dropdown */}
