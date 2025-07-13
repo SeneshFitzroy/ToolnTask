@@ -170,7 +170,7 @@ export default function PrivacyPolicy() {
             <section id="how-we-use" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🔄</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>2. How We Use Your Information</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>2. How We Use Your Information</h2>
               </div>
               <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: '#F2F3F5' }}>
                 <p className="mb-4" style={{ color: '#B3B5BC' }}>
@@ -196,7 +196,7 @@ export default function PrivacyPolicy() {
             <section id="information-sharing" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">🤝</span>
-                <h2 className="text-2xl font-bold" style={{ color: '#2D3748' }}>3. Information Sharing</h2>
+                <h2 className="text-2xl font-bold" style={{ color: '#001554' }}>3. Information Sharing</h2>
               </div>
               <div className="rounded-lg p-4 mb-4 border border-opacity-30" style={{ backgroundColor: '#F2F3F5', borderColor: '#FE5F16' }}>
                 <p className="font-medium" style={{ color: '#2D3748' }}>
