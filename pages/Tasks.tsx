@@ -509,6 +509,37 @@ export default function Tasks() {
         </div>
       </div>
 
+      {/* Enhanced Filter Section */}
+      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border" 
+               style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
+            <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Filter Tasks
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.key}
+                  onClick={() => handleFilterChange(option.key)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                    activeFilter === option.key 
+                      ? 'shadow-md transform scale-105' 
+                      : 'hover:shadow-sm'
+                  }`}
+                  style={{
+                    backgroundColor: activeFilter === option.key ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#f3f4f6'),
+                    color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
+                  }}
+                >
+                  {option.label} ({option.count})
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Tasks Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Available Tasks Section */}

@@ -509,16 +509,60 @@ export default function Tools() {
         </div>
       </div>
 
+      {/* Enhanced Filter Section */}
+      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border" 
+               style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
+            <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+              Filter Tools
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.key}
+                  onClick={() => handleFilterChange(option.key)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                    activeFilter === option.key 
+                      ? 'shadow-md transform scale-105' 
+                      : 'hover:shadow-sm'
+                  }`}
+                  style={{
+                    backgroundColor: activeFilter === option.key ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#f3f4f6'),
+                    color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
+                  }}
+                >
+                  {option.label} ({option.count})
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Tools Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Available Tools Section */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Available Tools ({getFilteredTools('available').length})
-            </h2>
-            <div className="text-sm text-gray-600 dark:text-gray-300">
-              Ready to rent from trusted owners
+        <div className="mb-16">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-green-200 dark:border-green-800 mb-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🔧</span>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                    Available Tools ({getFilteredTools('available').length})
+                  </h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    Ready to rent from trusted owners
+                  </p>
+                </div>
+              </div>
+              <div className="hidden md:flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Available Now</span>
+              </div>
             </div>
           </div>
           
