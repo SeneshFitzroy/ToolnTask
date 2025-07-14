@@ -497,31 +497,9 @@ export default function Tasks() {
         {/* Available Tasks Section - Only show when activeFilter is 'available' */}
         {activeFilter === 'available' && (
           <div className="mb-16">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-green-200 dark:border-green-800 mb-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl">🎯</span>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                      Available Tasks ({getFilteredTasks().length})
-                    </h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Ready to be completed by skilled helpers
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Open for Applications</span>
-                </div>
-              </div>
-            </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((task) => (
-              <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
+              <div key={task.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-700">
                 <div className="relative">
                   {task.image && (
                     <Image 
@@ -613,31 +591,18 @@ export default function Tasks() {
         {/* Requested Tasks Section - Only show when activeFilter is 'requested' */}
         {activeFilter === 'requested' && (
           <div className="mb-16">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-yellow-200 dark:border-yellow-800 mb-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center">
-                    <span className="text-2xl">🔍</span>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                      Task Requests ({getFilteredTasks().length})
-                    </h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
-                      People looking for help with various tasks
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span>Seeking Help</span>
-                </div>
-              </div>
+            {/* Subtle section header */}
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                Task Requests ({getFilteredTasks().length})
+              </h2>
+              <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                People looking for help with various tasks
+              </p>
             </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((request) => (
-                <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
+                <div key={request.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-700">
                   <div className="relative">
                     {request.image && (
                       <Image 
