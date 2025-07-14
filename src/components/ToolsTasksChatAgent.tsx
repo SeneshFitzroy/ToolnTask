@@ -49,7 +49,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
         const agentResponse = {
           id: messages.length + 2,
           type: 'agent',
-          message: `Thanks for your message! I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
+          message: `Thanks for your message! I'm TaskMate and I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages(prev => [...prev, agentResponse]);
@@ -115,10 +115,10 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
-                  <span className="text-lg">{pageType === 'tools' ? '🔧' : '📋'}</span>
+                  <span className="text-lg">🤖</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">{pageType === 'tools' ? 'Tools' : 'Tasks'} Assistant</h3>
+                  <h3 className="font-bold text-lg">TaskMate</h3>
                   <p className="text-sm opacity-90">Online • Ready to help</p>
                 </div>
               </div>
