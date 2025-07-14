@@ -675,7 +675,7 @@ export default function Tools() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Tool Requests ({getFilteredTools('requested').length})
+                    Tool Requests ({getFilteredTools().filter(tool => tool.type === 'requested').length})
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     People looking for specific tools to rent
@@ -690,7 +690,7 @@ export default function Tools() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTools('requested').map((request) => (
+            {getFilteredTools().filter(tool => tool.type === 'requested').map((request) => (
               <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
