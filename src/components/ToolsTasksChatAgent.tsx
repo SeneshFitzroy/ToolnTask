@@ -49,7 +49,9 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
         const agentResponse = {
           id: messages.length + 2,
           type: 'agent',
-          message: `Thanks for your message! I'm TaskMate and I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
+          message: pageType === 'home' 
+            ? `Thanks for your message! I'm TaskMate and I'll help you find the right tools or tasks. Let me check our available options for you.`
+            : `Thanks for your message! I'm TaskMate and I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages(prev => [...prev, agentResponse]);
@@ -200,7 +202,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      placeholder={`Ask about ${pageType}...`}
+                      placeholder={pageType === 'home' ? `Ask TaskMate anything...` : `Ask TaskMate about ${pageType}...`}
                       className="flex-1 p-3 border rounded-xl focus:outline-none transition-all duration-200"
                       style={{
                         borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
