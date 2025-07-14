@@ -22,8 +22,22 @@ interface Task {
   position: string;
   timeframe: 'hours' | 'days' | 'weeks';
   experience: string;
-  contact: string;
-  postedBy: string;
+  contact: string;                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {getFilteredTasks().length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  No task requests match your filters. Try adjusting your search criteria.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>ing;
   duration: string;
   details: string;
 }
@@ -494,32 +508,33 @@ export default function Tasks() {
 
       {/* Tasks Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Available Tasks Section */}
-        <div className="mb-16">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-green-200 dark:border-green-800 mb-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🎯</span>
+        {/* Available Tasks Section - Only show when activeFilter is 'available' */}
+        {activeFilter === 'available' && (
+          <div className="mb-16">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-green-200 dark:border-green-800 mb-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">🎯</span>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                      Available Tasks ({getFilteredTasks().length})
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      Ready to be completed by skilled helpers
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Available Tasks ({getFilteredTasks().filter(task => task.type === 'available').length})
-                  </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    Ready to be completed by skilled helpers
-                  </p>
+                <div className="hidden md:flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span>Open for Applications</span>
                 </div>
-              </div>
-              <div className="hidden md:flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span>Open for Applications</span>
               </div>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTasks().filter(task => task.type === 'available').map((task) => (
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getFilteredTasks().map((task) => (
               <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
                 <div className="relative">
                   {task.image && (
@@ -598,62 +613,75 @@ export default function Tasks() {
               </div>
             ))}
           </div>
-          
-          {getFilteredTasks().filter(task => task.type === 'available').length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 dark:text-gray-400 text-lg">
-                No available tasks match your filters. Try adjusting your search criteria.
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Requested Tasks Section */}
-        <div className="mb-16">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-yellow-200 dark:border-yellow-800 mb-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🔍</span>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Task Requests ({getFilteredTasks().filter(task => task.type === 'requested').length})
-                  </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    People looking for help with various tasks
-                  </p>
-                </div>
+            
+            {getFilteredTasks().length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  No available tasks match your filters. Try adjusting your search criteria.
+                </p>
               </div>
-              <div className="hidden md:flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span>Seeking Help</span>
-              </div>
-            </div>
+            )}
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTasks().filter(task => task.type === 'requested').map((request) => (
-              <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                      {request.title}
-                    </h3>
-                    <div className="flex gap-2">
+        )}
+
+        {/* Requested Tasks Section - Only show when activeFilter is 'requested' */}
+        {activeFilter === 'requested' && (
+          <div className="mb-16">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-yellow-200 dark:border-yellow-800 mb-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center">
+                    <span className="text-2xl">🔍</span>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                      Task Requests ({getFilteredTasks().length})
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      People looking for help with various tasks
+                    </p>
+                  </div>
+                </div>
+                <div className="hidden md:flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  <span>Seeking Help</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {getFilteredTasks().map((request) => (
+                <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
+                  <div className="relative">
+                    {request.image && (
+                      <Image 
+                        src={request.image} 
+                        alt={request.title}
+                        width={400}
+                        height={250}
+                        className="w-full h-48 object-cover"
+                      />
+                    )}
+                    <div className="absolute top-2 right-2">
                       <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
                         Requested
                       </span>
-                      {request.isUrgent && (
+                    </div>
+                    {request.isUrgent && (
+                      <div className="absolute top-2 left-2">
                         <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
                           Urgent
                         </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
-                    {request.description}
-                  </p>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                      {request.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                      {request.description}
+                    </p>
                   
                   {/* Request Details */}
                   <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
