@@ -499,25 +499,32 @@ export default function Tasks() {
           <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((task) => (
-              <div key={task.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-700">
-                <div className="relative">
+              <div key={task.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-800"
+                   style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
+                   onMouseEnter={(e) => {
+                     e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                   }}>
+                <div className="relative overflow-hidden">
                   {task.image && (
                     <Image 
                       src={task.image} 
                       alt={task.title}
                       width={400}
                       height={250}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   )}
-                  <div className="absolute top-2 right-2">
-                    <span className="px-2 py-1 bg-green-500 text-white text-xs rounded-full">
+                  <div className="absolute top-3 right-3">
+                    <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full shadow-lg">
                       Available
                     </span>
                   </div>
                   {task.isUrgent && (
-                    <div className="absolute top-2 left-2">
-                      <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
+                    <div className="absolute top-3 left-3">
+                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
                         Urgent
                       </span>
                     </div>
@@ -591,15 +598,6 @@ export default function Tasks() {
         {/* Requested Tasks Section - Only show when activeFilter is 'requested' */}
         {activeFilter === 'requested' && (
           <div className="mb-16">
-            {/* Subtle section header */}
-            <div className="mb-8 text-center">
-              <h2 className="text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                Task Requests ({getFilteredTasks().length})
-              </h2>
-              <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                People looking for help with various tasks
-              </p>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((request) => (
                 <div key={request.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-700">
