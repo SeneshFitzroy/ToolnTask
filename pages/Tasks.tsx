@@ -22,22 +22,8 @@ interface Task {
   position: string;
   timeframe: 'hours' | 'days' | 'weeks';
   experience: string;
-  contact: string;                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {getFilteredTasks().length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500 dark:text-gray-400 text-lg">
-                  No task requests match your filters. Try adjusting your search criteria.
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-      </div>ing;
+  contact: string;
+  postedBy: string;
   duration: string;
   details: string;
 }
