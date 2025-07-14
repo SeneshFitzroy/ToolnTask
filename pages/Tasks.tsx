@@ -374,130 +374,122 @@ export default function Tasks() {
                 </div>
               </div>
               
-              {/* Compact Filter Dropdown */}
-              <div className="relative lg:w-auto">
-                <button
-                  onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                  className="w-full lg:w-auto flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg font-medium shadow-sm transition-all duration-300 text-sm sm:text-base"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#D1D5DB' : '#4B5563'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#3B82F6';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.2)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
-                    e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.08)';
-                  }}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
+              {/* Compact Search Button */}
+              <Button 
+                onClick={handleSearch}
+                className="w-full text-base sm:text-lg font-bold px-6 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-102"
+                style={{ 
+                  background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)',
+                  borderColor: '#FF5E14',
+                  color: '#FFFFFF',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.2)',
+                  boxShadow: '0 6px 20px rgba(255, 94, 20, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  const target = e.currentTarget as HTMLButtonElement;
+                  target.style.transform = 'scale(1.02) translateY(-2px)';
+                  target.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
+                  target.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF4500 50%, #FF3300 100%)';
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.currentTarget as HTMLButtonElement;
+                  target.style.transform = 'scale(1) translateY(0px)';
+                  target.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.3)';
+                  target.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)';
+                }}
+              >
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  <span className="font-semibold">{getCurrentFilterLabel()}</span>
-                  <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${showFilterDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <span>Search Tasks</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </button>
-                
-                {showFilterDropdown && (
-                  <div className="absolute right-0 mt-2 w-64 sm:w-72 border rounded-xl shadow-lg z-50" 
-                       style={{ 
-                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF', 
-                         borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' 
-                       }}>
-                    <div className="p-3 sm:p-4">
-                      {filterOptions.map((option) => (
-                        <button
-                          key={option.key}
-                          onClick={() => handleFilterChange(option.key)}
-                          className={`w-full flex items-center justify-between p-3 rounded-lg mb-1.5 font-medium text-sm sm:text-base transition-all duration-300 ${
-                            activeFilter === option.key 
-                              ? 'shadow-md' 
-                              : 'hover:shadow-sm'
-                          }`}
-                          style={{
-                            backgroundColor: activeFilter === option.key ? '#FF5E14' : 'transparent',
-                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
-                          }}
-                        >
-                          <span className="font-semibold">{option.label}</span>
-                          <span className="text-xs sm:text-sm px-2 py-1 rounded-full font-medium" style={{ 
-                            backgroundColor: activeFilter === option.key ? 'rgba(255,255,255,0.2)' : (theme === 'dark' ? '#4B5563' : '#F3F4F6'),
-                            color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280')
-                          }}>
-                            {option.count}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+                </div>
+              </Button>
             </div>
             
-            {/* Compact Search Button */}
-            <Button 
-              onClick={handleSearch}
-              className="w-full text-base sm:text-lg font-bold px-6 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-102"
-              style={{ 
-                background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)',
-                borderColor: '#FF5E14',
-                color: '#FFFFFF',
-                textShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                boxShadow: '0 6px 20px rgba(255, 94, 20, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                const target = e.currentTarget as HTMLButtonElement;
-                target.style.transform = 'scale(1.02) translateY(-2px)';
-                target.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
-                target.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF4500 50%, #FF3300 100%)';
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget as HTMLButtonElement;
-                target.style.transform = 'scale(1) translateY(0px)';
-                target.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.3)';
-                target.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)';
-              }}
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <span>Search Tasks</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </Button>
-          </div>
-          
-          {/* Results Summary */}
-          <div className="text-center">
-            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-              {getFilteredTasks().length} {getFilteredTasks().length === 1 ? 'task' : 'tasks'} found
-              {searchTerm && ` for "${searchTerm}"`}
-              {activeFilter !== 'all' && ` in ${getCurrentFilterLabel()}`}
-            </p>
-          </div>
+            {/* Results Summary */}
+            <div className="text-center">
+              <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                {getFilteredTasks().length} {getFilteredTasks().length === 1 ? 'task' : 'tasks'} found
+                {searchTerm && ` for "${searchTerm}"`}
+              </p>
+            </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Enhanced Filter Section */}
-      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border" 
-               style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
-            <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-              Filter Tasks
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {filterOptions.map((option) => (
+        {/* Filter Toggle Section */}
+        <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Available/Requested Toggle Filter */}
+            <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+              backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+              borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+            }}>
+              <div className="flex justify-between gap-1">
                 <button
-                  key={option.key}
+                  onClick={() => handleFilterChange('available')}
+                  className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
+                  style={{
+                    backgroundColor: activeFilter === 'available' ? '#FF5E14' : 'transparent',
+                    color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    boxShadow: activeFilter === 'available' 
+                      ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
+                      : 'none',
+                    border: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeFilter !== 'available') {
+                      e.currentTarget.style.color = '#FF5E14';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeFilter !== 'available') {
+                      e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }
+                  }}
+                >
+                  <span className="flex items-center justify-center relative z-10">
+                    Available Tasks
+                  </span>
+                </button>
+                <button
+                  onClick={() => handleFilterChange('requested')}
+                  className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
+                  style={{
+                    backgroundColor: activeFilter === 'requested' ? '#FF5E14' : 'transparent',
+                    color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    boxShadow: activeFilter === 'requested' 
+                      ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
+                      : 'none',
+                    border: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeFilter !== 'requested') {
+                      e.currentTarget.style.color = '#FF5E14';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeFilter !== 'requested') {
+                      e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }
+                  }}
+                >
+                  <span className="flex items-center justify-center relative z-10">
+                    Requested Tasks
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
                   onClick={() => handleFilterChange(option.key)}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     activeFilter === option.key 
@@ -529,7 +521,7 @@ export default function Tasks() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Available Tasks ({getFilteredTasks('available').length})
+                    Available Tasks ({getFilteredTasks().filter(task => task.type === 'available').length})
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     Ready to be completed by skilled helpers
@@ -544,7 +536,7 @@ export default function Tasks() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTasks('available').map((task) => (
+            {getFilteredTasks().filter(task => task.type === 'available').map((task) => (
               <div key={task.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
                 <div className="relative">
                   {task.image && (
@@ -624,7 +616,7 @@ export default function Tasks() {
             ))}
           </div>
           
-          {getFilteredTasks('available').length === 0 && (
+          {getFilteredTasks().filter(task => task.type === 'available').length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No available tasks match your filters. Try adjusting your search criteria.
@@ -643,7 +635,7 @@ export default function Tasks() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Task Requests ({getFilteredTasks('requested').length})
+                    Task Requests ({getFilteredTasks().filter(task => task.type === 'requested').length})
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     People looking for help with various tasks
@@ -658,7 +650,7 @@ export default function Tasks() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTasks('requested').map((request) => (
+            {getFilteredTasks().filter(task => task.type === 'requested').map((request) => (
               <div key={request.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-yellow-200">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
@@ -731,7 +723,7 @@ export default function Tasks() {
             ))}
           </div>
           
-          {getFilteredTasks('requested').length === 0 && (
+          {getFilteredTasks().filter(task => task.type === 'requested').length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No task requests match your filters. Try adjusting your search criteria.
