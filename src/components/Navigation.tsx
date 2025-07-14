@@ -595,24 +595,7 @@ const Navigation = () => {
                         <span className="font-medium text-sm">Profile & Settings</span>
                       </Link>
 
-                      <Link 
-                        href="/saved-gigs"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
-                        style={{ 
-                          color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                          borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
-                        onClick={() => setShowProfileDropdown(false)}
-                      >
-                        <Bookmark className="h-4 w-4" />
-                        <span className="font-medium text-sm">Saved Gigs</span>
-                      </Link>
+                      // ...existing code...
                       
                       <button 
                         onClick={() => {
