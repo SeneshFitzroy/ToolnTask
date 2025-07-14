@@ -195,7 +195,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <button
-                  onClick={() => setShowTopBanner(false)}
+                  onClick={() => setShowTopBanner(false
                   className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 rounded-full transition-all duration-300"
                   aria-label="Close banner"
                 >
