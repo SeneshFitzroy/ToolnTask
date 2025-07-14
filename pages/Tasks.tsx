@@ -531,10 +531,10 @@ export default function Tasks() {
                   )}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
                     {task.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                     {task.description}
                   </p>
                   
