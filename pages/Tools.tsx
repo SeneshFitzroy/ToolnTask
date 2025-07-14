@@ -763,7 +763,7 @@ export default function Tools() {
             ))}
           </div>
           
-          {getFilteredTools('requested').length === 0 && (
+          {getFilteredTools().filter(tool => tool.type === 'requested').length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No tool requests match your filters. Try adjusting your search criteria.
