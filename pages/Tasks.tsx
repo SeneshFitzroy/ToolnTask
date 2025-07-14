@@ -490,23 +490,6 @@ export default function Tasks() {
             </div>
           </div>
         </div>
-                  onClick={() => handleFilterChange(option.key)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    activeFilter === option.key 
-                      ? 'shadow-md transform scale-105' 
-                      : 'hover:shadow-sm'
-                  }`}
-                  style={{
-                    backgroundColor: activeFilter === option.key ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#f3f4f6'),
-                    color: activeFilter === option.key ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#374151')
-                  }}
-                >
-                  {option.label} ({option.count})
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Tasks Sections */}
