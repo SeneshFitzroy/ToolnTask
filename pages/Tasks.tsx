@@ -720,7 +720,7 @@ export default function Tasks() {
             ))}
           </div>
           
-          {getFilteredTasks().filter(task => task.type === 'requested').length === 0 && (
+          {getFilteredTasks().length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No task requests match your filters. Try adjusting your search criteria.
@@ -728,6 +728,7 @@ export default function Tasks() {
             </div>
           )}
         </div>
+        )}
       </div>
 
       {/* Chat Agent */}
