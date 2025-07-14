@@ -1,6 +1,6 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import ChatAgent from '../src/components/ChatAgent';
+import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -48,7 +48,7 @@ const mockTools: Tool[] = [
     duration: '1-7',
     details: 'Includes drill, charger, carrying case, and 20-piece bit set. Perfect for drilling holes and driving screws.',
     isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop&auto=format'
   },
   {
     id: 'tool2',
@@ -67,7 +67,7 @@ const mockTools: Tool[] = [
     duration: '1-3',
     details: 'Gas-powered, self-propelled. Includes fuel and oil. Perfect for yards up to 1/2 acre.',
     isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop&auto=format'
   },
   {
     id: 'tool3',
@@ -86,7 +86,7 @@ const mockTools: Tool[] = [
     duration: '1-5',
     details: 'Professional-grade aluminum ladder. Safety equipment included. Must demonstrate proper usage.',
     isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop&auto=format'
   },
   {
     id: 'tool4',
@@ -105,7 +105,7 @@ const mockTools: Tool[] = [
     duration: '1-2',
     details: 'Professional carpet cleaner with attachments. Cleaning solution included. Training available.',
     isUrgent: true,
-    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop&auto=format'
   },
   {
     id: 'tool5',
@@ -124,7 +124,7 @@ const mockTools: Tool[] = [
     duration: '1-3',
     details: 'Professional-grade angle grinder with multiple discs. Safety equipment included.',
     isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop&auto=format'
   },
   {
     id: 'tool6',
@@ -143,7 +143,7 @@ const mockTools: Tool[] = [
     duration: '1-5',
     details: 'Professional welding equipment with all safety gear. Certification verification required.',
     isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop&auto=format'
   },
   // Requested Tools
   {
@@ -658,7 +658,7 @@ export default function Tools() {
       </div>
 
       {/* Chat Agent */}
-      <ChatAgent pageType="tools" />
+      <ToolsTasksChatAgent pageType="tools" />
 
       <Footer />
     </div>
