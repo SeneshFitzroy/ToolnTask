@@ -189,7 +189,7 @@ export default function Home() {
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = '#FFFFFF';
                       e.currentTarget.style.transform = 'scale(1)';
-                   }
+                    }}
                   >
                     Claim Now
                   </Button>
