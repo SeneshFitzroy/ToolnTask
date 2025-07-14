@@ -162,8 +162,7 @@ const mockTools: Tool[] = [
     postedBy: 'John Smith',
     duration: '2-3',
     details: 'Weekend project building deck. Need quality circular saw with guide. Can pick up Friday evening.',
-    isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1567016376408-0226e4d7c1cb?w=400&h=300&fit=crop'
+    isUrgent: false
   },
   {
     id: 'treq2',
