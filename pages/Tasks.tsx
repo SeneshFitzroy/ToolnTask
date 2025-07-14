@@ -105,7 +105,7 @@ const mockTasks: Task[] = [
     duration: '4',
     details: 'Light meal preparation. Help with homework. Bedtime routine assistance.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop'
   },
   // Requested Tasks
   {
