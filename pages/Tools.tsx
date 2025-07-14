@@ -180,8 +180,7 @@ const mockTools: Tool[] = [
     postedBy: 'Maria Rodriguez',
     duration: '1',
     details: 'Spring cleaning project. Need pressure washer with various nozzles. Flexible on pickup time.',
-    isUrgent: false,
-    image: 'https://images.unsplash.com/photo-1581578831142-7239de344daa?w=400&h=300&fit=crop'
+    isUrgent: false
   },
   {
     id: 'treq3',
