@@ -204,35 +204,6 @@ export default function Tasks() {
     
     return filtered;
   };
-    let filtered = tasks;
-    
-    // Filter by type if specified
-    if (type) {
-      filtered = filtered.filter(task => task.type === type);
-    }
-    
-    // Apply category filter
-    if (activeFilter !== 'all') {
-      filtered = filtered.filter(task => task.category === activeFilter);
-    }
-    
-    // Apply search filter
-    if (searchTerm.trim()) {
-      filtered = filtered.filter(task => 
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.details.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-    
-    return filtered;
-  };
-
-  const getCurrentFilterLabel = () => {
-    const currentFilter = filterOptions.find(option => option.key === activeFilter);
-    return currentFilter ? currentFilter.label : 'All Categories';
-  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
