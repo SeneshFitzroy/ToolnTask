@@ -124,7 +124,8 @@ const mockTasks: Task[] = [
     postedBy: 'Sarah Johnson',
     duration: '4-5',
     details: 'Weekly service needed. Flexible scheduling. Pet-friendly cleaner preferred.',
-    isUrgent: false
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=300&fit=crop'
   },
   {
     id: 'treq2',
@@ -142,7 +143,8 @@ const mockTasks: Task[] = [
     postedBy: 'Mike Wilson',
     duration: '8',
     details: 'Spring garden setup. Soil testing and amendment. Plant selection guidance needed.',
-    isUrgent: false
+    isUrgent: false,
+    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop'
   },
   {
     id: 'treq3',
@@ -160,14 +162,14 @@ const mockTasks: Task[] = [
     postedBy: 'Lisa Chen',
     duration: '4-6',
     details: 'Multiple IKEA pieces including bed, dresser, and desk. Tools provided.',
-    isUrgent: true
+    isUrgent: true,
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop'
   }
 ];
 
 export default function Tasks() {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [showFilterDropdown, setShowFilterDropdown] = useState<boolean>(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -178,9 +180,8 @@ export default function Tasks() {
 
   if (!mounted) return null;
 
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = (filter: 'available' | 'requested') => {
     setActiveFilter(filter);
-    setShowFilterDropdown(false);
   };
 
   const handleSearch = () => {
@@ -188,16 +189,21 @@ export default function Tasks() {
     console.log('Searching for:', searchTerm);
   };
 
-  const filterOptions = [
-    { key: 'all', label: 'All Categories', count: tasks.length },
-    { key: 'cleaning', label: 'Cleaning', count: tasks.filter(t => t.category === 'cleaning').length },
-    { key: 'gardening', label: 'Gardening', count: tasks.filter(t => t.category === 'gardening').length },
-    { key: 'repairs', label: 'Repairs', count: tasks.filter(t => t.category === 'repairs').length },
-    { key: 'babysitting', label: 'Babysitting', count: tasks.filter(t => t.category === 'babysitting').length },
-    { key: 'other', label: 'Other', count: tasks.filter(t => t.category === 'other').length }
-  ];
-
-  const getFilteredTasks = (type?: 'available' | 'requested') => {
+  const getFilteredTasks = () => {
+    let filtered = tasks.filter(task => task.type === activeFilter);
+    
+    // Apply search filter
+    if (searchTerm.trim()) {
+      filtered = filtered.filter(task => 
+        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.details.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  };
     let filtered = tasks;
     
     // Filter by type if specified
