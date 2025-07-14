@@ -595,7 +595,7 @@ const Navigation = () => {
                         <span className="font-medium text-sm">Profile & Settings</span>
                       </Link>
 
-                      // ...existing code...
+                      {/* Other dropdown items can be added here if needed */}
                       
                       <button 
                         onClick={() => {
