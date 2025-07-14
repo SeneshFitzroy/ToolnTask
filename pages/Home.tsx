@@ -5,6 +5,7 @@ import TaskCard from '../src/components/TaskCard';
 import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
+import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -952,6 +953,7 @@ export default function Home() {
         </div>
       )}
 
+      <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
     </div>
   );

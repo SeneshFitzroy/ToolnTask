@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
 interface ToolsTasksChatAgentProps {
-  pageType: 'tools' | 'tasks';
+  pageType: 'tools' | 'tasks' | 'home';
 }
 
 export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentProps) {
@@ -14,7 +14,9 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     {
       id: 1,
       type: 'agent',
-      message: `Hi! I'm your ${pageType} assistant. How can I help you today?`,
+      message: pageType === 'home' 
+        ? `Hi! I'm your virtual assistant. I can help you with tools, tasks, and more. How can I assist you today?`
+        : `Hi! I'm your ${pageType} assistant. How can I help you today?`,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
