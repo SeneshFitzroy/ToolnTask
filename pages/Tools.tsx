@@ -561,7 +561,7 @@ export default function Tools() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    Available Tools ({getFilteredTools('available').length})
+                    Available Tools ({getFilteredTools().filter(tool => tool.type === 'available').length})
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     Ready to rent from trusted owners
@@ -576,7 +576,7 @@ export default function Tools() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getFilteredTools('available').map((tool) => (
+            {getFilteredTools().filter(tool => tool.type === 'available').map((tool) => (
               <div key={tool.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-green-200">
                 <div className="relative">
                   {tool.image && (
@@ -656,7 +656,7 @@ export default function Tools() {
             ))}
           </div>
           
-          {getFilteredTools('available').length === 0 && (
+          {getFilteredTools().filter(tool => tool.type === 'available').length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
                 No available tools match your filters. Try adjusting your search criteria.
