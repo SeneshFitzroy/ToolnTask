@@ -198,8 +198,7 @@ const mockTools: Tool[] = [
     postedBy: 'David Chen',
     duration: '3-4',
     details: 'Bathroom renovation. Need wet tile saw with diamond blade. Can provide deposit.',
-    isUrgent: true,
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop'
+    isUrgent: true
   },
   {
     id: 'treq4',
