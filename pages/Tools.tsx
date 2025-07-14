@@ -607,15 +607,21 @@ export default function Tools() {
                 <h3 className="text-xl font-bold mb-3 group-hover:text-blue-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
                   {tool.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                   {tool.description}
                 </p>
                 
                 {/* Tool Details */}
-                <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
-                  <div className="flex items-center gap-2">
-                    <span>💰</span>
-                    <span className="text-lg font-bold text-orange-500">{tool.price}</span>
+                <div className="space-y-3 mb-6 text-sm">
+                  <div className="flex items-center gap-3 p-2 rounded-lg" style={{ 
+                    backgroundColor: tool.type === 'available' 
+                      ? (theme === 'dark' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(34, 197, 94, 0.05)')
+                      : (theme === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(245, 158, 11, 0.05)')
+                  }}>
+                    <span className="text-lg">💰</span>
+                    <span className="text-xl font-bold" style={{ 
+                      color: tool.type === 'available' ? '#22C55E' : '#F59E0B' 
+                    }}>{tool.price}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span>📍</span>
