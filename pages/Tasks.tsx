@@ -568,16 +568,26 @@ export default function Tasks() {
                     </p>
                   </div>
                   
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <button
-                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                      className="flex-1 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)', 
+                        color: '#FFFFFF',
+                        boxShadow: '0 4px 15px rgba(255, 94, 20, 0.3)'
+                      }}
                     >
-                      Apply for Task
+                      Apply Now
                     </button>
                     <button
-                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="px-6 py-3 border-2 rounded-xl hover:scale-105 transition-all duration-300 font-semibold"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
+                        color: theme === 'dark' ? '#D1D5DB' : '#4B5563',
+                        backgroundColor: theme === 'dark' ? 'transparent' : '#FFFFFF'
+                      }}
                     >
-                      💬 Chat
+                      💬
                     </button>
                   </div>
                 </div>
@@ -600,43 +610,50 @@ export default function Tasks() {
           <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((request) => (
-                <div key={request.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-700">
-                  <div className="relative">
+                <div key={request.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-yellow-200 dark:hover:border-yellow-800"
+                     style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
+                     onMouseEnter={(e) => {
+                       e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                     }}
+                     onMouseLeave={(e) => {
+                       e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                     }}>
+                  <div className="relative overflow-hidden">
                     {request.image && (
                       <Image 
                         src={request.image} 
                         alt={request.title}
                         width={400}
                         height={250}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     )}
-                    <div className="absolute top-2 right-2">
-                      <span className="px-2 py-1 bg-yellow-500 text-white text-xs rounded-full">
+                    <div className="absolute top-3 right-3">
+                      <span className="px-3 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full shadow-lg">
                         Requested
                       </span>
                     </div>
                     {request.isUrgent && (
-                      <div className="absolute top-2 left-2">
-                        <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
                           Urgent
                         </span>
                       </div>
                     )}
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-yellow-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
                       {request.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                       {request.description}
                     </p>
                   
                   {/* Request Details */}
-                  <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
-                    <div className="flex items-center gap-2">
-                      <span>💰</span>
-                      <span className="text-lg font-bold text-orange-500">{request.price}</span>
+                  <div className="space-y-3 mb-6 text-sm">
+                    <div className="flex items-center gap-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? 'rgba(234, 179, 8, 0.1)' : 'rgba(234, 179, 8, 0.05)' }}>
+                      <span className="text-lg">💰</span>
+                      <span className="text-xl font-bold" style={{ color: '#EAB308' }}>{request.price}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span>📍</span>
@@ -660,22 +677,32 @@ export default function Tasks() {
                     </div>
                   </div>
                   
-                  <div className="bg-yellow-50 dark:bg-yellow-900 rounded-lg p-3 mb-4">
-                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                      <strong>Details:</strong> {request.details}
+                  <div className="rounded-xl p-4 mb-6" style={{ backgroundColor: theme === 'dark' ? 'rgba(133, 77, 14, 0.2)' : 'rgba(254, 252, 232, 1)' }}>
+                    <p className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#FDE68A' : '#92400E' }}>
+                      <strong style={{ color: theme === 'dark' ? '#FBBF24' : '#78350F' }}>Details:</strong> {request.details}
                     </p>
                   </div>
                   
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     <button
-                      className="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors"
+                      className="flex-1 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #EAB308 0%, #D97706 100%)', 
+                        color: '#FFFFFF',
+                        boxShadow: '0 4px 15px rgba(234, 179, 8, 0.3)'
+                      }}
                     >
                       Offer Service
                     </button>
                     <button
-                      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                      className="px-6 py-3 border-2 rounded-xl hover:scale-105 transition-all duration-300 font-semibold"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
+                        color: theme === 'dark' ? '#D1D5DB' : '#4B5563',
+                        backgroundColor: theme === 'dark' ? 'transparent' : '#FFFFFF'
+                      }}
                     >
-                      💬 Chat
+                      💬
                     </button>
                   </div>
                 </div>
