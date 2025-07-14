@@ -48,7 +48,7 @@ const mockTasks: Task[] = [
     duration: '6',
     details: 'Includes all cleaning supplies. Deep cleaning of kitchen appliances, bathroom sanitization, dusting, vacuuming.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=300&fit=crop'
   },
   {
     id: 'task2',
@@ -67,7 +67,7 @@ const mockTasks: Task[] = [
     duration: '4',
     details: 'Weekly maintenance service. Must provide own tools. Knowledge of seasonal plants preferred.',
     isUrgent: false,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop'
   },
   {
     id: 'task3',
@@ -86,7 +86,7 @@ const mockTasks: Task[] = [
     duration: '3',
     details: 'Materials provided. Must be licensed and insured. Evening availability preferred.',
     isUrgent: true,
-    image: '/api/placeholder/400/250'
+    image: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=400&h=300&fit=crop'
   },
   {
     id: 'task4',
