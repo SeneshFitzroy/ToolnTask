@@ -540,9 +540,9 @@ export default function Tasks() {
                   
                   {/* Task Details */}
                   <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
-                    <div className="flex items-center gap-2">
-                      <span>💰</span>
-                      <span className="text-lg font-bold text-orange-500">{task.price}</span>
+                    <div className="flex items-center gap-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)' }}>
+                      <span className="text-lg">💰</span>
+                      <span className="text-xl font-bold" style={{ color: '#FF5E14' }}>{task.price}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span>📍</span>
