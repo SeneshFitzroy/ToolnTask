@@ -550,34 +550,61 @@ export default function Tools() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {getFilteredTools().map((tool) => (
-            <div key={tool.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-200">
-              <div className="relative">
-                {tool.image && (
+            <div key={tool.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                 style={{ 
+                   borderColor: tool.type === 'available' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(245, 158, 11, 0.2)',
+                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' 
+                 }}
+                 onMouseEnter={(e) => {
+                   e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                 }}>
+              
+              {/* Only show images for available tools */}
+              {tool.type === 'available' && tool.image && (
+                <div className="relative overflow-hidden">
                   <Image 
                     src={tool.image} 
                     alt={tool.title}
                     width={400}
                     height={250}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                )}
-                <div className="absolute top-2 right-2">
-                  <span className={`px-2 py-1 text-white text-xs rounded-full ${
-                    tool.type === 'available' ? 'bg-green-500' : 'bg-yellow-500'
-                  }`}>
-                    {tool.type === 'available' ? 'Available' : 'Requested'}
-                  </span>
-                </div>
-                {tool.isUrgent && (
-                  <div className="absolute top-2 left-2">
-                    <span className="px-2 py-1 bg-red-500 text-white text-xs rounded-full">
-                      Urgent
+                  <div className="absolute top-3 right-3">
+                    <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                      Available
                     </span>
                   </div>
-                )}
-              </div>
+                  {tool.isUrgent && (
+                    <div className="absolute top-3 left-3">
+                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
+                        Urgent
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* For requested tools, show header with status */}
+              {tool.type === 'requested' && (
+                <div className="p-4 border-b" style={{ backgroundColor: theme === 'dark' ? 'rgba(245, 158, 11, 0.1)' : 'rgba(245, 158, 11, 0.05)' }}>
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full shadow-lg">
+                      Requested
+                    </span>
+                    {tool.isUrgent && (
+                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
+                        Urgent
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+              
               <div className="p-6">
-                <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
                   {tool.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">

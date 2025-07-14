@@ -1,6 +1,6 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import ChatAgent from '../src/components/ChatAgent';
+import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -722,7 +722,7 @@ export default function Tasks() {
       </div>
 
       {/* Chat Agent */}
-      <ChatAgent pageType="tasks" />
+      <ToolsTasksChatAgent pageType="tasks" />
 
       <Footer />
     </div>
