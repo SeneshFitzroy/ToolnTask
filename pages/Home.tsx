@@ -166,11 +166,11 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <span className="text-lg sm:text-xl animate-bounce">🎉</span>
                   <span className="text-xs sm:text-sm font-bold text-white bg-white/20 px-2 py-1 rounded-full">
-                    TOP SPECIAL OFFER
+                    FREE SIGN UP
                   </span>
                 </div>
                 <div className="text-sm sm:text-base md:text-lg font-bold text-white">
-                  Get <span className="text-yellow-200 font-black">50% off</span> your first business listing!
+                  Get Jobs & Tools!
                 </div>
               </div>
               
@@ -191,7 +191,7 @@ export default function Home() {
                       e.currentTarget.style.transform = 'scale(1)';
                     }}
                   >
-                    Claim Now
+                    Create
                   </Button>
                 </Link>
                 <button
