@@ -488,6 +488,9 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Inline Ad Section */}
+      <InlineAd className="py-6" />
+
       {/* Promotional Banner Section */}
       <div className="py-8 sm:py-10 md:py-12" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -954,13 +957,16 @@ export default function Home() {
             <div className="flex justify-center gap-4 mt-3 text-xs text-white/60">
               <span>✓ Flexible Hours</span>
               <span>✓ Good Pay</span>
-            </div>
-          </div>
-        </div>
       )}
+
+      {/* Ad Showcase Section */}
+      <AdShowcase />
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
+    </div>
+  );
+}     <Footer showNewsletter={true} />
     </div>
   );
 }
