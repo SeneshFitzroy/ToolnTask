@@ -228,7 +228,7 @@ export default function Home() {
                 Get quick tasks done or rent the tools you need from people nearby.
               </p>
               <div className="flex justify-center lg:justify-start mb-4 sm:mb-6 md:mb-8">
-                <Link href="/Tasks">
+                <Link href="/SignIn">
                   <Button 
                     className="w-full sm:w-auto text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-bold rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
