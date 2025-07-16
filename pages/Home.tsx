@@ -1,4 +1,3 @@
-
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import TaskCard from '../src/components/TaskCard';
@@ -6,6 +5,7 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
+import AdShowcase, { TopBannerAd, SidebarAd, InlineAd } from '../src/components/AdShowcase';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -145,6 +145,12 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
+      
+      {/* Top Banner Ad */}
+      <TopBannerAd />
+      
+      {/* Sidebar Ads */}
+      <SidebarAd position="right" />
       
       {/* Top Special Offer Banner */}
       {showTopBanner && (
