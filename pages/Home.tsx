@@ -166,11 +166,11 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <span className="text-lg sm:text-xl animate-bounce">🎉</span>
                   <span className="text-xs sm:text-sm font-bold text-white bg-white/20 px-2 py-1 rounded-full">
-                    FREE SIGN UP
+                    FREE TO USE
                   </span>
                 </div>
                 <div className="text-sm sm:text-base md:text-lg font-bold text-white">
-                  Get Jobs & Tools!
+                  Get Jobs & Tools! Only pay to advertise or promote your gig.
                 </div>
               </div>
               
