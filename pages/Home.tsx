@@ -60,7 +60,9 @@ export default function Home() {
     };
   }, [router.events]);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   const handleFilterChange = (filter: 'all' | 'tasks' | 'tools') => {
     setActiveFilter(filter);
@@ -957,6 +959,9 @@ export default function Home() {
             <div className="flex justify-center gap-4 mt-3 text-xs text-white/60">
               <span>✓ Flexible Hours</span>
               <span>✓ Good Pay</span>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Ad Showcase Section */}
@@ -964,9 +969,6 @@ export default function Home() {
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
-    </div>
-  );
-}     <Footer showNewsletter={true} />
     </div>
   );
 }
