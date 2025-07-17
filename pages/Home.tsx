@@ -910,7 +910,7 @@ export default function Home() {
                 </span>
               </div>
               <button
-                onClick={() => setShowFloatingBann
+                onClick={() => setShowFloatingBanner(false)}
                 className="w-6 h-6 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 rounded-full transition-all duration-300"
                 aria-label="Close banner"
               >
