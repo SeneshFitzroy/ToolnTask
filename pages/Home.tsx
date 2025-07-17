@@ -905,7 +905,7 @@ export default function Home() {
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-2">
                 <span className="text-lg animate-pulse">💰</span>
-                <span className="text-xs font-bold text-ora0 bg-orange-400/20 px-2 py-1 rounded-full">
+                <span className="text-xs font-bold text-orange-400 bg-orange-400/20 px-2 py-1 rounded-full">
                   EARN MORE
                 </span>
               </div>
