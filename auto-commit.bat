@@ -1,39 +1,25 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Add all changes to staging
+:: Stage all changes
 git add .
 
-:: Initialize variables
+:: Collect changed files and build initial message
 set "FILES="
-set "INSERTIONS=0"
-set "DELETIONS=0"
-set "CHANGES="
+for /f "delims=" %%i in ('git diff --cached --name-only') do set "FILES=%%i, !FILES!"
 
-:: Collect changed files
-for /f %%i in ('git diff --cached --name-only') do set "FILES=%%i, !FILES!"
-
-:: Analyze changes and count insertions/deletions
-for /f "tokens=1,2" %%j in ('git diff --cached --numstat') do (
-    if not "%%j"=="-" (
-        set /a "INSERTIONS+=%%j"
-        set /a "DELETIONS+=%%k"
-    )
+:: Get detailed change statistics
+for /f "tokens=1-3" %%j in ('git diff --cached --shortstat') do (
+    if not "%%j"=="" set "STATS=%%j %%k %%l"
 )
 
-:: Get a concise diff summary (first 50 characters of diff output)
-for /f "delims=" %%j in ('git diff --cached --shortstat') do set "CHANGES=%%j"
+:: Construct a clear, detailed commit message with current timestamp
+set "MSG=feat: Enhanced !FILES:~0,-2! - !STATS! at %time% %date%"
 
-:: Construct a detailed commit message
-set "MSG=feat: Enhanced !FILES! - Detailed changes: !CHANGES! (Insertions: !INSERTIONS!, Deletions: !DELETIONS!) at %time% %date%"
-
-:: Commit with detailed message and specified author
-git commit -m "!MSG!" --author="SeneshFitzroy <10952757@students.plymouth.ac.uk>"
-
-:: Check for commit success and handle failure
-if !ERRORLEVEL! neq 0 (
-    echo Commit failed, run git commit manually & pause
-) else (
-    :: Push to remote repository
-    git push origin main
+:: Commit with specified author and push if successful
+git commit -m "!MSG!" --author="SeneshFitzroy <10952757@students.plymouth.ac.uk>" || (
+    echo Commit failed, run git commit manually
+    pause
+    exit /b 1
 )
+git push origin main
