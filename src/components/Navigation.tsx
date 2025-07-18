@@ -84,7 +84,9 @@ const Navigation = () => {
     }, 600);
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <nav 
@@ -248,7 +250,6 @@ const Navigation = () => {
               About
             </Link>
 
-            
             {/* Premium Create Button for authenticated users */}
             {user && (
               <div className="relative create-dropdown">
