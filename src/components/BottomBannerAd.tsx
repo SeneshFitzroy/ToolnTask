@@ -71,31 +71,31 @@ const BottomBannerAd = () => {
 
       {/* Ad Content */}
       <div className={`transition-all duration-300 ${isMinimized ? 'h-0 overflow-hidden' : 'h-auto'}`}>
-        <div className="relative w-full p-4">
+        <div className="relative w-full p-4 flex justify-center">
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white flex items-center justify-center transition-all duration-200"
+            className="absolute top-2 right-2 z-10 w-6 h-6 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 text-white flex items-center justify-center transition-all duration-200 text-xs"
           >
-            <X size={16} />
+            <X size={12} />
           </button>
 
-          {/* CarFlexi-Style Banner */}
+          {/* CarFlexi-Style Banner - Smaller Image */}
           <Link href="https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK">
-            <div className="w-full cursor-pointer group relative">
-              {/* Background Image */}
+            <div className="cursor-pointer group relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
+              {/* Background Image - Smaller Size */}
               <Image
                 src="/ads/bottom-banner-ad-main.jpg"
                 alt="CarFlexi Car Rental Advertisement"
-                width={1000}
-                height={80}
+                width={800}
+                height={60}
                 className="w-full h-full object-cover"
-                style={{ minHeight: '80px', maxHeight: '80px' }}
+                style={{ height: '60px' }}
                 priority
               />
               
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg"></div>
             </div>
           </Link>
         </div>
