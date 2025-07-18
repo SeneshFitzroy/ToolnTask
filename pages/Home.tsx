@@ -541,97 +541,99 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Clean & Concise CTA Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
-        {/* Simple Background */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)' }}></div>
-        <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(255, 94, 20, 0.3) 0%, transparent 70%)' }}></div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Simple Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-sm" 
-               style={{ backgroundColor: 'rgba(255, 94, 20, 0.15)', border: '1px solid rgba(255, 94, 20, 0.3)' }}>
-            <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
-          </div>
+      {/* Clean & Concise CTA Section - Only show for non-logged in users */}
+      {!user && (
+        <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
+          {/* Simple Background */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)' }}></div>
+          <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(255, 94, 20, 0.3) 0%, transparent 70%)' }}></div>
           
-          {/* Concise Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: '#FFFFFF' }}>
-            Transform Your{' '}
-            <span style={{ color: '#FF5E14' }}>Community</span>
-          </h2>
-          
-          {/* Short Description */}
-          <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-            Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
-          </p>
-          
-          {/* Clean Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <Link href="/SignUp">
-              <Button 
-                className="w-full sm:w-auto text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
-                style={{ 
-                  backgroundColor: '#FF5E14',
-                  color: '#FFFFFF',
-                  boxShadow: '0 10px 25px rgba(255, 94, 20, 0.4)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 15px 35px rgba(255, 94, 20, 0.6)';
-                  e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(255, 94, 20, 0.4)';
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Join Free
-                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </span>
-              </Button>
-            </Link>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            {/* Simple Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-sm" 
+                 style={{ backgroundColor: 'rgba(255, 94, 20, 0.15)', border: '1px solid rgba(255, 94, 20, 0.3)' }}>
+              <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
+            </div>
             
-            <Link href="/About">
-              <Button 
-                className="w-full sm:w-auto text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
-                style={{ 
-                  backgroundColor: 'transparent',
-                  color: '#FFFFFF',
-                  borderColor: 'rgba(255, 255, 255, 0.4)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                  e.currentTarget.style.borderColor = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                }}
-              >
-                Learn More
-              </Button>
-            </Link>
-          </div>
-          
-          {/* Simple Trust Indicators */}
-          <div className="flex justify-center gap-6 sm:gap-8 text-base sm:text-lg" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="font-medium">No Fees</span>
+            {/* Concise Headline */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight" style={{ color: '#FFFFFF' }}>
+              Transform Your{' '}
+              <span style={{ color: '#FF5E14' }}>Community</span>
+            </h2>
+            
+            {/* Short Description */}
+            <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
+            </p>
+            
+            {/* Clean Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <Link href="/SignUp">
+                <Button 
+                  className="w-full sm:w-auto text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
+                  style={{ 
+                    backgroundColor: '#FF5E14',
+                    color: '#FFFFFF',
+                    boxShadow: '0 10px 25px rgba(255, 94, 20, 0.4)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(255, 94, 20, 0.6)';
+                    e.currentTarget.style.transform = 'scale(1.05) translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 10px 25px rgba(255, 94, 20, 0.4)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                  }}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Join Free
+                    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </Button>
+              </Link>
+              
+              <Link href="/About">
+                <Button 
+                  className="w-full sm:w-auto text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                  style={{ 
+                    backgroundColor: 'transparent',
+                    color: '#FFFFFF',
+                    borderColor: 'rgba(255, 255, 255, 0.4)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.borderColor = '#FFFFFF';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                  }}
+                >
+                  Learn More
+                </Button>
+              </Link>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="font-medium">Verified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="font-medium">Secure</span>
+            
+            {/* Simple Trust Indicators */}
+            <div className="flex justify-center gap-6 sm:gap-8 text-base sm:text-lg" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                <span className="font-medium">No Fees</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                <span className="font-medium">Verified</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                <span className="font-medium">Secure</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />

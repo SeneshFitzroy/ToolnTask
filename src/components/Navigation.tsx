@@ -150,7 +150,6 @@ const Navigation = () => {
                 }
               }}
               onClick={(e) => {
-                setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
                 addShineEffect(e.currentTarget);
@@ -178,7 +177,6 @@ const Navigation = () => {
                 }
               }}
               onClick={(e) => {
-                setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
                 addShineEffect(e.currentTarget);
