@@ -85,17 +85,6 @@ export default function Home() {
       available={true}
       isPromoted={true}
       image="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop"
-    />,
-    <ToolCard
-      key="tool3"
-      title="Angle Grinder"
-      description="Heavy-duty angle grinder for metal cutting and grinding projects."
-      price="Rs. 1,200/day"
-      brand="Makita"
-      condition="Excellent"
-      available={false}
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop"
     />
   ];
 
