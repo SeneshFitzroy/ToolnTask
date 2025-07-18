@@ -42,8 +42,19 @@ const SideAds = () => {
           </button>
 
           {/* Ad Content */}
-          <Link href="#">
+          <Link href="https://mobitel.lk/mobitel-1598">
             <div className="cursor-pointer group relative overflow-hidden h-full">
+              {/* Background Image */}
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url(/ads/side-skyscraper-ad-primary.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+              
               {/* Main Content */}
               <div className="p-6 text-white relative z-10 h-full flex flex-col justify-between">
                 {/* Top Section - Brand */}
