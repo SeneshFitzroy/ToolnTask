@@ -158,6 +158,7 @@ const Navigation = () => {
               }}
               onClick={(e) => {
                 setShowProfileDropdown(false);
+                setShowCreateDropdown(false);
                 setMobileMenuOpen(false);
                 addShineEffect(e.currentTarget);
               }}
