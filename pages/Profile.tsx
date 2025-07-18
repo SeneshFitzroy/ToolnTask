@@ -831,32 +831,48 @@ export default function Profile() {
                   ) : (
                     <div className="grid gap-4">
                       {savedGigs.map((gig) => (
-                        <div key={gig.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow" style={{
-                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                          borderColor: theme === 'dark' ? '#444444' : '#E2E8F0'
+                        <div key={gig.id} className={`border rounded-lg p-4 hover:shadow-md transition-shadow ${
+                          gig.status === 'requested' ? 'opacity-75' : ''
+                        }`} style={{
+                          backgroundColor: gig.status === 'requested' 
+                            ? (theme === 'dark' ? '#2a2426' : '#fef7f0') 
+                            : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
+                          borderColor: gig.status === 'requested' 
+                            ? (theme === 'dark' ? '#6b5b47' : '#f59e0b') 
+                            : (theme === 'dark' ? '#444444' : '#E2E8F0'),
+                          borderWidth: gig.status === 'requested' ? '2px' : '1px'
                         }}>
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-2">
-                                <h4 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                                <h4 className={`text-lg font-semibold ${
+                                  gig.status === 'requested' ? 'opacity-80' : ''
+                                }`} style={{ 
+                                  color: gig.status === 'requested' 
+                                    ? (theme === 'dark' ? '#d69e2e' : '#92400e') 
+                                    : (theme === 'dark' ? '#FFFFFF' : '#1E293B') 
+                                }}>
                                   {gig.title}
+                                  {gig.status === 'requested' && (
+                                    <span className="ml-2 text-sm font-normal opacity-75">
+                                      (Temporarily Unavailable)
+                                    </span>
+                                  )}
                                 </h4>
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                                   gig.type === 'tool' 
-                                    ? 'bg-blue-100 text-blue-800' 
-                                    : 'bg-green-100 text-green-800'
+                                    ? (gig.status === 'requested' ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800')
+                                    : (gig.status === 'requested' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800')
                                 }`}>
                                   {gig.type}
                                 </span>
-                                {gig.status && (
-                                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                    gig.status === 'available' 
-                                      ? 'bg-green-100 text-green-800' 
-                                      : 'bg-yellow-100 text-yellow-800'
-                                  }`}>
-                                    {gig.status}
-                                  </span>
-                                )}
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  gig.status === 'available' 
+                                    ? 'bg-green-100 text-green-800' 
+                                    : 'bg-orange-100 text-orange-800'
+                                }`}>
+                                  {gig.status === 'available' ? 'Available' : 'Unavailable'}
+                                </span>
                               </div>
                               
                               {gig.description && (
@@ -896,13 +912,19 @@ export default function Profile() {
                                 Remove
                               </button>
                               <button
-                                className="px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                                disabled={gig.status === 'requested'}
+                                className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                                  gig.status === 'requested' 
+                                    ? 'opacity-50 cursor-not-allowed' 
+                                    : 'hover:opacity-90'
+                                }`}
                                 style={{ 
-                                  backgroundColor: '#FF5E14',
+                                  backgroundColor: gig.status === 'requested' ? '#9CA3AF' : '#FF5E14',
                                   color: '#FFFFFF'
                                 }}
+                                title={gig.status === 'requested' ? 'This gig is temporarily unavailable' : 'Contact the poster'}
                               >
-                                Contact
+                                {gig.status === 'requested' ? 'Unavailable' : 'Contact'}
                               </button>
                             </div>
                           </div>
