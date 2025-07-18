@@ -478,7 +478,7 @@ const Navigation = () => {
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-4">
               {user ? (
-                {/* User Profile Button */}
+                /* User Profile Button */
                 <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
