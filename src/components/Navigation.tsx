@@ -185,33 +185,6 @@ const Navigation = () => {
               Tools
             </Link>
             <Link 
-              href="/Ads" 
-              className={`px-4 py-2 text-xl font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/Ads') ? 'nav-active' : ''}`} 
-              style={{ 
-                color: isActiveLink('/Ads') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
-                backgroundColor: isActiveLink('/Ads') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
-              }} 
-              onMouseEnter={(e) => {
-                if (!isActiveLink('/Ads')) {
-                  e.currentTarget.style.color = '#FF5E14';
-                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActiveLink('/Ads')) {
-                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }
-              }}
-              onClick={(e) => {
-                setShowProfileDropdown(false);
-                setMobileMenuOpen(false);
-                addShineEffect(e.currentTarget);
-              }}
-            >
-              Ads
-            </Link>
-            <Link 
               href="/About" 
               className={`px-4 py-2 text-xl font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/About') ? 'nav-active' : ''}`} 
               style={{ 
@@ -239,7 +212,7 @@ const Navigation = () => {
               About
             </Link>
 
-            {/* Create button removed for logged-in users as requested */}
+            {/* Create CTA Button for logged-in users */}
           </div>
 
           {/* Right side - Auth buttons */}
