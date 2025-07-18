@@ -5,10 +5,10 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { updateProfile, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
+import { updateProfile, updatePassword, onAuthStateChanged, User, signOut } from 'firebase/auth';
 import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon, Bookmark, Settings, User as UserIcon, Key, MapPin, Clock, DollarSign } from 'lucide-react';
+import { Sun, Moon, Bookmark, Settings, User as UserIcon, Key, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
 
 interface SavedGig {
   id: string;
@@ -55,6 +55,43 @@ export default function Profile() {
   });
   const [activeTab, setActiveTab] = useState('profile');
   const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [mockNotifications, setMockNotifications] = useState<Notification[]>([
+    {
+      id: '1',
+      type: 'gig_match',
+      title: 'New Task Match Found!',
+      message: 'A construction task in Colombo matches your skills and location preferences.',
+      timestamp: '2 hours ago',
+      isRead: false,
+      relatedGig: 'task_123'
+    },
+    {
+      id: '2',
+      type: 'request',
+      title: 'Tool Rental Request',
+      message: 'Someone has requested to rent your drill from Kandy.',
+      timestamp: '1 day ago',
+      isRead: false,
+      relatedGig: 'tool_456'
+    },
+    {
+      id: '3',
+      type: 'approval',
+      title: 'Task Application Approved',
+      message: 'Your application for "Garden Cleaning in Galle" has been approved!',
+      timestamp: '2 days ago',
+      isRead: true,
+      relatedGig: 'task_789'
+    },
+    {
+      id: '4',
+      type: 'general',
+      title: 'Platform Update',
+      message: 'New features have been added to improve your experience on ToolnTask.',
+      timestamp: '1 week ago',
+      isRead: true
+    }
+  ]);
   const [savedGigs, setSavedGigs] = useState<SavedGig[]>([
     {
       id: '1',
@@ -177,6 +214,18 @@ export default function Profile() {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log('User signed out successfully');
+      // Redirect will happen automatically due to auth state change
+    } catch (error) {
+      console.error('Error signing out:', error);
+      setError('Failed to sign out. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    }
   };
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
@@ -360,6 +409,18 @@ export default function Profile() {
                 >
                   <Bookmark className="h-4 w-4" />
                   Saved Gigs
+                </button>
+                <button
+                  onClick={() => setActiveTab('notifications')}
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                    activeTab === 'notifications'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'notifications' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
+                >
+                  <Bell className="h-4 w-4" />
+                  Notifications
                 </button>
               </nav>
             </div>
@@ -651,6 +712,53 @@ export default function Profile() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Account Management Section */}
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Account Management
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border" style={{ 
+                        backgroundColor: theme === 'dark' ? '#1f1f1f' : '#F9FAFB',
+                        borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
+                      }}>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                              Sign Out
+                            </h4>
+                            <p className="text-sm mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                              Sign out of your account securely
+                            </p>
+                          </div>
+                          <button
+                            onClick={handleSignOut}
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
+                            style={{ 
+                              backgroundColor: '#dc2626',
+                              color: '#FFFFFF',
+                              border: 'none'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = '#b91c1c';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = '#dc2626';
+                            }}
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Sign Out
+                          </button>
+                        </div>
+                      </div>
+                      <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          After signing out, you&apos;ll need to log in again to access your account.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -758,6 +866,122 @@ export default function Profile() {
                       ))}
                     </div>
                   )}
+                </div>
+              )}
+
+              {/* Notifications Tab */}
+              {activeTab === 'notifications' && (
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Notifications
+                    </h3>
+                    <p className="text-sm mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      Stay updated with task matches, requests, and important announcements.
+                    </p>
+                  </div>
+
+                  {/* Sample Notifications */}
+                  <div className="space-y-4">
+                    {mockNotifications.map((notification) => (
+                      <div
+                        key={notification.id}
+                        className={`p-4 rounded-lg border transition-colors ${
+                          notification.isRead ? 'opacity-75' : ''
+                        }`}
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? '#262626' : '#F9FAFB',
+                          borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
+                        }}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <h4 className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                                {notification.title}
+                              </h4>
+                              {!notification.isRead && (
+                                <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                              )}
+                            </div>
+                            <p className="text-sm mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                              {notification.message}
+                            </p>
+                            <div className="flex items-center gap-4 text-xs" style={{ color: theme === 'dark' ? '#9CA3AF' : '#9CA3AF' }}>
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {notification.timestamp}
+                              </span>
+                              <span className="capitalize px-2 py-1 rounded-full text-xs" style={{ 
+                                backgroundColor: notification.type === 'gig_match' ? '#DEF7EC' : '#EBF4FF',
+                                color: notification.type === 'gig_match' ? '#03543F' : '#1E40AF'
+                              }}>
+                                {notification.type.replace('_', ' ')}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 ml-4">
+                            {!notification.isRead && (
+                              <button
+                                onClick={() => setMockNotifications(prev => 
+                                  prev.map(n => n.id === notification.id ? { ...n, isRead: true } : n)
+                                )}
+                                className="px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                                style={{ 
+                                  backgroundColor: '#FF5E14',
+                                  color: '#FFFFFF'
+                                }}
+                              >
+                                Mark Read
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Notification Settings */}
+                  <div className="pt-6 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
+                    <h4 className="font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Notification Settings
+                    </h4>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                            Task Matches
+                          </p>
+                          <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                            Get notified when new tasks match your profile
+                          </p>
+                        </div>
+                        <input type="checkbox" defaultChecked className="toggle" />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                            Tool Requests
+                          </p>
+                          <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                            Receive notifications for tool rental requests
+                          </p>
+                        </div>
+                        <input type="checkbox" defaultChecked className="toggle" />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                            General Updates
+                          </p>
+                          <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                            Platform updates and important announcements
+                          </p>
+                        </div>
+                        <input type="checkbox" defaultChecked className="toggle" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
