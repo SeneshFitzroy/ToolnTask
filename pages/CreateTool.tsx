@@ -384,6 +384,7 @@ export default function CreateTool() {
                   <div className="text-center">
                     {formData.image ? (
                       <div className="space-y-3">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           src={formData.image} 
                           alt="Tool preview" 
