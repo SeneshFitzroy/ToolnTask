@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 
 const BottomBannerAd = () => {
