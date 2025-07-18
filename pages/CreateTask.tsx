@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
@@ -139,6 +140,7 @@ export default function CreateTask() {
         time: '',
         location: '',
         category: 'cleaning',
+        customCategory: '',
         image: '',
         deadline: '',
         requirements: [''],
@@ -370,21 +372,100 @@ export default function CreateTask() {
 
               <div>
                 <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                  Image URL
+                  Task Image
                 </label>
-                <input
-                  type="url"
-                  name="image"
-                  value={formData.image}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                <div
+                  className="w-full p-8 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 hover:border-opacity-80"
                   style={{ 
-                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    borderColor: theme === 'dark' ? '#6366F1' : '#6366F1',
+                    backgroundColor: theme === 'dark' ? '#1a1a2e' : '#F0F4FF'
                   }}
-                  placeholder="https://example.com/task-image.jpg"
-                />
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.currentTarget.style.borderColor = '#8B5CF6';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a1f3f' : '#E0E7FF';
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    e.currentTarget.style.borderColor = '#6366F1';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1a1a2e' : '#F0F4FF';
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    e.currentTarget.style.borderColor = '#6366F1';
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1a1a2e' : '#F0F4FF';
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                      const file = files[0];
+                      if (file.type.startsWith('image/')) {
+                        // Here you would typically upload to a service like Firebase Storage
+                        // For now, we'll create a preview URL
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                          setFormData(prev => ({
+                            ...prev,
+                            image: e.target?.result as string
+                          }));
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }
+                  }}
+                  onClick={() => document.getElementById('task-image-upload')?.click()}
+                >
+                  <input
+                    id="task-image-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                          setFormData(prev => ({
+                            ...prev,
+                            image: e.target?.result as string
+                          }));
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                  />
+                  <div className="text-center">
+                    {formData.image ? (
+                      <div className="space-y-3">
+                        <img 
+                          src={formData.image} 
+                          alt="Task preview" 
+                          className="max-w-full max-h-32 mx-auto rounded-lg shadow-lg"
+                        />
+                        <p className="text-sm font-medium" style={{ color: '#10B981' }}>
+                          ✅ Image uploaded successfully
+                        </p>
+                        <p className="text-xs" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                          Click to change image
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        <div className="mx-auto w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
+                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                            Click to upload or drag and drop
+                          </p>
+                          <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                            PNG, JPG, JPEG up to 10MB
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               <div>
