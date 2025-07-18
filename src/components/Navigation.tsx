@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Menu, X, Plus, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut } from 'lucide-react';
+import { Menu, X, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
@@ -13,7 +13,6 @@ const Navigation = () => {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showCreateDropdown, setShowCreateDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
@@ -28,9 +27,6 @@ const Navigation = () => {
     // Close dropdowns when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (!target.closest('.create-dropdown')) {
-        setShowCreateDropdown(false);
-      }
       if (!target.closest('.profile-dropdown')) {
         setShowProfileDropdown(false);
       }
@@ -47,7 +43,6 @@ const Navigation = () => {
   // Close dropdowns and mobile menu when route changes
   useEffect(() => {
     const handleRouteChange = () => {
-      setShowCreateDropdown(false);
       setShowProfileDropdown(false);
       setMobileMenuOpen(false);
     };
@@ -100,7 +95,6 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
-            setShowCreateDropdown(false);
             setShowProfileDropdown(false);
             setMobileMenuOpen(false);
           }}>
@@ -129,7 +123,6 @@ const Navigation = () => {
                 }
               }}
               onClick={(e) => {
-                setShowCreateDropdown(false);
                 setShowProfileDropdown(false);
                 setMobileMenuOpen(false);
                 addShineEffect(e.currentTarget);
@@ -250,113 +243,7 @@ const Navigation = () => {
               About
             </Link>
 
-            {/* Premium Create Button for authenticated users */}
-            {user && (
-              <div className="relative create-dropdown">
-                <button
-                  onClick={(e) => {
-                    setShowCreateDropdown(!showCreateDropdown);
-                    addShineEffect(e.currentTarget);
-                  }}
-                  className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 shine-effect"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 100%)',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    boxShadow: '0 4px 15px rgba(255, 94, 20, 0.3)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF4A00 0%, #FF6829 100%)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.4)';
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF7A3D 100%)';
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 94, 20, 0.3)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
-                  <Plus className="h-4 w-4" strokeWidth={2} />
-                  <span>Create</span>
-                  <ChevronDown 
-                    className={`h-4 w-4 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
-                    strokeWidth={2}
-                  />
-                </button>
-                
-                {/* Clean Dropdown */}
-                {showCreateDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-64 rounded-lg shadow-lg border z-50 overflow-hidden"
-                       style={{ 
-                         backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
-                         borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
-                       }}>
-                    
-                    <div className="p-4 border-b" style={{ 
-                      borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
-                    }}>
-                      <h3 className="font-semibold text-sm" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
-                        Create New Listing
-                      </h3>
-                      <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                        Choose what you want to create
-                      </p>
-                    </div>
-                    
-                    <Link 
-                      href="/CreateTool"
-                      className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
-                      style={{ 
-                        color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                        borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }}
-                      onClick={() => setShowCreateDropdown(false)}
-                    >
-                      <div className="w-10 h-10 rounded-lg flex items-center justify-center"
-                           style={{ backgroundColor: '#FF5E14' }}>
-                        <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-sm">Create Tool Listing</h4>
-                        <p className="text-xs" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                          List your tools for rent or sale
-                        </p>
-                      </div>
-                    </Link>
-                    
-                    <Link 
-                      href="/CreateTask"
-                      className="flex items-center gap-3 px-4 py-3 transition-colors duration-200"
-                      style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                      }}
-                      onClick={() => setShowCreateDropdown(false)}
-                    >
-                      <div className="w-10 h-10 rounded-lg flex items-center justify-center"
-                           style={{ backgroundColor: '#6366F1' }}>
-                        <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-sm">Create Task</h4>
-                        <p className="text-xs" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                          Post a task and hire workers
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                )}
-              </div>
-            )}
+            {/* Create button removed for logged-in users as requested */}
           </div>
 
           {/* Right side - Auth buttons */}
