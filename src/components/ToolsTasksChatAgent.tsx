@@ -92,7 +92,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
             {isOpen ? (
               <span className="text-white text-2xl">✕</span>
             ) : (
-              <span className="text-white text-2xl">💬</span>
+              <span className="text-white text-2xl">🤖</span>
             )}
           </div>
         </button>
