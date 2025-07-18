@@ -359,23 +359,40 @@ export default function SignUp() {
                 />
               </div>
               
-              <div className="flex items-start gap-2">
-                <input type="checkbox" className="mt-1 rounded" style={{ accentColor: '#FF5E14' }} />
-                <span className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  I agree to the{' '}
-                  <Link href="/TermsAndConditions" className="hover:underline" style={{ color: '#FF5E14' }}>Terms of Service</Link>
+              <div className="flex items-start gap-3">
+                <input 
+                  type="checkbox" 
+                  id="agreeTerms"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded border-2 cursor-pointer" 
+                  style={{ 
+                    accentColor: '#FF5E14',
+                    borderColor: agreedToTerms ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')
+                  }}
+                  required
+                />
+                <label htmlFor="agreeTerms" className="text-sm leading-relaxed cursor-pointer" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  <span className="text-red-500 font-bold">*</span> I agree to the{' '}
+                  <Link href="/TermsAndConditions" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Terms of Service</Link>
                   {' '}and{' '}
-                  <Link href="/PrivacyPolicy" className="hover:underline" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
-                </span>
+                  <Link href="/PrivacyPolicy" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
+                  <div className="text-xs mt-1 opacity-75">
+                    You must accept our terms before registering
+                  </div>
+                </label>
               </div>
               
               <Button 
                 type="submit" 
-                disabled={loading}
-                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" 
-                style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                disabled={loading || !agreedToTerms}
+                className="w-full text-white py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg sm:rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" 
+                style={{ 
+                  backgroundColor: loading || !agreedToTerms ? '#9CA3AF' : '#FF5E14',
+                  boxShadow: !agreedToTerms ? 'none' : '0 4px 12px rgba(255, 94, 20, 0.3)'
+                }}
               >
-                {loading ? 'Registering...' : 'Register'}
+                {loading ? 'Registering...' : !agreedToTerms ? 'Please accept terms to continue' : 'Register'}
               </Button>
             </form>
 
