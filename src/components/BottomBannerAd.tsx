@@ -28,7 +28,9 @@ const BottomBannerAd = () => {
     localStorage.setItem('bottomAdMinimized', isMinimized.toString());
   }, [isVisible, isMinimized]);
 
-  if (!isVisible) return null;
+  if (!isVisible) {
+    return null;
+  }
 
   const handleToggleMinimize = () => {
     setIsMinimized(!isMinimized);
