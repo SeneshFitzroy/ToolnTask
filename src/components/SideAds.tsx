@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { X } from 'lucide-react';
 
 const SideAds = () => {
@@ -26,13 +27,22 @@ const SideAds = () => {
         <div 
           className="fixed left-4 top-1/2 transform -translate-y-1/2 z-40 w-48 hidden xl:block"
           style={{ 
-            background: 'linear-gradient(135deg, #00B2FF 0%, #006DB8 50%, #004C8C 100%)',
             borderRadius: '20px',
             boxShadow: '0 12px 40px rgba(0, 178, 255, 0.4)',
             overflow: 'hidden',
             height: '600px'
           }}
         >
+          {/* Background Image */}
+          <Image
+            src="/ads/side-skyscraper-ad-primary.jpg"
+            alt="Mobitel 1598 Advertisement"
+            width={192}
+            height={600}
+            className="absolute inset-0 w-full h-full object-cover"
+            priority
+          />
+          
           {/* Close Button */}
           <button
             onClick={() => setLeftAdVisible(false)}
