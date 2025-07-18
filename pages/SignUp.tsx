@@ -73,6 +73,13 @@ export default function SignUp() {
       return;
     }
 
+    // Terms and conditions validation - MUST BE CHECKED
+    if (!agreedToTerms) {
+      setError('You must agree to the Terms of Service and Privacy Policy before registering');
+      setLoading(false);
+      return;
+    }
+
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
@@ -101,6 +108,14 @@ export default function SignUp() {
       return;
     }
 
+    // Phone validation (basic)
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+    if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
+      setError('Please enter a valid phone number');
+      setLoading(false);
+      return;
+    }
+
     try {
       console.log('Attempting to create user with email:', formData.email.trim());
       
@@ -115,7 +130,7 @@ export default function SignUp() {
         displayName: `${formData.firstName} ${formData.lastName}`
       });
 
-      // Save user data to Firestore
+      // Save user data to Firestore with additional fields
       await setDoc(doc(db, 'users', user.uid), {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
