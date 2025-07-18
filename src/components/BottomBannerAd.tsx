@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronUp, ChevronDown, X } from 'lucide-react';
 
