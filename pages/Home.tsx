@@ -5,7 +5,6 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import HorizontalAdBanner from '../src/components/HorizontalAdBanner';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -378,13 +377,6 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {getFilteredCards()}
           </div>
-        </div>
-      </div>
-
-      {/* Partner Advertisement Banner */}
-      <div className="py-6 sm:py-8 md:py-10" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <HorizontalAdBanner />
         </div>
       </div>
 
