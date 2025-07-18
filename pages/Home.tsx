@@ -26,37 +26,10 @@ export default function Home() {
       setShowTopBanner(false);
     }, 10000);
 
-    // Show floating banner after a small delay to prevent flash
-    const floatingTimer = setTimeout(() => {
-      setShowFloatingBanner(true);
-    }, 1000);
-
-    // Close floating banner when navigating away
-    const handleRouteChange = () => {
-      setShowFloatingBanner(false);
-    };
-
-    router.events?.on('routeChangeStart', handleRouteChange);
-
     return () => {
       clearTimeout(timer);
-      clearTimeout(floatingTimer);
-      router.events?.off('routeChangeStart', handleRouteChange);
     };
-  }, [router.events]);
-
-  // Close floating banner when navigating away from Home
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setShowFloatingBanner(false);
-    };
-
-    router.events.on('routeChangeStart', handleRouteChange);
-    
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router.events]);
+  }, []);
 
   if (!mounted) {
     return null;
