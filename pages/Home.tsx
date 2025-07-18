@@ -642,6 +642,7 @@ export default function Home() {
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
+      <BottomBannerAd />
     </div>
   );
 }
