@@ -17,7 +17,6 @@ export default function Home() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showTopBanner, setShowTopBanner] = useState(true);
-  const [showFloatingBanner, setShowFloatingBanner] = useState(false);
 
   useEffect(() => {
     setMounted(true);

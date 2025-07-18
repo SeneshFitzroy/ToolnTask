@@ -37,98 +37,6 @@ const trackApplicationClick = async (taskId: string, userId?: string, action: st
   }
 };
 
-// Dynamic Advertisement Component - Left Side Only, No Content Coverage
-const DynamicAdvertisement = () => {
-  const { theme } = useTheme();
-  const [isVisible, setIsVisible] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
-
-  useEffect(() => {
-    const showAd = () => {
-      setIsVisible(true);
-      // Hide after 15 seconds
-      setTimeout(() => {
-        setIsVisible(false);
-        setShowInfo(false);
-      }, 15000);
-    };
-
-    // Show immediately on mount
-    showAd();
-
-    // Then show every 2 minutes
-    const interval = setInterval(showAd, 120000); // 2 minutes = 120,000ms
-
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!isVisible) return null;
-
-  return (
-    <div className="fixed top-24 left-4 z-40 animate-fade-in hidden lg:block"
-         style={{ 
-           transition: 'all 0.5s ease-in-out'
-         }}>
-      <div className="w-72 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border-4 border-dashed overflow-hidden"
-           style={{ 
-             borderColor: '#FF5E14',
-             minHeight: '480px'
-           }}>
-        
-        {/* Close Button */}
-        <button 
-          onClick={() => setIsVisible(false)}
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black bg-opacity-50 text-white flex items-center justify-center hover:bg-opacity-75 transition-all duration-300 z-10"
-        >
-          ×
-        </button>
-
-        <div className="p-6 h-full flex flex-col items-center justify-center text-center">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
-               style={{ backgroundColor: '#FF5E14' }}>
-            <span className="text-white text-2xl">📢</span>
-          </div>
-          
-          <h3 className="text-lg font-bold mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-            Advertisement<br />Space Available
-          </h3>
-          
-          <div className="p-3 rounded-xl border-2 border-dashed mb-6 w-full" 
-               style={{ borderColor: '#FF5E14' }}>
-            <p className="text-base font-bold mb-2" style={{ color: '#FF5E14' }}>
-              Premium Left Side
-            </p>
-            <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-              280 × 480 px
-            </p>
-          </div>
-          
-          <button 
-            onClick={() => setShowInfo(!showInfo)}
-            className="px-4 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 mb-4 text-sm"
-            style={{ 
-              backgroundColor: '#FF5E14',
-              color: '#FFFFFF'
-            }}>
-            📋 More Info
-          </button>
-          
-          {showInfo && (
-            <div className="text-xs space-y-1" style={{ color: '#B3B5BC' }}>
-              <p>✓ Brand promotions</p>
-              <p>✓ Product launches</p>
-              <p>✓ Service advertising</p>
-              <p className="font-semibold mt-3 text-sm" style={{ color: '#FF5E14' }}>
-                📞 Contact for rates
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function TaskDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -240,9 +148,6 @@ export default function TaskDetail() {
           animation: fade-in 0.5s ease-in-out;
         }
       `}</style>
-      
-      {/* Dynamic Advertisement - Left Side Only */}
-      <DynamicAdvertisement />
       
       <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <Navigation />
