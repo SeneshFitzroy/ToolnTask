@@ -380,7 +380,7 @@ export default function Tools() {
       {/* Search Section */}
       <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Compact Search Bar Container */}
+          {/* Enhanced Search Bar Container */}
           <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
@@ -390,16 +390,16 @@ export default function Tools() {
                    : '0 8px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 94, 20, 0.03)'
                }}>
           
-          {/* Search Bar */}
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col lg:flex-row gap-2 sm:gap-3">
+          {/* Enhanced Search Bar with Real-time Search */}
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col lg:flex-row gap-3">
               <div className="flex-1 relative">
                 <input
                   type="text"
-                  placeholder="Search tools, locations, categories..."
+                  placeholder="Search tools by title, location, category, or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg focus:outline-none text-sm sm:text-base font-medium shadow-sm transition-all duration-300"
+                  className="w-full px-4 py-3 pl-12 pr-12 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
@@ -415,126 +415,120 @@ export default function Tools() {
                   }}
                 />
                 {/* Search Icon */}
-                <div className="absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
+                {/* Clear Button */}
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
+                    style={{ 
+                      color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
+                      backgroundColor: 'transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#4B5563' : '#F3F4F6';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
             
-            {/* Compact Search Button */}
-            <Button 
-              onClick={handleSearch}
-              className="w-full text-base sm:text-lg font-bold px-6 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-102"
-              style={{ 
-                background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)',
-                borderColor: '#FF5E14',
-                color: '#FFFFFF',
-                textShadow: '0 1px 2px rgba(0,0,0,0.2)',
-                boxShadow: '0 6px 20px rgba(255, 94, 20, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                const target = e.currentTarget as HTMLButtonElement;
-                target.style.transform = 'scale(1.02) translateY(-2px)';
-                target.style.boxShadow = '0 8px 25px rgba(255, 94, 20, 0.4)';
-                target.style.background = 'linear-gradient(135deg, #FF5D13 0%, #FF4500 50%, #FF3300 100%)';
-              }}
-              onMouseLeave={(e) => {
-                const target = e.currentTarget as HTMLButtonElement;
-                target.style.transform = 'scale(1) translateY(0px)';
-                target.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.3)';
-                target.style.background = 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF4500 100%)';
-              }}
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <span>Search Tools</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+            {/* Results Summary with improved styling */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
+                </span>
+                {searchTerm && (
+                  <span className="text-sm px-2 py-1 rounded-full" 
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                          color: '#FF5E14'
+                        }}>
+                    &ldquo;{searchTerm}&rdquo;
+                  </span>
+                )}
               </div>
-            </Button>
-          </div>
-          
-          {/* Results Summary */}
-          <div className="text-center">
-            <p className="text-sm sm:text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-              {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
-              {searchTerm && ` for "${searchTerm}"`}
-            </p>
-          </div>
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
+                  style={{ 
+                    color: '#FF5E14',
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Clear search
+                </button>
+              )}
+            </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Filter Toggle Section */}
-      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Available/Requested Toggle Filter */}
-          <div className="p-1.5 rounded-full shadow-lg border" style={{ 
-            backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-            borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
-          }}>
-            <div className="flex justify-between gap-1">
-              <button
-                onClick={() => handleFilterChange('available')}
-                className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
-                style={{
-                  backgroundColor: activeFilter === 'available' ? '#FF5E14' : 'transparent',
-                  color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  boxShadow: activeFilter === 'available' 
-                    ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
-                    : 'none',
-                  border: 'none'
-                }}
-                onMouseEnter={(e) => {
-                  if (activeFilter !== 'available') {
-                    e.currentTarget.style.color = '#FF5E14';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeFilter !== 'available') {
-                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }
-                }}
-              >
-                <span className="flex items-center justify-center relative z-10">
-                  Available Tools
-                </span>
-              </button>
-              <button
-                onClick={() => handleFilterChange('requested')}
-                className="flex-1 relative px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 group transform-gpu active:scale-95 cursor-pointer"
-                style={{
-                  backgroundColor: activeFilter === 'requested' ? '#FF5E14' : 'transparent',
-                  color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  boxShadow: activeFilter === 'requested' 
-                    ? '0 4px 12px rgba(255, 94, 20, 0.3)' 
-                    : 'none',
-                  border: 'none'
-                }}
-                onMouseEnter={(e) => {
-                  if (activeFilter !== 'requested') {
-                    e.currentTarget.style.color = '#FF5E14';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A2A2A' : '#F8F9FA';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeFilter !== 'requested') {
-                    e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#6B7280';
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }
-                }}
-              >
-                <span className="flex items-center justify-center relative z-10">
-                  Requested Tools
-                </span>
-              </button>
+        {/* Enhanced Filter Toggle Section */}
+        <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Available/Requested Toggle Filter with improved design */}
+            <div className="relative">
+              <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+                backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+              }}>
+                <div className="flex justify-between gap-1 relative">
+                  {/* Sliding background indicator */}
+                  <div 
+                    className="absolute top-0 left-0 h-full transition-all duration-300 ease-in-out rounded-full"
+                    style={{
+                      width: '50%',
+                      backgroundColor: '#FF5E14',
+                      transform: activeFilter === 'requested' ? 'translateX(100%)' : 'translateX(0)',
+                      boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                    }}
+                  />
+                  <button
+                    onClick={() => handleFilterChange('available')}
+                    className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                    style={{
+                      color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    }}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="text-lg">🔧</span>
+                      Available Tools
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange('requested')}
+                    className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                    style={{
+                      color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    }}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="text-lg">🔍</span>
+                      Requested Tools
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
