@@ -11,11 +11,34 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
 
+// Email service function
+const sendWelcomeEmail = async (firstName: string, email: string) => {
+  try {
+    const response = await fetch('/api/send-welcome-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        email,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to send welcome email');
+    }
+  } catch (error) {
+    console.error('Error sending welcome email:', error);
+  }
+};
+
 export default function SignUp() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
