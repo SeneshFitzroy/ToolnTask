@@ -4,26 +4,20 @@ import { X } from 'lucide-react';
 
 const SideAds = () => {
   const [leftAdVisible, setLeftAdVisible] = useState(true);
-  const [rightAdVisible, setRightAdVisible] = useState(true);
 
   // Load visibility state from localStorage
   useEffect(() => {
     const savedLeftAd = localStorage.getItem('leftAdVisible');
-    const savedRightAd = localStorage.getItem('rightAdVisible');
     
     if (savedLeftAd !== null) {
       setLeftAdVisible(savedLeftAd === 'true');
-    }
-    if (savedRightAd !== null) {
-      setRightAdVisible(savedRightAd === 'true');
     }
   }, []);
 
   // Save visibility state to localStorage
   useEffect(() => {
     localStorage.setItem('leftAdVisible', leftAdVisible.toString());
-    localStorage.setItem('rightAdVisible', rightAdVisible.toString());
-  }, [leftAdVisible, rightAdVisible]);
+  }, [leftAdVisible]);
 
   return (
     <>
