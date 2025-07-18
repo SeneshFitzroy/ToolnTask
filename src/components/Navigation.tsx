@@ -572,20 +572,6 @@ const Navigation = () => {
                 Tools
               </Link>
               <Link 
-                href="/Ads" 
-                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
-                style={{ 
-                  color: isActiveLink('/Ads') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
-                  backgroundColor: isActiveLink('/Ads') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
-                }} 
-                onClick={(e) => {
-                  setMobileMenuOpen(false);
-                  addShineEffect(e.currentTarget);
-                }}
-              >
-                Ads
-              </Link>
-              <Link 
                 href="/About" 
                 className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
                 style={{ 
