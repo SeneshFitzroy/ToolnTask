@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Navigation from '../src/components/Navigation';
-import Footer from '../src/components/Footer';
-import Logo from '../src/components/Logo';
+import Link from 'next/link'
+import Navigation from '../src/components/Navigation'
+import Footer from '../src/components/Footer'
+import Logo from '../src/components/Logo'
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
@@ -13,9 +13,7 @@ export default function NotFound() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
