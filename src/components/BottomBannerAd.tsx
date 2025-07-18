@@ -80,22 +80,55 @@ const BottomBannerAd = () => {
             <X size={12} />
           </button>
 
-          {/* CarFlexi-Style Banner - Smaller Image */}
+          {/* CarFlexi-Style Banner - Clean CSS Design */}
           <Link href="https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK">
-            <div className="cursor-pointer group relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
-              {/* Background Image - Smaller Size */}
-              <Image
-                src="/ads/bottom-banner-ad-main.jpg"
-                alt="CarFlexi Car Rental Advertisement"
-                width={800}
-                height={60}
-                className="w-full h-full object-cover"
-                style={{ height: '60px' }}
-                priority
-              />
+            <div className="cursor-pointer group relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg"
+                 style={{
+                   background: 'linear-gradient(90deg, #FF6B35 0%, #E55A2B 25%, #00B2FF 75%, #0099E6 100%)',
+                   height: '60px'
+                 }}>
+              
+              {/* Content Layout */}
+              <div className="flex items-center justify-between h-full px-6 text-white">
+                {/* Left Section - CarFlexi Brand */}
+                <div className="flex items-center space-x-4">
+                  <div className="text-center">
+                    <div className="text-lg font-black">CARFLEXI</div>
+                    <div className="text-xs opacity-90">CAR RENTAL</div>
+                  </div>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 rounded-full bg-white opacity-75"></div>
+                    <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                  </div>
+                </div>
+
+                {/* Center Section - Main Message */}
+                <div className="text-center flex-grow">
+                  <div className="text-xl font-black">RENT CARS • BEST PRICES • 24/7 SERVICE</div>
+                </div>
+
+                {/* Right Section - CTA */}
+                <div className="flex items-center space-x-3">
+                  <div className="text-center">
+                    <div className="text-sm font-bold">BOOK NOW</div>
+                    <div className="text-xs opacity-90">Available</div>
+                  </div>
+                  <div className="bg-white bg-opacity-20 rounded-lg px-3 py-1 text-xs font-bold backdrop-blur-sm">
+                    CLICK HERE
+                  </div>
+                </div>
+              </div>
               
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg"></div>
+              <div className="absolute inset-0 bg-white bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg"></div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute inset-0 opacity-10 pointer-events-none">
+                <div className="absolute top-2 right-20 w-8 h-8 border border-white rounded-full"></div>
+                <div className="absolute bottom-2 left-20 w-6 h-6 border border-white rounded-full"></div>
+                <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-10 h-10 border border-white rounded-full"></div>
+              </div>
             </div>
           </Link>
         </div>
