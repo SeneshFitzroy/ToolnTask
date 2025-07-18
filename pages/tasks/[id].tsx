@@ -152,6 +152,7 @@ export default function TaskDetail() {
       
       <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
         <Navigation />
+        <TopBanner />
       
       {/* Clean Professional Main Content */}
       <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
