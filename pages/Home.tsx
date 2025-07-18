@@ -5,7 +5,7 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import AdShowcase, { InlineAd } from '../src/components/AdShowcase';
+import AdShowcase, { TopBannerAd, SidebarAd, InlineAd } from '../src/components/AdShowcase';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -147,6 +147,12 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
+      
+      {/* Top Banner Ad */}
+      <TopBannerAd />
+      
+      {/* Sidebar Ads */}
+      <SidebarAd position="right" />
       
       {/* Top Special Offer Banner */}
       {showTopBanner && (
@@ -538,18 +544,31 @@ export default function Home() {
               
               {/* Enhanced Content */}
               <div className="lg:col-span-2 text-center lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-2 mb-2 sm:mb-3">
+                  <span className="text-xs font-bold px-2 sm:px-3 py-1 rounded-full animate-pulse border" 
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.15)' : 'rgba(255, 94, 20, 0.1)',
+                          color: '#FF5E14',
+                          borderColor: 'rgba(255, 94, 20, 0.3)',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                          boxShadow: '0 4px 12px rgba(255, 94, 20, 0.15)'
+                        }}>
+                    ⚡ LIMITED TIME OFFER
+                  </span>
+                </div>
+                
                 <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mb-1 sm:mb-2 tracking-tight leading-tight" 
                     style={{ 
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                       textShadow: theme === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : '0 1px 2px rgba(0,0,0,0.1)'
                     }}>
-                  Find Tools & Tasks
+                  Get Your First Task{' '}
                   <span className="inline-block transform hover:scale-105 transition-transform duration-300" 
                         style={{ 
                           color: '#FF5E14',
                           textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)'
                         }}>
-                    {' '}Easily!
+                    FREE!
                   </span>
                 </h3>
                 
