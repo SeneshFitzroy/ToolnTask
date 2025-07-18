@@ -19,47 +19,25 @@ interface AdData {
 const sampleAds: AdData[] = [
   {
     id: '1',
-    title: 'XM Trading - $5000 Welcome Bonus',
-    description: 'දැන්ම ෆොලර් ගොනස් ලබා ගන්න',
-    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop',
-    link: '/ads/xm-trading',
-    category: 'banner',
+    title: 'Mobitel - Sri Lanka\'s No.1 Network',
+    description: 'Experience the best mobile network in Sri Lanka',
+    imageUrl: '/ads/side-skyscraper-ad-primary.jpg',
+    link: 'https://mobitel.lk/mobitel-1598',
+    category: 'sidebar',
     size: 'large',
     isActive: true,
     priority: 1
   },
   {
     id: '2',
-    title: 'Commercial Credit - Quick Loans',
-    description: 'ක්‍රමණාගත සුපිරි අඩුම හිමරු නාමතුර',
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop',
-    link: '/ads/commercial-credit',
-    category: 'sidebar',
-    size: 'medium',
-    isActive: true,
-    priority: 2
-  },
-  {
-    id: '3',
-    title: 'BET99 - Play & Earn',
-    description: 'YOUR FUN, YOUR FORTUNE - PLAY & EARN NOW!',
-    imageUrl: 'https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=400&h=600&fit=crop',
-    link: '/ads/bet99',
-    category: 'sidebar',
+    title: 'CarFlexi - Rent Cars Online',
+    description: 'Best car rental deals - Book now!',
+    imageUrl: '/ads/bottom-banner-ad-main.jpg',
+    link: 'https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK',
+    category: 'banner',
     size: 'large',
     isActive: true,
-    priority: 3
-  },
-  {
-    id: '4',
-    title: 'Tool Rental Service',
-    description: 'Premium tools for rent - Professional grade equipment',
-    imageUrl: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=400&h=200&fit=crop',
-    link: '/ads/tool-rental',
-    category: 'inline',
-    size: 'medium',
-    isActive: true,
-    priority: 4
+    priority: 2
   }
 ];
 
