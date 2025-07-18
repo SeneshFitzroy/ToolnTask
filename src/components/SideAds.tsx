@@ -25,20 +25,20 @@ const SideAds = () => {
       {/* Left Side Ad - Mobitel Style */}
       {leftAdVisible && (
         <div 
-          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-40 w-48 hidden xl:block"
+          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 w-40 hidden xl:block"
           style={{ 
-            borderRadius: '20px',
+            borderRadius: '10px',
             boxShadow: '0 12px 40px rgba(0, 178, 255, 0.4)',
-            overflow: 'hidden',
-            height: '600px'
+            overflow: 'flow',
+            height: '700px'
           }}
         >
           {/* Background Image */}
           <Image
             src="/ads/side-skyscraper-ad-primary.jpg"
             alt="Mobitel 1598 Advertisement"
-            width={192}
-            height={600}
+            width={200}
+            height={100}
             className="absolute inset-0 w-full h-full object-cover"
             priority
           />

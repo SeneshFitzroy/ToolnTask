@@ -51,25 +51,23 @@ const BottomBannerAd = () => {
         boxShadow: '0 -4px 6px -1px rgba(0, 0, 0, 0.1)'
       }}
     >
-      {/* Minimize/Expand Button */}
-      <div className="flex justify-center">
-        <button
-          onClick={handleToggleMinimize}
-          className="absolute -top-8 bg-orange-500 hover:bg-orange-600 text-white px-4 py-1 rounded-t-lg transition-colors duration-200 flex items-center gap-2 text-sm font-medium"
-        >
-          {isMinimized ? (
-            <>
-              <ChevronUp size={16} />
-              Show Ad
-            </>
-          ) : (
-            <>
-              <ChevronDown size={16} />
-              Hide Ad
-            </>
-          )}
-        </button>
-      </div>
+      {/* Minimize/Expand Button - Moved to Side */}
+      <button
+        onClick={handleToggleMinimize}
+        className="absolute -top-8 right-4 bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-t-lg transition-colors duration-200 flex items-center gap-1 text-xs font-medium z-10"
+      >
+        {isMinimized ? (
+          <>
+            <ChevronUp size={14} />
+            Show
+          </>
+        ) : (
+          <>
+            <ChevronDown size={14} />
+            Hide
+          </>
+        )}
+      </button>
 
       {/* Ad Content */}
       <div className={`transition-all duration-300 ${isMinimized ? 'h-0 overflow-hidden' : 'h-auto'}`}>
