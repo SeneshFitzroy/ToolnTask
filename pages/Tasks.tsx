@@ -185,8 +185,13 @@ export default function Tasks() {
   };
 
   const handleSearch = () => {
-    // Search functionality can be implemented here
+    // Real-time search is already handled by getFilteredTasks
+    // This can be used for additional search actions like analytics
     console.log('Searching for:', searchTerm);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
   };
 
   const getFilteredTasks = () => {
