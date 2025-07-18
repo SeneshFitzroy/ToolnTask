@@ -431,10 +431,9 @@ const Navigation = () => {
 
                       <Link 
                         href="/Profile"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b"
+                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200"
                         style={{ 
-                          color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                          borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151'
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
@@ -447,26 +446,6 @@ const Navigation = () => {
                         <UserIcon className="h-4 w-4" />
                         <span className="font-medium text-sm">Profile & Settings</span>
                       </Link>
-
-                      {/* Other dropdown items can be added here if needed */}
-                      
-                      <button 
-                        onClick={() => {
-                          handleSignOut();
-                          setShowProfileDropdown(false);
-                        }}
-                        className="w-full flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
-                        style={{ color: '#dc2626' }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#fef2f2';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
-                      >
-                        <LogOut className="h-4 w-4" />
-                        <span className="font-medium">Logout</span>
-                      </button>
                     </div>
                   )}
                 </div>
