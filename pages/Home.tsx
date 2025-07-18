@@ -5,8 +5,8 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import BottomBannerAd from '../src/components/BottomBannerAd';
-import SideAds from '../src/components/SideAds';
+// import BottomBannerAd from '../src/components/BottomBannerAd';
+// import SideAds from '../src/components/SideAds';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -640,7 +640,7 @@ export default function Home() {
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
-      <BottomBannerAd />
+      {/* <BottomBannerAd /> */}
     </div>
   );
 }
