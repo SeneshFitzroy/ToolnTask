@@ -84,74 +84,20 @@ const BottomBannerAd = () => {
 
           {/* CarFlexi-Style Banner */}
           <Link href="https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK">
-            <div className="w-full cursor-pointer group">
-              <div 
-                className="w-full flex items-center justify-center max-w-6xl mx-auto rounded-lg overflow-hidden"
-                style={{
-                  background: 'linear-gradient(90deg, #FF6B35 0%, #E55A2B 25%, #00B2FF 75%, #0099E6 100%)',
-                  minHeight: '100px',
-                  boxShadow: '0 4px 20px rgba(255, 107, 53, 0.3)'
-                }}
-              >
-                {/* Left Section - Orange */}
-                <div className="flex-1 text-white text-center py-6 relative">
-                  <div className="font-bold text-lg mb-1">CARFLEXI</div>
-                  <div className="text-2xl font-black mb-1">RENT</div>
-                  <div className="text-xs opacity-90">CARS</div>
-                  <div className="text-xs mt-2">
-                    <div className="flex justify-center space-x-1 mb-1">
-                      <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                    </div>
-                    <div>AFFORDABLE</div>
-                  </div>
-                </div>
-
-                {/* Center Section - Main Offer */}
-                <div className="flex-2 text-white text-center py-6 relative">
-                  <div className="bg-white bg-opacity-20 rounded-lg px-4 py-3 backdrop-blur-sm inline-block">
-                    <div className="text-sm font-bold">BEST PRICES</div>
-                    <div className="text-2xl font-black">CARS</div>
-                  </div>
-                  <div className="text-lg font-bold mt-2">Book Now!</div>
-                </div>
-
-                {/* Right Section - Blue */}
-                <div className="flex-1 text-white text-center py-6 relative">
-                  <div className="font-bold text-sm mb-1">CARFLEXI</div>
-                  <div className="text-3xl font-black mb-1">24/7</div>
-                  <div className="text-xs opacity-90">SERVICE</div>
-                  <div className="text-xs mt-2">
-                    <div className="flex justify-center space-x-1 mb-1">
-                      <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                    </div>
-                    <div>AVAILABLE</div>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="px-6 py-6">
-                  <div className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 group-hover:scale-105 text-sm">
-                    RENT NOW
-                  </div>
-                </div>
-
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none">
-                  <div className="absolute top-2 right-20 w-16 h-16 border border-white rounded-full"></div>
-                  <div className="absolute bottom-2 left-20 w-12 h-12 border border-white rounded-full"></div>
-                  <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-20 h-20 border border-white rounded-full"></div>
-                  <div className="absolute top-1/2 right-1/4 transform -translate-y-1/2 w-20 h-20 border border-white rounded-full"></div>
-                </div>
-
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-white bg-opacity-0 group-hover:bg-opacity-5 transition-all duration-300"></div>
-              </div>
+            <div className="w-full cursor-pointer group relative">
+              {/* Background Image */}
+              <Image
+                src="/ads/bottom-banner-ad-main.jpg"
+                alt="CarFlexi Car Rental Advertisement"
+                width={1200}
+                height={100}
+                className="w-full h-full object-cover"
+                style={{ minHeight: '100px' }}
+                priority
+              />
+              
+              {/* Hover Effect Overlay */}
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
           </Link>
         </div>
