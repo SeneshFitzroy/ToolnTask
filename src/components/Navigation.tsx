@@ -48,6 +48,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleRouteChange = () => {
       setShowProfileDropdown(false);
+      setShowCreateDropdown(false);
       setMobileMenuOpen(false);
     };
 
