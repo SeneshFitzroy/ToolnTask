@@ -5,7 +5,6 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import AdShowcase, { TopBannerAd, SidebarAd, InlineAd } from '../src/components/AdShowcase';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -147,12 +146,6 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
-      
-      {/* Top Banner Ad */}
-      <TopBannerAd />
-      
-      {/* Sidebar Ads */}
-      <SidebarAd position="right" />
       
       {/* Top Special Offer Banner */}
       {showTopBanner && (
@@ -490,10 +483,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Inline Ad Section */}
-      <InlineAd className="py-6" />
-
-
       {/* Stats Section */}
       <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         {/* Interactive Background Elements */}
@@ -823,9 +812,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
-      {/* Ad Showcase Section */}
-      <AdShowcase />
 
       <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
