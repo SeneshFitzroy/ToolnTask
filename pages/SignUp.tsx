@@ -172,7 +172,7 @@ export default function SignUp() {
         
         switch (firebaseError.code) {
           case 'auth/email-already-in-use':
-            errorMessage = 'This email is already registered. Please use a different email or sign in instead.';
+            errorMessage = '🔒 This email is already registered with ToolNTask! Please sign in instead or use a different email address.';
             break;
           case 'auth/invalid-email':
             errorMessage = 'Invalid email address format. Please check your email and try again.';
@@ -230,10 +230,10 @@ export default function SignUp() {
                     <span className="text-lg">⚠️</span>
                     <span>{error}</span>
                   </div>
-                  {error.includes('email is already registered') && (
-                    <div className="mt-2 text-xs">
-                      <Link href="/SignIn" className="underline font-semibold hover:text-red-800">
-                        Click here to sign in instead
+                  {error.includes('already registered') && (
+                    <div className="mt-3 text-xs">
+                      <Link href="/SignIn" className="inline-flex items-center gap-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-semibold text-sm">
+                        🔑 Sign In Instead
                       </Link>
                     </div>
                   )}
