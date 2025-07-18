@@ -841,6 +841,38 @@ export default function Profile() {
                   )}
                 </div>
               )}
+
+              {/* Logout Section */}
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E2E8F0' }}>
+                <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  Account Actions
+                </h3>
+                <button
+                  onClick={async () => {
+                    try {
+                      await signOut(auth);
+                      router.push('/');
+                    } catch (error) {
+                      console.error('Error signing out:', error);
+                      setError('Failed to sign out. Please try again.');
+                    }
+                  }}
+                  className="flex items-center gap-3 px-6 py-3 rounded-lg text-white font-medium transition-all duration-200 hover:scale-105"
+                  style={{ backgroundColor: '#dc2626' }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#b91c1c';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#dc2626';
+                  }}
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span>Sign Out</span>
+                </button>
+                <p className="text-sm mt-2" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
+                  You will be redirected to the home page after signing out.
+                </p>
+              </div>
             </div>
           </div>
         </div>
