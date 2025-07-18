@@ -101,6 +101,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
+            setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
             <Logo size="large" interactive={false} />
@@ -129,6 +130,7 @@ const Navigation = () => {
               }}
               onClick={(e) => {
                 setShowProfileDropdown(false);
+                setShowCreateDropdown(false);
                 setMobileMenuOpen(false);
                 addShineEffect(e.currentTarget);
               }}
