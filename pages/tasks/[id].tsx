@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
+import TopBanner from '../../src/components/TopBanner';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
