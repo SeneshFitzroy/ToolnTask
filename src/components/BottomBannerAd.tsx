@@ -82,7 +82,7 @@ const BottomBannerAd = () => {
           </button>
 
           {/* Mobitel-Style Banner */}
-          <Link href="#">
+          <Link href="https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK">
             <div className="w-full cursor-pointer group">
               <div 
                 className="w-full flex items-center justify-center max-w-6xl mx-auto rounded-lg overflow-hidden"
