@@ -1,19 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
-// Simple email sending function using a service like EmailJS or Nodemailer
-// For now, this is a placeholder that logs the email that would be sent
-const sendEmail = async (to: string, subject: string, html: string) => {
-  // TODO: Replace with actual email service (SendGrid, Nodemailer, etc.)
-  console.log('Sending email to:', to);
-  console.log('Subject:', subject);
-  console.log('HTML:', html);
-  
-  // For now, we'll just simulate success
-  // In production, you would integrate with an actual email service
-  return { success: true };
-};
-
-import { NextApiRequest, NextApiResponse } from 'next';
 import sgMail from '@sendgrid/mail';
 
 // Initialize SendGrid
