@@ -667,6 +667,74 @@ export default function Profile() {
                 </div>
               )}
 
+              {/* Notifications Tab */}
+              {activeTab === 'notifications' && (
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                      Notifications
+                    </h3>
+                    <p className="text-sm mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      Stay updated with AI-generated insights and smart suggestions about tools and tasks in your area.
+                    </p>
+                  </div>
+
+                  {notifications.length === 0 ? (
+                    <div className="text-center py-12">
+                      <Bell className="h-12 w-12 mx-auto mb-4" style={{ color: theme === 'dark' ? '#666666' : '#9CA3AF' }} />
+                      <p className="text-lg font-medium mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        No notifications yet
+                      </p>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
+                        You'll receive smart recommendations and updates here.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {notifications.map((notification) => (
+                        <div key={notification.id} className={`border rounded-lg p-4 transition-all hover:shadow-md ${!notification.isRead ? 'border-l-4 border-l-orange-500' : ''}`} style={{
+                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                          borderColor: theme === 'dark' ? '#444444' : '#E2E8F0'
+                        }}>
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 mb-2">
+                                <h4 className={`text-lg font-semibold ${!notification.isRead ? 'font-bold' : ''}`} style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
+                                  {notification.title}
+                                </h4>
+                                {!notification.isRead && (
+                                  <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                                )}
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                  notification.type === 'gig_match' 
+                                    ? 'bg-blue-100 text-blue-800' 
+                                    : notification.type === 'request'
+                                    ? 'bg-green-100 text-green-800'
+                                    : notification.type === 'approval'
+                                    ? 'bg-purple-100 text-purple-800'
+                                    : 'bg-gray-100 text-gray-800'
+                                }`}>
+                                  {notification.type.replace('_', ' ')}
+                                </span>
+                              </div>
+                              <p className="mb-3" style={{ color: theme === 'dark' ? '#CCCCCC' : '#64748B' }}>
+                                {notification.message}
+                              </p>
+                              <div className="flex items-center gap-4 text-sm" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
+                                <div className="flex items-center gap-1">
+                                  <Clock className="h-4 w-4" />
+                                  <span>{new Date(notification.timestamp).toLocaleDateString()}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Saved Gigs Tab */}
               {activeTab === 'saved' && (
                 <div className="space-y-6">
