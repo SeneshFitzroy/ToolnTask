@@ -266,7 +266,7 @@ export default function Home() {
                     <div className="responsive-video-container relative w-full">
                       <video
                         className="absolute left-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
-                        style={{ objectPosition: 'center center', top: '-15px' }}
+                        style={{ objectPosition: 'center center', top: '-30px' }}
                         autoPlay
                         muted
                         loop
