@@ -42,16 +42,6 @@ export default function Home() {
       image="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop"
     />,
     <TaskCard
-      key="task2"
-      title="House Cleaning"
-      description="Need help with deep cleaning of 3-bedroom house. All supplies provided."
-      price="Rs. 8,000"
-      time="4-5 hours"
-      location="Kandy"
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"
-    />,
-    <TaskCard
       key="task3"
       title="Babysitting Service"
       description="Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings."
