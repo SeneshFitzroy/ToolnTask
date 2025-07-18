@@ -11,14 +11,24 @@ import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { auth } from '../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   if (!mounted) {
