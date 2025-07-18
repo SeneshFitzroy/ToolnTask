@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
+import TopBanner from '../../src/components/TopBanner';
 import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
