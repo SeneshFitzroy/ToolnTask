@@ -223,6 +223,14 @@ const SideAds = () => {
             display: none !important;
           }
         }
+        
+        /* Add margin to main content when side ads are visible */
+        @media (min-width: 1280px) {
+          body {
+            padding-left: 280px;
+            padding-right: 280px;
+          }
+        }
       `}</style>
     </>
   );
