@@ -255,7 +255,7 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect" 
+                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect min-w-[160px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
@@ -275,12 +275,20 @@ const Navigation = () => {
                       e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold shadow-sm" 
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
+                    <div className="flex flex-col items-start text-left overflow-hidden">
+                      <span className="text-sm font-semibold leading-tight truncate max-w-[80px]">
+                        {user.displayName || user.email?.split('@')[0] || 'User'}
+                      </span>
+                      <span className="text-xs opacity-75 truncate max-w-[80px]" style={{ color: '#FF5E14' }}>
+                        Profile
+                      </span>
+                    </div>
                     <ChevronDown 
-                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
                       strokeWidth={2}
                     />
                   </button>
