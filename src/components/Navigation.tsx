@@ -31,6 +31,9 @@ const Navigation = () => {
       if (!target.closest('.profile-dropdown')) {
         setShowProfileDropdown(false);
       }
+      if (!target.closest('.create-dropdown')) {
+        setShowCreateDropdown(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
