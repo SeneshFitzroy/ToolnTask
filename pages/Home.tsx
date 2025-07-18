@@ -240,26 +240,26 @@ export default function Home() {
 
                 {/* Responsive Video Container */}
                 <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
-                  <div className="relative w-full" style={{ height: '320px' }}>
+                  <div className="relative w-full" style={{ height: '360px' }}>
                     <style jsx>{`
                       @media (min-width: 640px) {
-                        .responsive-video-container {
-                          height: 380px;
-                        }
-                      }
-                      @media (min-width: 768px) {
                         .responsive-video-container {
                           height: 420px;
                         }
                       }
-                      @media (min-width: 1024px) {
+                      @media (min-width: 768px) {
                         .responsive-video-container {
                           height: 460px;
                         }
                       }
-                      @media (min-width: 1280px) {
+                      @media (min-width: 1024px) {
                         .responsive-video-container {
                           height: 500px;
+                        }
+                      }
+                      @media (min-width: 1280px) {
+                        .responsive-video-container {
+                          height: 540px;
                         }
                       }
                     `}</style>
