@@ -437,31 +437,39 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
             {[
               { 
                 step: '1', 
-                icon: '📝', 
-                title: 'Post or Browse', 
-                desc: 'Create a task listing or browse available tools and services in your neighborhood',
+                icon: '�', 
+                title: 'Login/Create Account', 
+                desc: 'Sign up or log in to your ToolNTask account to get started with our community marketplace',
                 color: '#FF5E14',
                 delay: '0ms'
               },
               { 
                 step: '2', 
+                icon: '📋', 
+                title: 'Browse or Post', 
+                desc: 'Browse available tools and services or post your own tasks and tools for the community',
+                color: '#FF5E14',
+                delay: '150ms'
+              },
+              { 
+                step: '3', 
                 icon: '🤝', 
                 title: 'Connect & Agree', 
                 desc: 'Chat with providers, negotiate terms, and agree on fair pricing that works for everyone',
                 color: '#FF5E14',
-                delay: '200ms'
+                delay: '300ms'
               },
               { 
-                step: '3', 
-                icon: '✅', 
-                title: 'Complete & Review', 
-                desc: 'Finish the task safely, complete secure payment, and build trust through honest reviews',
+                step: '4', 
+                icon: '💰', 
+                title: 'Get Paid/Pay & Review', 
+                desc: 'Complete secure payments and build trust through honest reviews for future connections',
                 color: theme === 'dark' ? '#FFFFFF' : '#001554',
-                delay: '400ms'
+                delay: '450ms'
               }
             ].map((step, index) => (
               <div 
@@ -499,7 +507,7 @@ export default function Home() {
                 </div>
                 
                 {/* Simple Connection Arrow */}
-                {index < 2 && (
+                {index < 3 && (
                   <div className="hidden md:block absolute top-12 -right-4 z-20">
                     <svg className="w-8 h-6 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h20m0 0l-4-4m4 4l-4 4" />
@@ -598,18 +606,18 @@ export default function Home() {
           </div>
           
           {/* Simple Trust Indicators */}
-          <div className="flex justify-center gap-6 sm:gap-8 text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+          <div className="flex justify-center gap-6 sm:gap-8 text-base sm:text-lg" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>No Fees</span>
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <span className="font-medium">No Fees</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>Verified</span>
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <span className="font-medium">Verified</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span>Secure</span>
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <span className="font-medium">Secure</span>
             </div>
           </div>
         </div>
