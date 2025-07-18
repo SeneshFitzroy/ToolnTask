@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import { Button } from '../src/components/ui/button';
