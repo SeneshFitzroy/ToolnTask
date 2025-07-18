@@ -153,7 +153,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-4 sm:mt-6 lg:mt-8 xl:mt-12">
+              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-8 sm:mt-10 lg:mt-12 xl:mt-16">
                 {/* Enhanced Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-2xl sm:rounded-3xl filter blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-blue-300/20 rounded-2xl sm:rounded-3xl animate-spin-slow"></div>
@@ -240,33 +240,33 @@ export default function Home() {
 
                 {/* Responsive Video Container */}
                 <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
-                  <div className="relative w-full" style={{ height: '450px' }}>
+                  <div className="relative w-full" style={{ height: '320px' }}>
                     <style jsx>{`
                       @media (min-width: 640px) {
                         .responsive-video-container {
-                          height: 520px;
+                          height: 380px;
                         }
                       }
                       @media (min-width: 768px) {
                         .responsive-video-container {
-                          height: 580px;
+                          height: 420px;
                         }
                       }
                       @media (min-width: 1024px) {
                         .responsive-video-container {
-                          height: 620px;
+                          height: 460px;
                         }
                       }
                       @media (min-width: 1280px) {
                         .responsive-video-container {
-                          height: 680px;
+                          height: 500px;
                         }
                       }
                     `}</style>
                     <div className="responsive-video-container relative w-full">
                       <video
                         className="absolute left-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
-                        style={{ objectPosition: 'center center', top: '0px' }}
+                        style={{ objectPosition: 'center top' }}
                         autoPlay
                         muted
                         loop
