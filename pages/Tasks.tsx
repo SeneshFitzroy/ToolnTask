@@ -183,16 +183,6 @@ export default function Tasks() {
     setActiveFilter(filter);
   };
 
-  const handleSearch = () => {
-    // Real-time search is already handled by getFilteredTasks
-    // This can be used for additional search actions like analytics
-    console.log('Searching for:', searchTerm);
-  };
-
-  const clearSearch = () => {
-    setSearchTerm('');
-  };
-
   const getFilteredTasks = () => {
     let filtered = tasks.filter(task => task.type === activeFilter);
     
