@@ -34,9 +34,6 @@ const Navigation = () => {
       if (!target.closest('.profile-dropdown')) {
         setShowProfileDropdown(false);
       }
-      if (!target.closest('.notifications-dropdown')) {
-        setShowNotificationDropdown(false);
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -52,7 +49,6 @@ const Navigation = () => {
     const handleRouteChange = () => {
       setShowCreateDropdown(false);
       setShowProfileDropdown(false);
-      setShowNotificationDropdown(false);
       setMobileMenuOpen(false);
     };
 
