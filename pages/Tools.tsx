@@ -1,7 +1,6 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
@@ -236,11 +235,6 @@ export default function Tools() {
 
   const handleFilterChange = (filter: 'available' | 'requested') => {
     setActiveFilter(filter);
-  };
-
-  const handleSearch = () => {
-    // Search functionality can be implemented here
-    console.log('Searching for:', searchTerm);
   };
 
   const getFilteredTools = () => {

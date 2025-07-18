@@ -402,7 +402,7 @@ export default function Tasks() {
                           backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
                           color: '#FF5E14'
                         }}>
-                    "{searchTerm}"
+                    &ldquo;{searchTerm}&rdquo;
                   </span>
                 )}
               </div>
