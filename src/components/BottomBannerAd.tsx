@@ -84,36 +84,40 @@ const BottomBannerAd = () => {
             <div className="cursor-pointer group relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg"
                  style={{
                    background: 'linear-gradient(90deg, #FF6B35 0%, #E55A2B 25%, #00B2FF 75%, #0099E6 100%)',
-                   height: '60px'
+                   height: '100px'
                  }}>
               
               {/* Content Layout */}
-              <div className="flex items-center justify-between h-full px-6 text-white">
+              <div className="flex items-center justify-between h-full px-8 text-white">
                 {/* Left Section - CarFlexi Brand */}
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-6">
                   <div className="text-center">
-                    <div className="text-lg font-black">CARFLEXI</div>
-                    <div className="text-xs opacity-90">CAR RENTAL</div>
+                    <div className="text-2xl font-black mb-1">CARFLEXI</div>
+                    <div className="text-sm opacity-90">CAR RENTAL SERVICE</div>
                   </div>
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 rounded-full bg-white opacity-75"></div>
-                    <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
-                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                  <div className="flex flex-col space-y-1">
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 rounded-full bg-white opacity-75"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div className="text-xs opacity-80">24/7 AVAILABLE</div>
                   </div>
                 </div>
 
                 {/* Center Section - Main Message */}
-                <div className="text-center flex-grow">
-                  <div className="text-xl font-black">RENT CARS • BEST PRICES • 24/7 SERVICE</div>
+                <div className="text-center flex-grow px-6">
+                  <div className="text-2xl font-black mb-1">RENT CARS AT BEST PRICES</div>
+                  <div className="text-sm opacity-90">Premium vehicles • Instant booking • Nationwide service</div>
                 </div>
 
                 {/* Right Section - CTA */}
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-4">
                   <div className="text-center">
-                    <div className="text-sm font-bold">BOOK NOW</div>
-                    <div className="text-xs opacity-90">Available</div>
+                    <div className="text-lg font-bold mb-1">BOOK NOW</div>
+                    <div className="text-xs opacity-90">Get Started</div>
                   </div>
-                  <div className="bg-white bg-opacity-20 rounded-lg px-3 py-1 text-xs font-bold backdrop-blur-sm">
+                  <div className="bg-white bg-opacity-25 rounded-xl px-6 py-3 text-sm font-bold backdrop-blur-sm hover:bg-opacity-35 transition-all duration-300 border border-white border-opacity-30">
                     CLICK HERE
                   </div>
                 </div>
@@ -124,9 +128,11 @@ const BottomBannerAd = () => {
               
               {/* Decorative Elements */}
               <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <div className="absolute top-2 right-20 w-8 h-8 border border-white rounded-full"></div>
-                <div className="absolute bottom-2 left-20 w-6 h-6 border border-white rounded-full"></div>
-                <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-10 h-10 border border-white rounded-full"></div>
+                <div className="absolute top-4 right-32 w-12 h-12 border border-white rounded-full"></div>
+                <div className="absolute bottom-4 left-32 w-8 h-8 border border-white rounded-full"></div>
+                <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 w-16 h-16 border border-white rounded-full"></div>
+                <div className="absolute top-1/4 right-1/4 w-6 h-6 border border-white rounded-full"></div>
+                <div className="absolute bottom-1/4 right-1/3 w-10 h-10 border border-white rounded-full"></div>
               </div>
             </div>
           </Link>
@@ -139,12 +145,20 @@ const BottomBannerAd = () => {
             max-width: 90% !important;
           }
           
-          .cursor-pointer img {
-            height: 50px !important;
+          .cursor-pointer div[style*="height: '100px'"] {
+            height: 80px !important;
+          }
+          
+          .text-2xl {
+            font-size: 1.25rem !important;
+          }
+          
+          .text-lg {
+            font-size: 1rem !important;
           }
           
           .relative {
-            padding: 8px !important;
+            padding: 12px !important;
           }
         }
 
@@ -153,12 +167,21 @@ const BottomBannerAd = () => {
             max-width: 95% !important;
           }
           
-          .cursor-pointer img {
-            height: 40px !important;
+          .cursor-pointer div[style*="height: '100px'"] {
+            height: 70px !important;
+          }
+          
+          .text-2xl {
+            font-size: 1.125rem !important;
+          }
+          
+          .px-8 {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
           }
           
           .relative {
-            padding: 6px !important;
+            padding: 8px !important;
           }
         }
       `}</style>
