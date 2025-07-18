@@ -1,80 +1,59 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const TopBanner = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="top-banner">
-      <div className="ad-banner-container">
-        <Image
-          src="/ad-image.jpg"
-          alt="Ad Promotion"
-          width={1200}
-          height={300}
-          className="ad-image"
-          priority
-        />
-      </div>
-      
+    <div className="w-full">
+      <Link href="#">
+        <div className="w-full cursor-pointer group">
+          <div className="w-full flex items-center justify-center" style={{ 
+            backgroundColor: theme === 'dark' ? '#1a1a1a' : '#ffffff',
+            padding: '8px 15px',
+            minHeight: '60px',
+            borderBottom: `1px solid ${theme === 'dark' ? '#333' : '#e5e7eb'}`
+          }}>
+            <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
+              <Image
+                src="/ad-image.jpg"
+                alt="Advertisement"
+                width={600}
+                height={60}
+                priority
+                className="object-contain transition-transform duration-300 group-hover:scale-102"
+                style={{
+                  maxHeight: '44px',
+                  width: 'auto'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </Link>
+
       <style jsx>{`
-        .top-banner {
-          width: 100%;
-          padding: 15px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${theme === 'dark' ? '#1a1a1a' : '#f5f5f5'};
-          border-bottom: 1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'};
-        }
-        
-        .ad-banner-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          max-width: 1200px;
-        }
-        
-        .ad-image {
-          max-width: 100%;
-          height: auto;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .ad-image:hover {
-          transform: scale(1.02);
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
-        
         @media (max-width: 768px) {
-          .top-banner {
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
+          .w-full > a > div > div {
+            padding: 6px 10px !important;
+            min-height: 50px !important;
           }
           
-          .ad-banner-container {
-            flex-direction: column;
-          }
-          
-          .ad-image {
-            max-width: 95%;
-            border-radius: 6px;
+          img {
+            max-height: 36px !important;
           }
         }
-        
+
         @media (max-width: 480px) {
-          .top-banner {
-            padding: 8px;
+          .w-full > a > div > div {
+            padding: 4px 8px !important;
+            min-height: 40px !important;
           }
           
-          .ad-image {
-            max-width: 100%;
-            border-radius: 4px;
+          img {
+            max-height: 28px !important;
           }
         }
       `}</style>
