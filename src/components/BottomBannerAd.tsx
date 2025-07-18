@@ -81,47 +81,47 @@ const BottomBannerAd = () => {
             <X size={16} />
           </button>
 
-          {/* Mobitel-Style Banner */}
-          <Link href="#">
+          {/* CarFlexi-Style Banner */}
+          <Link href="https://www.carflexi.com/en-us/0/car-rental?src=google&team=612-731-1679&network=d&campaignid=20568984927&adgroupid=154179095215&targetid=kwd-11052881&loc_physical_ms=9069783&device=c&creative=674913899669&keyword=rent%20cars&gad_source=5&gad_campaignid=20568984927&gclid=EAIaIQobChMIr66quYvBjgMV3KZmAh2XZifREAEYASAAEgKFjfD_BwE&c=LK">
             <div className="w-full cursor-pointer group">
               <div 
                 className="w-full flex items-center justify-center max-w-6xl mx-auto rounded-lg overflow-hidden"
                 style={{
-                  background: 'linear-gradient(90deg, #00B2FF 0%, #0099E6 25%, #FF6B35 75%, #E55A2B 100%)',
+                  background: 'linear-gradient(90deg, #FF6B35 0%, #E55A2B 25%, #00B2FF 75%, #0099E6 100%)',
                   minHeight: '100px',
-                  boxShadow: '0 4px 20px rgba(0, 178, 255, 0.3)'
+                  boxShadow: '0 4px 20px rgba(255, 107, 53, 0.3)'
                 }}
               >
-                {/* Left Section - Blue */}
+                {/* Left Section - Orange */}
                 <div className="flex-1 text-white text-center py-6 relative">
-                  <div className="font-bold text-sm mb-1">MOBITEL</div>
-                  <div className="text-3xl font-black mb-1">1598</div>
-                  <div className="text-xs opacity-90">NONSTOP</div>
+                  <div className="font-bold text-lg mb-1">CARFLEXI</div>
+                  <div className="text-2xl font-black mb-1">RENT</div>
+                  <div className="text-xs opacity-90">CARS</div>
                   <div className="text-xs mt-2">
                     <div className="flex justify-center space-x-1 mb-1">
-                      <div className="w-2 h-2 rounded-full bg-green-400"></div>
                       <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                      <div className="w-2 h-2 rounded-full bg-blue-400"></div>
                       <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                      <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                      <div className="w-2 h-2 rounded-full bg-blue-400"></div>
                     </div>
-                    <div>UNLIMITED</div>
+                    <div>AFFORDABLE</div>
                   </div>
                 </div>
 
-                {/* Center Section - Data */}
+                {/* Center Section - Main Offer */}
                 <div className="flex-2 text-white text-center py-6 relative">
                   <div className="bg-white bg-opacity-20 rounded-lg px-4 py-3 backdrop-blur-sm inline-block">
-                    <div className="text-sm font-bold">EXTRA ANYTIME DATA</div>
-                    <div className="text-2xl font-black">40GB</div>
+                    <div className="text-sm font-bold">BEST PRICES</div>
+                    <div className="text-2xl font-black">CARS</div>
                   </div>
-                  <div className="text-lg font-bold mt-2">Rs.1,598</div>
+                  <div className="text-lg font-bold mt-2">Book Now!</div>
                 </div>
 
-                {/* Right Section - Orange */}
+                {/* Right Section - Blue */}
                 <div className="flex-1 text-white text-center py-6 relative">
-                  <div className="font-bold text-sm mb-1">MOBITEL</div>
-                  <div className="text-3xl font-black mb-1">1298</div>
-                  <div className="text-xs opacity-90">NONSTOP</div>
+                  <div className="font-bold text-sm mb-1">CARFLEXI</div>
+                  <div className="text-3xl font-black mb-1">24/7</div>
+                  <div className="text-xs opacity-90">SERVICE</div>
                   <div className="text-xs mt-2">
                     <div className="flex justify-center space-x-1 mb-1">
                       <div className="w-2 h-2 rounded-full bg-green-400"></div>
@@ -129,14 +129,14 @@ const BottomBannerAd = () => {
                       <div className="w-2 h-2 rounded-full bg-blue-400"></div>
                       <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
                     </div>
-                    <div>30GB EXTRA</div>
+                    <div>AVAILABLE</div>
                   </div>
                 </div>
 
                 {/* CTA Button */}
                 <div className="px-6 py-6">
                   <div className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 group-hover:scale-105 text-sm">
-                    CLICK HERE
+                    RENT NOW
                   </div>
                 </div>
 

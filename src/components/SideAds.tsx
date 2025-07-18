@@ -42,7 +42,7 @@ const SideAds = () => {
           </button>
 
           {/* Ad Content */}
-          <Link href="#">
+          <Link href="https://mobitel.lk/mobitel-1598">
             <div className="cursor-pointer group relative overflow-hidden h-full">
               {/* Main Content */}
               <div className="p-6 text-white relative z-10 h-full flex flex-col justify-between">
