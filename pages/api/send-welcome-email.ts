@@ -13,122 +13,145 @@ const sendEmail = async (to: string, subject: string, html: string) => {
   return { success: true };
 };
 
+import { NextApiRequest, NextApiResponse } from 'next';
+import sgMail from '@sendgrid/mail';
+
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ message: 'Method not allowed' });
   }
 
   const { firstName, email } = req.body;
 
   if (!firstName || !email) {
-    return res.status(400).json({ error: 'First name and email are required' });
+    return res.status(400).json({ message: 'First name and email are required' });
   }
 
   try {
-    const subject = 'Welcome to ToolNTask! 🎉';
-    const html = `
+    // Create personalized welcome email HTML
+    const emailHtml = `
       <!DOCTYPE html>
       <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to ToolNTask</title>
-        <style>
-          body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f2f3f5; }
-          .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
-          .header { background: linear-gradient(135deg, #FF5E14 0%, #FF5D13 100%); color: white; padding: 30px 20px; text-align: center; }
-          .logo { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-          .content { padding: 30px 20px; }
-          .welcome-text { font-size: 18px; color: #001554; margin-bottom: 20px; }
-          .feature-list { background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
-          .feature-item { display: flex; align-items: center; margin: 10px 0; }
-          .feature-icon { color: #FF5E14; margin-right: 10px; font-size: 18px; }
-          .cta-button { display: inline-block; background-color: #FF5E14; color: white; padding: 12px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0; }
-          .footer { background-color: #f8f9fa; padding: 20px; text-align: center; color: #6b7280; border-top: 1px solid #e5e7eb; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <div class="logo">ToolNTask</div>
-            <p style="margin: 0; font-size: 16px;">Sri Lanka's Community Marketplace</p>
-          </div>
-          
-          <div class="content">
-            <h1 style="color: #001554; margin: 0 0 20px 0;">Hey ${firstName}! 👋</h1>
-            
-            <p class="welcome-text">
-              Thank you for registering with ToolNTask! We're excited to have you join our growing community of helpful neighbors across Sri Lanka.
-            </p>
-            
-            <p style="color: #6b7280; line-height: 1.6;">
-              You're now part of a platform where neighbors help neighbors. Whether you need a hand with tasks or tools for your projects, our community is here to support you.
-            </p>
-            
-            <div class="feature-list">
-              <h3 style="color: #001554; margin: 0 0 15px 0;">What you can do now:</h3>
-              <div class="feature-item">
-                <span class="feature-icon">🔨</span>
-                <span>Browse and rent tools from neighbors</span>
-              </div>
-              <div class="feature-item">
-                <span class="feature-icon">📋</span>
-                <span>Post tasks you need help with</span>
-              </div>
-              <div class="feature-item">
-                <span class="feature-icon">🤝</span>
-                <span>Connect with trusted community members</span>
-              </div>
-              <div class="feature-item">
-                <span class="feature-icon">💰</span>
-                <span>Earn money by helping others</span>
-              </div>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Welcome to ToolNTask!</title>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #FF5E14 0%, #FF5D13 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+            .content { background: #ffffff; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .footer { text-align: center; padding: 20px; color: #666; }
+            .button { display: inline-block; padding: 15px 30px; background: #FF5E14; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
+            .feature { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #FF5E14; }
+            @media (max-width: 600px) { .container { padding: 10px; } .content { padding: 20px; } }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>🎉 Welcome to ToolNTask, ${firstName}!</h1>
+              <p>Thank you for joining Sri Lanka's first community marketplace!</p>
             </div>
             
-            <p style="color: #6b7280; line-height: 1.6;">
-              Ready to explore? Sign in to your account and start connecting with your community today!
-            </p>
-            
-            <div style="text-align: center;">
-              <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://toolntask.com'}/SignIn" class="cta-button">
-                Start Exploring →
-              </a>
+            <div class="content">
+              <p>Hey <strong>${firstName}</strong>,</p>
+              
+              <p>Thank you for registering and hope you find what you want! We're excited to have you as part of our growing community of neighbors helping neighbors across Sri Lanka.</p>
+              
+              <div class="feature">
+                <h3>🔧 What You Can Do:</h3>
+                <ul>
+                  <li><strong>Rent Tools:</strong> Access thousands of tools from your neighbors</li>
+                  <li><strong>Get Tasks Done:</strong> Find skilled locals for any job</li>
+                  <li><strong>Earn Money:</strong> Share your tools and skills with others</li>
+                  <li><strong>Build Community:</strong> Connect with trusted neighbors</li>
+                </ul>
+              </div>
+              
+              <div style="text-align: center;">
+                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://toolntask.com'}/SignIn" class="button">
+                  Start Exploring →
+                </a>
+              </div>
+              
+              <div class="feature">
+                <h3>✨ Why ToolNTask?</h3>
+                <ul>
+                  <li>🆓 <strong>No Platform Fees</strong> - Keep 100% of your earnings</li>
+                  <li>✅ <strong>Verified Community</strong> - All users are background checked</li>
+                  <li>🔒 <strong>Secure Payments</strong> - Safe and reliable transactions</li>
+                  <li>⭐ <strong>Review System</strong> - Build trust through honest feedback</li>
+                </ul>
+              </div>
+              
+              <p>Ready to transform your community? Login to your account and start exploring what your neighbors have to offer!</p>
+              
+              <p>Best regards,<br>
+              <strong>The ToolNTask Team</strong><br>
+              <em>Building stronger communities, one task at a time</em></p>
             </div>
             
-            <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
-              Need help getting started? Feel free to reach out to our community support team. We're here to help!
-            </p>
+            <div class="footer">
+              <p>© 2025 ToolNTask. All rights reserved.<br>
+              Made with ❤️ for Sri Lankan communities</p>
+              <p><small>If you have any questions, reply to this email or visit our help center.</small></p>
+            </div>
           </div>
-          
-          <div class="footer">
-            <p style="margin: 0 0 10px 0;">
-              <strong>ToolNTask</strong> - Building stronger communities, one task at a time
-            </p>
-            <p style="margin: 0; font-size: 12px;">
-              Made with ❤️ for Sri Lankan communities
-            </p>
-          </div>
-        </div>
-      </body>
+        </body>
       </html>
     `;
 
-    await sendEmail(email, subject, html);
-
-    res.status(200).json({ 
-      success: true, 
-      message: 'Welcome email sent successfully',
-      preview: {
+    // Check if SendGrid is configured for production
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'your_sendgrid_api_key_here') {
+      // Production: Send actual email via SendGrid
+      await sgMail.send({
         to: email,
-        subject: subject,
-        firstName: firstName
-      }
-    });
+        from: {
+          email: process.env.EMAIL_FROM_ADDRESS || 'noreply@toolntask.com',
+          name: process.env.EMAIL_FROM_NAME || 'ToolNTask Team'
+        },
+        subject: `Welcome to ToolNTask, ${firstName}! 🎉`,
+        html: emailHtml,
+        text: `Hey ${firstName}, thank you for registering and hope you find what you want! Welcome to ToolNTask - Sri Lanka's first community marketplace where neighbors help neighbors. Start exploring at ${process.env.NEXT_PUBLIC_APP_URL || 'https://toolntask.com'}`
+      });
+
+      return res.status(200).json({ 
+        message: 'Welcome email sent successfully',
+        status: 'production',
+        recipient: email
+      });
+    } else {
+      // Development: Log email instead of sending
+      console.log(`
+        ====================================
+        WELCOME EMAIL (Development Mode)
+        ====================================
+        To: ${email}
+        Subject: Welcome to ToolNTask, ${firstName}! 🎉
+        
+        Email Content:
+        ${emailHtml}
+        ====================================
+      `);
+
+      return res.status(200).json({ 
+        message: 'Welcome email logged successfully (development mode)',
+        status: 'development',
+        recipient: email,
+        note: 'Email was logged to console. Configure SENDGRID_API_KEY for production email sending.'
+      });
+    }
   } catch (error) {
-    console.error('Error sending welcome email:', error);
-    res.status(500).json({ 
-      error: 'Failed to send welcome email',
-      details: error instanceof Error ? error.message : 'Unknown error'
+    console.error('Failed to send welcome email:', error);
+    return res.status(500).json({ 
+      message: 'Failed to send welcome email',
+      error: process.env.NODE_ENV === 'development' ? error : 'Internal server error'
     });
   }
 }
