@@ -25,20 +25,20 @@ const SideAds = () => {
       {/* Left Side Ad - Mobitel Style */}
       {leftAdVisible && (
         <div 
-          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-40 w-80 hidden xl:block"
+          className="fixed left-4 top-1/2 transform -translate-y-1/2 z-40 w-48 hidden xl:block"
           style={{ 
             borderRadius: '20px',
             boxShadow: '0 12px 40px rgba(0, 178, 255, 0.4)',
             overflow: 'hidden',
-            height: '400px'
+            height: '600px'
           }}
         >
           {/* Background Image */}
           <Image
             src="/ads/side-skyscraper-ad-primary.jpg"
             alt="Mobitel 1598 Advertisement"
-            width={320}
-            height={400}
+            width={192}
+            height={600}
             className="absolute inset-0 w-full h-full object-cover"
             priority
           />
@@ -71,7 +71,7 @@ const SideAds = () => {
         /* Add margin to main content when left side ad is visible */
         @media (min-width: 1280px) {
           body {
-            padding-left: 340px;
+            padding-left: 220px;
           }
         }
       `}</style>

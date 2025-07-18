@@ -89,10 +89,10 @@ const BottomBannerAd = () => {
               <Image
                 src="/ads/bottom-banner-ad-main.jpg"
                 alt="CarFlexi Car Rental Advertisement"
-                width={800}
-                height={60}
+                width={1000}
+                height={80}
                 className="w-full h-full object-cover"
-                style={{ minHeight: '60px', maxHeight: '60px' }}
+                style={{ minHeight: '80px', maxHeight: '80px' }}
                 priority
               />
               
