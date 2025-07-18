@@ -240,51 +240,49 @@ export default function Home() {
 
                 {/* Responsive Video Container */}
                 <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
-                  <div className="relative w-full" style={{ height: '360px' }}>
-                    <style jsx>{`
-                      @media (min-width: 640px) {
-                        .responsive-video-container {
-                          height: 420px;
-                        }
+                  <style jsx>{`
+                    @media (min-width: 640px) {
+                      .responsive-video-container {
+                        height: 420px;
                       }
-                      @media (min-width: 768px) {
-                        .responsive-video-container {
-                          height: 460px;
-                        }
+                    }
+                    @media (min-width: 768px) {
+                      .responsive-video-container {
+                        height: 460px;
                       }
-                      @media (min-width: 1024px) {
-                        .responsive-video-container {
-                          height: 500px;
-                        }
+                    }
+                    @media (min-width: 1024px) {
+                      .responsive-video-container {
+                        height: 500px;
                       }
-                      @media (min-width: 1280px) {
-                        .responsive-video-container {
-                          height: 540px;
-                        }
+                    }
+                    @media (min-width: 1280px) {
+                      .responsive-video-container {
+                        height: 540px;
                       }
-                    `}</style>
-                    <div className="responsive-video-container relative w-full">
-                      <video
-                        className="absolute top-0 left-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
-                        style={{ objectPosition: 'center center', objectFit: 'cover' }}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="auto"
-                        poster="/hero-video-poster.png"
-                        onError={(e) => {
-                          console.error('Video failed to load:', e);
-                          // Fallback: hide video and show poster
-                          e.currentTarget.style.display = 'none';
-                          const fallback = e.currentTarget.parentElement?.nextElementSibling as HTMLElement;
-                          if (fallback) fallback.style.display = 'block';
-                        }}
-                      >
-                        <source src="/hero-video.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
+                    }
+                  `}</style>
+                  <div className="responsive-video-container relative w-full" style={{ height: '360px' }}>
+                    <video
+                      className="absolute inset-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
+                      style={{ objectPosition: 'center center', objectFit: 'cover' }}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      poster="/hero-video-poster.png"
+                      onError={(e) => {
+                        console.error('Video failed to load:', e);
+                        // Fallback: hide video and show poster
+                        e.currentTarget.style.display = 'none';
+                        const fallback = e.currentTarget.parentElement?.nextElementSibling as HTMLElement;
+                        if (fallback) fallback.style.display = 'block';
+                      }}
+                    >
+                      <source src="/hero-video.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                   
                   {/* Enhanced Fallback Image */}
