@@ -148,12 +148,6 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
-      {/* Top Banner Ad */}
-      <TopBannerAd />
-      
-      {/* Sidebar Ads */}
-      <SidebarAd position="right" />
-      
       {/* Top Special Offer Banner */}
       {showTopBanner && (
         <div 
