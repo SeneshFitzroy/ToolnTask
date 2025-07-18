@@ -5,7 +5,7 @@ import ToolCard from '../src/components/ToolCard';
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-import AdShowcase, { TopBannerAd, SidebarAd, InlineAd } from '../src/components/AdShowcase';
+import AdShowcase, { InlineAd } from '../src/components/AdShowcase';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
