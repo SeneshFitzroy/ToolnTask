@@ -15,9 +15,7 @@ const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCreateDropdown, setShowCreateDropdown] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [notificationCount] = useState(3); // Mock notification count
 
   useEffect(() => {
     setMounted(true);
