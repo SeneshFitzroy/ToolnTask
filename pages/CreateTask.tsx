@@ -324,6 +324,29 @@ export default function CreateTask() {
                     <option value="babysitting">Babysitting</option>
                     <option value="other">Other</option>
                   </select>
+                  
+                  {/* Conditional Other Category Field */}
+                  {formData.category === 'other' && (
+                    <div className="mt-4">
+                      <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        Please specify category
+                      </label>
+                      <input
+                        type="text"
+                        name="customCategory"
+                        value={formData.customCategory}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                        style={{ 
+                          borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                        }}
+                        placeholder="e.g., Pet Care, Tutoring, Moving Help..."
+                        required
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div>
