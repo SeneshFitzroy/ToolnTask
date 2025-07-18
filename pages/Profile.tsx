@@ -339,6 +339,18 @@ export default function Profile() {
                   Change Password
                 </button>
                 <button
+                  onClick={() => setActiveTab('notifications')}
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                    activeTab === 'notifications'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'notifications' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
+                >
+                  <Bell className="h-4 w-4" />
+                  Notifications
+                </button>
+                <button
                   onClick={() => setActiveTab('settings')}
                   className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'settings'
