@@ -129,114 +129,6 @@ const SideAds = () => {
         </div>
       )}
 
-      {/* Right Side Ad - Mobitel Style (Alternative Version) */}
-      {rightAdVisible && (
-        <div 
-          className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 w-48 hidden xl:block"
-          style={{ 
-            background: 'linear-gradient(135deg, #FF6B35 0%, #E55A2B 50%, #CC4125 100%)',
-            borderRadius: '20px',
-            boxShadow: '0 12px 40px rgba(255, 107, 53, 0.4)',
-            overflow: 'hidden',
-            height: '600px'
-          }}
-        >
-          {/* Close Button */}
-          <button
-            onClick={() => setRightAdVisible(false)}
-            className="absolute -top-3 -right-3 z-10 w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-all duration-200 text-sm shadow-xl border-2 border-white"
-          >
-            <X size={16} />
-          </button>
-
-          {/* Ad Content */}
-          <Link href="#">
-            <div className="cursor-pointer group relative overflow-hidden h-full">
-              {/* Main Content */}
-              <div className="p-6 text-white relative z-10 h-full flex flex-col justify-between">
-                {/* Top Section - Brand */}
-                <div className="text-center mb-4">
-                  <div className="inline-block bg-white bg-opacity-25 rounded-lg px-3 py-2 backdrop-blur-sm mb-3">
-                    <span className="text-lg font-black tracking-wide">MOBITEL</span>
-                  </div>
-                  <div className="text-xs opacity-90 font-medium">Best Value Pack</div>
-                </div>
-
-                {/* Middle Section - Main Offer */}
-                <div className="text-center mb-4 flex-grow flex flex-col justify-center">
-                  <div className="mb-5">
-                    <div className="text-4xl font-black mb-2 leading-none drop-shadow-lg">1298</div>
-                    <div className="text-base font-bold opacity-95 tracking-wider">NONSTOP</div>
-                    <div className="text-xs opacity-80 mt-1">package</div>
-                  </div>
-
-                  {/* Features Icons */}
-                  <div className="space-y-2 mb-5">
-                    <div className="flex items-center justify-center">
-                      <div className="flex space-x-1">
-                        <div className="w-3 h-3 rounded-full bg-green-400 shadow-lg"></div>
-                        <div className="w-3 h-3 rounded-full bg-red-400 shadow-lg"></div>
-                        <div className="w-3 h-3 rounded-full bg-blue-400 shadow-lg"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-400 shadow-lg"></div>
-                      </div>
-                    </div>
-                    <div className="text-center text-xs opacity-95 font-medium">
-                      UNLIMITED<br/>
-                      <span className="text-xs">SMS • CALLS • DATA</span>
-                    </div>
-                  </div>
-
-                  {/* Extra Data Highlight */}
-                  <div className="mb-5">
-                    <div className="bg-white bg-opacity-25 rounded-lg p-3 backdrop-blur-sm border border-white border-opacity-30">
-                      <div className="text-sm font-bold mb-1">EXTRA ANYTIME DATA</div>
-                      <div className="text-2xl font-black text-green-300 drop-shadow-lg">30GB</div>
-                    </div>
-                  </div>
-
-                  {/* Additional Features */}
-                  <div className="space-y-2 mb-4">
-                    <div className="bg-white bg-opacity-15 rounded-lg p-2 backdrop-blur-sm">
-                      <div className="text-xs font-medium">🌐 FREE WIFI</div>
-                    </div>
-                    <div className="bg-white bg-opacity-15 rounded-lg p-2 backdrop-blur-sm">
-                      <div className="text-xs font-medium">💬 FREE CHAT</div>
-                    </div>
-                    <div className="bg-white bg-opacity-15 rounded-lg p-2 backdrop-blur-sm">
-                      <div className="text-xs font-medium">🎮 FREE GAMING</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Section - Price & CTA */}
-                <div className="text-center">
-                  <div className="mb-3">
-                    <div className="text-xl font-black mb-1">Rs.1,298</div>
-                    <div className="text-xs opacity-80">per month</div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <div className="bg-green-500 hover:bg-green-600 text-white font-black py-2 px-4 rounded-lg text-xs transition-all duration-300 group-hover:scale-105 shadow-xl border-2 border-green-400">
-                    CLICK HERE
-                  </div>
-                </div>
-              </div>
-
-              {/* Enhanced Background Pattern */}
-              <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <div className="absolute top-8 left-8 w-24 h-24 border-2 border-white rounded-full animate-pulse"></div>
-                <div className="absolute bottom-8 right-8 w-20 h-20 border-2 border-white rounded-full"></div>
-                <div className="absolute top-1/3 right-1/2 transform translate-x-1/2 w-32 h-32 border border-white rounded-full"></div>
-                <div className="absolute bottom-1/3 left-4 w-16 h-16 border border-white rounded-full"></div>
-              </div>
-
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-bl from-white to-transparent opacity-0 group-hover:opacity-10 transition-all duration-500"></div>
-            </div>
-          </Link>
-        </div>
-      )}
-
       <style jsx>{`
         @media (max-width: 1280px) {
           .fixed {
@@ -244,11 +136,10 @@ const SideAds = () => {
           }
         }
         
-        /* Add margin to main content when side ads are visible */
+        /* Add margin to main content when left side ad is visible */
         @media (min-width: 1280px) {
           body {
             padding-left: 220px;
-            padding-right: 220px;
           }
         }
       `}</style>
