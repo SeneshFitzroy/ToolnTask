@@ -240,33 +240,33 @@ export default function Home() {
 
                 {/* Responsive Video Container */}
                 <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
-                  <div className="relative w-full" style={{ height: '240px' }}>
+                  <div className="relative w-full" style={{ height: '320px' }}>
                     <style jsx>{`
                       @media (min-width: 640px) {
                         .responsive-video-container {
-                          height: 280px;
+                          height: 380px;
                         }
                       }
                       @media (min-width: 768px) {
                         .responsive-video-container {
-                          height: 320px;
+                          height: 420px;
                         }
                       }
                       @media (min-width: 1024px) {
                         .responsive-video-container {
-                          height: 300px;
+                          height: 440px;
                         }
                       }
                       @media (min-width: 1280px) {
                         .responsive-video-container {
-                          height: 320px;
+                          height: 480px;
                         }
                       }
                     `}</style>
                     <div className="responsive-video-container relative w-full">
                       <video
                         className="absolute top-0 left-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
-                        style={{ objectPosition: 'center 20%' }}
+                        style={{ objectPosition: 'center 10%' }}
                         autoPlay
                         muted
                         loop
