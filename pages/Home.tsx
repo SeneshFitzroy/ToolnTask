@@ -107,6 +107,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
+      <TopBanner />
       
       {/* Hero Section */}
       <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
