@@ -218,6 +218,100 @@ const Navigation = () => {
             </Link>
 
             {/* Create CTA Button for logged-in users */}
+            {user && (
+              <div className="relative create-dropdown">
+                <button
+                  onClick={(e) => {
+                    setShowCreateDropdown(!showCreateDropdown);
+                    setShowProfileDropdown(false);
+                    addShineEffect(e.currentTarget);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
+                  style={{ 
+                    backgroundColor: '#FF5E14',
+                    color: '#FFFFFF',
+                    boxShadow: '0 2px 8px rgba(255, 94, 20, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#E54D0F';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#FF5E14';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.3)';
+                  }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  <span>Create</span>
+                  <ChevronDown 
+                    className={`h-4 w-4 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    strokeWidth={2}
+                  />
+                </button>
+
+                {/* Create Dropdown */}
+                {showCreateDropdown && (
+                  <div className="absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-50 overflow-hidden"
+                       style={{ 
+                         backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
+                         borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
+                       }}>
+                    
+                    <div className="p-2">
+                      <Link 
+                        href="/CreateTask"
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
+                        style={{ 
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowCreateDropdown(false)}
+                      >
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
+                          <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">Create Task</p>
+                          <p className="text-xs opacity-75">Post a job for others</p>
+                        </div>
+                      </Link>
+                      
+                      <Link 
+                        href="/CreateTool"
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
+                        style={{ 
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowCreateDropdown(false)}
+                      >
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                          <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">Create Tool Listing</p>
+                          <p className="text-xs opacity-75">List your tools for rent</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Right side - Auth buttons */}
