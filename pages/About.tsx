@@ -273,7 +273,7 @@ export default function About() {
                   )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Senesh Fitzroy</h3>
-                <p className="font-semibold mb-2" style={{ color: '#1a1a1a' }}>CTO</p>
+                <p className="font-semibold mb-2" style={{ color: '#FF5E14' }}>CTO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#B3B5BC' }}>
                   Tech enthusiast dedicated to creating seamless user experiences.
                 </p>

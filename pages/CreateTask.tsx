@@ -23,6 +23,7 @@ export default function CreateTask() {
     time: '',
     location: '',
     category: 'cleaning',
+    customCategory: '',
     image: '',
     deadline: '',
     requirements: [''],
