@@ -103,8 +103,12 @@ const BottomBannerAd = () => {
 
       <style jsx>{`
         @media (max-width: 768px) {
-          .w-full img {
-            max-height: 80px !important;
+          .max-w-4xl {
+            max-width: 90% !important;
+          }
+          
+          .cursor-pointer img {
+            height: 50px !important;
           }
           
           .relative {
@@ -113,8 +117,12 @@ const BottomBannerAd = () => {
         }
 
         @media (max-width: 480px) {
-          .w-full img {
-            max-height: 60px !important;
+          .max-w-4xl {
+            max-width: 95% !important;
+          }
+          
+          .cursor-pointer img {
+            height: 40px !important;
           }
           
           .relative {
