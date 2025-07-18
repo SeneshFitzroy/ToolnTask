@@ -140,10 +140,22 @@ export default function SignUp() {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         isActive: true,
-        role: 'user'
+        role: 'user',
+        emailVerified: user.emailVerified,
+        profileComplete: false,
+        agreedToTermsAt: serverTimestamp()
       });
 
       console.log('User data saved to Firestore successfully');
+
+      // Send welcome email
+      try {
+        await sendWelcomeEmail(formData.firstName.trim(), formData.email.trim());
+        console.log('Welcome email sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send welcome email:', emailError);
+        // Don't fail registration if email fails
+      }
       
       // Redirect to sign in page after successful registration
       router.push('/SignIn?message=registration-success');
