@@ -1,0 +1,3 @@
+<!-- This is a placeholder for the ad-image-bottom.jpg file -->
+<!-- The actual ad-image-bottom.jpg file should be added to the public directory -->
+<!-- This will be used for the bottom banner advertisement -->

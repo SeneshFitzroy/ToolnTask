@@ -1,0 +1,3 @@
+<!-- This is a placeholder for the ad-image-side.jpg file -->
+<!-- The actual ad-image-side.jpg file should be added to the public directory -->
+<!-- This will be used for the left and right side advertisements -->
