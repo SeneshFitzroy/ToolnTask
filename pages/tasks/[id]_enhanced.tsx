@@ -64,6 +64,22 @@ export default function TaskDetailEnhanced() {
   }, []);
 
   useEffect(() => {
+    const checkIfSaved = async () => {
+      if (user && id) {
+        try {
+          const savedQuery = query(
+            collection(db, 'saved_tasks'),
+            where('userId', '==', user.uid),
+            where('taskId', '==', id)
+          );
+          const savedSnapshot = await getDocs(savedQuery);
+          setIsSaved(!savedSnapshot.empty);
+        } catch (error) {
+          console.error('Error checking if task is saved:', error);
+        }
+      }
+    };
+
     if (mounted && id) {
       // Generate unique task data based on ID
       const uniqueTask = generateTaskData(id as string);
