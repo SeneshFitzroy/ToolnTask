@@ -257,38 +257,55 @@ export const generateTaskData = (id: string): TaskData => {
   const deadlines = ["This weekend", "Next week", "Within 3 days", "Flexible", "ASAP", "Next month"];
   const durations = ["2-3 hours", "Half day", "Full day", "1-2 days", "3-4 hours", "1 week"];
 
-  // Use ID to determine which template to use
-  const taskIndex = parseInt(id) % taskTypes.length;
-  const creatorIndex = parseInt(id) % creators.length;
-  const locationIndex = parseInt(id) % locations.length;
+  // Create a simple hash function for better distribution
+  const hashString = (str: string): number => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash);
+  };
+
+  // Use hash-based distribution for better uniqueness
+  const hash = hashString(id);
+  const taskIndex = hash % taskTypes.length;
+  const creatorIndex = (hash * 7) % creators.length; // Use different multiplier
+  const locationIndex = (hash * 13) % locations.length; // Use different multiplier
   
   const task = taskTypes[taskIndex];
   const creator = creators[creatorIndex];
   
-  // Generate price based on category and ID
+  // Generate price based on category and hash
   const basePrices = {
     "Gardening": 3000,
     "Cleaning": 5000,
     "Handyman": 4000,
     "Automotive": 3500,
-    "Moving": 8000
+    "Moving": 8000,
+    "Childcare": 4500,
+    "Pet Care": 2500,
+    "Education": 6000,
+    "Food Service": 7000,
+    "Technology": 5500
   };
   
   const basePrice = basePrices[task.category as keyof typeof basePrices] || 4000;
-  const priceVariation = (parseInt(id) % 5) * 500;
+  const priceVariation = (hash % 10) * 500;
   const finalPrice = basePrice + priceVariation;
 
   return {
     id,
-    title: `${task.title} ${id}`,
+    title: task.title, // Remove the ID suffix for cleaner titles
     price: `Rs. ${finalPrice.toLocaleString()}`,
     category: task.category,
-    urgent: parseInt(id) % 3 === 0, // Every 3rd task is urgent
+    urgent: hash % 3 === 0, // Every 3rd task is urgent based on hash
     description: task.description,
-    duration: durations[parseInt(id) % durations.length],
+    duration: durations[hash % durations.length],
     location: locations[locationIndex],
-    posted: `${parseInt(id) % 7 + 1} days ago`,
-    deadline: deadlines[parseInt(id) % deadlines.length],
+    posted: `${(hash % 7) + 1} days ago`,
+    deadline: deadlines[hash % deadlines.length],
     images: task.images,
     requirements: task.requirements,
     creator: creator
