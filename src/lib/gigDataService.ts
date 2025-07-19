@@ -518,18 +518,18 @@ export const generateToolData = (id: string): ToolData => {
 
   return {
     id,
-    title: `${tool.title} ${id}`,
+    title: tool.title, // Remove the ID suffix for cleaner titles
     price: `Rs. ${finalPrice}/day`,
     category: tool.category,
-    available: parseInt(id) % 4 !== 0, // 75% availability
+    available: hash % 4 !== 0, // 75% availability based on hash
     description: tool.description,
     location: locations[locationIndex],
-    posted: `${parseInt(id) % 14 + 1} days ago`,
-    condition: conditions[parseInt(id) % conditions.length],
+    posted: `${(hash % 14) + 1} days ago`,
+    condition: conditions[hash % conditions.length],
     deposit: `Rs. ${deposit.toLocaleString()}`,
     images: tool.images,
     features: tool.features,
-    specifications: tool.specifications,
+    specifications: { ...tool.specifications }, // Spread to create a new object
     owner: owner
   };
 };
