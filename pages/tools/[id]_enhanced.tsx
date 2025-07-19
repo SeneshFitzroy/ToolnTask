@@ -87,9 +87,6 @@ export default function ToolDetailEnhanced() {
       console.log('🔧 Type of ID:', typeof id);
       console.log('🔧 Current tool state before:', tool?.title);
       
-      // Force clear the tool state first to ensure re-render
-      setTool(null);
-      
       const uniqueTool = generateToolData(id as string);
       console.log('🎯 Generated tool:', uniqueTool.title, uniqueTool.category);
       console.log('🎯 Full generated tool:', JSON.stringify(uniqueTool, null, 2));
