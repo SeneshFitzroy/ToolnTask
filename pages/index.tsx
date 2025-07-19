@@ -9,9 +9,6 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { Button } from '../src/components/ui/button';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import { auth } from '../src/lib/firebase';
-import { onAuthStateChanged, User } from 'firebase/auth';
 
 export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
@@ -119,7 +116,7 @@ export default function HomePage() {
           <div className="relative z-10 container mx-auto px-4 py-24 sm:py-32 text-center">
             <div className="max-w-4xl mx-auto space-y-8">
               <div className="mb-8">
-                <Logo size="large" showText={true} />
+                <Logo size="large" />
               </div>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
