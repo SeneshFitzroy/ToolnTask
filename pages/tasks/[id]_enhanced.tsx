@@ -10,6 +10,7 @@ import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { Heart, Share2, MapPin, Clock, Calendar, User as UserIcon, CheckCircle, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { generateTaskData, TaskData } from '../../src/lib/gigDataService';
 
 // Function to track task views
 const trackTaskView = async (taskId: string, userId?: string) => {
@@ -50,6 +51,7 @@ export default function TaskDetailEnhanced() {
   const [showShareModal, setShowShareModal] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [task, setTask] = useState<TaskData | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -63,6 +65,10 @@ export default function TaskDetailEnhanced() {
 
   useEffect(() => {
     if (mounted && id) {
+      // Generate unique task data based on ID
+      const uniqueTask = generateTaskData(id as string);
+      setTask(uniqueTask);
+      
       // Track task view on mount
       trackTaskView(id as string, user?.uid);
       
