@@ -44,6 +44,7 @@ const trackRentalClick = async (toolId: string, userId?: string, action: string 
 export default function ToolDetailEnhanced() {
   const router = useRouter();
   const { id } = router.query;
+  const isReady = router.isReady;
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -80,7 +81,7 @@ export default function ToolDetailEnhanced() {
       }
     };
 
-    if (mounted && id) {
+    if (mounted && isReady && id) {
       // Generate unique tool data based on ID
       console.log('🔧 Tool ID received:', id);
       console.log('🔧 Type of ID:', typeof id);
@@ -99,7 +100,7 @@ export default function ToolDetailEnhanced() {
       // Check if tool is saved
       checkIfSaved();
     }
-  }, [mounted, id, user]);
+  }, [mounted, isReady, id, user]);
 
   const checkIfSaved = async () => {
     if (user && id) {
