@@ -480,15 +480,27 @@ export const generateToolData = (id: string): ToolData => {
   const locations = ["Colombo 05", "Kandy", "Galle", "Negombo", "Dehiwala", "Mount Lavinia", "Moratuwa", "Colombo 02"];
   const conditions = ["Excellent", "Very Good", "Good", "Fair"];
 
-  // Use ID to determine which template to use
-  const toolIndex = parseInt(id) % toolTypes.length;
-  const ownerIndex = parseInt(id) % owners.length;
-  const locationIndex = parseInt(id) % locations.length;
+  // Create the same hash function for tools
+  const hashString = (str: string): number => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash &= hash; // Convert to 32-bit integer
+    }
+    return Math.abs(hash);
+  };
+
+  // Use hash-based distribution for better uniqueness
+  const hash = hashString(id);
+  const toolIndex = hash % toolTypes.length;
+  const ownerIndex = (hash * 11) % owners.length; // Use different multiplier
+  const locationIndex = (hash * 17) % locations.length; // Use different multiplier
   
   const tool = toolTypes[toolIndex];
   const owner = owners[ownerIndex];
   
-  // Generate price based on category and ID
+  // Generate price based on category and hash
   const basePrices = {
     "Power Tools": 800,
     "Garden Tools": 600,
@@ -497,7 +509,7 @@ export const generateToolData = (id: string): ToolData => {
   };
   
   const basePrice = basePrices[tool.category as keyof typeof basePrices] || 500;
-  const priceVariation = (parseInt(id) % 5) * 100;
+  const priceVariation = (hash % 10) * 100;
   const finalPrice = basePrice + priceVariation;
 
   // Generate deposit (usually 2-3x the daily rate)
