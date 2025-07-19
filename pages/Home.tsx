@@ -68,6 +68,7 @@ export default function Home() {
   const toolCards = [
     <ToolCard
       key="tool1"
+      id="power_drill_set"
       title="Power Drill Set"
       description="Professional Bosch power drill with multiple bits. Perfect for home improvement projects."
       price="Rs. 1,500/day"
@@ -79,6 +80,7 @@ export default function Home() {
     />,
     <ToolCard
       key="tool2"
+      id="lawn_mower"
       title="Lawn Mower"
       description="Electric lawn mower in great condition. Ideal for medium to large gardens."
       price="Rs. 2,000/day"
