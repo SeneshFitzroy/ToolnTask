@@ -47,8 +47,48 @@ export interface ToolData {
   };
 }
 
-// Generate unique task data based on ID
-export const generateTaskData = (id: string): TaskData => {
+// Generate unique task data based on ID using direct mapping
+export const gigDataService = {
+  generateTaskData: (id: string) => {
+    const gigMappings: Record<string, any> = {
+      "babysitting_service_enhanced": {
+        title: "Babysitting Service",
+        description: "Professional childcare with safety and fun activities.",
+        price: "$20/hour",
+        location: "Colombo, Sri Lanka",
+        category: "Service",
+        image: "/images/babysitting.jpg",
+      },
+      "garden_maintenance_enhanced": {
+        title: "Garden Maintenance",
+        description: "Expert lawn mowing, trimming, and landscaping services.",
+        price: "$30/hour",
+        location: "Homagama, Sri Lanka",
+        category: "Service",
+        image: "/images/garden.jpg",
+      },
+      // Add more unique mappings for each gig ID
+      "tool_rental_enhanced": {
+        title: "Tool Rental",
+        description: "Rent high-quality tools for DIY projects.",
+        price: "$10/day",
+        location: "Kandy, Sri Lanka",
+        category: "Tool",
+        image: "/images/tools.jpg",
+      },
+      // Extend with all other gig IDs as needed
+    };
+
+    return gigMappings[id] || {
+      title: "Unknown Gig",
+      description: "No data available for this gig.",
+      price: "N/A",
+      location: "N/A",
+      category: "N/A",
+      image: "/images/default.jpg",
+    };
+  },
+};
   const taskTypes = [
     {
       title: "Garden Maintenance & Landscaping",
