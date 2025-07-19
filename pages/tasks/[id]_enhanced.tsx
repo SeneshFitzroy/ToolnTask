@@ -87,6 +87,9 @@ export default function TaskDetailEnhanced() {
       console.log('🔍 Type of ID:', typeof id);
       console.log('🔍 Current task state before:', task?.title);
       
+      // Force clear the task state first to ensure re-render
+      setTask(null);
+      
       const uniqueTask = generateTaskData(id as string);
       console.log('🎯 Generated task:', uniqueTask.title, uniqueTask.category);
       console.log('🎯 Full generated task:', JSON.stringify(uniqueTask, null, 2));
