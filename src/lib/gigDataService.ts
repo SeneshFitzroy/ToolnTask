@@ -47,53 +47,20 @@ export interface ToolData {
   };
 }
 
-// Generate unique task data based on ID using direct mapping
-export const gigDataService = {
-  generateTaskData: (id: string) => {
-    const gigMappings: Record<string, any> = {
-      "babysitting_service_enhanced": {
-        title: "Babysitting Service",
-        description: "Professional childcare with safety and fun activities.",
-        price: "$20/hour",
-        location: "Colombo, Sri Lanka",
-        category: "Service",
-        image: "/images/babysitting.jpg",
-      },
-      "garden_maintenance_enhanced": {
-        title: "Garden Maintenance",
-        description: "Expert lawn mowing, trimming, and landscaping services.",
-        price: "$30/hour",
-        location: "Homagama, Sri Lanka",
-        category: "Service",
-        image: "/images/garden.jpg",
-      },
-      // Add more unique mappings for each gig ID
-      "tool_rental_enhanced": {
-        title: "Tool Rental",
-        description: "Rent high-quality tools for DIY projects.",
-        price: "$10/day",
-        location: "Kandy, Sri Lanka",
-        category: "Tool",
-        image: "/images/tools.jpg",
-      },
-      // Extend with all other gig IDs as needed
-    };
-
-    return gigMappings[id] || {
-      title: "Unknown Gig",
-      description: "No data available for this gig.",
-      price: "N/A",
-      location: "N/A",
-      category: "N/A",
-      image: "/images/default.jpg",
-    };
-  },
-};
-  const taskTypes = [
-    {
+// Generate unique task data based on ID - Direct mapping for unique content
+export const generateTaskData = (id: string): TaskData => {
+  // Direct mapping to ensure each ID gets unique content
+  const taskMappings: Record<string, Partial<TaskData>> = {
+    "garden_maintenance_enhanced": {
       title: "Garden Maintenance & Landscaping",
       category: "Gardening",
+      price: "Rs. 5,000",
+      urgent: true,
       description: "Looking for an experienced gardener to help maintain my medium-sized garden. Tasks include weeding, pruning shrubs, lawn care, and basic landscaping. All tools and equipment will be provided.",
+      duration: "2-3 hours",
+      location: "Colombo 03",
+      posted: "This weekend",
+      deadline: "Next Monday",
       requirements: [
         "Previous gardening experience required",
         "Own basic hand tools (gloves, pruning shears)",
@@ -105,8 +72,186 @@ export const gigDataService = {
         "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&h=600&fit=crop"
-      ]
+      ],
+      creator: {
+        name: "Sarah Johnson",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b188?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        completedTasks: 12,
+        memberSince: "January 2024"
+      }
     },
+    "babysitting_service_enhanced": {
+      title: "Babysitting Service",
+      category: "Childcare",
+      price: "Rs. 2,500",
+      urgent: false,
+      description: "Need a reliable babysitter for my 2 children (ages 5 and 8) for weekend evenings. Responsible person who can engage with kids, help with homework, and ensure their safety.",
+      duration: "4-6 hours",
+      location: "Nugegoda",
+      posted: "2 days ago",
+      deadline: "This Friday",
+      requirements: [
+        "Previous childcare experience required",
+        "Background check preferred",
+        "CPR certification preferred",
+        "Patient and responsible",
+        "Good communication skills"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1609631765658-d4b8b3ce5db7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Michael Chen",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.9,
+        completedTasks: 25,
+        memberSince: "March 2023"
+      }
+    },
+    "house_cleaning_enhanced": {
+      title: "House Cleaning Service",
+      category: "Cleaning",
+      price: "Rs. 3,500",
+      urgent: false,
+      description: "Need a professional house cleaning service for my 3-bedroom apartment. Includes kitchen, bathrooms, living areas, and bedrooms. All cleaning supplies will be provided.",
+      duration: "3-4 hours",
+      location: "Mount Lavinia",
+      posted: "1 day ago",
+      deadline: "This weekend",
+      requirements: [
+        "Previous cleaning experience preferred",
+        "Attention to detail",
+        "Reliable and trustworthy",
+        "Able to work independently",
+        "Own transportation preferred"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1609617052234-43950c65e5d2?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Emma Wilson",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        rating: 4.7,
+        completedTasks: 18,
+        memberSince: "June 2023"
+      }
+    },
+    "pet_walking_enhanced": {
+      title: "Pet Walking & Care",
+      category: "Pet Care",
+      price: "Rs. 1,500",
+      urgent: true,
+      description: "Looking for someone to walk my Golden Retriever twice a day and provide basic care when I'm at work. Must love dogs and be reliable.",
+      duration: "1-2 hours",
+      location: "Dehiwala",
+      posted: "3 hours ago",
+      deadline: "Tomorrow",
+      requirements: [
+        "Experience with dogs",
+        "Love for animals",
+        "Available twice daily",
+        "Reliable and punctual",
+        "Live nearby preferred"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "David Kumar",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.6,
+        completedTasks: 8,
+        memberSince: "September 2024"
+      }
+    },
+    "furniture_assembly_enhanced": {
+      title: "Furniture Assembly",
+      category: "Handyman",
+      price: "Rs. 4,000",
+      urgent: false,
+      description: "Need help assembling IKEA furniture - a wardrobe, desk, and bookshelf. All parts and tools are available. Looking for someone experienced with furniture assembly.",
+      duration: "4-5 hours",
+      location: "Colombo 07",
+      posted: "5 hours ago",
+      deadline: "Next week",
+      requirements: [
+        "Experience with furniture assembly",
+        "Own basic tools preferred",
+        "Attention to detail",
+        "Patient and methodical",
+        "Weekend availability"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1565538420870-da08ff96a207?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Lisa Rodriguez",
+        avatar: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        completedTasks: 15,
+        memberSince: "May 2023"
+      }
+    }
+  };
+
+  const taskData = taskMappings[id];
+  if (!taskData) {
+    // Return default data for unknown IDs
+    return {
+      id,
+      title: "Task Not Found",
+      price: "N/A",
+      category: "Unknown",
+      urgent: false,
+      description: "This task information is not available.",
+      duration: "N/A",
+      location: "N/A",
+      posted: "N/A",
+      deadline: "N/A",
+      images: [],
+      requirements: [],
+      creator: {
+        name: "Unknown",
+        avatar: "",
+        rating: 0,
+        completedTasks: 0,
+        memberSince: "N/A"
+      }
+    };
+  }
+
+  return {
+    id,
+    title: taskData.title || "Unknown Task",
+    price: taskData.price || "N/A",
+    category: taskData.category || "Unknown",
+    urgent: taskData.urgent || false,
+    description: taskData.description || "No description available",
+    duration: taskData.duration || "N/A",
+    location: taskData.location || "N/A",
+    posted: taskData.posted || "N/A",
+    deadline: taskData.deadline || "N/A",
+    images: taskData.images || [],
+    requirements: taskData.requirements || [],
+    creator: taskData.creator || {
+      name: "Unknown",
+      avatar: "",
+      rating: 0,
+      completedTasks: 0,
+      memberSince: "N/A"
+    }
+  };
+};
+  // Generate unique tool data based on ID - Direct mapping for unique content
     {
       title: "Babysitting Service",
       category: "Childcare",
