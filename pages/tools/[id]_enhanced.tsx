@@ -82,7 +82,9 @@ export default function ToolDetailEnhanced() {
 
     if (mounted && id) {
       // Generate unique tool data based on ID
+      console.log('🔧 Tool ID received:', id);
       const uniqueTool = generateToolData(id as string);
+      console.log('🎯 Generated tool:', uniqueTool.title, uniqueTool.category);
       setTool(uniqueTool);
       
       // Track tool view on mount
