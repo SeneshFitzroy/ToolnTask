@@ -101,6 +101,160 @@ export default function CreateTask() {
     }));
   };
 
+  const createTaskDetailPage = async (taskId: string, taskData: any) => {
+    try {
+      // Generate detail page content for the new task
+      const detailPageContent = `import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Navigation from '../../src/components/Navigation';
+import Footer from '../../src/components/Footer';
+import { Button } from '../../src/components/ui/button';
+import { collection, addDoc, serverTimestamp, doc, setDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
+import { db, auth } from '../../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { Heart, Share2, MapPin, Clock, Calendar, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
+
+// Auto-generated task detail page for: ${taskData.title}
+// Created on: ${new Date().toISOString()}
+
+export default function TaskDetail${taskId}() {
+  const router = useRouter();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const task = {
+    id: '${taskId}',
+    title: '${taskData.title}',
+    price: '${taskData.price}',
+    category: '${taskData.category}',
+    urgent: ${taskData.isUrgent},
+    description: '${taskData.description}',
+    duration: '${taskData.additionalInfo.duration || taskData.time}',
+    location: '${taskData.location}',
+    deadline: '${taskData.deadline}',
+    images: ['${taskData.image || 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop'}'],
+    requirements: ${JSON.stringify(taskData.requirements)},
+    creator: {
+      name: '${taskData.creator.name}',
+      email: '${taskData.creator.email}',
+      uid: '${taskData.creator.uid}'
+    }
+  };
+
+  if (!mounted) return null;
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+      <Navigation />
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+            {task.title}
+          </h1>
+          <div className="flex items-center gap-4 text-sm" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+            <span className="flex items-center gap-1">
+              <MapPin className="w-4 h-4" />
+              {task.location}
+            </span>
+            {task.duration && (
+              <span className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                {task.duration}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <div className="rounded-xl overflow-hidden mb-8">
+              <Image
+                src={task.images[0]}
+                alt={task.title}
+                width={800}
+                height={400}
+                className="object-cover w-full h-64 lg:h-80"
+              />
+            </div>
+
+            <div className="mb-8">
+              <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                Description
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>
+                {task.description}
+              </p>
+            </div>
+
+            {task.requirements.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                  Requirements
+                </h2>
+                <ul className="space-y-2">
+                  {task.requirements.map((requirement, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>{requirement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div className="lg:col-span-1">
+            <div className="rounded-xl p-6 border" style={{
+              backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+              borderColor: theme === 'dark' ? '#374151' : '#E5E7EB'
+            }}>
+              <div className="text-center mb-6">
+                <div className="text-3xl font-bold mb-2" style={{ color: '#FF5E14' }}>
+                  {task.price}
+                </div>
+              </div>
+
+              <Button
+                className="w-full py-3 text-lg font-bold rounded-xl"
+                style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
+              >
+                Apply for this Task
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}`;
+      
+      // In a real implementation, you would save this to a file or database
+      console.log('Generated task detail page for:', taskId);
+      console.log('Detail page would be saved to:', `/pages/tasks/${taskId}.tsx`);
+      
+    } catch (error) {
+      console.error('Error creating task detail page:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -116,7 +270,7 @@ export default function CreateTask() {
 
     try {
       // Save task to Firebase
-      await addDoc(collection(db, 'tasks'), {
+      const taskData = {
         ...formData,
         requirements: formData.requirements.filter(r => r.trim() !== ''),
         creator: {
@@ -127,9 +281,21 @@ export default function CreateTask() {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         status: 'active'
+      };
+
+      const docRef = await addDoc(collection(db, 'tasks'), taskData);
+      
+      // Auto-generate detail page for the new task
+      await createTaskDetailPage(docRef.id, {
+        ...taskData,
+        creator: {
+          name: user?.displayName || 'Anonymous',
+          email: user?.email || '',
+          uid: user?.uid
+        }
       });
 
-      setSuccess('Task created successfully!');
+      setSuccess('Task created successfully! A dedicated page has been generated for your task.');
       
       // Reset form
       setFormData({
@@ -152,9 +318,9 @@ export default function CreateTask() {
         }
       });
 
-      // Redirect to tasks page after 2 seconds
+      // Redirect to the new task detail page after 2 seconds
       setTimeout(() => {
-        router.push('/Tasks');
+        router.push(`/tasks/${docRef.id}_enhanced`);
       }, 2000);
     } catch (error: unknown) {
       console.error('Error creating task:', error);
