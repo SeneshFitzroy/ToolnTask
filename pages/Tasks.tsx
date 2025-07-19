@@ -581,7 +581,8 @@ export default function Tasks() {
                     </button>
                   </div>
                 </div>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
             
