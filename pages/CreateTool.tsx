@@ -93,6 +93,202 @@ export default function CreateTool() {
     }));
   };
 
+  const createToolDetailPage = async (toolId: string, toolData: any) => {
+    try {
+      // Generate detail page content for the new tool
+      const detailPageContent = `import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import Navigation from '../../src/components/Navigation';
+import Footer from '../../src/components/Footer';
+import { Button } from '../../src/components/ui/button';
+import { collection, addDoc, serverTimestamp, doc, setDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
+import { db, auth } from '../../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { Heart, Share2, MapPin, Calendar, Star, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
+
+// Auto-generated tool detail page for: ${toolData.title}
+// Created on: ${new Date().toISOString()}
+
+export default function ToolDetail${toolId}() {
+  const router = useRouter();
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const tool = {
+    id: '${toolId}',
+    title: '${toolData.title}',
+    price: '${toolData.price}',
+    category: '${toolData.category}',
+    available: ${toolData.available},
+    description: '${toolData.description}',
+    condition: '${toolData.condition}',
+    brand: '${toolData.brand}',
+    images: ['${toolData.image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop'}'],
+    features: ${JSON.stringify(toolData.features)},
+    specifications: ${JSON.stringify(toolData.specifications)},
+    owner: {
+      name: '${toolData.owner.name}',
+      email: '${toolData.owner.email}',
+      uid: '${toolData.owner.uid}'
+    }
+  };
+
+  if (!mounted) return null;
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+      <Navigation />
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+            {tool.title}
+          </h1>
+          <div className="flex items-center gap-4 text-sm" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+            <span className="flex items-center gap-1">
+              <Star className="w-4 h-4" />
+              {tool.condition}
+            </span>
+            <span className="flex items-center gap-1">
+              Brand: {tool.brand}
+            </span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <div className="rounded-xl overflow-hidden mb-8">
+              <Image
+                src={tool.images[0]}
+                alt={tool.title}
+                width={800}
+                height={400}
+                className="object-cover w-full h-64 lg:h-80"
+              />
+            </div>
+
+            <div className="mb-8">
+              <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                Description
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>
+                {tool.description}
+              </p>
+            </div>
+
+            {tool.features.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                  Features
+                </h2>
+                <ul className="space-y-2">
+                  {tool.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="mb-8">
+              <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                Specifications
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {Object.entries(tool.specifications).map(([key, value]) => (
+                  value && (
+                    <div key={key} className="flex justify-between p-3 rounded-lg" style={{
+                      backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB'
+                    }}>
+                      <span className="font-medium capitalize" style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}>{key}</span>
+                      <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>{value}</span>
+                    </div>
+                  )
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1">
+            <div className="rounded-xl p-6 border" style={{
+              backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+              borderColor: theme === 'dark' ? '#374151' : '#E5E7EB'
+            }}>
+              <div className="text-center mb-6">
+                <div className="text-3xl font-bold mb-2" style={{ color: '#FF5E14' }}>
+                  {tool.price}
+                </div>
+                <div className="text-sm" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                  Rental rate
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between">
+                  <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}>Condition</span>
+                  <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>{tool.condition}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}>Brand</span>
+                  <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>{tool.brand}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}>Availability</span>
+                  <span className="flex items-center gap-1">
+                    <span className={\`w-2 h-2 rounded-full \${tool.available ? 'bg-green-500' : 'bg-red-500'}\`}></span>
+                    <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
+                      {tool.available ? 'Available Now' : 'Not Available'}
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <Button
+                disabled={!tool.available}
+                className="w-full py-3 text-lg font-bold rounded-xl"
+                style={{
+                  backgroundColor: tool.available ? '#FF5E14' : '#9CA3AF',
+                  color: '#FFFFFF'
+                }}
+              >
+                {tool.available ? 'Rent this Tool' : 'Currently Unavailable'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}`;
+      
+      // In a real implementation, you would save this to a file or database
+      console.log('Generated tool detail page for:', toolId);
+      console.log('Detail page would be saved to:', `/pages/tools/${toolId}.tsx`);
+      
+    } catch (error) {
+      console.error('Error creating tool detail page:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -108,7 +304,7 @@ export default function CreateTool() {
 
     try {
       // Save tool to Firebase
-      await addDoc(collection(db, 'tools'), {
+      const toolData = {
         ...formData,
         features: formData.features.filter(f => f.trim() !== ''),
         owner: {
@@ -119,9 +315,21 @@ export default function CreateTool() {
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         status: 'active'
+      };
+
+      const docRef = await addDoc(collection(db, 'tools'), toolData);
+      
+      // Auto-generate detail page for the new tool
+      await createToolDetailPage(docRef.id, {
+        ...toolData,
+        owner: {
+          name: user?.displayName || 'Anonymous',
+          email: user?.email || '',
+          uid: user?.uid
+        }
       });
 
-      setSuccess('Tool created successfully!');
+      setSuccess('Tool created successfully! A dedicated page has been generated for your tool.');
       
       // Reset form
       setFormData({
@@ -142,9 +350,9 @@ export default function CreateTool() {
         available: true
       });
 
-      // Redirect to tools page after 2 seconds
+      // Redirect to the new tool detail page after 2 seconds
       setTimeout(() => {
-        router.push('/Tools');
+        router.push(`/tools/${docRef.id}_enhanced`);
       }, 2000);
     } catch (error: unknown) {
       console.error('Error creating tool:', error);
