@@ -307,7 +307,7 @@ export default function ToolDetail() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {similarTools.map((similarTool) => (
-              <Link key={similarTool.id} href={`/tools/${similarTool.id}`}>
+              <Link key={similarTool.id} href={`/tools/${similarTool.id}_enhanced`}>
                 <div className="p-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 cursor-pointer"
                      style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-lg">

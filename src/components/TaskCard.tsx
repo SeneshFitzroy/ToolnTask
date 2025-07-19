@@ -27,7 +27,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   image
 }) => {
   return (
-    <Link href={`/tasks/${id}`}>
+    <Link href={`/tasks/${id}_enhanced`}>
       <div className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-100 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-500 overflow-hidden h-[450px] sm:h-[500px] flex flex-col transform hover:scale-105 relative cursor-pointer">
         {isPromoted && (
           <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-2 sm:px-3 py-1 rounded-full z-10 shadow-lg">
