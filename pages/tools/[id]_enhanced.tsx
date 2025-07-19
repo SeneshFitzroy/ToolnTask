@@ -83,9 +83,15 @@ export default function ToolDetailEnhanced() {
     if (mounted && id) {
       // Generate unique tool data based on ID
       console.log('🔧 Tool ID received:', id);
+      console.log('🔧 Type of ID:', typeof id);
+      console.log('🔧 Current tool state before:', tool?.title);
+      
       const uniqueTool = generateToolData(id as string);
       console.log('🎯 Generated tool:', uniqueTool.title, uniqueTool.category);
+      console.log('🎯 Full generated tool:', JSON.stringify(uniqueTool, null, 2));
+      
       setTool(uniqueTool);
+      console.log('✅ Tool state updated');
       
       // Track tool view on mount
       trackToolView(id as string, user?.uid);
@@ -184,7 +190,7 @@ export default function ToolDetailEnhanced() {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+    <div key={id as string} className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
       <Navigation />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

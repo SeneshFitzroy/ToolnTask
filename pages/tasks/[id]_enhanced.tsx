@@ -83,9 +83,15 @@ export default function TaskDetailEnhanced() {
     if (mounted && id) {
       // Generate unique task data based on ID
       console.log('🔍 Task ID received:', id);
+      console.log('🔍 Type of ID:', typeof id);
+      console.log('🔍 Current task state before:', task?.title);
+      
       const uniqueTask = generateTaskData(id as string);
       console.log('🎯 Generated task:', uniqueTask.title, uniqueTask.category);
+      console.log('🎯 Full generated task:', JSON.stringify(uniqueTask, null, 2));
+      
       setTask(uniqueTask);
+      console.log('✅ Task state updated');
       
       // Track task view on mount
       trackTaskView(id as string, user?.uid);
@@ -182,7 +188,7 @@ export default function TaskDetailEnhanced() {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+    <div key={id as string} className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
       <Navigation />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
