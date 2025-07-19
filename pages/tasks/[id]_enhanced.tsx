@@ -54,6 +54,9 @@ export default function TaskDetailEnhanced() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [task, setTask] = useState<TaskData | null>(null);
 
+  // Debug log at component render
+  console.log('🚀 Component render - ID from router:', id, 'isReady:', isReady, 'mounted:', mounted);
+
   useEffect(() => {
     setMounted(true);
     
