@@ -44,6 +44,7 @@ const trackApplicationClick = async (taskId: string, userId?: string, action: st
 export default function TaskDetailEnhanced() {
   const router = useRouter();
   const { id } = router.query;
+  const isReady = router.isReady;
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -80,7 +81,7 @@ export default function TaskDetailEnhanced() {
       }
     };
 
-    if (mounted && id) {
+    if (mounted && isReady && id) {
       // Generate unique task data based on ID
       console.log('🔍 Task ID received:', id);
       console.log('🔍 Type of ID:', typeof id);
@@ -99,7 +100,7 @@ export default function TaskDetailEnhanced() {
       // Check if task is saved
       checkIfSaved();
     }
-  }, [mounted, id, user]);
+  }, [mounted, isReady, id, user]);
 
   const checkIfSaved = async () => {
     if (user && id) {
