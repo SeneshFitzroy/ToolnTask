@@ -539,17 +539,18 @@ export default function Tools() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {getFilteredTools().map((tool) => (
-            <div key={tool.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700"
-                 style={{ 
-                   borderColor: tool.type === 'available' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(245, 158, 11, 0.2)',
-                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' 
-                 }}
-                 onMouseEnter={(e) => {
-                   e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
-                 }}
-                 onMouseLeave={(e) => {
-                   e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-                 }}>
+            <Link key={tool.id} href={`/tools/${tool.id}_enhanced`}>
+              <div className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700 cursor-pointer"
+                   style={{ 
+                     borderColor: tool.type === 'available' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(245, 158, 11, 0.2)',
+                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' 
+                   }}
+                   onMouseEnter={(e) => {
+                     e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                   }}
+                   onMouseLeave={(e) => {
+                     e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                   }}>
               
               {/* Only show images for available tools */}
               {tool.type === 'available' && tool.image && (
@@ -663,7 +664,8 @@ export default function Tools() {
                   </button>
                 </div>
               </div>
-            </div>
+              </div>
+            </Link>
           ))}
         </div>
         
