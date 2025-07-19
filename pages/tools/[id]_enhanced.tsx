@@ -177,50 +177,7 @@ export default function ToolDetailEnhanced() {
   if (!mounted) {
     return null;
   }
-
-  // Sample tool data (in a real app, this would come from an API)
-  const tool = {
-    id: id,
-    title: "Professional Drill Set with Bits",
-    price: "Rs. 800/day",
-    category: "Power Tools",
-    available: true,
-    description: "High-quality professional drill set perfect for home improvement projects, furniture assembly, and general construction work. Includes multiple drill bits, screwdriver attachments, and extension bits. Cordless with long-lasting battery, suitable for both indoor and outdoor use.",
-    location: "Colombo 05",
-    posted: "1 week ago",
-    condition: "Excellent",
-    deposit: "Rs. 2,000",
-    images: [
-      "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1609617052234-43950c65e5d2?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=600&fit=crop"
-    ],
-    features: [
-      "18V lithium-ion battery",
-      "15 torque settings",
-      "LED work light",
-      "Quick-change chuck",
-      "Belt clip included",
-      "Complete bit set (20+ pieces)"
-    ],
-    specifications: {
-      "Max Torque": "55 Nm",
-      "Battery Life": "4-6 hours",
-      "Chuck Size": "13mm",
-      "Weight": "1.8 kg",
-      "Brand": "DeWalt",
-      "Warranty": "2 years"
-    },
-    owner: {
-      name: "Michael Chen",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      rating: 4.8,
-      toolsRented: 36,
-      memberSince: "March 2022",
-      responseTime: "Usually responds within 2 hours"
-    }
-  };
+  if (!tool) return <div>Loading...</div>;
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
