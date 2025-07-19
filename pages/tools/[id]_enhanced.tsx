@@ -64,7 +64,27 @@ export default function ToolDetailEnhanced() {
   }, []);
 
   useEffect(() => {
+    const checkIfSaved = async () => {
+      if (user && id) {
+        try {
+          const savedQuery = query(
+            collection(db, 'saved_tools'),
+            where('userId', '==', user.uid),
+            where('toolId', '==', id)
+          );
+          const savedSnapshot = await getDocs(savedQuery);
+          setIsSaved(!savedSnapshot.empty);
+        } catch (error) {
+          console.error('Error checking if tool is saved:', error);
+        }
+      }
+    };
+
     if (mounted && id) {
+      // Generate unique tool data based on ID
+      const uniqueTool = generateToolData(id as string);
+      setTool(uniqueTool);
+      
       // Track tool view on mount
       trackToolView(id as string, user?.uid);
       
