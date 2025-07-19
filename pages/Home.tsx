@@ -42,6 +42,7 @@ export default function Home() {
   const taskCards = [
     <TaskCard
       key="task1"
+      id="garden_maintenance"
       title="Garden Maintenance"
       description="Looking for someone to help with weekly garden maintenance including weeding, pruning, and lawn care."
       price="Rs. 5,000"
@@ -53,6 +54,7 @@ export default function Home() {
     />,
     <TaskCard
       key="task3"
+      id="babysitting_service"
       title="Babysitting Service"
       description="Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings."
       price="Rs. 3,000"
