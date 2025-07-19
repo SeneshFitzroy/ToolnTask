@@ -406,48 +406,387 @@ export const generateTaskData = (id: string): TaskData => {
 export const generateToolData = (id: string): ToolData => {
   // Direct mapping to ensure each ID gets unique content
   const toolMappings: Record<string, Partial<ToolData>> = {
-    "power_drill_enhanced": {
-      title: "Professional Power Drill Set",
-      category: "Power Tools",
-      price: "Rs. 1,200/day",
+    "graphic_design_enhanced": {
+      title: "Professional Graphic Design Services",
+      category: "Design",
+      price: "Rs. 8,000",
       available: true,
-      description: "High-quality cordless power drill with various drill bits and screwdriver attachments. Perfect for home improvement projects, furniture assembly, and general repairs.",
-      location: "Colombo 05",
-      posted: "1 day ago",
-      condition: "Excellent",
-      deposit: "Rs. 5,000",
+      description: "Professional graphic design for logos, brochures, business cards, and digital marketing materials. Creative solutions for your branding needs.",
+      location: "Colombo 03",
+      posted: "2 days ago",
+      condition: "Professional Service",
+      deposit: "Rs. 2,000",
       features: [
-        "18V Lithium-ion battery",
-        "Variable speed trigger",
-        "LED work light",
-        "Includes drill bit set",
-        "Carrying case included"
+        "Logo Design & Branding",
+        "Print Design Materials",
+        "Digital Art Creation",
+        "Adobe Creative Suite",
+        "Unlimited Revisions"
       ],
       images: [
-        "https://images.unsplash.com/photo-1609128346260-45cb4ea0c2e7?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1556816723-1ce827b9cfbb?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1609921141835-710b7fa6e438?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&h=600&fit=crop"
       ],
       specifications: {
-        "Max Torque": "65 Nm",
-        "Battery Life": "4-6 hours",
-        "Chuck Size": "13mm",
-        "Weight": "1.8kg",
-        "Brand": "Bosch"
+        "Software": "Adobe Creative Suite",
+        "Delivery": "2-3 days",
+        "Formats": "AI, PSD, PDF, PNG",
+        "Revisions": "Unlimited",
+        "Experience": "5+ years"
       },
       owner: {
-        name: "James Wilson",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        name: "Aisha Patel",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b188?w=150&h=150&fit=crop&crop=face",
         rating: 4.9,
-        toolsRented: 45,
-        memberSince: "January 2023",
+        toolsRented: 157,
+        memberSince: "February 2022",
+        responseTime: "Within 1 hour"
+      }
+    },
+    "web_development_enhanced": {
+      title: "Full-Stack Web Development",
+      category: "Development",
+      price: "Rs. 25,000",
+      available: true,
+      description: "Complete web development solutions using modern technologies. From simple landing pages to complex web applications with database integration.",
+      location: "Nugegoda",
+      posted: "3 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 5,000",
+      features: [
+        "React & Next.js Development",
+        "Node.js Backend",
+        "Database Integration",
+        "Responsive Design",
+        "SEO Optimization"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Technologies": "React, Node.js, MongoDB",
+        "Delivery": "2-4 weeks",
+        "Support": "3 months free",
+        "Hosting": "Setup included",
+        "Experience": "8+ years"
+      },
+      owner: {
+        name: "Ravi Perera",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        toolsRented: 89,
+        memberSince: "August 2021",
+        responseTime: "Within 3 hours"
+      }
+    },
+    "content_writing_enhanced": {
+      title: "Professional Content Writing",
+      category: "Writing",
+      price: "Rs. 3,500",
+      available: true,
+      description: "High-quality content writing for blogs, websites, social media, and marketing materials. SEO-optimized content that engages your audience.",
+      location: "Kandy",
+      posted: "5 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 1,000",
+      features: [
+        "SEO-Optimized Content",
+        "Blog Writing",
+        "Social Media Content",
+        "Copywriting",
+        "Research Included"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Word Count": "500-2000 words",
+        "Delivery": "24-48 hours",
+        "Revisions": "2 free revisions",
+        "SEO": "Keyword optimization",
+        "Experience": "6+ years"
+      },
+      owner: {
+        name: "Sophia Martinez",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        rating: 4.7,
+        toolsRented: 234,
+        memberSince: "June 2022",
         responseTime: "Within 2 hours"
       }
     },
-    "lawn_mower_enhanced": {
-      title: "Electric Lawn Mower",
-      category: "Garden Tools",
-      price: "Rs. 2,000/day",
+    "video_editing_enhanced": {
+      title: "Professional Video Editing",
+      category: "Media",
+      price: "Rs. 12,000",
+      available: true,
+      description: "Professional video editing for YouTube, social media, corporate videos, and personal projects. Color grading, sound design, and motion graphics included.",
+      location: "Mount Lavinia",
+      posted: "1 day ago",
+      condition: "Professional Service",
+      deposit: "Rs. 3,000",
+      features: [
+        "4K Video Editing",
+        "Color Grading",
+        "Sound Design",
+        "Motion Graphics",
+        "Multiple Format Export"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1614850523011-8f49ffc73908?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Software": "Premiere Pro, After Effects",
+        "Resolution": "Up to 4K",
+        "Delivery": "3-5 days",
+        "Formats": "MP4, MOV, AVI",
+        "Experience": "7+ years"
+      },
+      owner: {
+        name: "Jake Thompson",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        toolsRented: 76,
+        memberSince: "November 2022",
+        responseTime: "Within 4 hours"
+      }
+    },
+    "digital_marketing_enhanced": {
+      title: "Digital Marketing & SEO",
+      category: "Marketing",
+      price: "Rs. 15,000",
+      available: true,
+      description: "Comprehensive digital marketing strategies including SEO, social media marketing, Google Ads, and content marketing to grow your business online.",
+      location: "Dehiwala",
+      posted: "6 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 4,000",
+      features: [
+        "SEO Optimization",
+        "Google Ads Management",
+        "Social Media Marketing",
+        "Content Strategy",
+        "Analytics Reporting"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Platforms": "Google, Facebook, Instagram",
+        "Campaign": "Setup & Management",
+        "Reports": "Weekly analytics",
+        "Strategy": "Custom planning",
+        "Experience": "9+ years"
+      },
+      owner: {
+        name: "Nisha Fernando",
+        avatar: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.9,
+        toolsRented: 112,
+        memberSince: "January 2023",
+        responseTime: "Within 1 hour"
+      }
+    },
+    "data_analysis_enhanced": {
+      title: "Data Analysis & Visualization",
+      category: "Analytics",
+      price: "Rs. 18,000",
+      available: true,
+      description: "Professional data analysis using Python, R, and Excel. Create insightful reports, dashboards, and visualizations to help make data-driven decisions.",
+      location: "Colombo 07",
+      posted: "2 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 4,500",
+      features: [
+        "Python & R Analysis",
+        "Data Visualization",
+        "Statistical Analysis",
+        "Dashboard Creation",
+        "Report Generation"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Tools": "Python, R, Tableau, Excel",
+        "Data Size": "Up to 1M records",
+        "Delivery": "5-7 days",
+        "Formats": "PDF, Excel, Dashboard",
+        "Experience": "10+ years"
+      },
+      owner: {
+        name: "Dr. Anand Sharma",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.7,
+        toolsRented: 58,
+        memberSince: "March 2023",
+        responseTime: "Within 6 hours"
+      }
+    },
+    "mobile_app_enhanced": {
+      title: "Mobile App Development",
+      category: "Development",
+      price: "Rs. 45,000",
+      available: true,
+      description: "Native and cross-platform mobile app development for iOS and Android. From concept to app store deployment with ongoing support.",
+      location: "Galle",
+      posted: "8 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 10,000",
+      features: [
+        "iOS & Android Apps",
+        "Cross-platform Development",
+        "App Store Deployment",
+        "UI/UX Design",
+        "Ongoing Support"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1581276879432-15e50529f34b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Platforms": "iOS, Android",
+        "Framework": "React Native, Flutter",
+        "Delivery": "6-12 weeks",
+        "Support": "6 months included",
+        "Experience": "12+ years"
+      },
+      owner: {
+        name: "Maya Gunawardena",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b188?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        toolsRented: 34,
+        memberSince: "September 2022",
+        responseTime: "Within 12 hours"
+      }
+    },
+    "language_translation_enhanced": {
+      title: "Professional Translation Services",
+      category: "Language",
+      price: "Rs. 4,500",
+      available: true,
+      description: "Accurate translation services between English, Sinhala, and Tamil. Certified translations for legal documents, business content, and personal documents.",
+      location: "Negombo",
+      posted: "4 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 1,500",
+      features: [
+        "English-Sinhala-Tamil",
+        "Certified Translations",
+        "Legal Documents",
+        "Business Content",
+        "Quick Turnaround"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Languages": "English, Sinhala, Tamil",
+        "Certification": "Official translator",
+        "Delivery": "1-3 days",
+        "Specialization": "Legal, Medical, Business",
+        "Experience": "15+ years"
+      },
+      owner: {
+        name: "Chamara Jayasinghe",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.9,
+        toolsRented: 189,
+        memberSince: "April 2022",
+        responseTime: "Within 30 minutes"
+      }
+    },
+    "photography_enhanced": {
+      title: "Professional Photography",
+      category: "Photography",
+      price: "Rs. 20,000",
+      available: true,
+      description: "Professional photography services for events, portraits, products, and corporate needs. High-quality images with post-processing and editing included.",
+      location: "Malabe",
+      posted: "7 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 5,000",
+      features: [
+        "Event Photography",
+        "Portrait Sessions",
+        "Product Photography",
+        "Photo Editing",
+        "High-Resolution Images"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1554048612-b6a482b224b4?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Equipment": "Professional DSLR & Lenses",
+        "Resolution": "Full-frame 42MP",
+        "Editing": "Lightroom & Photoshop",
+        "Delivery": "48 hours",
+        "Experience": "8+ years"
+      },
+      owner: {
+        name: "Saman Rajapaksa",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        toolsRented: 142,
+        memberSince: "July 2021",
+        responseTime: "Within 2 hours"
+      }
+    },
+    "accounting_bookkeeping_enhanced": {
+      title: "Accounting & Bookkeeping",
+      category: "Finance",
+      price: "Rs. 10,000",
+      available: true,
+      description: "Professional accounting and bookkeeping services for small businesses. Tax preparation, financial statements, and business consulting included.",
+      location: "Kottawa",
+      posted: "3 hours ago",
+      condition: "Professional Service",
+      deposit: "Rs. 2,500",
+      features: [
+        "QuickBooks Setup",
+        "Tax Preparation",
+        "Financial Statements",
+        "Payroll Management",
+        "Business Consulting"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+      ],
+      specifications: {
+        "Software": "QuickBooks, Excel, Xero",
+        "Compliance": "Tax law compliant",
+        "Reports": "Monthly financial reports",
+        "Certification": "Chartered Accountant",
+        "Experience": "12+ years"
+      },
+      owner: {
+        name: "Deepika Seneviratne",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        rating: 4.7,
+        toolsRented: 95,
+        memberSince: "October 2022",
+        responseTime: "Within 4 hours"
+      }
+    }
+  };
       available: true,
       description: "Powerful electric lawn mower perfect for medium to large gardens. Easy to use, environmentally friendly, and well-maintained. Includes extension cord.",
       location: "Nugegoda",
