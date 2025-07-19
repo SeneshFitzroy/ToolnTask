@@ -47,6 +47,7 @@ export default function ToolDetailEnhanced() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [tool, setTool] = useState<ToolData | null>(null);
   const [isSaved, setIsSaved] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
