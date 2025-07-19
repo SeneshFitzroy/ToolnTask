@@ -175,40 +175,7 @@ export default function TaskDetailEnhanced() {
   };
 
   if (!mounted) return null;
-
-  // Sample task data (in a real app, this would come from an API)
-  const task = {
-    id: id,
-    title: "Garden Maintenance & Landscaping",
-    price: "Rs. 5,000",
-    category: "Gardening",
-    urgent: true,
-    description: "Looking for an experienced gardener to help maintain my medium-sized garden. Tasks include weeding, pruning shrubs, lawn care, and basic landscaping. All tools and equipment will be provided. Perfect for someone who enjoys outdoor work and has experience with garden maintenance.",
-    duration: "2-3 hours",
-    location: "Colombo 03",
-    posted: "2 days ago",
-    deadline: "This weekend",
-    images: [
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&h=600&fit=crop"
-    ],
-    requirements: [
-      "Previous gardening experience required",
-      "Own basic hand tools (gloves, pruning shears)",
-      "Ability to work outdoors in various weather",
-      "Physical fitness for manual labor",
-      "Knowledge of plant care and maintenance"
-    ],
-    creator: {
-      name: "Sarah Johnson",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-      rating: 4.9,
-      completedTasks: 24,
-      memberSince: "January 2023"
-    }
-  };
+  if (!task) return <div>Loading...</div>;
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
