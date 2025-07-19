@@ -82,7 +82,9 @@ export default function TaskDetailEnhanced() {
 
     if (mounted && id) {
       // Generate unique task data based on ID
+      console.log('🔍 Task ID received:', id);
       const uniqueTask = generateTaskData(id as string);
+      console.log('🎯 Generated task:', uniqueTask.title, uniqueTask.category);
       setTask(uniqueTask);
       
       // Track task view on mount
