@@ -156,7 +156,7 @@ export default function TaskDetailEnhanced() {
   const handleShare = async () => {
     const currentUrl = window.location.href;
     
-    if (navigator.share) {
+    if (navigator.share && task) {
       try {
         await navigator.share({
           title: task.title,
@@ -190,12 +190,20 @@ export default function TaskDetailEnhanced() {
   };
 
   if (!mounted) return null;
-  if (!task) return <div>Loading...</div>;
+  if (!task) return (
+    <div key={id as string} className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+        <h1 className="text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>Loading task details...</h1>
+        <p className="text-sm mt-2" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>ID: {id}</p>
+      </div>
+    </div>
+  );
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
-    <div key={id as string} className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
+    <div key={`task-${id}-${task.title}`} className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
       <Navigation />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
