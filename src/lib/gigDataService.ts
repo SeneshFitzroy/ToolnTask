@@ -200,6 +200,156 @@ export const generateTaskData = (id: string): TaskData => {
         completedTasks: 15,
         memberSince: "May 2023"
       }
+    },
+    "car_washing_enhanced": {
+      title: "Car Washing & Detailing",
+      category: "Automotive",
+      price: "Rs. 3,000",
+      urgent: false,
+      description: "Professional car washing and detailing service for your vehicle. Includes exterior wash, interior cleaning, waxing, and tire care. All supplies provided.",
+      duration: "2-3 hours",
+      location: "Kandy",
+      posted: "1 day ago",
+      deadline: "This weekend",
+      requirements: [
+        "Experience with car detailing",
+        "Attention to detail",
+        "Careful handling of vehicles",
+        "Knowledge of car care products",
+        "Reliable and punctual"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1594833122966-9c1e3d8e8c5c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Alex Fernando",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.5,
+        completedTasks: 22,
+        memberSince: "August 2023"
+      }
+    },
+    "moving_help_enhanced": {
+      title: "Moving & Packing Help",
+      category: "Moving",
+      price: "Rs. 8,000",
+      urgent: true,
+      description: "Need help packing and moving from a 2-bedroom apartment to a new house. Heavy lifting required. Moving truck will be provided. Looking for strong, reliable helpers.",
+      duration: "Full day",
+      location: "Galle",
+      posted: "4 hours ago",
+      deadline: "This Saturday",
+      requirements: [
+        "Physical strength for heavy lifting",
+        "Experience with packing",
+        "Careful handling of fragile items",
+        "Reliable and punctual",
+        "Able to work as part of a team"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d1f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Priya Perera",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        rating: 4.6,
+        completedTasks: 11,
+        memberSince: "November 2023"
+      }
+    },
+    "tutoring_enhanced": {
+      title: "Tutoring & Academic Help",
+      category: "Education",
+      price: "Rs. 6,000",
+      urgent: false,
+      description: "Need a qualified math tutor for my high school student. Help with algebra, geometry, and preparation for upcoming O/L exams. Flexible schedule preferred.",
+      duration: "2-3 hours per session",
+      location: "Negombo",
+      posted: "2 days ago",
+      deadline: "Next week",
+      requirements: [
+        "Strong math background",
+        "Teaching or tutoring experience",
+        "Patient and encouraging",
+        "Flexible schedule",
+        "Good communication skills"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1606103819300-57dee6c93fe5?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Rajesh Silva",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+        rating: 4.9,
+        completedTasks: 35,
+        memberSince: "January 2022"
+      }
+    },
+    "cooking_meal_prep_enhanced": {
+      title: "Cooking & Meal Prep",
+      category: "Food Service",
+      price: "Rs. 7,000",
+      urgent: false,
+      description: "Looking for someone to prepare healthy meals for the week. Experience with meal planning and various dietary restrictions preferred. Focus on Sri Lankan and international cuisine.",
+      duration: "4-5 hours",
+      location: "Malabe",
+      posted: "6 hours ago",
+      deadline: "This Sunday",
+      requirements: [
+        "Cooking experience",
+        "Knowledge of nutrition",
+        "Food safety certification preferred",
+        "Creative with recipes",
+        "Available on Sundays"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Kamala Wickramasinghe",
+        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b188?w=150&h=150&fit=crop&crop=face",
+        rating: 4.7,
+        completedTasks: 19,
+        memberSince: "July 2023"
+      }
+    },
+    "tech_support_enhanced": {
+      title: "Tech Support & Setup",
+      category: "Technology",
+      price: "Rs. 5,500",
+      urgent: true,
+      description: "Need help setting up a home office with computer, printer, and network equipment. Troubleshooting and basic IT support required. Must be patient with non-tech users.",
+      duration: "3-4 hours",
+      location: "Kottawa",
+      posted: "1 hour ago",
+      deadline: "Tomorrow",
+      requirements: [
+        "IT or tech support experience",
+        "Knowledge of networking",
+        "Problem-solving skills",
+        "Patient with non-tech users",
+        "Available evenings or weekends"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?w=800&h=600&fit=crop"
+      ],
+      creator: {
+        name: "Nuwan Gamage",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+        rating: 4.8,
+        completedTasks: 28,
+        memberSince: "April 2023"
+      }
     }
   };
 
