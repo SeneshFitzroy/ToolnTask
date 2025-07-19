@@ -68,6 +68,23 @@ export const generateTaskData = (id: string): TaskData => {
       ]
     },
     {
+      title: "Babysitting Service",
+      category: "Childcare",
+      description: "Need a reliable babysitter for my 2 children (ages 5 and 8) for weekend evenings. Responsible person who can engage with kids, help with homework, and ensure their safety.",
+      requirements: [
+        "Previous childcare experience required",
+        "Background check preferred",
+        "CPR certification preferred",
+        "Patient and responsible",
+        "Good communication skills"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1609631765658-d4b8b3ce5db7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop"
+      ]
+    },
+    {
       title: "House Cleaning Service",
       category: "Cleaning",
       description: "Need a professional house cleaning service for my 3-bedroom apartment. Includes kitchen, bathrooms, living areas, and bedrooms. All cleaning supplies will be provided.",
@@ -82,6 +99,23 @@ export const generateTaskData = (id: string): TaskData => {
         "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1609617052234-43950c65e5d2?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      title: "Pet Walking & Care",
+      category: "Pet Care",
+      description: "Looking for someone to walk my Golden Retriever twice a day and provide basic care when I'm at work. Must love dogs and be reliable.",
+      requirements: [
+        "Experience with dogs",
+        "Love for animals",
+        "Reliable schedule",
+        "Physical fitness for walking",
+        "Trustworthy and responsible"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1551717743-49959800b1f6?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&h=600&fit=crop"
       ]
     },
     {
@@ -133,6 +167,57 @@ export const generateTaskData = (id: string): TaskData => {
         "https://images.unsplash.com/photo-1558618666-f5c2c85efbe2?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1609617052234-43950c65e5d2?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      title: "Tutoring & Academic Help",
+      category: "Education",
+      description: "Need a qualified tutor for high school mathematics and science. Help with homework, exam preparation, and concept understanding.",
+      requirements: [
+        "Strong background in math/science",
+        "Teaching or tutoring experience",
+        "Patient and encouraging",
+        "Good communication skills",
+        "Flexible schedule"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      title: "Cooking & Meal Prep",
+      category: "Food Service",
+      description: "Looking for someone to prepare healthy meals for the week. Menu planning, grocery shopping, and meal preparation included.",
+      requirements: [
+        "Culinary skills and experience",
+        "Knowledge of healthy cooking",
+        "Food safety certification preferred",
+        "Organized and efficient",
+        "Creative with meal planning"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      title: "Tech Support & Setup",
+      category: "Technology",
+      description: "Need help setting up new smart home devices, computer troubleshooting, and basic tech support for elderly family member.",
+      requirements: [
+        "Strong technical skills",
+        "Patience with elderly users",
+        "Good communication skills",
+        "Problem-solving abilities",
+        "Reliable and trustworthy"
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1526378800651-c32a8eaa11b5?w=800&h=600&fit=crop"
       ]
     }
   ];
