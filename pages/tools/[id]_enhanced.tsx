@@ -10,6 +10,7 @@ import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { Heart, Share2, MapPin, Calendar, Star, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { generateToolData, ToolData } from '../../src/lib/gigDataService';
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
