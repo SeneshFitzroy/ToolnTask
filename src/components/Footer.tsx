@@ -218,7 +218,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
       <div className="py-6 border-t border-opacity-20" style={{ backgroundColor: theme === 'dark' ? '#2D3748' : '#F2F3F5', borderColor: theme === 'dark' ? '#444444' : '#B3B5BC' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-4">
-            <p className="text-sm text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+            <p className="text-xs text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               &copy; 2025 <Logo size="small" className="inline" />. All rights reserved. Made with{' '}
               <Heart className="w-4 h-4 inline mx-1" style={{ color: '#FE5F16' }} />{' '}
               for Sri Lankan communities.
