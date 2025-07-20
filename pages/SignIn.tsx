@@ -34,9 +34,9 @@ export default function SignIn() {
     }
     
     if (router.query.message === 'registration-success') {
-      setSuccessMessage('Account created successfully! Please login to continue.');
+      setSuccessMessage('Account created successfully. Please sign in to access your account.');
     } else if (router.query.message === 'password-reset-success') {
-      setSuccessMessage('🎉 Password updated successfully! You can now sign in with your new password.');
+      setSuccessMessage('Password updated successfully. You can now sign in with your new password.');
     }
   }, [router.query]);
 
@@ -123,35 +123,38 @@ export default function SignIn() {
     } catch (error: unknown) {
       console.error('Error signing in:', error);
       
-      // Handle specific Firebase Auth errors
-      let errorMessage = 'An error occurred during sign in';
+      // Handle specific Firebase Auth errors with professional messages
+      let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
       
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };
         switch (firebaseError.code) {
           case 'auth/invalid-credential':
-            errorMessage = 'Incorrect password. Please check your password and try again.';
+            errorMessage = 'Invalid credentials. Please verify your email/phone and password are correct.';
             break;
           case 'auth/user-not-found':
-            errorMessage = 'No account found with this email address. Please sign up first.';
+            errorMessage = 'Account not found. Please check your credentials or create a new account.';
             break;
           case 'auth/wrong-password':
-            errorMessage = 'Incorrect password. Please try again.';
+            errorMessage = 'Incorrect password. Please verify your password and try again.';
             break;
           case 'auth/invalid-email':
-            errorMessage = 'Invalid email address format.';
+            errorMessage = 'Invalid email format. Please enter a valid email address.';
             break;
           case 'auth/user-disabled':
-            errorMessage = 'This account has been disabled. Please contact support.';
+            errorMessage = 'Account temporarily suspended. Please contact our support team for assistance.';
             break;
           case 'auth/too-many-requests':
-            errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
+            errorMessage = 'Multiple failed attempts detected. Please wait a few minutes before retrying.';
             break;
           case 'auth/network-request-failed':
-            errorMessage = 'Network error. Please check your internet connection.';
+            errorMessage = 'Connection error. Please check your internet connection and try again.';
+            break;
+          case 'auth/invalid-login-credentials':
+            errorMessage = 'Login credentials are invalid. Please verify your information and try again.';
             break;
           default:
-            errorMessage = 'Login failed. Please check your email and password.';
+            errorMessage = 'Authentication unsuccessful. Please verify your credentials and try again.';
         }
       } else if (error instanceof Error) {
         errorMessage = error.message;
