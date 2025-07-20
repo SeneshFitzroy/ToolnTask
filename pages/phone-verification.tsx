@@ -53,11 +53,6 @@ export default function PhoneVerification() {
       return () => clearTimeout(timer);
     }
   }, [countdown]);
-      /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
-    ];
-    
-    return patterns.some(pattern => pattern.test(cleanPhone));
-  };
 
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
