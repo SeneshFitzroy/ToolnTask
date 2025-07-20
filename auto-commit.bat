@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
-git config user.email "10952854@students.plymouth.ac.uk"
-git config user.name "Mandira-16"
+git config user.email "10952757@students.plymouth.ac.uk"
+git config user.name "SeneshFitzroy"
 git add .
 set "FILES="
 for /f %%i in ('git diff --cached --name-only') do set "FILES=%%i, !FILES!"
