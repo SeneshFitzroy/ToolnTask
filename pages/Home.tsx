@@ -357,21 +357,21 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-7 sm:p-9 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F2F3F5' }}
+                className="text-center p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                style={{ backgroundColor: theme === 'dark' ? '#1f2937' : '#FFFFFF', border: theme === 'dark' ? '1px solid #374151' : '1px solid #E5E7EB' }}
               >
                 {/* Icon */}
-                <div className="text-2xl sm:text-3xl mb-5">
+                <div className="text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8">
                   {stat.icon}
                 </div>
                 
                 {/* Number */}
-                <div className="text-sm sm:text-base lg:text-lg font-bold mb-3" style={{ color: stat.color }}>
+                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6" style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-xs sm:text-sm lg:text-base font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-semibold leading-relaxed" style={{ color: theme === 'dark' ? '#F9FAFB' : '#1F2937' }}>
                   {stat.label}
                 </h3>
               </div>
