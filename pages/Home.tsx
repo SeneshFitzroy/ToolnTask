@@ -401,7 +401,7 @@ export default function Home() {
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
-              <Logo size="large" showUnderline={true} className="inline" />
+              <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-5xl mx-auto font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
