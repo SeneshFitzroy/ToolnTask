@@ -60,17 +60,53 @@ export default function SignIn() {
       return;
     }
 
-    // Email format validation
+    // Validate input format (email or Sri Lankan phone number)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setError('Please enter a valid email address');
+    const phoneRegex = /^(\+94|0094|94|0)?[1-9][0-9]{8,9}$/;
+    const cleanedInput = formData.email.replace(/[\s\-\(\)]/g, '');
+    
+    const isValidEmail = emailRegex.test(formData.email);
+    const isValidPhone = phoneRegex.test(cleanedInput);
+    
+    if (!isValidEmail && !isValidPhone) {
+      setError('Please enter a valid email address or Sri Lankan phone number (e.g., 077 123 4567)');
       setLoading(false);
       return;
     }
 
     try {
-      // Sign in with Firebase Auth
-      await signInWithEmailAndPassword(auth, formData.email.trim(), formData.password);
+      let loginIdentifier = formData.email.trim();
+      
+      // If it's a phone number, we need to find the associated email
+      if (isValidPhone) {
+        try {
+          const response = await fetch('/api/get-email-by-phone', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ phone: cleanedInput }),
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok && data.email) {
+            loginIdentifier = data.email;
+          } else {
+            setError('Phone number not found. Please register first or use your email address.');
+            setLoading(false);
+            return;
+          }
+        } catch (phoneError) {
+          console.error('Error finding email by phone:', phoneError);
+          setError('Error validating phone number. Please try using your email address.');
+          setLoading(false);
+          return;
+        }
+      }
+      
+      // Sign in with Firebase Auth using email (either provided directly or found by phone)
+      await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
       console.log('User signed in successfully');
       
       // Handle "Remember me" functionality
