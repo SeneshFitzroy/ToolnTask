@@ -351,8 +351,8 @@ export default function TermsAndConditions() {
               </p>
               <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mt-4">
                 <p className="text-slate-600 dark:text-gray-300">
-                  <strong>Email:</strong> legal@toolntask.com<br/>
-                  <strong>Phone:</strong> +94 11 123 4567<br/>
+                  <strong>Email:</strong> toolntask@gmail.com<br/>
+                  <strong>Phone:</strong> +94 76 112 0457<br/>
                   <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
                 </p>
               </div>
