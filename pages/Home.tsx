@@ -5,7 +5,7 @@ import Footer from '../src/components/Footer';
 import FilterButtons from '../src/components/FilterButtons            {[
               { icon: '🤝', number: '250+', label: 'Community Members', color: '#FF5E14' },
               { icon: '⚡', number: '150+', label: 'Active Listings', color: '#FF5E14' },
-              { icon: '😊', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
+              { icon: '🌟', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
             ].map((stat, index) => (mport Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 // import BottomBannerAd from '../src/components/BottomBannerAd';
