@@ -2,8 +2,7 @@ import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 // import TaskCard from '../src/components/TaskCard'; // Will be used when users create tasks
 // import ToolCard from '../src/components/ToolCard'; // Will be used when users create tools
-import FilterButtons from '../src/components/FilterButtons';
-import Logo from '../src/components/Logo';
+import FilterButtons from '../src/components/FilterButtons';              { icon: '🌟', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 // import BottomBannerAd from '../src/components/BottomBannerAd';
 // import SideAds from '../src/components/SideAds';
@@ -339,17 +338,17 @@ export default function Home() {
         </div>
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+          <div className="text-center mb-10 sm:mb-12 md:mb-14">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Building Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
               Connecting neighbors, sharing resources, and creating opportunities in every district!
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-9">
             {[
               { icon: '🤝', number: '250+', label: 'Community Members', color: '#FF5E14' },
               { icon: '⚡', number: '150+', label: 'Active Listings', color: '#FF5E14' },
@@ -357,21 +356,21 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: theme === 'dark' ? '#1f2937' : '#FFFFFF', border: theme === 'dark' ? '1px solid #374151' : '1px solid #E5E7EB' }}
               >
                 {/* Icon */}
-                <div className="text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8">
+                <div className="text-3xl sm:text-4xl mb-4 sm:mb-5">
                   {stat.icon}
                 </div>
                 
                 {/* Number */}
-                <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6" style={{ color: stat.color }}>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3" style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-semibold leading-relaxed" style={{ color: theme === 'dark' ? '#F9FAFB' : '#1F2937' }}>
+                <h3 className="text-sm sm:text-base lg:text-lg font-semibold" style={{ color: theme === 'dark' ? '#F9FAFB' : '#1F2937' }}>
                   {stat.label}
                 </h3>
               </div>
