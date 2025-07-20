@@ -381,7 +381,7 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="pt-6 pb-8 sm:pt-8 sm:pb-10 md:pt-8 md:pb-12 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+      <div className="pt-4 pb-8 sm:pt-6 sm:pb-10 md:pt-6 md:pb-12 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
@@ -390,15 +390,6 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
           <div className="text-center mb-10 sm:mb-12 md:mb-14">
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8 shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl" 
-                 style={{ 
-                   backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
-                 }}>
-              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
-                Simple Process
-              </span>
-            </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
