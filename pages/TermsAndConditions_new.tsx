@@ -51,7 +51,7 @@ export default function TermsAndConditions() {
                   1. Agreement
                 </h2>
                 <p className="text-gray-700 dark:text-gray-300">
-                  By using ToolNTask, you agree to these terms. If you don't agree, please don't use our platform.
+                  By using ToolNTask, you agree to these terms. If you do not agree, please do not use our platform.
                 </p>
               </section>
 
