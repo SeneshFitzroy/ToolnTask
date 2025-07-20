@@ -167,7 +167,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tools" 
-              className="px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -195,7 +195,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/About" 
-              className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-md nav-shine-effect ${isActiveLink('/About') ? 'nav-active' : ''}`} 
+              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -231,7 +231,7 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
@@ -248,12 +248,12 @@ const Navigation = () => {
                     e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.3)';
                   }}
                 >
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   <span>Create</span>
                   <ChevronDown 
-                    className={`h-3 w-3 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    className={`h-4 w-4 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
                     strokeWidth={2}
                   />
                 </button>
