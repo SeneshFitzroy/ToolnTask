@@ -44,7 +44,9 @@ export default function Tasks() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   const handleFilterChange = (filter: 'available' | 'requested') => {
     setActiveFilter(filter);
