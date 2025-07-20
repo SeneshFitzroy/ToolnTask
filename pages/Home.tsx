@@ -412,7 +412,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-9 sm:gap-11 md:gap-13">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
             {[
               { 
                 step: '1', 
@@ -452,39 +452,39 @@ export default function Home() {
                 className="text-center relative group"
                 style={{ animationDelay: step.delay }}
               >
-                {/* Simple Step Card */}
+                {/* Enhanced Step Card */}
                 <div 
-                  className="relative p-7 sm:p-9 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
-                  style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}
+                  className="relative p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group cursor-pointer"
+                  style={{ backgroundColor: theme === 'dark' ? '#1f2937' : '#FFFFFF', border: theme === 'dark' ? '1px solid #374151' : '1px solid #E5E7EB' }}
                 >
                   {/* Step Number */}
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base mx-auto mb-5 shadow-lg" style={{ backgroundColor: step.color }}>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg lg:text-xl mx-auto mb-6 sm:mb-8 shadow-lg" style={{ backgroundColor: step.color }}>
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className="text-2xl sm:text-3xl mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 transform group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-4 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold mb-4 sm:mb-6 transform group-hover:scale-105 transition-transform duration-300 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {step.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-xs sm:text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
                     {step.desc}
                   </p>
                   
-                  {/* Subtle hover glow */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
+                  {/* Enhanced hover glow */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
                 </div>
                 
-                {/* Simple Connection Arrow */}
+                {/* Enhanced Connection Arrow */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-12 -right-4 z-20">
-                    <svg className="w-8 h-6 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
+                  <div className="hidden md:block absolute top-16 lg:top-20 -right-4 lg:-right-6 z-20">
+                    <svg className="w-10 h-8 lg:w-12 lg:h-10 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h20m0 0l-4-4m4 4l-4 4" />
                     </svg>
                   </div>
