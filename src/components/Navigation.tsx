@@ -325,14 +325,14 @@ const Navigation = () => {
             <div className="hidden sm:flex items-center space-x-5">
               {user ? (
                 <div className="flex items-center space-x-4">
-                  {/* User Profile Button - 90% Zoom Enhanced Design */}
+                  {/* User Profile Button - Circular Medium Design */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shine-effect min-w-[160px]" 
+                    className="flex items-center justify-center w-12 h-12 rounded-full text-sm font-semibold transition-all duration-200 shine-effect" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
@@ -342,32 +342,21 @@ const Navigation = () => {
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.transform = 'scale(1.05)';
                       e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 94, 20, 0.25)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
-                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.transform = 'scale(1)';
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                     }}
+                    title={`Account - ${user.displayName || user.email?.split('@')[0] || 'User'}`}
                   >
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md" 
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-sm font-bold leading-tight truncate max-w-[100px]">
-                        {user.displayName || user.email?.split('@')[0] || 'User'}
-                      </span>
-                      <span className="text-xs opacity-75 truncate max-w-[100px]" style={{ color: '#FF5E14' }}>
-                        Account
-                      </span>
-                    </div>
-                    <ChevronDown 
-                      className={`h-6 w-6 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
-                      strokeWidth={2}
-                    />
                   </button>
                   
                   {/* Enhanced Profile Dropdown */}
