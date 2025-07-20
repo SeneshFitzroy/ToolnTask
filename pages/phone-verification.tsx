@@ -107,7 +107,7 @@ export default function PhoneVerification() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('✅ Phone verified! Redirecting to password reset...');
+        setMessage('Phone number verified successfully. Redirecting to password reset...');
         
         // Generate a temporary token for password reset
         setTimeout(() => {
