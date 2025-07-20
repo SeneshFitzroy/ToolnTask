@@ -231,7 +231,7 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
@@ -248,7 +248,7 @@ const Navigation = () => {
                     e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 20, 0.4)';
                   }}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   <span>Create</span>
