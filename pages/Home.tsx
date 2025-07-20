@@ -429,24 +429,24 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+      <div className="py-18 sm:py-22 md:py-26 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
           <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554' }}></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <div className="inline-flex items-center px-4 py-2 rounded-full mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <span className="text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
+        <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
+          <div className="text-center mb-13 sm:mb-17 md:mb-21">
+            <div className="inline-flex items-center px-5 py-3 rounded-full mb-7 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+              <span className="text-base font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-7" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
               <Logo size="xl" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
