@@ -461,7 +461,7 @@ export default function About() {
                       backgroundColor: theme === 'dark' ? '#3a3a3a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="+94 77 123 4567"
+                    placeholder="+94 76 112 0457"
                     onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                     onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
                   />
