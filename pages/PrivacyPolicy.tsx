@@ -378,7 +378,7 @@ export default function PrivacyPolicy() {
                     <span>📧</span> Email Support
                   </h4>
                   <p className="mb-3" style={{ color: '#B3B5BC' }}>
-                    <strong>Email:</strong> privacy@toolntask.com<br/>
+                    <strong>Email:</strong> toolntask@gmail.com<br/>
                     <strong>Response Time:</strong> Within 24 hours
                   </p>
                   <button 
