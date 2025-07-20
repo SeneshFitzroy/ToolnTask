@@ -73,13 +73,14 @@ export default function ResetPassword() {
         router.push('/SignIn?message=password-reset-success');
       }, 3000);
 
-    } catch (error: any) {
+    } catch (error) {
       console.error('Password reset error:', error);
-      if (error.code === 'auth/expired-action-code') {
+      const firebaseError = error as { code?: string };
+      if (firebaseError.code === 'auth/expired-action-code') {
         setError('This reset link has expired. Please request a new password reset.');
-      } else if (error.code === 'auth/invalid-action-code') {
+      } else if (firebaseError.code === 'auth/invalid-action-code') {
         setError('This reset link is invalid. Please request a new password reset.');
-      } else if (error.code === 'auth/weak-password') {
+      } else if (firebaseError.code === 'auth/weak-password') {
         setError('Password is too weak. Please choose a stronger password.');
       } else {
         setError('Error updating password. Please try again.');
