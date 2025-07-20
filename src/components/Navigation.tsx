@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
+import LanguageSelector from './LanguageSelector';
 
 const Navigation = () => {
   const { theme } = useTheme();

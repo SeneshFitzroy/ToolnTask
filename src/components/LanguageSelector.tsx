@@ -55,7 +55,9 @@ const LanguageSelector: React.FC = () => {
     console.log(`Language changed to: ${language.name} (${language.code})`);
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="relative language-dropdown">
