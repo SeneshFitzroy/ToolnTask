@@ -130,7 +130,8 @@ export default function ResetPassword() {
     return null;
   }
 
-  if (!token) {
+  // Show error if neither token nor verified phone
+  if (!token && !(phone && verified)) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <Navigation />
@@ -176,7 +177,10 @@ export default function ResetPassword() {
                 Create New Password
               </h1>
               <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                Your new password must meet security requirements
+                {phone && verified 
+                  ? `Phone verified: ${phone} ✅`
+                  : 'Your new password must meet security requirements'
+                }
               </p>
             </div>
 
