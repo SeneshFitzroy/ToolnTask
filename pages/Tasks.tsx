@@ -417,7 +417,7 @@ export default function Tasks() {
                           color: '#FF5E14',
                           border: '1px solid rgba(255, 94, 20, 0.3)'
                         }}>
-                    Search: "{searchTerm}"
+                    Search: &ldquo;{searchTerm}&rdquo;
                     <button
                       onClick={() => setSearchTerm('')}
                       className="ml-1 hover:scale-110 transition-transform"
