@@ -533,13 +533,13 @@ export default function Home() {
           </div>
           
           {/* Bottom CTA */}
-          <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+          <div className="text-center mt-13 sm:mt-17 md:mt-21">
+            <div className="inline-flex items-center gap-4 px-7 py-4 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
+              <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
+              <span className="text-base sm:text-lg font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Ready to get started? It only takes 2 minutes to begin!
               </span>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', animationDelay: '0.5s' }}></div>
+              <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', animationDelay: '0.5s' }}></div>
             </div>
           </div>
         </div>
