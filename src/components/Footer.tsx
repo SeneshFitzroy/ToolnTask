@@ -183,7 +183,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                   { href: '/Tasks', label: 'Browse Tasks' },
                   { href: '/Tools', label: 'Rent Tools' },
                   { href: '/About', label: 'About Us' },
-                  { href: '/Contact', label: 'Contact Us' }
+                  { href: '/About#contact', label: 'Contact Us' }
                 ].map((link, index) => (
                   <li key={index}>
                     <Link 
