@@ -157,7 +157,12 @@ export default async function handler(
             setTimeout(() => reject(new Error('SMS timeout after 10 seconds')), 10000)
           );
 
-          const message: any = await Promise.race([messagePromise, timeoutPromise]);
+          interface TwilioMessage {
+            sid: string;
+            status: string;
+          }
+          
+          const message = await Promise.race([messagePromise, timeoutPromise]) as TwilioMessage;
 
           console.log(`✅ Real SMS sent to ${formattedPhone}: ${otp}`);
           console.log(`📱 Message SID: ${message.sid}, Status: ${message.status}`);
