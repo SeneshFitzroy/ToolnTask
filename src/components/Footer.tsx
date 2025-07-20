@@ -206,22 +206,65 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
               <ul className="space-y-3">
                 {[
-                  { href: '/PrivacyPolicy', label: 'Privacy Policy' },
-                  { href: '/TermsAndConditions', label: 'Terms & Conditions' },
-                  { href: '/Support', label: 'Support Center' },
-                  { href: '/Safety', label: 'Safety Guidelines' }
+                  { href: '/PrivacyPolicy', label: 'Privacy & Safety' },
+                  { href: '#', label: 'Support Center', action: 'openChat' }
                 ].map((link, index) => (
                   <li key={index}>
-                    <Link 
-                      href={link.href} 
-                      className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
-                      style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
-                      {link.label}
-                    </Link>
+                    {link.action === 'openChat' ? (
+                      <button
+                        onClick={() => {
+                          // Open chatbot in right corner
+                          const chatWidget = document.createElement('div');
+                          chatWidget.id = 'toolntask-chat';
+                          chatWidget.innerHTML = `
+                            <div style="position: fixed; bottom: 20px; right: 20px; width: 350px; height: 500px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 9999; border: 1px solid #e2e8f0;">
+                              <div style="background: linear-gradient(135deg, #FE5F16, #FF5E14); color: white; padding: 15px; border-radius: 15px 15px 0 0; display: flex; justify-content: space-between; align-items: center;">
+                                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">ToolNTask Support</h3>
+                                <button onclick="document.getElementById('toolntask-chat').remove()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">×</button>
+                              </div>
+                              <div style="padding: 20px; height: 400px; display: flex; flex-direction: column;">
+                                <div style="flex: 1; overflow-y: auto; margin-bottom: 15px;">
+                                  <div style="background: #f7f7f7; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+                                    <p style="margin: 0; color: #333; font-size: 14px;">👋 Hi! I'm here to help you with ToolNTask. How can I assist you today?</p>
+                                  </div>
+                                  <div style="background: #f7f7f7; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+                                    <p style="margin: 0 0 8px 0; color: #333; font-size: 14px; font-weight: 600;">Quick Help:</p>
+                                    <p style="margin: 0 0 4px 0; color: #666; font-size: 13px;">• How to post a task</p>
+                                    <p style="margin: 0 0 4px 0; color: #666; font-size: 13px;">• How to rent tools</p>
+                                    <p style="margin: 0 0 4px 0; color: #666; font-size: 13px;">• Account verification</p>
+                                    <p style="margin: 0; color: #666; font-size: 13px;">• Payment & safety</p>
+                                  </div>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                  <input type="text" placeholder="Type your message..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;" />
+                                  <button style="background: #FE5F16; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-size: 14px;">Send</button>
+                                </div>
+                                <p style="margin: 8px 0 0 0; text-align: center; color: #888; font-size: 12px;">Email: toolntask@gmail.com | Phone: +94 76 112 0457</p>
+                              </div>
+                            </div>
+                          `;
+                          document.body.appendChild(chatWidget);
+                        }}
+                        className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group bg-transparent border-none p-0 cursor-pointer"
+                        style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link 
+                        href={link.href} 
+                        className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
+                        style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
