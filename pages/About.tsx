@@ -65,15 +65,25 @@ export default function About() {
     }
 
     try {
-      await addDoc(collection(db, 'contacts'), {
+      // Send message to admin dashboard for future implementation
+      const contactMessage = {
         ...formData,
         userId: user?.uid || null,
         userEmail: user?.email || null,
         timestamp: serverTimestamp(),
-        status: 'new'
-      });
+        status: 'new',
+        type: 'contact_form',
+        source: 'about_page',
+        priority: 'normal'
+      };
 
-      setSuccess('Thank you for your message! We\'ll get back to you soon.');
+      // Store in contacts collection for admin dashboard
+      await addDoc(collection(db, 'admin_messages'), contactMessage);
+      
+      // Also store in contacts collection for backwards compatibility
+      await addDoc(collection(db, 'contacts'), contactMessage);
+
+      setSuccess('✅ Thank you for your message! We\'ll get back to you soon.');
       setFormData({
         firstName: '',
         lastName: '',
@@ -84,7 +94,7 @@ export default function About() {
       });
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      setError('Error sending message. Please try again.');
+      setError('❌ Error sending message. Please try again.');
     } finally {
       setLoading(false);
     }
