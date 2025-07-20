@@ -556,17 +556,17 @@ export default function Home() {
             {/* Simple Badge */}
             <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full mb-7 backdrop-blur-sm" 
                  style={{ backgroundColor: 'rgba(255, 94, 20, 0.15)', border: '1px solid rgba(255, 94, 20, 0.3)' }}>
-              <span className="text-base font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
+              <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
             </div>
             
             {/* Concise Headline */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 leading-tight" style={{ color: '#FFFFFF' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5 leading-tight" style={{ color: '#FFFFFF' }}>
               Transform Your{' '}
               <span style={{ color: '#FF5E14' }}>Community</span>
             </h2>
             
             {/* Short Description */}
-            <p className="text-xl sm:text-2xl mb-9 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            <p className="text-xs sm:text-sm md:text-base mb-9 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
               Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
             </p>
             
