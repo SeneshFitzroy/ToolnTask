@@ -158,7 +158,7 @@ export default function About() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-base sm:text-lg md:text-xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connecting communities through shared tasks and tool rentals across Sri Lanka
           </p>
