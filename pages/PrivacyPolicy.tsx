@@ -346,7 +346,7 @@ export default function PrivacyAndSafety() {
                   Emergency Safety Concerns
                 </h3>
                 <p className="text-sm mb-4" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                  If you're experiencing immediate safety concerns or threats, please contact local emergency services first, 
+                  If you&apos;re experiencing immediate safety concerns or threats, please contact local emergency services first, 
                   then reach out to our support team.
                 </p>
                 <div className="flex justify-center gap-4">
