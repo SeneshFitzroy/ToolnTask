@@ -366,7 +366,7 @@ export default function About() {
               Contact Us
             </h2>
             <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-              Have questions or need support? We&apos;re here to help you succeed on <Logo size="small" className="inline mx-1" />
+              Have questions or need support? We&apos;re here to help you succeed on <Logo size="medium" className="inline mx-2" />
             </p>
           </div>
 
