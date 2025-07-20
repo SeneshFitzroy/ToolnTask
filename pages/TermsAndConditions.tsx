@@ -45,27 +45,8 @@ export default function TermsAndConditions() {
             </p>
           </div>
 
-          {/* Acceptance */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-            <div className="flex items-center gap-3">
-              <input
-                type="checkbox"
-                id="accept-terms"
-                checked={acceptedTerms}
-                onChange={(e) => setAcceptedTerms(e.target.checked)}
-                className="w-4 h-4 text-orange-600 focus:ring-orange-500"
-              />
-              <label htmlFor="accept-terms" className="text-gray-700 dark:text-gray-300">
-                I agree to these Terms of Service
-              </label>
-              {acceptedTerms && (
-                <span className="text-green-600 ml-auto">✓</span>
-              )}
-            </div>
-          </div>
-
           {/* Simple Terms Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8">{/* Remove the acceptance section from here */}
             <div className="space-y-6">
               
               {/* 1. Agreement */}
