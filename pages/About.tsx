@@ -150,7 +150,7 @@ export default function About() {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#1a1a1a' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>
                 98%
               </div>
               <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
