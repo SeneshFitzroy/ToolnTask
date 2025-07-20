@@ -600,7 +600,7 @@ export default function Home() {
               
               <Link href="/About">
                 <Button 
-                  className="w-full sm:w-auto text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                  className="w-full sm:w-auto text-xl font-bold px-9 py-5 rounded-xl transition-all duration-300 hover:scale-105 border-2"
                   style={{ 
                     backgroundColor: 'transparent',
                     color: '#FFFFFF',
@@ -621,17 +621,17 @@ export default function Home() {
             </div>
             
             {/* Simple Trust Indicators */}
-            <div className="flex justify-center gap-6 sm:gap-8 text-base sm:text-lg" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+            <div className="flex justify-center gap-7 sm:gap-9 text-lg sm:text-xl" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">No Fees</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Verified</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Secure</span>
               </div>
             </div>
