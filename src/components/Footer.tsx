@@ -12,12 +12,48 @@ interface FooterProps {
 const Footer = ({ showNewsletter = false }: FooterProps) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || isSubscribing) return;
+
+    setIsSubscribing(true);
+    try {
+      const response = await fetch('/api/newsletter-subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setSubscriptionStatus('success');
+        setEmail('');
+        setTimeout(() => setSubscriptionStatus('idle'), 5000);
+      } else {
+        setSubscriptionStatus('error');
+        setTimeout(() => setSubscriptionStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setSubscriptionStatus('error');
+      setTimeout(() => setSubscriptionStatus('idle'), 5000);
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  if (!mounted) {
+    return null;
+  }
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -30,17 +66,21 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="text-sm sm:text-base lg:text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Stay Connected with</span>
+                <span className="text-base sm:text-lg lg:text-xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Stay Connected with</span>
                 <Logo size="medium" />
               </div>
-              <p className="text-xs sm:text-sm mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
+              <p className="text-sm sm:text-base mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
                 Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-xs sm:text-sm"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isSubscribing}
+                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-sm sm:text-base"
                   style={{ 
                     borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
@@ -50,14 +90,28 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                   onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
                 />
                 <button
-                  className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                  type="submit"
+                  disabled={!email || isSubscribing}
+                  className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                   style={{ backgroundColor: '#FE5F16' }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF5D13'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FE5F16'}
+                  onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FF5D13')}
+                  onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FE5F16')}
                 >
-                  Subscribe
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                 </button>
-              </div>
+              </form>
+              
+              {/* Status Messages */}
+              {subscriptionStatus === 'success' && (
+                <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+                  ✅ Successfully subscribed! Check your email for a welcome message.
+                </div>
+              )}
+              {subscriptionStatus === 'error' && (
+                <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                  ❌ Something went wrong. Please try again later.
+                </div>
+              )}
             </div>
           </div>
         </div>
