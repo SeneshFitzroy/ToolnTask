@@ -9,7 +9,7 @@ import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
 
 const Navigation = () => {
-  const { theme } =                         className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b text-sm"seTheme();
+  const { theme } = useTheme();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
