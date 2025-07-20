@@ -289,7 +289,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                   </div>
                 </div>
               </>
-            ) : (
+            ) : activeTab === 'call' ? (
               /* Call Tab */
               <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
                 <div
@@ -368,6 +368,171 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                   >
                     📞 Request Call Now
                   </button>
+                </div>
+              </div>
+            ) : (
+              /* Support Center Tab */
+              <div className="flex-1 p-6 flex flex-col">
+                <div className="text-center mb-6">
+                  <div
+                    className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
+                    style={{ backgroundColor: '#FF5E14' }}
+                  >
+                    <span className="text-2xl text-white">🛠️</span>
+                  </div>
+                  <h3
+                    className="text-xl font-bold mb-2"
+                    style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
+                  >
+                    ToolNTask Support Center
+                  </h3>
+                  <p
+                    className="text-sm"
+                    style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                  >
+                    Get help with your account, report issues, or ask questions
+                  </p>
+                </div>
+
+                <div className="flex-1 space-y-4">
+                  {/* Chat Support Option */}
+                  <div
+                    className="p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 cursor-pointer"
+                    style={{ 
+                      backgroundColor: theme === 'dark' ? '#374151' : '#F8FAFC',
+                      borderColor: '#FF5E14'
+                    }}
+                    onClick={() => setActiveTab('chat')}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: '#FF5E14' }}
+                      >
+                        <span className="text-white text-lg">💬</span>
+                      </div>
+                      <div className="flex-1">
+                        <h4
+                          className="font-bold text-lg mb-1"
+                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
+                        >
+                          Chat Support
+                        </h4>
+                        <p
+                          className="text-sm"
+                          style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                        >
+                          Get instant help through our AI assistant
+                        </p>
+                      </div>
+                      <span className="text-2xl">→</span>
+                    </div>
+                  </div>
+
+                  {/* Call Support Option */}
+                  <div
+                    className="p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 cursor-pointer"
+                    style={{ 
+                      backgroundColor: theme === 'dark' ? '#374151' : '#F8FAFC',
+                      borderColor: '#FF5E14'
+                    }}
+                    onClick={() => {
+                      alert(`📞 Support Call Request Sent!\n\nOur team will call you at your registered number within 5 minutes.\n\nFor immediate assistance, you can also call:\n+94 76 112 0457\n\nThank you for choosing ToolNTask!`);
+                    }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: '#FF5E14' }}
+                      >
+                        <span className="text-white text-lg">📞</span>
+                      </div>
+                      <div className="flex-1">
+                        <h4
+                          className="font-bold text-lg mb-1"
+                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
+                        >
+                          Call Support
+                        </h4>
+                        <p
+                          className="text-sm"
+                          style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                        >
+                          Speak directly with our support team
+                        </p>
+                        <p
+                          className="text-xs mt-1 font-medium"
+                          style={{ color: '#FF5E14' }}
+                        >
+                          +94 76 112 0457
+                        </p>
+                      </div>
+                      <span className="text-2xl">→</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Actions */}
+                  <div
+                    className="p-4 rounded-xl"
+                    style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6' }}
+                  >
+                    <h5
+                      className="font-semibold mb-3"
+                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
+                    >
+                      Quick Actions
+                    </h5>
+                    <div className="space-y-2">
+                      <button
+                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
+                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                        onClick={() => {
+                          setActiveTab('chat');
+                          const helpMessage = {
+                            id: Date.now(),
+                            type: 'user',
+                            message: 'I need help with my account',
+                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          };
+                          setMessages(prev => [...prev, helpMessage]);
+                        }}
+                      >
+                        🔧 Account Issues
+                      </button>
+                      <button
+                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
+                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                        onClick={() => {
+                          setActiveTab('chat');
+                          const helpMessage = {
+                            id: Date.now(),
+                            type: 'user',
+                            message: 'I want to report a problem',
+                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          };
+                          setMessages(prev => [...prev, helpMessage]);
+                        }}
+                      >
+                        🚨 Report Problem
+                      </button>
+                      <button
+                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
+                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                        onClick={() => {
+                          setActiveTab('chat');
+                          const helpMessage = {
+                            id: Date.now(),
+                            type: 'user',
+                            message: 'How does ToolNTask work?',
+                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          };
+                          setMessages(prev => [...prev, helpMessage]);
+                        }}
+                      >
+                        ❓ How it Works
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
