@@ -107,11 +107,11 @@ const Navigation = () => {
             <Logo size="large" interactive={false} />
           </Link>
 
-          {/* Desktop Navigation - Optimized button sizes */}
+          {/* Desktop Navigation - Enhanced large button sizes */}
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-6 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -139,7 +139,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-6 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
