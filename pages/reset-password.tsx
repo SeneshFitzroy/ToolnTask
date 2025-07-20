@@ -33,10 +33,23 @@ export default function ResetPassword() {
 
   useEffect(() => {
     setMounted(true);
+    
+    // Handle traditional email token reset
     if (router.query.token) {
       setToken(router.query.token as string);
     }
-  }, [router.query]);
+    
+    // Handle phone verification reset
+    if (router.query.phone && router.query.verified === 'true') {
+      setPhone(router.query.phone as string);
+      setVerified(true);
+    }
+    
+    // If neither token nor verified phone, show error
+    if (router.isReady && !router.query.token && !(router.query.phone && router.query.verified === 'true')) {
+      setError('Invalid reset link. Please request a new password reset.');
+    }
+  }, [router.query, router.isReady]);
 
   // Real-time password validation
   useEffect(() => {
