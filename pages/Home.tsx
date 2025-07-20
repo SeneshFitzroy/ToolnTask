@@ -485,12 +485,12 @@ export default function Home() {
 
       {/* Clean & Concise CTA Section - Only show for non-logged in users */}
       {!user && (
-        <div className="py-13 sm:py-17 md:py-21 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
+        <div className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#001554' }}>
           {/* Simple Background */}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #001554 0%, #001a6b 100%)' }}></div>
           <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(255, 94, 20, 0.3) 0%, transparent 70%)' }}></div>
           
-          <div className="max-w-4xl mx-auto px-5 sm:px-7 lg:px-9 text-center relative z-10">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center relative z-10">
             {/* Main Headline */}
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
               Transform Your{' '}
