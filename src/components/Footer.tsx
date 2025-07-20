@@ -92,7 +92,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                 <button
                   type="submit"
                   disabled={!email || isSubscribing}
-                  className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                  className="px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-lg"
                   style={{ backgroundColor: '#FE5F16' }}
                   onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FF5D13')}
                   onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FE5F16')}
