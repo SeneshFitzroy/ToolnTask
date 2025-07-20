@@ -358,7 +358,7 @@ export default function Home() {
               <div 
                 key={index} 
                 className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
-                style={{ backgroundColor: theme === 'dark' ? '#1f2937' : '#FFFFFF', border: theme === 'dark' ? '1px solid #374151' : '1px solid #E5E7EB' }}
+                style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6', border: theme === 'dark' ? '1px solid #4B5563' : '1px solid #D1D5DB' }}
               >
                 {/* Icon */}
                 <div className="text-3xl sm:text-4xl mb-4 sm:mb-5">
@@ -389,16 +389,25 @@ export default function Home() {
         </div>
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
-          <div className="text-center mb-13 sm:mb-17 md:mb-21">
-            <div className="inline-flex items-center px-5 py-3 rounded-full mb-7 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
+          <div className="text-center mb-10 sm:mb-12 md:mb-14">
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8 shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
+                   animationDuration: '2s'
+                 }}>
+              <span className="text-lg sm:text-xl mr-2 animate-bounce">⚡</span>
+              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
+                Simple Process
+              </span>
+              <span className="ml-2 animate-spin text-lg">✨</span>
             </div>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5 sm:mb-7" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
-              <Logo size="small" showUnderline={true} className="inline" />
+              <Logo size="medium" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-xs sm:text-sm md:text-base max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
