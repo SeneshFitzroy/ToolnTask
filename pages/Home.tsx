@@ -409,17 +409,17 @@ export default function Home() {
                 style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F2F3F5' }}
               >
                 {/* Icon */}
-                <div className="text-5xl sm:text-6xl mb-5">
+                <div className="text-2xl sm:text-3xl mb-5">
                   {stat.icon}
                 </div>
                 
                 {/* Number */}
-                <div className="text-4xl sm:text-5xl font-bold mb-3" style={{ color: stat.color }}>
+                <div className="text-sm sm:text-base lg:text-lg font-bold mb-3" style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-xl sm:text-2xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                <h3 className="text-xs sm:text-sm lg:text-base font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                   {stat.label}
                 </h3>
               </div>
