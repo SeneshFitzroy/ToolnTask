@@ -158,19 +158,20 @@ export default function About() {
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Main Heading - Consistent with Tasks and Tools pages */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 leading-tight">
-            <span className="inline-block" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 sm:mb-8 leading-tight tracking-tight">
+            <span className="inline-block hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               About{' '}
             </span>
             <span className="relative inline-block group">
-              <span className="relative z-10 inline-block" style={{ color: '#FF5E14' }}>
+              <span className="relative z-10 hover:scale-105 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
                 ToolNTask
               </span>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
             </span>
           </h1>
           
           {/* Subheading */}
-          <p className="text-lg sm:text-xl lg:text-2xl text-center mb-8 max-w-4xl mx-auto leading-relaxed" 
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center mb-8 sm:mb-10 max-w-5xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connecting communities through shared tasks and tool rentals across Sri Lanka
           </p>
