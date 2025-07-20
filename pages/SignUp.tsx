@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
+import { Eye, EyeOff, Check, X } from 'lucide-react';
 
 // Email service function
 const sendWelcomeEmail = async (firstName: string, email: string) => {
@@ -41,6 +42,8 @@ export default function SignUp() {
   const [successMessage, setSuccessMessage] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [registrationMethod, setRegistrationMethod] = useState<'email' | 'phone'>('email');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -49,11 +52,35 @@ export default function SignUp() {
     password: '',
     confirmPassword: ''
   });
+
+  // Password validation states
+  const [passwordValidation, setPasswordValidation] = useState({
+    length: false,
+    uppercase: false,
+    lowercase: false,
+    number: false,
+    special: false,
+    match: false
+  });
+
   const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Real-time password validation
+  useEffect(() => {
+    const validation = {
+      length: formData.password.length >= 8,
+      uppercase: /[A-Z]/.test(formData.password),
+      lowercase: /[a-z]/.test(formData.password),
+      number: /\d/.test(formData.password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(formData.password),
+      match: formData.password === formData.confirmPassword && formData.password.length > 0
+    };
+    setPasswordValidation(validation);
+  }, [formData.password, formData.confirmPassword]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
