@@ -9,10 +9,12 @@ const validateSriLankanPhone = (phone: string): boolean => {
   // Remove spaces, hyphens, and parentheses
   const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
   
-  // Sri Lankan mobile patterns
+  // Sri Lankan mobile patterns - updated to support all mobile prefixes (070-079)
   const patterns = [
-    /^(\+94|0094|94)?7[0-9]{8}$/, // Standard mobile format
-    /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline format
+    /^(\+94|0094|94)?0?7[0-9]{8}$/, // Mobile numbers: 070-079 series
+    /^(\+94|0094|94)?0?1[1-9][0-9]{7}$/, // Landline numbers
+    /^0?7[0-9]{8}$/, // Local mobile format: 0771234567
+    /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
   ];
   
   return patterns.some(pattern => pattern.test(cleanPhone));
