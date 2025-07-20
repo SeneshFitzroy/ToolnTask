@@ -3,7 +3,6 @@ import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface Tool {
