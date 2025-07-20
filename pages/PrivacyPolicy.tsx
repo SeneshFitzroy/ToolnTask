@@ -281,7 +281,7 @@ export default function PrivacyAndSafety() {
                   Contact Our Privacy & Safety Team
                 </h2>
                 <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                  Have questions about privacy or safety? We're here to help.
+                  Have questions about privacy or safety? We&apos;re here to help.
                 </p>
               </div>
 
