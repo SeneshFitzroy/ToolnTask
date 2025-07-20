@@ -169,7 +169,8 @@ export default async function handler(
           
           return {
             success: true,
-            message: `OTP sent successfully to ${formattedPhone}`
+            message: `OTP sent successfully to ${formattedPhone}`,
+            method: 'SMS'
           };
         } catch (twilioError: unknown) {
           const error = twilioError as { message?: string; code?: string; moreInfo?: string };
@@ -177,19 +178,29 @@ export default async function handler(
           console.error('Error Code:', error.code || 'No code');
           console.error('More Info:', error.moreInfo || 'No info');
           
+          // Common Twilio errors for Sri Lankan numbers
+          if (error.code === '21408') {
+            console.log('🌍 Error: Permission to send SMS to Sri Lanka. Account may need upgrade.');
+          } else if (error.code === '21614') {
+            console.log('📞 Error: Phone number not verified in Twilio account.');
+          } else if (error.code === '21211') {
+            console.log('📱 Error: Invalid phone number format for Twilio.');
+          }
+          
           // Fall back to email if SMS fails
           console.log('🔄 Falling back to email simulation...');
         }
       } else {
         console.log(`🔧 DEVELOPMENT MODE: SMS would be sent to ${formattedPhone} with OTP: ${otp}`);
-        console.log(`Missing Twilio credentials:`, {
+        console.log(`Missing Twilio credentials or using email fallback:`, {
           hasAccountSid: !!twilioAccountSid,
           hasAuthToken: !!twilioAuthToken,
           hasPhoneNumber: !!twilioPhoneNumber
         });
       }
 
-      // Email fallback
+      // Email fallback (always runs in development or when SMS fails)
+      console.log(`📧 Sending OTP via email fallback: ${otp}`);
       try {
         const transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -278,7 +289,15 @@ export default async function handler(
 
         return {
           success: true,
-          message: `OTP sent successfully to ${formattedPhone} (Development: Check admin email)`
+          message: `OTP sent successfully to ${formattedPhone} (Development: Check admin email)`,
+          method: 'EMAIL',
+          // Show OTP in development mode for testing
+          ...(process.env.NODE_ENV === 'development' && { 
+            debug: { 
+              otp: otp,
+              note: 'OTP shown for development testing only' 
+            } 
+          })
         };
       } catch (emailError) {
         console.error('❌ Email sending error:', emailError);
