@@ -390,17 +390,14 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
           <div className="text-center mb-10 sm:mb-12 md:mb-14">
-            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8 shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-pulse" 
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-6 sm:mb-8 shadow-lg border-2 transition-all duration-300 hover:scale-110 hover:shadow-2xl" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
-                   animationDuration: '2s'
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <span className="text-lg sm:text-xl mr-2 animate-bounce">⚡</span>
               <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
                 Simple Process
               </span>
-              <span className="ml-2 animate-spin text-lg">✨</span>
             </div>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
@@ -452,40 +449,41 @@ export default function Home() {
                 className="text-center relative group"
                 style={{ animationDelay: step.delay }}
               >
-                {/* Enhanced Step Card */}
+                {/* Medium Step Card */}
                 <div 
-                  className="relative p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 group cursor-pointer"
+                  className="relative p-6 sm:p-7 lg:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
                   style={{ backgroundColor: theme === 'dark' ? '#1f2937' : '#FFFFFF', border: theme === 'dark' ? '1px solid #374151' : '1px solid #E5E7EB' }}
                 >
                   {/* Step Number */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg lg:text-xl mx-auto mb-6 sm:mb-8 shadow-lg" style={{ backgroundColor: step.color }}>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base mx-auto mb-4 sm:mb-5 shadow-lg" style={{ backgroundColor: step.color }}>
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className="text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-3xl sm:text-4xl mb-4 sm:mb-5 transform group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold mb-4 sm:mb-6 transform group-hover:scale-105 transition-transform duration-300 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-3 sm:mb-4 transform group-hover:scale-105 transition-transform duration-300 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {step.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
+                  <p className="text-xs sm:text-sm lg:text-base leading-relaxed font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
                     {step.desc}
                   </p>
                   
                   {/* Enhanced hover glow */}
-                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{ background: `radial-gradient(circle at center, ${step.color}, transparent 70%)` }}></div>
                 </div>
                 
-                {/* Enhanced Connection Arrow */}
+                {/* Medium Connection Arrow */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-16 lg:top-20 -right-4 lg:-right-6 z-20">
-                    <svg className="w-10 h-8 lg:w-12 lg:h-10 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
+                  <div className="hidden md:block absolute top-12 lg:top-14 -right-4 lg:-right-5 z-20">
+                    <svg className="w-8 h-6 lg:w-10 lg:h-8 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h20m0 0l-4-4m4 4l-4 4" />
+                    </svg>
                     </svg>
                   </div>
                 )}
