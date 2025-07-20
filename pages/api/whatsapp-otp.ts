@@ -99,12 +99,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       error: 'Missing WhatsApp API credentials'
     });
 
-  } catch (error: any) {
-    console.error('WhatsApp OTP Error:', error);
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    console.error('WhatsApp OTP Error:', err);
     return res.status(500).json({
       success: false,
       message: 'Failed to send WhatsApp OTP',
-      error: error.message
+      error: err.message || 'Unknown error'
     });
   }
 }
