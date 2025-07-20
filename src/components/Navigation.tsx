@@ -328,44 +328,36 @@ const Navigation = () => {
             <div className="hidden sm:flex items-center space-x-5">
               {user ? (
                 <div className="flex items-center space-x-4">
-                  {/* User Profile Button - Ultra Compact Orange Benefits Badge */}
+                  {/* User Profile Button - Small Orange Matching Navbar */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 shine-effect" 
+                    className="flex items-center gap-2 px-5 py-3 text-lg font-semibold transition-all duration-200 rounded-lg shine-effect" 
                     style={{ 
                       color: '#FFFFFF',
                       backgroundColor: '#FF5E14',
-                      border: '2px solid #FF5E14',
-                      boxShadow: '0 3px 10px rgba(255, 94, 20, 0.4)'
+                      border: '2px solid #FF5E14'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#E54D0F';
                       e.currentTarget.style.borderColor = '#E54D0F';
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      e.currentTarget.style.boxShadow = '0 5px 15px rgba(255, 94, 20, 0.5)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = '#FF5E14';
                       e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 3px 10px rgba(255, 94, 20, 0.4)';
                     }}
-                    title="Premium Member - Exclusive Benefits & Priority Support"
+                    title="Account"
                   >
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold" 
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold" 
                          style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <span className="text-xs font-bold text-white">
-                      Premium+
+                    <span className="text-lg font-semibold text-white">
+                      Account
                     </span>
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
                   </button>
                   
                   {/* Enhanced Profile Dropdown */}
