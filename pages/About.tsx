@@ -134,7 +134,7 @@ export default function About() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connecting communities through shared tasks and tool rentals
           </p>
@@ -142,7 +142,7 @@ export default function About() {
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1" style={{ color: '#FF5E14' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1" style={{ color: '#FF5E14' }}>
                 5K+
               </div>
               <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
