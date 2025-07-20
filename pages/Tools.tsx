@@ -28,8 +28,8 @@ interface Tool {
   details: string;
 }
 
-// Mock data for tools - both available and requested
-const mockTools: Tool[] = [
+// Empty tools array - will be populated when users create tools
+const mockTools: Tool[] = [];
   // Available Tools
   {
     id: 'tool1',
