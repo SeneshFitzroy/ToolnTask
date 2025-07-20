@@ -297,10 +297,10 @@ export default function About() {
                 📧 Get In Touch
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Contact Us
             </h2>
-            <p className="text-lg sm:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+            <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
               Have questions or need support? We&apos;re here to help you succeed on <Logo size="small" className="inline mx-1" />
             </p>
           </div>
