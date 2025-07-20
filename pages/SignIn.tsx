@@ -112,31 +112,42 @@ export default function SignIn() {
   // Forgot password function using our custom secure system
   const handleForgotPassword = async () => {
     if (!formData.email) {
-      setError('Please enter your email address first');
+      setError('Please enter your email address or phone number first');
       return;
     }
 
     try {
+      // Check if input is phone number (Sri Lankan format)
+      const isPhone = /^(\+94|0094|94|0)?[1-9][0-9]{8,9}$/.test(formData.email.replace(/[\s\-\(\)]/g, ''));
+      
+      const requestBody = isPhone 
+        ? { phone: formData.email.trim() }
+        : { email: formData.email.trim() };
+
       const response = await fetch('/api/password-reset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: formData.email.trim() }),
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setSuccessMessage('🚀 Reset link sent! Check your inbox.');
+        if (data.method === 'phone') {
+          setSuccessMessage('🚀 Verification code sent to your phone!');
+        } else {
+          setSuccessMessage('🚀 Reset link sent! Check your inbox.');
+        }
         setError('');
       } else {
-        setError(data.message || 'Error sending reset email. Please try again.');
+        setError(data.message || 'Error sending reset. Please try again.');
       }
 
     } catch (error: unknown) {
-      console.error('Error sending password reset email:', error);
-      setError('Error sending reset email. Please try again.');
+      console.error('Error sending password reset:', error);
+      setError('Error sending reset. Please try again.');
     }
   };
 
@@ -177,9 +188,9 @@ export default function SignIn() {
               )}
               
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Email</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Email or Phone (Sri Lanka)</label>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
@@ -189,7 +200,7 @@ export default function SignIn() {
                     backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                   }}
-                  placeholder="your.email@example.com"
+                  placeholder="email@example.com or 077 123 4567"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                   onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
                   required

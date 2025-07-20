@@ -88,9 +88,36 @@ export default function SignUp() {
       return;
     }
 
-    // Password validation
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
+    // Sri Lankan phone number validation
+    const validateSriLankanPhone = (phone: string): boolean => {
+      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+      const patterns = [
+        /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile
+        /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
+      ];
+      return patterns.some(pattern => pattern.test(cleanPhone));
+    };
+
+    if (formData.phone && !validateSriLankanPhone(formData.phone)) {
+      setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567 or +94 77 123 4567)');
+      setLoading(false);
+      return;
+    }
+
+    // Enhanced password validation
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      setLoading(false);
+      return;
+    }
+
+    const hasUppercase = /[A-Z]/.test(formData.password);
+    const hasLowercase = /[a-z]/.test(formData.password);
+    const hasNumbers = /\d/.test(formData.password);
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(formData.password);
+
+    if (!hasUppercase || !hasLowercase || !hasNumbers || !hasSpecial) {
+      setError('Password must contain uppercase, lowercase, number, and special character (!@#$%^&*)');
       setLoading(false);
       return;
     }
@@ -108,20 +135,12 @@ export default function SignUp() {
       return;
     }
 
-    // Phone validation (basic)
-    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-    if (!phoneRegex.test(formData.phone.replace(/\s/g, ''))) {
-      setError('Please enter a valid phone number');
-      setLoading(false);
-      return;
-    }
-
     try {
       console.log('Attempting to create user with email:', formData.email.trim());
       
       // Create user with Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email.trim(), formData.password);
-      const user = userCredential.user;
+      const { user } = userCredential;
 
       console.log('User created successfully:', user.uid);
 
@@ -302,7 +321,7 @@ export default function SignUp() {
               </div>
               
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Phone Number</label>
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Phone Number (Sri Lanka 🇱🇰)</label>
                 <input
                   type="tel"
                   name="phone"
@@ -314,7 +333,7 @@ export default function SignUp() {
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                   }}
-                  placeholder="+94 71 234 5678"
+                  placeholder="077 123 4567 or +94 77 123 4567"
                   onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                   onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                   required
