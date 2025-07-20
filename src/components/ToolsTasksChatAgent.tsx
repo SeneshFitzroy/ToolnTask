@@ -21,6 +21,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
+  const [supportMessages, setSupportMessages] = useState([]);
   const [hasNewMessage, setHasNewMessage] = useState(false);
 
   // Auto scroll to bottom when new messages are added
@@ -30,7 +31,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, supportMessages]);
 
   // Simulate new messages for demo
   useEffect(() => {
