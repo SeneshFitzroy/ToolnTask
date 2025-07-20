@@ -17,7 +17,7 @@ const AdminIndex = () => {
       if (user) {
         // Check if user is admin (you'll need to implement this based on your user data structure)
         // For now, we'll use a simple email check
-        const adminEmails = ['admin@toolntask.com', 'admin@example.com'];
+        const adminEmails = ['toolntask@gmail.com', 'admin@toolntask.com'];
         const userIsAdmin = adminEmails.includes(user.email || '');
         
         setIsAdmin(userIsAdmin);
