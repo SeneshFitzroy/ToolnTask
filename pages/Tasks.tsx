@@ -185,11 +185,11 @@ export default function Tasks() {
         </div>
       </div>
 
-      {/* Search Section */}
+      {/* Filter Section */}
       <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Enhanced Search Bar Container */}
-          <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Enhanced Filter Container */}
+          <div className="rounded-xl p-4 sm:p-6 shadow-lg border" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
@@ -198,193 +198,104 @@ export default function Tasks() {
                    : '0 8px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 94, 20, 0.03)'
                }}>
           
-          {/* Enhanced Search Bar with Real-time Search */}
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col lg:flex-row gap-3">
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  placeholder="Search tasks by title, location, category, or description..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pl-12 pr-24 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#FF5E14';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
-                    e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.08)';
-                  }}
-                />
-                {/* Search Icon */}
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          {/* Filter Header */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FF5E14' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+              </svg>
+              <h2 className="text-lg sm:text-xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                Filter Tasks
+              </h2>
+            </div>
+            {categoryFilter !== 'all' && (
+              <button
+                onClick={() => setCategoryFilter('all')}
+                className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
+                style={{ 
+                  color: '#FFFFFF',
+                  backgroundColor: '#FF5E14'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF5D13';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF5E14';
+                }}
+              >
+                Clear All Filters
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 mb-6">
+            {[
+              { id: 'all', label: 'All Tasks' },
+              { id: 'cleaning', label: 'Cleaning' },
+              { id: 'gardening', label: 'Gardening' },
+              { id: 'handyman', label: 'Handyman' },
+              { id: 'delivery', label: 'Delivery' },
+              { id: 'tutoring', label: 'Tutoring' },
+              { id: 'other', label: 'Other' }
+            ].map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setCategoryFilter(category.id)}
+                className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                style={{
+                  backgroundColor: categoryFilter === category.id 
+                    ? '#FF5E14' 
+                    : (theme === 'dark' ? '#2a2a2a' : '#F8F9FA'),
+                  borderColor: categoryFilter === category.id 
+                    ? '#FF5E14' 
+                    : (theme === 'dark' ? '#4B5563' : '#E2E8F0'),
+                  color: categoryFilter === category.id 
+                    ? '#FFFFFF' 
+                    : (theme === 'dark' ? '#FFFFFF' : '#2D3748')
+                }}
+              >
+                <div className="text-2xl group-hover:scale-110 transition-transform">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {category.id === 'all' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />}
+                    {category.id === 'cleaning' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />}
+                    {category.id === 'gardening' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />}
+                    {category.id === 'handyman' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />}
+                    {category.id === 'delivery' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3a2 2 0 002 2h4a2 2 0 002-2v-3m-4-6v6m-4-10l4-4 4 4" />}
+                    {category.id === 'tutoring' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />}
+                    {category.id === 'other' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />}
                   </svg>
                 </div>
-                {/* Filter Icon */}
-                <div className="absolute right-10 top-1/2 transform -translate-y-1/2 relative">
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="p-2 rounded-lg border transition-all duration-200 hover:scale-105"
-                    style={{ 
-                      backgroundColor: showFilters ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#FFFFFF'),
-                      color: showFilters ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                      borderColor: showFilters ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')
-                    }}
-                    title="Filter tasks"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
-                    </svg>
-                  </button>
-                  
-                  {/* Filter Dropdown */}
-                  {showFilters && (
-                    <div 
-                      className="absolute top-full right-0 mt-2 w-72 p-4 rounded-lg shadow-lg border z-50"
-                      style={{ 
-                        backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
-                      }}
-                    >
-                      <div className="flex flex-col gap-3">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                            Filter by Category
-                          </span>
-                          <button
-                            onClick={() => {
-                              setCategoryFilter('all');
-                              setShowFilters(false);
-                            }}
-                            className="text-xs px-2 py-1 rounded transition-colors"
-                            style={{ 
-                              backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
-                              color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
-                            }}
-                          >
-                            Clear
-                          </button>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-2">
-                          {['all', 'cleaning', 'gardening', 'handyman', 'delivery', 'tutoring', 'other'].map((category) => (
-                            <button
-                              key={category}
-                              onClick={() => {
-                                setCategoryFilter(category);
-                                setShowFilters(false);
-                              }}
-                              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
-                              style={{
-                                backgroundColor: categoryFilter === category 
-                                  ? '#FF5E14' 
-                                  : (theme === 'dark' ? '#374151' : '#F8F9FA'),
-                                color: categoryFilter === category 
-                                  ? '#FFFFFF' 
-                                  : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                                border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
-                              }}
-                            >
-                              {category === 'all' ? 'All Tasks' : 
-                               category === 'cleaning' ? 'Cleaning' :
-                               category === 'gardening' ? 'Gardening' :
-                               category === 'handyman' ? 'Handyman' :
-                               category === 'delivery' ? 'Delivery' :
-                               category === 'tutoring' ? 'Tutoring' :
-                               category === 'other' ? 'Other' : category}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                {/* Clear Button */}
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm('')}
-                    className="absolute right-16 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
-                    style={{ 
-                      color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
-                      backgroundColor: 'transparent'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#4B5563' : '#F3F4F6';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                <span className="text-sm font-semibold">{category.label}</span>
+                {categoryFilter === category.id && (
+                  <div className="w-2 h-2 rounded-full bg-white"></div>
                 )}
-              </div>
-            </div>
+              </button>
+            ))}
+          </div>
             
-            {/* Results Summary with improved styling */}
-            <div className="flex items-center justify-between pt-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  {getFilteredTasks().length} {getFilteredTasks().length === 1 ? 'task' : 'tasks'} found
+          {/* Results Summary */}
+          <div className="flex items-center justify-between pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0' }}>
+            <div className="flex items-center gap-3">
+              <span className="text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                {getFilteredTasks().length} {getFilteredTasks().length === 1 ? 'Task' : 'Tasks'} Found
+              </span>
+              {categoryFilter !== 'all' && (
+                <span className="text-sm px-3 py-1 rounded-full font-medium" 
+                      style={{ 
+                        backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                        color: '#FF5E14'
+                      }}>
+                  {categoryFilter === 'cleaning' ? 'Cleaning Tasks' :
+                   categoryFilter === 'gardening' ? 'Gardening Tasks' :
+                   categoryFilter === 'handyman' ? 'Handyman Tasks' :
+                   categoryFilter === 'delivery' ? 'Delivery Tasks' :
+                   categoryFilter === 'tutoring' ? 'Tutoring Tasks' :
+                   categoryFilter === 'other' ? 'Other Tasks' : 'All Tasks'}
                 </span>
-                {searchTerm && (
-                  <span className="text-sm px-2 py-1 rounded-full" 
-                        style={{ 
-                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                          color: '#FF5E14'
-                        }}>
-                    &ldquo;{searchTerm}&rdquo;
-                  </span>
-                )}
-                {categoryFilter !== 'all' && (
-                  <span className="text-sm px-2 py-1 rounded-full" 
-                        style={{ 
-                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                          color: '#FF5E14'
-                        }}>
-                    {categoryFilter === 'cleaning' ? 'Cleaning' :
-                     categoryFilter === 'gardening' ? 'Gardening' :
-                     categoryFilter === 'handyman' ? 'Handyman' :
-                     categoryFilter === 'delivery' ? 'Delivery' :
-                     categoryFilter === 'tutoring' ? 'Tutoring' :
-                     categoryFilter === 'other' ? 'Other' : categoryFilter}
-                  </span>
-                )}
-              </div>
-              {(searchTerm || categoryFilter !== 'all') && (
-                <button
-                  onClick={() => {
-                    setSearchTerm('');
-                    setCategoryFilter('all');
-                  }}
-                  className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
-                  style={{ 
-                    color: '#FF5E14',
-                    backgroundColor: 'transparent'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  Clear all filters
-                </button>
               )}
             </div>
-            </div>
+          </div>
           </div>
         </div>
 
