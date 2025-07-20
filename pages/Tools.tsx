@@ -52,13 +52,9 @@ export default function Tools() {
   const getFilteredTools = () => {
     return tools.filter(tool => {
       const matchesType = tool.type === activeFilter;
-      const matchesSearch = tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = categoryFilter === 'all' || tool.category === categoryFilter;
       
-      return matchesType && matchesSearch && matchesCategory;
+      return matchesType && matchesCategory;
     });
   };
 
