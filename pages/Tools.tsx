@@ -216,32 +216,84 @@ export default function Tools() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                {/* Clear Button */}
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
-                    style={{ 
-                      color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
-                      backgroundColor: 'transparent'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#4B5563' : '#F3F4F6';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
+                {/* Filter Button */}
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-all duration-200 hover:scale-105"
+                  style={{ 
+                    backgroundColor: showFilters ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#F8F9FA'),
+                    color: showFilters ? '#FFFFFF' : (theme === 'dark' ? '#9CA3AF' : '#6B7280'),
+                    border: `1px solid ${showFilters ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
+                  }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                  </svg>
+                </button>
               </div>
+              
+              {/* Filter Dropdown */}
+              {showFilters && (
+                <div 
+                  className="absolute top-full left-0 right-0 mt-2 p-4 rounded-lg shadow-lg border z-10"
+                  style={{ 
+                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
+                  }}
+                >
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        Filter by Category
+                      </span>
+                      <button
+                        onClick={() => {
+                          setCategoryFilter('all');
+                          setShowFilters(false);
+                        }}
+                        className="text-xs px-2 py-1 rounded transition-colors"
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
+                          color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
+                        }}
+                      >
+                        Clear
+                      </button>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {['all', 'power-tools', 'hand-tools', 'garden', 'automotive', 'construction', 'electronics'].map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            setCategoryFilter(category);
+                            setShowFilters(false);
+                          }}
+                          className="text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:scale-105"
+                          style={{ 
+                            backgroundColor: categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#F8F9FA'),
+                            color: categoryFilter === category ? '#FFFFFF' : (theme === 'dark' ? '#E5E7EB' : '#4B5563'),
+                            border: `1px solid ${categoryFilter === category ? '#FF5E14' : 'transparent'}`
+                          }}
+                        >
+                          {category === 'all' ? 'All Tools' : 
+                           category === 'power-tools' ? 'Power Tools' :
+                           category === 'hand-tools' ? 'Hand Tools' :
+                           category === 'garden' ? 'Garden Tools' :
+                           category === 'automotive' ? 'Automotive' :
+                           category === 'construction' ? 'Construction' :
+                           category === 'electronics' ? 'Electronics' : category}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
-            {/* Results Summary with improved styling */}
-            <div className="flex items-center justify-between">
+            {/* Results Summary */}
+            <div className="flex items-center justify-between pt-2">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
@@ -253,6 +305,20 @@ export default function Tools() {
                           color: '#FF5E14'
                         }}>
                     &ldquo;{searchTerm}&rdquo;
+                  </span>
+                )}
+                {categoryFilter !== 'all' && (
+                  <span className="text-sm px-2 py-1 rounded-full" 
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                          color: '#FF5E14'
+                        }}>
+                    {categoryFilter === 'power-tools' ? 'Power Tools' :
+                     categoryFilter === 'hand-tools' ? 'Hand Tools' :
+                     categoryFilter === 'garden' ? 'Garden Tools' :
+                     categoryFilter === 'automotive' ? 'Automotive' :
+                     categoryFilter === 'construction' ? 'Construction' :
+                     categoryFilter === 'electronics' ? 'Electronics' : categoryFilter}
                   </span>
                 )}
               </div>
