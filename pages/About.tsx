@@ -350,7 +350,7 @@ export default function About() {
       <div id="contact" className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <div className="inline-flex items-center px-6 py-3 rounded-full mb-6" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
@@ -360,10 +360,10 @@ export default function About() {
                 Get In Touch
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Contact Us
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+            <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
               Have questions or need support? We&apos;re here to help you succeed on <Logo size="small" className="inline mx-1" />
             </p>
           </div>
