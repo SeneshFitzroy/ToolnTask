@@ -600,44 +600,138 @@ export default function SignUp() {
                 )}
               </div>
               
+              {/* Password Field with Security Features */}
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  placeholder="Create a strong password"
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                  required
-                />
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 pr-12 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="Create a strong password"
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }} />
+                    ) : (
+                      <Eye className="w-5 h-5" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }} />
+                    )}
+                  </button>
+                </div>
+
+                {/* Character Count */}
+                <div className="mt-1 text-xs text-right" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                  {formData.password.length}/50 characters
+                </div>
+
+                {/* Password Requirements */}
+                {formData.password.length > 0 && (
+                  <div className="mt-3 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F9FAFB' }}>
+                    <h4 className="text-xs font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                      Password Requirements:
+                    </h4>
+                    <div className="space-y-1">
+                      {[
+                        { key: 'length', text: 'At least 8 characters' },
+                        { key: 'uppercase', text: 'One uppercase letter (A-Z)' },
+                        { key: 'lowercase', text: 'One lowercase letter (a-z)' },
+                        { key: 'number', text: 'One number (0-9)' },
+                        { key: 'special', text: 'One special character (!@#$%^&*)' }
+                      ].map(({ key, text }) => (
+                        <div key={key} className="flex items-center gap-2">
+                          {passwordValidation[key as keyof typeof passwordValidation] ? (
+                            <Check className="w-3 h-3" style={{ color: '#10B981' }} />
+                          ) : (
+                            <X className="w-3 h-3" style={{ color: '#EF4444' }} />
+                          )}
+                          <span 
+                            className="text-xs"
+                            style={{ 
+                              color: passwordValidation[key as keyof typeof passwordValidation] 
+                                ? '#10B981' 
+                                : theme === 'dark' ? '#CCCCCC' : '#6B7280' 
+                            }}
+                          >
+                            {text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               
+              {/* Confirm Password Field */}
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Confirm Password</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  placeholder="Confirm your password"
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                  required
-                />
+                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 pr-12 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="Confirm your password"
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="w-5 h-5" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }} />
+                    ) : (
+                      <Eye className="w-5 h-5" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }} />
+                    )}
+                  </button>
+                </div>
+
+                {/* Password Match Indicator */}
+                {formData.confirmPassword.length > 0 && (
+                  <div className="mt-2 flex items-center gap-2">
+                    {passwordValidation.match ? (
+                      <>
+                        <Check className="w-4 h-4" style={{ color: '#10B981' }} />
+                        <span className="text-xs" style={{ color: '#10B981' }}>
+                          Passwords match
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <X className="w-4 h-4" style={{ color: '#EF4444' }} />
+                        <span className="text-xs" style={{ color: '#EF4444' }}>
+                          Passwords do not match
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
               
               <div className="flex items-start gap-3">
