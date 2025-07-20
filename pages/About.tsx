@@ -97,117 +97,71 @@ export default function About() {
       <Navigation />
       
       {/* Hero Header Section */}
-      <div className="py-12 sm:py-16 lg:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        {/* Enhanced Background Elements with Interactive Animations */}
+      <div className="py-8 sm:py-12 lg:py-16 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+        {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
-          {/* Floating Community Icons */}
-          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-bounce flex items-center justify-center text-3xl" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}>
-            🤝
-          </div>
-          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse flex items-center justify-center text-2xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}>
-            🏠
-          </div>
-          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-spin flex items-center justify-center text-xl" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '8s' }}>
-            ⚡
-          </div>
-          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-bounce flex items-center justify-center text-xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}>
-            💪
-          </div>
-          
-          {/* Floating Community Cards Animation */}
-          <div className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
-            <div className="w-24 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-lg animate-float opacity-20 flex items-center justify-center text-white font-bold text-xs">
-              CONNECT
-            </div>
-          </div>
-          <div className="absolute top-3/4 right-1/4 transform translate-x-1/2 translate-y-1/2">
-            <div className="w-20 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-lg shadow-lg animate-float-reverse opacity-20 flex items-center justify-center text-white font-bold text-xs" style={{ animationDelay: '2s' }}>
-              SHARE
-            </div>
-          </div>
-          
-          {/* Animated Grid Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="grid grid-cols-8 gap-4 h-full w-full">
-              {Array.from({ length: 32 }).map((_, i) => (
-                <div 
-                  key={i}
-                  className="border border-orange-300 rounded animate-pulse"
-                  style={{ 
-                    animationDelay: `${i * 0.1}s`,
-                    animationDuration: '3s'
-                  }}
-                />
-              ))}
-            </div>
-          </div>
+          <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
+          <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '3.5s' }}></div>
+          <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}></div>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Badge */}
           <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center px-6 py-3 rounded-full shadow-lg border-2" 
+            <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <span className="text-base sm:text-lg font-bold" style={{ color: '#FF5E14' }}>
+              <span className="text-sm sm:text-base font-bold" style={{ color: '#FF5E14' }}>
                 Our Community Story
               </span>
             </div>
           </div>
           
-          {/* Enhanced Interactive Main Heading - Professional & Clean */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 sm:mb-8 leading-tight tracking-tight">
-            <span className="inline-block hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+          {/* Main Heading */}
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               About{' '}
             </span>
-            <span className="relative inline-block group">
-              <span className="relative z-10 hover:scale-105 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+            <span className="relative inline-block">
+              <span style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
                 ToolNTask
               </span>
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"></div>
             </span>
           </h1>
           
           {/* Subheading */}
-          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connecting communities through shared tasks and tool rentals
           </p>
           
-          {/* Interactive Animated Stats */}
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 lg:gap-16 mb-8 sm:mb-10">
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+          {/* Stats */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
+            <div className="text-center">
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1" style={{ color: '#FF5E14' }}>
                 5K+
               </div>
-              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <svg className="w-4 h-4 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Community Members
               </div>
             </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <div className="text-center">
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1" style={{ color: '#1a1a1a' }}>
                 98%
               </div>
-              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <svg className="w-4 h-4 group-hover:animate-spin" style={{ animationDuration: '2s' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Satisfaction Rate
               </div>
             </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+            <div className="text-center">
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1" style={{ color: '#FF5E14' }}>
                 24/7
               </div>
-              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <svg className="w-4 h-4 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Community Support
               </div>
             </div>
