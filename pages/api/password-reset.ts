@@ -9,10 +9,51 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  const { email, phone } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ message: 'Email is required' });
+  if (!email && !phone) {
+    return res.status(400).json({ message: 'Email or phone number is required' });
+  }
+
+  // If phone number is provided, redirect to phone verification
+  if (phone) {
+    // Validate Sri Lankan phone number
+    const validateSriLankanPhone = (phone: string): boolean => {
+      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+      const patterns = [
+        /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile
+        /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
+      ];
+      return patterns.some(pattern => pattern.test(cleanPhone));
+    };
+
+    if (!validateSriLankanPhone(phone)) {
+      return res.status(400).json({ 
+        message: 'Please enter a valid Sri Lankan phone number (e.g., 077 123 4567)' 
+      });
+    }
+
+    // Send to phone verification API
+    try {
+      const phoneVerifyResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/phone-verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, type: 'password-reset' }),
+      });
+
+      if (phoneVerifyResponse.ok) {
+        return res.status(200).json({ 
+          message: 'Verification code sent to your phone',
+          method: 'phone',
+          phone: phone
+        });
+      } else {
+        return res.status(500).json({ message: 'Failed to send verification code' });
+      }
+    } catch (error) {
+      console.error('Phone verification error:', error);
+      return res.status(500).json({ message: 'Failed to send verification code' });
+    }
   }
 
   try {
