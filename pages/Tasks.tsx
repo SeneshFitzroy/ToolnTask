@@ -190,11 +190,11 @@ export default function Tasks() {
       </div>
 
       {/* Professional Search & Filter Section */}
-      <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+      <div className="py-3 sm:py-4" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Search & Filter Container */}
-          <div className="rounded-2xl p-6 sm:p-8 shadow-xl border-2" 
+          <div className="rounded-2xl p-4 sm:p-6 shadow-xl border-2" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
@@ -204,7 +204,7 @@ export default function Tasks() {
                }}>
             
             {/* Header */}
-            <div className="flex items-center justify-end mb-8">
+            <div className="flex items-center justify-end mb-4">
               {/* Results Count */}
               <div className="text-right">
                 <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>
