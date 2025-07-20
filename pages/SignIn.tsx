@@ -130,13 +130,22 @@ export default function SignIn() {
         const firebaseError = error as { code: string; message?: string };
         switch (firebaseError.code) {
           case 'auth/invalid-credential':
-            errorMessage = 'Invalid credentials. Please verify your email/phone and password are correct.';
+            errorMessage = 'Invalid login credentials. Please check your email/phone number and password, then try again.';
             break;
           case 'auth/user-not-found':
-            errorMessage = 'Account not found. Please check your credentials or create a new account.';
+            errorMessage = 'No account found with these credentials. Please verify your information or create a new account.';
             break;
           case 'auth/wrong-password':
-            errorMessage = 'Incorrect password. Please verify your password and try again.';
+            errorMessage = 'Incorrect password. Please verify your password and try again. Use "Forgot Password?" if needed.';
+            break;
+          case 'auth/invalid-email':
+            errorMessage = 'Invalid email format. Please enter a valid email address.';
+            break;
+          case 'auth/user-disabled':
+            errorMessage = 'This account has been disabled. Please contact support for assistance.';
+            break;
+          case 'auth/too-many-requests':
+            errorMessage = 'Too many failed attempts. Please wait a few minutes before trying again.';
             break;
           case 'auth/invalid-email':
             errorMessage = 'Invalid email format. Please enter a valid email address.';
