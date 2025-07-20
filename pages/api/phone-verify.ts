@@ -133,21 +133,39 @@ export default async function handler(
     // Send OTP via SMS, WhatsApp, or email fallback
     const sendOTP = async () => {
       // First try WhatsApp (free and fast)
-      const whatsappApiKey = process.env.CALLMEBOT_API_KEY;
-      const ultramsgToken = process.env.ULTRAMSG_TOKEN;
       const greenApiId = process.env.GREEN_API_ID;
+      const greenApiToken = process.env.GREEN_API_TOKEN;
       
-      if (whatsappApiKey || ultramsgToken || greenApiId) {
+      if (greenApiId && greenApiToken) {
         console.log(`📱 Attempting WhatsApp OTP to ${formattedPhone}`);
         
         try {
-          const whatsappResponse = await fetch('/api/whatsapp-otp', {
+          // Format phone for WhatsApp (remove + and add @c.us)
+          const whatsappPhone = formattedPhone.replace('+', '') + '@c.us';
+          
+          const message = `🔐 *ToolNTask Verification Code*
+
+Your verification code is: *${otp}*
+
+This code expires in 10 minutes.
+Don't share this code with anyone.
+
+- ToolNTask Sri Lanka 🇱🇰`;
+          
+          const whatsappResponse = await fetch(`https://7105.api.greenapi.com/waInstance${greenApiId}/sendMessage/${greenApiToken}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: formattedPhone, otp })
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              chatId: whatsappPhone,
+              message: message
+            })
           });
           
-          if (whatsappResponse.ok) {
+          const whatsappResult = await whatsappResponse.json();
+          
+          if (whatsappResponse.ok && whatsappResult.idMessage) {
             console.log('✅ WhatsApp OTP sent successfully');
             return {
               success: true,
