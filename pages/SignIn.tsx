@@ -5,7 +5,7 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../src/lib/firebase';
 
 export default function SignIn() {
@@ -109,7 +109,7 @@ export default function SignIn() {
   };
 
 
-  // Forgot password function using both custom beautiful email and Firebase
+  // Forgot password function using our custom secure system
   const handleForgotPassword = async () => {
     if (!formData.email) {
       setError('Please enter your email address first');
@@ -117,8 +117,7 @@ export default function SignIn() {
     }
 
     try {
-      // First, send our beautiful custom email
-      const customEmailResponse = await fetch('/api/password-reset', {
+      const response = await fetch('/api/password-reset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -126,29 +125,18 @@ export default function SignIn() {
         body: JSON.stringify({ email: formData.email.trim() }),
       });
 
-      if (customEmailResponse.ok) {
-        // Also send Firebase's native password reset for functionality
-        await sendPasswordResetEmail(auth, formData.email.trim());
-        
+      const data = await response.json();
+
+      if (response.ok) {
         setSuccessMessage('🚀 Reset link sent! Check your inbox.');
         setError('');
       } else {
-        // If custom email fails, fallback to Firebase only
-        await sendPasswordResetEmail(auth, formData.email.trim());
-        setSuccessMessage('✅ Reset link sent! Check your inbox.');
-        setError('');
+        setError(data.message || 'Error sending reset email. Please try again.');
       }
 
     } catch (error: unknown) {
       console.error('Error sending password reset email:', error);
-      const firebaseError = error as { code?: string };
-      if (firebaseError.code === 'auth/user-not-found') {
-        setError('No account found with this email address');
-      } else if (firebaseError.code === 'auth/invalid-email') {
-        setError('Please enter a valid email address');
-      } else {
-        setError('Error sending password reset email. Please try again.');
-      }
+      setError('Error sending reset email. Please try again.');
     }
   };
 
