@@ -368,14 +368,14 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <div className="space-y-10">
-              <div className="p-8 rounded-2xl border-2" style={{ 
+            <div className="space-y-8">
+              <div className="p-6 sm:p-8 rounded-2xl border-2" style={{ 
                 backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA',
                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
               }}>
-                <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   Our Information
                 </h3>
                 <div className="space-y-6">
@@ -416,14 +416,14 @@ export default function About() {
                 </div>
               </div>
 
-              <div className="p-8 rounded-2xl border-2" style={{ 
+              <div className="p-6 sm:p-8 rounded-2xl border-2" style={{ 
                 backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA',
                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
               }}>
-                <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                   Response Time
                 </h3>
-                <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                <p className="text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   We typically respond to all inquiries within 24 hours during business days. 
                   For urgent matters, please call us directly.
                 </p>
@@ -431,12 +431,12 @@ export default function About() {
             </div>
 
             {/* Contact Form */}
-            <div className="p-8 sm:p-10 rounded-2xl shadow-xl border-2" 
+            <div className="p-6 sm:p-8 rounded-2xl shadow-xl border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <h3 className="text-xl sm:text-2xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 Send us a message
               </h3>
 
