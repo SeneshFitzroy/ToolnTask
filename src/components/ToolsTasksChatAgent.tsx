@@ -123,10 +123,6 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     }
   };
 
-  const handleCallRequest = () => {
-    alert('Call request sent! An agent will call you within 5 minutes.');
-  };
-
   const handleSupportMessage = () => {
     if (message.trim()) {
       const newMessage = {
