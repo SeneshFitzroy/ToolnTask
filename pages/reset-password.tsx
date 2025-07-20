@@ -5,14 +5,15 @@ import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { useTheme } from 'next-themes';
 import { Eye, EyeOff, Lock, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../src/lib/firebase';
+import { confirmPasswordReset } from 'firebase/auth';
+import { auth } from '../src/lib/firebase';
 
 export default function ResetPassword() {
   const router = useRouter();
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [token, setToken] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -20,47 +21,21 @@ export default function ResetPassword() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [tokenValid, setTokenValid] = useState<boolean | null>(null);
-  const [userEmail, setUserEmail] = useState('');
 
   useEffect(() => {
     setMounted(true);
     if (router.query.token) {
       setToken(router.query.token as string);
-      validateToken(router.query.token as string);
     }
-  }, [router.query.token]);
-
-  const validateToken = async (resetToken: string) => {
-    try {
-      const resetRef = collection(db, 'passwordResets');
-      const q = query(resetRef, where('token', '==', resetToken), where('used', '==', false));
-      const querySnapshot = await getDocs(q);
-
-      if (querySnapshot.empty) {
-        setTokenValid(false);
-        setError('Invalid or expired reset link. Please request a new password reset.');
-        return;
-      }
-
-      const resetDoc = querySnapshot.docs[0];
-      const resetData = resetDoc.data();
-      
-      // Check if token has expired
-      if (new Date() > resetData.expiresAt.toDate()) {
-        setTokenValid(false);
-        setError('This reset link has expired. Please request a new password reset.');
-        return;
-      }
-
-      setTokenValid(true);
-      setUserEmail(resetData.email);
-    } catch (error) {
-      console.error('Token validation error:', error);
-      setTokenValid(false);
-      setError('Error validating reset link. Please try again.');
+    if (router.query.email) {
+      setEmail(decodeURIComponent(router.query.email as string));
     }
-  };
+    
+    // If no token but has oobCode (Firebase standard reset), use that
+    if (router.query.oobCode) {
+      setToken(router.query.oobCode as string);
+    }
+  }, [router.query]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,46 +54,46 @@ export default function ResetPassword() {
       return;
     }
 
+    if (!token) {
+      setError('Invalid reset token');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
     try {
-      // Call our API to update the password
-      const response = await fetch('/api/update-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token: token,
-          newPassword: password
-        }),
-      });
+      // Use Firebase's confirmPasswordReset function
+      await confirmPasswordReset(auth, token, password);
+      
+      setMessage('🎉 Password updated successfully! Redirecting to sign in...');
+      
+      // Redirect to sign in page after 3 seconds
+      setTimeout(() => {
+        router.push('/SignIn?message=password-reset-success');
+      }, 3000);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage('🎉 Password updated successfully! Redirecting to sign in...');
-        
-        // Redirect to sign in page after 3 seconds
-        setTimeout(() => {
-          router.push('/SignIn?message=password-reset-success');
-        }, 3000);
-      } else {
-        setError(data.message || 'Error updating password. Please try again.');
-      }
-
-    } catch (error) {
+    } catch (error: any) {
       console.error('Password reset error:', error);
-      setError('Error updating password. Please try again.');
+      if (error.code === 'auth/expired-action-code') {
+        setError('This reset link has expired. Please request a new password reset.');
+      } else if (error.code === 'auth/invalid-action-code') {
+        setError('This reset link is invalid. Please request a new password reset.');
+      } else if (error.code === 'auth/weak-password') {
+        setError('Password is too weak. Please choose a stronger password.');
+      } else {
+        setError('Error updating password. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
-  if (tokenValid === false) {
+  if (!token) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <Navigation />
@@ -130,7 +105,7 @@ export default function ResetPassword() {
                 Invalid Reset Link
               </h1>
               <p className="mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                {error}
+                This password reset link is invalid or has expired. Please request a new password reset.
               </p>
               <button
                 onClick={() => router.push('/SignIn')}
@@ -143,17 +118,6 @@ export default function ResetPassword() {
           </div>
         </div>
         <Footer />
-      </div>
-    );
-  }
-
-  if (tokenValid === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: '#FF5E14' }}></div>
-          <p style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Validating reset link...</p>
-        </div>
       </div>
     );
   }
@@ -174,9 +138,11 @@ export default function ResetPassword() {
               <h1 className="text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                 Reset Your Password
               </h1>
-              <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                Create a new secure password for {userEmail}
-              </p>
+              {email && (
+                <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                  Create a new secure password for {email}
+                </p>
+              )}
             </div>
 
             {/* Success/Error Messages */}
