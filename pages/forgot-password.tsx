@@ -204,7 +204,7 @@ export default function ForgotPassword() {
                     <p className="text-xs leading-relaxed" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                       For email: We&apos;ll send a secure password reset link to your email address.
                       <br />
-                      For phone: We&apos;ll send a reset link to the email associated with your phone number.
+                      For phone: We&apos;ll send a 6-digit verification code to your mobile phone.
                     </p>
                   </div>
                 </div>
