@@ -56,9 +56,32 @@ export default function TermsAndConditions() {
             </div>
           </div>
 
-          {/* Simple Terms Content */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-8">{/* Remove the acceptance section from here */}
-            <div className="space-y-6">
+          {/* Professional Terms Content */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8">
+            <div className="space-y-8">
+              
+              {/* Key Points Overview */}
+              <div className="bg-gradient-to-r from-blue-50 to-orange-50 dark:from-blue-900/20 dark:to-orange-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Shield className="w-6 h-6 text-blue-600" />
+                  Key Points Summary
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Professional marketplace platform</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Secure payment processing</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Quality service standards</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ User safety and protection</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Fair dispute resolution</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Sri Lankan legal compliance</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Terms Sections */}
+              <div className="space-y-6">
               
               {/* 1. Agreement */}
               <section>
