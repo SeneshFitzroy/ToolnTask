@@ -352,7 +352,7 @@ const Navigation = () => {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                     }}
                   >
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md" 
+                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
