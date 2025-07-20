@@ -422,22 +422,16 @@ export default function SignUp() {
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               {successMessage && (
                 <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-green-300" style={{ backgroundColor: '#D1FAE5', color: '#047857' }}>
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-lg">✅</span>
-                    <span>{successMessage}</span>
-                  </div>
+                  <span>{successMessage}</span>
                 </div>
               )}
               {error && (
-                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300 animate-pulse" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-lg">⚠️</span>
-                    <span>{error}</span>
-                  </div>
+                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
+                  <span>{error}</span>
                   {error.includes('already registered') && (
                     <div className="mt-3 text-xs">
                       <Link href="/SignIn" className="inline-flex items-center gap-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-semibold text-sm">
-                        🔑 Sign In Instead
+                        Sign In Instead
                       </Link>
                     </div>
                   )}
