@@ -3,17 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* OPTIMIZED FOR 90% ZOOM - FINAL BEST SCALING */
+/* OPTIMIZED FOR 90% ZOOM - FINAL BEST ULTRA-COMPACT SCALING */
 html {
-  font-size: 16px; /* Final optimal size for 90% zoom - perfect balance */
+  font-size: 14px; /* Final best ultra-compact size for 90% zoom */
 }
 
 @media (min-width: 640px) {
-  html { font-size: 16.5px; }
+  html { font-size: 14.5px; }
 }
 
 @media (min-width: 1024px) {
-  html { font-size: 17px; }
+  html { font-size: 15px; }
 }
 
 /* TOOLNTASK UNIFIED LOGO FONT SYSTEM - 90% ZOOM OPTIMIZED */
