@@ -35,7 +35,6 @@ export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
-  const [showFilters, setShowFilters] = useState(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
