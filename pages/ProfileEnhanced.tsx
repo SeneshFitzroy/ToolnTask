@@ -50,23 +50,24 @@ export default function ProfileEnhanced() {
     try {
       setLoading(true);
       
-      // Load saved tasks
-      const tasksQuery = query(
-        collection(db, 'saved_tasks'),
-        where('userId', '==', userId),
-        orderBy('savedAt', 'desc')
-      );
-      const tasksSnapshot = await getDocs(tasksQuery);
+            // Query for user's saved tasks (disabled for now)
+      // const tasksQuery = query(
+      //   collection(db, 'savedTasks'),
+      //   where('userId', '==', user.uid),
+      //   orderBy('savedAt', 'desc'),
+      //   limit(20)
+      // );
+      // const tasksSnapshot = await getDocs(tasksQuery);
       
-      // Load saved tools
-      const toolsQuery = query(
-        collection(db, 'saved_tools'),
-        where('userId', '==', userId),
-        orderBy('savedAt', 'desc')
-      );
-      const toolsSnapshot = await getDocs(toolsQuery);
+      // Query for user's saved tools
+      // const toolsQuery = query(
+      //   collection(db, 'savedTools'),
+      //   where('userId', '==', user.uid),
+      //   orderBy('savedAt', 'desc'),
+      //   limit(20)
+      // );
+      // const toolsSnapshot = await getDocs(toolsQuery);
       
-      // Sample data for demonstration (in production, you'd fetch actual task/tool details)
       // Empty arrays - will be populated from actual user data
       const sampleTasks: SavedItem[] = [];
       
