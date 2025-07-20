@@ -97,7 +97,7 @@ const Navigation = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo - Optimized size */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
@@ -457,7 +457,7 @@ const Navigation = () => {
                   
                   {/* Enhanced Profile Dropdown for unauthenticated users */}
                   {showProfileDropdown && (
-                    <div className="absolute right-0 top-full mt-2 w-48 rounded-lg shadow-lg border z-50 overflow-hidden"
+                    <div className="absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-50 overflow-hidden"
                          style={{ 
                            backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
                            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
@@ -465,7 +465,7 @@ const Navigation = () => {
                       
                       <Link 
                         href="/SignIn"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b text-sm"
+                        className="flex items-center gap-4 px-5 py-4 transition-colors duration-200 border-b text-base"
                         style={{ 
                           color: theme === 'dark' ? '#e5e7eb' : '#374151',
                           borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
@@ -478,13 +478,13 @@ const Navigation = () => {
                         }}
                         onClick={() => setShowProfileDropdown(false)}
                       >
-                        <UserIcon className="h-4 w-4" />
-                        <span className="font-medium">Login</span>
+                        <UserIcon className="h-5 w-5" />
+                        <span className="font-semibold">Login</span>
                       </Link>
                       
                       <Link 
                         href="/SignUp"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
+                        className="flex items-center gap-4 px-5 py-4 transition-colors duration-200 text-base"
                         style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
@@ -494,8 +494,8 @@ const Navigation = () => {
                         }}
                         onClick={() => setShowProfileDropdown(false)}
                       >
-                        <UserIcon className="h-4 w-4" />
-                        <span className="font-medium">Register</span>
+                        <UserIcon className="h-5 w-5" />
+                        <span className="font-semibold">Register</span>
                       </Link>
                     </div>
                   )}
