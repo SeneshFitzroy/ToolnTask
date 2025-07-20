@@ -132,56 +132,52 @@ export default function Tasks() {
             </div>
           </div>
           
-          {/* Enhanced Interactive Main Heading - Consistent Sizing */}
-          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-6 leading-tight tracking-tight">
-            <span className="inline-block hover:scale-110 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-              Explore{' '}
+          {/* Enhanced Interactive Main Heading - Professional & Clean */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 sm:mb-8 leading-tight tracking-tight">
+            <span className="inline-block hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              Find Your Perfect{' '}
             </span>
             <span className="relative inline-block group">
-              <span className="relative z-10 hover:scale-110 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
-                Tasks
+              <span className="relative z-10 hover:scale-105 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+                Task
               </span>
               <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
-              {/* Animated sparkles around Tasks */}
-              <div className="absolute -top-2 -right-2 text-yellow-400 animate-ping opacity-75">✨</div>
-              <div className="absolute -bottom-1 -left-2 text-yellow-400 animate-pulse opacity-50" style={{ animationDelay: '0.5s' }}>⭐</div>
-              <div className="absolute top-1 -right-6 text-yellow-400 animate-bounce opacity-60" style={{ animationDelay: '1s' }}>💫</div>
             </span>
           </h1>
           
           {/* Subheading */}
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-            Discover opportunities to help your community while earning extra income
+            Connect with your community and discover meaningful opportunities to earn extra income
           </p>
           
           {/* Interactive Animated Stats */}
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
+          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 lg:gap-16 mb-8 sm:mb-10">
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
-                500+
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+                50+
               </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-pulse">📋</span>
-                Available Tasks
+              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                <span className="group-hover:animate-pulse text-lg">📋</span>
+                Active Tasks
               </div>
             </div>
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 24/7
               </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-spin" style={{ animationDuration: '2s' }}>⏰</span>
-                New Postings
+              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                <span className="group-hover:animate-spin text-lg" style={{ animationDuration: '2s' }}>⏰</span>
+                Support Available
               </div>
             </div>
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
-                1000+
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+                100+
               </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-pulse">😊</span>
-                Happy Helpers
+              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                <span className="group-hover:animate-pulse text-lg">😊</span>
+                Community Members
               </div>
             </div>
           </div>
