@@ -40,7 +40,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-base"
+                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-xs sm:text-sm"
                   style={{ 
                     borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
