@@ -8,7 +8,7 @@ interface ToolsTasksChatAgentProps {
 export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentProps) {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chat' | 'call'>('chat');
+  const [activeTab, setActiveTab] = useState<'chat' | 'call' | 'support'>('chat');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([
     {
