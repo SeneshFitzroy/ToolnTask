@@ -451,11 +451,11 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-9 sm:gap-11 md:gap-13">
             {[
               { 
                 step: '1', 
-                icon: '�', 
+                icon: '👤', 
                 title: 'Login/Create Account', 
                 desc: 'Sign up or log in to your ToolNTask account to get started with our community marketplace',
                 color: '#FF5E14',
@@ -493,26 +493,26 @@ export default function Home() {
               >
                 {/* Simple Step Card */}
                 <div 
-                  className="relative p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
+                  className="relative p-7 sm:p-9 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 group cursor-pointer"
                   style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}
                 >
                   {/* Step Number */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl mx-auto mb-4 shadow-lg" style={{ backgroundColor: step.color }}>
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold text-xl sm:text-2xl mx-auto mb-5 shadow-lg" style={{ backgroundColor: step.color }}>
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className="text-4xl sm:text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-5xl sm:text-6xl mb-5 transform group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {step.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                     {step.desc}
                   </p>
                   
