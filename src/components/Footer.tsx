@@ -232,7 +232,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               aria-label="Back to top"
             >
               <ArrowUp className="w-4 h-4" />
-              <span className="text-sm font-medium">Back to Top</span>
+              <span className="text-xs font-medium">Back to Top</span>
             </button>
           </div>
         </div>
