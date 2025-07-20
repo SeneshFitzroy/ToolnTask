@@ -574,7 +574,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-5 justify-center mb-11">
               <Link href="/SignUp">
                 <Button 
-                  className="w-full sm:w-auto text-xl font-bold px-9 py-5 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
+                  className="w-full sm:w-auto text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
