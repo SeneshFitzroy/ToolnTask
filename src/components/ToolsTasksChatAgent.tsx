@@ -379,7 +379,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       <p className="text-sm">
                         Welcome to our Support Center! Send us a message and one of our team members will join the chat shortly.
                       </p>
-                      <p className="text-sm mt-2" style={{ color: '#FF5E14' }}>
+                      <p className="text-sm mt-2" style={{ color: '#001554' }}>
                         For immediate assistance, you can also call: <strong>+94 76 112 0457</strong>
                       </p>
                       <p className="text-xs mt-1 text-gray-500">
