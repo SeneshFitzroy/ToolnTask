@@ -98,14 +98,14 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Bigger with Marketplace Slogan */}
-          <Link href="/" className="flex flex-col items-start flex-shrink-0" onClick={() => {
+          {/* Logo - Extra Large with Properly Positioned Marketplace Slogan */}
+          <Link href="/" className="flex flex-col items-start flex-shrink-0 py-2" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
             <Logo size="xl" interactive={false} />
-            <span className="text-xs font-medium mt-1 opacity-75" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
+            <span className="text-xs font-medium -mt-1 opacity-80" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
               Community Marketplace
             </span>
           </Link>
@@ -410,37 +410,37 @@ const Navigation = () => {
                 </div>
                 </div>
               ) : (
-                // User is not logged in - Compact Account Button
+                // User is not logged in - Compact Orange Account Button with Gold Border
                 <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-4 px-7 py-4 rounded-lg text-lg font-semibold transition-all duration-200 shine-effect"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shine-effect"
                     style={{ 
-                      color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                      backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
-                      border: `2px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                      color: '#FFFFFF',
+                      backgroundColor: '#FF5E14',
+                      border: '2px solid #FFD700',
+                      boxShadow: '0 3px 10px rgba(255, 94, 20, 0.3)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
-                      e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 94, 20, 0.25)';
+                      e.currentTarget.style.backgroundColor = '#E54D0F';
+                      e.currentTarget.style.borderColor = '#FFC107';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 5px 15px rgba(255, 94, 20, 0.4)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
+                      e.currentTarget.style.backgroundColor = '#FF5E14';
+                      e.currentTarget.style.borderColor = '#FFD700';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                      e.currentTarget.style.boxShadow = '0 3px 10px rgba(255, 94, 20, 0.3)';
                     }}
                   >
-                    <UserIcon className="h-6 w-6" />
-                    <span className="font-bold">Account</span>
+                    <UserIcon className="h-4 w-4" />
+                    <span className="font-semibold">Account</span>
                     <ChevronDown 
-                      className={`h-6 w-6 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
                     />
                   </button>
