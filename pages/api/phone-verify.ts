@@ -166,15 +166,19 @@ Don't share this code with anyone.
           const whatsappResult = await whatsappResponse.json();
           
           if (whatsappResponse.ok && whatsappResult.idMessage) {
-            console.log('✅ WhatsApp OTP sent successfully');
+            console.log('✅ WhatsApp OTP sent successfully via Green API');
+            console.log(`📱 Message ID: ${whatsappResult.idMessage}`);
             return {
               success: true,
               message: `OTP sent via WhatsApp to ${formattedPhone}`,
-              method: 'WHATSAPP'
+              method: 'WHATSAPP',
+              messageId: whatsappResult.idMessage
             };
+          } else {
+            console.log('❌ WhatsApp failed:', whatsappResult);
           }
-        } catch {
-          console.log('❌ WhatsApp failed, trying SMS...');
+        } catch (error) {
+          console.log('❌ WhatsApp error:', error);
         }
       }
       
