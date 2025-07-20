@@ -339,21 +339,21 @@ export default function Home() {
         </div>
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
-          <div className="text-center mb-9 sm:mb-13 md:mb-17">
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-              Trusted by Communities Across{' '}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              Building Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-              From coast to hill, thousands are uniting to help each other every day!
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
+              Connecting neighbors, sharing resources, and creating opportunities in every district!
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-9">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
             {[
-              { icon: '👥', number: '5,000+', label: 'Active Users', color: '#FF5E14' },
-              { icon: '🔧', number: '1,000+', label: 'Tools Available', color: '#FF5E14' },
-              { icon: '🏆', number: '500+', label: 'Tasks Completed', color: '#FF5E14' }
+              { icon: '🤝', number: '250+', label: 'Community Members', color: '#FF5E14' },
+              { icon: '⚡', number: '150+', label: 'Active Listings', color: '#FF5E14' },
+              { icon: '�', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
             ].map((stat, index) => (
               <div 
                 key={index} 
