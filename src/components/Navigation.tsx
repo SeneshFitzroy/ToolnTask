@@ -325,6 +325,11 @@ const Navigation = () => {
 
           {/* Right side - 90% Zoom Optimized Auth buttons */}
           <div className="flex items-center space-x-5 flex-shrink-0">
+            {/* Language Selector */}
+            <div className="hidden sm:block">
+              <LanguageSelector />
+            </div>
+            
             {/* Auth Buttons - Hidden on small screens */}
             <div className="hidden sm:flex items-center space-x-5">
               {user ? (
