@@ -35,7 +35,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
           </div>
         )}
         
-        <div className="h-36 sm:h-40 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center relative overflow-hidden">
+        <div className="h-32 sm:h-36 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center relative overflow-hidden">
           {available ? (
             <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-green-500 text-white text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg z-10">
               Available
@@ -52,7 +52,7 @@ const ToolCard: React.FC<ToolCardProps> = ({
           )}
         </div>
         
-        <div className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col">
+        <div className="p-2 sm:p-3 lg:p-4 flex-1 flex flex-col">
           <div className="flex justify-between items-start mb-2 sm:mb-3">
             <h3 className="text-sm sm:text-base lg:text-lg font-bold text-slate-800 dark:text-white line-clamp-2 flex-1 mr-2 sm:mr-3 leading-tight">{title}</h3>
             <span className="text-base sm:text-lg lg:text-xl font-bold text-orange-600 dark:text-orange-400 whitespace-nowrap">{price}</span>
