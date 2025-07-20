@@ -28,7 +28,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <Link href={`/tasks/${id}_enhanced`}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-100 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-500 overflow-hidden h-[420px] sm:h-[460px] flex flex-col transform hover:scale-105 relative cursor-pointer">
+      <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-100 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-500 overflow-hidden h-[380px] sm:h-[420px] flex flex-col transform hover:scale-105 relative cursor-pointer">
         {isPromoted && (
           <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold px-2 sm:px-3 py-1 rounded-full z-10 shadow-lg">
             ⭐ PROMOTED
@@ -42,7 +42,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         )}
         
         {/* Image Section */}
-        <div className="h-36 sm:h-40 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-700 dark:to-gray-600 relative overflow-hidden">
+        <div className="h-32 sm:h-36 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-700 dark:to-gray-600 relative overflow-hidden">
           {image ? (
             <Image src={image} alt={title} fill className="object-cover" />
           ) : (
@@ -52,7 +52,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           )}
         </div>
         
-        <div className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col">
+        <div className="p-2 sm:p-3 lg:p-4 flex-1 flex flex-col">
           <div className="flex justify-between items-start mb-2 sm:mb-3">
             <h3 className="text-sm sm:text-base lg:text-lg font-bold text-slate-800 dark:text-white line-clamp-2 flex-1 mr-2 sm:mr-3 leading-tight">{title}</h3>
             <span className="text-base sm:text-lg lg:text-xl font-bold text-orange-600 dark:text-orange-400 whitespace-nowrap">{price}</span>
