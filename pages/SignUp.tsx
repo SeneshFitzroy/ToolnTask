@@ -82,15 +82,25 @@ export default function SignUp() {
       return;
     }
 
-    // Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setError('Please enter a valid email address');
-      setLoading(false);
-      return;
+    // Validate primary contact method
+    if (registrationMethod === 'email') {
+      // Email is primary - validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!formData.email || !emailRegex.test(formData.email)) {
+        setError('Please enter a valid email address');
+        setLoading(false);
+        return;
+      }
+    } else {
+      // Phone is primary - validate phone format
+      if (!formData.phone) {
+        setError('Please enter your phone number');
+        setLoading(false);
+        return;
+      }
     }
 
-    // Sri Lankan phone number validation
+    // Sri Lankan phone number validation (if provided)
     const validateSriLankanPhone = (phone: string): boolean => {
       const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
       const patterns = [
@@ -102,6 +112,23 @@ export default function SignUp() {
 
     if (formData.phone && !validateSriLankanPhone(formData.phone)) {
       setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567 or +94 77 123 4567)');
+      setLoading(false);
+      return;
+    }
+
+    // Validate email format (if provided)
+    if (formData.email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        setError('Please enter a valid email address');
+        setLoading(false);
+        return;
+      }
+    }
+
+    // Ensure we have at least one contact method
+    if (!formData.email && !formData.phone) {
+      setError('Please provide at least one contact method (email or phone number)');
       setLoading(false);
       return;
     }
@@ -138,10 +165,19 @@ export default function SignUp() {
     }
 
     try {
-      console.log('Attempting to create user with email:', formData.email.trim());
+      // For Firebase Auth, we need an email address
+      // If phone is primary and no email provided, create a temporary email
+      let authEmail = formData.email.trim();
+      if (!authEmail && formData.phone) {
+        // Create a temporary email based on phone number for Firebase Auth
+        const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, '');
+        authEmail = `phone_${cleanPhone}@toolntask.temp`;
+      }
+      
+      console.log('Attempting to create user with email:', authEmail);
       
       // Create user with Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(auth, formData.email.trim(), formData.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, authEmail, formData.password);
       const { user } = userCredential;
 
       console.log('User created successfully:', user.uid);
@@ -170,8 +206,10 @@ export default function SignUp() {
       await setDoc(doc(db, 'users', user.uid), {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
-        email: formData.email.trim().toLowerCase(),
-        phone: normalizedPhone,
+        email: formData.email ? formData.email.trim().toLowerCase() : null,
+        phone: normalizedPhone || null,
+        authEmail: authEmail, // Store the auth email for reference
+        primaryContact: registrationMethod,
         displayName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
@@ -184,13 +222,15 @@ export default function SignUp() {
 
       console.log('User data saved to Firestore successfully');
 
-      // Send welcome email
-      try {
-        await sendWelcomeEmail(formData.firstName.trim(), formData.email.trim());
-        console.log('Welcome email sent successfully');
-      } catch (emailError) {
-        console.error('Failed to send welcome email:', emailError);
-        // Don't fail registration if email fails
+      // Send welcome email if email is provided
+      if (formData.email) {
+        try {
+          await sendWelcomeEmail(formData.firstName.trim(), formData.email.trim());
+          console.log('Welcome email sent successfully');
+        } catch (emailError) {
+          console.error('Failed to send welcome email:', emailError);
+          // Don't fail registration if email fails
+        }
       }
 
       // Send SMS notification if phone number is provided
@@ -210,17 +250,23 @@ export default function SignUp() {
 
           if (smsResponse.ok) {
             console.log('Welcome SMS sent successfully');
-            setSuccessMessage('🎉 Account created! Check your email and phone for welcome messages.');
           } else {
             console.error('Failed to send welcome SMS');
-            setSuccessMessage('🎉 Account created! Check your email for welcome message.');
           }
         } catch (smsError) {
           console.error('Failed to send welcome SMS:', smsError);
-          setSuccessMessage('🎉 Account created! Check your email for welcome message.');
         }
+      }
+
+      // Set appropriate success message based on contact methods
+      if (formData.email && normalizedPhone) {
+        setSuccessMessage('Account created successfully. Please check your email and phone for welcome messages.');
+      } else if (formData.email) {
+        setSuccessMessage('Account created successfully. Please check your email for welcome message.');
+      } else if (normalizedPhone) {
+        setSuccessMessage('Account created successfully. Please check your phone for welcome message.');
       } else {
-        setSuccessMessage('🎉 Account created! Check your email for welcome message.');
+        setSuccessMessage('Account created successfully. Welcome to ToolNTask!');
       }
       
       // Show success message briefly before redirect
