@@ -34,6 +34,8 @@ const mockTasks: Task[] = [];
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [showFilters, setShowFilters] = useState(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -58,6 +60,13 @@ export default function Tasks() {
         task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.details.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Apply category filter
+    if (categoryFilter !== 'all') {
+      filtered = filtered.filter(task => 
+        task.category?.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
     
@@ -190,7 +199,7 @@ export default function Tasks() {
                   placeholder="Search tasks by title, location, category, or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pl-12 pr-12 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
+                  className="w-full px-4 py-3 pl-12 pr-20 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
@@ -211,6 +220,19 @@ export default function Tasks() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
+                {/* Filter Icon */}
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="absolute right-10 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-600"
+                  style={{ 
+                    color: showFilters ? '#FF5E14' : (theme === 'dark' ? '#9CA3AF' : '#6B7280'),
+                  }}
+                  title="Filter options"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                  </svg>
+                </button>
                 {/* Clear Button */}
                 {searchTerm && (
                   <button
@@ -234,6 +256,45 @@ export default function Tasks() {
                 )}
               </div>
             </div>
+            
+            {/* Filter Dropdown */}
+            {showFilters && (
+              <div className="p-4 border rounded-lg" 
+                   style={{ 
+                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
+                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0'
+                   }}>
+                <div className="flex flex-wrap gap-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Category:
+                    </span>
+                  </div>
+                  {['all', 'cleaning', 'gardening', 'handyman', 'delivery', 'tutoring', 'other'].map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setCategoryFilter(category)}
+                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                        categoryFilter === category 
+                          ? 'text-white' 
+                          : 'hover:bg-opacity-10'
+                      }`}
+                      style={{
+                        backgroundColor: categoryFilter === category 
+                          ? '#FF5E14' 
+                          : 'transparent',
+                        color: categoryFilter === category 
+                          ? '#FFFFFF' 
+                          : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
+                        border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#D1D5DB')}`
+                      }}
+                    >
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             
             {/* Results Summary with improved styling */}
             <div className="flex items-center justify-between">
