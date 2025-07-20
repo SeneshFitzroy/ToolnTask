@@ -67,7 +67,21 @@ export default function SignUp() {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Check if returning from Terms page with acceptance
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('termsAccepted') === 'true') {
+      // Restore form data from localStorage if available
+      const savedFormData = localStorage.getItem('signupFormData');
+      if (savedFormData) {
+        const parsedData = JSON.parse(savedFormData);
+        setFormData(parsedData);
+        localStorage.removeItem('signupFormData'); // Clean up
+      }
+      // Clear the URL parameter
+      router.replace('/SignUp', undefined, { shallow: true });
+    }
+  }, [router]);
 
   // Real-time password validation
   useEffect(() => {
