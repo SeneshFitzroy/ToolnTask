@@ -395,44 +395,102 @@ export default function SignUp() {
                 </div>
               </div>
               
+              {/* Primary Contact Field */}
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  placeholder="your.email@example.com"
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                  required
-                />
+                {registrationMethod === 'email' ? (
+                  <>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Email Address (Primary) 📧
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="your.email@example.com"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      required
+                    />
+                  </>
+                ) : (
+                  <>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Phone Number (Primary) 📱🇱🇰
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="077 123 4567 or +94 77 123 4567"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      required
+                    />
+                  </>
+                )}
               </div>
-              
+
+              {/* Secondary Contact Field */}
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>Phone Number (Sri Lanka 🇱🇰)</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  placeholder="077 123 4567 or +94 77 123 4567"
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                  required
-                />
+                {registrationMethod === 'email' ? (
+                  <>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Phone Number (For SMS notifications) 📱🇱🇰
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="077 123 4567 or +94 77 123 4567"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      required
+                    />
+                  </>
+                ) : (
+                  <>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                      Email Address (For email notifications) 📧
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="your.email@example.com"
+                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
+                      required
+                    />
+                  </>
+                )}
               </div>
               
               <div>
