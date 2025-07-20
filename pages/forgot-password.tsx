@@ -57,7 +57,7 @@ export default function ForgotPassword() {
     const isPhone = validatePhone(trimmedIdentifier);
 
     if (!isEmail && !isPhone) {
-      setError('Please enter a valid email address or Sri Lankan phone number (e.g., senesh@example.com or 077 123 4567)');
+      setError('Please enter a valid email address or Sri Lankan phone number (e.g., senesh@example.com, 077 123 4567, or 076 112 0457)');
       setLoading(false);
       return;
     }
