@@ -394,7 +394,7 @@ export default function Tools() {
         </div>
       </div>
 
-      <ToolsTasksChatAgent />
+      <ToolsTasksChatAgent pageType="tools" />
       <Footer />
     </div>
   );
