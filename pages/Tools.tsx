@@ -143,33 +143,30 @@ export default function Tools() {
             Connect with your community and discover meaningful opportunities to earn extra income
           </p>
           
-          {/* Interactive Animated Stats */}
+          {/* Professional Statistics */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
-                300+
+            <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: '#FF5E14' }}>
+                100+ Tools
               </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-pulse">🔧</span>
-                Available Tools
-              </div>
-            </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                24/7
-              </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-spin" style={{ animationDuration: '2s' }}>⏰</span>
-                New Listings
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Available Now
               </div>
             </div>
-            <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
-                500+
+            <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                24/7 Support
               </div>
-              <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                <span className="group-hover:animate-pulse">😊</span>
-                Happy Renters
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Always Here
+              </div>
+            </div>
+            <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: '#FF5E14' }}>
+                50+ Members
+              </div>
+              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                Active Community
               </div>
             </div>
           </div>
