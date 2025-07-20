@@ -194,7 +194,7 @@ export default function ForgotPassword() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="your.email@example.com or 077 123 4567"
+                    placeholder="your.email@example.com, 077 123 4567, or 076 112 0457"
                   />
                 </div>
               </div>
