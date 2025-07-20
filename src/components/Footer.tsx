@@ -232,8 +232,8 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Get in Touch</h3>
               <div className="space-y-4">
                 {[
-                  { icon: Phone, text: '+94 76 112 0457', href: 'tel:+94761120457' },
-                  { icon: Mail, text: 'toolntask@gmail.com', href: 'mailto:toolntask@gmail.com' },
+                  { icon: Phone, text: '+94 11 123 4567', href: 'tel:+94111234567' },
+                  { icon: Mail, text: 'hello@toolntask.lk', href: 'mailto:hello@toolntask.lk' },
                   { icon: MapPin, text: '123 Galle Road, Colombo 03, Sri Lanka', href: '#' }
                 ].map((contact, index) => (
                   <div key={index} className="flex items-start gap-3 group">
