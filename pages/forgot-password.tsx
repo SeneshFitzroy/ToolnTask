@@ -10,9 +10,7 @@ export default function ForgotPassword() {
   const router = useRouter();
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [method, setMethod] = useState<'email' | 'phone'>('email');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [identifier, setIdentifier] = useState(''); // Single field for email or phone
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -24,7 +22,6 @@ export default function ForgotPassword() {
   // Validate Sri Lankan phone number
   const validatePhone = (phone: string): boolean => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-    // Updated pattern to match SignIn page validation - allows 0 prefix and all valid Sri Lankan mobile numbers
     const phoneRegex = /^(\+94|0094|94|0)?[1-9][0-9]{8,9}$/;
     return phoneRegex.test(cleanPhone);
   };
@@ -38,22 +35,34 @@ export default function ForgotPassword() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setMessage('');
     setLoading(true);
 
-    if (method === 'email') {
-      if (!email || !validateEmail(email)) {
-        setError('Please enter a valid email address');
-        setLoading(false);
-        return;
-      }
+    if (!identifier.trim()) {
+      setError('Please enter your email address or phone number');
+      setLoading(false);
+      return;
+    }
 
+    const trimmedIdentifier = identifier.trim();
+    const isEmail = validateEmail(trimmedIdentifier);
+    const isPhone = validatePhone(trimmedIdentifier);
+
+    if (!isEmail && !isPhone) {
+      setError('Please enter a valid email address or Sri Lankan phone number (e.g., senesh@example.com or 077 123 4567)');
+      setLoading(false);
+      return;
+    }
+
+    if (isEmail) {
+      // Handle email password reset
       try {
         const response = await fetch('/api/password-reset', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email: email.trim() }),
+          body: JSON.stringify({ email: trimmedIdentifier }),
         });
 
         const data = await response.json();
@@ -66,16 +75,44 @@ export default function ForgotPassword() {
       } catch {
         setError('Failed to send reset email. Please try again.');
       }
-    } else {
-      if (!phone || !validatePhone(phone)) {
-        setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567)');
-        setLoading(false);
-        return;
-      }
+    } else if (isPhone) {
+      // Handle phone password reset
+      try {
+        // First, get the email associated with this phone number
+        const cleanedPhone = trimmedIdentifier.replace(/[\s\-\(\)]/g, '');
+        const response = await fetch('/api/get-email-by-phone', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phone: cleanedPhone }),
+        });
 
-      // Redirect to phone verification page
-      router.push(`/phone-verification?phone=${encodeURIComponent(phone)}&type=password-reset`);
-      return;
+        const data = await response.json();
+
+        if (response.ok && data.email) {
+          // Send password reset to the associated email
+          const resetResponse = await fetch('/api/password-reset', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: data.email }),
+          });
+
+          const resetData = await resetResponse.json();
+
+          if (resetResponse.ok) {
+            setMessage(`Password reset link sent to the email associated with your phone number (${data.email}). Please check your inbox.`);
+          } else {
+            setError(resetData.message || 'Failed to send reset email');
+          }
+        } else {
+          setError('Phone number not found in our records. Please use your email address or contact support.');
+        }
+      } catch {
+        setError('Failed to process phone number. Please try using your email address.');
+      }
     }
 
     setLoading(false);
