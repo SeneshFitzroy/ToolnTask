@@ -168,7 +168,7 @@ export default function Tools() {
                   placeholder="Search tools by name, category, or location..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pl-12 pr-16 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
+                  className="w-full px-4 py-3 pl-12 pr-24 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
