@@ -18,16 +18,16 @@ export default function TermsAndConditions() {
   if (!mounted) return null;
 
   const sections = [
-    { id: 'acceptance', title: '1. Acceptance of Terms', icon: '✅' },
-    { id: 'platform-description', title: '2. Platform Description', icon: '🏢' },
-    { id: 'user-responsibilities', title: '3. User Responsibilities', icon: '👥' },
-    { id: 'prohibited-activities', title: '4. Prohibited Activities', icon: '🚫' },
-    { id: 'payment-terms', title: '5. Payment Terms', icon: '💳' },
-    { id: 'safety-insurance', title: '6. Safety and Insurance', icon: '🛡️' },
-    { id: 'intellectual-property', title: '7. Intellectual Property', icon: '©️' },
-    { id: 'limitation-liability', title: '8. Limitation of Liability', icon: '⚖️' },
-    { id: 'account-termination', title: '9. Account Termination', icon: '🔒' },
-    { id: 'changes-terms', title: '10. Changes to Terms', icon: '🔄' },
+    { id: 'acceptance', title: '1. Acceptance of Terms', icon: '' },
+    { id: 'platform-description', title: '2. Platform Description', icon: '' },
+    { id: 'user-responsibilities', title: '3. User Responsibilities', icon: '' },
+    { id: 'prohibited-activities', title: '4. Prohibited Activities', icon: '' },
+    { id: 'payment-terms', title: '5. Payment Terms', icon: '' },
+    { id: 'safety-insurance', title: '6. Safety and Insurance', icon: '' },
+    { id: 'intellectual-property', title: '7. Intellectual Property', icon: '' },
+    { id: 'limitation-liability', title: '8. Limitation of Liability', icon: '' },
+    { id: 'account-termination', title: '9. Account Termination', icon: '' },
+    { id: 'changes-terms', title: '10. Changes to Terms', icon: '' },
     { id: 'contact-info', title: '11. Contact Information', icon: '📞' }
   ];
 
