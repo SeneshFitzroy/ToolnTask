@@ -146,26 +146,26 @@ export default function Tools() {
           {/* Professional Statistics */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
             <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: '#FF5E14' }}>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2" style={{ color: '#FF5E14' }}>
                 100+ Tools
               </div>
-              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              <div className="text-sm sm:text-base md:text-lg font-semibold" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Available Now
               </div>
             </div>
             <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 24/7 Support
               </div>
-              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              <div className="text-sm sm:text-base md:text-lg font-semibold" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Always Here
               </div>
             </div>
             <div className="text-center group hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1" style={{ color: '#FF5E14' }}>
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2" style={{ color: '#FF5E14' }}>
                 50+ Members
               </div>
-              <div className="text-sm sm:text-base font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              <div className="text-sm sm:text-base md:text-lg font-semibold" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 Active Community
               </div>
             </div>
