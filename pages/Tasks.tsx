@@ -268,8 +268,8 @@ export default function Tasks() {
             </div>
           </div>
           
-          {/* Enhanced Interactive Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+          {/* Enhanced Interactive Main Heading - Consistent Sizing */}
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-6 leading-tight tracking-tight">
             <span className="inline-block hover:scale-110 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Explore{' '}
             </span>
