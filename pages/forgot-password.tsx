@@ -179,8 +179,7 @@ export default function ForgotPassword() {
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#D1D5DB',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
-                      focusRingColor: '#FF5E14'
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
                     placeholder="your.email@example.com or 077 123 4567"
                   />
