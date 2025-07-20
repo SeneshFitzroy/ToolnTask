@@ -124,7 +124,7 @@ export default function Home() {
               <div className="flex justify-center lg:justify-start mb-3 sm:mb-4 md:mb-6">
                 <Link href="/SignIn">
                   <Button 
-                    className="w-full sm:w-auto text-white px-4 sm:px-6 md:px-8 lg:px-10 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-bold rounded-md sm:rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
+                    className="w-full sm:w-auto text-white px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-bold rounded-md sm:rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FF5E14',
                       background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
