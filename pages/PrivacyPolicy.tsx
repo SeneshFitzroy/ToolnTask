@@ -199,7 +199,7 @@ export default function PrivacyAndSafety() {
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Meet in Public:</strong> Always meet in well-lit, public locations for initial meetings</li>
                         <li>• <strong>Verify Identity:</strong> Check user profiles, ratings, and reviews before engaging</li>
-                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don't proceed with the transaction</li>
+                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don&apos;t proceed with the transaction</li>
                         <li>• <strong>Bring a Friend:</strong> Consider bringing someone for high-value transactions</li>
                         <li>• <strong>Share Plans:</strong> Inform someone about your meeting location and time</li>
                       </ul>
@@ -239,7 +239,7 @@ export default function PrivacyAndSafety() {
                         Red Flags to Avoid
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Off-Platform Payments:</strong> Never pay outside of ToolNTask's secure system</li>
+                        <li>• <strong>Off-Platform Payments:</strong> Never pay outside of ToolNTask&apos;s secure system</li>
                         <li>• <strong>Unrealistic Offers:</strong> Be wary of deals that seem too good to be true</li>
                         <li>• <strong>Pressure Tactics:</strong> Avoid users who pressure for immediate decisions</li>
                         <li>• <strong>Poor Communication:</strong> Unclear, evasive, or hostile communication patterns</li>
