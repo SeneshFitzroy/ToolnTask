@@ -592,6 +592,11 @@ const Navigation = () => {
                 About
               </Link>
 
+              {/* Mobile Language Selector */}
+              <div className="px-4 py-3">
+                <LanguageSelector />
+              </div>
+
               {/* Mobile Create Options */}
               {user && (
                 <div className="pt-4 border-t mt-4" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
