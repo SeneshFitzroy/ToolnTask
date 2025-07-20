@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
 interface ToolsTasksChatAgentProps {
@@ -8,8 +8,9 @@ interface ToolsTasksChatAgentProps {
 export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentProps) {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chat' | 'call' | 'support'>('chat');
+  const [activeTab, setActiveTab] = useState<'chat' | 'support'>('chat');
   const [message, setMessage] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -21,6 +22,15 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     }
   ]);
   const [hasNewMessage, setHasNewMessage] = useState(false);
+
+  // Auto scroll to bottom when new messages are added
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   // Simulate new messages for demo
   useEffect(() => {
@@ -179,7 +189,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
             <div className="flex mt-3 bg-white bg-opacity-20 rounded-lg p-1">
               <button
                 onClick={() => setActiveTab('chat')}
-                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
+                className={`flex-1 py-2 px-3 rounded-md transition-all duration-200 text-sm font-semibold ${
                   activeTab === 'chat' 
                     ? 'bg-white text-gray-800' 
                     : 'text-white hover:bg-white hover:bg-opacity-10'
@@ -188,18 +198,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                 💬 Chat
               </button>
               <button
-                onClick={() => setActiveTab('call')}
-                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
-                  activeTab === 'call' 
-                    ? 'bg-white text-gray-800' 
-                    : 'text-white hover:bg-white hover:bg-opacity-10'
-                }`}
-              >
-                📞 Call
-              </button>
-              <button
                 onClick={() => setActiveTab('support')}
-                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
+                className={`flex-1 py-2 px-3 rounded-md transition-all duration-200 text-sm font-semibold ${
                   activeTab === 'support' 
                     ? 'bg-white text-gray-800' 
                     : 'text-white hover:bg-white hover:bg-opacity-10'
