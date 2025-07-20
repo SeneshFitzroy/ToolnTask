@@ -134,7 +134,6 @@ export default function SignIn() {
     } catch (error: unknown) {
       console.error('Error sending password reset email:', error);
       setError('Error sending password reset email. Please try again.');
-      }
     }
   };
 
