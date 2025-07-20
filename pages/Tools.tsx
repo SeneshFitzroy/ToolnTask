@@ -353,7 +353,28 @@ export default function Tools() {
                   </span>
                 )}
               </div>
-              {searchTerm && (
+              {(searchTerm || categoryFilter !== 'all') && (
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setCategoryFilter('all');
+                  }}
+                  className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
+                  style={{ 
+                    color: '#FF5E14',
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Clear all filters
+                </button>
+              )}
+            </div>
                 <button
                   onClick={() => setSearchTerm('')}
                   className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
@@ -368,7 +389,7 @@ export default function Tools() {
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }}
                 >
-                  Clear search
+                  Clear all filters
                 </button>
               )}
             </div>
