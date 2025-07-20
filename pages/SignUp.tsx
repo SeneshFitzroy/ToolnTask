@@ -311,7 +311,7 @@ export default function SignUp() {
                     className="text-xs px-2 py-1 rounded-md transition-all duration-200 hover:scale-105"
                     style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
                   >
-                    🔄 Switch to {registrationMethod === 'email' ? 'Phone' : 'Email'}
+                    Switch to {registrationMethod === 'email' ? 'Phone' : 'Email'}
                   </button>
                 )}
               </div>
