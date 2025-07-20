@@ -213,8 +213,15 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                   <span className="text-lg">🤖</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">TaskMate</h3>
-                  <p className="text-sm opacity-90">Online • 24/7 assistant ready to help</p>
+                  <h3 className="font-bold text-lg">
+                    {activeTab === 'support' ? 'Support Team' : 'TaskMate'}
+                  </h3>
+                  <p className="text-sm opacity-90">
+                    {activeTab === 'support' 
+                      ? 'Online • Support team ready to help' 
+                      : 'Online • 24/7 assistant ready to help'
+                    }
+                  </p>
                 </div>
               </div>
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
