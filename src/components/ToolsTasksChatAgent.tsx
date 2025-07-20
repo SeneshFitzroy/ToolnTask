@@ -32,6 +32,52 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     }
   }, [isOpen]);
 
+  // Listen for Footer support center events
+  useEffect(() => {
+    const handleOpenTaskMate = (event: CustomEvent) => {
+      console.log('Opening TaskMate from Footer Support Center', event.detail);
+      setIsOpen(true);
+      setActiveTab('chat');
+      
+      // Add a support message if triggered from footer
+      if (event.detail?.source === 'footer-support') {
+        const supportMessage = {
+          id: Date.now(),
+          type: 'agent',
+          message: 'Hi! I see you\'re looking for support. I\'m here to help with any questions about ToolNTask. What can I assist you with?',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages(prev => [...prev, supportMessage]);
+      }
+    };
+
+    const handleShowTaskMate = (event: CustomEvent) => {
+      console.log('Showing TaskMate from Footer', event.detail);
+      setIsOpen(true);
+      setActiveTab('chat');
+      
+      if (event.detail?.message) {
+        const customMessage = {
+          id: Date.now(),
+          type: 'agent',
+          message: event.detail.message,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages(prev => [...prev, customMessage]);
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('openTaskMate', handleOpenTaskMate as EventListener);
+    document.addEventListener('showTaskMate', handleShowTaskMate as EventListener);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('openTaskMate', handleOpenTaskMate as EventListener);
+      document.removeEventListener('showTaskMate', handleShowTaskMate as EventListener);
+    };
+  }, []);
+
   const handleSendMessage = () => {
     if (message.trim()) {
       const newMessage = {
@@ -101,7 +147,9 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
       {/* Chat Panel */}
       {isOpen && (
         <div
-          className="fixed bottom-24 right-6 w-96 h-[500px] rounded-2xl shadow-2xl z-40 flex flex-col overflow-hidden"
+          data-testid="taskmate-chat"
+          className="fixed bottom-24 right-6 w-96 h-[500px] rounded-2xl shadow-2xl z-40 flex flex-col overflow-hidden taskmate-widget"
+          id="taskmate-container"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
             border: `2px solid ${pageType === 'tools' ? '#3B82F6' : '#F59E0B'}`

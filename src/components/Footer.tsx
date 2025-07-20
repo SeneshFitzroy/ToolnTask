@@ -205,11 +205,12 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
 
             {/* Legal Links */}
             <div>
-              <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal & Support</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/PrivacyPolicy', label: 'Privacy & Safety' },
-                  { href: '#', label: 'Support Center', action: 'openChat' }
+                  { href: '#', label: 'Support Center', action: 'openChat' },
+                  { href: 'tel:+94761120457', label: 'Contact Member (+94 76 112 0457)', action: 'call' }
                 ].map((link, index) => (
                   <li key={index}>
                     {link.action === 'openChat' ? (
@@ -255,6 +256,17 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                         <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
                         {link.label}
                       </button>
+                    ) : link.action === 'call' ? (
+                      <a
+                        href={link.href}
+                        className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
+                        style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                        📞 {link.label}
+                      </a>
                     ) : (
                       <Link 
                         href={link.href} 
