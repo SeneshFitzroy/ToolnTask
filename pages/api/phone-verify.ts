@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../src/lib/firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import nodemailer from 'nodemailer';
+import twilio from 'twilio';
 
 type ResponseData = {
   message: string;
@@ -104,7 +105,6 @@ export default async function handler(
 
       if (twilioAccountSid && twilioAuthToken && twilioPhoneNumber) {
         // Use real SMS service (Twilio)
-        const twilio = require('twilio');
         const client = twilio(twilioAccountSid, twilioAuthToken);
 
         const smsMessage = `🔐 Your ToolNTask verification code is: ${otp}. This code expires in 10 minutes. Don't share this code with anyone. - ToolNTask Sri Lanka`;
