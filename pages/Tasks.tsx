@@ -340,10 +340,27 @@ export default function Tasks() {
                     &ldquo;{searchTerm}&rdquo;
                   </span>
                 )}
+                {categoryFilter !== 'all' && (
+                  <span className="text-sm px-2 py-1 rounded-full" 
+                        style={{ 
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
+                          color: '#FF5E14'
+                        }}>
+                    {categoryFilter === 'cleaning' ? 'Cleaning' :
+                     categoryFilter === 'gardening' ? 'Gardening' :
+                     categoryFilter === 'handyman' ? 'Handyman' :
+                     categoryFilter === 'delivery' ? 'Delivery' :
+                     categoryFilter === 'tutoring' ? 'Tutoring' :
+                     categoryFilter === 'other' ? 'Other' : categoryFilter}
+                  </span>
+                )}
               </div>
-              {searchTerm && (
+              {(searchTerm || categoryFilter !== 'all') && (
                 <button
-                  onClick={() => setSearchTerm('')}
+                  onClick={() => {
+                    setSearchTerm('');
+                    setCategoryFilter('all');
+                  }}
                   className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
                   style={{ 
                     color: '#FF5E14',
@@ -356,7 +373,7 @@ export default function Tasks() {
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }}
                 >
-                  Clear search
+                  Clear all filters
                 </button>
               )}
             </div>
