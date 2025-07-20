@@ -103,12 +103,12 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               
               {/* Status Messages */}
               {subscriptionStatus === 'success' && (
-                <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-base">
                   ✅ Successfully subscribed! Check your email for a welcome message.
                 </div>
               )}
               {subscriptionStatus === 'error' && (
-                <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg text-base">
                   ❌ Something went wrong. Please try again later.
                 </div>
               )}
