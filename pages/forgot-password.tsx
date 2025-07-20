@@ -132,20 +132,96 @@ export default function ForgotPassword() {
             {/* Header */}
             <div className="text-center mb-8">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F2F3F5' }}>
-                {method === 'email' ? (
-                  <Mail className="w-8 h-8" style={{ color: '#FF5E14' }} />
-                ) : (
-                  <Smartphone className="w-8 h-8" style={{ color: '#FF5E14' }} />
-                )}
+                <Mail className="w-8 h-8" style={{ color: '#FF5E14' }} />
               </div>
               <Logo size="large" className="mb-4" />
               <h1 className="text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                 Reset Your Password
               </h1>
               <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                Choose how you&apos;d like to receive your password reset
+                Enter your email address or phone number to receive a password reset link
               </p>
             </div>
+
+            {message && (
+              <div className="mb-6 p-4 rounded-lg border-2 border-green-300" style={{ backgroundColor: '#D1FAE5', color: '#047857' }}>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>{message}</span>
+                </div>
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 rounded-lg border-2 border-red-300" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5" />
+                  <span>{error}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Single Input Form */}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Email Address or Phone Number
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }} />
+                  <input
+                    type="text"
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
+                    required
+                    disabled={loading}
+                    className="w-full pl-12 pr-4 py-3 rounded-lg border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#D1D5DB',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
+                      focusRingColor: '#FF5E14'
+                    }}
+                    placeholder="your.email@example.com or 077 123 4567"
+                  />
+                </div>
+              </div>
+
+              {/* Info Box */}
+              <div className="p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F9FAFB' }}>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-full" style={{ backgroundColor: theme === 'dark' ? '#3a3a3a' : '#E5F3FF' }}>
+                    <AlertTriangle className="w-4 h-4" style={{ color: '#0EA5E9' }} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                      Reset Instructions
+                    </h4>
+                    <p className="text-xs leading-relaxed" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      For email: We'll send a secure password reset link to your email address.
+                      <br />
+                      For phone: We'll send a reset link to the email associated with your phone number.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading || !identifier.trim()}
+                className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+              >
+                {loading ? (
+                  'Sending...'
+                ) : (
+                  <>
+                    Send Password Reset
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </button>
 
             {/* Method Selection */}
             <div className="mb-6">
