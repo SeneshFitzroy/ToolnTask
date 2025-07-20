@@ -144,8 +144,8 @@ export default function About() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Main Heading - Professional & Clean */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 leading-tight">
+          {/* Main Heading - Consistent with Tasks and Tools pages */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 leading-tight">
             <span className="inline-block" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               About{' '}
             </span>
@@ -157,7 +157,7 @@ export default function About() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-base sm:text-lg text-center mb-8 max-w-4xl mx-auto leading-relaxed" 
+          <p className="text-lg sm:text-xl lg:text-2xl text-center mb-8 max-w-4xl mx-auto leading-relaxed" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connecting communities through shared tasks and tool rentals across Sri Lanka
           </p>
@@ -350,15 +350,6 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center px-6 py-3 rounded-full mb-6" 
-                 style={{ 
-                   backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
-                   border: `2px solid ${theme === 'dark' ? '#FF5E14' : '#FDBA74'}`
-                 }}>
-              <span className="text-base sm:text-lg font-bold" style={{ color: '#FF5E14' }}>
-                Get In Touch
-              </span>
-            </div>
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Contact Us
             </h2>
@@ -420,17 +411,74 @@ export default function About() {
                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
               }}>
                 <h3 className="text-lg sm:text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                  Response Time
+                  Get Instant Help
                 </h3>
-                <p className="text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-                  We typically respond to all inquiries within 24 hours during business days. 
-                  For urgent matters, please call us directly.
+                <p className="text-base leading-relaxed mb-6" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                  Need immediate assistance? Chat with our AI assistant or connect with our support team instantly.
                 </p>
+                
+                {/* TaskMate Chat Button */}
+                <div className="space-y-3">
+                  <button
+                    onClick={() => {
+                      // Dispatch event to open TaskMate chatbot
+                      const event = new CustomEvent('openTaskMate', { 
+                        detail: { source: 'about-page-support', message: 'Hi! I need help with ToolNTask.' }
+                      });
+                      window.dispatchEvent(event);
+                      
+                      // Alternative method for existing TaskMate implementations
+                      const taskmateEvent = new CustomEvent('showTaskMate', {
+                        bubbles: true,
+                        detail: { 
+                          trigger: 'about-support',
+                          message: 'Hello! How can I assist you with ToolNTask today?'
+                        }
+                      });
+                      document.dispatchEvent(taskmateEvent);
+                    }}
+                    className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    🤖 Chat with TaskMate AI
+                  </button>
+                  
+                  <button
+                    onClick={() => {
+                      // Scroll to contact form
+                      const contactForm = document.querySelector('#contact-form');
+                      if (contactForm) {
+                        contactForm.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="w-full border-2 text-base p-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
+                    style={{ 
+                      borderColor: '#FF5E14',
+                      color: theme === 'dark' ? '#FFFFFF' : '#001554',
+                      backgroundColor: theme === 'dark' ? 'transparent' : '#FFFFFF'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#FF5E14';
+                      e.currentTarget.style.color = '#FFFFFF';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? 'transparent' : '#FFFFFF';
+                      e.currentTarget.style.color = theme === 'dark' ? '#FFFFFF' : '#001554';
+                    }}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    📧 Send Direct Message
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="p-6 sm:p-8 rounded-2xl shadow-xl border-2" 
+            <div id="contact-form" className="p-6 sm:p-8 rounded-2xl shadow-xl border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
