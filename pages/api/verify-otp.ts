@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       verificationRef, 
       where('phone', '==', phone), 
       where('otp', '==', otp),
-      where('used', '==', false)
+      where('verified', '==', false)
     );
     const querySnapshot = await getDocs(q);
 
