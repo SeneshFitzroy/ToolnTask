@@ -12,33 +12,35 @@ type ResponseData = {
 
 // Helper function to format phone number to international format
 function formatPhoneNumber(phone: string): string {
-  // Remove all non-digits and plus signs
-  const cleaned = phone.replace(/[^\d+]/g, '');
+  // First, clean the input
+  const cleaned = phone.replace(/[\s\-\(\)]/g, '');
   
-  // If it already starts with +, return as is (for international numbers like Twilio virtual numbers)
+  // If it already starts with +, return as is (for international numbers)
   if (cleaned.startsWith('+')) {
     return cleaned;
   }
   
-  // Remove all non-digits for Sri Lankan number processing
-  const digits = phone.replace(/\D/g, '');
+  // Remove all non-digits for processing
+  const digits = cleaned.replace(/\D/g, '');
   
-  // If it starts with 0, replace with +94 (Sri Lankan numbers)
+  // Handle Sri Lankan numbers
   if (digits.startsWith('0')) {
+    // Convert 0761120457 to +94761120457
     return '+94' + digits.substring(1);
   }
   
-  // If it doesn't start with +94, add it (Sri Lankan numbers)
-  if (!digits.startsWith('94')) {
-    return '+94' + digits;
-  }
-  
-  // If it starts with 94, add the + (Sri Lankan numbers)
   if (digits.startsWith('94')) {
+    // Convert 94761120457 to +94761120457
     return '+' + digits;
   }
   
-  return '+' + digits;
+  // If it's just the local number without country code, add +94
+  if (digits.length === 9 && digits.startsWith('7')) {
+    return '+94' + digits;
+  }
+  
+  // Default: add +94 prefix
+  return '+94' + digits;
 }
 
 // Helper function to validate phone number
