@@ -360,70 +360,83 @@ export default function About() {
       </div>
 
       {/* Contact Section */}
-      <div id="contact" className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+      <div id="contact" className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 rounded-full mb-4" 
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-6 py-3 rounded-full mb-6" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED',
                    border: `2px solid ${theme === 'dark' ? '#FF5E14' : '#FDBA74'}`
                  }}>
-              <span className="text-sm font-bold" style={{ color: '#FF5E14' }}>
-                📧 Get In Touch
+              <span className="text-base sm:text-lg font-bold" style={{ color: '#FF5E14' }}>
+                Get In Touch
               </span>
             </div>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Contact Us
             </h2>
-            <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+            <p className="text-base sm:text-lg lg:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
               Have questions or need support? We&apos;re here to help you succeed on <Logo size="small" className="inline mx-1" />
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Information */}
-            <div className="space-y-8">
-              <div className="p-6 rounded-2xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA' }}>
-                <h3 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                  📍 Our Information
+            <div className="space-y-10">
+              <div className="p-8 rounded-2xl border-2" style={{ 
+                backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA',
+                borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
+              }}>
+                <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  Our Information
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
-                      <span className="text-white text-sm">📧</span>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Email</h4>
-                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>toolntask@gmail.com</p>
+                      <h4 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Email</h4>
+                      <p className="text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>toolntask@gmail.com</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
-                      <span className="text-white text-sm">📞</span>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Phone</h4>
-                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>+94 76 112 0457</p>
+                      <h4 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Phone</h4>
+                      <p className="text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>+94 76 112 0457</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
-                      <span className="text-white text-sm">📍</span>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FF5E14' }}>
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Address</h4>
-                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>Colombo, Sri Lanka</p>
+                      <h4 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Address</h4>
+                      <p className="text-base" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>123 Galle Road, Colombo 03, Sri Lanka</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6 rounded-2xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA' }}>
-                <h3 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                  ⏰ Response Time
+              <div className="p-8 rounded-2xl border-2" style={{ 
+                backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F8F9FA',
+                borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
+              }}>
+                <h3 className="text-xl sm:text-2xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  Response Time
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   We typically respond to all inquiries within 24 hours during business days. 
                   For urgent matters, please call us directly.
                 </p>
@@ -431,9 +444,13 @@ export default function About() {
             </div>
 
             {/* Contact Form */}
-            <div className="p-6 sm:p-8 rounded-2xl shadow-xl" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF' }}>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                💬 Send us a message
+            <div className="p-8 sm:p-10 rounded-2xl shadow-xl border-2" 
+                 style={{ 
+                   backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
+                 }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                Send us a message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
