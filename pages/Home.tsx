@@ -121,10 +121,10 @@ export default function Home() {
                 Sri Lanka&apos;s first community marketplace where neighbors help neighbors. 
                 Get quick tasks done or rent the tools you need from people nearby.
               </p>
-              <div className="flex justify-center lg:justify-start mb-4 sm:mb-6 md:mb-8">
+              <div className="flex justify-center lg:justify-start mb-5 sm:mb-7 md:mb-9">
                 <Link href="/SignIn">
                   <Button 
-                    className="w-full sm:w-auto text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-bold rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
+                    className="w-full sm:w-auto text-white px-8 sm:px-10 md:px-12 lg:px-14 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-bold rounded-xl sm:rounded-2xl md:rounded-3xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FF5E14',
                       background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
