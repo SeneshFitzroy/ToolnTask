@@ -109,7 +109,7 @@ export default function SignIn() {
   };
 
 
-  // Forgot password function using our custom beautiful email
+  // Forgot password function using both custom beautiful email and Firebase
   const handleForgotPassword = async () => {
     if (!formData.email) {
       setError('Please enter your email address first');
@@ -117,7 +117,8 @@ export default function SignIn() {
     }
 
     try {
-      const response = await fetch('/api/password-reset', {
+      // First, send our beautiful custom email
+      const customEmailResponse = await fetch('/api/password-reset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,17 +126,29 @@ export default function SignIn() {
         body: JSON.stringify({ email: formData.email.trim() }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (customEmailResponse.ok) {
+        // Also send Firebase's native password reset for functionality
+        await sendPasswordResetEmail(auth, formData.email.trim());
+        
         setSuccessMessage('🎉 Password reset email sent! Check your inbox for a beautifully designed reset link.');
         setError('');
       } else {
-        setError(data.message || 'Error sending password reset email. Please try again.');
+        // If custom email fails, fallback to Firebase only
+        await sendPasswordResetEmail(auth, formData.email.trim());
+        setSuccessMessage('Password reset email sent! Check your inbox.');
+        setError('');
       }
+
     } catch (error: unknown) {
       console.error('Error sending password reset email:', error);
-      setError('Error sending password reset email. Please try again.');
+      const firebaseError = error as { code?: string };
+      if (firebaseError.code === 'auth/user-not-found') {
+        setError('No account found with this email address');
+      } else if (firebaseError.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address');
+      } else {
+        setError('Error sending password reset email. Please try again.');
+      }
     }
   };
 
