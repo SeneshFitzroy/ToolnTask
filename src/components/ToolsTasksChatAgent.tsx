@@ -280,7 +280,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
                     scrollBehavior: 'smooth',
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#1e3a8a transparent'
+                    scrollbarColor: '#001554 transparent'
                   }}
                 >
                   {messages.map((msg) => (
@@ -364,7 +364,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
                     scrollBehavior: 'smooth',
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#1e3a8a transparent'
+                    scrollbarColor: '#001554 transparent'
                   }}
                 >
                   {/* Welcome Message */}
