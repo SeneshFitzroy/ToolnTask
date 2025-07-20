@@ -119,6 +119,31 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     alert('Call request sent! An agent will call you within 5 minutes.');
   };
 
+  const handleSupportMessage = () => {
+    if (message.trim()) {
+      const newMessage = {
+        id: messages.length + 1,
+        type: 'user',
+        message: message.trim(),
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      
+      setMessages([...messages, newMessage]);
+      setMessage('');
+      
+      // Simulate support team response
+      setTimeout(() => {
+        const supportResponse = {
+          id: messages.length + 2,
+          type: 'agent',
+          message: `Thank you for contacting ToolNTask Support! We've received your message: "${newMessage.message}". A team member will join the chat shortly to assist you. For immediate help, call +94 76 112 0457.`,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages(prev => [...prev, supportResponse]);
+      }, 1500);
+    }
+  };
+
   return (
     <>
       {/* Chat Bubble Button */}
@@ -290,252 +315,118 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                   </div>
                 </div>
               </>
-            ) : activeTab === 'call' ? (
-              /* Call Tab */
-              <div className="flex-1 p-6 flex flex-col items-center justify-center text-center">
+            ) : (
+              /* Support Center Tab - Now with Chat Interface */
+              <>
+                {/* Support Messages Area */}
                 <div
-                  className="w-20 h-20 rounded-full mb-6 flex items-center justify-center"
+                  className="flex-1 p-4 overflow-y-auto space-y-4"
+                  style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB' }}
+                >
+                  {/* Welcome Message */}
+                  <div className="flex justify-start">
+                    <div
+                      className={`max-w-[80%] p-3 rounded-2xl ${
+                        theme === 'dark' ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'
+                      }`}
+                      style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}
+                    >
+                      <p className="text-sm font-semibold mb-1">🛠️ ToolNTask Support</p>
+                      <p className="text-sm">
+                        Welcome to our Support Center! Send us a message and one of our team members will join the chat shortly.
+                      </p>
+                      <p className="text-sm mt-2" style={{ color: '#FF5E14' }}>
+                        For immediate assistance, you can also call: <strong>+94 76 112 0457</strong>
+                      </p>
+                      <p className="text-xs mt-1 text-gray-500">
+                        {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Support Messages */}
+                  {messages.filter(msg => activeTab === 'support').map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-[80%] p-3 rounded-2xl ${
+                          msg.type === 'user'
+                            ? 'text-white'
+                            : theme === 'dark' ? 'bg-gray-600 text-white' : 'bg-white text-gray-800'
+                        }`}
+                        style={{
+                          backgroundColor: msg.type === 'user' 
+                            ? '#FF5E14'
+                            : undefined,
+                          boxShadow: msg.type !== 'user' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : undefined
+                        }}
+                      >
+                        <p className="text-sm">{msg.message}</p>
+                        <p className={`text-xs mt-1 ${msg.type === 'user' ? 'text-white text-opacity-70' : 'text-gray-500'}`}>
+                          {msg.time}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Support Input */}
+                <div
+                  className="p-4 border-t"
                   style={{
-                    background: `linear-gradient(135deg, ${pageType === 'tools' ? '#3B82F6 0%, #1D4ED8 100%' : '#F59E0B 0%, #D97706 100%'})`
+                    backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+                    borderColor: theme === 'dark' ? '#374151' : '#E5E7EB'
                   }}
                 >
-                  <span className="text-3xl text-white">📞</span>
-                </div>
-                
-                <h3
-                  className="text-xl font-bold mb-2"
-                  style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                >
-                  Request a Call
-                </h3>
-                
-                <p
-                  className="text-sm mb-6 leading-relaxed"
-                  style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                >
-                  Get personalized help with your {pageType} needs. Our experts are available to discuss your requirements and provide recommendations.
-                </p>
-
-                <div className="space-y-4 w-full">
-                  <div
-                    className="p-4 rounded-xl"
-                    style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6' }}
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-lg">⚡</span>
-                      <span
-                        className="font-semibold"
-                        style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                      >
-                        Quick Response
-                      </span>
-                    </div>
-                    <p
-                      className="text-sm"
-                      style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          handleSupportMessage();
+                        }
+                      }}
+                      placeholder="Send a message to our support team..."
+                      className="flex-1 p-3 border rounded-xl focus:outline-none transition-all duration-200"
+                      style={{
+                        borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
+                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#1F2937'
+                      }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = '#FF5E14';
+                        e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255, 94, 20, 0.1)';
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#D1D5DB';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    />
+                    <button
+                      onClick={handleSupportMessage}
+                      className="p-3 rounded-xl text-white transition-all duration-200 hover:scale-105"
+                      style={{
+                        backgroundColor: '#FF5E14',
+                        boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                      }}
                     >
-                      Average callback time: &lt;5 minutes
-                    </p>
-                  </div>
-
-                  <div
-                    className="p-4 rounded-xl"
-                    style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6' }}
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-lg">🎯</span>
-                      <span
-                        className="font-semibold"
-                        style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                      >
-                        Expert Advice
-                      </span>
-                    </div>
-                    <p
-                      className="text-sm"
-                      style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                    >
-                      Get personalized {pageType} recommendations
-                    </p>
-                  </div>
-
-                  <button
-                    onClick={handleCallRequest}
-                    className="w-full py-4 px-6 rounded-xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
-                    style={{
-                      background: `linear-gradient(135deg, ${pageType === 'tools' ? '#3B82F6 0%, #1D4ED8 100%' : '#F59E0B 0%, #D97706 100%'})`,
-                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)'
-                    }}
-                  >
-                    📞 Request Call Now
-                  </button>
-                </div>
-              </div>
-            ) : (
-              /* Support Center Tab */
-              <div className="flex-1 p-6 flex flex-col">
-                <div className="text-center mb-6">
-                  <div
-                    className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
-                    style={{ backgroundColor: '#FF5E14' }}
-                  >
-                    <span className="text-2xl text-white">🛠️</span>
-                  </div>
-                  <h3
-                    className="text-xl font-bold mb-2"
-                    style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                  >
-                    ToolNTask Support Center
-                  </h3>
-                  <p
-                    className="text-sm"
-                    style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                  >
-                    Get help with your account, report issues, or ask questions
-                  </p>
-                </div>
-
-                <div className="flex-1 space-y-4">
-                  {/* Chat Support Option */}
-                  <div
-                    className="p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 cursor-pointer"
-                    style={{ 
-                      backgroundColor: theme === 'dark' ? '#374151' : '#F8FAFC',
-                      borderColor: '#FF5E14'
-                    }}
-                    onClick={() => setActiveTab('chat')}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: '#FF5E14' }}
-                      >
-                        <span className="text-white text-lg">💬</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4
-                          className="font-bold text-lg mb-1"
-                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                        >
-                          Chat Support
-                        </h4>
-                        <p
-                          className="text-sm"
-                          style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                        >
-                          Get instant help through our AI assistant
-                        </p>
-                      </div>
-                      <span className="text-2xl">→</span>
-                    </div>
-                  </div>
-
-                  {/* Call Support Option */}
-                  <div
-                    className="p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 cursor-pointer"
-                    style={{ 
-                      backgroundColor: theme === 'dark' ? '#374151' : '#F8FAFC',
-                      borderColor: '#FF5E14'
-                    }}
-                    onClick={() => {
-                      alert(`📞 Support Call Request Sent!\n\nOur team will call you at your registered number within 5 minutes.\n\nFor immediate assistance, you can also call:\n+94 76 112 0457\n\nThank you for choosing ToolNTask!`);
-                    }}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: '#FF5E14' }}
-                      >
-                        <span className="text-white text-lg">📞</span>
-                      </div>
-                      <div className="flex-1">
-                        <h4
-                          className="font-bold text-lg mb-1"
-                          style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                        >
-                          Call Support
-                        </h4>
-                        <p
-                          className="text-sm"
-                          style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                        >
-                          Speak directly with our support team
-                        </p>
-                        <p
-                          className="text-xs mt-1 font-medium"
-                          style={{ color: '#FF5E14' }}
-                        >
-                          +94 76 112 0457
-                        </p>
-                      </div>
-                      <span className="text-2xl">→</span>
-                    </div>
-                  </div>
-
-                  {/* Quick Actions */}
-                  <div
-                    className="p-4 rounded-xl"
-                    style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6' }}
-                  >
-                    <h5
-                      className="font-semibold mb-3"
-                      style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}
-                    >
-                      Quick Actions
-                    </h5>
-                    <div className="space-y-2">
-                      <button
-                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
-                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                        onClick={() => {
-                          setActiveTab('chat');
-                          const helpMessage = {
-                            id: Date.now(),
-                            type: 'user',
-                            message: 'I need help with my account',
-                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                          };
-                          setMessages(prev => [...prev, helpMessage]);
-                        }}
-                      >
-                        🔧 Account Issues
-                      </button>
-                      <button
-                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
-                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                        onClick={() => {
-                          setActiveTab('chat');
-                          const helpMessage = {
-                            id: Date.now(),
-                            type: 'user',
-                            message: 'I want to report a problem',
-                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                          };
-                          setMessages(prev => [...prev, helpMessage]);
-                        }}
-                      >
-                        🚨 Report Problem
-                      </button>
-                      <button
-                        className="w-full text-left p-2 rounded-lg transition-colors hover:bg-orange-50"
-                        style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
-                        onClick={() => {
-                          setActiveTab('chat');
-                          const helpMessage = {
-                            id: Date.now(),
-                            type: 'user',
-                            message: 'How does ToolNTask work?',
-                            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                          };
-                          setMessages(prev => [...prev, helpMessage]);
-                        }}
-                      >
-                        ❓ How it Works
-                      </button>
-                    </div>
+                      <span className="text-lg">→</span>
+                    </button>
                   </div>
                 </div>
-              </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
             )}
           </div>
         </div>
