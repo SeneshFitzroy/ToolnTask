@@ -206,8 +206,18 @@ export default function SignIn() {
                 </div>
               )}
               {error && (
-                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
-                  <span>{error}</span>
+                <div className="p-4 rounded-xl border-2 border-red-200 bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 dark:border-red-800">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0">
+                      <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-semibold text-red-800 dark:text-red-300 mb-1">Authentication Failed</h4>
+                      <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+                    </div>
+                  </div>
                 </div>
               )}
               
