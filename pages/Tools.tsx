@@ -446,10 +446,9 @@ export default function Tools() {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Tools List Section */}
-      <div className="py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+        {/* Tools List Section */}
+        <div className="py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {getFilteredTools().length === 0 ? (
             <div className="text-center py-12 sm:py-16">
