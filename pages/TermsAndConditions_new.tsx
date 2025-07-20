@@ -131,7 +131,7 @@ export default function TermsAndConditions() {
                   7. Our Liability
                 </h2>
                 <p className="text-gray-700 dark:text-gray-300">
-                  We provide the platform to connect users. We're not responsible for the quality of work, 
+                  We provide the platform to connect users. We are not responsible for the quality of work, 
                   safety issues, or disputes between users. Use the platform at your own risk.
                 </p>
               </section>
