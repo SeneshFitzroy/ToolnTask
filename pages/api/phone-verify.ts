@@ -132,22 +132,34 @@ export default async function handler(
 
       if (twilioAccountSid && twilioAuthToken && twilioPhoneNumber) {
         // Use real SMS service (Twilio)
-        const client = twilio(twilioAccountSid, twilioAuthToken);
-
-        const smsMessage = `🔐 Your ToolNTask verification code is: ${otp}. This code expires in 10 minutes. Don't share this code with anyone. - ToolNTask Sri Lanka`;
-
-        await client.messages.create({
-          body: smsMessage,
-          from: twilioPhoneNumber,
-          to: formattedPhone
-        });
-
-        console.log(`✅ Real SMS sent to ${formattedPhone}: ${otp}`);
+        console.log(`🔧 Twilio credentials found, attempting SMS to ${formattedPhone}`);
         
-        return res.status(200).json({ 
-          message: `OTP sent successfully to ${formattedPhone}`, 
-          success: true 
-        });
+        try {
+          const client = twilio(twilioAccountSid, twilioAuthToken);
+
+          const smsMessage = `🔐 Your ToolNTask verification code is: ${otp}. This code expires in 10 minutes. Don't share this code with anyone. - ToolNTask Sri Lanka`;
+
+          const message = await client.messages.create({
+            body: smsMessage,
+            from: twilioPhoneNumber,
+            to: formattedPhone
+          });
+
+          console.log(`✅ Real SMS sent to ${formattedPhone}: ${otp}`);
+          console.log(`📱 Message SID: ${message.sid}, Status: ${message.status}`);
+          
+          return res.status(200).json({ 
+            message: `OTP sent successfully to ${formattedPhone}`, 
+            success: true 
+          });
+        } catch (twilioError: any) {
+          console.error('❌ Twilio SMS Error:', twilioError.message);
+          console.error('Error Code:', twilioError.code);
+          console.error('More Info:', twilioError.moreInfo);
+          
+          // Fall back to email if SMS fails
+          console.log('🔄 Falling back to email simulation...');
+        }
       } else {
         // Fallback to email (for development/testing)
         console.log(`🔧 DEVELOPMENT MODE: SMS would be sent to ${formattedPhone} with OTP: ${otp}`);
