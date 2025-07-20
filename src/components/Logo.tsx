@@ -17,10 +17,10 @@ const Logo: React.FC<LogoProps> = ({
   const { theme } = useTheme();
   
   const sizeClasses = {
-    small: 'text-sm sm:text-base',
-    medium: 'text-lg sm:text-xl lg:text-2xl',
-    large: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl',
-    xl: 'text-3xl sm:text-4xl lg:text-5xl xl:text-6xl'
+    small: 'text-xs sm:text-sm',
+    medium: 'text-sm sm:text-base lg:text-lg',
+    large: 'text-base sm:text-lg md:text-xl lg:text-2xl',
+    xl: 'text-lg sm:text-xl lg:text-2xl xl:text-3xl'
   };
 
   const logoClass = `logo-font font-bold transition-all duration-300 ${sizeClasses[size]} ${className} ${
