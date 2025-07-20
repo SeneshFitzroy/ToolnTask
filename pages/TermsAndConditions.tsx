@@ -327,72 +327,233 @@ export default function TermsAndConditions() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">5. Payment Terms</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                All payments are processed securely through our platform:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>Service fees are clearly disclosed before booking</li>
-                <li>Payments are held securely until task completion</li>
-                <li>Refunds are processed according to our refund policy</li>
-                <li>Users are responsible for any applicable taxes</li>
-                <li>Disputes are resolved through our mediation process</li>
-              </ul>
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">💳</span> Payment Terms
+              </h2>
+              <div className="space-y-4">
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">Payment Processing</h3>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>All payments are processed securely through our verified payment partners</li>
+                  <li>Service fees are clearly disclosed before booking</li>
+                  <li>Platform fees are deducted from service provider earnings</li>
+                  <li>Refunds are processed according to our refund policy</li>
+                  <li>Users are responsible for any applicable taxes</li>
+                </ul>
+                
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3 mt-6">Escrow Protection</h3>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>Payments are held in escrow until task completion</li>
+                  <li>Funds are released upon mutual agreement or dispute resolution</li>
+                  <li>Platform protection covers verified transactions</li>
+                  <li>Disputes are resolved through our professional mediation process</li>
+                </ul>
+              </div>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">6. Safety and Insurance</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                While we strive to maintain a safe platform, users are responsible for their own safety:
-              </p>
-              <ul className="list-disc pl-6 text-slate-600 dark:text-gray-300 space-y-2">
-                <li>Verify the identity and credentials of other users</li>
-                <li>Meet in public places when appropriate</li>
-                <li>Inspect tools and equipment before use</li>
-                <li>Maintain appropriate insurance coverage</li>
-                <li>Report any safety concerns immediately</li>
-              </ul>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">7. Intellectual Property</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                The ToolnTask platform and its original content are protected by copyright and other intellectual property laws. Users retain rights to their own content but grant us license to use it on our platform.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">8. Limitation of Liability</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                ToolnTask acts as a platform connecting users and is not responsible for the quality, safety, or legality of tasks, tools, or user interactions. Our liability is limited to the maximum extent permitted by law.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">9. Account Termination</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We reserve the right to suspend or terminate accounts that violate these terms or engage in prohibited activities. Users may also delete their accounts at any time.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">10. Changes to Terms</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                We may update these terms from time to time. Continued use of the platform constitutes acceptance of any changes. Users will be notified of significant changes.
-              </p>
-            </section>
-
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">11. Contact Information</h2>
-              <p className="text-slate-600 dark:text-gray-300 mb-4">
-                If you have any questions about these Terms & Conditions, please contact us:
-              </p>
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mt-4">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">🛡️</span> Safety and Professional Standards
+              </h2>
+              <div className="space-y-4">
                 <p className="text-slate-600 dark:text-gray-300">
-                  <strong>Email:</strong> toolntask@gmail.com<br/>
-                  <strong>Phone:</strong> +94 76 112 0457<br/>
-                  <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
+                  ToolNTask maintains high safety and professional standards. All users must adhere to our safety guidelines:
                 </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                    <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-2">Safety Requirements</h4>
+                    <ul className="text-blue-700 dark:text-blue-300 text-sm space-y-1">
+                      <li>• Verify credentials of service providers</li>
+                      <li>• Meet in safe, public locations when appropriate</li>
+                      <li>• Report any safety concerns immediately</li>
+                      <li>• Maintain appropriate insurance coverage</li>
+                    </ul>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                    <h4 className="font-bold text-green-800 dark:text-green-300 mb-2">Professional Standards</h4>
+                    <ul className="text-green-700 dark:text-green-300 text-sm space-y-1">
+                      <li>• Maintain professional communication</li>
+                      <li>• Deliver services as described</li>
+                      <li>• Respect confidentiality agreements</li>
+                      <li>• Obtain necessary licenses and permits</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">📝</span> Intellectual Property Rights
+              </h2>
+              <div className="space-y-4">
+                <p className="text-slate-600 dark:text-gray-300">
+                  All content, design, logos, and intellectual property on ToolNTask remain the exclusive property of ToolNTask Private Limited. Users retain ownership of content they create but grant us necessary licenses for platform operation.
+                </p>
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">Content Licensing</h3>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>Users grant ToolNTask a non-exclusive license to display their content on the platform</li>
+                  <li>Original work completed through the platform belongs to the commissioning client</li>
+                  <li>Service providers must ensure they have rights to all materials and tools used</li>
+                  <li>Copyright infringement may result in immediate account termination</li>
+                  <li>We respect intellectual property rights and respond to valid DMCA requests</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">⚖️</span> Limitation of Liability
+              </h2>
+              <div className="space-y-4">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+                  <p className="text-yellow-800 dark:text-yellow-300 font-medium">
+                    <strong>IMPORTANT LEGAL NOTICE:</strong> Please read this section carefully as it limits our liability to you.
+                  </p>
+                </div>
+                <p className="text-slate-600 dark:text-gray-300">
+                  ToolNTask acts as an intermediary platform connecting service providers with clients. To the fullest extent permitted by Sri Lankan law:
+                </p>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>We are not liable for the quality, timeliness, safety, or completion of services provided by third parties</li>
+                  <li>Our total liability shall not exceed the platform fees paid by you in the twelve months preceding any claim</li>
+                  <li>We disclaim all warranties except as expressly required by applicable law</li>
+                  <li>Users assume full responsibility for their interactions, transactions, and business relationships</li>
+                  <li>Force majeure events excuse performance delays or failures</li>
+                  <li>We are not responsible for user-generated content or third-party actions</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">🚪</span> Account Termination
+              </h2>
+              <div className="space-y-4">
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">Termination by User</h3>
+                <p className="text-slate-600 dark:text-gray-300 mb-4">
+                  You may terminate your account at any time through your account settings or by contacting our support team. Upon termination:
+                </p>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>All active tasks must be completed or properly cancelled with mutual agreement</li>
+                  <li>Outstanding payments will be processed according to our payment terms</li>
+                  <li>Account data will be retained for legal and tax requirements as mandated by Sri Lankan law</li>
+                  <li>Access to platform features will be immediately revoked</li>
+                </ul>
+
+                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3 mt-6">Termination by ToolNTask</h3>
+                <p className="text-slate-600 dark:text-gray-300 mb-4">
+                  We reserve the right to suspend or terminate accounts immediately for violations of these Terms, including but not limited to:
+                </p>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>Material breach of terms and conditions or community guidelines</li>
+                  <li>Fraudulent activities, misrepresentation, or illegal conduct</li>
+                  <li>Abuse, harassment, or threatening behavior toward other users</li>
+                  <li>Non-payment of fees or chargebacks</li>
+                  <li>Creating multiple accounts to circumvent restrictions</li>
+                  <li>Violation of intellectual property rights</li>
+                </ul>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">📋</span> Changes to Terms
+              </h2>
+              <div className="space-y-4">
+                <p className="text-slate-600 dark:text-gray-300">
+                  ToolNTask reserves the right to modify these Terms of Service at any time to reflect changes in our services, legal requirements, or business practices. We will provide notice of significant changes through:
+                </p>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2 ml-4">
+                  <li>Email notification to all registered users</li>
+                  <li>Prominent notice on our website and platform</li>
+                  <li>In-app notifications for mobile users</li>
+                  <li>30-day advance notice for material changes affecting user rights</li>
+                </ul>
+                <p className="text-slate-600 dark:text-gray-300 mt-4">
+                  Continued use of the platform after such modifications constitutes acceptance of the updated Terms. If you disagree with any changes, you must stop using our services and may terminate your account.
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">🇱🇰</span> Governing Law and Dispute Resolution
+              </h2>
+              <div className="space-y-4">
+                <p className="text-slate-600 dark:text-gray-300">
+                  These Terms are governed by and construed in accordance with the laws of the Democratic Socialist Republic of Sri Lanka. Any disputes arising from or relating to these Terms or your use of our services shall be resolved through the following process:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4 mt-4">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                    <h4 className="font-bold text-blue-800 dark:text-blue-300 mb-2">Primary Resolution</h4>
+                    <ul className="text-blue-700 dark:text-blue-300 text-sm space-y-1">
+                      <li>• Platform mediation services</li>
+                      <li>• Good faith negotiation between parties</li>
+                      <li>• Alternative dispute resolution mechanisms</li>
+                      <li>• Professional arbitration when appropriate</li>
+                    </ul>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                    <h4 className="font-bold text-green-800 dark:text-green-300 mb-2">Legal Jurisdiction</h4>
+                    <ul className="text-green-700 dark:text-green-300 text-sm space-y-1">
+                      <li>• Sri Lankan courts have exclusive jurisdiction</li>
+                      <li>• Colombo District Court as primary venue</li>
+                      <li>• English language for all proceedings</li>
+                      <li>• Sri Lankan Consumer Protection Act applies</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Professional Contact Information Section */}
+            <section className="mb-8 bg-gradient-to-r from-orange-50 to-blue-50 dark:from-orange-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                <span className="text-2xl">📞</span> Contact Information
+              </h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-bold text-slate-800 dark:text-white mb-3">Legal and Business Inquiries</h3>
+                  <div className="space-y-2 text-slate-600 dark:text-gray-300">
+                    <p><strong>Email:</strong> legal@toolntask.com</p>
+                    <p><strong>Business Email:</strong> business@toolntask.com</p>
+                    <p><strong>Company:</strong> ToolNTask Private Limited</p>
+                    <p><strong>Address:</strong></p>
+                    <p className="ml-4">123 Business District</p>
+                    <p className="ml-4">Colombo 03, Sri Lanka 00300</p>
+                    <p><strong>Registration No:</strong> PV 123456 (Sri Lanka)</p>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 dark:text-white mb-3">Customer Support</h3>
+                  <div className="space-y-2 text-slate-600 dark:text-gray-300">
+                    <p><strong>Email:</strong> support@toolntask.com</p>
+                    <p><strong>Phone:</strong> +94 11 234 5678</p>
+                    <p><strong>Emergency:</strong> +94 76 112 0457</p>
+                    <p><strong>Hours:</strong> Monday - Friday</p>
+                    <p className="ml-4">9:00 AM - 6:00 PM (IST)</p>
+                    <p><strong>Response Time:</strong> Within 24 hours</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Last Updated Information */}
+              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+                <div className="space-y-2">
+                  <p className="text-slate-500 dark:text-gray-400 text-sm">
+                    <strong>Last Updated:</strong> {new Date().toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </p>
+                  <p className="text-slate-500 dark:text-gray-400 text-sm">
+                    <strong>Version:</strong> 2.0 - Professional Terms of Service
+                  </p>
+                  <p className="text-slate-500 dark:text-gray-400 text-xs">
+                    These terms are effective immediately and supersede all previous versions.
+                  </p>
+                </div>
               </div>
             </section>
 
