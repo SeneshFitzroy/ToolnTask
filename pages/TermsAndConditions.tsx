@@ -363,6 +363,7 @@ export default function TermsAndConditions() {
         </div>
       </div>
 
+      <ToolsTasksChatAgent pageType="home" />
       <Footer />
     </div>
   );

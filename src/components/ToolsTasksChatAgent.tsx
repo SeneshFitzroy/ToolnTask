@@ -48,8 +48,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
       id: 1,
       type: 'agent',
       message: pageType === 'home' 
-        ? `Hi! I'm Taskie, your 24/7 virtual assistant. I can help you with tools, tasks, and more. How can I assist you today?`
-        : `Hi! I'm Taskie, your 24/7 ${pageType} assistant. How can I help you today?`,
+        ? `Hi! I'm TaskMate, your 24/7 virtual assistant. I can help you with tools, tasks, and more. How can I assist you today?`
+        : `Hi! I'm TaskMate, your 24/7 ${pageType} assistant. How can I help you today?`,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);

@@ -106,7 +106,7 @@ const Navigation = () => {
             setMobileMenuOpen(false);
           }}>
             <Logo size="xl" interactive={false} />
-            <span className="text-xs font-medium -mt-1 ml-8 opacity-80" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
+            <span className="text-xs sm:text-sm font-medium -mt-1 ml-2 sm:ml-4 md:ml-6 lg:ml-8 opacity-90" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
               Community Marketplace
             </span>
           </Link>

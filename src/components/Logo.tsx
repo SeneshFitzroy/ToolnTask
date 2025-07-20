@@ -27,10 +27,19 @@ const Logo: React.FC<LogoProps> = ({
     interactive ? 'hover:scale-105 cursor-pointer' : ''
   }`;
 
+  // Ensure better visibility in both light and dark themes
+  const getNColor = () => {
+    if (theme === 'dark') {
+      return '#FFFFFF'; // Pure white for dark theme
+    } else {
+      return '#001554'; // Dark blue for light theme, ensuring contrast
+    }
+  };
+
   return (
     <span className={logoClass}>
       <span style={{ color: '#FF5E14' }}>Tool</span>
-      <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>N</span>
+      <span style={{ color: getNColor() }}>N</span>
       <span style={{ color: '#FF5E14' }}>Task</span>
       {showUnderline && (
         <svg className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2 sm:h-3" viewBox="0 0 100 10" style={{ fill: '#FF5E14', opacity: 0.3 }}>
