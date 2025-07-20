@@ -99,15 +99,12 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
       // Check if a specific tab was requested
       if (event.detail && event.detail.tab) {
         setActiveTab(event.detail.tab);
+      } else if (event.detail.trigger === 'about-chat') {
+        setActiveTab('chat');
+      } else if (event.detail.trigger === 'about-support' || event.detail.trigger === 'support-center') {
+        setActiveTab('support');
       } else {
-        // Determine tab based on trigger source
-        if (event.detail.trigger === 'about-chat') {
-          setActiveTab('chat');
-        } else if (event.detail.trigger === 'about-support' || event.detail.trigger === 'support-center') {
-          setActiveTab('support');
-        } else {
-          setActiveTab('support'); // Default fallback
-        }
+        setActiveTab('support'); // Default fallback
       }
     };
 
