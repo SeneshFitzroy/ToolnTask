@@ -349,23 +349,23 @@ const Navigation = () => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm" 
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-xs font-semibold leading-tight truncate max-w-[60px]">
+                      <span className="text-sm font-semibold leading-tight truncate max-w-[80px]">
                         {user.displayName || user.email?.split('@')[0] || 'User'}
                       </span>
-                      <span className="text-[10px] opacity-70 truncate max-w-[60px]" style={{ color: '#FF5E14' }}>
+                      <span className="text-xs opacity-70 truncate max-w-[80px]" style={{ color: '#FF5E14' }}>
                         Account
                       </span>
                     </div>
                     <ChevronDown 
-                      className={`h-3 w-3 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
+                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
                       strokeWidth={2}
                     />
                   </button>
