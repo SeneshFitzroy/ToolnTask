@@ -252,31 +252,31 @@ export default function Home() {
                   <div className="absolute -inset-1 sm:-inset-2 bg-indigo-400/20 rounded-lg sm:rounded-xl blur-sm group-hover:bg-indigo-400/40 transition-all duration-500"></div>
                 </div>
 
-                {/* Responsive Video Container */}
+                {/* Professional Video Container - Optimized Size */}
                 <div className="relative z-10 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-white/20 sm:border-2 backdrop-blur-lg">
                   <style jsx>{`
                     @media (min-width: 640px) {
                       .responsive-video-container {
-                        height: 420px;
+                        height: 380px;
                       }
                     }
                     @media (min-width: 768px) {
                       .responsive-video-container {
-                        height: 460px;
+                        height: 420px;
                       }
                     }
                     @media (min-width: 1024px) {
                       .responsive-video-container {
-                        height: 500px;
+                        height: 460px;
                       }
                     }
                     @media (min-width: 1280px) {
                       .responsive-video-container {
-                        height: 540px;
+                        height: 500px;
                       }
                     }
                   `}</style>
-                  <div className="responsive-video-container relative w-full" style={{ height: '360px' }}>
+                  <div className="responsive-video-container relative w-full" style={{ height: '320px' }}>
                     <video
                       className="absolute inset-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
                       style={{ objectPosition: 'center 30%', objectFit: 'cover' }}
