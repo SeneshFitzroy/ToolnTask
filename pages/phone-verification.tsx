@@ -33,10 +33,15 @@ export default function PhoneVerification() {
   // Validate Sri Lankan phone number
   const validatePhone = (phone: string): boolean => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+    
+    // Support multiple Sri Lankan phone number formats
     const patterns = [
-      /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile
-      /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
+      /^(\+94|0094|94)?0?7[0-9]{8}$/, // Mobile numbers: 070-079 series
+      /^(\+94|0094|94)?0?1[1-9][0-9]{7}$/, // Landline numbers
+      /^0?7[0-9]{8}$/, // Local mobile format: 0771234567
+      /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
     ];
+    
     return patterns.some(pattern => pattern.test(cleanPhone));
   };
 
