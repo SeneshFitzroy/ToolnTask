@@ -98,14 +98,14 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Extra Large with Properly Positioned Marketplace Slogan */}
+          {/* Logo - Extra Large with Marketplace Slogan Positioned Right */}
           <Link href="/" className="flex flex-col items-start flex-shrink-0 py-2" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
             <Logo size="xl" interactive={false} />
-            <span className="text-xs font-medium -mt-1 opacity-80" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
+            <span className="text-xs font-medium -mt-1 ml-8 opacity-80" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
               Community Marketplace
             </span>
           </Link>
