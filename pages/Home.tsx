@@ -497,22 +497,22 @@ export default function Home() {
                   style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF' }}
                 >
                   {/* Step Number */}
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white font-bold text-xl sm:text-2xl mx-auto mb-5 shadow-lg" style={{ backgroundColor: step.color }}>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base mx-auto mb-5 shadow-lg" style={{ backgroundColor: step.color }}>
                     {step.step}
                   </div>
                   
                   {/* Icon */}
-                  <div className="text-5xl sm:text-6xl mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-2xl sm:text-3xl mb-5 transform group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold mb-4 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-4 transform group-hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                     {step.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  <p className="text-xs sm:text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                     {step.desc}
                   </p>
                   
