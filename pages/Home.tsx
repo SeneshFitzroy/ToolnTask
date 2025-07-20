@@ -1,15 +1,6 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-// im              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-10 text-base sm:text-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>5,000+ Members</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>4.8★ Rating</span>
-                </div>
-              </div>ard from '../src/components/TaskCard'; // Will be used when users create tasks
+// import TaskCard from '../src/components/TaskCard'; // Will be used when users create tasks
 // import ToolCard from '../src/components/ToolCard'; // Will be used when users create tools
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
