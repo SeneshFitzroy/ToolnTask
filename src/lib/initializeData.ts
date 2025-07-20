@@ -1,8 +1,9 @@
 import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from './firebase';
 
-// Initial tools data
-const initialTools = [
+// Empty initial data arrays - will be populated when users create content
+const initialTools: any[] = [];
+const initialTasks: any[] = [];
   {
     id: 1,
     title: "Power Drill Set",
