@@ -52,16 +52,26 @@ export default function Tools() {
   };
 
   const getFilteredTools = () => {
-    return tools.filter(tool => {
-      const matchesType = tool.type === activeFilter;
-      const matchesSearch = tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           tool.category.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = categoryFilter === 'all' || tool.category === categoryFilter;
-      
-      return matchesType && matchesSearch && matchesCategory;
-    });
+    let filtered = tools.filter(tool => tool.type === activeFilter);
+    
+    // Apply search filter
+    if (searchTerm.trim()) {
+      filtered = filtered.filter(tool => 
+        tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.details.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Apply category filter
+    if (categoryFilter !== 'all') {
+      filtered = filtered.filter(tool => 
+        tool.category?.toLowerCase() === categoryFilter.toLowerCase()
+      );
+    }
+    
+    return filtered;
   };
 
   return (
@@ -77,36 +87,55 @@ export default function Tools() {
             🔧
           </div>
           <div className="absolute top-20 right-20 w-16 h-16 rounded-full animate-pulse flex items-center justify-center text-2xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '1s', animationDuration: '4s' }}>
-            🛠️
+            ⚡
           </div>
           <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full animate-spin flex items-center justify-center text-xl" style={{ backgroundColor: '#FF5E14', animationDelay: '2s', animationDuration: '8s' }}>
-            ⚙️
+            🛠️
           </div>
           <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full animate-bounce flex items-center justify-center text-xl" style={{ backgroundColor: '#1a1a1a', animationDelay: '3s', animationDuration: '4.5s' }}>
             🔨
           </div>
           
-          {/* Floating Tool Cards */}
+          {/* Floating Tool Cards Animation */}
           <div className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2">
             <div className="w-24 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-lg animate-float opacity-20 flex items-center justify-center text-white font-bold text-xs">
-              DRILL
+              TOOL
             </div>
           </div>
           <div className="absolute top-3/4 right-1/4 transform translate-x-1/2 translate-y-1/2">
             <div className="w-20 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-lg shadow-lg animate-float-reverse opacity-20 flex items-center justify-center text-white font-bold text-xs" style={{ animationDelay: '2s' }}>
-              SAW
+              RENT
+            </div>
+          </div>
+          
+          {/* Animated Grid Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="grid grid-cols-8 gap-4 h-full w-full">
+              {Array.from({ length: 32 }).map((_, i) => (
+                <div 
+                  key={i}
+                  className="border border-orange-300 rounded animate-pulse"
+                  style={{ 
+                    animationDelay: `${i * 0.1}s`,
+                    animationDuration: '3s'
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Main Heading */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-              Rent & Share Tools in{' '}
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Enhanced Interactive Main Heading - Professional & Clean */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 sm:mb-8 leading-tight tracking-tight">
+            <span className="inline-block hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              Find Your Perfect{' '}
             </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-              Sri Lanka
+            <span className="relative inline-block group">
+              <span className="relative z-10 hover:scale-105 transition-transform duration-300 inline-block" style={{ color: '#FF5E14', textShadow: '0 2px 8px rgba(255, 94, 20, 0.3)' }}>
+                Tool
+              </span>
+              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
             </span>
           </h1>
           
@@ -165,10 +194,10 @@ export default function Tools() {
               <div className="flex-1 relative">
                 <input
                   type="text"
-                  placeholder="Search tools by name, category, or location..."
+                  placeholder="Search tools by title, location, category, or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pl-12 pr-16 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
+                  className="w-full px-4 py-3 pl-12 pr-20 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
                   style={{ 
                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
                     backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
@@ -189,7 +218,6 @@ export default function Tools() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                
                 {/* Filter Icon */}
                 <div className="absolute right-10 top-1/2 transform -translate-y-1/2 relative">
                   <button
@@ -270,7 +298,6 @@ export default function Tools() {
                     </div>
                   )}
                 </div>
-                
                 {/* Clear Button */}
                 {searchTerm && (
                   <button
@@ -347,56 +374,73 @@ export default function Tools() {
                 </button>
               )}
             </div>
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
+                  style={{ 
+                    color: '#FF5E14',
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Clear all filters
+                </button>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Filter Toggle Section */}
-      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Available/Requested Toggle Filter with improved design */}
-          <div className="relative">
-            <div className="p-1.5 rounded-full shadow-lg border" style={{ 
-              backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-              borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
-            }}>
-              <div className="flex justify-between gap-1 relative">
-                {/* Sliding background indicator */}
-                <div 
-                  className="absolute top-0 bottom-0 rounded-full transition-all duration-300 ease-in-out"
-                  style={{
-                    left: activeFilter === 'available' ? '0%' : '50%',
-                    width: '50%',
-                    backgroundColor: '#FF5E14',
-                    transform: 'translateX(0)'
-                  }}
-                />
-                
-                <button
-                  onClick={() => handleFilterChange('available')}
-                  className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
-                  style={{
-                    color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  }}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <span className="text-lg">🔧</span>
-                    Available Tools
-                  </span>
-                </button>
-                <button
-                  onClick={() => handleFilterChange('requested')}
-                  className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
-                  style={{
-                    color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  }}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <span className="text-lg">🔍</span>
-                    Requested Tools
-                  </span>
-                </button>
+        {/* Enhanced Filter Toggle Section */}
+        <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Available/Requested Toggle Filter with improved design */}
+            <div className="relative">
+              <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+                backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
+              }}>
+                <div className="flex justify-between gap-1 relative">
+                  {/* Sliding background indicator */}
+                  <div 
+                    className="absolute top-0 left-0 h-full transition-all duration-300 ease-in-out rounded-full"
+                    style={{
+                      width: '50%',
+                      backgroundColor: '#FF5E14',
+                      transform: activeFilter === 'requested' ? 'translateX(100%)' : 'translateX(0)',
+                      boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                    }}
+                  />
+                  <button
+                    onClick={() => handleFilterChange('available')}
+                    className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                    style={{
+                      color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    }}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="text-lg">🔧</span>
+                      Available Tools
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => handleFilterChange('requested')}
+                    className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                    style={{
+                      color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                    }}
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="text-lg">🔍</span>
+                      Requested Tools
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
