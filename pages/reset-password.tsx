@@ -295,7 +295,7 @@ export default function ResetPassword() {
                     ) : (
                       <>
                         <X className="w-4 h-4" style={{ color: '#EF4444' }} />
-                        <span className="text-xs" style={{ color: '#EF4444' }}>Passwords don't match</span>
+                        <span className="text-xs" style={{ color: '#EF4444' }}>Passwords don&apos;t match</span>
                       </>
                     )}
                   </div>
