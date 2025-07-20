@@ -319,7 +319,7 @@ export default function About() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Email</h4>
-                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>hello@toolntask.lk</p>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>toolntask@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -328,7 +328,7 @@ export default function About() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Phone</h4>
-                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>+94 77 123 4567</p>
+                      <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>+94 76 112 0457</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
