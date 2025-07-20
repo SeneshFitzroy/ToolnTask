@@ -621,7 +621,7 @@ export default function Home() {
             </div>
             
             {/* Simple Trust Indicators */}
-            <div className="flex justify-center gap-7 sm:gap-9 text-lg sm:text-xl" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+            <div className="flex justify-center gap-7 sm:gap-9 text-xs sm:text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">No Fees</span>
