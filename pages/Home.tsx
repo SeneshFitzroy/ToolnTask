@@ -1,7 +1,7 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import TaskCard from '../src/components/TaskCard';
-import ToolCard from '../src/components/ToolCard';
+// import TaskCard from '../src/components/TaskCard'; // Will be used when users create tasks
+// import ToolCard from '../src/components/ToolCard'; // Will be used when users create tools
 import FilterButtons from '../src/components/FilterButtons';
 import Logo from '../src/components/Logo';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
