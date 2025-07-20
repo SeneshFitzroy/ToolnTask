@@ -345,8 +345,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       onClick={handleSendMessage}
                       className="p-3 rounded-xl text-white transition-all duration-200 hover:scale-105"
                       style={{
-                        backgroundColor: '#FF5E14', // Orange theme
-                        boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                        backgroundColor: '#001554', // Dark blue theme
+                        boxShadow: '0 4px 12px rgba(0, 21, 84, 0.3)'
                       }}
                     >
                       <span className="text-lg">→</span>
@@ -455,8 +455,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       onClick={handleSupportMessage}
                       className="p-3 rounded-xl text-white transition-all duration-200 hover:scale-105"
                       style={{
-                        backgroundColor: '#FF5E14',
-                        boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                        backgroundColor: '#001554',
+                        boxShadow: '0 4px 12px rgba(0, 21, 84, 0.3)'
                       }}
                     >
                       <span className="text-lg">→</span>
