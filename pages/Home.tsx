@@ -388,11 +388,11 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
           <div className="text-center mb-9 sm:mb-13 md:mb-17">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Trusted by Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-lg sm:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-xs sm:text-sm md:text-base max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               From coast to hill, thousands are uniting to help each other every day!
             </p>
           </div>
