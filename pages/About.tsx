@@ -282,62 +282,62 @@ export default function About() {
           </div>
 
           {/* Team Section */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-10" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Meet Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto">
-              <div className="p-8 sm:p-10 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 border-2" 
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Meet Our Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              <div className="p-6 sm:p-8 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 border-2" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                      borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
                    }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#FF5E14' }}>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#FF5E14' }}>
                   {!ceoImageError ? (
                     <Image 
                       src="/ceo.jpg" 
                       alt="Mandira De Silva - Founder & CEO"
-                      width={112}
-                      height={112}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                       onError={() => setCeoImageError(true)}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                      <span className="text-white text-2xl sm:text-3xl font-bold">MD</span>
+                      <span className="text-white text-xl sm:text-2xl font-bold">MD</span>
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Mandira De Silva</h3>
-                <p className="text-lg font-semibold mb-4" style={{ color: '#FF5E14' }}>Founder & CEO</p>
-                <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Mandira De Silva</h3>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>Founder & CEO</p>
+                <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Passionate about building communities and creating sustainable solutions for Sri Lankan neighborhoods.
                 </p>
               </div>
 
-              <div className="p-8 sm:p-10 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 border-2" 
+              <div className="p-6 sm:p-8 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 border-2" 
                    style={{ 
                      backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                      borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
                    }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#3b82f6' }}>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-lg border-4 relative" style={{ borderColor: '#3b82f6' }}>
                   {!ctoImageError ? (
                     <Image 
                       src="/cto.jpg" 
                       alt="Senesh Fitzroy - CTO"
-                      width={112}
-                      height={112}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                       style={{ objectPosition: 'center 20%' }}
                       onError={() => setCtoImageError(true)}
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                      <span className="text-white text-2xl sm:text-3xl font-bold">SF</span>
+                      <span className="text-white text-xl sm:text-2xl font-bold">SF</span>
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Senesh Fitzroy</h3>
-                <p className="text-lg font-semibold mb-4" style={{ color: '#FF5E14' }}>CTO</p>
-                <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Senesh Fitzroy</h3>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>CTO</p>
+                <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Tech enthusiast dedicated to creating seamless user experiences and innovative solutions.
                 </p>
               </div>
