@@ -228,9 +228,10 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                                                   document.getElementById('taskmate-container');
                           
                           if (existingTaskMate) {
-                            existingTaskMate.style.display = 'block';
-                            existingTaskMate.style.visibility = 'visible';
-                            existingTaskMate.style.opacity = '1';
+                            const element = existingTaskMate as HTMLElement;
+                            element.style.display = 'block';
+                            element.style.visibility = 'visible';
+                            element.style.opacity = '1';
                           } else {
                             // If no existing TaskMate found, try to trigger it via React state or context
                             console.log('Opening TaskMate chat from footer support');
