@@ -151,12 +151,27 @@ export default function SignUp() {
         displayName: `${formData.firstName} ${formData.lastName}`
       });
 
+      // Normalize phone number for consistent storage
+      let normalizedPhone = formData.phone.trim();
+      if (normalizedPhone) {
+        const cleanPhone = normalizedPhone.replace(/[\s\-\(\)]/g, '');
+        if (cleanPhone.startsWith('+94')) {
+          normalizedPhone = '0' + cleanPhone.substring(3);
+        } else if (cleanPhone.startsWith('0094')) {
+          normalizedPhone = '0' + cleanPhone.substring(4);
+        } else if (cleanPhone.startsWith('94')) {
+          normalizedPhone = '0' + cleanPhone.substring(2);
+        } else {
+          normalizedPhone = cleanPhone;
+        }
+      }
+
       // Save user data to Firestore with additional fields
       await setDoc(doc(db, 'users', user.uid), {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
         email: formData.email.trim().toLowerCase(),
-        phone: formData.phone.trim(),
+        phone: normalizedPhone,
         displayName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
