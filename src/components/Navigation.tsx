@@ -329,35 +329,45 @@ const Navigation = () => {
               {user ? (
                 <div className="flex items-center space-x-4">
                   {/* User Profile Button - Small Orange Matching Navbar */}
+                  {/* User Profile Button - Compact Orange with Gold Border */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-5 py-3 text-lg font-semibold transition-all duration-200 rounded-lg shine-effect" 
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shine-effect" 
                     style={{ 
                       color: '#FFFFFF',
                       backgroundColor: '#FF5E14',
-                      border: '2px solid #FF5E14'
+                      border: '2px solid #FFD700',
+                      boxShadow: '0 3px 10px rgba(255, 94, 20, 0.3)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#E54D0F';
-                      e.currentTarget.style.borderColor = '#E54D0F';
+                      e.currentTarget.style.borderColor = '#FFC107';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                      e.currentTarget.style.boxShadow = '0 5px 15px rgba(255, 94, 20, 0.4)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = '#FF5E14';
-                      e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.borderColor = '#FFD700';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 3px 10px rgba(255, 94, 20, 0.3)';
                     }}
                     title="Account"
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold" 
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold" 
                          style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <span className="text-lg font-semibold text-white">
+                    <span className="text-sm font-semibold text-white">
                       Account
                     </span>
+                    <ChevronDown 
+                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      strokeWidth={2}
+                    />
                   </button>
                   
                   {/* Enhanced Profile Dropdown */}
