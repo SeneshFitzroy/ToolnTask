@@ -278,17 +278,36 @@ export default function SignUp() {
 
             {/* Registration Method Selection */}
             <div className="mb-6">
-              <p className="text-sm font-medium mb-3 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                Preferred Contact Method
-              </p>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                  Primary Contact Method
+                </p>
+                {(formData.email || formData.phone) && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setRegistrationMethod(registrationMethod === 'email' ? 'phone' : 'email');
+                      // Clear the current primary field when switching
+                      setFormData(prev => ({
+                        ...prev,
+                        [registrationMethod === 'email' ? 'email' : 'phone']: ''
+                      }));
+                    }}
+                    className="text-xs px-2 py-1 rounded-md transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
+                  >
+                    🔄 Switch to {registrationMethod === 'email' ? 'Phone' : 'Email'}
+                  </button>
+                )}
+              </div>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setRegistrationMethod('email')}
                   className={`p-3 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 ${
                     registrationMethod === 'email' 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-orange-500 bg-orange-50 scale-105' 
+                      : 'border-gray-300 hover:border-gray-400 hover:scale-102'
                   }`}
                   style={{
                     backgroundColor: registrationMethod === 'email' 
@@ -301,6 +320,11 @@ export default function SignUp() {
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
                     Email Primary
                   </span>
+                  {registrationMethod === 'email' && (
+                    <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
+                      ✓ Selected
+                    </div>
+                  )}
                 </button>
 
                 <button
@@ -308,8 +332,8 @@ export default function SignUp() {
                   onClick={() => setRegistrationMethod('phone')}
                   className={`p-3 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 ${
                     registrationMethod === 'phone' 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-300 hover:border-gray-400'
+                      ? 'border-orange-500 bg-orange-50 scale-105' 
+                      : 'border-gray-300 hover:border-gray-400 hover:scale-102'
                   }`}
                   style={{
                     backgroundColor: registrationMethod === 'phone' 
@@ -322,10 +346,15 @@ export default function SignUp() {
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
                     SMS Primary
                   </span>
+                  {registrationMethod === 'phone' && (
+                    <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
+                      ✓ Selected
+                    </div>
+                  )}
                 </button>
               </div>
               <p className="text-xs mt-2 text-center" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                You&apos;ll receive notifications via both email and SMS
+                You&apos;ll receive notifications via both email and SMS regardless of your choice
               </p>
             </div>
 
