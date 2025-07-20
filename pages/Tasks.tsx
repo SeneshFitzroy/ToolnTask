@@ -259,39 +259,63 @@ export default function Tasks() {
             
             {/* Filter Dropdown */}
             {showFilters && (
-              <div className="p-4 border rounded-lg" 
-                   style={{ 
-                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
-                     borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0'
-                   }}>
-                <div className="flex flex-wrap gap-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Category:
+              <div 
+                className="p-4 rounded-lg shadow-lg border"
+                style={{ 
+                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                  borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
+                }}
+              >
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                      Filter by Category
                     </span>
-                  </div>
-                  {['all', 'cleaning', 'gardening', 'handyman', 'delivery', 'tutoring', 'other'].map((category) => (
                     <button
-                      key={category}
-                      onClick={() => setCategoryFilter(category)}
-                      className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-                        categoryFilter === category 
-                          ? 'text-white' 
-                          : 'hover:bg-opacity-10'
-                      }`}
-                      style={{
-                        backgroundColor: categoryFilter === category 
-                          ? '#FF5E14' 
-                          : 'transparent',
-                        color: categoryFilter === category 
-                          ? '#FFFFFF' 
-                          : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                        border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#D1D5DB')}`
+                      onClick={() => {
+                        setCategoryFilter('all');
+                        setShowFilters(false);
+                      }}
+                      className="text-xs px-2 py-1 rounded transition-colors"
+                      style={{ 
+                        backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
+                        color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
                       }}
                     >
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                      Clear
                     </button>
-                  ))}
+                  </div>
+                  
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {['all', 'cleaning', 'gardening', 'handyman', 'delivery', 'tutoring', 'other'].map((category) => (
+                      <button
+                        key={category}
+                        onClick={() => {
+                          setCategoryFilter(category);
+                          setShowFilters(false);
+                        }}
+                        className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
+                        style={{
+                          backgroundColor: categoryFilter === category 
+                            ? '#FF5E14' 
+                            : (theme === 'dark' ? '#374151' : '#F8F9FA'),
+                          color: categoryFilter === category 
+                            ? '#FFFFFF' 
+                            : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
+                          border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
+                        }}
+                      >
+                        {category === 'all' ? 'All Tasks' : 
+                         category === 'cleaning' ? 'Cleaning' :
+                         category === 'gardening' ? 'Gardening' :
+                         category === 'handyman' ? 'Handyman' :
+                         category === 'delivery' ? 'Delivery' :
+                         category === 'tutoring' ? 'Tutoring' :
+                         category === 'other' ? 'Other' : category}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
