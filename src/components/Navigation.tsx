@@ -320,30 +320,30 @@ const Navigation = () => {
           </div>
 
           {/* Right side - Auth buttons - Optimized */}
-          <div className="flex items-center space-x-3 flex-shrink-0">
+          <div className="flex items-center space-x-4 flex-shrink-0">
             {/* Auth Buttons - Hidden on small screens */}
-            <div className="hidden sm:flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-4">
               {user ? (
-                <div className="flex items-center space-x-2">
-                  {/* User Profile Button - Improved Design */}
+                <div className="flex items-center space-x-3">
+                  {/* User Profile Button - Enhanced Design */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shine-effect min-w-[120px]" 
+                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect min-w-[140px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
                       border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
-                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
                       e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.15)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.15)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
