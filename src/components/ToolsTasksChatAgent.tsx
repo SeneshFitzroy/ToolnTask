@@ -34,7 +34,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
         border-radius: 3px;
       }
       .taskmate-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #0a2472;
+        background: #001554;
       }
     `;
     document.head.appendChild(style);
@@ -193,7 +193,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           <div
             className="w-16 h-16 rounded-full shadow-xl transition-all duration-300 group-hover:scale-110 flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)', // Dark blue theme
+              background: 'linear-gradient(135deg, #001554 0%, #001554 100%)', // Dark blue theme
               boxShadow: '0 8px 25px rgba(30, 58, 138, 0.4)'
             }}
           >
