@@ -39,58 +39,10 @@ export default function Home() {
     setActiveFilter(filter);
   };
 
-  const taskCards = [
-    <TaskCard
-      key="task1"
-      id="garden_maintenance"
-      title="Garden Maintenance"
-      description="Looking for someone to help with weekly garden maintenance including weeding, pruning, and lawn care."
-      price="Rs. 5,000"
-      time="2-3 hours"
-      location="Colombo 03"
-      isUrgent={true}
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop"
-    />,
-    <TaskCard
-      key="task3"
-      id="babysitting_service"
-      title="Babysitting Service"
-      description="Reliable babysitting for 2 kids (ages 5 and 8) for weekend evenings."
-      price="Rs. 3,000"
-      time="4 hours"
-      location="Galle"
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=300&fit=crop"
-    />
-  ];
-
-  const toolCards = [
-    <ToolCard
-      key="tool1"
-      id="power_drill_set"
-      title="Power Drill Set"
-      description="Professional Bosch power drill with multiple bits. Perfect for home improvement projects."
-      price="Rs. 1,500/day"
-      brand="Bosch"
-      condition="Excellent"
-      available={true}
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop"
-    />,
-    <ToolCard
-      key="tool2"
-      id="lawn_mower"
-      title="Lawn Mower"
-      description="Electric lawn mower in great condition. Ideal for medium to large gardens."
-      price="Rs. 2,000/day"
-      brand="Honda"
-      condition="Good"
-      available={true}
-      isPromoted={true}
-      image="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&h=300&fit=crop"
-    />
-  ];
+  // Empty arrays - will be populated when users create tasks/tools
+  const taskCards: JSX.Element[] = [];
+  
+  const toolCards: JSX.Element[] = [];
 
   const getFilteredCards = () => {
     if (activeFilter === 'tasks') return taskCards;
