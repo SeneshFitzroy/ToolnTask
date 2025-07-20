@@ -331,13 +331,13 @@ export default function SignUp() {
                     borderColor: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#D1D5DB')
                   }}
                 >
-                  <span className="text-lg">📧</span>
+                  <span className="text-lg">✉️</span>
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
                     Email Primary
                   </span>
                   {registrationMethod === 'email' && (
                     <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
-                      ✓ Selected
+                      Selected
                     </div>
                   )}
                 </button>
@@ -357,19 +357,19 @@ export default function SignUp() {
                     borderColor: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#D1D5DB')
                   }}
                 >
-                  <span className="text-lg">📱🇱🇰</span>
+                  <span className="text-lg">📱</span>
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
-                    SMS Primary
+                    Phone Primary
                   </span>
                   {registrationMethod === 'phone' && (
                     <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
-                      ✓ Selected
+                      Selected
                     </div>
                   )}
                 </button>
               </div>
               <p className="text-xs mt-2 text-center" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                You&apos;ll receive notifications via both email and SMS regardless of your choice
+                Secondary contact method is optional but recommended for account recovery
               </p>
             </div>
 
