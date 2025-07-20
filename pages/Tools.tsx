@@ -160,264 +160,300 @@ export default function Tools() {
         </div>
       </div>
 
-      {/* Search Section */}
-      <div className="py-4 sm:py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Enhanced Search Bar Container */}
-          <div className="rounded-xl p-4 sm:p-5 shadow-lg border" 
+      {/* Professional Search & Filter Section */}
+      <div className="py-6 sm:py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Search & Filter Container */}
+          <div className="rounded-2xl p-6 sm:p-8 shadow-xl border-2" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.15)',
+                 borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
                  boxShadow: theme === 'dark' 
-                   ? '0 8px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 94, 20, 0.08)'
-                   : '0 8px 25px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 94, 20, 0.03)'
+                   ? '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 94, 20, 0.1)'
+                   : '0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 94, 20, 0.05)'
                }}>
-          
-          {/* Enhanced Search Bar with Real-time Search */}
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col lg:flex-row gap-3">
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  placeholder="Search tools by name, category, or location..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pl-12 pr-24 border rounded-lg focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#FF5E14';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0';
-                    e.currentTarget.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.08)';
-                  }}
-                />
-                {/* Search Icon */}
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+            
+            {/* Header */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl" style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)' }}>
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FF5E14' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                
-                {/* Filter Icon */}
-                <div className="absolute right-10 top-1/2 transform -translate-y-1/2 relative">
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="p-2 rounded-lg border transition-all duration-200 hover:scale-105"
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Find Perfect Tools
+                  </h2>
+                  <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    Search and filter to discover tools that fit your project needs
+                  </p>
+                </div>
+              </div>
+              
+              {/* Results Count */}
+              <div className="text-right">
+                <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>
+                  {filteredTools.length}
+                </div>
+                <div className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                  Tools Found
+                </div>
+              </div>
+            </div>
+
+            {/* Search and Filter Controls */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              
+              {/* Professional Search Input */}
+              <div className="lg:col-span-2">
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Search Tools
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search by name, description, location, or category..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full px-5 py-4 pl-14 pr-12 border-2 rounded-xl focus:outline-none text-base font-medium shadow-sm transition-all duration-300"
                     style={{ 
-                      backgroundColor: showFilters ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#FFFFFF'),
-                      color: showFilters ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                      borderColor: showFilters ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')
+                      borderColor: searchTerm ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#E2E8F0'),
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    title="Filter tools"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                    onFocus={(e) => {
+                      e.currentTarget.style.borderColor = '#FF5E14';
+                      e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255, 94, 20, 0.1)';
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = searchTerm ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#E2E8F0');
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  />
+                  {/* Search Icon */}
+                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: searchTerm ? '#FF5E14' : (theme === 'dark' ? '#9CA3AF' : '#6B7280') }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                  </button>
-                  
-                  {/* Filter Dropdown */}
-                  {showFilters && (
-                    <div 
-                      className="absolute top-full right-0 mt-2 w-72 p-4 rounded-lg shadow-lg border z-50"
+                  </div>
+                  {/* Clear Search */}
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 rounded-lg transition-all duration-200 hover:scale-110"
                       style={{ 
-                        backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
+                        color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
+                        backgroundColor: theme === 'dark' ? '#4B5563' : '#F3F4F6'
                       }}
                     >
-                      <div className="flex flex-col gap-3">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                            Filter by Category
-                          </span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Professional Filter Dropdown */}
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Filter by Category
+                </label>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="w-full px-5 py-4 border-2 rounded-xl text-left font-medium shadow-sm transition-all duration-300 hover:scale-105"
+                    style={{ 
+                      borderColor: categoryFilter !== 'all' ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#E2E8F0'),
+                      backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: categoryFilter !== 'all' ? '#FF5E14' : (theme === 'dark' ? '#9CA3AF' : '#6B7280') }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
+                        </svg>
+                        <span>
+                          {categoryFilter === 'all' ? 'All Categories' : 
+                           categoryFilter === 'power-tools' ? 'Power Tools' :
+                           categoryFilter === 'hand-tools' ? 'Hand Tools' :
+                           categoryFilter === 'garden' ? 'Garden Tools' :
+                           categoryFilter === 'automotive' ? 'Automotive' :
+                           categoryFilter === 'construction' ? 'Construction' :
+                           categoryFilter === 'electronics' ? 'Electronics' : categoryFilter}
+                        </span>
+                      </div>
+                      <svg className={`w-5 h-5 transition-transform duration-200 ${showFilters ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
+                  
+                  {/* Filter Dropdown Menu */}
+                  {showFilters && (
+                    <div 
+                      className="absolute top-full left-0 right-0 mt-2 p-4 rounded-xl shadow-2xl border-2 z-50"
+                      style={{ 
+                        backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                        borderColor: theme === 'dark' ? '#374151' : '#E2E8F0',
+                        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25)'
+                      }}
+                    >
+                      <div className="space-y-2">
+                        {['all', 'power-tools', 'hand-tools', 'garden', 'automotive', 'construction', 'electronics'].map((category) => (
                           <button
+                            key={category}
                             onClick={() => {
-                              setCategoryFilter('all');
+                              setCategoryFilter(category);
                               setShowFilters(false);
                             }}
-                            className="text-xs px-2 py-1 rounded transition-colors"
-                            style={{ 
-                              backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
-                              color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
+                            className="w-full px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 hover:scale-105"
+                            style={{
+                              backgroundColor: categoryFilter === category 
+                                ? '#FF5E14' 
+                                : (theme === 'dark' ? '#374151' : '#F8F9FA'),
+                              color: categoryFilter === category 
+                                ? '#FFFFFF' 
+                                : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
+                              border: `2px solid ${categoryFilter === category ? '#FF5E14' : 'transparent'}`
                             }}
                           >
-                            Clear
+                            {category === 'all' ? 'All Categories' : 
+                             category === 'power-tools' ? 'Power Tools' :
+                             category === 'hand-tools' ? 'Hand Tools' :
+                             category === 'garden' ? 'Garden Tools' :
+                             category === 'automotive' ? 'Automotive' :
+                             category === 'construction' ? 'Construction' :
+                             category === 'electronics' ? 'Electronics' : category}
                           </button>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-2">
-                          {['all', 'power-tools', 'hand-tools', 'garden', 'automotive', 'construction', 'electronics'].map((category) => (
-                            <button
-                              key={category}
-                              onClick={() => {
-                                setCategoryFilter(category);
-                                setShowFilters(false);
-                              }}
-                              className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
-                              style={{
-                                backgroundColor: categoryFilter === category 
-                                  ? '#FF5E14' 
-                                  : (theme === 'dark' ? '#374151' : '#F8F9FA'),
-                                color: categoryFilter === category 
-                                  ? '#FFFFFF' 
-                                  : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                                border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
-                              }}
-                            >
-                              {category === 'all' ? 'All Tools' : 
-                               category === 'power-tools' ? 'Power Tools' :
-                               category === 'hand-tools' ? 'Hand Tools' :
-                               category === 'garden' ? 'Garden Tools' :
-                               category === 'automotive' ? 'Automotive' :
-                               category === 'construction' ? 'Construction' :
-                               category === 'electronics' ? 'Electronics' : category}
-                            </button>
-                          ))}
-                        </div>
+                        ))}
                       </div>
                     </div>
                   )}
                 </div>
-                
-                {/* Clear Button */}
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm('')}
-                    className="absolute right-16 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
-                    style={{ 
-                      color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
-                      backgroundColor: 'transparent'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#4B5563' : '#F3F4F6';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
               </div>
             </div>
-            
-            {/* Results Summary */}
-            <div className="flex items-center justify-between pt-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
+
+            {/* Available/Requested Toggle */}
+            <div className="mt-8 pt-6 border-t" style={{ borderColor: theme === 'dark' ? '#374151' : '#E2E8F0' }}>
+              <label className="block text-sm font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                Tool Type
+              </label>
+              <div className="relative">
+                <div className="p-1.5 rounded-full shadow-lg border-2" style={{ 
+                  backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
+                  borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0'
+                }}>
+                  <div className="flex justify-between gap-1 relative">
+                    {/* Sliding background indicator */}
+                    <div 
+                      className="absolute top-0 left-0 h-full transition-all duration-300 ease-in-out rounded-full"
+                      style={{
+                        width: '50%',
+                        backgroundColor: '#FF5E14',
+                        transform: activeFilter === 'requested' ? 'translateX(100%)' : 'translateX(0)',
+                        boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                      }}
+                    />
+                    <button
+                      onClick={() => handleFilterChange('available')}
+                      className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                      style={{
+                        color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                      }}
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Available Tools
+                      </span>
+                    </button>
+                    <button
+                      onClick={() => handleFilterChange('requested')}
+                      className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
+                      style={{
+                        color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
+                      }}
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        Requested Tools
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Active Filters Display */}
+            {(searchTerm || categoryFilter !== 'all') && (
+              <div className="flex flex-wrap items-center gap-3 mt-6 pt-6 border-t" style={{ borderColor: theme === 'dark' ? '#374151' : '#E2E8F0' }}>
+                <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Active Filters:
                 </span>
                 {searchTerm && (
-                  <span className="text-sm px-2 py-1 rounded-full" 
+                  <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium" 
                         style={{ 
-                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                          color: '#FF5E14'
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
+                          color: '#FF5E14',
+                          border: '1px solid rgba(255, 94, 20, 0.3)'
                         }}>
-                    &ldquo;{searchTerm}&rdquo;
+                    Search: &ldquo;{searchTerm}&rdquo;
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="ml-1 hover:scale-110 transition-transform"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </span>
                 )}
                 {categoryFilter !== 'all' && (
-                  <span className="text-sm px-2 py-1 rounded-full" 
+                  <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium" 
                         style={{ 
-                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)',
-                          color: '#FF5E14'
+                          backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)',
+                          color: '#FF5E14',
+                          border: '1px solid rgba(255, 94, 20, 0.3)'
                         }}>
-                    {categoryFilter === 'power-tools' ? 'Power Tools' :
-                     categoryFilter === 'hand-tools' ? 'Hand Tools' :
-                     categoryFilter === 'garden' ? 'Garden Tools' :
-                     categoryFilter === 'automotive' ? 'Automotive' :
-                     categoryFilter === 'construction' ? 'Construction' :
-                     categoryFilter === 'electronics' ? 'Electronics' : categoryFilter}
+                    Category: {categoryFilter === 'power-tools' ? 'Power Tools' :
+                             categoryFilter === 'hand-tools' ? 'Hand Tools' :
+                             categoryFilter === 'garden' ? 'Garden Tools' :
+                             categoryFilter === 'automotive' ? 'Automotive' :
+                             categoryFilter === 'construction' ? 'Construction' :
+                             categoryFilter === 'electronics' ? 'Electronics' : categoryFilter}
+                    <button
+                      onClick={() => setCategoryFilter('all')}
+                      className="ml-1 hover:scale-110 transition-transform"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                   </span>
                 )}
-              </div>
-              {(searchTerm || categoryFilter !== 'all') && (
                 <button
                   onClick={() => {
                     setSearchTerm('');
                     setCategoryFilter('all');
                   }}
-                  className="text-sm font-medium px-3 py-1 rounded-lg transition-colors duration-200"
+                  className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
                   style={{ 
-                    color: '#FF5E14',
-                    backgroundColor: 'transparent'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
+                    color: '#FFFFFF',
+                    backgroundColor: '#FF5E14'
                   }}
                 >
-                  Clear all filters
-                </button>
-              )}
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Enhanced Filter Toggle Section */}
-      <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Available/Requested Toggle Filter with improved design */}
-          <div className="relative">
-            <div className="p-1.5 rounded-full shadow-lg border" style={{ 
-              backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-              borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
-            }}>
-              <div className="flex justify-between gap-1 relative">
-                {/* Sliding background indicator */}
-                <div 
-                  className="absolute top-0 bottom-0 rounded-full transition-all duration-300 ease-in-out"
-                  style={{
-                    left: activeFilter === 'available' ? '0%' : '50%',
-                    width: '50%',
-                    backgroundColor: '#FF5E14',
-                    transform: 'translateX(0)'
-                  }}
-                />
-                
-                <button
-                  onClick={() => handleFilterChange('available')}
-                  className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
-                  style={{
-                    color: activeFilter === 'available' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  }}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Available Tools
-                  </span>
-                </button>
-                <button
-                  onClick={() => handleFilterChange('requested')}
-                  className="flex-1 relative px-4 sm:px-6 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 group z-10"
-                  style={{
-                    color: activeFilter === 'requested' ? '#FFFFFF' : (theme === 'dark' ? '#B3B5BC' : '#6B7280'),
-                  }}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    Requested Tools
-                  </span>
+                  Clear All
                 </button>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
