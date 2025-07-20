@@ -323,7 +323,7 @@ export default function Tools() {
           </div>
           
           {/* Enhanced Interactive Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-6 leading-tight tracking-tight">
             <span className="inline-block hover:scale-110 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Discover{' '}
             </span>
@@ -340,7 +340,7 @@ export default function Tools() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Rent quality tools for your projects or earn income by sharing your equipment
           </p>
@@ -348,7 +348,7 @@ export default function Tools() {
           {/* Interactive Animated Stats */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
                 300+
               </div>
               <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
@@ -357,7 +357,7 @@ export default function Tools() {
               </div>
             </div>
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 24/7
               </div>
               <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
