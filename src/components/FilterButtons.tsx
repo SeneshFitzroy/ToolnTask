@@ -37,11 +37,11 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   return (
     <div className="w-full max-w-5xl mx-auto mb-4 filter-container">
       {/* Elegant Thin Wide Filter Widget */}
-      <div className="p-1.5 rounded-full shadow-lg border" style={{ 
+      <div className="p-1 rounded-full shadow-lg border" style={{ 
         backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
         borderColor: theme === 'dark' ? '#333333' : '#E5E7EB'
       }}>
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between gap-1.5">
           {filterOptions.map((option) => {
             const isActive = activeFilter === option.key;
             
@@ -50,8 +50,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  flex-1 relative px-6 sm:px-8 py-3 sm:py-4 rounded-full 
-                  text-base sm:text-lg font-bold tracking-wide
+                  flex-1 relative px-4 sm:px-5 py-2 sm:py-2.5 rounded-full 
+                  text-sm sm:text-base font-semibold tracking-wide
                   transition-all duration-300 group transform-gpu
                   active:scale-95 cursor-pointer
                   ${isActive ? 'filter-button-active' : ''}
