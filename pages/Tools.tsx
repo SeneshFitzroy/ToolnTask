@@ -239,68 +239,56 @@ export default function Tools() {
                 )}
               </div>
               
-              {/* Filter Dropdown */}
-              {showFilters && (
-                <div 
-                  className="absolute top-full left-0 right-0 mt-2 p-4 rounded-lg shadow-lg border z-10"
-                  style={{ 
-                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                    borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)'
-                  }}
-                >
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Filter by Category
-                      </span>
-                      <button
-                        onClick={() => {
-                          setCategoryFilter('all');
-                          setShowFilters(false);
-                        }}
-                        className="text-xs px-2 py-1 rounded transition-colors"
-                        style={{ 
-                          backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
-                          color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
-                        }}
-                      >
-                        Clear
-                      </button>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {['all', 'power-tools', 'hand-tools', 'garden', 'automotive', 'construction', 'electronics'].map((category) => (
-                        <button
-                          key={category}
-                          onClick={() => {
-                            setCategoryFilter(category);
-                            setShowFilters(false);
-                          }}
-                          className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
-                          style={{ 
-                            backgroundColor: categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#F8F9FA'),
-                            color: categoryFilter === category ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
-                            border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
-                          }}
-                        >
-                          {category === 'all' ? 'All Tools' : 
-                           category === 'power-tools' ? 'Power Tools' :
-                           category === 'hand-tools' ? 'Hand Tools' :
-                           category === 'garden' ? 'Garden Tools' :
-                           category === 'automotive' ? 'Automotive' :
-                           category === 'construction' ? 'Construction' :
-                           category === 'electronics' ? 'Electronics' : category}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+              {/* Category Filter Buttons - Horizontal Layout */}
+              <div className="mt-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Filter by Category:
+                  </span>
+                  {categoryFilter !== 'all' && (
+                    <button
+                      onClick={() => setCategoryFilter('all')}
+                      className="text-xs px-2 py-1 rounded transition-colors"
+                      style={{ 
+                        backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
+                        color: theme === 'dark' ? '#9CA3AF' : '#6B7280'
+                      }}
+                    >
+                      Clear
+                    </button>
+                  )}
                 </div>
-              )}
-            </div>
-            
-            {/* Results Summary */}
-            <div className="flex items-center justify-between pt-2">
+                
+                <div className="flex flex-wrap gap-2">
+                  {['all', 'power-tools', 'hand-tools', 'garden', 'automotive', 'construction', 'electronics'].map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setCategoryFilter(category)}
+                      className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
+                      style={{
+                        backgroundColor: categoryFilter === category 
+                          ? '#FF5E14' 
+                          : (theme === 'dark' ? '#374151' : '#F8F9FA'),
+                        color: categoryFilter === category 
+                          ? '#FFFFFF' 
+                          : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
+                        border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
+                      }}
+                    >
+                      {category === 'all' ? 'All Tools' : 
+                       category === 'power-tools' ? 'Power Tools' :
+                       category === 'hand-tools' ? 'Hand Tools' :
+                       category === 'garden' ? 'Garden Tools' :
+                       category === 'automotive' ? 'Automotive' :
+                       category === 'construction' ? 'Construction' :
+                       category === 'electronics' ? 'Electronics' : category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Results Summary */}
+              <div className="flex items-center justify-between pt-4">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
