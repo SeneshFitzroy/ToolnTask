@@ -114,7 +114,7 @@ export default function TermsAndConditions() {
               {/* 6. Prohibited Activities */}
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  6. What's Not Allowed
+                  6. What is Not Allowed
                 </h2>
                 <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
                   <li>Illegal activities</li>
