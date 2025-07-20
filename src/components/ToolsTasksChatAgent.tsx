@@ -427,10 +427,3 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     </>
   );
 }
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
