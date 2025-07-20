@@ -214,7 +214,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           id="taskmate-container"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
-            border: '2px solid #1e3a8a' // Dark blue theme
+            border: '2px solid #001554' // Dark blue theme
           }}
         >
           {/* Header */}
