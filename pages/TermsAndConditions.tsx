@@ -15,7 +15,9 @@ export default function TermsAndConditions() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   const sections = [
     { id: 'acceptance', title: '1. Acceptance of Terms', icon: '' },
