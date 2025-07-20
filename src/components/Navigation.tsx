@@ -98,13 +98,13 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Enhanced Bigger Size */}
+          {/* Logo - Premium Extra Large Size */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
-            <Logo size="large" interactive={false} />
+            <Logo size="xl" interactive={false} />
           </Link>
 
           {/* Desktop Navigation - Enhanced Bigger Buttons */}
