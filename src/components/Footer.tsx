@@ -215,128 +215,36 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                     {link.action === 'openChat' ? (
                       <button
                         onClick={() => {
-                          // Check if chat widget already exists
-                          const existingWidget = document.getElementById('toolntask-chat');
-                          if (existingWidget) {
-                            existingWidget.remove();
-                            return;
-                          }
-
-                          // Open enhanced chatbot with TaskMate and Support selection
-                          const chatWidget = document.createElement('div');
-                          chatWidget.id = 'toolntask-chat';
-                          chatWidget.innerHTML = `
-                            <div style="position: fixed; bottom: 20px; right: 20px; width: 380px; height: 550px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 9999; border: 1px solid #e2e8f0; font-family: system-ui, -apple-system, sans-serif;">
-                              <!-- Header -->
-                              <div style="background: linear-gradient(135deg, #FE5F16, #FF5E14); color: white; padding: 15px; border-radius: 15px 15px 0 0; display: flex; justify-content: space-between; align-items: center;">
-                                <h3 style="margin: 0; font-size: 16px; font-weight: 600;">ToolNTask Support Center</h3>
-                                <button onclick="document.getElementById('toolntask-chat').remove()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; hover:background: rgba(255,255,255,0.2);">×</button>
-                              </div>
-                              
-                              <!-- Support Type Selection Sidebar -->
-                              <div style="display: flex; height: 450px;">
-                                <div style="width: 120px; background: #f8f9fa; border-right: 1px solid #e2e8f0; padding: 15px 10px;">
-                                  <h4 style="margin: 0 0 15px 0; font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Support Options</h4>
-                                  
-                                  <!-- TaskMate Option -->
-                                  <div onclick="switchSupportType('taskmate')" style="cursor: pointer; padding: 12px 8px; border-radius: 8px; margin-bottom: 8px; text-align: center; transition: all 0.2s; background: #FE5F16; color: white;" id="taskmate-option">
-                                    <div style="font-size: 20px; margin-bottom: 4px;">🤖</div>
-                                    <div style="font-size: 11px; font-weight: 600;">TaskMate</div>
-                                    <div style="font-size: 9px; opacity: 0.9; margin-top: 2px;">AI Assistant</div>
-                                    <div style="background: rgba(255,255,255,0.2); border-radius: 10px; padding: 2px 6px; margin-top: 4px; font-size: 8px;">ONLINE</div>
-                                  </div>
-                                  
-                                  <!-- Human Support Option -->
-                                  <div onclick="switchSupportType('human')" style="cursor: pointer; padding: 12px 8px; border-radius: 8px; text-align: center; transition: all 0.2s; background: white; border: 1px solid #e2e8f0; color: #666;" id="human-option">
-                                    <div style="font-size: 20px; margin-bottom: 4px;">👨‍💼</div>
-                                    <div style="font-size: 11px; font-weight: 600;">Support Team</div>
-                                    <div style="font-size: 9px; margin-top: 2px;">Human Agent</div>
-                                    <div style="background: #fef2f2; color: #dc2626; border-radius: 10px; padding: 2px 6px; margin-top: 4px; font-size: 8px;">UNAVAILABLE</div>
-                                  </div>
-                                </div>
-                                
-                                <!-- Chat Area -->
-                                <div style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
-                                  <!-- Current Support Type Header -->
-                                  <div style="background: #f8f9fa; padding: 8px 12px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #FE5F16;" id="support-type-header">
-                                    <div style="font-size: 12px; font-weight: 600; color: #FE5F16;">💬 TaskMate - AI Assistant</div>
-                                    <div style="font-size: 10px; color: #666; margin-top: 2px;">Instant responses • Available 24/7</div>
-                                  </div>
-                                  
-                                  <!-- Messages Area -->
-                                  <div style="flex: 1; overflow-y: auto; margin-bottom: 15px;" id="messages-area">
-                                    <div style="background: #f7f7f7; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-                                      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                                        <div style="width: 24px; height: 24px; background: #FE5F16; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px;">🤖</div>
-                                        <span style="font-size: 12px; font-weight: 600; color: #FE5F16;">TaskMate</span>
-                                      </div>
-                                      <p style="margin: 0; color: #333; font-size: 13px; line-height: 1.4;">👋 Hi! I'm TaskMate, your AI assistant. I can help you with questions about posting tasks, renting tools, account setup, and platform features. How can I assist you today?</p>
-                                    </div>
-                                    <div style="background: #f7f7f7; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-                                      <p style="margin: 0 0 8px 0; color: #333; font-size: 13px; font-weight: 600;">🚀 Quick Actions:</p>
-                                      <div style="display: grid; gap: 6px;">
-                                        <button style="background: white; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 6px; text-align: left; font-size: 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">📝 How to post a task</button>
-                                        <button style="background: white; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 6px; text-align: left; font-size: 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">🔧 How to rent tools</button>
-                                        <button style="background: white; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 6px; text-align: left; font-size: 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">✅ Account verification</button>
-                                        <button style="background: white; border: 1px solid #e2e8f0; padding: 8px 10px; border-radius: 6px; text-align: left; font-size: 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='white'">🛡️ Payment & safety</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                                  <!-- Input Area -->
-                                  <div style="display: flex; gap: 8px;">
-                                    <input type="text" placeholder="Ask TaskMate anything..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; outline: none;" id="chat-input" />
-                                    <button style="background: #FE5F16; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;">Send</button>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <!-- Contact Info Footer -->
-                              <div style="padding: 10px 15px; background: #f8f9fa; border-radius: 0 0 15px 15px; border-top: 1px solid #e2e8f0;">
-                                <p style="margin: 0; text-align: center; color: #666; font-size: 11px;">
-                                  📧 toolntask@gmail.com | 📞 +94 76 112 0457
-                                </p>
-                              </div>
-                            </div>
+                          // Look for existing TaskMate chatbot and open it
+                          // This will trigger your existing TaskMate implementation
+                          const event = new CustomEvent('openTaskMate', { 
+                            detail: { source: 'footer-support' }
+                          });
+                          window.dispatchEvent(event);
+                          
+                          // Alternative: Try to find and show existing chat component
+                          const existingTaskMate = document.querySelector('[data-testid="taskmate-chat"]') || 
+                                                  document.querySelector('.taskmate-widget') ||
+                                                  document.getElementById('taskmate-container');
+                          
+                          if (existingTaskMate) {
+                            existingTaskMate.style.display = 'block';
+                            existingTaskMate.style.visibility = 'visible';
+                            existingTaskMate.style.opacity = '1';
+                          } else {
+                            // If no existing TaskMate found, try to trigger it via React state or context
+                            console.log('Opening TaskMate chat from footer support');
                             
-                            <script>
-                              function switchSupportType(type) {
-                                const taskmateOption = document.getElementById('taskmate-option');
-                                const humanOption = document.getElementById('human-option');
-                                const header = document.getElementById('support-type-header');
-                                const input = document.getElementById('chat-input');
-                                const messagesArea = document.getElementById('messages-area');
-                                
-                                if (type === 'taskmate') {
-                                  // Style TaskMate as active
-                                  taskmateOption.style.background = '#FE5F16';
-                                  taskmateOption.style.color = 'white';
-                                  humanOption.style.background = 'white';
-                                  humanOption.style.color = '#666';
-                                  
-                                  // Update header and input
-                                  header.innerHTML = '<div style="font-size: 12px; font-weight: 600; color: #FE5F16;">💬 TaskMate - AI Assistant</div><div style="font-size: 10px; color: #666; margin-top: 2px;">Instant responses • Available 24/7</div>';
-                                  input.placeholder = 'Ask TaskMate anything...';
-                                  input.disabled = false;
-                                } else {
-                                  // Style Human Support as active but unavailable
-                                  humanOption.style.background = '#f3f4f6';
-                                  humanOption.style.color = '#374151';
-                                  taskmateOption.style.background = 'white';
-                                  taskmateOption.style.color = '#666';
-                                  
-                                  // Update header and input
-                                  header.innerHTML = '<div style="font-size: 12px; font-weight: 600; color: #dc2626;">👨‍💼 Human Support - Currently Unavailable</div><div style="font-size: 10px; color: #666; margin-top: 2px;">Our team members are currently unavailable. Please try TaskMate or email us.</div>';
-                                  input.placeholder = 'Human support is currently unavailable...';
-                                  input.disabled = true;
-                                  
-                                  // Show unavailable message
-                                  messagesArea.innerHTML = '<div style="background: #fef2f2; border: 1px solid #fecaca; padding: 12px; border-radius: 10px; text-align: center;"><div style="font-size: 24px; margin-bottom: 8px;">😴</div><p style="margin: 0; color: #dc2626; font-size: 13px; font-weight: 600;">Our support team is currently unavailable</p><p style="margin: 8px 0 0 0; color: #666; font-size: 12px;">Please use TaskMate for instant help or email us at toolntask@gmail.com</p></div>';
-                                }
+                            // Dispatch a global event that your TaskMate component can listen to
+                            const taskmateEvent = new CustomEvent('showTaskMate', {
+                              bubbles: true,
+                              detail: { 
+                                trigger: 'support-center',
+                                message: 'Hi! How can I help you today?'
                               }
-                            </script>
-                          `;
-                          document.body.appendChild(chatWidget);
+                            });
+                            document.dispatchEvent(taskmateEvent);
+                          }
                         }}
                         className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group bg-transparent border-none p-0 cursor-pointer"
                         style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
