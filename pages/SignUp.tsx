@@ -104,6 +104,14 @@ export default function SignUp() {
     }));
   };
 
+  const handleTermsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Save current form data to localStorage
+    localStorage.setItem('signupFormData', JSON.stringify(formData));
+    // Navigate to Terms page
+    router.push('/TermsAndConditions');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
