@@ -532,7 +532,7 @@ export default function Home() {
               
               <Link href="/About">
                 <Button 
-                  className="w-full sm:w-auto text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                  className="w-full sm:w-auto text-sm sm:text-base font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 border-2"
                   style={{ 
                     backgroundColor: 'transparent',
                     color: '#FFFFFF',
@@ -552,18 +552,18 @@ export default function Home() {
               </Link>
             </div>
             
-            {/* Simple Trust Indicators */}
-            <div className="flex justify-center gap-7 sm:gap-9 text-xs sm:text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+            {/* Compact Trust Indicators */}
+            <div className="flex justify-center gap-6 sm:gap-8 text-sm sm:text-base" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">No Fees</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Verified</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Secure</span>
               </div>
             </div>
