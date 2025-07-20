@@ -525,13 +525,13 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Clean Mobile Menu */}
+        {/* Enhanced Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t" style={{ borderColor: theme === 'dark' ? '#374151' : '#e5e7eb' }}>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3">
               <Link 
                 href="/" 
-                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -545,7 +545,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/Tasks" 
-                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -559,7 +559,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/Tools" 
-                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -573,7 +573,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/About" 
-                className="px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
