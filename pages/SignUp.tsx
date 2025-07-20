@@ -194,7 +194,7 @@ export default function SignUp() {
       }
 
       // Send SMS notification if phone number is provided
-      if (formData.phone.trim()) {
+      if (normalizedPhone) {
         try {
           const smsResponse = await fetch('/api/phone-verify', {
             method: 'POST',
@@ -202,7 +202,7 @@ export default function SignUp() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
-              phone: formData.phone.trim(),
+              phone: normalizedPhone,
               type: 'registration-welcome',
               firstName: formData.firstName.trim()
             }),
