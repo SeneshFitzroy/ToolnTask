@@ -257,26 +257,26 @@ export default function Home() {
                   <style jsx>{`
                     @media (min-width: 640px) {
                       .responsive-video-container {
-                        height: 380px;
+                        height: 280px;
                       }
                     }
                     @media (min-width: 768px) {
                       .responsive-video-container {
-                        height: 420px;
+                        height: 300px;
                       }
                     }
                     @media (min-width: 1024px) {
                       .responsive-video-container {
-                        height: 460px;
+                        height: 320px;
                       }
                     }
                     @media (min-width: 1280px) {
                       .responsive-video-container {
-                        height: 500px;
+                        height: 340px;
                       }
                     }
                   `}</style>
-                  <div className="responsive-video-container relative w-full" style={{ height: '320px' }}>
+                  <div className="responsive-video-container relative w-full" style={{ height: '240px' }}>
                     <video
                       className="absolute inset-0 w-full h-full rounded-xl sm:rounded-2xl object-cover"
                       style={{ objectPosition: 'center 30%', objectFit: 'cover' }}
