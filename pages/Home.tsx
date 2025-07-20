@@ -492,18 +492,18 @@ export default function Home() {
           
           <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 text-center relative z-10">
             {/* Main Headline */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 leading-tight" style={{ color: '#FFFFFF' }}>
               Transform Your{' '}
               <span style={{ color: '#FF5E14' }}>Community</span>
             </h2>
             
             {/* Short Description */}
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-8 sm:mb-10 font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-10 sm:mb-12 font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
               Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
             </p>
             
             {/* Clean Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Link href="/SignUp">
                 <Button 
                   className="w-full sm:w-auto text-sm sm:text-base font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
