@@ -444,7 +444,7 @@ export default function SignUp() {
                 {registrationMethod === 'email' ? (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Email Address (Primary) 📧
+                      Email Address (Primary Contact)
                     </label>
                     <input
                       type="email"
@@ -466,7 +466,7 @@ export default function SignUp() {
                 ) : (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Phone Number (Primary) 📱🇱🇰
+                      Phone Number (Primary Contact - Sri Lanka)
                     </label>
                     <input
                       type="tel"
@@ -493,7 +493,7 @@ export default function SignUp() {
                 {registrationMethod === 'email' ? (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Phone Number (For SMS notifications) 📱🇱🇰
+                      Phone Number (Optional - For SMS notifications)
                     </label>
                     <input
                       type="tel"
@@ -506,16 +506,15 @@ export default function SignUp() {
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
-                      placeholder="077 123 4567 or +94 77 123 4567"
+                      placeholder="077 123 4567 (optional)"
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                      required
                     />
                   </>
                 ) : (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Email Address (For email notifications) 📧
+                      Email Address (Optional - For email notifications)
                     </label>
                     <input
                       type="email"
@@ -528,10 +527,9 @@ export default function SignUp() {
                         backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
-                      placeholder="your.email@example.com"
+                      placeholder="your.email@example.com (optional)"
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                      required
                     />
                   </>
                 )}
