@@ -121,10 +121,10 @@ export default function Home() {
                 Sri Lanka&apos;s first community marketplace where neighbors help neighbors. 
                 Get quick tasks done or rent the tools you need from people nearby.
               </p>
-              <div className="flex justify-center lg:justify-start mb-5 sm:mb-7 md:mb-9">
+              <div className="flex justify-center lg:justify-start mb-4 sm:mb-6 md:mb-8">
                 <Link href="/SignIn">
                   <Button 
-                    className="w-full sm:w-auto text-white px-8 sm:px-10 md:px-12 lg:px-14 py-4 sm:py-5 md:py-6 text-lg sm:text-xl md:text-2xl font-bold rounded-xl sm:rounded-2xl md:rounded-3xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
+                    className="w-full sm:w-auto text-white px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-bold rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FF5E14',
                       background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
@@ -144,9 +144,9 @@ export default function Home() {
                       e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.2)';
                     }}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-3 sm:gap-4 font-bold tracking-wide">
+                    <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3 font-bold tracking-wide">
                       Get Started Today
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
                     </span>
