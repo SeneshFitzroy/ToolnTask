@@ -4,16 +4,13 @@ import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { useTheme } from 'next-themes';
-import { Eye, EyeOff, Lock, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
-import { confirmPasswordReset } from 'firebase/auth';
-import { auth } from '../src/lib/firebase';
+import { Eye, EyeOff, Lock, Shield, CheckCircle, AlertTriangle, Check, X } from 'lucide-react';
 
 export default function ResetPassword() {
   const router = useRouter();
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [token, setToken] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,20 +19,35 @@ export default function ResetPassword() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
+  // Password validation states
+  const [passwordValidation, setPasswordValidation] = useState({
+    length: false,
+    uppercase: false,
+    lowercase: false,
+    number: false,
+    special: false,
+    match: false
+  });
+
   useEffect(() => {
     setMounted(true);
     if (router.query.token) {
       setToken(router.query.token as string);
     }
-    if (router.query.email) {
-      setEmail(decodeURIComponent(router.query.email as string));
-    }
-    
-    // If no token but has oobCode (Firebase standard reset), use that
-    if (router.query.oobCode) {
-      setToken(router.query.oobCode as string);
-    }
   }, [router.query]);
+
+  // Real-time password validation
+  useEffect(() => {
+    const validation = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      number: /\d/.test(password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      match: password === confirmPassword && password.length > 0
+    };
+    setPasswordValidation(validation);
+  }, [password, confirmPassword]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,8 +61,10 @@ export default function ResetPassword() {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters long');
+    // Check all password requirements
+    const allValid = Object.values(passwordValidation).every(valid => valid);
+    if (!allValid) {
+      setError('Please meet all password requirements');
       return;
     }
 
@@ -63,28 +77,32 @@ export default function ResetPassword() {
     setError('');
 
     try {
-      // Use Firebase's confirmPasswordReset function
-      await confirmPasswordReset(auth, token, password);
-      
-      setMessage('🎉 Password updated successfully! Redirecting to sign in...');
-      
-      // Redirect to sign in page after 3 seconds
-      setTimeout(() => {
-        router.push('/SignIn?message=password-reset-success');
-      }, 3000);
+      const response = await fetch('/api/update-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: token,
+          newPassword: password
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage('🎉 Password updated successfully! Redirecting...');
+        
+        setTimeout(() => {
+          router.push('/SignIn?message=password-reset-success');
+        }, 2000);
+      } else {
+        setError(data.message || 'Error updating password. Please try again.');
+      }
 
     } catch (error) {
       console.error('Password reset error:', error);
-      const firebaseError = error as { code?: string };
-      if (firebaseError.code === 'auth/expired-action-code') {
-        setError('This reset link has expired. Please request a new password reset.');
-      } else if (firebaseError.code === 'auth/invalid-action-code') {
-        setError('This reset link is invalid. Please request a new password reset.');
-      } else if (firebaseError.code === 'auth/weak-password') {
-        setError('Password is too weak. Please choose a stronger password.');
-      } else {
-        setError('Error updating password. Please try again.');
-      }
+      setError('Error updating password. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -137,13 +155,11 @@ export default function ResetPassword() {
               </div>
               <Logo size="large" className="mb-4" />
               <h1 className="text-2xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                Reset Your Password
+                Create New Password
               </h1>
-              {email && (
-                <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                  Create a new secure password for {email}
-                </p>
-              )}
+              <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                Your new password must meet security requirements
+              </p>
             </div>
 
             {/* Success/Error Messages */}
@@ -201,6 +217,42 @@ export default function ResetPassword() {
                 </div>
               </div>
 
+              {/* Password Requirements */}
+              {password.length > 0 && (
+                <div className="p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F9FAFB' }}>
+                  <h3 className="text-sm font-medium mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Password Requirements:
+                  </h3>
+                  <div className="space-y-2">
+                    {[
+                      { key: 'length', text: 'At least 8 characters' },
+                      { key: 'uppercase', text: 'One uppercase letter (A-Z)' },
+                      { key: 'lowercase', text: 'One lowercase letter (a-z)' },
+                      { key: 'number', text: 'One number (0-9)' },
+                      { key: 'special', text: 'One special character (!@#$%^&*)' }
+                    ].map(({ key, text }) => (
+                      <div key={key} className="flex items-center gap-2">
+                        {passwordValidation[key as keyof typeof passwordValidation] ? (
+                          <Check className="w-4 h-4" style={{ color: '#10B981' }} />
+                        ) : (
+                          <X className="w-4 h-4" style={{ color: '#EF4444' }} />
+                        )}
+                        <span 
+                          className="text-xs"
+                          style={{ 
+                            color: passwordValidation[key as keyof typeof passwordValidation] 
+                              ? '#10B981' 
+                              : theme === 'dark' ? '#CCCCCC' : '#6B7280' 
+                          }}
+                        >
+                          {text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Confirm Password */}
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
@@ -233,34 +285,31 @@ export default function ResetPassword() {
                     )}
                   </button>
                 </div>
-              </div>
-
-              {/* Security Tips */}
-              <div className="p-4 rounded-lg" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#F9FAFB' }}>
-                <div className="flex items-start gap-2">
-                  <Shield className="w-5 h-5 mt-0.5" style={{ color: '#FF5E14' }} />
-                  <div>
-                    <p className="text-sm font-medium mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                      Password Security Tips:
-                    </p>
-                    <ul className="text-xs space-y-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                      <li>• Use at least 8 characters</li>
-                      <li>• Include uppercase and lowercase letters</li>
-                      <li>• Add numbers and special characters</li>
-                      <li>• Avoid common words or personal info</li>
-                    </ul>
+                {confirmPassword.length > 0 && (
+                  <div className="flex items-center gap-2 mt-2">
+                    {passwordValidation.match ? (
+                      <>
+                        <Check className="w-4 h-4" style={{ color: '#10B981' }} />
+                        <span className="text-xs" style={{ color: '#10B981' }}>Passwords match</span>
+                      </>
+                    ) : (
+                      <>
+                        <X className="w-4 h-4" style={{ color: '#EF4444' }} />
+                        <span className="text-xs" style={{ color: '#EF4444' }}>Passwords don't match</span>
+                      </>
+                    )}
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading || !password || !confirmPassword}
+                disabled={loading || !Object.values(passwordValidation).every(valid => valid)}
                 className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
               >
-                {loading ? 'Updating Password...' : 'Update Password'}
+                {loading ? 'Updating Password...' : 'Update Password Securely'}
               </button>
             </form>
 
