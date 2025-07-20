@@ -381,7 +381,7 @@ export default function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-18 sm:py-22 md:py-26 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+      <div className="py-20 sm:py-24 md:py-28 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-40 h-40 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
