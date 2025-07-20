@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
+import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useTheme } from 'next-themes';
 import { Shield, Lock, Eye, Database, Users, AlertTriangle, CheckCircle, Phone, Mail } from 'lucide-react';
 
@@ -364,6 +365,7 @@ export default function PrivacyAndSafety() {
         </div>
       </div>
 
+      <ToolsTasksChatAgent pageType="home" />
       <Footer />
     </div>
   );

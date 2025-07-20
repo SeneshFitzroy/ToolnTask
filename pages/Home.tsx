@@ -396,7 +396,7 @@ export default function Home() {
               {' '}Works
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-5xl mx-auto font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
-              Getting help or lending a hand has never been easier. Join thousands building stronger communities.
+              Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
             </p>
           </div>
           

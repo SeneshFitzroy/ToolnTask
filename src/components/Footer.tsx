@@ -26,6 +26,17 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
       return;
     }
 
+    // Enhanced email validation: at least 5 characters and contains @
+    if (email.length < 5 || !email.includes('@')) {
+      return; // Don't proceed if validation fails
+    }
+
+    // Additional email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return; // Don't proceed if email format is invalid
+    }
+
     setIsSubscribing(true);
     try {
       const response = await fetch('/api/newsletter-subscribe', {
@@ -93,7 +104,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                 />
                 <button
                   type="submit"
-                  disabled={!email || isSubscribing}
+                  disabled={!email || email.length < 5 || !email.includes('@') || isSubscribing}
                   className="px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-lg"
                   style={{ backgroundColor: '#001554' }}
                   onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#0a2472')}
