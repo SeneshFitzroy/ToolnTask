@@ -34,6 +34,8 @@ const mockTasks: Task[] = [];
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -60,8 +62,22 @@ export default function Tasks() {
       );
     }
     
+    // Apply search filter
+    if (searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(task => 
+        task.title?.toLowerCase().includes(searchLower) ||
+        task.description?.toLowerCase().includes(searchLower) ||
+        task.location?.toLowerCase().includes(searchLower) ||
+        task.category?.toLowerCase().includes(searchLower) ||
+        task.details?.toLowerCase().includes(searchLower)
+      );
+    }
+    
     return filtered;
   };
+
+  const filteredTasks = getFilteredTasks();
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
