@@ -386,18 +386,18 @@ export default function Home() {
           <div className="absolute top-1/3 right-1/3 w-14 h-14 rounded-full animate-pulse" style={{ backgroundColor: '#1a1a1a', animationDelay: '2.5s', animationDuration: '3.8s' }}></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+        <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
+          <div className="text-center mb-9 sm:mb-13 md:mb-17">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               Trusted by Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-lg sm:text-xl max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               From coast to hill, thousands are uniting to help each other every day!
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-9">
             {[
               { icon: '👥', number: '5,000+', label: 'Active Users', color: '#FF5E14' },
               { icon: '🔧', number: '1,000+', label: 'Tools Available', color: '#FF5E14' },
@@ -405,21 +405,21 @@ export default function Home() {
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center p-6 sm:p-8 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
+                className="text-center p-7 sm:p-9 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
                 style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F2F3F5' }}
               >
                 {/* Icon */}
-                <div className="text-4xl sm:text-5xl mb-4">
+                <div className="text-5xl sm:text-6xl mb-5">
                   {stat.icon}
                 </div>
                 
                 {/* Number */}
-                <div className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: stat.color }}>
+                <div className="text-4xl sm:text-5xl font-bold mb-3" style={{ color: stat.color }}>
                   {stat.number}
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-lg sm:text-xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                <h3 className="text-xl sm:text-2xl font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                   {stat.label}
                 </h3>
               </div>
