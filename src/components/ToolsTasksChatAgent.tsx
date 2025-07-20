@@ -5,6 +5,13 @@ interface ToolsTasksChatAgentProps {
   pageType: 'tools' | 'tasks' | 'home';
 }
 
+interface Message {
+  id: number;
+  type: string;
+  message: string;
+  time: string;
+}
+
 export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentProps) {
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
