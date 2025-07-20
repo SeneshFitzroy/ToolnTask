@@ -93,13 +93,13 @@ export default function SignIn() {
           if (response.ok && data.email) {
             loginIdentifier = data.email;
           } else {
-            setError('Phone number not found. Please register first or use your email address.');
+            setError('Phone number not found in our records. Please register first or use your email address.');
             setLoading(false);
             return;
           }
         } catch (phoneError) {
           console.error('Error finding email by phone:', phoneError);
-          setError('Error validating phone number. Please try using your email address.');
+          setError('Unable to verify phone number. Please try using your email address instead.');
           setLoading(false);
           return;
         }
