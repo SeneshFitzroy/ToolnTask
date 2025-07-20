@@ -104,7 +104,7 @@ const Navigation = () => {
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
-            <Logo size="large" interactive={false} />
+            <Logo size="medium" interactive={false} />
           </Link>
 
           {/* Desktop Navigation - Final Best Ultra-Compact Buttons */}
