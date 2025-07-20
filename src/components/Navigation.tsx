@@ -167,7 +167,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tools" 
-              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-6 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -195,7 +195,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/About" 
-              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-6 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -231,29 +231,29 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-3 px-6 py-3 rounded-lg text-base font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
-                    boxShadow: '0 2px 8px rgba(255, 94, 20, 0.3)'
+                    boxShadow: '0 3px 12px rgba(255, 94, 20, 0.4)'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#E54D0F';
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.4)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.5)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = '#FF5E14';
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 3px 12px rgba(255, 94, 20, 0.4)';
                   }}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   <span>Create</span>
                   <ChevronDown 
-                    className={`h-4 w-4 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    className={`h-5 w-5 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
                     strokeWidth={2}
                   />
                 </button>
@@ -332,40 +332,40 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect min-w-[140px]" 
+                    className="flex items-center gap-4 px-6 py-3 rounded-lg text-base font-semibold transition-all duration-200 shine-effect min-w-[180px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
-                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                      border: `2px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
+                      boxShadow: '0 3px 8px rgba(0, 0, 0, 0.12)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.15)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.2)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.12)';
                     }}
                   >
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm" 
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold shadow-md" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-sm font-semibold leading-tight truncate max-w-[80px]">
+                      <span className="text-base font-bold leading-tight truncate max-w-[100px]">
                         {user.displayName || user.email?.split('@')[0] || 'User'}
                       </span>
-                      <span className="text-xs opacity-70 truncate max-w-[80px]" style={{ color: '#FF5E14' }}>
+                      <span className="text-sm opacity-75 truncate max-w-[100px]" style={{ color: '#FF5E14' }}>
                         Account
                       </span>
                     </div>
                     <ChevronDown 
-                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
+                      className={`h-5 w-5 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
                       strokeWidth={2}
                     />
                   </button>
@@ -427,30 +427,30 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect"
+                    className="flex items-center gap-3 px-6 py-3 rounded-lg text-base font-semibold transition-all duration-200 shine-effect"
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
-                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                      border: `2px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
+                      boxShadow: '0 3px 8px rgba(0, 0, 0, 0.12)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
-                      e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.15)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.2)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.12)';
                     }}
                   >
-                    <UserIcon className="h-4 w-4" />
-                    <span className="font-medium">Account</span>
+                    <UserIcon className="h-5 w-5" />
+                    <span className="font-bold">Account</span>
                     <ChevronDown 
-                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      className={`h-5 w-5 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
                     />
                   </button>
