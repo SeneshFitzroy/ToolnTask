@@ -33,6 +33,8 @@ const mockTools: Tool[] = [];
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tools] = useState<Tool[]>(mockTools);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -50,13 +52,31 @@ export default function Tools() {
   };
 
   const getFilteredTools = () => {
-    return tools.filter(tool => {
-      const matchesType = tool.type === activeFilter;
-      const matchesCategory = categoryFilter === 'all' || tool.category === categoryFilter;
-      
-      return matchesType && matchesCategory;
-    });
+    let filtered = tools.filter(tool => tool.type === activeFilter);
+    
+    // Apply category filter
+    if (categoryFilter !== 'all') {
+      filtered = filtered.filter(tool => 
+        tool.category?.toLowerCase() === categoryFilter.toLowerCase()
+      );
+    }
+    
+    // Apply search filter
+    if (searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(tool => 
+        tool.title?.toLowerCase().includes(searchLower) ||
+        tool.description?.toLowerCase().includes(searchLower) ||
+        tool.location?.toLowerCase().includes(searchLower) ||
+        tool.category?.toLowerCase().includes(searchLower) ||
+        tool.details?.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    return filtered;
   };
+
+  const filteredTools = getFilteredTools();
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
