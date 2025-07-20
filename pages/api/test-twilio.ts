@@ -73,18 +73,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     });
 
-  } catch (error: any) {
-    console.error('❌ Twilio test failed:', error);
+  } catch (error: unknown) {
+    const twilioError = error as { message?: string; code?: string; moreInfo?: string; status?: number; constructor?: { name: string } };
+    console.error('❌ Twilio test failed:', twilioError);
     
     return res.status(500).json({
       success: false,
       message: 'SMS test failed',
-      error: error.message,
-      code: error.code,
-      moreInfo: error.moreInfo,
+      error: twilioError.message || 'Unknown error',
+      code: twilioError.code || 'No code',
+      moreInfo: twilioError.moreInfo || 'No additional info',
       debug: {
-        errorType: error.constructor.name,
-        status: error.status
+        errorType: twilioError.constructor?.name || 'Unknown',
+        status: twilioError.status || 'No status'
       }
     });
   }
