@@ -284,7 +284,7 @@ export default function About() {
       </div>
 
       {/* Contact Section */}
-      <div className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+      <div id="contact" className="py-12 sm:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Contact Header */}
           <div className="text-center mb-12">
