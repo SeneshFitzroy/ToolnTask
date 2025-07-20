@@ -67,27 +67,10 @@ export default function ProfileEnhanced() {
       const toolsSnapshot = await getDocs(toolsQuery);
       
       // Sample data for demonstration (in production, you'd fetch actual task/tool details)
-      const sampleTasks: SavedItem[] = tasksSnapshot.docs.map((doc, index) => ({
-        id: doc.data().taskId || `task-${index}`,
-        type: 'task' as const,
-        title: `Garden Maintenance Task ${index + 1}`,
-        price: `Rs. ${(index + 1) * 1000}`,
-        category: 'Gardening',
-        location: 'Colombo 03',
-        image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop',
-        savedAt: doc.data().savedAt
-      }));
+      // Empty arrays - will be populated from actual user data
+      const sampleTasks: SavedItem[] = [];
       
-      const sampleTools: SavedItem[] = toolsSnapshot.docs.map((doc, index) => ({
-        id: doc.data().toolId || `tool-${index}`,
-        type: 'tool' as const,
-        title: `Professional Drill Set ${index + 1}`,
-        price: `Rs. ${(index + 1) * 500}/day`,
-        category: 'Power Tools',
-        location: 'Colombo 05',
-        image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=300&fit=crop',
-        savedAt: doc.data().savedAt
-      }));
+      const sampleTools: SavedItem[] = [];
       
       setSavedItems([...sampleTasks, ...sampleTools]);
     } catch (error) {
