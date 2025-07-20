@@ -359,7 +359,7 @@ export default function Ads() {
                 Contact Sales Team
               </Button>
             </Link>
-            <Link href="mailto:ads@toolntask.com">
+            <Link href="mailto:toolntask@gmail.com">
               <Button
                 className="px-8 py-3 rounded-lg font-bold transition-all duration-300 hover:scale-105"
                 style={{
