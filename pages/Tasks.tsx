@@ -294,7 +294,7 @@ export default function Tasks() {
           {/* Interactive Animated Stats */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
                 500+
               </div>
               <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
@@ -303,7 +303,7 @@ export default function Tasks() {
               </div>
             </div>
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              <div className="text-sm sm:text-base lg:text-lg font-bold mb-1 group-hover:animate-pulse" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                 24/7
               </div>
               <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
