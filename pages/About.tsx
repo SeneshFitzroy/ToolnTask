@@ -433,21 +433,34 @@ export default function About() {
                 <div className="space-y-3">
                   <button
                     onClick={() => {
-                      // Dispatch event to open TaskMate chatbot
-                      const event = new CustomEvent('openTaskMate', { 
-                        detail: { source: 'about-page-support', message: 'Hi! I need help with ToolNTask.' }
+                      // Dispatch events to open existing TaskMate chatbot
+                      const openEvent = new CustomEvent('openTaskMate', { 
+                        detail: { source: 'about-page-chat', message: 'Hi! I need help with ToolNTask.' }
                       });
-                      window.dispatchEvent(event);
+                      window.dispatchEvent(openEvent);
                       
-                      // Alternative method for existing TaskMate implementations
-                      const taskmateEvent = new CustomEvent('showTaskMate', {
+                      // Also dispatch the alternative event
+                      const showEvent = new CustomEvent('showTaskMate', {
                         bubbles: true,
                         detail: { 
-                          trigger: 'about-support',
-                          message: 'Hello! How can I assist you with ToolNTask today?'
+                          trigger: 'about-chat',
+                          message: 'Hello! How can TaskMate assist you with ToolNTask today?',
+                          tab: 'chat' // Request to open chat tab specifically
                         }
                       });
-                      document.dispatchEvent(taskmateEvent);
+                      document.dispatchEvent(showEvent);
+                      
+                      // Direct manipulation as fallback
+                      const existingTaskMate = document.querySelector('[data-testid="taskmate-chat"]') || 
+                                              document.querySelector('.taskmate-widget') ||
+                                              document.getElementById('taskmate-container');
+                      
+                      if (existingTaskMate) {
+                        const element = existingTaskMate as HTMLElement;
+                        element.style.display = 'block';
+                        element.style.visibility = 'visible';
+                        element.style.opacity = '1';
+                      }
                     }}
                     className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
                   >
@@ -459,10 +472,33 @@ export default function About() {
                   
                   <button
                     onClick={() => {
-                      // Scroll to contact form
-                      const contactForm = document.querySelector('#contact-form');
-                      if (contactForm) {
-                        contactForm.scrollIntoView({ behavior: 'smooth' });
+                      // Dispatch events to open existing TaskMate support tab
+                      const openEvent = new CustomEvent('openTaskMate', { 
+                        detail: { source: 'about-page-support', message: 'Hi! I need support with ToolNTask.' }
+                      });
+                      window.dispatchEvent(openEvent);
+                      
+                      // Also dispatch the alternative event
+                      const showEvent = new CustomEvent('showTaskMate', {
+                        bubbles: true,
+                        detail: { 
+                          trigger: 'about-support',
+                          message: 'Hello! I need to contact support.',
+                          tab: 'support' // Request to open support tab specifically
+                        }
+                      });
+                      document.dispatchEvent(showEvent);
+                      
+                      // Direct manipulation as fallback
+                      const existingTaskMate = document.querySelector('[data-testid="taskmate-chat"]') || 
+                                              document.querySelector('.taskmate-widget') ||
+                                              document.getElementById('taskmate-container');
+                      
+                      if (existingTaskMate) {
+                        const element = existingTaskMate as HTMLElement;
+                        element.style.display = 'block';
+                        element.style.visibility = 'visible';
+                        element.style.opacity = '1';
                       }
                     }}
                     className="w-full border-2 text-base p-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-3"
