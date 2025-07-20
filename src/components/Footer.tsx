@@ -31,7 +31,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <span className="text-sm sm:text-base lg:text-lg font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Stay Connected with</span>
-                <Logo size="large" />
+                <Logo size="medium" />
               </div>
               <p className="text-xs sm:text-sm mb-8 max-w-2xl mx-auto" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
                 Get the latest updates on new tools, upcoming tasks, and community stories delivered to your inbox.
@@ -71,7 +71,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
             {/* Brand Section */}
             <div className="lg:col-span-2">
               <div className="mb-6">
-                <Logo size="xl" />
+                <Logo size="medium" />
               </div>
               <p className="text-xs sm:text-sm mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 Sri Lanka&apos;s leading community marketplace connecting neighbors through shared tools and trusted services. 
