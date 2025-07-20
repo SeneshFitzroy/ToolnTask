@@ -145,10 +145,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     </body>
     </html>`;
 
+    // Get the email associated with this phone number for OTP delivery
+    let userEmail = process.env.SMTP_USER; // fallback to admin email
+    
+    try {
+      // First, try to get the email associated with this phone number
+      const { collection: firestoreCollection, query: firestoreQuery, where, getDocs } = await import('firebase/firestore');
+      const { db } = await import('../../src/lib/firebase');
+      
+      const usersRef = firestoreCollection(db, 'users');
+      const q = firestoreQuery(usersRef, where('phone', '==', formattedPhone));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        if (userData.email) {
+          userEmail = userData.email;
+        }
+      }
+    } catch (emailLookupError) {
+      console.log('Could not find email for phone, using admin email:', emailLookupError);
+    }
+
     // Send verification email
     await transporter.sendMail({
       from: `"ToolNTask Verification" <${process.env.EMAIL_FROM_ADDRESS || process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER, // Send to admin email since we don't have the user's email yet
+      to: userEmail,
       subject: `📱 Phone Verification Code: ${otp} - ToolNTask`,
       html: emailTemplate,
     });
