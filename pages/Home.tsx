@@ -347,7 +347,7 @@ export default function Home() {
               Building Communities Across{' '}
               <span style={{ color: '#FF5E14' }}>Sri Lanka</span>
             </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
               Connecting neighbors, sharing resources, and creating opportunities in every district!
             </p>
           </div>
