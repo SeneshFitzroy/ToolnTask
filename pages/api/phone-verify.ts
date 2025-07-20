@@ -60,6 +60,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
     const formattedPhone = formatSriLankanPhone(phone);
 
+    // Log OTP for development/testing (remove in production)
+    console.log(`🔐 OTP Generated for ${formattedPhone}: ${otp} (expires in 10 minutes)`);
+
     // Store OTP in Firestore
     await addDoc(collection(db, 'phoneVerifications'), {
       phone: formattedPhone,
@@ -148,7 +151,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Send verification email
     await transporter.sendMail({
       from: `"ToolNTask Verification" <${process.env.EMAIL_FROM_ADDRESS || process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER, // Send to admin email since we don't have the user's email yet
+      to: `${process.env.SMTP_USER}, seneshfitzroy@gmail.com`, // Send to both admin and user
       subject: `📱 Phone Verification Code: ${otp} - ToolNTask`,
       html: emailTemplate,
     });
