@@ -600,7 +600,7 @@ export default function Home() {
               
               <Link href="/About">
                 <Button 
-                  className="w-full sm:w-auto text-xl font-bold px-9 py-5 rounded-xl transition-all duration-300 hover:scale-105 border-2"
+                  className="w-full sm:w-auto text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 border-2"
                   style={{ 
                     backgroundColor: 'transparent',
                     color: '#FFFFFF',
