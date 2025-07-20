@@ -37,8 +37,8 @@ function formatPhoneNumber(phone: string): string {
 function isValidPhoneNumber(phone: string): boolean {
   const formatted = formatPhoneNumber(phone);
   // Sri Lankan phone numbers: +94 followed by 9 digits
-  // Mobile patterns: 70, 71, 72, 74, 75, 76, 77, 78
-  const sriLankanMobilePattern = /^\+94(70|71|72|74|75|76|77|78)\d{7}$/;
+  // Mobile patterns: 70, 71, 72, 74, 75, 76, 77, 78, 79 (including 079 series)
+  const sriLankanMobilePattern = /^\+94(70|71|72|74|75|76|77|78|79)\d{7}$/;
   return sriLankanMobilePattern.test(formatted);
 }
 
