@@ -359,23 +359,23 @@ export default function Home() {
       </div>
 
       {/* Filter Section */}
-      <div className="py-3 sm:py-4 md:py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-4 sm:py-5 md:py-7" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-7 lg:px-9">
           <FilterButtons onFilterChange={handleFilterChange} activeFilter={activeFilter} />
         </div>
       </div>
 
       {/* Promoted Cards Section */}
-      <div className="py-4 sm:py-6 md:py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+      <div className="py-5 sm:py-7 md:py-9" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+        <div className="max-w-7xl mx-auto px-5 sm:px-7 lg:px-9">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 lg:gap-9">
             {getFilteredCards()}
           </div>
         </div>
       </div>
 
       {/* Stats Section */}
-      <div className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+      <div className="py-14 sm:py-18 md:py-22 relative overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         {/* Interactive Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14', animationDelay: '0s', animationDuration: '3s' }}></div>
