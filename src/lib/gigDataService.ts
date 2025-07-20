@@ -48,8 +48,10 @@ export interface ToolData {
 }
 
 // Generate unique task data based on ID
-export const generateTaskData = (id: string): TaskData => {
-  const taskTypes = [
+export const generateTaskData = (id: string): TaskData | null => {
+  // Return null - no sample data, only real user-created tasks will be shown
+  return null;
+};
     {
       title: "Garden Maintenance & Landscaping",
       category: "Gardening",
