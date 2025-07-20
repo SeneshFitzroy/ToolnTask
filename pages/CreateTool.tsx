@@ -232,7 +232,7 @@ export default function ToolDetail${toolId}() {
               borderColor: theme === 'dark' ? '#374151' : '#E5E7EB'
             }}>
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold mb-2" style={{ color: '#FF5E14' }}>
+                <div className="text-sm sm:text-base lg:text-lg font-bold mb-2" style={{ color: '#FF5E14' }}>
                   {tool.price}
                 </div>
                 <div className="text-sm" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
