@@ -306,7 +306,7 @@ export default function Tasks() {
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
+                    className="absolute right-16 top-1/2 transform -translate-y-1/2 p-1 rounded-full transition-colors duration-200"
                     style={{ 
                       color: theme === 'dark' ? '#9CA3AF' : '#6B7280',
                       backgroundColor: 'transparent'
