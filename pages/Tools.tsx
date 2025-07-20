@@ -290,11 +290,11 @@ export default function Tools() {
                             setCategoryFilter(category);
                             setShowFilters(false);
                           }}
-                          className="text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:scale-105"
+                          className="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
                           style={{ 
                             backgroundColor: categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#374151' : '#F8F9FA'),
-                            color: categoryFilter === category ? '#FFFFFF' : (theme === 'dark' ? '#E5E7EB' : '#4B5563'),
-                            border: `1px solid ${categoryFilter === category ? '#FF5E14' : 'transparent'}`
+                            color: categoryFilter === category ? '#FFFFFF' : (theme === 'dark' ? '#D1D5DB' : '#6B7280'),
+                            border: `1px solid ${categoryFilter === category ? '#FF5E14' : (theme === 'dark' ? '#4B5563' : '#E2E8F0')}`
                           }}
                         >
                           {category === 'all' ? 'All Tools' : 
