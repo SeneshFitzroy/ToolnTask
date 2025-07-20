@@ -18,18 +18,6 @@ export default function PhoneVerification() {
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(0);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Countdown timer for resend
-  useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [countdown]);
-
   // Validate Sri Lankan phone number
   const validatePhone = (phone: string): boolean => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
@@ -39,6 +27,32 @@ export default function PhoneVerification() {
       /^(\+94|0094|94)?0?7[0-9]{8}$/, // Mobile numbers: 070-079 series
       /^(\+94|0094|94)?0?1[1-9][0-9]{7}$/, // Landline numbers
       /^0?7[0-9]{8}$/, // Local mobile format: 0771234567
+      /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
+    ];
+    
+    return patterns.some(pattern => pattern.test(cleanPhone));
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    
+    // Pre-fill phone number from URL parameter
+    if (router.query.phone && typeof router.query.phone === 'string') {
+      setPhone(router.query.phone);
+      // If phone is provided and valid, skip to OTP step
+      if (validatePhone(router.query.phone)) {
+        setStep('otp');
+      }
+    }
+  }, [router.query.phone]);
+
+  // Countdown timer for resend
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
       /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
     ];
     
