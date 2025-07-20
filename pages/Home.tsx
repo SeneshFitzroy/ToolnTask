@@ -104,9 +104,9 @@ export default function Home() {
       {/* <SideAds /> */}
       
       {/* Hero Section */}
-      <div className="py-10 sm:py-14 md:py-18 lg:py-22" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-7 lg:px-9">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-9 lg:gap-18 items-center">
+      <div className="py-8 sm:py-12 md:py-16 lg:py-20" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
               <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
                 <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
@@ -155,13 +155,13 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-5 md:gap-7 text-sm sm:text-base">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                   <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>5,000+ Happy Users</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                   <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>100% Secure</span>
                 </div>
               </div>
