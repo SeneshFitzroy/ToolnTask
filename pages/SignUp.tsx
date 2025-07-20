@@ -38,7 +38,9 @@ export default function SignUp() {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [registrationMethod, setRegistrationMethod] = useState<'email' | 'phone'>('email');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -175,9 +177,41 @@ export default function SignUp() {
         console.error('Failed to send welcome email:', emailError);
         // Don't fail registration if email fails
       }
+
+      // Send SMS notification if phone number is provided
+      if (formData.phone.trim()) {
+        try {
+          const smsResponse = await fetch('/api/phone-verify', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              phone: formData.phone.trim(),
+              type: 'registration-welcome',
+              firstName: formData.firstName.trim()
+            }),
+          });
+
+          if (smsResponse.ok) {
+            console.log('Welcome SMS sent successfully');
+            setSuccessMessage('🎉 Account created! Check your email and phone for welcome messages.');
+          } else {
+            console.error('Failed to send welcome SMS');
+            setSuccessMessage('🎉 Account created! Check your email for welcome message.');
+          }
+        } catch (smsError) {
+          console.error('Failed to send welcome SMS:', smsError);
+          setSuccessMessage('🎉 Account created! Check your email for welcome message.');
+        }
+      } else {
+        setSuccessMessage('🎉 Account created! Check your email for welcome message.');
+      }
       
-      // Redirect to sign in page after successful registration
-      router.push('/SignIn?message=registration-success');
+      // Show success message briefly before redirect
+      setTimeout(() => {
+        router.push('/SignIn?message=registration-success');
+      }, 3000);
     } catch (error: unknown) {
       console.error('Error creating user:', error);
       
@@ -242,7 +276,68 @@ export default function SignUp() {
               </p>
             </div>
 
+            {/* Registration Method Selection */}
+            <div className="mb-6">
+              <p className="text-sm font-medium mb-3 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
+                Preferred Contact Method
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setRegistrationMethod('email')}
+                  className={`p-3 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 ${
+                    registrationMethod === 'email' 
+                      ? 'border-orange-500 bg-orange-50' 
+                      : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                  style={{
+                    backgroundColor: registrationMethod === 'email' 
+                      ? (theme === 'dark' ? '#2a1a0a' : '#FFF7ED')
+                      : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
+                    borderColor: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#D1D5DB')
+                  }}
+                >
+                  <span className="text-lg">📧</span>
+                  <span className="text-xs font-medium" style={{ color: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
+                    Email Primary
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setRegistrationMethod('phone')}
+                  className={`p-3 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 ${
+                    registrationMethod === 'phone' 
+                      ? 'border-orange-500 bg-orange-50' 
+                      : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                  style={{
+                    backgroundColor: registrationMethod === 'phone' 
+                      ? (theme === 'dark' ? '#2a1a0a' : '#FFF7ED')
+                      : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
+                    borderColor: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#D1D5DB')
+                  }}
+                >
+                  <span className="text-lg">📱🇱🇰</span>
+                  <span className="text-xs font-medium" style={{ color: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
+                    SMS Primary
+                  </span>
+                </button>
+              </div>
+              <p className="text-xs mt-2 text-center" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                You&apos;ll receive notifications via both email and SMS
+              </p>
+            </div>
+
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+              {successMessage && (
+                <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-green-300" style={{ backgroundColor: '#D1FAE5', color: '#047857' }}>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-lg">✅</span>
+                    <span>{successMessage}</span>
+                  </div>
+                </div>
+              )}
               {error && (
                 <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300 animate-pulse" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
                   <div className="flex items-center justify-center gap-2">

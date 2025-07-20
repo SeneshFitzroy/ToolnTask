@@ -109,46 +109,9 @@ export default function SignIn() {
   };
 
 
-  // Forgot password function using our custom secure system
-  const handleForgotPassword = async () => {
-    if (!formData.email) {
-      setError('Please enter your email address or phone number first');
-      return;
-    }
-
-    try {
-      // Check if input is phone number (Sri Lankan format)
-      const isPhone = /^(\+94|0094|94|0)?[1-9][0-9]{8,9}$/.test(formData.email.replace(/[\s\-\(\)]/g, ''));
-      
-      const requestBody = isPhone 
-        ? { phone: formData.email.trim() }
-        : { email: formData.email.trim() };
-
-      const response = await fetch('/api/password-reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        if (data.method === 'phone') {
-          setSuccessMessage('🚀 Verification code sent to your phone!');
-        } else {
-          setSuccessMessage('🚀 Reset link sent! Check your inbox.');
-        }
-        setError('');
-      } else {
-        setError(data.message || 'Error sending reset. Please try again.');
-      }
-
-    } catch (error: unknown) {
-      console.error('Error sending password reset:', error);
-      setError('Error sending reset. Please try again.');
-    }
+  // Redirect to forgot password page
+  const handleForgotPassword = () => {
+    router.push('/forgot-password');
   };
 
   if (!mounted) {
