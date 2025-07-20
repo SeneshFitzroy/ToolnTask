@@ -88,16 +88,16 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
                     backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF'
                   }}
-                  onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #FF5E14`}
+                  onFocus={(e) => e.currentTarget.style.boxShadow = `0 0 0 2px #001554`}
                   onBlur={(e) => e.currentTarget.style.boxShadow = 'none'}
                 />
                 <button
                   type="submit"
                   disabled={!email || isSubscribing}
                   className="px-8 py-4 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-lg"
-                  style={{ backgroundColor: '#FE5F16' }}
-                  onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FF5D13')}
-                  onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#FE5F16')}
+                  style={{ backgroundColor: '#001554' }}
+                  onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#0a2472')}
+                  onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#001554')}
                 >
                   {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                 </button>
@@ -137,15 +137,15 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               {/* Trust Indicators */}
               <div className="flex flex-wrap gap-6 mb-8">
                 <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5" style={{ color: '#FE5F16' }} />
+                  <Users className="w-5 h-5" style={{ color: '#001554' }} />
                   <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Trusted Community Platform</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Star className="w-5 h-5" style={{ color: '#FF5E14' }} />
+                  <Star className="w-5 h-5" style={{ color: '#001554' }} />
                   <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Safe & Verified Users</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Heart className="w-5 h-5" style={{ color: '#FE5F16' }} />
+                  <Heart className="w-5 h-5" style={{ color: '#001554' }} />
                   <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>100% Secure</span>
                 </div>
               </div>
@@ -162,7 +162,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                     className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-110 shadow-lg group"
                     style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FE5F16';
+                      e.currentTarget.style.backgroundColor = '#001554';
                       e.currentTarget.style.transform = 'scale(1.1) rotate(5deg)';
                     }}
                     onMouseLeave={(e) => {
@@ -192,10 +192,10 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                       href={link.href} 
                       className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
                       style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#001554'}
                       onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#001554' }}></span>
                       {link.label}
                     </Link>
                   </li>
@@ -249,10 +249,10 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                         }}
                         className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group bg-transparent border-none p-0 cursor-pointer"
                         style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#001554'}
                         onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#001554' }}></span>
                         {link.label}
                       </button>
                     ) : (
@@ -260,10 +260,10 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                         href={link.href} 
                         className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
                         style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#001554'}
                         onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
+                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#001554' }}></span>
                         {link.label}
                       </Link>
                     )}

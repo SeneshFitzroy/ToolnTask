@@ -145,7 +145,7 @@ export default function Tasks() {
           </h1>
           
           {/* Subheading */}
-          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-center mb-8 sm:mb-10 max-w-5xl mx-auto leading-relaxed font-medium" 
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connect with your community and discover meaningful opportunities to earn extra income
           </p>
