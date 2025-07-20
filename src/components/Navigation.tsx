@@ -98,13 +98,17 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Premium Extra Large Size */}
-          <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
+          {/* Logo - Maximum Premium Size */}
+          <Link href="/" className="flex items-center space-x-3 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
             <Logo size="xl" interactive={false} />
+            <div className="hidden xl:block">
+              <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>ToolNTask</div>
+              <div className="text-xs font-medium opacity-75" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>Community Marketplace</div>
+            </div>
           </Link>
 
           {/* Desktop Navigation - Extra Large Professional Buttons */}
@@ -325,48 +329,43 @@ const Navigation = () => {
             <div className="hidden sm:flex items-center space-x-5">
               {user ? (
                 <div className="flex items-center space-x-4">
-                  {/* User Profile Button - Compact Orange Theme with Benefits */}
+                  {/* User Profile Button - Ultra Compact Orange Benefits Badge */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shine-effect" 
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 shine-effect" 
                     style={{ 
                       color: '#FFFFFF',
                       backgroundColor: '#FF5E14',
                       border: '2px solid #FF5E14',
-                      boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
+                      boxShadow: '0 3px 10px rgba(255, 94, 20, 0.4)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#E54D0F';
                       e.currentTarget.style.borderColor = '#E54D0F';
-                      e.currentTarget.style.transform = 'scale(1.02)';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 94, 20, 0.4)';
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                      e.currentTarget.style.boxShadow = '0 5px 15px rgba(255, 94, 20, 0.5)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = '#FF5E14';
                       e.currentTarget.style.borderColor = '#FF5E14';
                       e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.3)';
+                      e.currentTarget.style.boxShadow = '0 3px 10px rgba(255, 94, 20, 0.4)';
                     }}
-                    title="Premium Member Benefits"
+                    title="Premium Member - Exclusive Benefits & Priority Support"
                   >
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" 
-                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold" 
+                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
-                    <div className="flex flex-col items-start text-left">
-                      <span className="text-xs font-bold leading-tight text-white">
-                        Premium
-                      </span>
-                      <span className="text-xs opacity-90 text-white">
-                        Benefits
-                      </span>
-                    </div>
-                    <svg className="w-4 h-4 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <span className="text-xs font-bold text-white">
+                      Premium+
+                    </span>
+                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </button>
                   
