@@ -221,7 +221,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           <div
             className="p-4 text-white"
             style={{
-              background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)' // Dark blue theme
+              background: 'linear-gradient(135deg, #001554 0%, #001554 100%)' // Dark blue theme
             }}
           >
             <div className="flex items-center justify-between">
