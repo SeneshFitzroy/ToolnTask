@@ -49,7 +49,7 @@ export default function PhoneVerification() {
     e.preventDefault();
     
     if (!validatePhone(phone)) {
-      setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567)');
+      setError('Please enter a valid Sri Lankan phone number (e.g., 076 112 0457, 077 123 4567)');
       return;
     }
 
