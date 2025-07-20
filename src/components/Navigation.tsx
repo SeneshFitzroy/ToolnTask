@@ -98,17 +98,16 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - Maximum Premium Size */}
-          <Link href="/" className="flex items-center space-x-3 flex-shrink-0" onClick={() => {
+          {/* Logo - Bigger with Marketplace Slogan */}
+          <Link href="/" className="flex flex-col items-start flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
             <Logo size="xl" interactive={false} />
-            <div className="hidden xl:block">
-              <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>ToolNTask</div>
-              <div className="text-xs font-medium opacity-75" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>Community Marketplace</div>
-            </div>
+            <span className="text-xs font-medium mt-1 opacity-75" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}>
+              Community Marketplace
+            </span>
           </Link>
 
           {/* Desktop Navigation - Extra Large Professional Buttons */}
