@@ -75,20 +75,40 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     }
   }, [isOpen]);
 
-  // Listen for Footer support center events
+  // Listen for Footer and About page events
   useEffect(() => {
     const handleOpenTaskMate = (event: CustomEvent) => {
-      console.log('Opening TaskMate from Footer Support Center', event.detail);
+      console.log('Opening TaskMate from external trigger', event.detail);
       setIsOpen(true);
-      setActiveTab('support'); // Always open support tab when triggered from footer
       
-      // Don't add any automatic messages - let the support tab show the welcome message
+      // Check if a specific tab was requested
+      if (event.detail && event.detail.tab) {
+        setActiveTab(event.detail.tab);
+      } else {
+        // Default behavior: footer opens support, others open chat
+        setActiveTab(event.detail.source === 'footer-support' ? 'support' : 'support');
+      }
+      
+      // Don't add any automatic messages - let the respective tab show its welcome message
     };
 
     const handleShowTaskMate = (event: CustomEvent) => {
-      console.log('Showing TaskMate from Footer', event.detail);
+      console.log('Showing TaskMate from external trigger', event.detail);
       setIsOpen(true);
-      setActiveTab('support'); // Always open support tab when triggered from footer
+      
+      // Check if a specific tab was requested
+      if (event.detail && event.detail.tab) {
+        setActiveTab(event.detail.tab);
+      } else {
+        // Determine tab based on trigger source
+        if (event.detail.trigger === 'about-chat') {
+          setActiveTab('chat');
+        } else if (event.detail.trigger === 'about-support' || event.detail.trigger === 'support-center') {
+          setActiveTab('support');
+        } else {
+          setActiveTab('support'); // Default fallback
+        }
+      }
     };
 
     // Add event listeners

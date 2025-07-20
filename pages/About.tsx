@@ -701,6 +701,7 @@ export default function About() {
         </div>
       </div>
 
+      <ToolsTasksChatAgent pageType="home" />
       <Footer showNewsletter={true} />
     </div>
   );
