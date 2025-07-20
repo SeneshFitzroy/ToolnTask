@@ -107,14 +107,14 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6 text-sm sm:text-base">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-10 text-base sm:text-lg">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>Trusted Community Platform</span>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>5,000+ Members</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>Safe & Verified Users</span>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>4.8★ Rating</span>
                 </div>
               </div>
             </div>
