@@ -12,20 +12,28 @@ type ResponseData = {
 
 // Helper function to format phone number to international format
 function formatPhoneNumber(phone: string): string {
-  // Remove all non-digits
+  // Remove all non-digits and plus signs
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  
+  // If it already starts with +, return as is (for international numbers like Twilio virtual numbers)
+  if (cleaned.startsWith('+')) {
+    return cleaned;
+  }
+  
+  // Remove all non-digits for Sri Lankan number processing
   const digits = phone.replace(/\D/g, '');
   
-  // If it starts with 0, replace with +94
+  // If it starts with 0, replace with +94 (Sri Lankan numbers)
   if (digits.startsWith('0')) {
     return '+94' + digits.substring(1);
   }
   
-  // If it doesn't start with +94, add it
+  // If it doesn't start with +94, add it (Sri Lankan numbers)
   if (!digits.startsWith('94')) {
     return '+94' + digits;
   }
   
-  // If it starts with 94, add the +
+  // If it starts with 94, add the + (Sri Lankan numbers)
   if (digits.startsWith('94')) {
     return '+' + digits;
   }
@@ -36,10 +44,29 @@ function formatPhoneNumber(phone: string): string {
 // Helper function to validate phone number
 function isValidPhoneNumber(phone: string): boolean {
   const formatted = formatPhoneNumber(phone);
+  
   // Sri Lankan phone numbers: +94 followed by 9 digits
   // Mobile patterns: 70, 71, 72, 74, 75, 76, 77, 78, 79 (including 079 series)
   const sriLankanMobilePattern = /^\+94(70|71|72|74|75|76|77|78|79)\d{7}$/;
-  return sriLankanMobilePattern.test(formatted);
+  
+  // For development/testing: Allow Twilio virtual numbers and common test numbers
+  const testPhonePatterns = [
+    /^\+1877\d{7}$/, // Twilio virtual numbers like +18777804236
+    /^\+1555\d{7}$/, // Common test numbers
+    /^\+15005550006$/, // Twilio test numbers
+  ];
+  
+  // Check Sri Lankan numbers first
+  if (sriLankanMobilePattern.test(formatted)) {
+    return true;
+  }
+  
+  // Allow test numbers in development
+  if (process.env.NODE_ENV === 'development') {
+    return testPhonePatterns.some(pattern => pattern.test(formatted));
+  }
+  
+  return false;
 }
 
 // Generate 6-digit OTP
