@@ -22,7 +22,9 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || isSubscribing) return;
+    if (!email || isSubscribing) {
+      return;
+    }
 
     setIsSubscribing(true);
     try {
