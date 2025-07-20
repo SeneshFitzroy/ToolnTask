@@ -24,11 +24,9 @@ export default function ForgotPassword() {
   // Validate Sri Lankan phone number
   const validatePhone = (phone: string): boolean => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-    const patterns = [
-      /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile
-      /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
-    ];
-    return patterns.some(pattern => pattern.test(cleanPhone));
+    // Updated pattern to match SignIn page validation - allows 0 prefix and all valid Sri Lankan mobile numbers
+    const phoneRegex = /^(\+94|0094|94|0)?[1-9][0-9]{8,9}$/;
+    return phoneRegex.test(cleanPhone);
   };
 
   // Validate email
