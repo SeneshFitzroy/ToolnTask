@@ -495,6 +495,9 @@ export default function Home() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 leading-tight" style={{ color: '#FFFFFF' }}>
               Transform Your{' '}
               <span style={{ color: '#FF5E14' }}>Community</span>
+              <div className="mt-4">
+                <Logo size="large" className="inline-block" />
+              </div>
             </h2>
             
             {/* Short Description */}
