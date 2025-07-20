@@ -484,22 +484,10 @@ export default function Home() {
                     <svg className="w-8 h-6 lg:w-10 lg:h-8 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 32 24" style={{ color: step.color, opacity: 0.6 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12h20m0 0l-4-4m4 4l-4 4" />
                     </svg>
-                    </svg>
                   </div>
                 )}
               </div>
             ))}
-          </div>
-          
-          {/* Bottom CTA */}
-          <div className="text-center mt-13 sm:mt-17 md:mt-21">
-            <div className="inline-flex items-center gap-4 px-7 py-4 rounded-full shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#FF5E14' }}></div>
-              <span className="text-base sm:text-lg font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Ready to get started? It only takes 2 minutes to begin!
-              </span>
-              <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', animationDelay: '0.5s' }}></div>
-            </div>
           </div>
         </div>
       </div>
