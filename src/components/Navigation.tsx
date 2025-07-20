@@ -97,21 +97,21 @@ const Navigation = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-12">
-          {/* Logo - Made smaller */}
+        <div className="flex justify-between items-center h-16">
+          {/* Logo - Optimized size */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
             setShowCreateDropdown(false);
             setMobileMenuOpen(false);
           }}>
-            <Logo size="medium" interactive={false} />
+            <Logo size="large" interactive={false} />
           </Link>
 
-          {/* Desktop Navigation - Made buttons smaller */}
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Desktop Navigation - Optimized button sizes */}
+          <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -139,7 +139,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-3 py-1.5 text-sm font-medium transition-colors duration-200 rounded-md shine-effect" 
+              className="px-4 py-2 text-base font-medium transition-colors duration-200 rounded-md shine-effect" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
