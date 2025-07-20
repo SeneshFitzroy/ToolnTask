@@ -30,11 +30,11 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
         background: transparent;
       }
       .taskmate-scrollbar::-webkit-scrollbar-thumb {
-        background: #FF5E14;
+        background: #001554;
         border-radius: 3px;
       }
       .taskmate-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #FF4500;
+        background: #0a2472;
       }
     `;
     document.head.appendChild(style);
@@ -296,7 +296,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                         }`}
                         style={{
                           backgroundColor: msg.type === 'user' 
-                            ? '#FF5E14' // Orange theme for user messages
+                            ? '#001554' // Dark blue theme for user messages
                             : undefined,
                           boxShadow: msg.type !== 'user' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : undefined
                         }}
