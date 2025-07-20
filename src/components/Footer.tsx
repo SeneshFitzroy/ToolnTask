@@ -149,7 +149,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
 
             {/* Legal Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Legal</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/PrivacyPolicy', label: 'Privacy Policy' },
@@ -175,7 +175,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Get in Touch</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Get in Touch</h3>
               <div className="space-y-4">
                 {[
                   { icon: Phone, text: '+94 11 123 4567', href: 'tel:+94111234567' },
