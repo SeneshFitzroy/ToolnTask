@@ -179,7 +179,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
             <div className="flex mt-3 bg-white bg-opacity-20 rounded-lg p-1">
               <button
                 onClick={() => setActiveTab('chat')}
-                className={`flex-1 py-2 px-3 rounded-md transition-all duration-200 text-sm font-semibold ${
+                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
                   activeTab === 'chat' 
                     ? 'bg-white text-gray-800' 
                     : 'text-white hover:bg-white hover:bg-opacity-10'
@@ -189,13 +189,23 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
               </button>
               <button
                 onClick={() => setActiveTab('call')}
-                className={`flex-1 py-2 px-3 rounded-md transition-all duration-200 text-sm font-semibold ${
+                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
                   activeTab === 'call' 
                     ? 'bg-white text-gray-800' 
                     : 'text-white hover:bg-white hover:bg-opacity-10'
                 }`}
               >
                 📞 Call
+              </button>
+              <button
+                onClick={() => setActiveTab('support')}
+                className={`flex-1 py-2 px-2 rounded-md transition-all duration-200 text-xs font-semibold ${
+                  activeTab === 'support' 
+                    ? 'bg-white text-gray-800' 
+                    : 'text-white hover:bg-white hover:bg-opacity-10'
+                }`}
+              >
+                🛠️ Support
               </button>
             </div>
           </div>
