@@ -553,17 +553,17 @@ export default function Home() {
             </div>
             
             {/* Compact Trust Indicators */}
-            <div className="flex justify-center gap-6 sm:gap-8 text-sm sm:text-base" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+            <div className="flex justify-center gap-8 sm:gap-10 text-base sm:text-lg" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">No Fees</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Verified</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
                 <span className="font-medium">Secure</span>
               </div>
             </div>
