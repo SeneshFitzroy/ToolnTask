@@ -130,9 +130,37 @@ export default async function handler(
       purpose: 'password_reset'
     });
 
-    // Send OTP via SMS or email fallback
+    // Send OTP via SMS, WhatsApp, or email fallback
     const sendOTP = async () => {
-      // Check if Twilio credentials are available for real SMS
+      // First try WhatsApp (free and fast)
+      const whatsappApiKey = process.env.CALLMEBOT_API_KEY;
+      const ultramsgToken = process.env.ULTRAMSG_TOKEN;
+      const greenApiId = process.env.GREEN_API_ID;
+      
+      if (whatsappApiKey || ultramsgToken || greenApiId) {
+        console.log(`📱 Attempting WhatsApp OTP to ${formattedPhone}`);
+        
+        try {
+          const whatsappResponse = await fetch('/api/whatsapp-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: formattedPhone, otp })
+          });
+          
+          if (whatsappResponse.ok) {
+            const whatsappData = await whatsappResponse.json();
+            return {
+              success: true,
+              message: `OTP sent via WhatsApp to ${formattedPhone}`,
+              method: 'WHATSAPP'
+            };
+          }
+        } catch (whatsappError) {
+          console.log('❌ WhatsApp failed, trying SMS...');
+        }
+      }
+      
+      // Then try SMS (Twilio)
       const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
       const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
       const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
