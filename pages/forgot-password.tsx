@@ -76,11 +76,11 @@ export default function ForgotPassword() {
         setError('Failed to send reset email. Please try again.');
       }
     } else if (isPhone) {
-      // Handle phone password reset
+      // Handle phone password reset with SMS OTP
       try {
-        // First, get the email associated with this phone number
+        // First, check if the phone number is registered
         const cleanedPhone = trimmedIdentifier.replace(/[\s\-\(\)]/g, '');
-        const response = await fetch('/api/get-email-by-phone', {
+        const checkResponse = await fetch('/api/get-email-by-phone', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,24 +88,29 @@ export default function ForgotPassword() {
           body: JSON.stringify({ phone: cleanedPhone }),
         });
 
-        const data = await response.json();
+        const checkData = await checkResponse.json();
 
-        if (response.ok && data.email) {
-          // Send password reset to the associated email
-          const resetResponse = await fetch('/api/password-reset', {
+        if (checkResponse.ok && checkData.email) {
+          // Phone number is registered, send OTP
+          const otpResponse = await fetch('/api/phone-verify', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: data.email }),
+            body: JSON.stringify({ 
+              phone: cleanedPhone,
+              type: 'password-reset'
+            }),
           });
 
-          const resetData = await resetResponse.json();
+          const otpData = await otpResponse.json();
 
-          if (resetResponse.ok) {
-            setMessage(`Password reset link sent to the email associated with your phone number (${data.email}). Please check your inbox.`);
+          if (otpResponse.ok) {
+            // Redirect to OTP verification page with phone number
+            router.push(`/verify-otp?phone=${encodeURIComponent(cleanedPhone)}&type=password-reset`);
+            return;
           } else {
-            setError(resetData.message || 'Failed to send reset email');
+            setError(otpData.message || 'Failed to send verification code');
           }
         } else {
           setError('Phone number not found in our records. Please use your email address or contact support.');
