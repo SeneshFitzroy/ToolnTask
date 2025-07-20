@@ -91,7 +91,7 @@ export default function ResetPassword() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('🎉 Password updated successfully! Redirecting...');
+        setMessage('Password updated successfully. Redirecting to sign in...');
         
         setTimeout(() => {
           router.push('/SignIn?message=password-reset-success');
