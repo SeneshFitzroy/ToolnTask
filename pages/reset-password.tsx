@@ -11,6 +11,8 @@ export default function ResetPassword() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [token, setToken] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [verified, setVerified] = useState<boolean>(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
