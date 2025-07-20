@@ -144,19 +144,6 @@ export default function About() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Badge */}
-          <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center px-6 py-3 rounded-full shadow-lg border-2" 
-                 style={{ 
-                   backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
-                   borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
-                 }}>
-              <span className="text-base sm:text-lg font-bold" style={{ color: '#FF5E14' }}>
-                Our Community Story
-              </span>
-            </div>
-          </div>
-          
           {/* Enhanced Interactive Main Heading - Professional & Clean */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-6 sm:mb-8 leading-tight tracking-tight">
             <span className="inline-block hover:scale-105 transition-transform duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
