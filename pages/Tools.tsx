@@ -335,9 +335,9 @@ export default function Tools() {
                 </button>
               )}
             </div>
-            </div>
           </div>
         </div>
+      </div>
 
         {/* Enhanced Filter Toggle Section */}
         <div className="py-6" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
