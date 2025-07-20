@@ -107,7 +107,7 @@ export default function SignIn() {
   };
 
 
-  // Forgot password function
+  // Forgot password function using our custom beautiful email
   const handleForgotPassword = async () => {
     if (!formData.email) {
       setError('Please enter your email address first');
@@ -115,20 +115,25 @@ export default function SignIn() {
     }
 
     try {
-      await sendPasswordResetEmail(auth, formData.email.trim());
-      setSuccessMessage('Password reset email sent! Check your inbox.');
-      setError('');
+      const response = await fetch('/api/password-reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccessMessage('🎉 Password reset email sent! Check your inbox for a beautifully designed reset link.');
+        setError('');
+      } else {
+        setError(data.message || 'Error sending password reset email. Please try again.');
+      }
     } catch (error: unknown) {
       console.error('Error sending password reset email:', error);
-      if (error && typeof error === 'object' && 'code' in error) {
-        const firebaseError = error as { code: string; message?: string };
-        if (firebaseError.code === 'auth/user-not-found') {
-          setError('No account found with this email address.');
-        } else {
-          setError('Error sending password reset email. Please try again.');
-        }
-      } else {
-        setError('Error sending password reset email. Please try again.');
+      setError('Error sending password reset email. Please try again.');
       }
     }
   };
