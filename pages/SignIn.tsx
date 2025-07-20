@@ -130,12 +130,12 @@ export default function SignIn() {
         // Also send Firebase's native password reset for functionality
         await sendPasswordResetEmail(auth, formData.email.trim());
         
-        setSuccessMessage('🎉 Password reset email sent! Check your inbox for a beautifully designed reset link.');
+        setSuccessMessage('🚀 Reset link sent! Check your inbox.');
         setError('');
       } else {
         // If custom email fails, fallback to Firebase only
         await sendPasswordResetEmail(auth, formData.email.trim());
-        setSuccessMessage('Password reset email sent! Check your inbox.');
+        setSuccessMessage('✅ Reset link sent! Check your inbox.');
         setError('');
       }
 
