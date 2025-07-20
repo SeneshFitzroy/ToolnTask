@@ -286,7 +286,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                       className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300"
                       style={{ backgroundColor: theme === 'dark' ? '#333333' : '#F2F3F5' }}
                     >
-                      <contact.icon className="w-5 h-5 group-hover:scale-110 transition-transform" style={{ color: '#FE5F16' }} />
+                      <contact.icon className="w-5 h-5 group-hover:scale-110 transition-transform" style={{ color: '#001554' }} />
                     </div>
                     <div>
                       {contact.href === '#' ? (
@@ -298,7 +298,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                           href={contact.href}
                           className="text-sm leading-relaxed transition-colors hover:underline"
                           style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                          onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
+                          onMouseEnter={(e) => e.currentTarget.style.color = '#001554'}
                           onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
                         >
                           {contact.text}
@@ -319,7 +319,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
           <div className="flex flex-col items-center gap-4">
             <p className="text-xs text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
               &copy; 2025 <Logo size="small" className="inline" />. All rights reserved. Made with{' '}
-              <Heart className="w-4 h-4 inline mx-1" style={{ color: '#FE5F16' }} />{' '}
+              <Heart className="w-4 h-4 inline mx-1" style={{ color: '#001554' }} />{' '}
               for Sri Lankan communities.
             </p>
             <button
