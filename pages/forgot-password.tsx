@@ -19,19 +19,36 @@ export default function ForgotPassword() {
     setMounted(true);
   }, []);
 
-  // Validate Sri Lankan phone number
+  // Validate Sri Lankan phone number and test numbers
   const validatePhone = (phone: string): boolean => {
     const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
     
     // Support multiple Sri Lankan phone number formats
-    const patterns = [
+    const sriLankanPatterns = [
       /^(\+94|0094|94)?0?7[0-9]{8}$/, // Mobile numbers: 070-079 series
       /^(\+94|0094|94)?0?1[1-9][0-9]{7}$/, // Landline numbers
       /^0?7[0-9]{8}$/, // Local mobile format: 0771234567
       /^7[0-9]{8}$/, // Mobile without leading 0: 771234567
     ];
     
-    return patterns.some(pattern => pattern.test(cleanPhone));
+    // Test phone patterns (for development)
+    const testPatterns = [
+      /^\+1877\d{7}$/, // Twilio virtual numbers like +18777804236
+      /^\+1555\d{7}$/, // Common test numbers
+      /^\+15005550006$/, // Twilio test numbers
+    ];
+    
+    // Check Sri Lankan patterns first
+    if (sriLankanPatterns.some(pattern => pattern.test(cleanPhone))) {
+      return true;
+    }
+    
+    // Allow test numbers in development
+    if (process.env.NODE_ENV === 'development') {
+      return testPatterns.some(pattern => pattern.test(cleanPhone));
+    }
+    
+    return false;
   };
 
   // Validate email
