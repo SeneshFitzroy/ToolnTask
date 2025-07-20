@@ -420,44 +420,44 @@ const Navigation = () => {
                 </div>
                 </div>
               ) : (
-                // User is not logged in - Premium Account Button
+                // User is not logged in - Compact Account Button
                 <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shine-effect"
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`,
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                      backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
+                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
+                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#f3f4f6';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
                       e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.15)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e5e7eb';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <UserIcon className="h-4 w-4" />
+                    <UserIcon className="h-3 w-3" />
                     <span className="font-medium">Account</span>
                     <ChevronDown 
-                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      className={`h-3 w-3 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
                     />
                   </button>
                   
-                  {/* Clean Profile Dropdown for unauthenticated users */}
+                  {/* Compact Profile Dropdown for unauthenticated users */}
                   {showProfileDropdown && (
-                    <div className="absolute right-0 top-full mt-2 w-44 rounded-lg shadow-lg border z-50 overflow-hidden"
+                    <div className="absolute right-0 top-full mt-2 w-36 rounded-lg shadow-lg border z-50 overflow-hidden"
                          style={{ 
                            backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
                            borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
@@ -465,7 +465,7 @@ const Navigation = () => {
                       
                       <Link 
                         href="/SignIn"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b text-sm"
+                        className="flex items-center gap-2 px-3 py-2 transition-colors duration-200 border-b text-xs"
                         style={{ 
                           color: theme === 'dark' ? '#e5e7eb' : '#374151',
                           borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
@@ -478,13 +478,13 @@ const Navigation = () => {
                         }}
                         onClick={() => setShowProfileDropdown(false)}
                       >
-                        <UserIcon className="h-4 w-4" />
+                        <UserIcon className="h-3 w-3" />
                         <span className="font-medium">Login</span>
                       </Link>
                       
                       <Link 
                         href="/SignUp"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
+                        className="flex items-center gap-2 px-3 py-2 transition-colors duration-200 text-xs"
                         style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
@@ -494,7 +494,7 @@ const Navigation = () => {
                         }}
                         onClick={() => setShowProfileDropdown(false)}
                       >
-                        <UserIcon className="h-4 w-4" />
+                        <UserIcon className="h-3 w-3" />
                         <span className="font-medium">Register</span>
                       </Link>
                     </div>
