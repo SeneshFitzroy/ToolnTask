@@ -67,9 +67,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const greenApiToken = process.env.GREEN_API_TOKEN;
     
     if (greenApiId && greenApiToken) {
-      const message = `🔐 *ToolNTask Verification Code*\\n\\nYour verification code is: *${otp}*\\n\\nThis code expires in 10 minutes.\\nDon't share this code with anyone.\\n\\n- ToolNTask Sri Lanka 🇱🇰`;
+      const message = `🔐 *ToolNTask Verification Code*
+
+Your verification code is: *${otp}*
+
+This code expires in 10 minutes.
+Don't share this code with anyone.
+
+- ToolNTask Sri Lanka 🇱🇰`;
       
-      const response = await fetch(`https://api.green-api.com/waInstance${greenApiId}/sendMessage/${greenApiToken}`, {
+      const response = await fetch(`https://7105.api.greenapi.com/waInstance${greenApiId}/sendMessage/${greenApiToken}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
