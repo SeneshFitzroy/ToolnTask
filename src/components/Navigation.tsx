@@ -9,7 +9,7 @@ import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
 
 const Navigation = () => {
-  const { theme } = useTheme();
+  const { theme } =                         className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 border-b text-sm"seTheme();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -97,7 +97,7 @@ const Navigation = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+        <div className="flex justify-between items-center h-20">
           {/* Logo - 90% Zoom Optimized */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0" onClick={() => {
             setShowProfileDropdown(false);
@@ -108,10 +108,10 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation - 90% Zoom Optimized Large Buttons */}
-          <div className="hidden lg:flex items-center space-x-10">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link 
               href="/" 
-              className="px-7 py-4 text-xl font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+              className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -139,7 +139,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tasks" 
-              className="px-7 py-4 text-xl font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+              className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/Tasks') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tasks') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -167,7 +167,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/Tools" 
-              className="px-7 py-4 text-xl font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+              className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -195,7 +195,7 @@ const Navigation = () => {
             </Link>
             <Link 
               href="/About" 
-              className="px-7 py-4 text-xl font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+              className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -231,7 +231,7 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-4 px-7 py-4 rounded-lg text-lg font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-3 px-5 py-3 rounded-lg text-base font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
@@ -248,7 +248,7 @@ const Navigation = () => {
                     e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 20, 0.4)';
                   }}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   <span>Create</span>
@@ -332,7 +332,7 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-5 px-7 py-4 rounded-lg text-lg font-semibold transition-all duration-200 shine-effect min-w-[200px]" 
+                    className="flex items-center gap-4 px-5 py-3 rounded-lg text-base font-semibold transition-all duration-200 shine-effect min-w-[180px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
@@ -352,15 +352,15 @@ const Navigation = () => {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                     }}
                   >
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-md" 
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold shadow-md" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-lg font-bold leading-tight truncate max-w-[120px]">
+                      <span className="text-base font-bold leading-tight truncate max-w-[120px]">
                         {user.displayName || user.email?.split('@')[0] || 'User'}
                       </span>
-                      <span className="text-base opacity-75 truncate max-w-[120px]" style={{ color: '#FF5E14' }}>
+                      <span className="text-sm opacity-75 truncate max-w-[120px]" style={{ color: '#FF5E14' }}>
                         Account
                       </span>
                     </div>
