@@ -46,7 +46,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     );
     
     const querySnapshot = await getDocs(q);
-    const otps = [];
+    const otps: Array<{
+      id: string;
+      phone: string;
+      otp: string;
+      verified: boolean;
+      expiresAt: string;
+      createdAt: string;
+      purpose: string;
+    }> = [];
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
