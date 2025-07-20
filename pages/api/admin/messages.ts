@@ -1,14 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../../src/lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, where, updateDoc, doc, serverTimestamp, FieldValue } from 'firebase/firestore';
-
-interface UpdateData {
-  updatedAt: FieldValue;
-  status?: string;
-  read?: boolean;
-  assignedTo?: string | null;
-  notes?: string;
-}
+import { collection, addDoc, getDocs, query, orderBy, where, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -109,24 +101,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Message ID is required' });
       }
 
-      const updateData: UpdateData = {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const updateFields: { [key: string]: any } = {
         updatedAt: serverTimestamp()
       };
 
       if (status !== undefined) {
-        updateData.status = status;
+        updateFields.status = status;
       }
       if (read !== undefined) {
-        updateData.read = read;
+        updateFields.read = read;
       }
       if (assignedTo !== undefined) {
-        updateData.assignedTo = assignedTo;
+        updateFields.assignedTo = assignedTo;
       }
       if (notes !== undefined) {
-        updateData.notes = notes;
+        updateFields.notes = notes;
       }
 
-      await updateDoc(doc(db, 'admin_messages', messageId), updateData);
+      await updateDoc(doc(db, 'admin_messages', messageId), updateFields);
 
       return res.status(200).json({ 
         success: true, 
