@@ -3,7 +3,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TOOLNTASK UNIFIED LOGO FONT SYSTEM */
+/* OPTIMIZED FOR 90% ZOOM - GLOBAL BASE SCALING */
+html {
+  font-size: 18px; /* Increased base font size for 90% zoom optimization */
+}
+
+@media (min-width: 640px) {
+  html { font-size: 19px; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 20px; }
+}
+
+/* TOOLNTASK UNIFIED LOGO FONT SYSTEM - 90% ZOOM OPTIMIZED */
 .logo-font {
   font-family: 'Rubik Wet Paint', cursive;
   font-display: swap;
@@ -16,13 +29,13 @@
 .logo-font .n-blue { color: #001554; }
 .logo-font .task-orange { color: #FF5E14; }
 
-/* SIZE VARIANTS - RESPONSIVE & OPTIMIZED */
+/* SIZE VARIANTS - 90% ZOOM OPTIMIZED */
 .logo-small {
   font-family: 'Rubik Wet Paint', cursive;
   font-display: swap;
   letter-spacing: -0.01em;
   font-weight: bold;
-  font-size: 0.875rem; /* 14px */
+  font-size: 1rem; /* Increased for 90% zoom */
 }
 
 .logo-medium {
@@ -30,6 +43,7 @@
   font-display: swap;
   letter-spacing: -0.02em;
   font-weight: bold;
+  font-size: 1.35rem; /* Increased for 90% zoom */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -38,24 +52,44 @@
   font-display: swap;
   letter-spacing: -0.03em;
   font-weight: bold;
+  font-size: 1.75rem; /* Increased for 90% zoom */
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* RESPONSIVE SIZES FOR DIFFERENT SCREENS */
+/* RESPONSIVE SIZES FOR 90% ZOOM - ENHANCED */
 @media (min-width: 640px) {
-  .logo-small { font-size: 1rem; } /* 16px */
-  .logo-medium { font-size: 1.25rem; } /* 20px */
-  .logo-large { font-size: 1.5rem; } /* 24px */
+  .logo-small { font-size: 1.15rem; } /* Enhanced for 90% zoom */
+  .logo-medium { font-size: 1.5rem; } /* Enhanced for 90% zoom */
+  .logo-large { font-size: 1.85rem; } /* Enhanced for 90% zoom */
 }
 
 @media (min-width: 1024px) {
-  .logo-medium { font-size: 1.5rem; } /* 24px */
-  .logo-large { font-size: 1.875rem; } /* 30px */
+  .logo-medium { font-size: 1.75rem; } /* Enhanced for 90% zoom */
+  .logo-large { font-size: 2.15rem; } /* Enhanced for 90% zoom */
 }
 
 @media (min-width: 1280px) {
-  .logo-large { font-size: 2.25rem; } /* 36px */
+  .logo-large { font-size: 2.5rem; } /* Enhanced for 90% zoom */
 }
+
+/* 90% ZOOM OPTIMIZED COMPONENT CLASSES */
+.zoom-optimized-text-xs { font-size: 0.8rem; }
+.zoom-optimized-text-sm { font-size: 0.9rem; }
+.zoom-optimized-text-base { font-size: 1.1rem; }
+.zoom-optimized-text-lg { font-size: 1.3rem; }
+.zoom-optimized-text-xl { font-size: 1.4rem; }
+.zoom-optimized-text-2xl { font-size: 1.6rem; }
+.zoom-optimized-text-3xl { font-size: 2rem; }
+
+/* 90% ZOOM OPTIMIZED SPACING */
+.zoom-optimized-p-2 { padding: 0.65rem; }
+.zoom-optimized-p-3 { padding: 0.85rem; }
+.zoom-optimized-p-4 { padding: 1.1rem; }
+.zoom-optimized-p-6 { padding: 1.65rem; }
+.zoom-optimized-px-4 { padding-left: 1.1rem; padding-right: 1.1rem; }
+.zoom-optimized-px-6 { padding-left: 1.65rem; padding-right: 1.65rem; }
+.zoom-optimized-py-2 { padding-top: 0.65rem; padding-bottom: 0.65rem; }
+.zoom-optimized-py-3 { padding-top: 0.85rem; padding-bottom: 0.85rem; }
 
 @layer base {
   :root {
