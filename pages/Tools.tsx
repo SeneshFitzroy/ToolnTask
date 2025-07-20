@@ -289,7 +289,7 @@ export default function Tools() {
               
               {/* Results Summary */}
               <div className="flex items-center justify-between pt-4">
-              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
                 <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   {getFilteredTools().length} {getFilteredTools().length === 1 ? 'tool' : 'tools'} found
                 </span>
