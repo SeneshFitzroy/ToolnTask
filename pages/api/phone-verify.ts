@@ -131,7 +131,7 @@ export default async function handler(
     });
 
     // Send OTP via SMS or email fallback
-    try {
+    const sendOTP = async () => {
       // Check if Twilio credentials are available for real SMS
       const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
       const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
@@ -146,19 +146,26 @@ export default async function handler(
 
           const smsMessage = `🔐 Your ToolNTask verification code is: ${otp}. This code expires in 10 minutes. Don't share this code with anyone. - ToolNTask Sri Lanka`;
 
-          const message = await client.messages.create({
+          // Add timeout to prevent hanging
+          const messagePromise = client.messages.create({
             body: smsMessage,
             from: twilioPhoneNumber,
             to: formattedPhone
           });
 
+          const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('SMS timeout after 10 seconds')), 10000)
+          );
+
+          const message: any = await Promise.race([messagePromise, timeoutPromise]);
+
           console.log(`✅ Real SMS sent to ${formattedPhone}: ${otp}`);
           console.log(`📱 Message SID: ${message.sid}, Status: ${message.status}`);
           
-          return res.status(200).json({ 
-            message: `OTP sent successfully to ${formattedPhone}`, 
-            success: true 
-          });
+          return {
+            success: true,
+            message: `OTP sent successfully to ${formattedPhone}`
+          };
         } catch (twilioError: unknown) {
           const error = twilioError as { message?: string; code?: string; moreInfo?: string };
           console.error('❌ Twilio SMS Error:', error.message || 'Unknown error');
@@ -169,14 +176,16 @@ export default async function handler(
           console.log('🔄 Falling back to email simulation...');
         }
       } else {
-        // Fallback to email (for development/testing)
         console.log(`🔧 DEVELOPMENT MODE: SMS would be sent to ${formattedPhone} with OTP: ${otp}`);
         console.log(`Missing Twilio credentials:`, {
           hasAccountSid: !!twilioAccountSid,
           hasAuthToken: !!twilioAuthToken,
           hasPhoneNumber: !!twilioPhoneNumber
         });
-        
+      }
+
+      // Email fallback
+      try {
         const transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST || 'smtp.gmail.com',
           port: parseInt(process.env.SMTP_PORT || '587'),
@@ -248,20 +257,33 @@ export default async function handler(
         </body>
         </html>`;
 
-        // Send to admin email for development
-        await transporter.sendMail({
+        // Add timeout for email sending too
+        const emailPromise = transporter.sendMail({
           from: `"ToolNTask SMS Simulation" <${process.env.EMAIL_FROM_ADDRESS || process.env.SMTP_USER}>`,
           to: process.env.SMTP_USER, // Admin email
           subject: `📱 SMS OTP for ${formattedPhone}: ${otp}`,
           html: emailTemplate,
         });
 
-        return res.status(200).json({ 
-          message: `OTP sent successfully to ${formattedPhone} (Development: Check admin email)`, 
-          success: true 
-        });
-      }
+        const emailTimeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Email timeout after 10 seconds')), 10000)
+        );
 
+        await Promise.race([emailPromise, emailTimeoutPromise]);
+
+        return {
+          success: true,
+          message: `OTP sent successfully to ${formattedPhone} (Development: Check admin email)`
+        };
+      } catch (emailError) {
+        console.error('❌ Email sending error:', emailError);
+        throw new Error('Failed to send verification code via email');
+      }
+    };
+
+    try {
+      const result = await sendOTP();
+      return res.status(200).json(result);
     } catch (smsError) {
       console.error('❌ SMS/Email sending error:', smsError);
       return res.status(500).json({ 
