@@ -1,27 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
-import { CheckCircle, X, FileText, Shield, Users, CreditCard } from 'lucide-react';
+import { X, FileText, Shield, Users, CheckCircle, AlertTriangle, Scroll } from 'lucide-react';
 
 interface TermsAcceptanceProps {
   isOpen: boolean;
+  onClose: () => void;
   onAccept: () => void;
   onDecline: () => void;
 }
 
-const TermsAcceptance: React.FC<TermsAcceptanceProps> = ({ isOpen, onAccept, onDecline }) => {
+const TermsAcceptance: React.FC<TermsAcceptanceProps> = ({ isOpen, onClose, onAccept, onDecline }) => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [hasReadTerms, setHasReadTerms] = useState(false);
+  const [acceptChecked, setAcceptChecked] = useState(false);
+  const [privacyChecked, setPrivacyChecked] = useState(false);
+  const [communityChecked, setCommunityChecked] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const element = e.currentTarget;
-    const isScrolledToBottom = element.scrollHeight - element.scrollTop === element.clientHeight;
-    if (isScrolledToBottom) {
-      setHasScrolledToBottom(true);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleScroll = () => {
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollElement;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+      
+      if (isAtBottom && !hasScrolledToBottom) {
+        setHasScrolledToBottom(true);
+        setHasReadTerms(true);
+      }
     }
   };
 
-  if (!isOpen) return null;
+  const canAccept = hasReadTerms && acceptChecked && privacyChecked && communityChecked;
+
+  const handleAcceptClick = () => {
+    if (canAccept) {
+      onAccept();
+    }
+  };
+
+  if (!mounted || !isOpen) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
