@@ -175,23 +175,7 @@ export default function Tools() {
                }}>
             
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-xl" style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)' }}>
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FF5E14' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-bold mb-1" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Find Perfect Tools
-                  </h2>
-                  <p className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                    Search and filter to discover tools that fit your project needs
-                  </p>
-                </div>
-              </div>
-              
+            <div className="flex items-center justify-end mb-8">
               {/* Results Count */}
               <div className="text-right">
                 <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>
