@@ -356,7 +356,7 @@ export default function Home() {
             {[
               { icon: '🤝', number: '250+', label: 'Community Members', color: '#FF5E14' },
               { icon: '⚡', number: '150+', label: 'Active Listings', color: '#FF5E14' },
-              { icon: '�', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
+              { icon: '😊', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
             ].map((stat, index) => (
               <div 
                 key={index} 
