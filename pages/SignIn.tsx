@@ -14,6 +14,7 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -22,6 +23,15 @@ export default function SignIn() {
 
   useEffect(() => {
     setMounted(true);
+    
+    // Load remembered credentials
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    const shouldRemember = localStorage.getItem('rememberMe') === 'true';
+    
+    if (rememberedEmail && shouldRemember) {
+      setFormData(prev => ({ ...prev, email: rememberedEmail }));
+      setRememberMe(true);
+    }
     
     if (router.query.message === 'registration-success') {
       setSuccessMessage('Account created successfully! Please login to continue.');
