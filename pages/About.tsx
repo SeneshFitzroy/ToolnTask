@@ -121,7 +121,7 @@ export default function About() {
           </div>
           
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-center mb-4 sm:mb-6 leading-tight tracking-tight">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-6 leading-tight tracking-tight">
             <span style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               About{' '}
             </span>
