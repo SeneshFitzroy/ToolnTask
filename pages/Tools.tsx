@@ -142,20 +142,6 @@ export default function Tools() {
              style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
             Connect with your community and discover meaningful opportunities to earn extra income
           </p>
-              </span>
-              <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full group-hover:h-2 transition-all duration-300"></div>
-              {/* Animated sparkles around Tools */}
-              <div className="absolute -top-2 -right-2 text-yellow-400 animate-ping opacity-75">✨</div>
-              <div className="absolute -bottom-1 -left-2 text-yellow-400 animate-pulse opacity-50" style={{ animationDelay: '0.5s' }}>⭐</div>
-              <div className="absolute top-1 -right-6 text-yellow-400 animate-bounce opacity-60" style={{ animationDelay: '1s' }}>💫</div>
-            </span>
-          </h1>
-          
-          {/* Subheading */}
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed font-medium" 
-             style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
-            Discover quality tools for rent or share your professional equipment with the community
-          </p>
           
           {/* Interactive Animated Stats */}
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10">
