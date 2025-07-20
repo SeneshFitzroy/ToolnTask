@@ -255,17 +255,6 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                         <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
                         {link.label}
                       </button>
-                    ) : link.action === 'call' ? (
-                      <a
-                        href={link.href}
-                        className="inline-flex items-center gap-2 text-base transition-all duration-300 hover:translate-x-2 group"
-                        style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#FE5F16'}
-                        onMouseLeave={(e) => e.currentTarget.style.color = theme === 'dark' ? '#B3B5BC' : '#B3B5BC'}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover:scale-150" style={{ backgroundColor: '#FF5E14' }}></span>
-                        📞 {link.label}
-                      </a>
                     ) : (
                       <Link 
                         href={link.href} 
