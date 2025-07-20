@@ -188,10 +188,10 @@ export default function About() {
               </div>
             </div>
             <div className="text-center group hover:scale-110 transition-transform duration-300 cursor-pointer">
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold mb-2 group-hover:animate-bounce" style={{ color: '#FF5E14' }}>
                 24/7
               </div>
-              <div className="text-sm sm:text-base md:text-lg font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+              <div className="text-sm sm:text-base font-semibold flex items-center justify-center gap-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                 <svg className="w-4 h-4 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
