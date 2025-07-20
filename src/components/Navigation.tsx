@@ -231,7 +231,7 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-3 px-5 py-3 rounded-lg text-base font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
