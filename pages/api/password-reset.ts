@@ -1,11 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../../src/lib/firebase';
 
 // Create transporter for sending emails
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT || '587'),
   secure: false,
@@ -27,30 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Check if user exists in your system
-    const usersRef = collection(db, 'users');
-    const q = query(usersRef, where('email', '==', email));
-    const querySnapshot = await getDocs(q);
-
-    if (querySnapshot.empty) {
-      return res.status(404).json({ message: 'No account found with this email address' });
-    }
-
     // Generate secure reset token
     const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 hour from now
-
-    // Store reset token in database
-    await addDoc(collection(db, 'passwordResets'), {
-      email,
-      token: resetToken,
-      expiresAt: resetTokenExpiry,
-      used: false,
-      createdAt: new Date()
-    });
-
+    
     // Create reset URL
-    const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${encodeURIComponent(email)}`;
 
     // Create beautiful HTML email template
     const htmlContent = `
@@ -215,12 +194,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <div class="content">
           <h2>Hello! 👋</h2>
           
-          <p>We received a request to reset the password for your ToolNTask account associated with this email address.</p>
+          <p>We received a request to reset the password for your ToolNTask account associated with <strong>${email}</strong>.</p>
           
           <div class="security-notice">
             <span class="icon">🛡️</span>
             <strong>Security First!</strong><br>
-            This link will expire in 1 hour for your protection.
+            Click the button below to securely reset your password.
           </div>
           
           <div style="text-align: center;">
@@ -248,7 +227,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             <strong>⚠️ Important Security Notice:</strong><br>
             • If you didn't request this password reset, please ignore this email<br>
             • Never share this link with anyone<br>
-            • This link expires in 1 hour for your security<br>
             • Contact support if you have concerns about your account security
           </div>
           
@@ -279,7 +257,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       to: email,
       subject: '🔐 Reset Your ToolNTask Password - Secure Link Inside',
       html: htmlContent,
-      text: `Hello! We received a request to reset your ToolNTask password. Click this link to reset: ${resetUrl} - This link expires in 1 hour. If you didn't request this, please ignore this email. Thanks, The ToolNTask Team`
+      text: `Hello! We received a request to reset your ToolNTask password. Click this link to reset: ${resetUrl} - If you didn't request this, please ignore this email. Thanks, The ToolNTask Team`
     });
 
     res.status(200).json({ 

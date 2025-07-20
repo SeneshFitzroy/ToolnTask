@@ -5,8 +5,6 @@ import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { useTheme } from 'next-themes';
 import { Eye, EyeOff, Lock, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
-import { updatePassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../src/lib/firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
