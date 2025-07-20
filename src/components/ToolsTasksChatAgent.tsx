@@ -28,7 +28,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
-  const [supportMessages, setSupportMessages] = useState([]);
+  const [supportMessages, setSupportMessages] = useState<Message[]>([]);
   const [hasNewMessage, setHasNewMessage] = useState(false);
 
   // Auto scroll to bottom when new messages are added
@@ -353,7 +353,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                   </div>
                   
                   {/* Support Messages */}
-                  {messages.filter(msg => activeTab === 'support').map((msg) => (
+                  {supportMessages.map((msg) => (
                     <div
                       key={msg.id}
                       className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
