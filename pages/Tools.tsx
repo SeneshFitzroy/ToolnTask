@@ -161,11 +161,11 @@ export default function Tools() {
       </div>
 
       {/* Professional Search & Filter Section */}
-      <div className="py-3 sm:py-4" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
+      <div className="py-2" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#FFFFFF' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Search & Filter Container */}
-          <div className="rounded-2xl p-4 sm:p-6 shadow-xl border-2" 
+          <div className="rounded-2xl p-3 sm:p-4 shadow-xl border-2" 
                style={{ 
                  backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                  borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)',
@@ -174,19 +174,6 @@ export default function Tools() {
                    : '0 25px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 94, 20, 0.05)'
                }}>
             
-            {/* Header */}
-            <div className="flex items-center justify-end mb-4">
-              {/* Results Count */}
-              <div className="text-right">
-                <div className="text-2xl font-bold" style={{ color: '#FF5E14' }}>
-                  {filteredTools.length}
-                </div>
-                <div className="text-sm font-medium" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                  Tools Found
-                </div>
-              </div>
-            </div>
-
             {/* Search and Filter Controls */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               
