@@ -80,7 +80,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isSubscribing}
-                  className="flex-1 px-4 py-3 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-sm sm:text-base"
+                  className="flex-1 px-5 py-4 rounded-xl border border-opacity-30 focus:outline-none focus:ring-2 focus:border-transparent text-base sm:text-lg"
                   style={{ 
                     borderColor: theme === 'dark' ? '#444444' : '#B3B5BC', 
                     color: theme === 'dark' ? '#FFFFFF' : '#2D3748',
