@@ -91,13 +91,11 @@ export default function SignUp() {
         setLoading(false);
         return;
       }
-    } else {
+    } else if (!formData.phone) {
       // Phone is primary - validate phone format
-      if (!formData.phone) {
-        setError('Please enter your phone number');
-        setLoading(false);
-        return;
-      }
+      setError('Please enter your phone number');
+      setLoading(false);
+      return;
     }
 
     // Sri Lankan phone number validation (if provided)
