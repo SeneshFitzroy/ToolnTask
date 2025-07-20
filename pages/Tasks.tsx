@@ -33,9 +33,7 @@ const mockTasks: Task[] = [];
 
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
-  const [searchTerm, setSearchTerm] = useState<string>('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
-  const [showFilters, setShowFilters] = useState(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -54,16 +52,6 @@ export default function Tasks() {
 
   const getFilteredTasks = () => {
     let filtered = tasks.filter(task => task.type === activeFilter);
-    
-    // Apply search filter
-    if (searchTerm.trim()) {
-      filtered = filtered.filter(task => 
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.details.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
     
     // Apply category filter
     if (categoryFilter !== 'all') {
