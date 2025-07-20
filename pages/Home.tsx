@@ -491,28 +491,22 @@ export default function Home() {
           <div className="absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, rgba(255, 94, 20, 0.3) 0%, transparent 70%)' }}></div>
           
           <div className="max-w-4xl mx-auto px-5 sm:px-7 lg:px-9 text-center relative z-10">
-            {/* Simple Badge */}
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full mb-7 backdrop-blur-sm" 
-                 style={{ backgroundColor: 'rgba(255, 94, 20, 0.15)', border: '1px solid rgba(255, 94, 20, 0.3)' }}>
-              <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🚀 Join the Movement</span>
-            </div>
-            
-            {/* Concise Headline */}
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5 leading-tight" style={{ color: '#FFFFFF' }}>
+            {/* Main Headline */}
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 leading-tight" style={{ color: '#FFFFFF' }}>
               Transform Your{' '}
               <span style={{ color: '#FF5E14' }}>Community</span>
             </h2>
             
             {/* Short Description */}
-            <p className="text-xs sm:text-sm md:text-base mb-9 max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-8 sm:mb-10 font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
               Join thousands building stronger neighborhoods. Start earning, saving, and helping today.
             </p>
             
             {/* Clean Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-5 justify-center mb-11">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link href="/SignUp">
                 <Button 
-                  className="w-full sm:w-auto text-sm font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
+                  className="w-full sm:w-auto text-sm sm:text-base font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-xl border-0 relative overflow-hidden group"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
