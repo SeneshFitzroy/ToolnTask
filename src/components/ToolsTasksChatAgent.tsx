@@ -193,8 +193,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           <div
             className="w-16 h-16 rounded-full shadow-xl transition-all duration-300 group-hover:scale-110 flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)', // Orange theme
-              boxShadow: '0 8px 25px rgba(255, 94, 20, 0.4)'
+              background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)', // Dark blue theme
+              boxShadow: '0 8px 25px rgba(30, 58, 138, 0.4)'
             }}
           >
             {isOpen ? (
@@ -214,14 +214,14 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           id="taskmate-container"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
-            border: '2px solid #FF5E14' // Orange theme
+            border: '2px solid #1e3a8a' // Dark blue theme
           }}
         >
           {/* Header */}
           <div
             className="p-4 text-white"
             style={{
-              background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)' // Orange theme
+              background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)' // Dark blue theme
             }}
           >
             <div className="flex items-center justify-between">
@@ -280,7 +280,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
                     scrollBehavior: 'smooth',
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#FF5E14 transparent'
+                    scrollbarColor: '#1e3a8a transparent'
                   }}
                 >
                   {messages.map((msg) => (
@@ -364,7 +364,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                     backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
                     scrollBehavior: 'smooth',
                     scrollbarWidth: 'thin',
-                    scrollbarColor: '#FF5E14 transparent'
+                    scrollbarColor: '#1e3a8a transparent'
                   }}
                 >
                   {/* Welcome Message */}
