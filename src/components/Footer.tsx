@@ -136,11 +136,11 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               <div className="flex flex-wrap gap-6 mb-8">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5" style={{ color: '#FE5F16' }} />
-                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>5,000+ Members</span>
+                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Trusted Community Platform</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5" style={{ color: '#FF5E14' }} />
-                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>4.8★ Rating</span>
+                  <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>Safe & Verified Users</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Heart className="w-5 h-5" style={{ color: '#FE5F16' }} />
