@@ -16,7 +16,9 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
   const filterOptions = [
     {
       key: 'all' as const,
