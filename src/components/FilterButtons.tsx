@@ -48,7 +48,7 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
                 key={option.key}
                 onClick={() => onFilterChange(option.key)}
                 className={`
-                  flex-1 relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-full 
+                  flex-1 relative px-2 sm:px-3 py-1 sm:py-1.5 rounded-full 
                   text-xs sm:text-sm font-semibold tracking-wide
                   transition-all duration-300 group transform-gpu
                   active:scale-95 cursor-pointer
