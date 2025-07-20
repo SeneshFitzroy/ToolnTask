@@ -124,7 +124,7 @@ export default function Home() {
               <div className="flex justify-center lg:justify-start mb-3 sm:mb-4 md:mb-6">
                 <Link href="/SignIn">
                   <Button 
-                    className="w-full sm:w-auto text-white px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-bold rounded-md sm:rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
+                    className="w-full sm:w-auto text-white px-5 sm:px-6 md:px-7 lg:px-8 py-3 sm:py-3.5 md:py-4 text-sm sm:text-base md:text-lg font-bold rounded-md sm:rounded-lg md:rounded-xl transition-all duration-500 hover:scale-105 sm:hover:scale-110 shadow-2xl border-0 relative overflow-hidden group"
                     style={{ 
                       backgroundColor: '#FF5E14',
                       background: 'linear-gradient(135deg, #FF5E14 0%, #FF5D13 50%, #FF5E14 100%)',
@@ -146,7 +146,7 @@ export default function Home() {
                   >
                     <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 font-bold tracking-wide">
                       Get Started Today
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
                     </span>
