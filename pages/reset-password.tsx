@@ -83,8 +83,9 @@ export default function ResetPassword() {
       return;
     }
 
-    if (!token) {
-      setError('Invalid reset token');
+    // Validate reset method (either token or verified phone)
+    if (!token && !(phone && verified)) {
+      setError('Invalid reset authorization');
       return;
     }
 
@@ -98,7 +99,9 @@ export default function ResetPassword() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          token: token,
+          token: token || undefined,
+          phone: phone || undefined,
+          verified: verified || undefined,
           newPassword: password
         }),
       });
