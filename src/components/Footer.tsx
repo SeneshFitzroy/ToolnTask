@@ -11,7 +11,7 @@ interface FooterProps {
 
 const Footer = ({ showNewsletter = false }: FooterProps) => {
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useSt(false);
   const [email, setEmail] = useState('');
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'success' | 'error'>('idle');
