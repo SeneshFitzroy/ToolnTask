@@ -774,14 +774,14 @@ export default function SignUp() {
                 />
                 <label htmlFor="agreeTerms" className="text-sm leading-relaxed cursor-pointer" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
                   <span className="text-red-500 font-bold">*</span> I agree to the{' '}
-                  <a 
+                  <Link 
                     href="/TermsAndConditions" 
                     onClick={handleTermsClick}
                     className="hover:underline font-semibold" 
                     style={{ color: '#FF5E14' }}
                   >
                     Terms of Service
-                  </a>
+                  </Link>
                   {' '}and{' '}
                   <Link href="/PrivacyPolicy" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
                   <div className="text-xs mt-1 opacity-75">
