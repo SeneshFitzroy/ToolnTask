@@ -88,6 +88,7 @@ export default async function handler(
 
   try {
     const { phone } = req.body;
+    console.log(`📞 Received phone verification request for: ${phone}`);
 
     if (!phone) {
       return res.status(400).json({ 
@@ -98,15 +99,19 @@ export default async function handler(
     }
 
     // Validate and format phone number
+    const formattedPhone = formatPhoneNumber(phone);
+    console.log(`📱 Formatted phone: ${formattedPhone}`);
+    
     if (!isValidPhoneNumber(phone)) {
+      console.log(`❌ Invalid phone number: ${phone} -> ${formattedPhone}`);
       return res.status(400).json({ 
-        message: 'Invalid phone number format. Please use Sri Lankan mobile numbers (070-079 series)', 
+        message: 'Invalid phone number format. Please use Sri Lankan mobile numbers (070-079 series) or test numbers in development', 
         success: false,
         error: 'Invalid phone format'
       });
     }
 
-    const formattedPhone = formatPhoneNumber(phone);
+    console.log(`✅ Phone number validated: ${formattedPhone}`);
     
     // Generate OTP
     const otp = generateOTP();
@@ -152,10 +157,11 @@ export default async function handler(
             message: `OTP sent successfully to ${formattedPhone}`, 
             success: true 
           });
-        } catch (twilioError: any) {
-          console.error('❌ Twilio SMS Error:', twilioError.message);
-          console.error('Error Code:', twilioError.code);
-          console.error('More Info:', twilioError.moreInfo);
+        } catch (twilioError: unknown) {
+          const error = twilioError as { message?: string; code?: string; moreInfo?: string };
+          console.error('❌ Twilio SMS Error:', error.message || 'Unknown error');
+          console.error('Error Code:', error.code || 'No code');
+          console.error('More Info:', error.moreInfo || 'No info');
           
           // Fall back to email if SMS fails
           console.log('🔄 Falling back to email simulation...');
