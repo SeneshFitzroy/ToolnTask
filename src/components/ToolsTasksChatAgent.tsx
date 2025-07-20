@@ -443,8 +443,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                         color: theme === 'dark' ? '#FFFFFF' : '#1F2937'
                       }}
                       onFocus={(e) => {
-                        e.currentTarget.style.borderColor = '#FF5E14';
-                        e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255, 94, 20, 0.1)';
+                        e.currentTarget.style.borderColor = '#001554';
+                        e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 21, 84, 0.1)';
                       }}
                       onBlur={(e) => {
                         e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#D1D5DB';
