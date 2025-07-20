@@ -404,7 +404,7 @@ export default function Home() {
               <Logo size="medium" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto font-medium leading-relaxed" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-5xl mx-auto font-medium" style={{ color: theme === 'dark' ? '#E5E7EB' : '#4B5563' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
