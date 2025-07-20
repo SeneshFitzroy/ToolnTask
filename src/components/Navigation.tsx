@@ -559,7 +559,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/Tools" 
-                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+                className="px-6 py-5 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
@@ -573,7 +573,7 @@ const Navigation = () => {
               </Link>
               <Link 
                 href="/About" 
-                className="px-5 py-4 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+                className="px-6 py-5 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
                 style={{ 
                   color: isActiveLink('/About') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                   backgroundColor: isActiveLink('/About') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
