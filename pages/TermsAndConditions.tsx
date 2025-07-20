@@ -48,9 +48,9 @@ export default function TermsAndConditions() {
       <div className="py-12 sm:py-16" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Terms & Conditions</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Terms of Service</h1>
             <p className="text-lg mb-6" style={{ color: theme === 'dark' ? '#B3B4B6' : '#B3B5BC' }}>
-              Last updated: July 3, 2025
+              Effective Date: July 21, 2025 | Last Updated: July 21, 2025
             </p>
             <div className="flex justify-center gap-4 mb-6">
               <button
@@ -58,14 +58,14 @@ export default function TermsAndConditions() {
                 className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
                 style={{ backgroundColor: theme === 'dark' ? '#FFFFFF' : '#001554', color: theme === 'dark' ? '#000000' : '#FFFFFF' }}
               >
-                📋 Table of Contents
+                Table of Contents
               </button>
               <button
                 onClick={() => window.print()}
                 className="text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
                 style={{ backgroundColor: '#FF5E14' }}
               >
-                🖨️ Print
+                Print Document
               </button>
             </div>
 
@@ -81,18 +81,18 @@ export default function TermsAndConditions() {
                   style={{ accentColor: '#FF5E14' }}
                 />
                 <label htmlFor="accept-terms" style={{ color: theme === 'dark' ? '#CCCCCC' : '#374151' }}>
-                  I have read and agree to the Terms & Conditions
+                  I have read and agree to these Terms of Service
                 </label>
                 {acceptedTerms && (
                   <div className="ml-auto">
-                    <span className="text-green-600 text-xl">✅</span>
+                    <span className="text-green-600 text-xl">✓</span>
                   </div>
                 )}
               </div>
               {acceptedTerms && (
                 <div className="mt-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                  <p className="text-green-700 dark:text-green-300 text-sm flex items-center gap-2">
-                    <span>🎉</span> Thank you for accepting our terms! You can now use all platform features.
+                  <p className="text-green-700 dark:text-green-300 text-sm">
+                    Terms accepted successfully. You may now use all platform features.
                   </p>
                 </div>
               )}
@@ -149,25 +149,21 @@ export default function TermsAndConditions() {
             
             <section id="acceptance" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">✅</span>
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-white">1. Acceptance of Terms</h2>
               </div>
-              <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">📜</span>
-                  <div>
-                    <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">Legal Agreement</h3>
-                    <p className="text-slate-600 dark:text-gray-300 mb-4">
-                      By accessing and using ToolnTask, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
+                <div>
+                  <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">Legal Agreement</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4">
+                    By creating an account, accessing, or using the ToolNTask platform (&ldquo;Service&rdquo;), you (&ldquo;User&rdquo;) enter into a legally binding agreement with ToolNTask (&ldquo;Company,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;). These Terms of Service (&ldquo;Terms&rdquo;) govern your use of our platform and services.
+                  </p>
+                  <p className="text-slate-600 dark:text-gray-300 mb-4">
+                    <strong>If you do not agree to these Terms, you may not access or use our Service.</strong> Your continued use of the platform constitutes acceptance of any updates or modifications to these Terms.
+                  </p>
+                  <div className="bg-white dark:bg-gray-800 p-4 rounded border">
+                    <p className="text-sm text-slate-600 dark:text-gray-300">
+                      <strong>Age Requirement:</strong> You must be at least 18 years old to use this service. By agreeing to these Terms, you represent that you meet this age requirement.
                     </p>
-                    <div className="flex gap-3">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        I Accept
-                      </button>
-                      <button className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        I Decline
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -175,29 +171,70 @@ export default function TermsAndConditions() {
 
             <section id="platform-description" className="mb-8 scroll-mt-20">
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">🏢</span>
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-white">2. Platform Description</h2>
               </div>
-              <div className="rounded-lg p-4 mb-4" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED' }}>
+              <div className="rounded-lg p-6 mb-4" style={{ backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFF7ED' }}>
                 <p className="text-slate-600 dark:text-gray-300 mb-4">
-                  ToolnTask is a marketplace platform that connects people who need help with tasks or tools with those who can provide such services or rentals.
+                  ToolNTask operates as a digital marketplace platform that facilitates connections between service providers and service seekers within Sri Lanka. Our platform enables users to:
                 </p>
+                <ul className="list-disc list-inside text-slate-600 dark:text-gray-300 space-y-2">
+                  <li>Post and browse task-based service opportunities</li>
+                  <li>Rent and offer tools and equipment for temporary use</li>
+                  <li>Connect with verified professionals and service providers</li>
+                  <li>Conduct secure transactions through our platform</li>
+                </ul>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  { icon: '📝', title: 'Task Services', desc: 'Post and complete various tasks', color: 'orange' },
-                  { icon: '🔧', title: 'Tool Rentals', desc: 'Rent and lend equipment safely', color: 'blue' },
-                  { icon: '🛡️', title: 'Safety Features', desc: 'User verification and protection', color: 'green' },
-                  { icon: '💳', title: 'Secure Payments', desc: 'Protected payment processing', color: 'purple' }
+                  { title: 'Task Services', desc: 'Professional task completion and skill-based services', color: 'orange' },
+                  { title: 'Equipment Rental', desc: 'Safe and insured tool and equipment rental marketplace', color: 'blue' },
+                  { title: 'User Verification', desc: 'Comprehensive identity and skill verification system', color: 'green' },
+                  { title: 'Secure Transactions', desc: 'Protected payment processing with dispute resolution', color: 'purple' }
                 ].map((feature, index) => (
                   <div key={index} className={`bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-${feature.color}-500 hover:shadow-md transition-shadow`}>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xl">{feature.icon}</span>
+                    <div className="mb-2">
                       <h4 className="font-semibold text-slate-800 dark:text-white">{feature.title}</h4>
                     </div>
                     <p className="text-sm text-slate-600 dark:text-gray-300">{feature.desc}</p>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            <section id="user-responsibilities" className="mb-8 scroll-mt-20">
+              <div className="flex items-center gap-3 mb-4">
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white">3. User Responsibilities</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6 border border-yellow-200 dark:border-yellow-800">
+                  <h3 className="font-bold text-yellow-800 dark:text-yellow-300 mb-3">Account Security</h3>
+                  <ul className="text-slate-600 dark:text-gray-300 space-y-2">
+                    <li>• Maintain confidentiality of your account credentials</li>
+                    <li>• Immediately notify us of any unauthorized account access</li>
+                    <li>• Provide accurate and current information during registration</li>
+                    <li>• Update your profile information when changes occur</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
+                  <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">Service Quality Standards</h3>
+                  <ul className="text-slate-600 dark:text-gray-300 space-y-2">
+                    <li>• Deliver services as described and agreed upon</li>
+                    <li>• Maintain professional communication with all users</li>
+                    <li>• Complete tasks within agreed timeframes</li>
+                    <li>• Provide accurate descriptions of tools and equipment</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
+                  <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">Legal Compliance</h3>
+                  <ul className="text-slate-600 dark:text-gray-300 space-y-2">
+                    <li>• Comply with all applicable Sri Lankan laws and regulations</li>
+                    <li>• Obtain necessary licenses for professional services</li>
+                    <li>• Pay applicable taxes on earnings through the platform</li>
+                    <li>• Respect intellectual property rights of others</li>
+                  </ul>
+                </div>
               </div>
             </section>
 
