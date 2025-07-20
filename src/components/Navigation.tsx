@@ -427,30 +427,30 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shine-effect"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect"
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
                       border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
-                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
                       e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.15)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.15)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
                       e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <UserIcon className="h-3 w-3" />
+                    <UserIcon className="h-4 w-4" />
                     <span className="font-medium">Account</span>
                     <ChevronDown 
-                      className={`h-3 w-3 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
+                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'}`}
                       strokeWidth={2}
                     />
                   </button>
