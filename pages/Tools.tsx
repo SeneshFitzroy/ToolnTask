@@ -33,6 +33,8 @@ const mockTools: Tool[] = [];
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [showFilters, setShowFilters] = useState(false);
   const [tools] = useState<Tool[]>(mockTools);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -57,6 +59,13 @@ export default function Tools() {
         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.details.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Apply category filter
+    if (categoryFilter !== 'all') {
+      filtered = filtered.filter(tool => 
+        tool.category?.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
     
