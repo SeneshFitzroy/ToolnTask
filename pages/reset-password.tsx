@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import { Eye, EyeOff, Lock, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 import { updatePassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../src/lib/firebase';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
 export default function ResetPassword() {
@@ -85,36 +85,30 @@ export default function ResetPassword() {
     setError('');
 
     try {
-      // Find the reset token document
-      const resetRef = collection(db, 'passwordResets');
-      const q = query(resetRef, where('token', '==', token), where('used', '==', false));
-      const querySnapshot = await getDocs(q);
-
-      if (querySnapshot.empty) {
-        setError('Invalid reset token');
-        setLoading(false);
-        return;
-      }
-
-      const resetDoc = querySnapshot.docs[0];
-      const resetData = resetDoc.data();
-
-      // Update the user's password using Firebase Auth
-      // Note: This requires the user to sign in first with their current credentials
-      // In a real implementation, you'd use Firebase Admin SDK on the backend
-      
-      // Mark token as used
-      await updateDoc(doc(db, 'passwordResets', resetDoc.id), {
-        used: true,
-        usedAt: new Date()
+      // Call our API to update the password
+      const response = await fetch('/api/update-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: token,
+          newPassword: password
+        }),
       });
 
-      setMessage('Password updated successfully! Redirecting to sign in...');
-      
-      // Redirect to sign in page after 3 seconds
-      setTimeout(() => {
-        router.push('/SignIn?message=password-reset-success');
-      }, 3000);
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage('🎉 Password updated successfully! Redirecting to sign in...');
+        
+        // Redirect to sign in page after 3 seconds
+        setTimeout(() => {
+          router.push('/SignIn?message=password-reset-success');
+        }, 3000);
+      } else {
+        setError(data.message || 'Error updating password. Please try again.');
+      }
 
     } catch (error) {
       console.error('Password reset error:', error);

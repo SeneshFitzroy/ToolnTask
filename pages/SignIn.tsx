@@ -5,7 +5,7 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../src/lib/firebase';
 
 export default function SignIn() {
@@ -25,6 +25,8 @@ export default function SignIn() {
     
     if (router.query.message === 'registration-success') {
       setSuccessMessage('Account created successfully! Please login to continue.');
+    } else if (router.query.message === 'password-reset-success') {
+      setSuccessMessage('🎉 Password updated successfully! You can now sign in with your new password.');
     }
   }, [router.query]);
 
