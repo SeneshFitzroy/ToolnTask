@@ -73,7 +73,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               <div className="mb-6">
                 <Logo size="xl" />
               </div>
-              <p className="text-lg mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
+              <p className="text-xs sm:text-sm mb-6 leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>
                 Sri Lanka&apos;s leading community marketplace connecting neighbors through shared tools and trusted services. 
                 Building stronger communities, one task at a time.
               </p>
@@ -123,7 +123,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-xl font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Explore</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Explore</h3>
               <ul className="space-y-3">
                 {[
                   { href: '/Tasks', label: 'Browse Tasks' },
