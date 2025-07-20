@@ -187,6 +187,42 @@ export default function TermsAndConditions() {
             </p>
           </div>
 
+          {/* Agreement Section at Bottom */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mt-8">
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                id="accept-terms"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                className="w-4 h-4 text-orange-600 focus:ring-orange-500"
+              />
+              <label htmlFor="accept-terms" className="text-gray-700 dark:text-gray-300">
+                I agree to these Terms of Service
+              </label>
+              {acceptedTerms && (
+                <span className="text-green-600 ml-auto">✓</span>
+              )}
+            </div>
+            
+            {acceptedTerms && (
+              <div className="mt-4 flex gap-3">
+                <button
+                  onClick={handleBack}
+                  className="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  Back to Sign Up
+                </button>
+                <button
+                  onClick={handleAccept}
+                  className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+                >
+                  Continue with Registration
+                </button>
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
 
