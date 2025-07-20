@@ -148,14 +148,14 @@ export default async function handler(
           });
           
           if (whatsappResponse.ok) {
-            const whatsappData = await whatsappResponse.json();
+            console.log('✅ WhatsApp OTP sent successfully');
             return {
               success: true,
               message: `OTP sent via WhatsApp to ${formattedPhone}`,
               method: 'WHATSAPP'
             };
           }
-        } catch (whatsappError) {
+        } catch {
           console.log('❌ WhatsApp failed, trying SMS...');
         }
       }
