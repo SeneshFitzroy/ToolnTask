@@ -123,24 +123,24 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
   const handleSupportMessage = () => {
     if (message.trim()) {
       const newMessage = {
-        id: messages.length + 1,
+        id: supportMessages.length + 100, // Use different ID range
         type: 'user',
         message: message.trim(),
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       
-      setMessages([...messages, newMessage]);
+      setSupportMessages([...supportMessages, newMessage]);
       setMessage('');
       
       // Simulate support team response
       setTimeout(() => {
         const supportResponse = {
-          id: messages.length + 2,
+          id: supportMessages.length + 101,
           type: 'agent',
           message: `Thank you for contacting ToolNTask Support! We've received your message: "${newMessage.message}". A team member will join the chat shortly to assist you. For immediate help, call +94 76 112 0457.`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
-        setMessages(prev => [...prev, supportResponse]);
+        setSupportMessages(prev => [...prev, supportResponse]);
       }, 1500);
     }
   };
