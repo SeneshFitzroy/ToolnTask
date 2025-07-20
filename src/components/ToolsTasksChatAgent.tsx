@@ -18,13 +18,38 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
   const [activeTab, setActiveTab] = useState<'chat' | 'support'>('chat');
   const [message, setMessage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Add custom scrollbar styles
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .taskmate-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .taskmate-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .taskmate-scrollbar::-webkit-scrollbar-thumb {
+        background: #FF5E14;
+        border-radius: 3px;
+      }
+      .taskmate-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #FF4500;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: 'agent',
       message: pageType === 'home' 
-        ? `Hi! I'm Taskie, your virtual assistant. I can help you with tools, tasks, and more. How can I assist you today?`
-        : `Hi! I'm Taskie, your ${pageType} assistant. How can I help you today?`,
+        ? `Hi! I'm Taskie, your 24/7 virtual assistant. I can help you with tools, tasks, and more. How can I assist you today?`
+        : `Hi! I'm Taskie, your 24/7 ${pageType} assistant. How can I help you today?`,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -95,8 +120,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           id: messages.length + 2,
           type: 'agent',
           message: pageType === 'home' 
-            ? `Thanks for your message! I'm TaskMate and I'll help you find the right tools or tasks. Let me check our available options for you.`
-            : `Thanks for your message! I'm TaskMate and I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
+            ? `Thanks for your message! I'm TaskMate, your 24/7 assistant, and I'll help you find the right tools or tasks. Let me check our available options for you.`
+            : `Thanks for your message! I'm TaskMate, your 24/7 ${pageType} assistant, and I'll help you with your ${pageType} inquiry. Let me check our available options for you.`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages(prev => [...prev, agentResponse]);
@@ -151,8 +176,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           <div
             className="w-16 h-16 rounded-full shadow-xl transition-all duration-300 group-hover:scale-110 flex items-center justify-center"
             style={{
-              background: `linear-gradient(135deg, ${pageType === 'tools' ? '#3B82F6 0%, #1D4ED8 100%' : '#F59E0B 0%, #D97706 100%'})`,
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15)'
+              background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)', // Orange theme
+              boxShadow: '0 8px 25px rgba(255, 94, 20, 0.4)'
             }}
           >
             {isOpen ? (
@@ -172,14 +197,14 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
           id="taskmate-container"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
-            border: `2px solid ${pageType === 'tools' ? '#3B82F6' : '#F59E0B'}`
+            border: '2px solid #FF5E14' // Orange theme
           }}
         >
           {/* Header */}
           <div
             className="p-4 text-white"
             style={{
-              background: `linear-gradient(135deg, ${pageType === 'tools' ? '#3B82F6 0%, #1D4ED8 100%' : '#F59E0B 0%, #D97706 100%'})`
+              background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)' // Orange theme
             }}
           >
             <div className="flex items-center justify-between">
@@ -189,7 +214,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                 </div>
                 <div>
                   <h3 className="font-bold text-lg">TaskMate</h3>
-                  <p className="text-sm opacity-90">Online • Ready to help</p>
+                  <p className="text-sm opacity-90">Online • 24/7 assistant ready to help</p>
                 </div>
               </div>
               <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -226,8 +251,13 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
               <>
                 {/* Messages */}
                 <div
-                  className="flex-1 p-4 overflow-y-auto space-y-4"
-                  style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB' }}
+                  className="flex-1 p-4 overflow-y-auto space-y-4 max-h-80"
+                  style={{ 
+                    backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
+                    scrollBehavior: 'smooth',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#FF5E14 transparent'
+                  }}
                 >
                   {messages.map((msg) => (
                     <div
@@ -242,7 +272,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                         }`}
                         style={{
                           backgroundColor: msg.type === 'user' 
-                            ? (pageType === 'tools' ? '#3B82F6' : '#F59E0B') 
+                            ? '#FF5E14' // Orange theme for user messages
                             : undefined,
                           boxShadow: msg.type !== 'user' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : undefined
                         }}
@@ -271,7 +301,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      placeholder={pageType === 'home' ? `Ask TaskMate anything...` : `Ask TaskMate about ${pageType}...`}
+                      placeholder={pageType === 'home' ? `Ask TaskMate 24/7 assistant anything...` : `Ask TaskMate 24/7 assistant about ${pageType}...`}
                       className="flex-1 p-3 border rounded-xl focus:outline-none transition-all duration-200"
                       style={{
                         borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
@@ -279,8 +309,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                         color: theme === 'dark' ? '#FFFFFF' : '#1F2937'
                       }}
                       onFocus={(e) => {
-                        e.currentTarget.style.borderColor = pageType === 'tools' ? '#3B82F6' : '#F59E0B';
-                        e.currentTarget.style.boxShadow = `0 0 0 3px ${pageType === 'tools' ? 'rgba(59, 130, 246, 0.1)' : 'rgba(245, 158, 11, 0.1)'}`;
+                        e.currentTarget.style.borderColor = '#FF5E14'; // Orange theme
+                        e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255, 94, 20, 0.1)';
                       }}
                       onBlur={(e) => {
                         e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#D1D5DB';
@@ -291,8 +321,8 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                       onClick={handleSendMessage}
                       className="p-3 rounded-xl text-white transition-all duration-200 hover:scale-105"
                       style={{
-                        background: `linear-gradient(135deg, ${pageType === 'tools' ? '#3B82F6 0%, #1D4ED8 100%' : '#F59E0B 0%, #D97706 100%'})`,
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                        backgroundColor: '#FF5E14', // Orange theme
+                        boxShadow: '0 4px 12px rgba(255, 94, 20, 0.3)'
                       }}
                     >
                       <span className="text-lg">→</span>
@@ -305,8 +335,13 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
               <>
                 {/* Support Messages Area */}
                 <div
-                  className="flex-1 p-4 overflow-y-auto space-y-4"
-                  style={{ backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB' }}
+                  className="flex-1 p-4 overflow-y-auto space-y-4 max-h-80"
+                  style={{ 
+                    backgroundColor: theme === 'dark' ? '#374151' : '#F9FAFB',
+                    scrollBehavior: 'smooth',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#FF5E14 transparent'
+                  }}
                 >
                   {/* Welcome Message */}
                   <div className="flex justify-start">
