@@ -218,8 +218,10 @@ const mockTools: Tool[] = [
     details: 'Exterior painting project. Need complete scaffolding system with safety equipment.',
     isUrgent: false,
     image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop'
-  }
-];
+}
+
+// Empty tools array - will be populated when users create tools
+const mockTools: Tool[] = [];
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
