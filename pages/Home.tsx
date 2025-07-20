@@ -351,7 +351,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-7 sm:gap-9">
             {[
-              { icon: '🤝', number: '250+', label: 'Community Members', color: '#FF5E14' },
+              { icon: '🤝', number: '5,000+', label: 'Community Members', color: '#FF5E14' },
               { icon: '⚡', number: '150+', label: 'Active Listings', color: '#FF5E14' },
               { icon: '😊', number: '95%', label: 'Satisfaction Rate', color: '#FF5E14' }
             ].map((stat, index) => (
