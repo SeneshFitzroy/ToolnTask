@@ -106,8 +106,8 @@ export default function ForgotPassword() {
           const otpData = await otpResponse.json();
 
           if (otpResponse.ok) {
-            // Redirect to OTP verification page with phone number
-            router.push(`/verify-otp?phone=${encodeURIComponent(cleanedPhone)}&type=password-reset`);
+            // Redirect to phone verification page with phone number
+            router.push(`/phone-verification?phone=${encodeURIComponent(cleanedPhone)}&type=password-reset`);
             return;
           } else {
             setError(otpData.message || 'Failed to send verification code');
