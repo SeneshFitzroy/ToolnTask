@@ -73,7 +73,7 @@ export default async function handler(
     // Validate and format phone number
     if (!isValidPhoneNumber(phone)) {
       return res.status(400).json({ 
-        message: 'Invalid phone number format. Please use Sri Lankan mobile numbers (070-078 series)', 
+        message: 'Invalid phone number format. Please use Sri Lankan mobile numbers (070-079 series)', 
         success: false,
         error: 'Invalid phone format'
       });
