@@ -439,14 +439,14 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-5 sm:px-7 lg:px-9 relative z-10">
           <div className="text-center mb-13 sm:mb-17 md:mb-21">
             <div className="inline-flex items-center px-5 py-3 rounded-full mb-7 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#001554' : '#FFFFFF', border: `1px solid ${theme === 'dark' ? '#333333' : '#E5E7EB'}` }}>
-              <span className="text-base font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
+              <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>⚡ Simple Process</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 sm:mb-7" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-5 sm:mb-7" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
               How{' '}
-              <Logo size="xl" showUnderline={true} className="inline" />
+              <Logo size="small" showUnderline={true} className="inline" />
               {' '}Works
             </h2>
-            <p className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+            <p className="text-xs sm:text-sm md:text-base max-w-3xl mx-auto leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
               Getting help or lending a hand has never been easier. Join thousands building stronger communities.
             </p>
           </div>
