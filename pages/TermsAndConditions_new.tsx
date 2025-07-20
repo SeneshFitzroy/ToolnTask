@@ -153,7 +153,7 @@ export default function TermsAndConditions() {
                   9. Changes to Terms
                 </h2>
                 <p className="text-gray-700 dark:text-gray-300">
-                  We may update these terms. We'll notify you of important changes. 
+                  We may update these terms. We will notify you of important changes. 
                   Continued use means you accept the new terms.
                 </p>
               </section>
