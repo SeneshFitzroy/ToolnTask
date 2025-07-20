@@ -73,6 +73,15 @@ export default function SignIn() {
       await signInWithEmailAndPassword(auth, formData.email.trim(), formData.password);
       console.log('User signed in successfully');
       
+      // Handle "Remember me" functionality
+      if (rememberMe) {
+        localStorage.setItem('rememberedEmail', formData.email.trim());
+        localStorage.setItem('rememberMe', 'true');
+      } else {
+        localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberMe');
+      }
+      
       // Redirect to home page
       router.push('/');
     } catch (error: unknown) {
@@ -201,8 +210,14 @@ export default function SignIn() {
               </div>
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
-                <label className="flex items-center">
-                  <input type="checkbox" className="rounded mr-2" style={{ accentColor: '#FF5E14' }} />
+                <label className="flex items-center cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="rounded mr-2" 
+                    style={{ accentColor: '#FF5E14' }} 
+                  />
                   <span className="text-sm" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>Remember me</span>
                 </label>
                 <button 
