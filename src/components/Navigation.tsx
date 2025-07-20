@@ -503,23 +503,23 @@ const Navigation = () => {
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Compact */}
             <button
               onClick={(e) => {
                 setMobileMenuOpen(!mobileMenuOpen);
                 addShineEffect(e.currentTarget);
               }}
-              className="lg:hidden p-2 rounded-lg transition-colors duration-200 shine-effect"
+              className="lg:hidden p-1.5 rounded-lg transition-colors duration-200 shine-effect"
               style={{ 
-                backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
-                border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`
+                backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
+                border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`
               }}
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
-                <X className="h-5 w-5" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
+                <X className="h-4 w-4" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
               ) : (
-                <Menu className="h-5 w-5" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
+                <Menu className="h-4 w-4" style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }} />
               )}
             </button>
           </div>
