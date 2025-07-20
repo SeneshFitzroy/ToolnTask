@@ -92,62 +92,8 @@ export default function Profile() {
       isRead: true
     }
   ]);
-  const [savedGigs, setSavedGigs] = useState<SavedGig[]>([
-    {
-      id: '1',
-      title: 'Power Drill Rental',
-      type: 'tool',
-      price: 'Rs. 1,500/day',
-      location: 'Colombo 03',
-      savedAt: '2025-01-10',
-      description: 'Professional grade power drill available for rent',
-      postedBy: 'John Smith',
-      status: 'available'
-    },
-    {
-      id: '2',
-      title: 'House Cleaning Service',
-      type: 'task',
-      price: 'Rs. 8,000',
-      location: 'Kandy',
-      savedAt: '2025-01-08',
-      description: 'Need professional house cleaning service',
-      postedBy: 'Jane Doe',
-      status: 'requested'
-    },
-    {
-      id: '3',
-      title: 'Garden Maintenance',
-      type: 'task',
-      price: 'Rs. 5,000',
-      location: 'Galle',
-      savedAt: '2025-01-15',
-      description: 'Weekly garden maintenance needed',
-      postedBy: 'Mike Johnson',
-      status: 'available'
-    },
-    {
-      id: '4',
-      title: 'Angle Grinder',
-      type: 'tool',
-      price: 'Rs. 1,200/day',
-      location: 'Negombo',
-      savedAt: '2025-01-12',
-      description: 'Heavy-duty angle grinder for metal cutting',
-      postedBy: 'Sarah Wilson',
-      status: 'requested'
-    },
-    {
-      id: '5',
-      title: 'Lawn Mower Rental',
-      type: 'tool',
-      price: 'Rs. 2,000/day',
-      location: 'Dehiwala',
-      savedAt: '2025-01-14',
-      description: 'Electric lawn mower in excellent condition',
-      postedBy: 'David Brown',
-      status: 'available'
-    },
+  // Empty saved gigs array - will be populated when users save gigs
+  const [savedGigs, setSavedGigs] = useState<SavedGig[]>([]);
     {
       id: '6',
       title: 'Plumbing Repair',
