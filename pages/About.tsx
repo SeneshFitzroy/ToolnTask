@@ -206,20 +206,20 @@ export default function About() {
       <div className="py-8 sm:py-12" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Mission Section */}
-          <div className="mb-12 sm:mb-16">
-            <div className="p-8 sm:p-10 lg:p-12 rounded-2xl shadow-xl border-2" 
+          <div className="mb-10 sm:mb-12">
+            <div className="p-6 sm:p-8 rounded-2xl shadow-xl border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Our Mission</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
-                <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                <p className="text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 
                   time to spare looking for extra income, or a neighbor who needs a specific tool 
                   for a weekend project, ToolNTask bridges these gaps.
                 </p>
-                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+                <p className="text-base sm:text-lg leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Our platform empowers people to share resources, build connections, and create 
                   a more collaborative community where everyone benefits.
                 </p>
@@ -228,53 +228,53 @@ export default function About() {
           </div>
 
           {/* Values Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 mb-12 sm:mb-16">
-            <div className="p-8 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
                  }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#FF5E14' }}>
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Trust & Safety</h3>
-              <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Trust & Safety</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                 Every user is verified, and we maintain high standards for safety and reliability 
                 in all transactions.
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
                  }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#22c55e' }}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#22c55e' }}>
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Sustainability</h3>
-              <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Sustainability</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                 By sharing tools and resources, we reduce waste and promote a more sustainable 
                 way of living.
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
+            <div className="p-6 rounded-2xl shadow-xl text-center hover:scale-105 transition-all duration-300 border-2" 
                  style={{ 
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : 'rgba(255, 94, 20, 0.1)'
                  }}>
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ backgroundColor: '#3b82f6' }}>
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg" style={{ backgroundColor: '#3b82f6' }}>
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Community</h3>
-              <p className="text-base sm:text-lg leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
+              <h3 className="text-lg sm:text-xl font-bold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Community</h3>
+              <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                 We strengthen local communities by encouraging neighbors to help each other 
                 and share resources.
               </p>
