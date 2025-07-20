@@ -395,7 +395,7 @@ export default function PrivacyPolicy() {
                     <span>📍</span> Office Contact
                   </h4>
                   <p className="mb-3" style={{ color: '#B3B5BC' }}>
-                    <strong>Phone:</strong> +94 11 123 4567<br/>
+                    <strong>Phone:</strong> +94 76 112 0457<br/>
                     <strong>Address:</strong> 123 Main Street, Colombo 01, Sri Lanka
                   </p>
                   <button 
