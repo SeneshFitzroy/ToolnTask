@@ -129,8 +129,11 @@ export default function SignUp() {
     const validateSriLankanPhone = (phone: string): boolean => {
       const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
       const patterns = [
-        /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile
+        /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile: +94 7X XXXX XXXX or 07X XXXX XXXX
+        /^(\+94|0094|94)?[1-9][0-9]{8}$/, // All mobile numbers starting with various prefixes
         /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
+        /^07[0-9]{8}$/, // Local mobile format: 07X XXXX XXXX
+        /^0[1-9][0-9]{8}$/, // Any local number starting with 0
       ];
       return patterns.some(pattern => pattern.test(cleanPhone));
     };
