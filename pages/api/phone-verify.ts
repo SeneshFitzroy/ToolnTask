@@ -130,6 +130,8 @@ export default async function handler(
       purpose: 'password_reset'
     });
 
+    console.log(`💾 OTP stored in Firestore - Phone: ${formattedPhone}, OTP: ${otp}`);
+
     // Send OTP via SMS, WhatsApp, or email fallback
     const sendOTP = async () => {
       // First try WhatsApp (free and fast)

@@ -14,11 +14,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    // Format phone number to match storage format
+    const formatPhoneNumber = (phone: string): string => {
+      const cleaned = phone.replace(/[\s\-\(\)]/g, '');
+      if (cleaned.startsWith('+')) {
+        return cleaned;
+      }
+      const digits = cleaned.replace(/\D/g, '');
+      if (digits.startsWith('0')) {
+        return '+94' + digits.substring(1);
+      }
+      if (digits.startsWith('94')) {
+        return '+' + digits;
+      }
+      if (digits.length === 9 && digits.startsWith('7')) {
+        return '+94' + digits;
+      }
+      return '+94' + digits;
+    };
+
+    const formattedPhone = formatPhoneNumber(phone);
+    console.log(`🔍 Looking for OTP - Phone: ${formattedPhone}, OTP: ${otp}`);
+
     // Find the OTP in Firestore
     const verificationRef = collection(db, 'phoneVerifications');
     const q = query(
       verificationRef, 
-      where('phone', '==', phone), 
+      where('phone', '==', formattedPhone), 
       where('otp', '==', otp),
       where('verified', '==', false)
     );
@@ -38,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Mark OTP as used
     await updateDoc(doc(db, 'phoneVerifications', verificationDoc.id), {
-      used: true,
+      verified: true,
       usedAt: new Date(),
       ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown'
     });
