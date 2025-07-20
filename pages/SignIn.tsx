@@ -166,6 +166,12 @@ export default function SignIn() {
         setError(errorMessage);
         setLoading(false);
       }
+    } catch (generalError: unknown) {
+      // Handle any other errors (like phone lookup errors)
+      console.error('General error during sign in:', generalError);
+      setError('An unexpected error occurred. Please try again.');
+      setLoading(false);
+    }
   };
 
 
