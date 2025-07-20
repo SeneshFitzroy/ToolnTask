@@ -222,7 +222,7 @@ const Navigation = () => {
               About
             </Link>
 
-            {/* Create CTA Button for logged-in users */}
+            {/* Create CTA Button for logged-in users - Made smaller */}
             {user && (
               <div className="relative create-dropdown">
                 <button
@@ -231,7 +231,7 @@ const Navigation = () => {
                     setShowProfileDropdown(false);
                     addShineEffect(e.currentTarget);
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 shine-effect"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 shine-effect"
                   style={{ 
                     backgroundColor: '#FF5E14',
                     color: '#FFFFFF',
@@ -248,12 +248,12 @@ const Navigation = () => {
                     e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.3)';
                   }}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   <span>Create</span>
                   <ChevronDown 
-                    className={`h-4 w-4 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
+                    className={`h-3 w-3 transition-transform duration-200 ${showCreateDropdown ? 'rotate-180' : 'rotate-0'}`}
                     strokeWidth={2}
                   />
                 </button>
@@ -319,53 +319,53 @@ const Navigation = () => {
             )}
           </div>
 
-          {/* Right side - Auth buttons */}
-          <div className="flex items-center space-x-4 flex-shrink-0">
+          {/* Right side - Auth buttons - Optimized */}
+          <div className="flex items-center space-x-3 flex-shrink-0">
             {/* Auth Buttons - Hidden on small screens */}
-            <div className="hidden sm:flex items-center space-x-4">
+            <div className="hidden sm:flex items-center space-x-3">
               {user ? (
-                <div className="flex items-center space-x-3">
-                  {/* User Profile Button */}
+                <div className="flex items-center space-x-2">
+                  {/* User Profile Button - Improved Design */}
                   <div className="relative profile-dropdown">
                   <button
                     onClick={(e) => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shine-effect min-w-[160px]" 
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shine-effect min-w-[120px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#f9fafb',
-                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e5e7eb'}`,
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                      backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
+                      border: `1px solid ${theme === 'dark' ? '#374151' : '#e2e8f0'}`,
+                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#333333' : '#f3f4f6';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#374151' : '#f1f5f9';
                       e.currentTarget.style.borderColor = '#FF5E14';
                       e.currentTarget.style.transform = 'translateY(-1px)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 20, 0.2)';
+                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(255, 94, 20, 0.15)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
-                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e5e7eb';
+                      e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1f2937' : '#f8fafc';
+                      e.currentTarget.style.borderColor = theme === 'dark' ? '#374151' : '#e2e8f0';
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
                     }}
                   >
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-sm" 
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-sm font-semibold leading-tight truncate max-w-[80px]">
+                      <span className="text-xs font-semibold leading-tight truncate max-w-[60px]">
                         {user.displayName || user.email?.split('@')[0] || 'User'}
                       </span>
-                      <span className="text-xs opacity-75 truncate max-w-[80px]" style={{ color: '#FF5E14' }}>
-                        Profile
+                      <span className="text-[10px] opacity-70 truncate max-w-[60px]" style={{ color: '#FF5E14' }}>
+                        Account
                       </span>
                     </div>
                     <ChevronDown 
-                      className={`h-4 w-4 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
+                      className={`h-3 w-3 transition-transform duration-200 ${showProfileDropdown ? 'rotate-180' : 'rotate-0'} flex-shrink-0`}
                       strokeWidth={2}
                     />
                   </button>
