@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useTheme } from 'next-themes';
-import { Shield, Lock, Eye, Database, Users, AlertTriangle, CheckCircle, Phone, Mail } from 'lucide-react';
+import { Shield, Lock, Eye, Database, Users, AlertTriangle, CheckCircle, Phone, Mail, ArrowLeft } from 'lucide-react';
 
 export default function PrivacyAndSafety() {
   const { theme } = useTheme();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState('privacy');
+  
+  // Check if user came from signup page
+  const fromSignup = router.query.from === 'signup';
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleBackToSignup = () => {
+    router.push('/SignUp');
+  };
 
   if (!mounted) {
     return null;
@@ -31,6 +40,24 @@ export default function PrivacyAndSafety() {
       {/* Hero Section */}
       <div className="pt-20 pb-12" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F8FAFC' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Conditional Back Button */}
+          {fromSignup && (
+            <div className="flex justify-start mb-6">
+              <button
+                onClick={handleBackToSignup}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 hover:shadow-md"
+                style={{
+                  backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                  borderColor: theme === 'dark' ? '#404040' : '#E2E8F0',
+                  color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                }}
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span className="font-medium">Back to Create Account</span>
+              </button>
+            </div>
+          )}
+          
           <div className="flex items-center justify-center gap-3 mb-6">
             <Shield className="w-8 h-8" style={{ color: '#FE5F16' }} />
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>

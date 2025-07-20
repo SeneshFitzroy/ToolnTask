@@ -106,73 +106,66 @@ export default function SignIn() {
       }
       
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
-      await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-      console.log('User signed in successfully');
-      
-      // Handle "Remember me" functionality
-      if (rememberMe) {
-        localStorage.setItem('rememberedEmail', formData.email.trim());
-        localStorage.setItem('rememberMe', 'true');
-      } else {
-        localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('rememberMe');
-      }
-      
-      // Redirect to home page
-      router.push('/');
-    } catch (error: unknown) {
-      console.error('Error signing in:', error);
-      
-      // Handle specific Firebase Auth errors with professional messages
-      let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
-      
-      // Determine if user entered phone or email for better error messaging
-      const isPhoneInput = phoneRegex.test(cleanedInput);
-      const inputType = isPhoneInput ? 'phone number' : 'email';
-      
-      if (error && typeof error === 'object' && 'code' in error) {
-        const firebaseError = error as { code: string; message?: string };
-        switch (firebaseError.code) {
-          case 'auth/invalid-credential':
-            errorMessage = `The ${inputType} and password combination is incorrect. Please check your credentials and try again.`;
-            break;
-          case 'auth/user-not-found':
-            errorMessage = `No account found with this ${inputType}. Please verify your information or create a new account.`;
-            break;
-          case 'auth/wrong-password':
-            errorMessage = `Incorrect password for this ${inputType}. Please check your password or use "Forgot Password?" if needed.`;
-            break;
-          case 'auth/invalid-email':
-            errorMessage = 'Invalid email format. Please enter a valid email address.';
-            break;
-          case 'auth/user-disabled':
-            errorMessage = 'This account has been temporarily disabled. Please contact our support team for assistance.';
-            break;
-          case 'auth/too-many-requests':
-            errorMessage = 'Too many failed login attempts. Please wait a few minutes before trying again for security reasons.';
-            break;
-          case 'auth/network-request-failed':
-            errorMessage = 'Connection error. Please check your internet connection and try again.';
-            break;
-          case 'auth/invalid-login-credentials':
-            errorMessage = `Invalid login credentials. Please verify your ${inputType} and password are correct.`;
-            break;
-          default:
-            errorMessage = `Authentication failed with your ${inputType}. Please verify your credentials and try again.`;
-        }
-      } else if (error instanceof Error) {
-        // Check if it's a phone lookup error
-        if (error.message.includes('Phone number not found')) {
-          errorMessage = 'Phone number not registered. Please check your number or create a new account.';
+      try {
+        await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+        console.log('User signed in successfully');
+        
+        // Handle "Remember me" functionality
+        if (rememberMe) {
+          localStorage.setItem('rememberedEmail', formData.email.trim());
+          localStorage.setItem('rememberMe', 'true');
         } else {
-          errorMessage = error.message;
+          localStorage.removeItem('rememberedEmail');
+          localStorage.removeItem('rememberMe');
         }
+        
+        // Redirect to home page
+        router.push('/');
+      } catch (authError: unknown) {
+        // Handle specific Firebase Auth errors with professional messages
+        let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
+        
+        // Determine if user entered phone or email for better error messaging
+        const isPhoneInput = phoneRegex.test(cleanedInput);
+        const inputType = isPhoneInput ? 'phone number' : 'email';
+        
+        if (authError && typeof authError === 'object' && 'code' in authError) {
+          const firebaseError = authError as { code: string; message?: string };
+          switch (firebaseError.code) {
+            case 'auth/invalid-credential':
+              errorMessage = `The ${inputType} and password combination is incorrect. Please check your credentials and try again.`;
+              break;
+            case 'auth/user-not-found':
+              errorMessage = `No account found with this ${inputType}. Please verify your information or create a new account.`;
+              break;
+            case 'auth/wrong-password':
+              errorMessage = `Incorrect password for this ${inputType}. Please check your password or use "Forgot Password?" if needed.`;
+              break;
+            case 'auth/invalid-email':
+              errorMessage = 'Invalid email format. Please enter a valid email address.';
+              break;
+            case 'auth/user-disabled':
+              errorMessage = 'This account has been temporarily disabled. Please contact our support team for assistance.';
+              break;
+            case 'auth/too-many-requests':
+              errorMessage = 'Too many failed login attempts. Please wait a few minutes before trying again for security reasons.';
+              break;
+            case 'auth/network-request-failed':
+              errorMessage = 'Connection error. Please check your internet connection and try again.';
+              break;
+            case 'auth/invalid-login-credentials':
+              errorMessage = `Invalid login credentials. Please verify your ${inputType} and password are correct.`;
+              break;
+            default:
+              errorMessage = `Authentication failed with your ${inputType}. Please verify your credentials and try again.`;
+          }
+        } else if (authError instanceof Error) {
+          errorMessage = `Login failed. Please check your ${inputType} and password and try again.`;
+        }
+        
+        setError(errorMessage);
+        setLoading(false);
       }
-      
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
   };
 
 

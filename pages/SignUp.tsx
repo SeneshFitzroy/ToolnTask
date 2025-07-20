@@ -783,7 +783,7 @@ export default function SignUp() {
                     Terms of Service
                   </Link>
                   {' '}and{' '}
-                  <Link href="/PrivacyPolicy" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
+                  <Link href="/PrivacyPolicy?from=signup" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
                   <div className="text-xs mt-1 opacity-75">
                     You must accept our terms before registering
                   </div>
