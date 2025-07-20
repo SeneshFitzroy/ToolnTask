@@ -167,7 +167,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-12 sm:mt-14 lg:mt-16 xl:mt-20">
+              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mt-6 sm:mt-8 lg:mt-10 xl:mt-12">
                 {/* Enhanced Background Effects */}
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-200 via-blue-200 to-purple-200 rounded-2xl sm:rounded-3xl filter blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 animate-pulse"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 to-blue-300/20 rounded-2xl sm:rounded-3xl animate-spin-slow"></div>
