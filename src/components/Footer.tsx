@@ -209,8 +209,7 @@ const Footer = ({ showNewsletter = false }: FooterProps) => {
               <ul className="space-y-3">
                 {[
                   { href: '/PrivacyPolicy', label: 'Privacy & Safety' },
-                  { href: '#', label: 'Support Center', action: 'openChat' },
-                  { href: 'tel:+94761120457', label: 'Contact Member (+94 76 112 0457)', action: 'call' }
+                  { href: '#', label: 'Support Center', action: 'openChat' }
                 ].map((link, index) => (
                   <li key={index}>
                     {link.action === 'openChat' ? (
