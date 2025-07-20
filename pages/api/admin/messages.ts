@@ -1,6 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../../src/lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, where, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, where, updateDoc, doc, serverTimestamp, FieldValue } from 'firebase/firestore';
+
+interface UpdateData {
+  updatedAt: FieldValue;
+  status?: string;
+  read?: boolean;
+  assignedTo?: string | null;
+  notes?: string;
+}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -101,7 +109,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Message ID is required' });
       }
 
-      const updateData: Record<string, any> = {
+      const updateData: UpdateData = {
         updatedAt: serverTimestamp()
       };
 
