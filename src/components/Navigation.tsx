@@ -108,10 +108,10 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation - Final Best Ultra-Compact Buttons */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-4">
             <Link 
               href="/" 
-              className="px-4 py-2 text-base font-semibold transition-colors duration-200 rounded-lg shine-effect" 
+              className="px-3 py-1.5 text-sm font-semibold transition-colors duration-200 rounded-lg shine-effect" 
               style={{ 
                 color: isActiveLink('/') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
                 backgroundColor: isActiveLink('/') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
