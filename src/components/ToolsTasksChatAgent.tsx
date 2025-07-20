@@ -402,7 +402,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
                         }`}
                         style={{
                           backgroundColor: msg.type === 'user' 
-                            ? '#FF5E14'
+                            ? '#001554'
                             : undefined,
                           boxShadow: msg.type !== 'user' ? '0 2px 8px rgba(0, 0, 0, 0.1)' : undefined
                         }}
