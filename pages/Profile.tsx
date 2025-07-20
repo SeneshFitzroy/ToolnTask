@@ -94,18 +94,6 @@ export default function Profile() {
   ]);
   // Empty saved gigs array - will be populated when users save gigs
   const [savedGigs, setSavedGigs] = useState<SavedGig[]>([]);
-    {
-      id: '6',
-      title: 'Plumbing Repair',
-      type: 'task',
-      price: 'Rs. 3,500',
-      location: 'Mount Lavinia',
-      savedAt: '2025-01-11',
-      description: 'Emergency plumbing repair needed',
-      postedBy: 'Lisa Chen',
-      status: 'requested'
-    }
-  ]);
   
   // Mock notifications for future implementation
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
