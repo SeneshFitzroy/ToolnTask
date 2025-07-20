@@ -37,14 +37,14 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     const handleOpenTaskMate = (event: CustomEvent) => {
       console.log('Opening TaskMate from Footer Support Center', event.detail);
       setIsOpen(true);
-      setActiveTab('chat');
+      setActiveTab('support'); // Switch to support tab when triggered from footer
       
       // Add a support message if triggered from footer
       if (event.detail?.source === 'footer-support') {
         const supportMessage = {
           id: Date.now(),
           type: 'agent',
-          message: 'Hi! I see you\'re looking for support. I\'m here to help with any questions about ToolNTask. What can I assist you with?',
+          message: 'Welcome to ToolNTask Support Center! I\'m here to help you with any questions or issues. You can chat with me or request a callback from our team.',
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages(prev => [...prev, supportMessage]);
@@ -54,7 +54,7 @@ export default function ToolsTasksChatAgent({ pageType }: ToolsTasksChatAgentPro
     const handleShowTaskMate = (event: CustomEvent) => {
       console.log('Showing TaskMate from Footer', event.detail);
       setIsOpen(true);
-      setActiveTab('chat');
+      setActiveTab('support'); // Switch to support tab
       
       if (event.detail?.message) {
         const customMessage = {
