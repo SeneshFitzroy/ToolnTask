@@ -54,7 +54,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
         
         <div className="p-2 sm:p-3 lg:p-4 flex-1 flex flex-col">
           <div className="flex justify-between items-start mb-2 sm:mb-3">
-            <h3 className="text-sm sm:text-base lg:text-lg font-bold text-slate-800 dark:text-white line-clamp-2 flex-1 mr-2 sm:mr-3 leading-tight">{title}</h3>
+            <h3 className="text-xs sm:text-sm lg:text-base font-bold text-slate-800 dark:text-white line-clamp-2 flex-1 mr-2 sm:mr-3 leading-tight">{title}</h3>
             <span className="text-base sm:text-lg lg:text-xl font-bold text-orange-600 dark:text-orange-400 whitespace-nowrap">{price}</span>
           </div>
           
@@ -71,7 +71,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
             </div>
           </div>
           
-          <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-2 sm:py-2.5 px-3 sm:px-4 rounded-md sm:rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center block text-xs sm:text-sm">
+          <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center block text-xs">
             View Details
           </button>
         </div>
