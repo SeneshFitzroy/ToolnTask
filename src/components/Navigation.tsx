@@ -332,7 +332,7 @@ const Navigation = () => {
                       setShowProfileDropdown(!showProfileDropdown);
                       addShineEffect(e.currentTarget);
                     }}
-                    className="flex items-center gap-4 px-5 py-3 rounded-lg text-base font-semibold transition-all duration-200 shine-effect min-w-[180px]" 
+                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shine-effect min-w-[160px]" 
                     style={{ 
                       color: theme === 'dark' ? '#e5e7eb' : '#374151',
                       backgroundColor: theme === 'dark' ? '#1f2937' : '#f8fafc',
@@ -352,15 +352,15 @@ const Navigation = () => {
                       e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                     }}
                   >
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-bold shadow-md" 
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md" 
                          style={{ backgroundColor: '#FF5E14' }}>
                       {user.email?.charAt(0).toUpperCase() || 'U'}
                     </div>
                     <div className="flex flex-col items-start text-left overflow-hidden">
-                      <span className="text-base font-bold leading-tight truncate max-w-[120px]">
+                      <span className="text-sm font-bold leading-tight truncate max-w-[100px]">
                         {user.displayName || user.email?.split('@')[0] || 'User'}
                       </span>
-                      <span className="text-sm opacity-75 truncate max-w-[120px]" style={{ color: '#FF5E14' }}>
+                      <span className="text-xs opacity-75 truncate max-w-[100px]" style={{ color: '#FF5E14' }}>
                         Account
                       </span>
                     </div>
