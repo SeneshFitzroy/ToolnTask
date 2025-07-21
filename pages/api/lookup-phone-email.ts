@@ -65,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         if (!allResetSnapshot.empty) {
           // Find the most recent reset account by resetTimestamp
-          let mostRecentReset: any = null;
+          let mostRecentReset: { phone?: string; authEmail?: string; resetTimestamp?: number } | null = null;
           let latestTimestamp = 0;
           
           allResetSnapshot.docs.forEach(doc => {
@@ -77,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
           });
           
-          if (mostRecentReset) {
+          if (mostRecentReset && mostRecentReset.authEmail) {
             console.log(`✅ Found most recent reset account - Phone: ${mostRecentReset.phone}, AuthEmail: ${mostRecentReset.authEmail}`);
             console.log(`📧 Returning most recent reset login email: ${mostRecentReset.authEmail}`);
             
