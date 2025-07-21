@@ -103,6 +103,47 @@ export default function SignIn() {
         }
       }
       
+      // Check for temporary password from reset (email accounts)
+      if (isValidEmail && !isValidPhone) {
+        try {
+          const tempPasswordResponse = await fetch('/api/check-temp-password', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              email: loginIdentifier, 
+              password: formData.password 
+            }),
+          });
+
+          if (tempPasswordResponse.ok) {
+            const tempData = await tempPasswordResponse.json();
+            if (tempData.tempPasswordMatch) {
+              console.log('🔐 Temporary password matched, updating Firebase Auth...');
+              // The API has updated Firebase Auth, proceed with normal login
+              await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+              console.log('User signed in successfully with updated password');
+              
+              // Handle "Remember me" functionality
+              if (rememberMe) {
+                localStorage.setItem('rememberedEmail', formData.email.trim());
+                localStorage.setItem('rememberMe', 'true');
+              } else {
+                localStorage.removeItem('rememberedEmail');
+                localStorage.removeItem('rememberMe');
+              }
+              
+              // Redirect to home page
+              router.push('/');
+              return;
+            }
+          }
+        } catch (tempError) {
+          console.log('No temporary password found, proceeding with normal login');
+        }
+      }
+      
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
       await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
       console.log('User signed in successfully');
