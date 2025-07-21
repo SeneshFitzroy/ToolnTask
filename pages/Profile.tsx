@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import { updateProfile, onAuthStateChanged, User, signOut } from 'firebase/auth';
-import { doc, updateDoc, getDoc, setDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
 import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
 
