@@ -5,6 +5,8 @@ import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { useTheme } from 'next-themes';
 import { Eye, EyeOff, Lock, CheckCircle, AlertTriangle, Check, X } from 'lucide-react';
+import { auth } from '../src/lib/firebase';
+import { signOut } from 'firebase/auth';
 
 export default function ResetPassword() {
   const router = useRouter();
