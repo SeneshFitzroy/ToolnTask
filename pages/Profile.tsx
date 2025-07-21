@@ -225,7 +225,7 @@ export default function Profile() {
         try {
           const oldPhotoRef = ref(storage, userProfile.profilePhotoURL);
           await deleteObject(oldPhotoRef);
-        } catch (deleteError) {
+        } catch (error) {
           console.log('Old photo not found or already deleted');
         }
       }
@@ -414,14 +414,19 @@ export default function Profile() {
                   <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex items-center justify-center text-white text-2xl sm:text-3xl font-bold relative" 
                        style={{ backgroundColor: '#FF5E14' }}>
                     {userProfile.profilePhotoURL ? (
-                      <img 
+                      <Image 
                         src={userProfile.profilePhotoURL} 
                         alt="Profile" 
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           // Fallback to initials if image fails to load
                           e.currentTarget.style.display = 'none';
-                          e.currentTarget.nextElementSibling!.style.display = 'flex';
+                          const nextElement = e.currentTarget.parentElement?.nextElementSibling as HTMLElement;
+                          if (nextElement) {
+                            nextElement.style.display = 'flex';
+                          }
                         }}
                       />
                     ) : null}
