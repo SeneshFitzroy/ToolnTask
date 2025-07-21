@@ -206,9 +206,15 @@ export default function SignIn() {
       
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };
+        console.log(`🚨 Firebase error code: ${firebaseError.code}`);
+        
         switch (firebaseError.code) {
           case 'auth/invalid-credential':
-            errorMessage = `The ${inputType} and password combination is incorrect. Please check your credentials and try again.`;
+            if (isPhoneInput) {
+              errorMessage = 'Invalid phone number and password combination. Please verify your credentials or check if you used the correct password.';
+            } else {
+              errorMessage = 'Invalid email and password combination. Please check your credentials and try again.';
+            }
             break;
           case 'auth/user-not-found':
             if (isPhoneInput) {
