@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         // Try to authenticate with Firebase Auth
         try {
-          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          await signInWithEmailAndPassword(auth, email, password);
           await signOut(auth); // Sign out immediately after verification
           
           // Update last successful login
@@ -62,7 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             isResetPassword: true
           });
           
-        } catch (firebaseError) {
+        } catch {
           console.log(`⚠️ Firebase Auth failed, but password is correct for: ${email}`);
           
           // Even if Firebase Auth fails, password is correct
