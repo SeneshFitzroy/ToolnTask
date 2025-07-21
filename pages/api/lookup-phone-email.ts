@@ -61,11 +61,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         
-        // Use the auth email for login
+        // For phone registrations, always use authEmail (like 94xxxxxxxxx@toolntask.app)
+        // For email registrations, use the actual email
         const loginEmail = userData.authEmail || userData.email;
         
         console.log(`✅ Found user - Phone: ${userData.phone}, AuthEmail: ${userData.authEmail}, Email: ${userData.email}`);
         console.log(`📧 Returning login email: ${loginEmail}`);
+        
+        if (!loginEmail) {
+          console.log(`❌ No valid email found for phone: ${phoneFormat}`);
+          continue; // Try next format
+        }
         
         return res.status(200).json({
           success: true,
