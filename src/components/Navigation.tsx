@@ -596,7 +596,7 @@ const Navigation = () => {
 
               {/* Mobile Language Selector */}
               <div className="px-4 py-3">
-                <LanguageSelector />
+                <GlobalLanguageSelector showLabel={true} size="md" />
               </div>
 
               {/* Mobile Create Options */}
