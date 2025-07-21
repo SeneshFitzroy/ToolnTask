@@ -121,20 +121,9 @@ export default function SignIn() {
             const resetData = await resetCheckResponse.json();
             
             if (resetData.passwordMatch && resetData.isResetPassword) {
-              console.log('🔐 PERMANENT reset password matched, user authenticated');
-              
-              // Handle "Remember me" functionality
-              if (rememberMe) {
-                localStorage.setItem('rememberedEmail', formData.email.trim());
-                localStorage.setItem('rememberMe', 'true');
-              } else {
-                localStorage.removeItem('rememberedEmail');
-                localStorage.removeItem('rememberMe');
-              }
-              
-              // Redirect to home page
-              router.push('/');
-              return;
+              console.log('🔐 PERMANENT reset password matched, proceeding to sign in');
+              // Don't return here, let the code fall through to the
+              // signInWithEmailAndPassword call below to establish a session.
             } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
               // User has reset password but provided wrong password - block Firebase fallback
               throw new Error('Please use your new password from the password reset email');
