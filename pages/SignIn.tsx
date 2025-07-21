@@ -103,114 +103,11 @@ export default function SignIn() {
         }
       }
       
-      // For email logins, check for PERMANENT password resets in Firestore first
-      if (isValidEmail && !isValidPhone) {
-        try {
-          // First, try normal Firebase Auth login
-          await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-          console.log('✅ Direct Firebase Auth successful');
-          
-          // Handle "Remember me" functionality
-          if (rememberMe) {
-            localStorage.setItem('rememberedEmail', formData.email.trim());
-            localStorage.setItem('rememberMe', 'true');
-          } else {
-            localStorage.removeItem('rememberedEmail');
-            localStorage.removeItem('rememberMe');
-          }
-          
-          // Success - redirect to home
-          console.log('🔄 Firebase Auth successful, redirecting to home');
-          window.location.href = '/';
-          return;
-          
-        } catch (firebaseError: unknown) {
-          const authError = firebaseError as { code?: string; message?: string };
-          console.log('⚠️ Direct Firebase Auth failed, checking reset password system:', authError.code);
-          
-          // If Firebase Auth fails, check our reset password system
-          if (authError.code === 'auth/wrong-password' || authError.code === 'auth/user-not-found') {
-            try {
-              const resetCheckResponse = await fetch('/api/check-reset-password', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                  email: loginIdentifier, 
-                  password: formData.password 
-                }),
-              });
-
-              if (resetCheckResponse.ok) {
-                const resetData = await resetCheckResponse.json();
-                
-                if (resetData.passwordMatch && resetData.isResetPassword) {
-                  console.log('🔐 Reset password verified, attempting Firebase Auth sync');
-                  
-                  // Password is correct according to our system, but Firebase Auth failed
-                  // This means we need to update Firebase Auth with the correct password
-                  try {
-                    // Try to sync Firebase Auth by updating the password
-                    const syncResponse = await fetch('/api/sync-firebase-auth', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                        email: loginIdentifier,
-                        password: formData.password
-                      }),
-                    });
-                    
-                    if (syncResponse.ok) {
-                      // Now try Firebase Auth again
-                      await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-                      console.log('✅ Firebase Auth sync successful, user authenticated');
-                      
-                      // Handle "Remember me" functionality
-                      if (rememberMe) {
-                        localStorage.setItem('rememberedEmail', formData.email.trim());
-                        localStorage.setItem('rememberMe', 'true');
-                      } else {
-                        localStorage.removeItem('rememberedEmail');
-                        localStorage.removeItem('rememberMe');
-                      }
-                      
-                      // Success - redirect to home
-                      window.location.href = '/';
-                      return;
-                    }
-                  } catch (syncError) {
-                    console.log('⚠️ Firebase Auth sync failed:', syncError);
-                  }
-                  
-                  // If sync fails, throw error about using reset password
-                  throw new Error('Your password was recently reset. Please try logging in again or reset your password if you forgot it.');
-                } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
-                  // User has reset password but provided wrong password
-                  throw new Error('Please use your new password from the password reset email');
-                }
-              }
-            } catch (resetError: unknown) {
-              const errorMessage = resetError instanceof Error ? resetError.message : 'Unknown error';
-              if (errorMessage.includes('password reset email') || errorMessage.includes('recently reset')) {
-                throw new Error(errorMessage);
-              }
-              console.log('Reset password check failed, using original Firebase error');
-            }
-          }
-          
-          // Re-throw the original Firebase error if no reset password workaround
-          throw authError;
-        }
-      }
-      
-      // Sign in with Firebase Auth using email (either provided directly or found by phone)
-      // The email login check above handles reset passwords, so this is for regular logins
-      if (isValidPhone || !isValidEmail) {
+      // Try Firebase Auth login first
+      try {
+        console.log(`🔑 Attempting Firebase Auth with ${loginIdentifier}`);
         await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-        console.log('User signed in successfully');
+        console.log('✅ Firebase Auth successful');
         
         // Handle "Remember me" functionality
         if (rememberMe) {
@@ -221,9 +118,81 @@ export default function SignIn() {
           localStorage.removeItem('rememberMe');
         }
         
-        // Force full page refresh to ensure proper auth state loading
-        console.log('🔄 Regular Firebase Auth successful, redirecting with page refresh');
+        console.log('🔄 Redirecting to homepage with page refresh');
         window.location.href = '/';
+        return;
+        
+      } catch (firebaseError: unknown) {
+        const authError = firebaseError as { code?: string; message?: string };
+        console.log('❌ Firebase Auth failed, checking reset password system:', authError.code);
+        
+        // If Firebase Auth fails, check our reset password system
+        if (authError.code === 'auth/wrong-password' || authError.code === 'auth/user-not-found' || authError.code === 'auth/invalid-credential') {
+          try {
+            const resetResponse = await fetch('/api/check-reset-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ 
+                email: loginIdentifier, 
+                password: formData.password 
+              })
+            });
+            
+            if (resetResponse.ok) {
+              const resetData = await resetResponse.json();
+              
+              if (resetData.passwordMatch && resetData.isResetPassword) {
+                console.log('✅ Reset password verification successful');
+                
+                // Sync Firebase Auth with the reset password
+                console.log('🔄 Syncing Firebase Auth...');
+                const syncResponse = await fetch('/api/sync-firebase-auth', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ 
+                    email: loginIdentifier, 
+                    password: formData.password 
+                  })
+                });
+                
+                if (syncResponse.ok) {
+                  console.log('✅ Firebase Auth sync successful');
+                  
+                  // Now try Firebase Auth again
+                  await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+                  console.log('✅ Firebase Auth successful after sync');
+                  
+                  // Handle "Remember me" functionality
+                  if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', formData.email.trim());
+                    localStorage.setItem('rememberMe', 'true');
+                  } else {
+                    localStorage.removeItem('rememberedEmail');
+                    localStorage.removeItem('rememberMe');
+                  }
+                  
+                  console.log('🔄 Redirecting to homepage with page refresh');
+                  window.location.href = '/';
+                  return;
+                } else {
+                  console.error('❌ Firebase Auth sync failed');
+                  throw new Error('Failed to sync authentication. Please try again.');
+                }
+              } else if (resetData.hasResetPassword && !resetData.passwordMatch) {
+                throw new Error('Please use your new password from the password reset email');
+              }
+            }
+          } catch (resetError: unknown) {
+            const errorMessage = resetError instanceof Error ? resetError.message : 'Unknown error';
+            if (errorMessage.includes('password reset email') || errorMessage.includes('sync authentication')) {
+              throw new Error(errorMessage);
+            }
+            console.log('Reset password check failed, using original Firebase error');
+          }
+        }
+        
+        // Re-throw the original Firebase error if no reset password workaround
+        throw authError;
       }
     } catch (error: unknown) {
       // Handle specific Firebase Auth errors with professional messages
