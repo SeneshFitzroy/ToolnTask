@@ -165,10 +165,10 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 8. Account Termination */}
+                {/* 7. Account Termination */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    8. Account Termination
+                    7. Account Termination
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300">
                     We can suspend or close accounts that violate these terms. 
@@ -176,10 +176,10 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 9. Changes */}
+                {/* 8. Changes */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    9. Changes to Terms
+                    8. Changes to Terms
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300">
                     We may update these terms. We will notify you of important changes. 
@@ -187,10 +187,10 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 10. Contact */}
+                {/* 9. Contact */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    10. Contact Us
+                    9. Contact Us
                   </h2>
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                     <p className="text-gray-700 dark:text-gray-300">
