@@ -145,6 +145,12 @@ export default function SignUp() {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error and sign-in button when user starts typing
+    if (error) {
+      setError('');
+      setShowSignInButton(false);
+    }
   };
 
   const handleTermsClick = (e: React.MouseEvent) => {
