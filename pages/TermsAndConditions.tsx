@@ -1,30 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-import { ArrowLeft, CheckCircle, Shield, FileText } from 'lucide-react';
+import { ArrowLeft, FileText } from 'lucide-react';
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 
 export default function TermsAndConditions() {
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const router = useRouter();
-                    5. Privacy</h2>ct';
-import Navigation from '../src/components/Navigation';
-import Footer from '../src/components/Footer';
-import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
-
-export default function TermsAndConditions() {
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const router = useRouter();
 
   const handleBack = () => {
     router.push('/SignUp');
-  };
-
-  const handleAccept = () => {
-    if (acceptedTerms) {
-      router.push('/SignUp?termsAccepted=true');
-    }
   };
 
   return (
@@ -33,9 +18,7 @@ export default function TermsAndConditions() {
       
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Professional Header Section */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8">
-            {/* Back Button */}
             <button
               onClick={handleBack}
               className="flex items-center gap-3 mb-6 px-4 py-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 group"
@@ -44,7 +27,6 @@ export default function TermsAndConditions() {
               <span className="font-medium">Back to Create Account</span>
             </button>
 
-            {/* Header */}
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <div className="p-4 bg-gradient-to-r from-orange-500 to-blue-600 rounded-full">
@@ -63,34 +45,10 @@ export default function TermsAndConditions() {
             </div>
           </div>
 
-          {/* Professional Terms Content */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8">
             <div className="space-y-8">
-              
-              {/* Key Points Overview */}
-              <div className="bg-gradient-to-r from-blue-50 to-orange-50 dark:from-blue-900/20 dark:to-orange-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                  <Shield className="w-6 h-6 text-blue-600" />
-                  Key Points Summary
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Professional marketplace platform</p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Advertisement and promotion services</p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Quality service standards</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ User safety and protection</p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Fair dispute resolution</p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Sri Lankan legal compliance</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Terms Sections */}
               <div className="space-y-6">
                 
-                {/* 1. Agreement */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     1. Agreement
@@ -100,59 +58,46 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 2. Our Service */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     2. Our Service
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300 mb-3">
-                    ToolNTask connects people who need tasks done with skilled service providers in Sri Lanka.
+                    ToolNTask is a platform for advertisement and promotion of tools and services in Sri Lanka. We connect people who need tools or services with those who can provide them.
                   </p>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1 ml-4">
-                    <li>Task posting and completion</li>
-                    <li>Tool and equipment sharing</li>
-                    <li>Secure payment processing</li>
-                    <li>Quality assurance</li>
+                  <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300">
+                    <li>Tool and service advertisements</li>
+                    <li>Service provider promotion</li>
+                    <li>Community-driven platform</li>
+                    <li>Local Sri Lankan focus</li>
                   </ul>
                 </section>
 
-                {/* 3. User Responsibilities */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    3. Your Responsibilities
+                    3. User Accounts
                   </h2>
-                  <p className="text-gray-700 dark:text-gray-300 mb-3">
-                    Users must:
+                  <p className="text-gray-700 dark:text-gray-300">
+                    You must provide accurate information when creating an account. You are responsible for keeping your account secure and for all activities under your account.
                   </p>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1 ml-4">
-                    <li>Provide accurate information</li>
-                    <li>Complete tasks as agreed</li>
-                    <li>Pay for services on time</li>
-                    <li>Treat others with respect</li>
-                    <li>Follow all applicable laws</li>
-                  </ul>
                 </section>
 
-                {/* 4. Prohibited Activities */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    4. Prohibited Activities
+                    4. User Conduct
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300 mb-3">
-                    You may not:
+                    You agree not to:
                   </p>
-                  <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1 ml-4">
-                    <li>Post illegal or harmful content</li>
-                    <li>Scam or defraud other users</li>
-                    <li>Share false information</li>
+                  <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300">
+                    <li>Post false or misleading information</li>
+                    <li>Use the platform for illegal activities</li>
+                    <li>Spam or send unsolicited messages</li>
                     <li>Abuse or harass others</li>
                     <li>Violate intellectual property rights</li>
                   </ul>
                 </section>
 
-                </section>
-
-                {/* 5. Privacy */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     5. Privacy
@@ -163,17 +108,15 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 6. Limitation of Liability */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    6. Limitation of Liability</h2>
+                    6. Limitation of Liability
+                  </h2>
                   <p className="text-gray-700 dark:text-gray-300">
-                    ToolNTask is a platform connecting users. We are not responsible for the quality, 
-                    safety, or completion of tasks. Our liability is limited to the maximum extent allowed by law.
+                    ToolNTask is not responsible for disputes between users. We provide the platform but do not guarantee the quality of tools or services. Use at your own risk.
                   </p>
                 </section>
 
-                {/* 7. Account Termination */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     7. Account Termination
@@ -184,7 +127,6 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 8. Changes */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     8. Changes to Terms
@@ -195,14 +137,13 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 9. Contact */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     9. Contact Us
                   </h2>
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                     <p className="text-gray-700 dark:text-gray-300">
-                      <strong>Email:</strong> support@toolntask.com<br/>
+                      <strong>Email:</strong> toolntask@gmail.com<br/>
                       <strong>Phone:</strong> +94 76 112 0457<br/>
                       <strong>Address:</strong> Colombo, Sri Lanka
                     </p>
@@ -213,7 +154,6 @@ export default function TermsAndConditions() {
             </div>
           </div>
 
-          {/* Governing Law */}
           <div className="text-center mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <p className="text-sm text-blue-700 dark:text-blue-300">
               These terms are governed by the laws of Sri Lanka. 
