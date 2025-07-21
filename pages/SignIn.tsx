@@ -108,18 +108,20 @@ export default function SignIn() {
             });
             
             const createData = await createResponse.json();
+            console.log('Create account response:', createData);
             
             if (createResponse.ok && createData.email) {
               loginIdentifier = createData.email;
-              console.log(`✅ Created new account for phone: ${cleanedInput}`);
+              console.log(`✅ Created new account for phone: ${cleanedInput} -> Email: ${createData.email}`);
             } else {
-              setError('Unable to create account with this phone number. Please use your email address to sign in.');
+              console.error('Failed to create account:', createData);
+              setError(`Unable to create account: ${createData.message || 'Unknown error'}`);
               setLoading(false);
               return;
             }
           } catch (createError) {
             console.error('Error creating phone account:', createError);
-            setError('Phone number not found in our records. Please register first or use your email address.');
+            setError('Error creating account. Please try again or use your email address.');
             setLoading(false);
             return;
           }
