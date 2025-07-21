@@ -1,5 +1,10 @@
 import Navigation from '../src/components/Navigation';
-import Footer from '../src/components/Footer';
+imp  // Simplified language options: English, Sinhala, Tamil only
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
+    { code: 'ta', name: 'தமிழ்', flag: '🇱🇰' }
+  ];oter from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
