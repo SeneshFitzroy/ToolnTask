@@ -9,6 +9,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import Image from 'next/image';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 export default function About() {
   const { theme } = useTheme();
