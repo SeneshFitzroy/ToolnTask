@@ -322,7 +322,7 @@ export default function About() {
                   )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Mandira De Silva</h3>
-                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>Founder & CEO</p>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>{t('founderCeo')}</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Passionate about building communities and creating sustainable solutions for Sri Lankan neighborhoods.
                 </p>
@@ -351,7 +351,7 @@ export default function About() {
                   )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Senesh Fitzroy</h3>
-                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>CTO</p>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>{t('cto')}</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Tech enthusiast dedicated to creating seamless user experiences and innovative solutions.
                 </p>
