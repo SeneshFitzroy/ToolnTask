@@ -13,10 +13,12 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'tasks' | 'tools'>('all');
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
