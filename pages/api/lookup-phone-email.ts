@@ -61,41 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         
-        // For phone-based accounts, prefer the most recent reset account if it exists
-        // Check for any reset accounts for this phone
-        const allResetQuery = query(usersRef, where('phone', '==', phoneFormat), where('isResetAccount', '==', true));
-        const allResetSnapshot = await getDocs(allResetQuery);
-        
-        if (!allResetSnapshot.empty) {
-          // Find the most recent reset account by resetTimestamp
-          let mostRecentReset: Record<string, any> | null = null;
-          let latestTimestamp = 0;
-          
-          allResetSnapshot.docs.forEach(doc => {
-            const data = doc.data();
-            const timestamp = data.resetTimestamp || 0;
-            if (timestamp > latestTimestamp) {
-              latestTimestamp = timestamp;
-              mostRecentReset = data;
-            }
-          });
-          
-          if (mostRecentReset && mostRecentReset.authEmail) {
-            console.log(`✅ Found most recent reset account - Phone: ${mostRecentReset.phone}, AuthEmail: ${mostRecentReset.authEmail}`);
-            console.log(`📧 Returning most recent reset login email: ${mostRecentReset.authEmail}`);
-            
-            return res.status(200).json({
-              success: true,
-              email: mostRecentReset.authEmail,
-              phone: mostRecentReset.phone,
-              authEmail: mostRecentReset.authEmail,
-              isResetAccount: true,
-              resetTimestamp: mostRecentReset.resetTimestamp
-            });
-          }
-        }
-        
-        // Otherwise, use the original account
+        // Use the auth email for login
         const loginEmail = userData.authEmail || userData.email;
         
         console.log(`✅ Found user - Phone: ${userData.phone}, AuthEmail: ${userData.authEmail}, Email: ${userData.email}`);

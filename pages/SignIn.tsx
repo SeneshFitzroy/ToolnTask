@@ -81,13 +81,27 @@ export default function SignIn() {
       if (isValidPhone) {
         console.log(`📱 Phone login attempt: ${cleanedInput}`);
         
+        // Normalize phone number to match registration format (94xxxxxxxxx)
+        let normalizedPhone = cleanedInput;
+        if (cleanedInput.startsWith('+94')) {
+          normalizedPhone = cleanedInput.replace('+94', '94');
+        } else if (cleanedInput.startsWith('0094')) {
+          normalizedPhone = cleanedInput.replace('0094', '94');
+        } else if (cleanedInput.startsWith('0')) {
+          normalizedPhone = '94' + cleanedInput.substring(1);
+        } else if (!cleanedInput.startsWith('94')) {
+          normalizedPhone = '94' + cleanedInput;
+        }
+        
+        console.log(`📱 Normalized phone for lookup: ${normalizedPhone}`);
+        
         // Look up the actual email for this phone number
         const response = await fetch('/api/lookup-phone-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ phone: cleanedInput }),
+          body: JSON.stringify({ phone: normalizedPhone }),
         });
 
         if (response.ok) {
