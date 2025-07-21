@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
-import { db } from '../../src/lib/firebase';
+import { collection, query, where, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../../src/lib/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -72,29 +73,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
     } else if (phone && verified) {
-      // Handle phone-based password reset with dedicated API
-      const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/phone-password-update`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone: phone,
-          newPassword: newPassword
-        }),
-      });
+      // Handle phone-based password reset - create/update user account
+      try {
+        const response = await fetch(`${req.headers.origin}/api/create-phone-account`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phone: phone,
+            password: newPassword
+          }),
+        });
 
-      const result = await response.json();
-      
-      if (!response.ok) {
-        return res.status(response.status).json(result);
+        const result = await response.json();
+        
+        if (!response.ok) {
+          return res.status(response.status).json(result);
+        }
+        
+        return res.status(200).json({
+          message: result.message,
+          email: result.email,
+          phone: result.phone
+        });
+      } catch (error) {
+        console.error('Error calling create-phone-account:', error);
+        return res.status(500).json({ 
+          message: 'Error creating phone account. Please try again.' 
+        });
       }
-      
-      return res.status(200).json({
-        message: 'Password updated successfully',
-        email: result.email,
-        phone: result.phone
-      });
     } else {
       return res.status(400).json({ message: 'Invalid reset method' });
     }
