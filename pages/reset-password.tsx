@@ -117,7 +117,7 @@ export default function ResetPassword() {
           setMessage('Password reset successful! You can now sign in with your new password.');
           
           setTimeout(() => {
-            router.push('/SignIn?message=password-reset-success');
+            router.replace('/SignIn?message=password-reset-success');
           }, 2000);
         } else {
           // Handle specific error cases
