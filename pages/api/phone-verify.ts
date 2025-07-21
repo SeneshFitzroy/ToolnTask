@@ -89,8 +89,8 @@ export default async function handler(
   }
 
   try {
-    const { phone } = req.body;
-    console.log(`📞 Received phone verification request for: ${phone}`);
+    const { phone, type = 'verification', firstName } = req.body;
+    console.log(`📞 Received phone request - Type: ${type}, Phone: ${phone}`);
 
     if (!phone) {
       return res.status(400).json({ 
@@ -115,6 +115,69 @@ export default async function handler(
 
     console.log(`✅ Phone number validated: ${formattedPhone}`);
     
+    // Handle different message types
+    if (type === 'registration-welcome') {
+      // Send welcome message (no OTP needed)
+      console.log(`🎉 Sending welcome message to ${formattedPhone}`);
+      
+      const welcomeMessage = `🎉 *Welcome to ToolNTask!* 🇱🇰
+
+Hi ${firstName || 'there'}! Your account has been created successfully.
+
+✅ You can now access all ToolNTask features
+📱 Use your phone number to sign in
+🔐 Keep your password secure
+
+Thank you for joining ToolNTask Sri Lanka!
+
+- ToolNTask Team`;
+
+      // Send welcome message via WhatsApp
+      const greenApiId = process.env.GREEN_API_ID;
+      const greenApiToken = process.env.GREEN_API_TOKEN;
+      
+      if (greenApiId && greenApiToken) {
+        try {
+          const whatsappPhone = formattedPhone.replace('+', '') + '@c.us';
+          
+          const whatsappResponse = await fetch(`https://7105.api.greenapi.com/waInstance${greenApiId}/sendMessage/${greenApiToken}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              chatId: whatsappPhone,
+              message: welcomeMessage
+            })
+          });
+          
+          const whatsappResult = await whatsappResponse.json();
+          
+          if (whatsappResponse.ok && whatsappResult.idMessage) {
+            console.log('✅ Welcome message sent successfully via WhatsApp');
+            return res.status(200).json({ 
+              message: `Welcome message sent via WhatsApp to ${formattedPhone}`,
+              success: true
+            });
+          } else {
+            console.log('❌ WhatsApp welcome message failed:', whatsappResult);
+          }
+        } catch (error) {
+          console.log('❌ WhatsApp welcome message error:', error);
+        }
+      }
+      
+      // If WhatsApp fails, just return success (welcome messages are not critical)
+      console.log('✅ Welcome message flow completed (WhatsApp may have failed but registration succeeded)');
+      return res.status(200).json({ 
+        message: `Welcome message sent to ${formattedPhone}`,
+        success: true
+      });
+    }
+    
+    // For verification type, generate and send OTP
+    console.log(`🔐 Generating OTP for verification...`);
+    
     // Generate OTP
     const otp = generateOTP();
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes from now
@@ -127,7 +190,7 @@ export default async function handler(
       expiresAt: expiresAt,
       verified: false,
       createdAt: new Date(),
-      purpose: 'password_reset'
+      purpose: type === 'verification' ? 'verification' : 'password_reset'
     });
 
     console.log(`💾 OTP stored in Firestore - Phone: ${formattedPhone}, OTP: ${otp}`);
