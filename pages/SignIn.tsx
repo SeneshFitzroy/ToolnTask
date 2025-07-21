@@ -134,9 +134,32 @@ export default function SignIn() {
               // Redirect to home page
               router.push('/');
               return;
+            } else {
+              // If reset password check returned false, this means user has reset password
+              // but provided wrong password - don't allow Firebase Auth fallback
+              const userCheckResponse = await fetch('/api/check-reset-password', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                  email: loginIdentifier, 
+                  password: 'CHECK_IF_USER_HAS_RESET' 
+                }),
+              });
+              
+              if (userCheckResponse.ok) {
+                const userCheckData = await userCheckResponse.json();
+                if (userCheckData.hasResetPassword) {
+                  throw new Error('Please use your new password from the password reset email');
+                }
+              }
             }
           }
-        } catch {
+        } catch (error: any) {
+          if (error.message === 'Please use your new password from the password reset email') {
+            throw error;
+          }
           console.log('No reset password found, proceeding with normal Firebase Auth');
         }
       }
