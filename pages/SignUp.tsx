@@ -240,15 +240,21 @@ export default function SignUp() {
       let normalizedPhone = null;
       if (registrationMethod === 'phone' && formData.phone) {
         const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, '');
+        
+        // Use the same format as the Firebase Auth email (94xxxxxxxxx)
         if (cleanPhone.startsWith('+94')) {
-          normalizedPhone = '0' + cleanPhone.substring(3);
+          normalizedPhone = cleanPhone.replace('+94', '94');
         } else if (cleanPhone.startsWith('0094')) {
-          normalizedPhone = '0' + cleanPhone.substring(4);
-        } else if (cleanPhone.startsWith('94')) {
-          normalizedPhone = '0' + cleanPhone.substring(2);
+          normalizedPhone = cleanPhone.replace('0094', '94');
+        } else if (cleanPhone.startsWith('0')) {
+          normalizedPhone = '94' + cleanPhone.substring(1);
+        } else if (!cleanPhone.startsWith('94')) {
+          normalizedPhone = '94' + cleanPhone;
         } else {
           normalizedPhone = cleanPhone;
         }
+        
+        console.log(`📱 Phone normalized for storage: ${normalizedPhone} (matches auth email format)`);
       }
 
       // Save user data to Firestore with only the selected contact method
@@ -258,13 +264,13 @@ export default function SignUp() {
         authEmail: string;
         primaryContact: 'email' | 'phone';
         displayName: string;
-        createdAt: any;
-        updatedAt: any;
+        createdAt: ReturnType<typeof serverTimestamp>;
+        updatedAt: ReturnType<typeof serverTimestamp>;
         isActive: boolean;
         role: string;
         emailVerified: boolean;
         profileComplete: boolean;
-        agreedToTermsAt: any;
+        agreedToTermsAt: ReturnType<typeof serverTimestamp>;
         email?: string | null;
         phone?: string | null;
       } = {
