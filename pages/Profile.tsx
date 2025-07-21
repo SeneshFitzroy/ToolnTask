@@ -585,6 +585,7 @@ export default function Profile() {
                     </div>
                   </div>
 
+                  {/* Language Settings Section */}
                   <div>
                     <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
                       Language Settings
@@ -594,7 +595,7 @@ export default function Profile() {
                         <label className="block text-sm font-medium mb-3" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                           Select Language
                         </label>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                           {languages.map((language) => (
                             <button
                               key={language.code}
@@ -617,53 +618,6 @@ export default function Profile() {
                       <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
                         <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                           Choose your preferred language for the interface. Changes will be applied immediately.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Account Management Section */}
-                  <div>
-                    <h3 className="text-lg font-semibold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                      Account Management
-                    </h3>
-                    <div className="space-y-4">
-                      <div className="p-4 rounded-lg border" style={{ 
-                        backgroundColor: theme === 'dark' ? '#1f1f1f' : '#F9FAFB',
-                        borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
-                      }}>
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                              Sign Out
-                            </h4>
-                            <p className="text-sm mt-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                              Sign out of your account securely
-                            </p>
-                          </div>
-                          <button
-                            onClick={handleSignOut}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105"
-                            style={{ 
-                              backgroundColor: '#dc2626',
-                              color: '#FFFFFF',
-                              border: 'none'
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.backgroundColor = '#b91c1c';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.backgroundColor = '#dc2626';
-                            }}
-                          >
-                            <LogOut className="h-4 w-4" />
-                            Sign Out
-                          </button>
-                        </div>
-                      </div>
-                      <div className="pt-4 border-t" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
-                        <p className="text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                          After signing out, you&apos;ll need to log in again to access your account.
                         </p>
                       </div>
                     </div>
@@ -821,7 +775,7 @@ export default function Profile() {
                           No notifications yet
                         </p>
                         <p className="text-sm" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
-                          You'll see notifications here when you have new activity.
+                          You&apos;ll see notifications here when you have new activity.
                         </p>
                       </div>
                     ) : (
