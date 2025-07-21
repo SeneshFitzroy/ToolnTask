@@ -33,10 +33,30 @@ export default function SignIn() {
       setRememberMe(true);
     }
     
+    // Handle post-registration success
     if (router.query.message === 'registration-success') {
-      setSuccessMessage('Account created successfully. Please sign in to access your account.');
+      setSuccessMessage('🎉 Account created successfully! Please sign in to access your account.');
+      
+      // Auto-fill email from registration if available
+      const registrationEmail = localStorage.getItem('lastRegistrationEmail');
+      const registrationPhone = localStorage.getItem('lastRegistrationPhone');
+      
+      if (registrationEmail) {
+        setFormData(prev => ({ ...prev, email: registrationEmail }));
+        localStorage.removeItem('lastRegistrationEmail');
+      } else if (registrationPhone) {
+        setFormData(prev => ({ ...prev, email: registrationPhone }));
+        localStorage.removeItem('lastRegistrationPhone');
+      }
     } else if (router.query.message === 'password-reset-success') {
-      setSuccessMessage('Password updated successfully. You can now sign in with your new password.');
+      setSuccessMessage('🔐 Password updated successfully! You can now sign in with your new password.');
+      
+      // Auto-fill email from password reset if available
+      const resetEmail = localStorage.getItem('lastPasswordResetEmail');
+      if (resetEmail) {
+        setFormData(prev => ({ ...prev, email: resetEmail }));
+        localStorage.removeItem('lastPasswordResetEmail');
+      }
     }
   }, [router.query]);
 
@@ -77,35 +97,39 @@ export default function SignIn() {
     try {
       let loginIdentifier = formData.email.trim();
       
-      // If it's a phone number, find the actual email associated with it
+      // If it's a phone number, find the actual auth email for Firebase
       if (isValidPhone) {
         console.log(`📱 Phone login attempt: ${cleanedInput}`);
         
-        // Look up the actual email for this phone number
-        const response = await fetch('/api/lookup-phone-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ phone: cleanedInput }),
-        });
+        try {
+          const response = await fetch('/api/lookup-phone-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: cleanedInput }),
+          });
 
-        if (response.ok) {
-          const data = await response.json();
-          if (data.email) {
-            loginIdentifier = data.email;
-            console.log(`📧 Found email for phone: ${data.email}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.email) {
+              loginIdentifier = data.email;
+              console.log(`📧 Found auth email for phone: ${data.email}`);
+            } else {
+              throw new Error('Phone number not found in our system');
+            }
           } else {
-            throw new Error('Phone number not found');
+            throw new Error('Phone number not found in our system');
           }
-        } else {
-          throw new Error('Phone number not found');
+        } catch (lookupError) {
+          console.error('Phone lookup failed:', lookupError);
+          throw new Error('Phone number not found. Please verify your phone number or create an account.');
         }
       }
+
+      // Comprehensive login attempt with authentication fix support
+      console.log(`🔑 Attempting login with: ${loginIdentifier}`);
       
-      // Try Firebase Auth login first
       try {
-        console.log(`🔑 Attempting Firebase Auth with ${loginIdentifier}`);
+        // Try Firebase Auth login
         await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
         console.log('✅ Firebase Auth successful');
         
@@ -118,80 +142,85 @@ export default function SignIn() {
           localStorage.removeItem('rememberMe');
         }
         
-        console.log('🔄 Redirecting to homepage with page refresh');
+        console.log('🔄 Redirecting to homepage');
         window.location.href = '/';
         return;
         
       } catch (firebaseError: unknown) {
         const authError = firebaseError as { code?: string; message?: string };
-        console.log('❌ Firebase Auth failed, checking reset password system:', authError.code);
+        console.log('❌ Firebase Auth failed:', authError.code);
         
-        // If Firebase Auth fails, check our reset password system
-        if (authError.code === 'auth/wrong-password' || authError.code === 'auth/user-not-found' || authError.code === 'auth/invalid-credential') {
+        // For authentication failures, try to fix the user auth state
+        if (authError.code === 'auth/wrong-password' || 
+            authError.code === 'auth/user-not-found' || 
+            authError.code === 'auth/invalid-credential') {
+          
+          console.log('🔧 Attempting authentication repair...');
+          
           try {
-            const resetResponse = await fetch('/api/check-reset-password', {
+            // Check and fix user authentication
+            const fixResponse = await fetch('/api/fix-user-auth', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ 
-                email: loginIdentifier, 
-                password: formData.password 
+                email: loginIdentifier,
+                phone: isValidPhone ? cleanedInput : null,
+                action: 'fix'
               })
             });
             
-            if (resetResponse.ok) {
-              const resetData = await resetResponse.json();
+            if (fixResponse.ok) {
+              const fixData = await fixResponse.json();
+              console.log('✅ Authentication repair successful:', fixData.fixes);
               
-              if (resetData.passwordMatch && resetData.isResetPassword) {
-                console.log('✅ Reset password verification successful');
-                
-                // Sync Firebase Auth with the reset password
-                console.log('🔄 Syncing Firebase Auth...');
-                const syncResponse = await fetch('/api/sync-firebase-auth', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ 
-                    email: loginIdentifier, 
-                    password: formData.password 
-                  })
-                });
-                
-                if (syncResponse.ok) {
-                  console.log('✅ Firebase Auth sync successful');
-                  
-                  // Now try Firebase Auth again
-                  await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-                  console.log('✅ Firebase Auth successful after sync');
-                  
-                  // Handle "Remember me" functionality
-                  if (rememberMe) {
-                    localStorage.setItem('rememberedEmail', formData.email.trim());
-                    localStorage.setItem('rememberMe', 'true');
-                  } else {
-                    localStorage.removeItem('rememberedEmail');
-                    localStorage.removeItem('rememberMe');
-                  }
-                  
-                  console.log('🔄 Redirecting to homepage with page refresh');
-                  window.location.href = '/';
-                  return;
+              // Try Firebase Auth again after fix
+              await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+              console.log('✅ Firebase Auth successful after repair');
+              
+              // Handle "Remember me" functionality
+              if (rememberMe) {
+                localStorage.setItem('rememberedEmail', formData.email.trim());
+                localStorage.setItem('rememberMe', 'true');
+              } else {
+                localStorage.removeItem('rememberedEmail');
+                localStorage.removeItem('rememberMe');
+              }
+              
+              console.log('🔄 Redirecting to homepage');
+              window.location.href = '/';
+              return;
+              
+            } else {
+              console.log('❌ Authentication repair failed');
+              // Check if this is a reset password case
+              const resetResponse = await fetch('/api/check-reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                  email: loginIdentifier, 
+                  password: formData.password 
+                })
+              });
+              
+              if (resetResponse.ok) {
+                const resetData = await resetResponse.json();
+                if (resetData.passwordMatch) {
+                  throw new Error('Your password was recently reset. Please try logging in again in a few moments, or contact support if the issue persists.');
                 } else {
-                  console.error('❌ Firebase Auth sync failed');
-                  throw new Error('Failed to sync authentication. Please try again.');
+                  throw new Error('Please use your new password from the password reset email.');
                 }
-              } else if (resetData.hasResetPassword && !resetData.passwordMatch) {
-                throw new Error('Please use your new password from the password reset email');
               }
             }
-          } catch (resetError: unknown) {
-            const errorMessage = resetError instanceof Error ? resetError.message : 'Unknown error';
-            if (errorMessage.includes('password reset email') || errorMessage.includes('sync authentication')) {
+          } catch (repairError: unknown) {
+            const errorMessage = repairError instanceof Error ? repairError.message : 'Authentication repair failed';
+            if (errorMessage.includes('password reset email') || errorMessage.includes('recently reset')) {
               throw new Error(errorMessage);
             }
-            console.log('Reset password check failed, using original Firebase error');
+            console.error('Authentication repair error:', repairError);
           }
         }
         
-        // Re-throw the original Firebase error if no reset password workaround
+        // Re-throw the original Firebase error
         throw authError;
       }
     } catch (error: unknown) {

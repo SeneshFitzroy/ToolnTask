@@ -421,6 +421,13 @@ export default function SignUp() {
       
       // Show success message briefly before redirect
       setTimeout(() => {
+        // Save registration info for auto-fill in sign in
+        if (registrationMethod === 'email') {
+          localStorage.setItem('lastRegistrationEmail', formData.email.trim());
+        } else {
+          localStorage.setItem('lastRegistrationPhone', formData.phone.trim());
+        }
+        
         // Clear saved form data since registration was successful
         localStorage.removeItem('signupFormData');
         localStorage.removeItem('signupRegistrationMethod');
