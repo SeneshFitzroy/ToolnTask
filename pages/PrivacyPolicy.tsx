@@ -246,7 +246,7 @@ export default function PrivacyAndSafety() {
                         Transaction Safety
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Use Platform Payments:</strong> Always process payments through ToolNTask for protection</li>
+                        <li>• <strong>Use Platform Services:</strong> Always use ToolNTask for advertisement and promotion services</li>
                         <li>• <strong>Document Everything:</strong> Take photos of tools/work before and after</li>
                         <li>• <strong>Clear Agreements:</strong> Ensure all terms are clearly defined and agreed upon</li>
                         <li>• <strong>Report Issues:</strong> Contact support immediately if problems arise</li>
