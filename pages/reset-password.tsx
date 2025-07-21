@@ -66,6 +66,10 @@ export default function ResetPassword() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prevent multiple submissions
+    if (loading) return;
+    
     if (!password || !confirmPassword) {
       setError('Please fill in all fields');
       return;
@@ -91,6 +95,7 @@ export default function ResetPassword() {
 
     setLoading(true);
     setError('');
+    setMessage(''); // Clear any previous messages
 
     try {
       // For phone-based reset, use the new phone password reset API
@@ -146,8 +151,9 @@ export default function ResetPassword() {
         if (response.ok) {
           setMessage('Password updated successfully. Redirecting to sign in...');
           
+          // Use a single redirect without multiple timeouts
           setTimeout(() => {
-            router.push('/SignIn?message=password-reset-success');
+            router.replace('/SignIn?message=password-reset-success');
           }, 2000);
         } else {
           setError(data.message || 'Error updating password. Please try again.');
