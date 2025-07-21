@@ -5,11 +5,12 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { updateProfile, onAuthStateChanged, User, signOut } from 'firebase/auth';
 import { doc, updateDoc, getDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { auth, db, storage } from '../src/lib/firebase';
-import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut, Camera, Upload, X } from 'lucide-react';
+import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
 
 interface SavedGig {
   id: string;
