@@ -432,7 +432,7 @@ export default function SignUp() {
                 >
                   <span className="text-lg">✉️</span>
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'email' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
-                    Email Primary
+                    Email Registration
                   </span>
                   {registrationMethod === 'email' && (
                     <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
@@ -458,7 +458,7 @@ export default function SignUp() {
                 >
                   <span className="text-lg">📱</span>
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
-                    Phone Primary
+                    Phone Registration
                   </span>
                   {registrationMethod === 'phone' && (
                     <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
