@@ -1,5 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { collection, qu    // Use ensure-auth API to properly set up Firebase Auth
+    try {
+      console.log(`🔧 Using ensure-auth to set up Firebase Auth for: ${userEmail}`);
+      
+      const ensureResponse = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/ensure-auth`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userEmail,
+          password: newPassword
+        })
+      });
+      
+      if (ensureResponse.ok) {
+        const ensureData = await ensureResponse.json();
+        console.log(`✅ Ensure-auth successful for: ${userEmail}`, ensureData.fixes);
+      } else {
+        console.log(`⚠️ Ensure-auth failed, but continuing...`);
+      }
+    } catch (ensureError) {
+      console.log(`⚠️ Ensure-auth request failed:`, ensureError);
+    }Docs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword, signOut, deleteUser } from 'firebase/auth';
 
