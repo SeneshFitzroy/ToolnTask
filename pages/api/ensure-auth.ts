@@ -133,6 +133,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Now ensure Firebase Auth is properly set up
     let firebaseUser = null;
+    
+    if (!adminAuth) {
+      console.log('⚠️ Firebase Admin not available, skipping Firebase Auth operations');
+      return res.status(200).json({
+        success: true,
+        message: 'Password updated in Firestore only (Firebase Admin not configured)',
+        fixes: ['firestore-updated'],
+        skipFirebaseAuth: true
+      });
+    }
+    
     try {
       firebaseUser = await adminAuth.getUserByEmail(authEmail);
       console.log(`✅ Firebase Auth user exists: ${firebaseUser.uid}`);
