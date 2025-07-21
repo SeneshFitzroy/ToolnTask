@@ -48,6 +48,7 @@ export default function Profile() {
     email: '',
     phone: '',
     displayName: '',
+    profilePhotoURL: '',
     createdAt: null,
     isActive: true,
     role: 'user'
@@ -56,6 +57,8 @@ export default function Profile() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [savedGigs, setSavedGigs] = useState<SavedGig[]>([]);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [showPhotoUpload, setShowPhotoUpload] = useState(false);
   
   // Simplified language options: English, Sinhala, Tamil only
   const languages = [
@@ -94,6 +97,7 @@ export default function Profile() {
           email: userData.email || user.email || '',
           phone: userData.phone || '',
           displayName: userData.displayName || user.displayName || '',
+          profilePhotoURL: userData.profilePhotoURL || user.photoURL || '',
           createdAt: userData.createdAt,
           isActive: userData.isActive || true,
           role: userData.role || 'user'
