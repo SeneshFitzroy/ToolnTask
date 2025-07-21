@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
-import { db, auth } from '../../src/lib/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { db } from '../../src/lib/firebase';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
