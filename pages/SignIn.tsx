@@ -150,14 +150,8 @@ export default function SignIn() {
                 localStorage.removeItem('rememberMe');
               }
               
-              // Check if user is admin and redirect accordingly
-              if (resetData.authEmail === 'admin@toolntask.com') {
-                console.log('🔑 Admin user detected, redirecting to admin dashboard');
-                router.push('/admin/AdminDashboard');
-              } else {
-                // Redirect to home page for regular users
-                router.push('/');
-              }
+              // Redirect to home page
+              router.push('/');
               return;
             } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
               // User has reset password but provided wrong password - block Firebase fallback
@@ -191,14 +185,8 @@ export default function SignIn() {
         localStorage.removeItem('rememberMe');
       }
       
-      // Check if user is admin and redirect accordingly
-      if (loginIdentifier === 'admin@toolntask.com') {
-        console.log('🔑 Admin user detected, redirecting to admin dashboard');
-        router.push('/admin/AdminDashboard');
-      } else {
-        // Redirect to home page for regular users
-        router.push('/');
-      }
+      // Redirect to home page
+      router.push('/');
     } catch (error: unknown) {
       console.error('Sign in error:', error);
       
@@ -292,23 +280,6 @@ export default function SignIn() {
               <p className="flex items-center justify-center gap-1 flex-wrap" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                 Login to your <Logo size="small" /> account
               </p>
-            </div>
-
-            {/* Admin Credentials Notice */}
-            <div className="mb-6 p-4 rounded-lg border" style={{ 
-              backgroundColor: theme === 'dark' ? '#1f2937' : '#f3f4f6',
-              borderColor: theme === 'dark' ? '#374151' : '#d1d5db'
-            }}>
-              <h3 className="font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                🔐 Admin Access Credentials
-              </h3>
-              <div className="text-sm space-y-1" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                <div><strong>Email:</strong> admin@toolntask.com</div>
-                <div><strong>Password:</strong> AdminToolnTask2025!</div>
-                <div className="text-xs mt-2" style={{ color: theme === 'dark' ? '#9CA3AF' : '#9CA3AF' }}>
-                  Use these credentials to access the admin dashboard
-                </div>
-              </div>
             </div>
 
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>

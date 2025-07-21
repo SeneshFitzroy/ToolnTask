@@ -9,11 +9,9 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import Image from 'next/image';
-import { useLanguage } from '../src/contexts/LanguageContext';
 
 export default function About() {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [ceoImageError, setCeoImageError] = useState(false);
@@ -227,7 +225,7 @@ export default function About() {
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>{t('ourMission')}</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Our Mission</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 
@@ -322,7 +320,7 @@ export default function About() {
                   )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Mandira De Silva</h3>
-                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>{t('founderCeo')}</p>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>Founder & CEO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Passionate about building communities and creating sustainable solutions for Sri Lankan neighborhoods.
                 </p>
@@ -351,7 +349,7 @@ export default function About() {
                   )}
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Senesh Fitzroy</h3>
-                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>{t('cto')}</p>
+                <p className="text-base font-semibold mb-3" style={{ color: '#FF5E14' }}>CTO</p>
                 <p className="text-sm sm:text-base leading-relaxed" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   Tech enthusiast dedicated to creating seamless user experiences and innovative solutions.
                 </p>

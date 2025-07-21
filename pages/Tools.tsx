@@ -4,7 +4,6 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { useLanguage } from '../src/contexts/LanguageContext';
 
 interface Tool {
   id: string;
@@ -38,7 +37,6 @@ export default function Tools() {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tools] = useState<Tool[]>(mockTools);
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

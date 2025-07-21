@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Globe, ChevronDown } from 'lucide-react';
-import { useLanguage, Language } from '../contexts/LanguageContext';
 
-interface LanguageOption {
-  code: Language;
+interface Language {
+  code: string;
   name: string;
   nativeName: string;
   flag: string;
 }
 
-const languages: LanguageOption[] = [
+const languages: Language[] = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
   { code: 'si', name: 'Sinhala', nativeName: 'සිංහල', flag: '🇱🇰' },
   { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇱🇰' }
@@ -18,14 +17,21 @@ const languages: LanguageOption[] = [
 
 const LanguageSelector: React.FC = () => {
   const { theme } = useTheme();
-  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
   const [mounted, setMounted] = useState(false);
-
-  const selectedLanguage = languages.find(l => l.code === language) || languages[0];
 
   useEffect(() => {
     setMounted(true);
+    
+    // Load saved language from localStorage
+    const savedLang = localStorage.getItem('selectedLanguage');
+    if (savedLang) {
+      const lang = languages.find(l => l.code === savedLang);
+      if (lang) {
+        setSelectedLanguage(lang);
+      }
+    }
 
     // Close dropdown when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,10 +45,9 @@ const LanguageSelector: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleLanguageSelect = (languageOption: LanguageOption) => {
-    setLanguage(languageOption.code);
+  const handleLanguageSelect = (language: Language) => {
+    setSelectedLanguage(language);
     setIsOpen(false);
-  };
     localStorage.setItem('selectedLanguage', language.code);
     
     // Here you can implement actual translation logic
