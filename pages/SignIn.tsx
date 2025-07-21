@@ -170,8 +170,11 @@ export default function SignIn() {
       }
       
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
+      console.log(`🔐 Attempting Firebase authentication with email: ${loginIdentifier}`);
+      console.log(`🔐 Password length: ${formData.password.length} characters`);
+      
       await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-      console.log('User signed in successfully');
+      console.log('✅ User signed in successfully with Firebase');
       
       // Handle "Remember me" functionality
       if (rememberMe) {
