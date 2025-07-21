@@ -127,9 +127,9 @@ export default function PrivacyAndSafety() {
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Account Information:</strong> Name, email, phone number, and profile photo</li>
                         <li>• <strong>Identity Verification:</strong> Government ID for enhanced security (optional)</li>
-                        <li>• <strong>Usage Data:</strong> Tasks posted, tools rented, transaction history</li>
+                        <li>• <strong>Usage Data:</strong> Tasks posted, tools advertised, promotion history</li>
                         <li>• <strong>Location Data:</strong> General location for task/tool matching (with consent)</li>
-                        <li>• <strong>Communication:</strong> Messages between users for transaction purposes</li>
+                        <li>• <strong>Communication:</strong> Messages between users for advertisement and promotion purposes</li>
                       </ul>
                     </div>
                   </div>
