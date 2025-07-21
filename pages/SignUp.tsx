@@ -252,7 +252,22 @@ export default function SignUp() {
       }
 
       // Save user data to Firestore with only the selected contact method
-      const userData: any = {
+      const userData: {
+        firstName: string;
+        lastName: string;
+        authEmail: string;
+        primaryContact: 'email' | 'phone';
+        displayName: string;
+        createdAt: any;
+        updatedAt: any;
+        isActive: boolean;
+        role: string;
+        emailVerified: boolean;
+        profileComplete: boolean;
+        agreedToTermsAt: any;
+        email?: string | null;
+        phone?: string | null;
+      } = {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
         authEmail: authEmail, // Store the auth email for reference
