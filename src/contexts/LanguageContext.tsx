@@ -86,7 +86,7 @@ const translations: Translations = {
   
   // Messages
   updateSuccess: { en: 'Profile updated successfully', si: 'පැතිකඩ සාර්ථකව යාවත්කාලීන කරන ලදී', ta: 'சுயவிவரம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது' },
-  updateError: { en: 'Failed to update profile', si: 'පැතිකඩ යාවත්කාලීන කිරීම අසාර්ථකයි', ta: 'சுயவிவரம் புதुப்பிப்பதில் தோல்வி' },
+  updateError: { en: 'Failed to update profile', si: 'පැතිකඩ යාවත්කාලීන කිරීම අසාර්ථකයි', ta: 'சுயவிவரம் புதுப்பிப்பதில் தோல்வி' },
   
   // Forms
   saveChanges: { en: 'Save Changes', si: 'වෙනස්කම් සුරකින්න', ta: 'மாற்றங்களைச் சேமி' },
@@ -102,7 +102,7 @@ const translations: Translations = {
   markAllAsRead: { en: 'Mark All as Read', si: 'සියල්ල කියවූ ලෙස සලකුණු කරන්න', ta: 'அனைத்தையும் படித்ததாகக் குறிக்கவும்' },
   
   // Create Task/Tool
-  createTask: { en: 'Create Task', si: 'කාර්යය සාදන්න', ta: 'பணி உருவாக்கு' },
+  createTask: { en: 'Create Task', si: 'කාර්යය සාදන්න', ta: 'பணி உருவாக்கু' },
   createTool: { en: 'Create Tool', si: 'උපකරණය සාදන්න', ta: 'கருவி உருவாக்கு' },
   
   // Public Profile
@@ -119,24 +119,24 @@ const translations: Translations = {
   manageUsers: { en: 'Manage Users', si: 'පරිශීලකයින් කළමනාකරණය', ta: 'பயனர்களை நிர்வகிக்கவும்' },
   manageTasks: { en: 'Manage Tasks', si: 'කාර්ය කළමනාකරණය', ta: 'பணிகளை நிர்வகிக்கவும்' },
   manageTools: { en: 'Manage Tools', si: 'උපකරණ කළමනාකරණය', ta: 'கருவிகளை நிர்வகிக்கவும்' },
-  analytics: { en: 'Analytics', si: 'විශ්ලේෂණ', ta: 'பகுப்பாய்வு' },
+  analytics: { en: 'Analytics', si: 'විශ්ලේෂණ', ta: 'பகुப்பாய்வு' },
   
   // Footer
-  privacyPolicy: { en: 'Privacy Policy', si: 'පරිගණක ප්‍රතිපත්තිය', ta: 'தனியுரிமைக் கொள்கை' },
-  termsAndConditions: { en: 'Terms & Conditions', si: 'නියම සහ කොන්දේසි', ta: 'விதிமுறைகள் மற்றும் நிபந்தனைகள்' },
-  contactUs: { en: 'Contact Us', si: 'අප අමතන්න', ta: 'எங்களைத் தொடர்பு கொள்ளுங்கள்' },
+  privacyPolicy: { en: 'Privacy Policy', si: 'පරිගණක ප්‍රතිපත්තිය', ta: 'தனியுரிमைக் कொள்கை' },
+  termsAndConditions: { en: 'Terms & Conditions', si: 'නියම සහ කොන්දේසි', ta: 'விதিमुறैगळ् माற्றुम् निपন्तनैगळ्' },
+  contactUs: { en: 'Contact Us', si: 'අප අමතන්න', ta: 'எங்களைத् तொடर्पு कொळ्ळुংगळ्' },
   
   // Error Messages
-  authRequired: { en: 'Please sign in to access this page', si: 'මෙම පිටුවට ප්‍රවේශ වීමට කරුණාකර ලොග් වන්න', ta: 'இந்தப் பக்கத்தை அணுக உள்நுழைக' },
-  notFound: { en: 'Page not found', si: 'පිටුව හමු නොවීය', ta: 'பக்கம் கிடைக்கவில்லை' },
-  networkError: { en: 'Network error. Please try again.', si: 'ජාල දෝෂය. කරුණාකර නැවත උත්සාහ කරන්න.', ta: 'நெட்வொர்க் பிழை. மீண்டும் முயற்சிக்கவும்.' },
+  authRequired: { en: 'Please sign in to access this page', si: 'මෙම පිටුවට ප්‍රවේශ වීමට කරුණාකර ලොග් වන්න', ta: 'इन्तप् पक्कत्तै अणुक उळ्नुऴैक' },
+  notFound: { en: 'Page not found', si: 'පිටුව හමු නොවීය', ta: 'पक्कम् किडैक्कविल्लै' },
+  networkError: { en: 'Network error. Please try again.', si: 'ජාල දෝෂය. කරුණාකර නැවත උත්සාහ කරන්න.', ta: 'नेट्वॉर्क पिऴै. मीण्डुम् मुयड्सिक्कवुम्.' },
   
   // About Page Content
   aboutUs: { en: 'About Us', si: 'අප ගැන', ta: 'எங்களைப் பற்றி' },
-  ourMission: { en: 'Our Mission', si: 'අපගේ මෙහෙවර', ta: 'எங்கள் நோக்கம்' },
-  ourVision: { en: 'Our Vision', si: 'අපගේ දැක්ම', ta: 'எங்கள் பார்வை' },
-  ceo: { en: 'CEO', si: 'ප්‍රධාන විධායක නිලධාරී', ta: 'தலைமை நிர்வாக அதிகாரி' },
-  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'தலைமை தொழில்நுட்ப அதிகாരி' }
+  ourMission: { en: 'Our Mission', si: 'අපගේ මෙහෙවර', ta: 'எங்கள் நোక்கम்' },
+  ourVision: { en: 'Our Vision', si: 'අපගේ දැක්ම', ta: 'எங்கள் பார्वै' },
+  ceo: { en: 'CEO', si: 'ප්‍රධාන විධායක නිලධාරී', ta: 'தলైमै निर्वाक अधिकारि' },
+  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'तलैमै तொऴिल्नुट्प अधिकारि' }
 };
 
 interface LanguageContextType {
