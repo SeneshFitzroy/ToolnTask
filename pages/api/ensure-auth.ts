@@ -4,9 +4,23 @@ import { db } from '../../src/lib/firebase';
 import { getAuth } from 'firebase-admin/auth';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 
-// Initialize Firebase Admin if not already initialized
+// --- ROBUST FIREBASE ADMIN INITIALIZATION ---
 let adminAuth: ReturnType<typeof getAuth> | null = null;
-if (!getApps().length) {
+
+function initializeAdmin() {
+  if (getApps().length > 0) {
+    if (adminAuth) {
+      return; // Already initialized
+    }
+    try {
+      adminAuth = getAuth();
+      console.log('✅ Firebase Admin re-initialized successfully.');
+    } catch (e) {
+      console.error('🚨 Firebase Admin re-initialization failed:', e);
+    }
+    return;
+  }
+
   try {
     const serviceAccount = {
       projectId: process.env.FIREBASE_PROJECT_ID,
@@ -20,26 +34,37 @@ if (!getApps().length) {
         projectId: process.env.FIREBASE_PROJECT_ID,
       });
       adminAuth = getAuth();
-      console.log('✅ Firebase Admin initialized successfully');
+      console.log('✅ Firebase Admin initialized successfully for the first time.');
     } else {
-      console.log('⚠️ Firebase Admin credentials missing, will skip admin operations');
+      console.log('⚠️ Firebase Admin credentials missing. Admin features will be disabled.');
     }
   } catch (error) {
     console.log('⚠️ Firebase Admin initialization failed:', error);
   }
 }
 
+initializeAdmin();
+// --- END OF INITIALIZATION ---
+
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Set proper JSON headers
   res.setHeader('Content-Type', 'application/json');
-  
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  try {
+  if (!adminAuth) {
+    console.error('🚨 Firebase Admin is not available. Cannot process auth request.');
+    return res.status(503).json({ 
+      success: false, 
+      message: 'Server configuration error: Firebase Admin not available.',
+      fixes: ['firestore-updated'],
+      skipFirebaseAuth: true
+    });
+  }
 
-  const { email, phone, password } = req.body;
+  const { email, password, phone } = req.body;
 
   if ((!email && !phone) || !password) {
     return res.status(400).json({ message: 'Email/phone and password are required' });
