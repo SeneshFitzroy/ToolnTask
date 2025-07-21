@@ -25,6 +25,7 @@ export default function Home() {
     
     // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('🔥 Auth state changed on Home page:', user ? `User: ${user.email}` : 'No user');
       setUser(user);
     });
 

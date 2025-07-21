@@ -23,6 +23,7 @@ const Navigation = () => {
     
     // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('🔥 Auth state changed in Navigation:', user ? `User: ${user.email}` : 'No user');
       setUser(user);
     });
 
