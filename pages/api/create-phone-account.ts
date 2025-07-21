@@ -45,11 +45,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       // Try to create the user with Firebase Auth
+      console.log(`🔐 Attempting to create Firebase Auth user: ${userEmail}`);
+      
       const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
       const firebaseUser = userCredential.user;
       
+      console.log(`✅ Firebase Auth user created: ${firebaseUser.uid}`);
+      
       // Create user document in Firestore
-      await setDoc(doc(db, 'users', firebaseUser.uid), {
+      const userDoc = {
         uid: firebaseUser.uid,
         email: userEmail,
         phone: formattedPhone,
@@ -59,14 +63,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         emailVerified: false,
         phoneVerified: true,
         lastLogin: new Date()
-      });
-
-      console.log(`✅ Created new user successfully: ${userEmail}`);
+      };
+      
+      await setDoc(doc(db, 'users', firebaseUser.uid), userDoc);
+      
+      console.log(`✅ Firestore user document created for: ${userEmail}`);
+      console.log(`📱 User can now sign in with phone: ${formattedPhone.replace('+94', '0')}`);
       
       return res.status(200).json({ 
         message: 'User account created successfully. You can now sign in.',
         email: userEmail,
-        phone: formattedPhone
+        phone: formattedPhone,
+        uid: firebaseUser.uid
       });
 
     } catch (error: unknown) {
