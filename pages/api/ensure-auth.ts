@@ -5,6 +5,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 
 // Initialize Firebase Admin if not already initialized
+let adminAuth: any = null;
 if (!getApps().length) {
   try {
     const serviceAccount = {
@@ -13,16 +14,20 @@ if (!getApps().length) {
       privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
     };
 
-    initializeApp({
-      credential: cert(serviceAccount),
-      projectId: process.env.FIREBASE_PROJECT_ID,
-    });
+    if (serviceAccount.projectId && serviceAccount.clientEmail && serviceAccount.privateKey) {
+      initializeApp({
+        credential: cert(serviceAccount),
+        projectId: process.env.FIREBASE_PROJECT_ID,
+      });
+      adminAuth = getAuth();
+      console.log('✅ Firebase Admin initialized successfully');
+    } else {
+      console.log('⚠️ Firebase Admin credentials missing, will skip admin operations');
+    }
   } catch (error) {
-    console.log('Firebase Admin initialization skipped:', error);
+    console.log('⚠️ Firebase Admin initialization failed:', error);
   }
 }
-
-const adminAuth = getAuth();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
