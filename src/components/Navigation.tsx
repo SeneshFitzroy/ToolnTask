@@ -2,29 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { Menu, X, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut, Globe } from 'lucide-react';
+import { Menu, X, Wrench, ClipboardList, ChevronDown, User as UserIcon, LogOut } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
-import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Navigation = () => {
   const { theme } = useTheme();
   const router = useRouter();
-  const { language, setLanguage, t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showCreateDropdown, setShowCreateDropdown] = useState(false);
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-
-  const languages = [
-    { code: 'en' as const, name: 'English', flag: '🇺🇸' },
-    { code: 'si' as const, name: 'සිංහල', flag: '🇱🇰' },
-    { code: 'ta' as const, name: 'தமிழ்', flag: '🇱🇰' }
-  ];
 
   useEffect(() => {
     setMounted(true);
@@ -43,9 +35,6 @@ const Navigation = () => {
       if (!target.closest('.create-dropdown')) {
         setShowCreateDropdown(false);
       }
-      if (!target.closest('.language-dropdown')) {
-        setShowLanguageDropdown(false);
-      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
@@ -61,7 +50,6 @@ const Navigation = () => {
     const handleRouteChange = () => {
       setShowProfileDropdown(false);
       setShowCreateDropdown(false);
-      setShowLanguageDropdown(false);
       setMobileMenuOpen(false);
     };
 
@@ -153,18 +141,6 @@ const Navigation = () => {
             >
               Home
             </Link>
-            About
-            </Link>
-                          }}
-              onClick={(e) => {
-                setShowProfileDropdown(false);
-                setShowCreateDropdown(false);
-                setMobileMenuOpen(false);
-                addShineEffect(e.currentTarget);
-              }}
-            >
-              {t('about')}
-            </Link>
             <Link 
               href="/Tasks" 
               className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
@@ -191,35 +167,8 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              {t('tasks')}
+              Tasks
             </Link>
-            <Link 
-              href="/Tools" 
-              className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
-              style={{ 
-                color: isActiveLink('/Tools') ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
-                backgroundColor: isActiveLink('/Tools') ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
-              }} 
-              onMouseEnter={(e) => {
-                if (!isActiveLink('/Tools')) {
-                  e.currentTarget.style.color = '#FF5E14';
-                  e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.03)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActiveLink('/Tools')) {
-                  e.currentTarget.style.color = theme === 'dark' ? '#e5e7eb' : '#374151';
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }
-              }}
-              onClick={(e) => {
-                setShowProfileDropdown(false);
-                setShowCreateDropdown(false);
-                setMobileMenuOpen(false);
-                addShineEffect(e.currentTarget);
-              }}
-            >
-              {t('tools')}
             <Link 
               href="/Tools" 
               className="px-5 py-3 text-lg font-semibold transition-colors duration-200 rounded-lg shine-effect" 
@@ -378,53 +327,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-5 flex-shrink-0">
             {/* Language Selector */}
             <div className="hidden sm:block">
-              <div className="relative language-dropdown">
-                <button
-                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-200 hover:shadow-md"
-                  style={{
-                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#ffffff',
-                    borderColor: theme === 'dark' ? '#444444' : '#e2e8f0',
-                    color: theme === 'dark' ? '#ffffff' : '#1f2937'
-                  }}
-                >
-                  <Globe size={16} />
-                  <span className="text-sm font-medium">
-                    {languages.find(lang => lang.code === language)?.flag}
-                  </span>
-                  <ChevronDown size={14} />
-                </button>
-                
-                {showLanguageDropdown && (
-                  <div 
-                    className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg border z-50"
-                    style={{
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#ffffff',
-                      borderColor: theme === 'dark' ? '#444444' : '#e2e8f0'
-                    }}
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setShowLanguageDropdown(false);
-                        }}
-                        className="flex items-center space-x-3 w-full px-4 py-3 text-left hover:bg-opacity-50 transition-colors first:rounded-t-lg last:rounded-b-lg"
-                        style={{
-                          backgroundColor: language === lang.code 
-                            ? (theme === 'dark' ? '#374151' : '#f3f4f6')
-                            : 'transparent',
-                          color: theme === 'dark' ? '#ffffff' : '#1f2937'
-                        }}
-                      >
-                        <span className="text-lg">{lang.flag}</span>
-                        <span className="text-sm font-medium">{lang.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <LanguageSelector />
             </div>
             
             {/* Auth Buttons - Hidden on small screens */}
@@ -691,34 +594,7 @@ const Navigation = () => {
 
               {/* Mobile Language Selector */}
               <div className="px-4 py-3">
-                <div className="flex flex-col space-y-2">
-                  <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                    {t('language')}
-                  </span>
-                  <div className="grid grid-cols-3 gap-2">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => setLanguage(lang.code)}
-                        className="flex items-center justify-center space-x-2 p-2 rounded-lg border transition-colors"
-                        style={{
-                          backgroundColor: language === lang.code 
-                            ? '#FF5E14' 
-                            : (theme === 'dark' ? '#374151' : '#f9fafb'),
-                          borderColor: language === lang.code 
-                            ? '#FF5E14' 
-                            : (theme === 'dark' ? '#4b5563' : '#d1d5db'),
-                          color: language === lang.code 
-                            ? '#ffffff' 
-                            : (theme === 'dark' ? '#ffffff' : '#1f2937')
-                        }}
-                      >
-                        <span className="text-sm">{lang.flag}</span>
-                        <span className="text-xs font-medium">{lang.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <LanguageSelector />
               </div>
 
               {/* Mobile Create Options */}
