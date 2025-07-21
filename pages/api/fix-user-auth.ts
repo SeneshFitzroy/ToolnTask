@@ -199,8 +199,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             password: userData.currentPassword
           });
           fixes.push(`Updated Firebase Auth password to match reset password`);
-        } catch (error) {
-          console.error(`⚠️ Failed to update Firebase Auth password:`, error);
+        } catch {
+          console.error(`⚠️ Failed to update Firebase Auth password`);
           fixes.push(`Warning: Could not update Firebase Auth password`);
         }
       }
