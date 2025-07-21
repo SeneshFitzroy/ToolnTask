@@ -77,55 +77,35 @@ export default function SignIn() {
     try {
       let loginIdentifier = formData.email.trim();
       
-      // If it's a phone number, we need to find the associated email or create account
+      // If it's a phone number, convert to the email format we use
       if (isValidPhone) {
-        const response = await fetch('/api/get-email-by-phone', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ phone: cleanedInput }),
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok && data.email) {
-          loginIdentifier = data.email;
-        } else {
-          // Phone number not found - try to create account
-          console.log('Phone number not found, attempting to create account...');
-          
-          try {
-            const createResponse = await fetch('/api/create-phone-account', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ 
-                phone: cleanedInput,
-                password: formData.password
-              }),
-            });
-            
-            const createData = await createResponse.json();
-            console.log('Create account response:', createData);
-            
-            if (createResponse.ok && createData.email) {
-              loginIdentifier = createData.email;
-              console.log(`✅ Created new account for phone: ${cleanedInput} -> Email: ${createData.email}`);
-            } else {
-              console.error('Failed to create account:', createData);
-              setError(`Unable to create account: ${createData.message || 'Unknown error'}`);
-              setLoading(false);
-              return;
-            }
-          } catch (createError) {
-            console.error('Error creating phone account:', createError);
-            setError('Error creating account. Please try again or use your email address.');
-            setLoading(false);
-            return;
+        // Format phone to our standard email format
+        const formatPhoneNumber = (phone: string): string => {
+          const cleaned = phone.replace(/[\s\-\(\)]/g, '');
+          if (cleaned.startsWith('+')) {
+            return cleaned;
           }
-        }
+          const digits = cleaned.replace(/\D/g, '');
+          if (digits.startsWith('0')) {
+            return '+94' + digits.substring(1);
+          }
+          if (digits.startsWith('94')) {
+            return '+' + digits;
+          }
+          if (digits.length === 9 && digits.startsWith('7')) {
+            return '+94' + digits;
+          }
+          return '+94' + digits;
+        };
+
+        const formattedPhone = formatPhoneNumber(cleanedInput);
+        const expectedEmail = `${formattedPhone.replace('+', '')}@toolntask.app`;
+        
+        console.log(`📱 Phone login attempt: ${cleanedInput}`);
+        console.log(`📧 Trying email: ${expectedEmail}`);
+        
+        // Try the direct email format first (most likely to work after password reset)
+        loginIdentifier = expectedEmail;
       }
       
       // Sign in with Firebase Auth using email (either provided directly or found by phone)

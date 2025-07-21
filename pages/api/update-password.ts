@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
-import { db } from '../../src/lib/firebase';
+import { collection, query, where, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { db, auth } from '../../src/lib/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -72,7 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
     } else if (phone && verified) {
-      // Handle phone-based password reset - create user account
+      // Handle phone-based password reset - create Firebase Auth user immediately
       const formatPhoneNumber = (phone: string): string => {
         const cleaned = phone.replace(/[\s\-\(\)]/g, '');
         if (cleaned.startsWith('+')) {
@@ -92,20 +93,61 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       };
 
       const formattedPhone = formatPhoneNumber(phone);
-      const userEmail = `${formattedPhone.replace('+', '')}@toolntask.app`;
+      userEmail = `${formattedPhone.replace('+', '')}@toolntask.app`;
       
-      console.log(`🔐 Creating user account for phone: ${formattedPhone}`);
+      console.log(`🔐 Creating Firebase Auth user for phone: ${formattedPhone}`);
       console.log(`📧 Using email: ${userEmail}`);
 
-      // For phone-based reset, we'll create a success message
-      // The actual Firebase Auth user creation will happen during sign-in
-      
-      return res.status(200).json({
-        message: 'Password reset prepared successfully. Please sign in with your phone number.',
-        email: userEmail,
-        phone: formattedPhone,
-        action: 'phone_account_ready'
-      });
+      try {
+        // Create the Firebase Auth user immediately
+        const userCredential = await createUserWithEmailAndPassword(auth, userEmail, newPassword);
+        const firebaseUser = userCredential.user;
+        
+        console.log(`✅ Firebase Auth user created: ${firebaseUser.uid}`);
+        
+        // Create user document in Firestore
+        await setDoc(doc(db, 'users', firebaseUser.uid), {
+          uid: firebaseUser.uid,
+          email: userEmail,
+          phone: formattedPhone,
+          displayName: `User ${formattedPhone.replace('+94', '0')}`,
+          createdAt: new Date(),
+          createdVia: 'phone_password_reset',
+          emailVerified: false,
+          phoneVerified: true,
+          lastLogin: new Date()
+        });
+        
+        console.log(`✅ User document created in Firestore`);
+        
+        return res.status(200).json({
+          message: 'Account created successfully. You can now sign in with your phone number.',
+          email: userEmail,
+          phone: formattedPhone,
+          uid: firebaseUser.uid,
+          action: 'account_created'
+        });
+        
+      } catch (error: unknown) {
+        const firebaseError = error as { code?: string; message?: string };
+        console.error('Error creating Firebase Auth user:', firebaseError);
+        
+        if (firebaseError.code === 'auth/email-already-in-use') {
+          // User already exists - that's fine
+          console.log(`✅ User already exists: ${userEmail}`);
+          return res.status(200).json({
+            message: 'Password updated successfully. You can now sign in.',
+            email: userEmail,
+            phone: formattedPhone,
+            action: 'password_updated'
+          });
+        } else {
+          return res.status(500).json({
+            message: 'Error creating user account. Please try again.',
+            error: firebaseError.message
+          });
+        }
+      }
     } else {
       return res.status(400).json({ message: 'Invalid reset method' });
     }
