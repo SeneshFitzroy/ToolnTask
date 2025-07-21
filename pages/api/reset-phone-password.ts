@@ -30,10 +30,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const authEmail = `${formattedPhone}@toolntask.app`;
     
-    console.log(`🔐 Creating new Firebase Auth user for password reset: ${authEmail}`);
+    console.log(`🔐 Attempting password reset for: ${authEmail}`);
 
     try {
-      // Create new Firebase Auth user with new password
+      // Try to create a new user with the new password
       const userCredential = await createUserWithEmailAndPassword(auth, authEmail, newPassword);
       const firebaseUser = userCredential.user;
       
@@ -67,15 +67,52 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const firebaseError = error as { code?: string; message?: string };
       
       if (firebaseError.code === 'auth/email-already-in-use') {
-        console.log(`ℹ️ User already exists, password reset was successful: ${authEmail}`);
+        // Create an alternative email format for the reset
+        const resetEmail = `${formattedPhone}.reset@toolntask.app`;
+        console.log(`ℹ️ Original user exists, creating reset account: ${resetEmail}`);
         
-        return res.status(200).json({
-          success: true,
-          message: 'Password reset successful. You can now sign in with your new password.',
-          email: authEmail,
-          phone: cleanedPhone,
-          note: 'Account already exists with new password'
-        });
+        try {
+          const resetUserCredential = await createUserWithEmailAndPassword(auth, resetEmail, newPassword);
+          const resetFirebaseUser = resetUserCredential.user;
+          
+          console.log(`✅ Reset Firebase Auth user created: ${resetFirebaseUser.uid}`);
+
+          // Create user document for the reset account
+          await setDoc(doc(db, 'users', resetFirebaseUser.uid), {
+            uid: resetFirebaseUser.uid,
+            authEmail: resetEmail,
+            originalAuthEmail: authEmail,
+            phone: cleanedPhone,
+            displayName: `User ${cleanedPhone}`,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            createdVia: 'phone_password_reset',
+            emailVerified: false,
+            phoneVerified: true,
+            lastLogin: new Date(),
+            isResetAccount: true
+          });
+
+          console.log(`✅ Reset user document created in Firestore`);
+
+          return res.status(200).json({
+            success: true,
+            message: 'Password reset successful. You can now sign in with your new password.',
+            email: resetEmail,
+            phone: cleanedPhone,
+            uid: resetFirebaseUser.uid,
+            note: 'Created new reset account'
+          });
+          
+        } catch (resetError: unknown) {
+          const resetFirebaseError = resetError as { code?: string; message?: string };
+          console.error('Error creating reset account:', resetFirebaseError);
+          return res.status(500).json({
+            success: false,
+            message: 'Error completing password reset. Please contact support.',
+            error: resetFirebaseError.message
+          });
+        }
       } else {
         console.error('Error creating Firebase Auth user:', firebaseError);
         return res.status(500).json({

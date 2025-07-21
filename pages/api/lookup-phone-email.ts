@@ -58,8 +58,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         
-        // For phone-based accounts, return the authEmail (which is the Firebase Auth email)
-        // For email-based accounts, return the actual email
+        // For phone-based accounts, prefer the reset account if it exists
+        // Check if there's a reset account for this phone
+        const resetEmail = `${formattedPhone.replace('+94', '94')}.reset@toolntask.app`;
+        const resetQuery = query(usersRef, where('authEmail', '==', resetEmail));
+        const resetSnapshot = await getDocs(resetQuery);
+        
+        if (!resetSnapshot.empty) {
+          const resetUserData = resetSnapshot.docs[0].data();
+          console.log(`✅ Found reset account - Phone: ${resetUserData.phone}, AuthEmail: ${resetUserData.authEmail}`);
+          console.log(`📧 Returning reset login email: ${resetUserData.authEmail}`);
+          
+          return res.status(200).json({
+            success: true,
+            email: resetUserData.authEmail,
+            phone: resetUserData.phone,
+            authEmail: resetUserData.authEmail,
+            isResetAccount: true
+          });
+        }
+        
+        // Otherwise, use the original account
         const loginEmail = userData.authEmail || userData.email;
         
         console.log(`✅ Found user - Phone: ${userData.phone}, AuthEmail: ${userData.authEmail}, Email: ${userData.email}`);
