@@ -77,35 +77,30 @@ export default function SignIn() {
     try {
       let loginIdentifier = formData.email.trim();
       
-      // If it's a phone number, convert to the email format we use
+      // If it's a phone number, find the actual email associated with it
       if (isValidPhone) {
-        // Format phone to our standard email format
-        const formatPhoneNumber = (phone: string): string => {
-          const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-          if (cleaned.startsWith('+')) {
-            return cleaned;
-          }
-          const digits = cleaned.replace(/\D/g, '');
-          if (digits.startsWith('0')) {
-            return '+94' + digits.substring(1);
-          }
-          if (digits.startsWith('94')) {
-            return '+' + digits;
-          }
-          if (digits.length === 9 && digits.startsWith('7')) {
-            return '+94' + digits;
-          }
-          return '+94' + digits;
-        };
-
-        const formattedPhone = formatPhoneNumber(cleanedInput);
-        const expectedEmail = `${formattedPhone.replace('+', '')}@toolntask.app`;
-        
         console.log(`📱 Phone login attempt: ${cleanedInput}`);
-        console.log(`📧 Trying email: ${expectedEmail}`);
         
-        // Try the direct email format first (most likely to work after password reset)
-        loginIdentifier = expectedEmail;
+        // Look up the actual email for this phone number
+        const response = await fetch('/api/lookup-phone-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phone: cleanedInput }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.email) {
+            loginIdentifier = data.email;
+            console.log(`📧 Found email for phone: ${data.email}`);
+          } else {
+            throw new Error('Phone number not found');
+          }
+        } else {
+          throw new Error('Phone number not found');
+        }
       }
       
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
