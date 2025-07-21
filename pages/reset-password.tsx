@@ -69,7 +69,9 @@ export default function ResetPassword() {
     e.preventDefault();
     
     // Prevent multiple submissions
-    if (loading || isSuccess) return;
+    if (loading || isSuccess) {
+      return;
+    }
     
     if (!password || !confirmPassword) {
       setError('Please fill in all fields');
@@ -116,6 +118,7 @@ export default function ResetPassword() {
 
         if (response.ok && data.success) {
           setMessage('Password reset successful! You can now sign in with your new password.');
+          setIsSuccess(true);
           
           setTimeout(() => {
             router.replace('/SignIn?message=password-reset-success');
@@ -151,6 +154,7 @@ export default function ResetPassword() {
 
         if (response.ok) {
           setMessage('Password updated successfully. Redirecting to sign in...');
+          setIsSuccess(true);
           
           // Use a single redirect without multiple timeouts
           setTimeout(() => {
@@ -375,11 +379,11 @@ export default function ResetPassword() {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={loading || !Object.values(passwordValidation).every(valid => valid)}
+                disabled={loading || isSuccess || !Object.values(passwordValidation).every(valid => valid)}
                 className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                style={{ backgroundColor: loading || isSuccess ? '#9CA3AF' : '#FF5E14' }}
               >
-                {loading ? 'Updating Password...' : 'Update Password Securely'}
+                {loading ? 'Updating Password...' : isSuccess ? 'Password Updated!' : 'Update Password Securely'}
               </button>
             </form>
 
