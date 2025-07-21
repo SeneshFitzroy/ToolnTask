@@ -20,6 +20,7 @@ export default function ResetPassword() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   // Password validation states
   const [passwordValidation, setPasswordValidation] = useState({
@@ -68,7 +69,7 @@ export default function ResetPassword() {
     e.preventDefault();
     
     // Prevent multiple submissions
-    if (loading) return;
+    if (loading || isSuccess) return;
     
     if (!password || !confirmPassword) {
       setError('Please fill in all fields');
