@@ -41,11 +41,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Check all possible phone formats in users collection
     const usersRef = collection(db, 'users');
     const phoneFormats = [
-      formattedPhone,
-      phone.trim(),
-      formattedPhone.replace('+94', '0'),
-      formattedPhone.replace('+', ''),
-      phone.replace(/[\s\-\(\)]/g, '')
+      formattedPhone,                     // +94761120457
+      phone.trim(),                       // 0761120457
+      formattedPhone.replace('+94', '0'), // 0761120457
+      formattedPhone.replace('+', ''),    // 94761120457 (matches Firebase Auth email format)
+      phone.replace(/[\s\-\(\)]/g, '')    // cleaned input
     ];
 
     for (const phoneFormat of phoneFormats) {
