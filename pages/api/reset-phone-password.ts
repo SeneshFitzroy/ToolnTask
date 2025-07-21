@@ -40,25 +40,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const resetSnapshot = await getDocs(resetQuery);
     
     if (!resetSnapshot.empty) {
-      // Reset account exists - we need to update the password by creating a new Firebase Auth user
-      console.log(`🔄 Reset account exists, updating password: ${resetEmail}`);
+      // Reset account exists - create a new timestamped reset account
+      const timestamp = Date.now();
+      const newResetEmail = `${formattedPhone}.reset${timestamp}@toolntask.app`;
+      console.log(`� Reset account exists, creating new timestamped reset: ${newResetEmail}`);
       
       try {
-        // Delete the existing reset account document first
-        const existingDoc = resetSnapshot.docs[0];
-        await deleteDoc(existingDoc.ref);
-        console.log(`🗑️ Deleted existing reset account document`);
-        
-        // Create new Firebase Auth user with updated password
-        const resetUserCredential = await createUserWithEmailAndPassword(auth, resetEmail, newPassword);
+        // Create new Firebase Auth user with timestamped email
+        const resetUserCredential = await createUserWithEmailAndPassword(auth, newResetEmail, newPassword);
         const resetFirebaseUser = resetUserCredential.user;
         
-        console.log(`✅ Reset account password updated: ${resetFirebaseUser.uid}`);
+        console.log(`✅ New timestamped reset account created: ${resetFirebaseUser.uid}`);
 
-        // Create new user document with updated info
+        // Create user document for the new reset account
         await setDoc(doc(db, 'users', resetFirebaseUser.uid), {
           uid: resetFirebaseUser.uid,
-          authEmail: resetEmail,
+          authEmail: newResetEmail,
           originalAuthEmail: authEmail,
           phone: cleanedPhone,
           displayName: `User ${cleanedPhone}`,
@@ -69,22 +66,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           phoneVerified: true,
           lastLogin: new Date(),
           isResetAccount: true,
-          passwordUpdatedAt: new Date()
+          passwordUpdatedAt: new Date(),
+          resetTimestamp: timestamp
         });
 
-        console.log(`✅ Reset user document recreated with new password`);
+        console.log(`✅ New reset user document created`);
 
         return res.status(200).json({
           success: true,
           message: 'Password updated successfully. You can now sign in with your new password.',
-          email: resetEmail,
+          email: newResetEmail,
           phone: cleanedPhone,
           uid: resetFirebaseUser.uid
         });
         
       } catch (authError: unknown) {
         const authErr = authError as { code?: string; message?: string };
-        console.error('Error updating reset account password:', authErr);
+        console.error('Error creating new reset account:', authErr);
         return res.status(500).json({
           success: false,
           message: 'Error updating password. Please try again.',

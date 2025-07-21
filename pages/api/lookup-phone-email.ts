@@ -58,24 +58,38 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         
-        // For phone-based accounts, prefer the reset account if it exists
-        // Check if there's a reset account for this phone
-        const resetEmail = `${formattedPhone.replace('+94', '94')}.reset@toolntask.app`;
-        const resetQuery = query(usersRef, where('authEmail', '==', resetEmail));
-        const resetSnapshot = await getDocs(resetQuery);
+        // For phone-based accounts, prefer the most recent reset account if it exists
+        // Check for any reset accounts for this phone
+        const allResetQuery = query(usersRef, where('phone', '==', phoneFormat), where('isResetAccount', '==', true));
+        const allResetSnapshot = await getDocs(allResetQuery);
         
-        if (!resetSnapshot.empty) {
-          const resetUserData = resetSnapshot.docs[0].data();
-          console.log(`✅ Found reset account - Phone: ${resetUserData.phone}, AuthEmail: ${resetUserData.authEmail}`);
-          console.log(`📧 Returning reset login email: ${resetUserData.authEmail}`);
+        if (!allResetSnapshot.empty) {
+          // Find the most recent reset account by resetTimestamp
+          let mostRecentReset = null;
+          let latestTimestamp = 0;
           
-          return res.status(200).json({
-            success: true,
-            email: resetUserData.authEmail,
-            phone: resetUserData.phone,
-            authEmail: resetUserData.authEmail,
-            isResetAccount: true
+          allResetSnapshot.docs.forEach(doc => {
+            const data = doc.data();
+            const timestamp = data.resetTimestamp || 0;
+            if (timestamp > latestTimestamp) {
+              latestTimestamp = timestamp;
+              mostRecentReset = data;
+            }
           });
+          
+          if (mostRecentReset) {
+            console.log(`✅ Found most recent reset account - Phone: ${mostRecentReset.phone}, AuthEmail: ${mostRecentReset.authEmail}`);
+            console.log(`📧 Returning most recent reset login email: ${mostRecentReset.authEmail}`);
+            
+            return res.status(200).json({
+              success: true,
+              email: mostRecentReset.authEmail,
+              phone: mostRecentReset.phone,
+              authEmail: mostRecentReset.authEmail,
+              isResetAccount: true,
+              resetTimestamp: mostRecentReset.resetTimestamp
+            });
+          }
         }
         
         // Otherwise, use the original account
