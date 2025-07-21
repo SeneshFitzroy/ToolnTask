@@ -105,7 +105,7 @@ export default function ForgotPassword() {
       try {
         // First, check if the phone number is registered
         const cleanedPhone = trimmedIdentifier.replace(/[\s\-\(\)]/g, '');
-        const checkResponse = await fetch('/api/get-email-by-phone', {
+        const checkResponse = await fetch('/api/lookup-phone-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export default function ForgotPassword() {
 
         const checkData = await checkResponse.json();
 
-        if (checkResponse.ok && checkData.email) {
+        if (checkResponse.ok && checkData.success) {
           // Phone number is registered, send OTP
           const otpResponse = await fetch('/api/phone-verify', {
             method: 'POST',
