@@ -65,7 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         if (!allResetSnapshot.empty) {
           // Find the most recent reset account by resetTimestamp
-          let mostRecentReset = null;
+          let mostRecentReset: any = null;
           let latestTimestamp = 0;
           
           allResetSnapshot.docs.forEach(doc => {
