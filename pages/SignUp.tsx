@@ -44,6 +44,7 @@ export default function SignUp() {
   const [registrationMethod, setRegistrationMethod] = useState<'email' | 'phone'>('email');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showSignInButton, setShowSignInButton] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -440,24 +441,31 @@ export default function SignUp() {
             } else {
               errorMessage = '📱 This phone number is already registered! Please sign in instead or use "Forgot Password" if you need to reset your password.';
             }
+            setShowSignInButton(true);
             break;
           case 'auth/invalid-email':
             errorMessage = '❌ Invalid email address format. Please check your email and try again.';
+            setShowSignInButton(false);
             break;
           case 'auth/weak-password':
             errorMessage = '🔒 Password is too weak. Please choose a stronger password (at least 8 characters with uppercase, lowercase, numbers, and special characters).';
+            setShowSignInButton(false);
             break;
           case 'auth/network-request-failed':
             errorMessage = '🌐 Network error. Please check your internet connection and try again.';
+            setShowSignInButton(false);
             break;
           case 'auth/operation-not-allowed':
             errorMessage = '⚠️ Registration is temporarily unavailable. Please contact support.';
+            setShowSignInButton(false);
             break;
           case 'auth/too-many-requests':
             errorMessage = '⏰ Too many failed attempts. Please wait a few minutes before trying again.';
+            setShowSignInButton(false);
             break;
           default:
             errorMessage = '❌ ' + (firebaseError.message || 'An error occurred during registration. Please try again.');
+            setShowSignInButton(false);
         }
       } else if (error instanceof Error) {
         errorMessage = error.message;
