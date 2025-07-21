@@ -21,88 +21,102 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const userSnapshot = await getDocs(userQuery);
 
     if (userSnapshot.empty) {
-      return res.status(200).json({ passwordMatch: false });
+      return res.status(200).json({ passwordMatch: false, hasResetPassword: false });
     }
 
     const userDoc = userSnapshot.docs[0];
     const userData = userDoc.data();
 
-    // Check if the provided password matches the reset password
-    if (userData.newPasswordFromReset && userData.newPasswordFromReset === password && userData.passwordResetCompleted) {
-      console.log(`🔐 Reset password matched for: ${email}`);
-      
-      try {
-        // Try to create/update Firebase Auth with the reset password
+    // Special check to see if user has reset password (for blocking old password)
+    if (password === 'CHECK_IF_USER_HAS_RESET') {
+      const hasReset = userData.newPasswordFromReset && userData.passwordResetCompleted;
+      return res.status(200).json({ hasResetPassword: hasReset });
+    }
+
+    // Check if user has a pending password reset
+    const hasPendingReset = userData.newPasswordFromReset && userData.passwordResetCompleted;
+    
+    if (hasPendingReset) {
+      // User has reset password - ONLY allow the new password
+      if (userData.newPasswordFromReset === password) {
+        console.log(`🔐 Reset password matched for: ${email}`);
+        
         try {
-          // First try to create a new user
-          await createUserWithEmailAndPassword(auth, email, password);
-          console.log(`✅ New Firebase Auth user created for: ${email}`);
-        } catch (authError: unknown) {
-          const firebaseError = authError as { code?: string; message?: string };
-          if (firebaseError.code === 'auth/email-already-in-use') {
-            // User exists, try to update their password
-            console.log(`🔄 Updating existing Firebase Auth password for: ${email}`);
-            
-            // Try to sign in with various potential passwords and update
-            const tryPasswords = ['password123', 'tempPassword123', userData.tempPassword, userData.lastKnownPassword];
-            let updated = false;
-            
-            for (const tryPass of tryPasswords) {
-              if (!tryPass) continue;
-              try {
-                const userCred = await signInWithEmailAndPassword(auth, email, tryPass);
-                await updatePassword(userCred.user, password);
-                await signOut(auth);
-                console.log(`✅ Firebase Auth password updated for: ${email}`);
-                updated = true;
-                break;
-              } catch {
-                continue;
+          // Update Firebase Auth with new password
+          try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            console.log(`✅ New Firebase Auth user created for: ${email}`);
+          } catch (authError: unknown) {
+            const firebaseError = authError as { code?: string; message?: string };
+            if (firebaseError.code === 'auth/email-already-in-use') {
+              console.log(`🔄 Updating existing Firebase Auth password for: ${email}`);
+              
+              // Force update Firebase Auth password by signing in with default passwords
+              const tryPasswords = ['password123', 'tempPassword123', userData.tempPassword];
+              let updated = false;
+              
+              for (const tryPass of tryPasswords) {
+                if (!tryPass) continue;
+                try {
+                  const userCred = await signInWithEmailAndPassword(auth, email, tryPass);
+                  await updatePassword(userCred.user, password);
+                  await signOut(auth);
+                  console.log(`✅ Firebase Auth password updated for: ${email}`);
+                  updated = true;
+                  break;
+                } catch {
+                  continue;
+                }
               }
             }
-            
-            if (!updated) {
-              console.log(`⚠️ Could not update Firebase Auth, but reset password is valid for: ${email}`);
-            }
           }
+          
+          // Clear reset flags and finalize password
+          await updateDoc(userDoc.ref, {
+            newPasswordFromReset: null,
+            passwordResetCompleted: false,
+            currentPassword: password,
+            lastSuccessfulLogin: new Date(),
+            passwordUpdatedAt: new Date()
+          });
+          
+          return res.status(200).json({ 
+            passwordMatch: true,
+            message: 'Login successful with reset password' 
+          });
+          
+        } catch (error) {
+          console.error('Error processing reset password login:', error);
+          
+          // Clear reset flags even on error
+          await updateDoc(userDoc.ref, {
+            newPasswordFromReset: null,
+            passwordResetCompleted: false,
+            currentPassword: password,
+            lastSuccessfulLogin: new Date()
+          });
+          
+          return res.status(200).json({ 
+            passwordMatch: true,
+            message: 'Login successful with reset password' 
+          });
         }
-        
-        // Clean up reset flags and store as current password
-        await updateDoc(userDoc.ref, {
-          newPasswordFromReset: null,
-          passwordResetCompleted: false,
-          lastKnownPassword: password,
-          lastSuccessfulLogin: new Date()
-        });
-        
+      } else {
+        // User has reset password but provided wrong new password
+        console.log(`❌ Wrong reset password provided for: ${email}`);
         return res.status(200).json({ 
-          passwordMatch: true,
-          message: 'Login successful with reset password' 
-        });
-        
-      } catch (error) {
-        console.error('Error processing reset password login:', error);
-        
-        // Even if there's an error, the password was correct
-        // Just clean up and allow login
-        await updateDoc(userDoc.ref, {
-          newPasswordFromReset: null,
-          passwordResetCompleted: false,
-          lastKnownPassword: password,
-          lastSuccessfulLogin: new Date()
-        });
-        
-        return res.status(200).json({ 
-          passwordMatch: true,
-          message: 'Login successful with reset password' 
+          passwordMatch: false, 
+          hasResetPassword: true,
+          message: 'Please use your new password from the reset email' 
         });
       }
     }
 
-    return res.status(200).json({ passwordMatch: false });
+    // No pending reset - user can use regular Firebase Auth
+    return res.status(200).json({ passwordMatch: false, hasResetPassword: false });
 
   } catch (error) {
     console.error('Error checking reset password:', error);
-    return res.status(500).json({ passwordMatch: false, error: 'Internal server error' });
+    return res.status(500).json({ passwordMatch: false, hasResetPassword: false, error: 'Internal server error' });
   }
 }
