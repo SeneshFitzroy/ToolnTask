@@ -465,7 +465,7 @@ export default function SignUp() {
                 </button>
               </div>
               <p className="text-xs mt-2 text-center" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                Secondary contact method is optional but recommended for account recovery
+                Choose your preferred registration method
               </p>
             </div>
 
