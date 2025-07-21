@@ -118,8 +118,8 @@ export default function SignUp() {
     setError('');
 
     // Validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.password) {
-      setError('Please fill in all fields');
+    if (!formData.firstName || !formData.lastName || !formData.password) {
+      setError('Please fill in all required fields');
       setLoading(false);
       return;
     }
@@ -131,56 +131,40 @@ export default function SignUp() {
       return;
     }
 
-    // Validate primary contact method
+    // Validate based on registration method
     if (registrationMethod === 'email') {
-      // Email is primary - validate email format
+      // Email registration - validate email format
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!formData.email || !emailRegex.test(formData.email)) {
         setError('Please enter a valid email address');
         setLoading(false);
         return;
       }
-    } else if (!formData.phone) {
-      // Phone is primary - validate phone format
-      setError('Please enter your phone number');
-      setLoading(false);
-      return;
-    }
-
-    // Sri Lankan phone number validation (if provided)
-    const validateSriLankanPhone = (phone: string): boolean => {
-      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-      const patterns = [
-        /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile: +94 7X XXXX XXXX or 07X XXXX XXXX
-        /^(\+94|0094|94)?[1-9][0-9]{8}$/, // All mobile numbers starting with various prefixes
-        /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
-        /^07[0-9]{8}$/, // Local mobile format: 07X XXXX XXXX
-        /^0[1-9][0-9]{8}$/, // Any local number starting with 0
-      ];
-      return patterns.some(pattern => pattern.test(cleanPhone));
-    };
-
-    if (formData.phone && !validateSriLankanPhone(formData.phone)) {
-      setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567 or +94 77 123 4567)');
-      setLoading(false);
-      return;
-    }
-
-    // Validate email format (if provided)
-    if (formData.email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        setError('Please enter a valid email address');
+    } else {
+      // Phone registration - validate Sri Lankan phone format
+      if (!formData.phone) {
+        setError('Please enter your phone number');
         setLoading(false);
         return;
       }
-    }
 
-    // Ensure we have at least one contact method
-    if (!formData.email && !formData.phone) {
-      setError('Please provide at least one contact method (email or phone number)');
-      setLoading(false);
-      return;
+      const validateSriLankanPhone = (phone: string): boolean => {
+        const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+        const patterns = [
+          /^(\+94|0094|94)?7[0-9]{8}$/, // Mobile: +94 7X XXXX XXXX or 07X XXXX XXXX
+          /^(\+94|0094|94)?[1-9][0-9]{8}$/, // All mobile numbers starting with various prefixes
+          /^(\+94|0094|94)?1[1-9][0-9]{7}$/, // Landline
+          /^07[0-9]{8}$/, // Local mobile format: 07X XXXX XXXX
+          /^0[1-9][0-9]{8}$/, // Any local number starting with 0
+        ];
+        return patterns.some(pattern => pattern.test(cleanPhone));
+      };
+
+      if (!validateSriLankanPhone(formData.phone)) {
+        setError('Please enter a valid Sri Lankan phone number (e.g., 077 123 4567 or +94 77 123 4567)');
+        setLoading(false);
+        return;
+      }
     }
 
     // Enhanced password validation
