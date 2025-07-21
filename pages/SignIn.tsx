@@ -109,11 +109,14 @@ export default function SignIn() {
           if (data.success && data.email) {
             loginIdentifier = data.email;
             console.log(`📧 Found email for phone: ${data.email}`);
+            console.log(`🔍 Phone lookup successful - AuthEmail: ${data.authEmail}, Email: ${data.email}`);
           } else {
+            console.log('❌ Phone lookup failed - no email returned');
             throw new Error('Phone number not registered. Please check your number or create a new account.');
           }
         } else {
           const errorData = await response.json().catch(() => ({}));
+          console.log('❌ Phone lookup API error:', errorData);
           throw new Error(errorData.message || 'Phone number not registered. Please check your number or create a new account.');
         }
       }
