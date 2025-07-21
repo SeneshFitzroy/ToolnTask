@@ -115,7 +115,14 @@ export default function ResetPassword() {
             router.push('/SignIn?message=password-reset-success');
           }, 2000);
         } else {
-          setError(data.message || 'Error resetting password. Please try again.');
+          // Handle specific error cases
+          if (data.error === 'SAME_PASSWORD') {
+            setError('New password cannot be the same as your current password. Please choose a different password.');
+          } else if (data.error === 'SAME_PASSWORD_HISTORY') {
+            setError('New password cannot be the same as any of your previous passwords. Please choose a different password.');
+          } else {
+            setError(data.message || 'Error resetting password. Please try again.');
+          }
         }
       } else {
         // For token-based reset (email), use the existing API
