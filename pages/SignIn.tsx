@@ -141,7 +141,7 @@ export default function SignIn() {
                 router.push('/');
                 return;
                 
-              } catch (firebaseAuthError) {
+              } catch {
                 console.log('⚠️ Firebase Auth failed but reset password was correct, proceeding anyway');
                 
                 // If Firebase Auth fails but password was verified, still log them in

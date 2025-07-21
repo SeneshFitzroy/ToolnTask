@@ -24,7 +24,44 @@ const Navigation = () => {
     // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      
+      // Clear temporary auth if real auth is established
+      if (user) {
+        localStorage.removeItem('tempAuthUser');
+        localStorage.removeItem('tempAuthTime');
+      }
     });
+
+    // Check for temporary authentication (for reset password users)
+    const checkTempAuth = () => {
+      const tempUser = localStorage.getItem('tempAuthUser');
+      const tempTime = localStorage.getItem('tempAuthTime');
+      
+      if (tempUser && tempTime) {
+        const authTime = parseInt(tempTime);
+        const currentTime = new Date().getTime();
+        const timeDiff = currentTime - authTime;
+        
+        // Temporary auth expires after 1 hour
+        if (timeDiff < 3600000) {
+          // Create a fake user object for UI purposes
+          if (!user) {
+            setUser({
+              email: tempUser,
+              displayName: tempUser.split('@')[0],
+              uid: 'temp-' + tempUser,
+              emailVerified: true
+            } as User);
+          }
+        } else {
+          // Clear expired temp auth
+          localStorage.removeItem('tempAuthUser');
+          localStorage.removeItem('tempAuthTime');
+        }
+      }
+    };
+
+    checkTempAuth();
 
     // Close dropdowns when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,7 +80,7 @@ const Navigation = () => {
       unsubscribe();
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [user]);
 
   // Close dropdowns and mobile menu when route changes
   useEffect(() => {
@@ -63,9 +100,26 @@ const Navigation = () => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+      
+      // Clear temporary authentication data
+      localStorage.removeItem('tempAuthUser');
+      localStorage.removeItem('tempAuthTime');
+      localStorage.removeItem('rememberedEmail');
+      localStorage.removeItem('rememberMe');
+      
+      // Reset user state
+      setUser(null);
+      
       console.log('User signed out successfully');
     } catch (error) {
       console.error('Error signing out:', error);
+      
+      // Even if Firebase signOut fails, clear local data
+      localStorage.removeItem('tempAuthUser');
+      localStorage.removeItem('tempAuthTime');
+      localStorage.removeItem('rememberedEmail');
+      localStorage.removeItem('rememberMe');
+      setUser(null);
     }
   };
 
@@ -490,7 +544,7 @@ const Navigation = () => {
                       
                       <Link 
                         href="/SignUp"
-                        className="flex items-center gap-4 px-5 py-4 transition-colors duration-200 text-base"
+                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
                         style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
