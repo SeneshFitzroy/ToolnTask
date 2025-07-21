@@ -1,153 +1,127 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword, deleteUser } from 'firebase/auth';
+import { signInWithEmailAndPassword, updatePassword, signOut } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { token, phone, verified, newPassword } = req.body;
+  const { token, newPassword } = req.body;
 
-  // Validate that we have either token or verified phone
-  if (!token && !(phone && verified)) {
-    return res.status(400).json({ message: 'Reset authorization required (token or verified phone)' });
+  if (!token) {
+    return res.status(400).json({ message: 'Reset token is required' });
   }
 
   if (!newPassword) {
     return res.status(400).json({ message: 'New password is required' });
   }
 
-  // Enhanced password validation with specific error messages
+  // Simple password validation - just length requirement
   if (newPassword.length < 8) {
     return res.status(400).json({ message: 'Password must be at least 8 characters long' });
   }
 
-  const hasUppercase = /[A-Z]/.test(newPassword);
-  const hasLowercase = /[a-z]/.test(newPassword);
-  const hasNumbers = /\d/.test(newPassword);
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(newPassword);
-
-  if (!hasUppercase) {
-    return res.status(400).json({ message: 'Password must contain at least one uppercase letter (A-Z)' });
-  }
-  if (!hasLowercase) {
-    return res.status(400).json({ message: 'Password must contain at least one lowercase letter (a-z)' });
-  }
-  if (!hasNumbers) {
-    return res.status(400).json({ message: 'Password must contain at least one number (0-9)' });
-  }
-  if (!hasSpecial) {
-    return res.status(400).json({ message: 'Password must contain at least one special character (!@#$%^&*)' });
-  }
-
   try {
-    let userEmail = '';
+    // Handle token-based password reset (email flow)
+    const resetRef = collection(db, 'passwordResets');
+    const q = query(resetRef, where('token', '==', token), where('used', '==', false));
+    const querySnapshot = await getDocs(q);
 
-    if (token) {
-      // Handle token-based password reset (traditional email flow)
-      const resetRef = collection(db, 'passwordResets');
-      const q = query(resetRef, where('token', '==', token), where('used', '==', false));
-      const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return res.status(400).json({ message: 'Invalid or expired reset token' });
+    }
 
-      if (querySnapshot.empty) {
-        return res.status(400).json({ message: 'Invalid or expired reset token' });
+    const resetDoc = querySnapshot.docs[0];
+    const resetData = resetDoc.data();
+
+    // Check if token has expired
+    if (new Date() > resetData.expiresAt.toDate()) {
+      return res.status(400).json({ message: 'Reset token has expired. Please request a new password reset.' });
+    }
+
+    const userEmail = resetData.email;
+
+    // Sign in as the user temporarily to update password
+    try {
+      // First, try to sign in with their current password to get the user
+      const usersRef = collection(db, 'users');
+      const userQuery = query(usersRef, where('email', '==', userEmail));
+      const userSnapshot = await getDocs(userQuery);
+
+      if (userSnapshot.empty) {
+        return res.status(404).json({ message: 'User not found' });
       }
 
-      const resetDoc = querySnapshot.docs[0];
-      const resetData = resetDoc.data();
-
-      // Check if token has expired
-      if (new Date() > resetData.expiresAt.toDate()) {
-        return res.status(400).json({ message: 'Reset token has expired. Please request a new password reset.' });
+      const userData = userSnapshot.docs[0].data();
+      
+      // Try to sign in with the stored password and then update
+      if (userData.tempPassword) {
+        const userCredential = await signInWithEmailAndPassword(auth, userEmail, userData.tempPassword);
+        await updatePassword(userCredential.user, newPassword);
+        await signOut(auth);
+        
+        // Update user document
+        await updateDoc(userSnapshot.docs[0].ref, {
+          tempPassword: null,
+          lastPasswordUpdate: new Date()
+        });
+      } else {
+        // Update the password in Firestore for next login
+        await updateDoc(userSnapshot.docs[0].ref, {
+          tempPassword: newPassword,
+          passwordUpdateRequired: true,
+          lastPasswordUpdate: new Date()
+        });
       }
-
-      userEmail = resetData.email;
 
       // Mark token as used
       await updateDoc(doc(db, 'passwordResets', resetDoc.id), {
         used: true,
-        usedAt: new Date(),
-        ipAddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown'
+        usedAt: new Date()
       });
 
-    } else if (phone && verified) {
-      // Handle phone-based password reset - create Firebase Auth user immediately
-      const formatPhoneNumber = (phone: string): string => {
-        const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-        if (cleaned.startsWith('+')) {
-          return cleaned;
-        }
-        const digits = cleaned.replace(/\D/g, '');
-        if (digits.startsWith('0')) {
-          return '+94' + digits.substring(1);
-        }
-        if (digits.startsWith('94')) {
-          return '+' + digits;
-        }
-        if (digits.length === 9 && digits.startsWith('7')) {
-          return '+94' + digits;
-        }
-        return '+94' + digits;
-      };
+      return res.status(200).json({
+        message: 'Password updated successfully. You can now sign in with your new password.',
+        action: 'password_updated'
+      });
 
-      const formattedPhone = formatPhoneNumber(phone);
-      userEmail = `${formattedPhone.replace('+', '')}@toolntask.app`;
+    } catch (error: unknown) {
+      console.error('Error updating password:', error);
       
-      console.log(`🔐 Creating Firebase Auth user for phone: ${formattedPhone}`);
-      console.log(`📧 Using email: ${userEmail}`);
+      // Fallback: Store the new password for next login
+      const usersRef = collection(db, 'users');
+      const userQuery = query(usersRef, where('email', '==', userEmail));
+      const userSnapshot = await getDocs(userQuery);
 
-      try {
-        // Create the Firebase Auth user immediately
-        const userCredential = await createUserWithEmailAndPassword(auth, userEmail, newPassword);
-        const firebaseUser = userCredential.user;
-        
-        console.log(`✅ Firebase Auth user created: ${firebaseUser.uid}`);
-        
-        // Create user document in Firestore
-        await setDoc(doc(db, 'users', firebaseUser.uid), {
-          uid: firebaseUser.uid,
-          email: userEmail,
-          phone: formattedPhone,
-          displayName: `User ${formattedPhone.replace('+94', '0')}`,
-          createdAt: new Date(),
-          createdVia: 'phone_password_reset',
-          emailVerified: false,
-          phoneVerified: true,
-          lastLogin: new Date()
+      if (!userSnapshot.empty) {
+        await updateDoc(userSnapshot.docs[0].ref, {
+          tempPassword: newPassword,
+          passwordUpdateRequired: true,
+          lastPasswordUpdate: new Date()
         });
-        
-        console.log(`✅ User document created in Firestore`);
-        
+
+        // Mark token as used
+        await updateDoc(doc(db, 'passwordResets', resetDoc.id), {
+          used: true,
+          usedAt: new Date()
+        });
+
         return res.status(200).json({
-          message: 'Account created successfully. You can now sign in with your phone number.',
-          email: userEmail,
-          phone: formattedPhone,
-          uid: firebaseUser.uid,
-          action: 'account_created'
+          message: 'Password updated successfully. You can now sign in with your new password.',
+          action: 'password_updated'
         });
-        
-      } catch (error: unknown) {
-        const firebaseError = error as { code?: string; message?: string };
-        console.error('Error creating Firebase Auth user:', firebaseError);
-        
-        if (firebaseError.code === 'auth/email-already-in-use') {
-          // User already exists - we need to update their password in Firestore
-          // and handle the password update during login
-          console.log(`✅ User already exists: ${userEmail} - Storing new password for next login`);
-          
-          try {
-            // Find the user document and store the new password
-            const usersRef = collection(db, 'users');
-            const q = query(usersRef, where('authEmail', '==', userEmail));
-            const querySnapshot = await getDocs(q);
-            
-            if (!querySnapshot.empty) {
-              const userDoc = querySnapshot.docs[0];
-              await updateDoc(userDoc.ref, {
-                tempPassword: newPassword,
-                passwordUpdateRequired: true,
+      }
+
+      return res.status(500).json({ message: 'Error updating password. Please try again.' });
+    }
+
+  } catch (error: unknown) {
+    console.error('API Error:', error);
+    return res.status(500).json({ message: 'Internal server error. Please try again.' });
+  }
+}
                 passwordUpdatedAt: new Date()
               });
               
