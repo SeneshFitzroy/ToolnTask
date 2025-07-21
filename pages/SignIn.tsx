@@ -106,14 +106,15 @@ export default function SignIn() {
 
         if (response.ok) {
           const data = await response.json();
-          if (data.email) {
+          if (data.success && data.email) {
             loginIdentifier = data.email;
             console.log(`📧 Found email for phone: ${data.email}`);
           } else {
-            throw new Error('Phone number not found');
+            throw new Error('Phone number not registered. Please check your number or create a new account.');
           }
         } else {
-          throw new Error('Phone number not found');
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || 'Phone number not registered. Please check your number or create a new account.');
         }
       }
       
