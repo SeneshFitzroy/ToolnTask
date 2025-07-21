@@ -529,12 +529,12 @@ export default function SignUp() {
                 </div>
               </div>
               
-              {/* Primary Contact Field */}
+              {/* Primary Contact Field - Only show selected type */}
               <div>
                 {registrationMethod === 'email' ? (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Email Address (Primary Contact)
+                      Email Address
                     </label>
                     <input
                       type="email"
@@ -556,7 +556,7 @@ export default function SignUp() {
                 ) : (
                   <>
                     <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Phone Number (Primary Contact - Sri Lanka)
+                      Phone Number (Sri Lanka)
                     </label>
                     <input
                       type="tel"
@@ -573,53 +573,6 @@ export default function SignUp() {
                       onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
                       onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                       required
-                    />
-                  </>
-                )}
-              </div>
-
-              {/* Secondary Contact Field */}
-              <div>
-                {registrationMethod === 'email' ? (
-                  <>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Phone Number (Optional - For SMS notifications)
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                      style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                      }}
-                      placeholder="077 123 4567 (optional)"
-                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Email Address (Optional - For email notifications)
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 rounded-lg sm:rounded-xl focus:outline-none transition-colors"
-                      style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#374151' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                      }}
-                      placeholder="your.email@example.com (optional)"
-                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#4B5563' : '#E2E8F0'}
                     />
                   </>
                 )}
