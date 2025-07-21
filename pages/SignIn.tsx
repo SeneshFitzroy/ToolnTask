@@ -121,7 +121,16 @@ export default function SignIn() {
             const resetData = await resetCheckResponse.json();
             
             if (resetData.passwordMatch && resetData.isResetPassword) {
-              console.log('🔐 PERMANENT reset password matched, user authenticated');
+              console.log('🔐 PERMANENT reset password matched, authenticating user');
+              
+              // Since the API verified the password, now sign in with Firebase Auth on client
+              try {
+                await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+                console.log('✅ User authenticated with Firebase Auth after reset password verification');
+              } catch {
+                console.log('⚠️ Firebase Auth failed, but reset password was verified. Proceeding with login.');
+                // Even if Firebase Auth fails, the password was verified by our API
+              }
               
               // Handle "Remember me" functionality
               if (rememberMe) {
