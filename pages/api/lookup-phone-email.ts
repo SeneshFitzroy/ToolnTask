@@ -58,12 +58,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
         
-        console.log(`✅ Found user with email: ${userData.email}`);
+        // For phone-based accounts, return the authEmail (which is the Firebase Auth email)
+        // For email-based accounts, return the actual email
+        const loginEmail = userData.authEmail || userData.email;
+        
+        console.log(`✅ Found user - Phone: ${userData.phone}, AuthEmail: ${userData.authEmail}, Email: ${userData.email}`);
+        console.log(`📧 Returning login email: ${loginEmail}`);
         
         return res.status(200).json({
           success: true,
-          email: userData.email,
-          phone: userData.phone
+          email: loginEmail,
+          phone: userData.phone,
+          authEmail: userData.authEmail
         });
       }
     }
