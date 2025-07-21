@@ -72,38 +72,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
     } else if (phone && verified) {
-      // Handle phone-based password reset
-      const formatPhoneNumber = (phone: string): string => {
-        const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-        if (cleaned.startsWith('+')) {
-          return cleaned;
-        }
-        const digits = cleaned.replace(/\D/g, '');
-        if (digits.startsWith('0')) {
-          return '+94' + digits.substring(1);
-        }
-        if (digits.startsWith('94')) {
-          return '+' + digits;
-        }
-        if (digits.length === 9 && digits.startsWith('7')) {
-          return '+94' + digits;
-        }
-        return '+94' + digits;
-      };
+      // Handle phone-based password reset with dedicated API
+      const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/phone-password-update`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone: phone,
+          newPassword: newPassword
+        }),
+      });
 
-      const formattedPhone = formatPhoneNumber(phone);
+      const result = await response.json();
       
-      // Find user by phone number in Firebase Auth or your user collection
-      // For now, we'll use the phone as identifier
-      userEmail = `phone_${formattedPhone.replace('+', '')}@toolntask.local`;
+      if (!response.ok) {
+        return res.status(response.status).json(result);
+      }
       
-      console.log(`📱 Phone-based password reset for: ${formattedPhone}`);
+      return res.status(200).json({
+        message: 'Password updated successfully',
+        email: result.email,
+        phone: result.phone
+      });
     } else {
       return res.status(400).json({ message: 'Invalid reset method' });
     }
 
-    // Here you would typically update the password in Firebase Auth
-    // For now, we'll just confirm the operation
+    // This is only reached for token-based resets
     console.log(`🔐 Password would be updated for: ${userEmail}`);
 
     res.status(200).json({ 
