@@ -30,8 +30,8 @@ export default function ResetPassword() {
       try {
         await signOut(auth);
         console.log('✅ User signed out on accessing reset page.');
-      } catch (error) {
-        console.log('⚠️ No user was signed in on reset page access.');
+      } catch (signOutError) {
+        console.log('⚠️ No user was signed in on reset page access.', signOutError);
       }
     };
     performSignOut();
