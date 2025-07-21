@@ -7,8 +7,9 @@ import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import { updateProfile, onAuthStateChanged, User, signOut } from 'firebase/auth';
 import { doc, updateDoc, getDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { auth, db, storage } from '../src/lib/firebase';
+import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut, Camera, Upload, X } from 'lucide-react';
 
 interface SavedGig {
   id: string;
@@ -606,17 +607,31 @@ export default function Profile() {
                             <button
                               key={language.code}
                               onClick={() => setSelectedLanguage(language.code)}
-                              className={`flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${
-                                selectedLanguage === language.code ? 'ring-2 ring-orange-500' : ''
+                              className={`flex items-center gap-3 px-4 py-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                                selectedLanguage === language.code ? 'ring-2 ring-orange-500 shadow-lg' : ''
                               }`}
                               style={{ 
-                                backgroundColor: selectedLanguage === language.code ? '#FFF7ED' : (theme === 'dark' ? '#2a2a2a' : '#FFFFFF'),
-                                borderColor: selectedLanguage === language.code ? '#FF5E14' : (theme === 'dark' ? '#444444' : '#E2E8F0'),
-                                color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                                backgroundColor: selectedLanguage === language.code 
+                                  ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.2)' : '#FFF7ED')
+                                  : (theme === 'dark' ? '#374151' : '#FFFFFF'),
+                                borderColor: selectedLanguage === language.code 
+                                  ? '#FF5E14' 
+                                  : (theme === 'dark' ? '#6B7280' : '#E2E8F0'),
+                                color: selectedLanguage === language.code 
+                                  ? '#FF5E14' 
+                                  : (theme === 'dark' ? '#FFFFFF' : '#2D3748'),
+                                boxShadow: selectedLanguage === language.code 
+                                  ? '0 8px 25px rgba(255, 94, 20, 0.3)' 
+                                  : (theme === 'dark' ? '0 4px 12px rgba(0, 0, 0, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.1)')
                               }}
                             >
-                              <span className="text-xl">{language.flag}</span>
-                              <span className="font-medium text-sm">{language.name}</span>
+                              <span className="text-2xl" style={{ 
+                                filter: theme === 'dark' ? 'brightness(1.2) contrast(1.2)' : 'none',
+                                textShadow: theme === 'dark' ? '0 0 8px rgba(255, 255, 255, 0.3)' : 'none'
+                              }}>
+                                {language.flag}
+                              </span>
+                              <span className="font-semibold text-base">{language.name}</span>
                             </button>
                           ))}
                         </div>
