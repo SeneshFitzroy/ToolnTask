@@ -227,7 +227,7 @@ export default function About() {
                    backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                    borderColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.3)' : 'rgba(255, 94, 20, 0.2)'
                  }}>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>Our Mission</h2>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-center" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>{t('ourMission')}</h2>
               <div className="max-w-4xl mx-auto">
                 <p className="text-base sm:text-lg mb-4 sm:mb-5 leading-relaxed text-center" style={{ color: theme === 'dark' ? '#B3B5BC' : '#4B5563' }}>
                   We believe that every community has untapped potential. Whether it&apos;s someone with 

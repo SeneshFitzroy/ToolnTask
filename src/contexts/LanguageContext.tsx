@@ -2,7 +2,21 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type Language = 'en' | 'si' | 'ta';
 
-interface Translations {
+interface Transla  // About Page Content
+  aboutUs: { en: 'About Us', si: 'අප ගැන', ta: 'எங்களைப் பற்றி' },
+  ourMission: { en: 'Our Mission', si: 'අපගේ මෙහෙවර', ta: 'எங்கள் நோக்கம்' },
+  ourVision: { en: 'Our Vision', si: 'අපගේ දැක්ම', ta: 'எங்கள் பார்வை' },
+  ceo: { en: 'CEO', si: 'ප්‍රධාන විධායක නිලධාරී', ta: 'தலைமை நிர्वाहক அधிकாري' },
+  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'தலைமை தொழில்நுட்ப அधिकারி' },
+  founderCeo: { en: 'Founder & CEO', si: 'නිර්මාතෘ සහ ප්‍රධාන විධායක', ta: 'நிறுவனர் மற்றும் தலைமை நிர्वாহக' },
+  
+  // Contact Form
+  firstName: { en: 'First Name', si: 'මුල් නම', ta: 'முதல் பெயர்' },
+  lastName: { en: 'Last Name', si: 'අවසාන නම', ta: 'கடைசி பெயர்' },
+  subject: { en: 'Subject', si: 'විෂය', ta: 'பொருள்' },
+  message: { en: 'Message', si: 'පණිවිඩය', ta: 'செய்தி' },
+  sendMessage: { en: 'Send Message', si: 'පණිවිඩය යවන්න', ta: 'செய்தி அனுप்பு' },
+  contactUs: { en: 'Contact Us', si: 'අප අමතන්න', ta: 'எங்களைத் தொடர்பு கொள்ளுங்கள்' },{
   [key: string]: {
     en: string;
     si: string;
