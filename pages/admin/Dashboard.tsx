@@ -1,31 +1,24 @@
-import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
-import { Button } from '../../src/components/ui/button';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../../src/lib/firebase';
-import { useLanguage } from '../../src/contexts/LanguageContext';
+import { useTheme } from 'next-themes';
 import { 
   Users, 
-  ClipboardList, 
-  Wrench, 
-  TrendingUp, 
+  FileText, 
   Eye, 
-  ToggleLeft, 
-  ToggleRight, 
-  Star,
-  Calendar,
-  MapPin,
-  DollarSign,
+  EyeOff, 
+  Trash2, 
   Search,
-  Filter,
   BarChart3,
-  PieChart,
-  LineChart
+  TrendingUp,
+  MapPin,
+  Clock,
+  DollarSign,
+  Star,
+  Phone,
+  CheckCircle,
+  XCircle,
+  ExternalLink
 } from 'lucide-react';
-import { getAllListings, getAllUsers, getSystemStats } from '../../src/lib/listingService';
 
 interface Advertisement {
   id: string;

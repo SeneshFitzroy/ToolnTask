@@ -4,16 +4,12 @@ import '../styles/globals.css';
 import { auth } from '../src/lib/firebase';
 import { useEffect } from 'react';
 import { initializeAllData } from '../src/lib/initializeData';
-import { LanguageProvider } from '../src/contexts/LanguageContext';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log('User logged in:', user.uid);
-      } else {
-        console.log('No user logged in');
-      }
+      if (user) console.log('User logged in:', user.uid);
+      else console.log('No user logged in');
     });
     
     // Initialize data on app start
@@ -24,9 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <LanguageProvider>
-        <Component {...pageProps} />
-      </LanguageProvider>
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }

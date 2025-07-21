@@ -7,12 +7,10 @@ import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
-import GlobalLanguageSelector from './GlobalLanguageSelector';
-import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Navigation = () => {
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -141,7 +139,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              {t('home')}
+              Home
             </Link>
             <Link 
               href="/Tasks" 
@@ -169,7 +167,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              {t('tasks')}
+              Tasks
             </Link>
             <Link 
               href="/Tools" 
@@ -197,7 +195,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              {t('tools')}
+              Tools
             </Link>
             <Link 
               href="/About" 
@@ -225,7 +223,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              {t('about')}
+              About
             </Link>
 
             {/* Create CTA Button for logged-in users - Made smaller */}
@@ -329,7 +327,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-5 flex-shrink-0">
             {/* Language Selector */}
             <div className="hidden sm:block">
-              <GlobalLanguageSelector showLabel={false} size="sm" />
+              <LanguageSelector />
             </div>
             
             {/* Auth Buttons - Hidden on small screens */}
@@ -596,7 +594,7 @@ const Navigation = () => {
 
               {/* Mobile Language Selector */}
               <div className="px-4 py-3">
-                <GlobalLanguageSelector showLabel={true} size="md" />
+                <LanguageSelector />
               </div>
 
               {/* Mobile Create Options */}

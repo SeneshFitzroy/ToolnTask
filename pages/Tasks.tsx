@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLanguage } from '../src/contexts/LanguageContext';
 
 interface Task {
   id: string;
@@ -39,7 +38,6 @@ export default function Tasks() {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tasks] = useState<Task[]>(mockTasks);
   const { theme } = useTheme();
-  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
