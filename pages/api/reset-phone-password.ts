@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           error: 'SAME_PASSWORD'
         });
       }
-    } catch (signInError: unknown) {
+    } catch {
       // If sign in fails, it's good - means they're using a different password
       // We'll also check reset accounts
       console.log('✅ New password is different from original account password');
