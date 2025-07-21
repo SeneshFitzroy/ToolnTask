@@ -24,6 +24,20 @@ export default function ResetPassword() {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // --- ADDED: Sign out on component mount ---
+  useEffect(() => {
+    const performSignOut = async () => {
+      try {
+        await signOut(auth);
+        console.log('✅ User signed out on accessing reset page.');
+      } catch (error) {
+        console.log('⚠️ No user was signed in on reset page access.');
+      }
+    };
+    performSignOut();
+  }, []);
+  // --- END OF ADDITION ---
+
   // Password validation states
   const [passwordValidation, setPasswordValidation] = useState({
     length: false,
