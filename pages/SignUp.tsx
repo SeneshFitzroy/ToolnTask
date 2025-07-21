@@ -397,11 +397,13 @@ export default function SignUp() {
                   <button
                     type="button"
                     onClick={() => {
-                      setRegistrationMethod(registrationMethod === 'email' ? 'phone' : 'email');
-                      // Clear the current primary field when switching
+                      const newMethod = registrationMethod === 'email' ? 'phone' : 'email';
+                      setRegistrationMethod(newMethod);
+                      // Clear both fields when switching to ensure clean state
                       setFormData(prev => ({
                         ...prev,
-                        [registrationMethod === 'email' ? 'email' : 'phone']: ''
+                        email: '',
+                        phone: ''
                       }));
                     }}
                     className="text-xs px-2 py-1 rounded-md transition-all duration-200 hover:scale-105"
