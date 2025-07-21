@@ -202,7 +202,7 @@ export default function SignIn() {
           }
           
           // Re-throw the original Firebase error if no reset password workaround
-          throw firebaseError;
+          throw authError;
         }
       }
       
