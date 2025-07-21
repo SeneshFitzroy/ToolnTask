@@ -158,12 +158,20 @@ export default function ResetPassword() {
         const data = await response.json();
 
         if (response.ok) {
-          setMessage('Password updated successfully. Redirecting to sign in...');
+          setMessage('Password updated successfully. Signing you out and redirecting...');
           setIsSuccess(true);
           
           // Save email for auto-fill in sign in
           if (data.email) {
             localStorage.setItem('lastPasswordResetEmail', data.email);
+          }
+          
+          // Important: Sign out the user to ensure they need to log in with new password
+          try {
+            await signOut(auth);
+            console.log('✅ User signed out after password reset');
+          } catch (signOutError) {
+            console.log('⚠️ Sign out error (user may not have been signed in):', signOutError);
           }
           
           // Use a single redirect without multiple timeouts
