@@ -556,7 +556,7 @@ export default function SignUp() {
                 >
                   <span className="text-lg">📱</span>
                   <span className="text-xs font-medium" style={{ color: registrationMethod === 'phone' ? '#FF5E14' : (theme === 'dark' ? '#FFFFFF' : '#2D3748') }}>
-                    Phone Registration
+                    Phone Number Registration
                   </span>
                   {registrationMethod === 'phone' && (
                     <div className="text-xs px-2 py-1 rounded-full text-white" style={{ backgroundColor: '#FF5E14' }}>
