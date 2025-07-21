@@ -53,16 +53,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               
               // Force update Firebase Auth password by signing in with default passwords
               const tryPasswords = ['password123', 'tempPassword123', userData.tempPassword];
-              let updated = false;
               
               for (const tryPass of tryPasswords) {
-                if (!tryPass) continue;
+                if (!tryPass) {
+                  continue;
+                }
                 try {
                   const userCred = await signInWithEmailAndPassword(auth, email, tryPass);
                   await updatePassword(userCred.user, password);
                   await signOut(auth);
                   console.log(`✅ Firebase Auth password updated for: ${email}`);
-                  updated = true;
                   break;
                 } catch {
                   continue;
