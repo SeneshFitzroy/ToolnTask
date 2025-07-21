@@ -23,7 +23,6 @@ const Navigation = () => {
     
     // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log('🔥 Auth state changed in Navigation:', user ? `User: ${user.email}` : 'No user');
       setUser(user);
     });
 
@@ -491,7 +490,7 @@ const Navigation = () => {
                       
                       <Link 
                         href="/SignUp"
-                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
+                        className="flex items-center gap-4 px-5 py-4 transition-colors duration-200 text-base"
                         style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
