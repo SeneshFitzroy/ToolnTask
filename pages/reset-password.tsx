@@ -119,11 +119,19 @@ export default function ResetPassword() {
         const data = await response.json();
 
         if (response.ok && data.success) {
-          setMessage('Password reset successful! You can now sign in with your new password.');
+          setMessage('Password reset successful! Signing you out and redirecting...');
           setIsSuccess(true);
           
           // Save phone for auto-fill in sign in
           localStorage.setItem('lastPasswordResetEmail', phone);
+          
+          // Important: Sign out the user to ensure they need to log in with new password
+          try {
+            await signOut(auth);
+            console.log('✅ User signed out after phone password reset');
+          } catch (signOutError) {
+            console.log('⚠️ Sign out error (user may not have been signed in):', signOutError);
+          }
           
           setTimeout(() => {
             router.replace('/SignIn?message=password-reset-success');
