@@ -271,6 +271,11 @@ export default function ResetPassword() {
                     )}
                   </button>
                 </div>
+                
+                {/* Password must be at least 8 characters caption */}
+                <p className="mt-2 text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                  Password must be at least 8 characters long
+                </p>
               </div>
 
               {/* Password Requirements */}

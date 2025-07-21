@@ -14,6 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ message: 'Phone and new password are required' });
   }
 
+  // Validate password length
+  if (newPassword.length < 8) {
+    return res.status(400).json({ 
+      success: false,
+      message: 'Password must be at least 8 characters long',
+      error: 'PASSWORD_TOO_SHORT'
+    });
+  }
+
   try {
     // Clean the phone number to match our format
     const cleanedPhone = phone.replace(/[\s\-\(\)]/g, '');
