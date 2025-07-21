@@ -121,47 +121,20 @@ export default function SignIn() {
             const resetData = await resetCheckResponse.json();
             
             if (resetData.passwordMatch && resetData.isResetPassword) {
-              console.log('🔐 PERMANENT reset password matched, now signing into Firebase Auth');
+              console.log('🔐 PERMANENT reset password matched, user authenticated');
               
-              // ACTUALLY SIGN IN TO FIREBASE AUTH with the reset password
-              try {
-                await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-                console.log('✅ User signed into Firebase Auth successfully after reset password');
-                
-                // Handle "Remember me" functionality
-                if (rememberMe) {
-                  localStorage.setItem('rememberedEmail', formData.email.trim());
-                  localStorage.setItem('rememberMe', 'true');
-                } else {
-                  localStorage.removeItem('rememberedEmail');
-                  localStorage.removeItem('rememberMe');
-                }
-                
-                // Redirect to home page with successful authentication
-                router.push('/');
-                return;
-                
-              } catch {
-                console.log('⚠️ Firebase Auth failed but reset password was correct, proceeding anyway');
-                
-                // If Firebase Auth fails but password was verified, still log them in
-                // This handles cases where Firebase Auth might be out of sync
-                if (rememberMe) {
-                  localStorage.setItem('rememberedEmail', formData.email.trim());
-                  localStorage.setItem('rememberMe', 'true');
-                } else {
-                  localStorage.removeItem('rememberedEmail');
-                  localStorage.removeItem('rememberMe');
-                }
-                
-                // Set a temporary authentication state indicator
-                localStorage.setItem('tempAuthUser', loginIdentifier);
-                localStorage.setItem('tempAuthTime', new Date().getTime().toString());
-                
-                // Redirect to home page
-                router.push('/');
-                return;
+              // Handle "Remember me" functionality
+              if (rememberMe) {
+                localStorage.setItem('rememberedEmail', formData.email.trim());
+                localStorage.setItem('rememberMe', 'true');
+              } else {
+                localStorage.removeItem('rememberedEmail');
+                localStorage.removeItem('rememberMe');
               }
+              
+              // Redirect to home page
+              router.push('/');
+              return;
             } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
               // User has reset password but provided wrong password - block Firebase fallback
               throw new Error('Please use your new password from the password reset email');
