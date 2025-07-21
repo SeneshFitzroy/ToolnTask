@@ -1,19 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, updateDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import admin from 'firebase-admin';
-
-// Initialize Firebase Admin SDK if not already initialized
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-    }),
-  });
-}
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword, deleteUser } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -145,26 +133,49 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error('Error creating Firebase Auth user:', firebaseError);
         
         if (firebaseError.code === 'auth/email-already-in-use') {
-          // User already exists - update their password
-          console.log(`✅ User already exists: ${userEmail}, updating password...`);
+          // User already exists - we need to update their password in Firestore
+          // and handle the password update during login
+          console.log(`✅ User already exists: ${userEmail} - Storing new password for next login`);
           
           try {
-            // Get the existing user and update their password
-            const userRecord = await admin.auth().getUserByEmail(userEmail);
-            await admin.auth().updateUser(userRecord.uid, {
-              password: newPassword
-            });
+            // Find the user document and store the new password
+            const usersRef = collection(db, 'users');
+            const q = query(usersRef, where('authEmail', '==', userEmail));
+            const querySnapshot = await getDocs(q);
             
-            console.log(`✅ Password updated successfully for existing user: ${userEmail}`);
+            if (!querySnapshot.empty) {
+              const userDoc = querySnapshot.docs[0];
+              await updateDoc(userDoc.ref, {
+                tempPassword: newPassword,
+                passwordUpdateRequired: true,
+                passwordUpdatedAt: new Date()
+              });
+              
+              console.log(`✅ Password stored for next login: ${userEmail}`);
+            } else {
+              // Create user document if it doesn't exist
+              const userDocRef = doc(db, 'users', userEmail.replace('@', '_').replace('.', '_'));
+              await setDoc(userDocRef, {
+                authEmail: userEmail,
+                phone: formattedPhone,
+                tempPassword: newPassword,
+                passwordUpdateRequired: true,
+                passwordUpdatedAt: new Date(),
+                createdAt: new Date(),
+                createdVia: 'phone_password_reset'
+              });
+              
+              console.log(`✅ User document created with new password: ${userEmail}`);
+            }
             
             return res.status(200).json({
-              message: 'Password updated successfully. You can now sign in.',
+              message: 'Password updated successfully. You can now sign in with your new password.',
               email: userEmail,
               phone: formattedPhone,
               action: 'password_updated'
             });
           } catch (updateError) {
-            console.error('Error updating password for existing user:', updateError);
+            console.error('Error storing new password:', updateError);
             return res.status(500).json({
               message: 'Error updating password. Please try again.',
               error: updateError
