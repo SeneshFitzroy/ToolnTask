@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { setDoc, doc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
+import { setDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
