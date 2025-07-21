@@ -408,8 +408,111 @@ export default function Profile() {
             {/* Profile Header */}
             <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold" style={{ backgroundColor: '#FF5E14' }}>
-                  {userProfile.firstName ? userProfile.firstName.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
+                {/* Profile Photo with Upload */}
+                <div className="relative group">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex items-center justify-center text-white text-2xl sm:text-3xl font-bold relative" 
+                       style={{ backgroundColor: '#FF5E14' }}>
+                    {userProfile.profilePhotoURL ? (
+                      <img 
+                        src={userProfile.profilePhotoURL} 
+                        alt="Profile" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to initials if image fails to load
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.nextElementSibling!.style.display = 'flex';
+                        }}
+                      />
+                    ) : null}
+                    <div 
+                      className={`w-full h-full flex items-center justify-center ${userProfile.profilePhotoURL ? 'hidden' : 'flex'}`}
+                      style={{ backgroundColor: '#FF5E14' }}
+                    >
+                      {userProfile.firstName ? userProfile.firstName.charAt(0).toUpperCase() : user?.email?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                  </div>
+                  
+                  {/* Photo Upload Button */}
+                  <button
+                    onClick={() => setShowPhotoUpload(!showPhotoUpload)}
+                    disabled={uploadingPhoto}
+                    className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 disabled:opacity-50"
+                    style={{ 
+                      backgroundColor: '#FF5E14',
+                      color: '#FFFFFF',
+                      boxShadow: '0 2px 8px rgba(255, 94, 20, 0.4)'
+                    }}
+                  >
+                    {uploadingPhoto ? (
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    ) : (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    )}
+                  </button>
+
+                  {/* Photo Upload Menu */}
+                  {showPhotoUpload && (
+                    <div className="absolute top-full left-0 mt-2 p-3 rounded-xl shadow-2xl border-2 z-50 min-w-[200px]"
+                         style={{ 
+                           backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
+                           borderColor: theme === 'dark' ? '#374151' : '#E2E8F0',
+                           boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25)'
+                         }}>
+                      <div className="space-y-2">
+                        <label className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105"
+                               style={{
+                                 backgroundColor: theme === 'dark' ? '#374151' : '#F8F9FA',
+                                 color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                               }}>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                          </svg>
+                          <span className="font-medium">Upload Photo</span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handlePhotoUpload}
+                            className="hidden"
+                            disabled={uploadingPhoto}
+                          />
+                        </label>
+                        
+                        {userProfile.profilePhotoURL && (
+                          <button
+                            onClick={removeProfilePhoto}
+                            disabled={uploadingPhoto}
+                            className="flex items-center gap-3 px-3 py-2 rounded-lg w-full transition-all duration-200 hover:scale-105 disabled:opacity-50"
+                            style={{
+                              backgroundColor: theme === 'dark' ? '#3a1f1f' : '#FEF2F2',
+                              color: '#DC2626'
+                            }}
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            <span className="font-medium">Remove Photo</span>
+                          </button>
+                        )}
+                        
+                        <button
+                          onClick={() => setShowPhotoUpload(false)}
+                          className="flex items-center gap-3 px-3 py-2 rounded-lg w-full transition-all duration-200 hover:scale-105"
+                          style={{
+                            backgroundColor: theme === 'dark' ? '#374151' : '#F8F9FA',
+                            color: theme === 'dark' ? '#CCCCCC' : '#6B7280'
+                          }}
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                          <span className="font-medium">Cancel</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="text-center sm:text-left flex-1">
                   <h2 className="text-xl sm:text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
