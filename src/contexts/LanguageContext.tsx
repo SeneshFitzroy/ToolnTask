@@ -127,9 +127,18 @@ const translations: Translations = {
   contactUs: { en: 'Contact Us', si: 'අප අමතන්න', ta: 'எங்களைத் தொடர்பு கொள்ளுங்கள்' },
   
   // Error Messages
-  authRequired: { en: 'Please sign in to access this page', si: 'මෙම පිටුවට ප්‍රවේශ වීමට කරුණාකර ලොග් වන්න', ta: 'இந்தப் பக்கத்தை அணுக உள்நுழைக' },
+  // Error Messages
+  authRequired: { en: 'Please sign in to access this page', si: 'මෙම පිටුවට ප්‍රවේශ වීමට කරුණාකර ලොග් වන්න', ta: 'இந்தப் பக்கத்தை அணுக உள்நुழைக' },
   notFound: { en: 'Page not found', si: 'පිටුව හමු නොවීය', ta: 'பக்கம் கிடைக்கவில்லை' },
   networkError: { en: 'Network error. Please try again.', si: 'ජාල දෝෂය. කරුණාකර නැවත උත්සාහ කරන්න.', ta: 'நெட்வொர்க் பிழை. மீண்டும் முயற்சிக்கவும்.' },
+  
+  // Companies and About
+  aboutUs: { en: 'About Us', si: 'අප ගැන', ta: 'எங்களைப் பற்றி' },
+  ourMission: { en: 'Our Mission', si: 'අපගේ මෙහෙවර', ta: 'எங்கள் நோக்கம்' },
+  ourVision: { en: 'Our Vision', si: 'අපගේ දැක්ම', ta: 'எங்கள் பார்வை' },
+  ceo: { en: 'CEO', si: 'ප්‍රධාන විධායක නිලධාරී', ta: 'தலைமை நிர்வாக அதிகாரி' },
+  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'தலைமை தொழில்நுட்ப அதிகாரி' }
+};
   
   // Companies and About
   aboutUs: { en: 'About Us', si: 'අප ගැන', ta: 'எங்களைப் பற்றி' },
