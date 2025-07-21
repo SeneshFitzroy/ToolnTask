@@ -124,8 +124,9 @@ export default function SignIn() {
           window.location.href = '/';
           return;
           
-        } catch (firebaseError: any) {
-          console.log('⚠️ Direct Firebase Auth failed, checking reset password system:', firebaseError.code);
+        } catch (firebaseError: unknown) {
+          const authError = firebaseError as { code?: string; message?: string };
+          console.log('⚠️ Direct Firebase Auth failed, checking reset password system:', authError.code);
           
           // If Firebase Auth fails, check our reset password system
           if (firebaseError.code === 'auth/wrong-password' || firebaseError.code === 'auth/user-not-found') {
