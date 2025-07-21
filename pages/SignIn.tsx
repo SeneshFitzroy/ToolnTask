@@ -156,9 +156,10 @@ export default function SignIn() {
               }
             }
           }
-        } catch (error: any) {
-          if (error.message === 'Please use your new password from the password reset email') {
-            throw error;
+        } catch (error: unknown) {
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          if (errorMessage === 'Please use your new password from the password reset email') {
+            throw new Error(errorMessage);
           }
           console.log('No reset password found, proceeding with normal Firebase Auth');
         }
