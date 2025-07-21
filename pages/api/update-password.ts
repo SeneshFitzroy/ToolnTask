@@ -78,7 +78,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(`⚠️ Could not delete old user, proceeding with creation`);
       }
 
-    } catch (deleteError) {
+    } catch {
       console.log(`⚠️ Delete attempt completed, proceeding with fresh creation`);
     }
 
