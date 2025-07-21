@@ -30,9 +30,14 @@ if (!getApps().length) {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Set proper JSON headers
+  res.setHeader('Content-Type', 'application/json');
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
+
+  try {
 
   const { email, phone, password } = req.body;
 
