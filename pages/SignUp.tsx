@@ -874,7 +874,7 @@ export default function SignUp() {
                 <p className="font-medium mb-1">Having trouble?</p>
                 <p>• If you already have an account, please use the Login link above</p>
                 <p>• Make sure your email is correct and not already registered</p>
-                <p>• Password must be at least 6 characters long</p>
+                <p>• Password must be at least 8 characters long</p>
               </div>
             </div>
           </div>

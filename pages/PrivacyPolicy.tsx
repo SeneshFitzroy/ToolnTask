@@ -289,7 +289,7 @@ export default function PrivacyAndSafety() {
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>User Verification:</strong> Identity verification system for enhanced trust</li>
-                        <li>• <strong>Secure Payments:</strong> Encrypted payment processing with buyer protection</li>
+                        <li>• <strong>Secure Platform:</strong> Encrypted communication and data protection</li>
                         <li>• <strong>Rating System:</strong> Community-driven feedback for informed decisions</li>
                         <li>• <strong>24/7 Support:</strong> Dedicated support team for safety concerns</li>
                         <li>• <strong>Dispute Resolution:</strong> Fair and impartial resolution process</li>
@@ -377,12 +377,9 @@ export default function PrivacyAndSafety() {
                   If you&apos;re experiencing immediate safety concerns or threats, please contact local emergency services first, 
                   then reach out to our support team.
                 </p>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center">
                   <span className="text-sm font-medium" style={{ color: '#FE5F16' }}>
-                    Sri Lanka Emergency: 119
-                  </span>
-                  <span className="text-sm font-medium" style={{ color: '#FE5F16' }}>
-                    Police: 118
+                    Sri Lanka Police Emergency: 119
                   </span>
                 </div>
               </div>
