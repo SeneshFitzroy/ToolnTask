@@ -77,7 +77,7 @@ export default function SignIn() {
     try {
       let loginIdentifier = formData.email.trim();
       
-      // If it's a phone number, we need to find the associated email
+      // If it's a phone number, we need to find the associated email or create account
       if (isValidPhone) {
         const response = await fetch('/api/get-email-by-phone', {
           method: 'POST',
@@ -92,9 +92,37 @@ export default function SignIn() {
         if (response.ok && data.email) {
           loginIdentifier = data.email;
         } else {
-          setError('Phone number not found in our records. Please register first or use your email address.');
-          setLoading(false);
-          return;
+          // Phone number not found - try to create account
+          console.log('Phone number not found, attempting to create account...');
+          
+          try {
+            const createResponse = await fetch('/api/create-phone-account', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ 
+                phone: cleanedInput,
+                password: formData.password
+              }),
+            });
+            
+            const createData = await createResponse.json();
+            
+            if (createResponse.ok && createData.email) {
+              loginIdentifier = createData.email;
+              console.log(`✅ Created new account for phone: ${cleanedInput}`);
+            } else {
+              setError('Unable to create account with this phone number. Please use your email address to sign in.');
+              setLoading(false);
+              return;
+            }
+          } catch (createError) {
+            console.error('Error creating phone account:', createError);
+            setError('Phone number not found in our records. Please register first or use your email address.');
+            setLoading(false);
+            return;
+          }
         }
       }
       

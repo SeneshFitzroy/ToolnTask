@@ -99,8 +99,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log(`📧 Using email: ${userEmail}`);
 
       // For phone-based reset, we'll create a success message
-      // The actual Firebase Auth user creation will happen in create-phone-account
-      userEmail = userEmail;
+      // The actual Firebase Auth user creation will happen during sign-in
       
       return res.status(200).json({
         message: 'Password reset prepared successfully. Please sign in with your phone number.',
