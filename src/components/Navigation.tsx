@@ -491,7 +491,7 @@ const Navigation = () => {
                       
                       <Link 
                         href="/SignUp"
-                        className="flex items-center gap-4 px-5 py-4 transition-colors duration-200 text-base"
+                        className="flex items-center gap-3 px-4 py-3 transition-colors duration-200 text-sm"
                         style={{ color: theme === 'dark' ? '#e5e7eb' : '#374151' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
