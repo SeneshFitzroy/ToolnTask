@@ -332,6 +332,7 @@ export default function Profile() {
         lastName: userProfile.lastName,
         phone: userProfile.phone,
         displayName: `${userProfile.firstName} ${userProfile.lastName}`,
+        profilePhotoURL: userProfile.profilePhotoURL,
         preferredLanguage: selectedLanguage,
         updatedAt: serverTimestamp()
       });
@@ -642,6 +643,26 @@ export default function Profile() {
 
               {activeTab === 'profile' && (
                 <form onSubmit={handleProfileUpdate} className="space-y-6">
+                  
+                  {/* Profile Photo Info */}
+                  <div className="p-4 rounded-xl border-2 border-dashed" style={{ 
+                    borderColor: theme === 'dark' ? '#374151' : '#E2E8F0',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.05)' : 'rgba(255, 94, 20, 0.02)'
+                  }}>
+                    <div className="flex items-center gap-3">
+                      <svg className="w-5 h-5" style={{ color: '#FF5E14' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div>
+                        <p className="font-medium text-sm" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                          Profile Photo
+                        </p>
+                        <p className="text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          Click the camera icon on your profile photo to upload or change your picture. Max file size: 5MB
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
