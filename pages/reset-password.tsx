@@ -93,29 +93,56 @@ export default function ResetPassword() {
     setError('');
 
     try {
-      const response = await fetch('/api/update-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token: token || undefined,
-          phone: phone || undefined,
-          verified: verified || undefined,
-          newPassword: password
-        }),
-      });
+      // For phone-based reset, use the new phone password reset API
+      if (phone && verified) {
+        const response = await fetch('/api/reset-phone-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phone: phone,
+            newPassword: password
+          }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
-        setMessage('Password updated successfully. Redirecting to sign in...');
-        
-        setTimeout(() => {
-          router.push('/SignIn?message=password-reset-success');
-        }, 2000);
+        if (response.ok && data.success) {
+          setMessage('Password reset successful! You can now sign in with your new password.');
+          
+          setTimeout(() => {
+            router.push('/SignIn?message=password-reset-success');
+          }, 2000);
+        } else {
+          setError(data.message || 'Error resetting password. Please try again.');
+        }
       } else {
-        setError(data.message || 'Error updating password. Please try again.');
+        // For token-based reset (email), use the existing API
+        const response = await fetch('/api/update-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: token || undefined,
+            phone: phone || undefined,
+            verified: verified || undefined,
+            newPassword: password
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setMessage('Password updated successfully. Redirecting to sign in...');
+          
+          setTimeout(() => {
+            router.push('/SignIn?message=password-reset-success');
+          }, 2000);
+        } else {
+          setError(data.message || 'Error updating password. Please try again.');
+        }
       }
 
     } catch (error) {
