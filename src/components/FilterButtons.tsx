@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+// import { useLanguage } from '../contexts/LanguageContext';
 
 interface FilterButtonsProps {
   onFilterChange: (filter: 'all' | 'tasks' | 'tools') => void;
