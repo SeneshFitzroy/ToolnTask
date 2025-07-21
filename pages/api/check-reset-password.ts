@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Try to authenticate with Firebase Auth
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          // DON'T sign out - keep user authenticated for the session
+          await signOut(auth); // Sign out immediately after verification
           
           // Update last successful login
           await updateDoc(userDoc.ref, {
@@ -59,8 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return res.status(200).json({ 
             passwordMatch: true,
             message: 'Login successful with reset password',
-            isResetPassword: true,
-            authSuccess: true
+            isResetPassword: true
           });
           
         } catch {
@@ -77,8 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             passwordMatch: true,
             message: 'Login successful with reset password',
             isResetPassword: true,
-            needsFirebaseSync: true,
-            authSuccess: false
+            needsFirebaseSync: true
           });
         }
       } else {

@@ -5,8 +5,6 @@ import Footer from '../src/components/Footer';
 import Logo from '../src/components/Logo';
 import { useTheme } from 'next-themes';
 import { Eye, EyeOff, Lock, CheckCircle, AlertTriangle, Check, X } from 'lucide-react';
-import { auth } from '../src/lib/firebase';
-import { signOut } from 'firebase/auth';
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -23,20 +21,6 @@ export default function ResetPassword() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-
-  // --- ADDED: Sign out on component mount ---
-  useEffect(() => {
-    const performSignOut = async () => {
-      try {
-        await signOut(auth);
-        console.log('✅ User signed out on accessing reset page.');
-      } catch (signOutError) {
-        console.log('⚠️ No user was signed in on reset page access.', signOutError);
-      }
-    };
-    performSignOut();
-  }, []);
-  // --- END OF ADDITION ---
 
   // Password validation states
   const [passwordValidation, setPasswordValidation] = useState({
@@ -133,19 +117,8 @@ export default function ResetPassword() {
         const data = await response.json();
 
         if (response.ok && data.success) {
-          setMessage('Password reset successful! Signing you out and redirecting...');
+          setMessage('Password reset successful! You can now sign in with your new password.');
           setIsSuccess(true);
-          
-          // Save phone for auto-fill in sign in
-          localStorage.setItem('lastPasswordResetEmail', phone);
-          
-          // Important: Sign out the user to ensure they need to log in with new password
-          try {
-            await signOut(auth);
-            console.log('✅ User signed out after phone password reset');
-          } catch (signOutError) {
-            console.log('⚠️ Sign out error (user may not have been signed in):', signOutError);
-          }
           
           setTimeout(() => {
             router.replace('/SignIn?message=password-reset-success');
@@ -180,21 +153,8 @@ export default function ResetPassword() {
         const data = await response.json();
 
         if (response.ok) {
-          setMessage('Password updated successfully. Signing you out and redirecting...');
+          setMessage('Password updated successfully. Redirecting to sign in...');
           setIsSuccess(true);
-          
-          // Save email for auto-fill in sign in
-          if (data.email) {
-            localStorage.setItem('lastPasswordResetEmail', data.email);
-          }
-          
-          // Important: Sign out the user to ensure they need to log in with new password
-          try {
-            await signOut(auth);
-            console.log('✅ User signed out after password reset');
-          } catch (signOutError) {
-            console.log('⚠️ Sign out error (user may not have been signed in):', signOutError);
-          }
           
           // Use a single redirect without multiple timeouts
           setTimeout(() => {
