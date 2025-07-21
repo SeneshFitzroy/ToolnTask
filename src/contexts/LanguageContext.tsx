@@ -33,7 +33,7 @@ const translations: Translations = {
   signUp: { en: 'Sign Up', si: 'ලියාපදිංචි වන්න', ta: 'பதிவு செய்க' },
   forgotPassword: { en: 'Forgot Password?', si: 'මුරපදය අමතකද?', ta: 'கடவுச்சொல்லை மறந்துவிட்டீர்களா?' },
   password: { en: 'Password', si: 'මුරපදය', ta: 'கடவுச்சொல்' },
-  confirmPassword: { en: 'Confirm Password', si: 'මුරපදය තහවුරු කරන්න', ta: 'கடவுச்சொல்லை உறுதிப்படுত்தவும்' },
+  confirmPassword: { en: 'Confirm Password', si: 'මුරපදය තහවුරු කරන්න', ta: 'கடவுச்சொல்லை உறுதிப்படுத்தவும்' },
   adminCredentials: { en: 'Admin Credentials', si: 'පරිපාලක අක්තපත්‍ර', ta: 'நிர்வாக சான்றுகள்' },
   
   // Profile Page
@@ -86,10 +86,10 @@ const translations: Translations = {
   
   // Messages
   updateSuccess: { en: 'Profile updated successfully', si: 'පැතිකඩ සාර්ථකව යාවත්කාලීන කරන ලදී', ta: 'சுயவிவரம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது' },
-  updateError: { en: 'Failed to update profile', si: 'පැතිකඩ යාවත්කාලීන කිරීම අසාර්ථකයි', ta: 'சுயவிவரம் புதுப்பிப்பதில் தோல்வி' },
+  updateError: { en: 'Failed to update profile', si: 'පැතිකඩ යාවත්කාලීන කිරීම අසාර්ථකයි', ta: 'சுயவிவரம் புதुப்பிப்பதில் தோல்வி' },
   
   // Forms
-  save_changes: { en: 'Save Changes', si: 'වෙනස්කම් සුරකින්න', ta: 'மாற்றங்களைச் சேமி' },
+  saveChanges: { en: 'Save Changes', si: 'වෙනස්කම් සුරකින්න', ta: 'மாற்றங்களைச் சேமி' },
   cancel: { en: 'Cancel', si: 'අවලංගු කරන්න', ta: 'ரத்து செய்' },
   
   // Listings
@@ -131,12 +131,12 @@ const translations: Translations = {
   notFound: { en: 'Page not found', si: 'පිටුව හමු නොවීය', ta: 'பக்கம் கிடைக்கவில்லை' },
   networkError: { en: 'Network error. Please try again.', si: 'ජාල දෝෂය. කරුණාකර නැවත උත්සාහ කරන්න.', ta: 'நெட்வொர்க் பிழை. மீண்டும் முயற்சிக்கவும்.' },
   
-  // Companies and About
+  // About Page Content
   aboutUs: { en: 'About Us', si: 'අප ගැන', ta: 'எங்களைப் பற்றி' },
   ourMission: { en: 'Our Mission', si: 'අපගේ මෙහෙවර', ta: 'எங்கள் நோக்கம்' },
   ourVision: { en: 'Our Vision', si: 'අපගේ දැක්ම', ta: 'எங்கள் பார்வை' },
   ceo: { en: 'CEO', si: 'ප්‍රධාන විධායක නිලධාරී', ta: 'தலைமை நிர்வாக அதிகாரி' },
-  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'தலைமை தொழில்நுட்ப அதிकாரி' }
+  cto: { en: 'CTO', si: 'ප්‍රධාන තාක්ෂණ නිලධාරී', ta: 'தலைமை தொழில்நுட்ப அதிகாരி' }
 };
 
 interface LanguageContextType {
