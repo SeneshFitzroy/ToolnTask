@@ -129,7 +129,7 @@ export default function SignIn() {
           console.log('⚠️ Direct Firebase Auth failed, checking reset password system:', authError.code);
           
           // If Firebase Auth fails, check our reset password system
-          if (firebaseError.code === 'auth/wrong-password' || firebaseError.code === 'auth/user-not-found') {
+          if (authError.code === 'auth/wrong-password' || authError.code === 'auth/user-not-found') {
             try {
               const resetCheckResponse = await fetch('/api/check-reset-password', {
                 method: 'POST',
