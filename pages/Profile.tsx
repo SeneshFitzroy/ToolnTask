@@ -173,14 +173,6 @@ export default function Profile() {
     }));
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPasswordData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -199,7 +191,10 @@ export default function Profile() {
     setError('');
     setSuccess('');
 
-    if (!user) return;
+    if (!user) {
+      setLoading(false);
+      return;
+    }
 
     try {
       // Update Firebase Auth profile
@@ -213,6 +208,7 @@ export default function Profile() {
         lastName: userProfile.lastName,
         phone: userProfile.phone,
         displayName: `${userProfile.firstName} ${userProfile.lastName}`,
+        preferredLanguage: selectedLanguage,
         updatedAt: serverTimestamp()
       });
 
@@ -228,47 +224,36 @@ export default function Profile() {
     }
   };
 
-  const handlePasswordUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-    setSuccess('');
-
-    if (!user) return;
-
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      setError('New passwords do not match');
-      setLoading(false);
-      setTimeout(() => setError(''), 3000);
-      return;
-    }
-
-    if (passwordData.newPassword.length < 6) {
-      setError('Password must be at least 6 characters long');
-      setLoading(false);
-      setTimeout(() => setError(''), 3000);
-      return;
-    }
-
+  const removeSavedGig = async (gigId: string) => {
     try {
-      await updatePassword(user, passwordData.newPassword);
-      setSuccess('Password updated successfully!');
-      setPasswordData({
-        newPassword: '',
-        confirmPassword: ''
-      });
+      await deleteDoc(doc(db, 'savedGigs', gigId));
+      setSavedGigs(prev => prev.filter(g => g.id !== gigId));
+      setSuccess('Saved gig removed successfully!');
       setTimeout(() => setSuccess(''), 3000);
-    } catch (error: unknown) {
-      console.error('Error updating password:', error);
-      const errorMessage = error instanceof Error ? error.message : 'An error occurred while updating password';
-      setError(errorMessage);
+    } catch (error) {
+      console.error('Error removing saved gig:', error);
+      setError('Failed to remove saved gig. Please try again.');
       setTimeout(() => setError(''), 3000);
-    } finally {
-      setLoading(false);
     }
   };
 
-  if (!mounted) return null;
+  const markNotificationAsRead = async (notificationId: string) => {
+    try {
+      await updateDoc(doc(db, 'notifications', notificationId), {
+        isRead: true,
+        updatedAt: serverTimestamp()
+      });
+      setNotifications(prev => 
+        prev.map(n => n.id === notificationId ? { ...n, isRead: true } : n)
+      );
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+
+  if (!mounted) {
+    return null;
+  }
 
   if (!user) {
     return (
@@ -340,18 +325,6 @@ export default function Profile() {
                   Profile Information
                 </button>
                 <button
-                  onClick={() => setActiveTab('password')}
-                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
-                    activeTab === 'password'
-                      ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent hover:border-gray-300'
-                  }`}
-                  style={{ color: activeTab === 'password' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
-                >
-                  <Key className="h-4 w-4" />
-                  Change Password
-                </button>
-                <button
                   onClick={() => setActiveTab('settings')}
                   className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'settings'
@@ -386,6 +359,11 @@ export default function Profile() {
                 >
                   <Bell className="h-4 w-4" />
                   Notifications
+                  {notifications.filter(n => !n.isRead).length > 0 && (
+                    <span className="ml-1 px-2 py-1 text-xs rounded-full bg-orange-500 text-white">
+                      {notifications.filter(n => !n.isRead).length}
+                    </span>
+                  )}
                 </button>
               </nav>
             </div>
@@ -522,71 +500,37 @@ export default function Profile() {
                     </div>
                   </div>
 
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full sm:w-auto px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
-                  >
-                    {loading ? 'Updating...' : 'Update Profile'}
-                  </Button>
-                </form>
-              )}
-
-              {activeTab === 'password' && (
-                <form onSubmit={handlePasswordUpdate} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      New Password
-                    </label>
-                    <input
-                      type="password"
-                      name="newPassword"
-                      value={passwordData.newPassword}
-                      onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
+                  <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
+                    >
+                      {loading ? 'Updating...' : 'Update Profile'}
+                    </Button>
+                    
+                    {/* Sign Out Button */}
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-105"
                       style={{ 
-                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                        backgroundColor: '#dc2626',
+                        color: '#FFFFFF',
+                        border: 'none'
                       }}
-                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
-                      placeholder="Enter new password"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                      Confirm New Password
-                    </label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      value={passwordData.confirmPassword}
-                      onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-colors"
-                      style={{ 
-                        borderColor: theme === 'dark' ? '#444444' : '#E2E8F0',
-                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#b91c1c';
                       }}
-                      onFocus={(e) => e.currentTarget.style.borderColor = '#FF5E14'}
-                      onBlur={(e) => e.currentTarget.style.borderColor = theme === 'dark' ? '#444444' : '#E2E8F0'}
-                      placeholder="Confirm new password"
-                      required
-                    />
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#dc2626';
+                      }}
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Sign Out
+                    </button>
                   </div>
-
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full sm:w-auto px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: loading ? '#9CA3AF' : '#FF5E14' }}
-                  >
-                    {loading ? 'Updating...' : 'Update Password'}
-                  </Button>
                 </form>
               )}
 
@@ -826,7 +770,7 @@ export default function Profile() {
                             
                             <div className="flex items-center gap-2">
                               <button
-                                onClick={() => setSavedGigs(prev => prev.filter(g => g.id !== gig.id))}
+                                onClick={() => removeSavedGig(gig.id)}
                                 className="px-3 py-1 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
                                 style={{ backgroundColor: theme === 'dark' ? '#3a1f1f' : '#FEF2F2' }}
                               >
@@ -868,64 +812,74 @@ export default function Profile() {
                     </p>
                   </div>
 
-                  {/* Sample Notifications */}
+                  {/* Real Notifications */}
                   <div className="space-y-4">
-                    {mockNotifications.map((notification) => (
-                      <div
-                        key={notification.id}
-                        className={`p-4 rounded-lg border transition-colors ${
-                          notification.isRead ? 'opacity-75' : ''
-                        }`}
-                        style={{ 
-                          backgroundColor: theme === 'dark' ? '#262626' : '#F9FAFB',
-                          borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
-                        }}
-                      >
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h4 className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                                {notification.title}
-                              </h4>
+                    {notifications.length === 0 ? (
+                      <div className="text-center py-12">
+                        <Bell className="h-12 w-12 mx-auto mb-4" style={{ color: theme === 'dark' ? '#666666' : '#9CA3AF' }} />
+                        <p className="text-lg font-medium mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                          No notifications yet
+                        </p>
+                        <p className="text-sm" style={{ color: theme === 'dark' ? '#999999' : '#9CA3AF' }}>
+                          You'll see notifications here when you have new activity.
+                        </p>
+                      </div>
+                    ) : (
+                      notifications.map((notification) => (
+                        <div
+                          key={notification.id}
+                          className={`p-4 rounded-lg border transition-colors ${
+                            notification.isRead ? 'opacity-75' : ''
+                          }`}
+                          style={{ 
+                            backgroundColor: theme === 'dark' ? '#262626' : '#F9FAFB',
+                            borderColor: theme === 'dark' ? '#444444' : '#E5E7EB'
+                          }}
+                        >
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h4 className="font-medium" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+                                  {notification.title}
+                                </h4>
+                                {!notification.isRead && (
+                                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                                )}
+                              </div>
+                              <p className="text-sm mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                                {notification.message}
+                              </p>
+                              <div className="flex items-center gap-4 text-xs" style={{ color: theme === 'dark' ? '#9CA3AF' : '#9CA3AF' }}>
+                                <span className="flex items-center gap-1">
+                                  <Clock className="h-3 w-3" />
+                                  {new Date(notification.timestamp).toLocaleDateString()} {new Date(notification.timestamp).toLocaleTimeString()}
+                                </span>
+                                <span className="capitalize px-2 py-1 rounded-full text-xs" style={{ 
+                                  backgroundColor: notification.type === 'gig_match' ? '#DEF7EC' : '#EBF4FF',
+                                  color: notification.type === 'gig_match' ? '#03543F' : '#1E40AF'
+                                }}>
+                                  {notification.type.replace('_', ' ')}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 ml-4">
                               {!notification.isRead && (
-                                <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                                <button
+                                  onClick={() => markNotificationAsRead(notification.id)}
+                                  className="px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                                  style={{ 
+                                    backgroundColor: '#FF5E14',
+                                    color: '#FFFFFF'
+                                  }}
+                                >
+                                  Mark Read
+                                </button>
                               )}
                             </div>
-                            <p className="text-sm mb-2" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                              {notification.message}
-                            </p>
-                            <div className="flex items-center gap-4 text-xs" style={{ color: theme === 'dark' ? '#9CA3AF' : '#9CA3AF' }}>
-                              <span className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {notification.timestamp}
-                              </span>
-                              <span className="capitalize px-2 py-1 rounded-full text-xs" style={{ 
-                                backgroundColor: notification.type === 'gig_match' ? '#DEF7EC' : '#EBF4FF',
-                                color: notification.type === 'gig_match' ? '#03543F' : '#1E40AF'
-                              }}>
-                                {notification.type.replace('_', ' ')}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 ml-4">
-                            {!notification.isRead && (
-                              <button
-                                onClick={() => setMockNotifications(prev => 
-                                  prev.map(n => n.id === notification.id ? { ...n, isRead: true } : n)
-                                )}
-                                className="px-3 py-1 rounded-lg text-sm font-medium transition-colors"
-                                style={{ 
-                                  backgroundColor: '#FF5E14',
-                                  color: '#FFFFFF'
-                                }}
-                              >
-                                Mark Read
-                              </button>
-                            )}
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))
+                    )}
                   </div>
 
                   {/* Notification Settings */}
