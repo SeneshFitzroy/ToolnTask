@@ -190,6 +190,120 @@ export default function Profile() {
     }
   };
 
+  const handlePhotoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
+
+    // Check file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Profile photo must be less than 5MB');
+      setTimeout(() => setError(''), 3000);
+      return;
+    }
+
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      setError('Please upload a valid image file');
+      setTimeout(() => setError(''), 3000);
+      return;
+    }
+
+    setUploadingPhoto(true);
+    setError('');
+
+    try {
+      // Create a reference to the file location
+      const photoRef = ref(storage, `profile-photos/${user.uid}/${Date.now()}-${file.name}`);
+      
+      // Upload the file
+      const uploadResult = await uploadBytes(photoRef, file);
+      const downloadURL = await getDownloadURL(uploadResult.ref);
+
+      // Delete old photo if exists
+      if (userProfile.profilePhotoURL && userProfile.profilePhotoURL.includes('firebase')) {
+        try {
+          const oldPhotoRef = ref(storage, userProfile.profilePhotoURL);
+          await deleteObject(oldPhotoRef);
+        } catch (deleteError) {
+          console.log('Old photo not found or already deleted');
+        }
+      }
+
+      // Update user profile with new photo URL
+      await updateDoc(doc(db, 'users', user.uid), {
+        profilePhotoURL: downloadURL,
+        updatedAt: serverTimestamp()
+      });
+
+      // Update Firebase Auth profile
+      await updateProfile(user, {
+        photoURL: downloadURL
+      });
+
+      // Update local state
+      setUserProfile(prev => ({
+        ...prev,
+        profilePhotoURL: downloadURL
+      }));
+
+      setSuccess('Profile photo updated successfully!');
+      setTimeout(() => setSuccess(''), 3000);
+      setShowPhotoUpload(false);
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      setError('Failed to upload photo. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setUploadingPhoto(false);
+    }
+  };
+
+  const removeProfilePhoto = async () => {
+    if (!user) return;
+
+    setUploadingPhoto(true);
+    setError('');
+
+    try {
+      // Delete photo from storage if exists
+      if (userProfile.profilePhotoURL && userProfile.profilePhotoURL.includes('firebase')) {
+        try {
+          const photoRef = ref(storage, userProfile.profilePhotoURL);
+          await deleteObject(photoRef);
+        } catch (deleteError) {
+          console.log('Photo not found or already deleted');
+        }
+      }
+
+      // Update user profile to remove photo URL
+      await updateDoc(doc(db, 'users', user.uid), {
+        profilePhotoURL: '',
+        updatedAt: serverTimestamp()
+      });
+
+      // Update Firebase Auth profile
+      await updateProfile(user, {
+        photoURL: null
+      });
+
+      // Update local state
+      setUserProfile(prev => ({
+        ...prev,
+        profilePhotoURL: ''
+      }));
+
+      setSuccess('Profile photo removed successfully!');
+      setTimeout(() => setSuccess(''), 3000);
+      setShowPhotoUpload(false);
+    } catch (error) {
+      console.error('Error removing photo:', error);
+      setError('Failed to remove photo. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setUploadingPhoto(false);
+    }
+  };
+
   const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
