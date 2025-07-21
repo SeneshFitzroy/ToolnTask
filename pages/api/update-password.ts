@@ -133,14 +133,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error('Error creating Firebase Auth user:', firebaseError);
         
         if (firebaseError.code === 'auth/email-already-in-use') {
-          // User already exists - that's fine
-          console.log(`✅ User already exists: ${userEmail}`);
-          return res.status(200).json({
-            message: 'Password updated successfully. You can now sign in.',
-            email: userEmail,
-            phone: formattedPhone,
-            action: 'password_updated'
-          });
+          // User already exists - update their password
+          console.log(`✅ User already exists: ${userEmail}, updating password...`);
+          
+          try {
+            // Get the existing user and update their password
+            const userRecord = await admin.auth().getUserByEmail(userEmail);
+            await admin.auth().updateUser(userRecord.uid, {
+              password: newPassword
+            });
+            
+            console.log(`✅ Password updated successfully for existing user: ${userEmail}`);
+            
+            return res.status(200).json({
+              message: 'Password updated successfully. You can now sign in.',
+              email: userEmail,
+              phone: formattedPhone,
+              action: 'password_updated'
+            });
+          } catch (updateError) {
+            console.error('Error updating password for existing user:', updateError);
+            return res.status(500).json({
+              message: 'Error updating password. Please try again.',
+              error: updateError
+            });
+          }
         } else {
           return res.status(500).json({
             message: 'Error creating user account. Please try again.',
