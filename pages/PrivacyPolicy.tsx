@@ -146,11 +146,11 @@ export default function PrivacyAndSafety() {
                         How We Use Your Information
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Platform Operations:</strong> Account management, transaction processing</li>
+                        <li>• <strong>Platform Operations:</strong> Account management, advertisement processing</li>
                         <li>• <strong>Safety & Security:</strong> Fraud prevention, user verification, dispute resolution</li>
                         <li>• <strong>Service Improvement:</strong> Analytics to enhance user experience</li>
-                        <li>• <strong>Communication:</strong> Important updates, transaction notifications</li>
-                        <li>• <strong>Customer Support:</strong> Assistance with account and transaction issues</li>
+                        <li>• <strong>Communication:</strong> Important updates, platform notifications</li>
+                        <li>• <strong>Customer Support:</strong> Assistance with account and platform issues</li>
                       </ul>
                     </div>
                   </div>
