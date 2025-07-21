@@ -1,5 +1,10 @@
 import Navigation from '../src/components/Navigation';
-imp  // Simplified language options: English, Sinhala, Tamil only
+imp  //   // Simplified language options: English, Sinhala, Tamil only
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
+    { code: 'ta', name: 'தமிழ்', flag: '🇱🇰' }
+  ];fied language options: English, Sinhala, Tamil only
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'si', name: 'සිංහල', flag: '🇱🇰' },
