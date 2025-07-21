@@ -227,8 +227,8 @@ export default function PrivacyAndSafety() {
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Meet in Public:</strong> Always meet in well-lit, public locations for initial meetings</li>
                         <li>• <strong>Verify Identity:</strong> Check user profiles, ratings, and reviews before engaging</li>
-                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don&apos;t proceed with the transaction</li>
-                        <li>• <strong>Bring a Friend:</strong> Consider bringing someone for high-value transactions</li>
+                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don&apos;t proceed with the meeting</li>
+                        <li>• <strong>Bring a Friend:</strong> Consider bringing someone for high-value tool demonstrations</li>
                         <li>• <strong>Share Plans:</strong> Inform someone about your meeting location and time</li>
                       </ul>
                     </div>
@@ -243,7 +243,7 @@ export default function PrivacyAndSafety() {
                     <CheckCircle className="w-6 h-6 mt-1" style={{ color: '#FE5F16' }} />
                     <div>
                       <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Transaction Safety
+                        Advertisement Safety
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Use Platform Services:</strong> Always use ToolNTask for advertisement and promotion services</li>
