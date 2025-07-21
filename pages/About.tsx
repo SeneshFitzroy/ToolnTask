@@ -13,6 +13,7 @@ import { useLanguage } from '../src/contexts/LanguageContext';
 
 export default function About() {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [ceoImageError, setCeoImageError] = useState(false);
