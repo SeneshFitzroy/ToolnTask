@@ -125,13 +125,13 @@ export default function SignIn() {
         }
       }
 
-      // Comprehensive login attempt with authentication fix support
+      // Comprehensive login attempt with robust authentication handling
       console.log(`🔑 Attempting login with: ${loginIdentifier}`);
       
       try {
-        // Try Firebase Auth login
+        // Step 1: Try direct Firebase Auth login
         await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-        console.log('✅ Firebase Auth successful');
+        console.log('✅ Direct Firebase Auth successful');
         
         // Handle "Remember me" functionality
         if (rememberMe) {
@@ -148,34 +148,34 @@ export default function SignIn() {
         
       } catch (firebaseError: unknown) {
         const authError = firebaseError as { code?: string; message?: string };
-        console.log('❌ Firebase Auth failed:', authError.code);
+        console.log('❌ Direct Firebase Auth failed:', authError.code);
         
-        // For authentication failures, try to fix the user auth state
+        // Step 2: For auth failures, try to ensure authentication is properly set up
         if (authError.code === 'auth/wrong-password' || 
             authError.code === 'auth/user-not-found' || 
             authError.code === 'auth/invalid-credential') {
           
-          console.log('🔧 Attempting authentication repair...');
+          console.log('🔧 Ensuring authentication setup...');
           
           try {
-            // Check and fix user authentication
-            const fixResponse = await fetch('/api/fix-user-auth', {
+            // Use the ensure-auth API to fix authentication
+            const ensureResponse = await fetch('/api/ensure-auth', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ 
-                email: loginIdentifier,
+                email: isValidEmail ? loginIdentifier : null,
                 phone: isValidPhone ? cleanedInput : null,
-                action: 'fix'
+                password: formData.password
               })
             });
             
-            if (fixResponse.ok) {
-              const fixData = await fixResponse.json();
-              console.log('✅ Authentication repair successful:', fixData.fixes);
+            if (ensureResponse.ok) {
+              const ensureData = await ensureResponse.json();
+              console.log('✅ Authentication ensured:', ensureData.fixes);
               
-              // Try Firebase Auth again after fix
+              // Step 3: Try Firebase Auth again after ensuring setup
               await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-              console.log('✅ Firebase Auth successful after repair');
+              console.log('✅ Firebase Auth successful after ensuring setup');
               
               // Handle "Remember me" functionality
               if (rememberMe) {
@@ -191,37 +191,26 @@ export default function SignIn() {
               return;
               
             } else {
-              console.log('❌ Authentication repair failed');
-              // Check if this is a reset password case
-              const resetResponse = await fetch('/api/check-reset-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                  email: loginIdentifier, 
-                  password: formData.password 
-                })
-              });
+              const ensureError = await ensureResponse.json();
+              console.log('❌ Authentication ensure failed:', ensureError.message);
               
-              if (resetResponse.ok) {
-                const resetData = await resetResponse.json();
-                if (resetData.passwordMatch) {
-                  throw new Error('Your password was recently reset. Please try logging in again in a few moments, or contact support if the issue persists.');
-                } else {
-                  throw new Error('Please use your new password from the password reset email.');
-                }
+              if (ensureError.message.includes('not found')) {
+                throw new Error('Account not found. Please create an account first.');
+              } else if (ensureError.message.includes('Password does not match')) {
+                throw new Error('Incorrect password. Please check your password or reset it if forgotten.');
+              } else {
+                throw new Error('Authentication setup failed. Please try again or contact support.');
               }
             }
-          } catch (repairError: unknown) {
-            const errorMessage = repairError instanceof Error ? repairError.message : 'Authentication repair failed';
-            if (errorMessage.includes('password reset email') || errorMessage.includes('recently reset')) {
-              throw new Error(errorMessage);
-            }
-            console.error('Authentication repair error:', repairError);
+          } catch (ensureError: unknown) {
+            const errorMessage = ensureError instanceof Error ? ensureError.message : 'Authentication repair failed';
+            console.error('Authentication ensure error:', ensureError);
+            throw new Error(errorMessage);
           }
+        } else {
+          // For other Firebase errors, re-throw them
+          throw authError;
         }
-        
-        // Re-throw the original Firebase error
-        throw authError;
       }
     } catch (error: unknown) {
       // Handle specific Firebase Auth errors with professional messages
