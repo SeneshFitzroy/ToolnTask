@@ -88,16 +88,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const userCredential = await createUserWithEmailAndPassword(auth, userEmail, newPassword);
       console.log(`✅ NEW Firebase Auth user created: ${userCredential.user.uid}`);
       
-      // Update Firestore with PERMANENT password data
-      await updateDoc(userDocRef, {
-        uid: userCredential.user.uid,
-        email: userEmail,
-        currentPassword: newPassword,
-        passwordUpdatedAt: new Date(),
-        passwordResetCompleted: true,
-        lastPasswordReset: new Date(),
-        // CLEAR ALL OLD PASSWORD DATA
-        newPasswordFromReset: null,
+    // Update Firestore with PERMANENT password data first
+    await updateDoc(userDocRef, {
+      email: userEmail,
+      currentPassword: newPassword,
+      passwordUpdatedAt: new Date(),
+      passwordResetCompleted: true,
+      lastPasswordReset: new Date(),
+      // CLEAR ALL OLD PASSWORD DATA
+      newPasswordFromReset: null,
         tempPassword: null,
         lastKnownPassword: null,
         // Security tracking
