@@ -225,7 +225,7 @@ export default function Profile() {
         try {
           const oldPhotoRef = ref(storage, userProfile.profilePhotoURL);
           await deleteObject(oldPhotoRef);
-        } catch (error) {
+        } catch {
           console.log('Old photo not found or already deleted');
         }
       }
@@ -271,7 +271,7 @@ export default function Profile() {
         try {
           const photoRef = ref(storage, userProfile.profilePhotoURL);
           await deleteObject(photoRef);
-        } catch (deleteError) {
+        } catch {
           console.log('Photo not found or already deleted');
         }
       }
