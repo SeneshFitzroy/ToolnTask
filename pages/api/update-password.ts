@@ -122,7 +122,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ].filter(Boolean);
         
         for (const tryPass of allPossiblePasswords) {
-          if (!tryPass) continue;
+          if (!tryPass) {
+            continue;
+          }
           try {
             const userCred = await signInWithEmailAndPassword(auth, userEmail, tryPass as string);
             await updatePassword(userCred.user, newPassword);
