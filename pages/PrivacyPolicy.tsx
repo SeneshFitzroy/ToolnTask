@@ -191,8 +191,6 @@ export default function PrivacyAndSafety() {
                         <li>• <strong>Access:</strong> Request a copy of your personal data</li>
                         <li>• <strong>Update:</strong> Modify your account information anytime</li>
                         <li>• <strong>Delete:</strong> Request account deletion (subject to legal requirements)</li>
-                        <li>• <strong>Portability:</strong> Export your data in a machine-readable format</li>
-                        <li>• <strong>Marketing:</strong> Opt-out of promotional communications</li>
                       </ul>
                     </div>
                   </div>
