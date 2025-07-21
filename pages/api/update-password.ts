@@ -75,8 +75,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         passwordSetViaReset: true
       });
       
-    } catch (authError: any) {
-      if (authError.code === 'auth/email-already-in-use') {
+    } catch (authError: unknown) {
+      const firebaseError = authError as { code?: string; message?: string };
+      if (firebaseError.code === 'auth/email-already-in-use') {
         console.log(`🔄 Email already exists, attempting to update password for: ${userEmail}`);
         
         // User exists, try to sign in and update password
