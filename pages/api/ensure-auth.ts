@@ -5,7 +5,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 
 // Initialize Firebase Admin if not already initialized
-let adminAuth: any = null;
+let adminAuth: ReturnType<typeof getAuth> | null = null;
 if (!getApps().length) {
   try {
     const serviceAccount = {
