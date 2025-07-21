@@ -262,7 +262,9 @@ export default function Profile() {
   };
 
   const removeProfilePhoto = async () => {
-    if (!user) return;
+    if (!user) {
+      return;
+    }
 
     setUploadingPhoto(true);
     setError('');
