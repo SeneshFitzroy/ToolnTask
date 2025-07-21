@@ -103,6 +103,55 @@ export default function SignIn() {
         }
       }
       
+      // Check for pending password reset before attempting Firebase sign-in
+      try {
+        const resetCheckResponse = await fetch('/api/complete-password-reset', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: loginIdentifier,
+            password: formData.password
+          }),
+        });
+
+        if (resetCheckResponse.ok) {
+          const resetData = await resetCheckResponse.json();
+          if (resetData.success) {
+            console.log('Password reset completed successfully');
+            if (resetData.requiresRetry) {
+              // Password is being updated, try signing in again after a short delay
+              setTimeout(async () => {
+                try {
+                  await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+                  console.log('User signed in successfully after password reset');
+                  
+                  // Handle "Remember me" functionality
+                  if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', formData.email.trim());
+                    localStorage.setItem('rememberMe', 'true');
+                  } else {
+                    localStorage.removeItem('rememberedEmail');
+                    localStorage.removeItem('rememberMe');
+                  }
+                  
+                  router.push('/');
+                } catch (retryError) {
+                  console.error('Retry sign-in failed:', retryError);
+                  setError('Password reset completed, but sign-in failed. Please try again.');
+                  setLoading(false);
+                }
+              }, 1000);
+              return;
+            }
+          }
+        }
+      } catch (resetError) {
+        // If password reset check fails, continue with normal sign-in
+        console.log('No pending password reset, proceeding with normal sign-in');
+      }
+      
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
       await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
       console.log('User signed in successfully');
