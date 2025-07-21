@@ -68,7 +68,7 @@ export default function TermsAndConditions() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <p className="text-sm text-gray-700 dark:text-gray-300">✓ Professional marketplace platform</p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Secure payment processing</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">✓ Advertisement and promotion services</p>
                     <p className="text-sm text-gray-700 dark:text-gray-300">✓ Quality service standards</p>
                   </div>
                   <div className="space-y-2">
@@ -211,70 +211,6 @@ export default function TermsAndConditions() {
               These terms are governed by the laws of Sri Lanka. 
               Disputes will be resolved in Sri Lankan courts.
             </p>
-          </div>
-
-          {/* Professional Agreement Section */}
-          <div className="bg-gradient-to-r from-white to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl border border-blue-200 dark:border-blue-800 p-8 mt-8">
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-500 to-blue-600 rounded-full mb-4">
-                <CheckCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Agreement Confirmation
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Please confirm your acceptance to continue with registration
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 p-6">
-              <div className="flex items-start gap-4">
-                <input
-                  type="checkbox"
-                  id="accept-terms"
-                  checked={acceptedTerms}
-                  onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="w-5 h-5 text-orange-600 focus:ring-orange-500 mt-1 rounded"
-                />
-                <div className="flex-1">
-                  <label htmlFor="accept-terms" className="text-lg font-medium text-gray-900 dark:text-white cursor-pointer">
-                    I acknowledge and agree to these Terms of Service
-                  </label>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    By checking this box, you confirm that you have read, understood, and agree to be bound by these terms and conditions.
-                  </p>
-                </div>
-                {acceptedTerms && (
-                  <div className="flex-shrink-0">
-                    <CheckCircle className="w-6 h-6 text-green-600" />
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            {acceptedTerms && (
-              <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={handleBack}
-                    className="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 font-medium flex items-center justify-center gap-2"
-                  >
-                    <ArrowLeft className="w-5 h-5" />
-                    Back to Sign Up
-                  </button>
-                  <button
-                    onClick={handleAccept}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-orange-600 to-blue-600 text-white rounded-xl hover:from-orange-700 hover:to-blue-700 transition-all duration-200 font-medium flex items-center justify-center gap-2 shadow-lg"
-                  >
-                    <CheckCircle className="w-5 h-5" />
-                    Continue with Registration
-                  </button>
-                </div>
-                <p className="text-center text-sm text-green-700 dark:text-green-300 mt-3">
-                  ✓ Terms accepted successfully. You can now complete your registration.
-                </p>
-              </div>
-            )}
           </div>
 
         </div>
