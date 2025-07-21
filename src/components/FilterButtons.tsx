@@ -2,6 +2,7 @@
 import React from 'react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface FilterButtonsProps {
   onFilterChange: (filter: 'all' | 'tasks' | 'tools') => void;
@@ -10,6 +11,7 @@ interface FilterButtonsProps {
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFilter }) => {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,15 +24,15 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFil
   const filterOptions = [
     {
       key: 'all' as const,
-      label: 'All'
+      label: t('all')
     },
     {
       key: 'tasks' as const,
-      label: 'Tasks'
+      label: t('tasks')
     },
     {
       key: 'tools' as const,
-      label: 'Tools'
+      label: t('tools')
     }
   ];
 

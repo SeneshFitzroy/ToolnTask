@@ -27,6 +27,14 @@ const translations: Translations = {
   getStarted: { en: 'Get Started', si: 'අරඹන්න', ta: 'தொடங்குங்கள்' },
   exploreMore: { en: 'Explore More', si: 'තවත් ගවේෂණය කරන්න', ta: 'மேலும் ஆராயுங்கள்' },
   allCategories: { en: 'All Categories', si: 'සියලුම කාණ්ඩ', ta: 'அனைத்து வகைகள்' },
+  newInSriLanka: { en: 'New in Sri Lanka', si: 'ශ්‍රී ලංකාවේ නව', ta: 'இலங்கையில் புதிது' },
+  needAHandOrHammer: { en: 'Need a Hand or a Hammer?', si: 'අතක් හෝ මිටියක් අවශ්‍යයි?', ta: 'கை அல்லது சுத்தியல் தேவையா?' },
+  weveGotBoth: { en: "We've Got Both!", si: 'අපිට දෙකම තියෙනවා!', ta: 'எங்களிடம் இரண்டும் உள்ளன!' },
+  sriLankaFirstCommunity: { en: "Sri Lanka's first community marketplace where neighbors help neighbors. Get quick tasks done or rent the tools you need from people nearby.", si: 'ශ්‍රී ලංකාවේ පළමු ප්‍රජා වෙළඳපොළ, අසල්වැසියන් අසල්වැසියන්ට උදව් කරයි. ඉක්මන් කාර්යයන් කරවාගන්න හෝ ඔබට අවශ්‍ය උපකරණ අසල්වැසියන්ගෙන් කුලියට ගන්න.', ta: 'இலங்கையின் முதல் சமூக சந்தை, அங்கு அயலவர்கள் அயலவர்களுக்கு உதவுகிறார்கள். விரைவான பணிகளைச் செய்யுங்கள் அல்லது அருகிலுள்ளவர்களிடமிருந்து தேவையான கருவிகளை வாடகைக்கு எடுங்கள்.' },
+  getStartedToday: { en: 'Get Started Today', si: 'අදම ආරම්භ කරන්න', ta: 'இன்றே தொடங்குங்கள்' },
+  trustedCommunityPlatform: { en: 'Trusted Community Platform', si: 'විශ්වාසදායක ප්‍රජා වේදිකාව', ta: 'நம்பகமான சமூக தளம்' },
+  safeVerifiedUsers: { en: 'Safe & Verified Users', si: 'ආරක්ෂිත සහ සත්‍යාපිත පරිශීලකයින්', ta: 'பாதுகாப்பான மற்றும் சரிபார்க்கப்பட்ட பயனர்கள்' },
+  all: { en: 'All', si: 'සියල්ල', ta: 'அனைத்தும்' },
   
   // Authentication
   signIn: { en: 'Sign In', si: 'ලොගින් වන්න', ta: 'உள்நுழைக' },

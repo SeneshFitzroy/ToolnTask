@@ -63,17 +63,16 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
               <div className="inline-flex items-center px-3 sm:px-4 py-2 rounded-full mb-4 sm:mb-6 shadow-lg" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-                <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 New in Sri Lanka</span>
+                <span className="text-xs sm:text-sm font-semibold" style={{ color: '#FF5E14' }}>🎉 {t('newInSriLanka')}</span>
               </div>
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-                Need a Hand or a Hammer?
+                {t('needAHandOrHammer')}
               </h1>
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-3 sm:mb-4" style={{ color: '#FF5E14' }}>
-                We&apos;ve Got Both!
+                {t('weveGotBoth')}
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0 px-2 sm:px-0" style={{ color: theme === 'dark' ? '#CCCCCC' : '#B3B5BC' }}>
-                Sri Lanka&apos;s first community marketplace where neighbors help neighbors. 
-                Get quick tasks done or rent the tools you need from people nearby.
+                {t('sriLankaFirstCommunity')}
               </p>
               <div className="flex justify-center lg:justify-start mb-3 sm:mb-4 md:mb-6">
                 <Link href="/SignUp">
@@ -99,7 +98,7 @@ export default function Home() {
                     }}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 font-bold tracking-wide">
-                      Get Started Today
+                      {t('getStartedToday')}
                       <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
@@ -112,11 +111,11 @@ export default function Home() {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-10 text-base sm:text-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>Trusted Community Platform</span>
+                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{t('trustedCommunityPlatform')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
-                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>Safe & Verified Users</span>
+                  <span style={{ color: theme === 'dark' ? '#B3B5BC' : '#B3B5BC' }}>{t('safeVerifiedUsers')}</span>
                 </div>
               </div>
             </div>
