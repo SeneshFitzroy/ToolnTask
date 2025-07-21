@@ -18,7 +18,7 @@ const languages: LanguageOption[] = [
 
 const LanguageSelector: React.FC = () => {
   const { theme } = useTheme();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -42,12 +42,7 @@ const LanguageSelector: React.FC = () => {
   const handleLanguageSelect = (languageOption: LanguageOption) => {
     setLanguage(languageOption.code);
     setIsOpen(false);
-  };
-    localStorage.setItem('selectedLanguage', language.code);
-    
-    // Here you can implement actual translation logic
-    // For now, we'll just store the selection
-    console.log(`Language changed to: ${language.name} (${language.code})`);
+    console.log(`Language changed to: ${languageOption.name} (${languageOption.code})`);
   };
 
   if (!mounted) {
@@ -92,34 +87,34 @@ const LanguageSelector: React.FC = () => {
             borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
           }}
         >
-          {languages.map((language) => (
+          {languages.map((languageOption) => (
             <button
-              key={language.code}
-              onClick={() => handleLanguageSelect(language)}
+              key={languageOption.code}
+              onClick={() => handleLanguageSelect(languageOption)}
               className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-200 hover:bg-opacity-80"
               style={{ 
-                color: selectedLanguage.code === language.code ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
-                backgroundColor: selectedLanguage.code === language.code ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
+                color: selectedLanguage.code === languageOption.code ? '#FF5E14' : (theme === 'dark' ? '#e5e7eb' : '#374151'),
+                backgroundColor: selectedLanguage.code === languageOption.code ? (theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)') : 'transparent'
               }}
               onMouseEnter={(e) => {
-                if (selectedLanguage.code !== language.code) {
+                if (selectedLanguage.code !== languageOption.code) {
                   e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
                 }
               }}
               onMouseLeave={(e) => {
-                if (selectedLanguage.code !== language.code) {
+                if (selectedLanguage.code !== languageOption.code) {
                   e.currentTarget.style.backgroundColor = 'transparent';
                 } else {
                   e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)';
                 }
               }}
             >
-              <span className="text-lg">{language.flag}</span>
+              <span className="text-lg">{languageOption.flag}</span>
               <div>
-                <p className="font-medium text-sm">{language.nativeName}</p>
-                <p className="text-xs opacity-75">{language.name}</p>
+                <p className="font-medium text-sm">{languageOption.nativeName}</p>
+                <p className="text-xs opacity-75">{languageOption.name}</p>
               </div>
-              {selectedLanguage.code === language.code && (
+              {selectedLanguage.code === languageOption.code && (
                 <div className="ml-auto w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5E14' }}></div>
               )}
             </button>

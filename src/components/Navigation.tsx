@@ -7,10 +7,12 @@ import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
-import LanguageSelector from './LanguageSelector';
+import LanguageSelector from './LanguageSelectorNew';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Navigation = () => {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -139,7 +141,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              Home
+              {t('home')}
             </Link>
             <Link 
               href="/Tasks" 
@@ -167,7 +169,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              Tasks
+              {t('tasks')}
             </Link>
             <Link 
               href="/Tools" 
@@ -195,7 +197,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              Tools
+              {t('tools')}
             </Link>
             <Link 
               href="/About" 
@@ -223,7 +225,7 @@ const Navigation = () => {
                 addShineEffect(e.currentTarget);
               }}
             >
-              About
+              {t('about')}
             </Link>
 
             {/* Create CTA Button for logged-in users - Made smaller */}
