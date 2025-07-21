@@ -125,11 +125,13 @@ export default function SignIn() {
               
               // Since the API verified the password, now sign in with Firebase Auth on client
               try {
-                await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+                const userCredential = await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
                 console.log('✅ User authenticated with Firebase Auth after reset password verification');
-              } catch {
-                console.log('⚠️ Firebase Auth failed, but reset password was verified. Proceeding with login.');
+                console.log('✅ User object:', userCredential.user);
+              } catch (firebaseAuthError) {
+                console.log('⚠️ Firebase Auth failed, but reset password was verified:', firebaseAuthError);
                 // Even if Firebase Auth fails, the password was verified by our API
+                // We can still proceed but the user might need to refresh
               }
               
               // Handle "Remember me" functionality
@@ -141,8 +143,9 @@ export default function SignIn() {
                 localStorage.removeItem('rememberMe');
               }
               
-              // Redirect to home page
-              router.push('/');
+              // Force page refresh to ensure auth state is properly loaded
+              console.log('🔄 Redirecting to home page and forcing auth state refresh');
+              window.location.href = '/';
               return;
             } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
               // User has reset password but provided wrong password - block Firebase fallback
