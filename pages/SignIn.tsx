@@ -103,10 +103,10 @@ export default function SignIn() {
         }
       }
       
-      // Check for temporary password from reset (email accounts)
+      // For email logins, check for password resets in Firestore first
       if (isValidEmail && !isValidPhone) {
         try {
-          const tempPasswordResponse = await fetch('/api/check-temp-password', {
+          const resetCheckResponse = await fetch('/api/check-reset-password', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -117,13 +117,10 @@ export default function SignIn() {
             }),
           });
 
-          if (tempPasswordResponse.ok) {
-            const tempData = await tempPasswordResponse.json();
-            if (tempData.tempPasswordMatch) {
-              console.log('🔐 Temporary password matched, updating Firebase Auth...');
-              // The API has updated Firebase Auth, proceed with normal login
-              await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-              console.log('User signed in successfully with updated password');
+          if (resetCheckResponse.ok) {
+            const resetData = await resetCheckResponse.json();
+            if (resetData.passwordMatch) {
+              console.log('🔐 Reset password matched, user authenticated');
               
               // Handle "Remember me" functionality
               if (rememberMe) {
@@ -140,7 +137,7 @@ export default function SignIn() {
             }
           }
         } catch {
-          console.log('No temporary password found, proceeding with normal login');
+          console.log('No reset password found, proceeding with normal Firebase Auth');
         }
       }
       
