@@ -63,6 +63,13 @@ const Navigation = () => {
 
     checkTempAuth();
 
+    // Periodic check for temporary auth (every 30 seconds)
+    const tempAuthInterval = setInterval(() => {
+      if (!user) {
+        checkTempAuth();
+      }
+    }, 30000);
+
     // Close dropdowns when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -78,6 +85,7 @@ const Navigation = () => {
 
     return () => {
       unsubscribe();
+      clearInterval(tempAuthInterval);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [user]);
