@@ -4,6 +4,7 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import { useLanguage } from '../src/contexts/LanguageContext';
 
 interface Tool {
   id: string;
