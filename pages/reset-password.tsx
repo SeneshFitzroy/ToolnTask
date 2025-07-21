@@ -159,6 +159,11 @@ export default function ResetPassword() {
           setMessage('Password updated successfully. Redirecting to sign in...');
           setIsSuccess(true);
           
+          // Save email for auto-fill in sign in
+          if (data.email) {
+            localStorage.setItem('lastPasswordResetEmail', data.email);
+          }
+          
           // Use a single redirect without multiple timeouts
           setTimeout(() => {
             router.replace('/SignIn?message=password-reset-success');

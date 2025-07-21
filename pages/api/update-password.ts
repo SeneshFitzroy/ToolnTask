@@ -181,7 +181,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     return res.status(200).json({
       message: 'Password updated successfully. You can now sign in with your new password.',
-      success: true
+      success: true,
+      email: userEmail  // Return the email for auto-fill
     });
 
   } catch (error) {
