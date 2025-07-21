@@ -167,8 +167,8 @@ export default function PrivacyAndSafety() {
                         Information Sharing
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>With Other Users:</strong> Profile information necessary for transactions</li>
-                        <li>• <strong>Service Providers:</strong> Payment processors, identity verification services</li>
+                        <li>• <strong>With Other Users:</strong> Profile information necessary for advertisements</li>
+                        <li>• <strong>Service Providers:</strong> Identity verification services, platform maintenance</li>
                         <li>• <strong>Legal Requirements:</strong> When required by law or to protect user safety</li>
                         <li>• <strong>Business Transfers:</strong> In case of merger or acquisition (with notice)</li>
                         <li>• We never sell your personal information to third parties</li>
