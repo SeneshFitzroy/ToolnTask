@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { setDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
+import { setDoc, doc, collection, query, where, getDocs, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -40,15 +40,57 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const resetSnapshot = await getDocs(resetQuery);
     
     if (!resetSnapshot.empty) {
-      // Reset account exists - just return success since the account is ready
-      console.log(`✅ Reset account already exists and ready: ${resetEmail}`);
-      return res.status(200).json({
-        success: true,
-        message: 'Password reset successful. You can now sign in with your new password.',
-        email: resetEmail,
-        phone: cleanedPhone,
-        note: 'Reset account ready'
-      });
+      // Reset account exists - we need to update the password by creating a new Firebase Auth user
+      console.log(`🔄 Reset account exists, updating password: ${resetEmail}`);
+      
+      try {
+        // Delete the existing reset account document first
+        const existingDoc = resetSnapshot.docs[0];
+        await deleteDoc(existingDoc.ref);
+        console.log(`🗑️ Deleted existing reset account document`);
+        
+        // Create new Firebase Auth user with updated password
+        const resetUserCredential = await createUserWithEmailAndPassword(auth, resetEmail, newPassword);
+        const resetFirebaseUser = resetUserCredential.user;
+        
+        console.log(`✅ Reset account password updated: ${resetFirebaseUser.uid}`);
+
+        // Create new user document with updated info
+        await setDoc(doc(db, 'users', resetFirebaseUser.uid), {
+          uid: resetFirebaseUser.uid,
+          authEmail: resetEmail,
+          originalAuthEmail: authEmail,
+          phone: cleanedPhone,
+          displayName: `User ${cleanedPhone}`,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdVia: 'phone_password_reset',
+          emailVerified: false,
+          phoneVerified: true,
+          lastLogin: new Date(),
+          isResetAccount: true,
+          passwordUpdatedAt: new Date()
+        });
+
+        console.log(`✅ Reset user document recreated with new password`);
+
+        return res.status(200).json({
+          success: true,
+          message: 'Password updated successfully. You can now sign in with your new password.',
+          email: resetEmail,
+          phone: cleanedPhone,
+          uid: resetFirebaseUser.uid
+        });
+        
+      } catch (authError: unknown) {
+        const authErr = authError as { code?: string; message?: string };
+        console.error('Error updating reset account password:', authErr);
+        return res.status(500).json({
+          success: false,
+          message: 'Error updating password. Please try again.',
+          error: authErr.message
+        });
+      }
     }
 
     // Try to create the original account first
