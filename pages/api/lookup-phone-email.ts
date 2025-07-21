@@ -14,39 +14,42 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Format phone number to all possible variations
-    const formatPhoneNumber = (phone: string): string => {
+    // Enhanced phone number normalization to match registration format
+    const normalizePhoneNumber = (phone: string): string[] => {
       const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-      if (cleaned.startsWith('+')) {
-        return cleaned;
+      const formats: string[] = [];
+      
+      // Always normalize to 94xxxxxxxxx format (same as registration)
+      let normalizedPhone = cleaned;
+      
+      if (cleaned.startsWith('+94')) {
+        normalizedPhone = cleaned.replace('+94', '94');
+      } else if (cleaned.startsWith('0094')) {
+        normalizedPhone = cleaned.replace('0094', '94');
+      } else if (cleaned.startsWith('0')) {
+        normalizedPhone = '94' + cleaned.substring(1);
+      } else if (!cleaned.startsWith('94')) {
+        normalizedPhone = '94' + cleaned;
       }
-      const digits = cleaned.replace(/\D/g, '');
-      if (digits.startsWith('0')) {
-        return '+94' + digits.substring(1);
-      }
-      if (digits.startsWith('94')) {
-        return '+' + digits;
-      }
-      if (digits.length === 9 && digits.startsWith('7')) {
-        return '+94' + digits;
-      }
-      return '+94' + digits;
+      
+      // Add the primary normalized format (this should match registration)
+      formats.push(normalizedPhone);
+      
+      // Add other common formats for fallback
+      formats.push(cleaned); // Original input
+      formats.push('+94' + normalizedPhone.substring(2)); // +94xxxxxxxxx
+      formats.push('0' + normalizedPhone.substring(2)); // 0xxxxxxxxx
+      
+      return [...new Set(formats)]; // Remove duplicates
     };
 
-    const formattedPhone = formatPhoneNumber(phone);
+    const phoneFormats = normalizePhoneNumber(phone);
     
     console.log(`🔍 Looking up email for phone: ${phone}`);
-    console.log(`📱 Formatted phone: ${formattedPhone}`);
+    console.log(`📱 Trying phone formats: ${phoneFormats.join(', ')}`);
 
     // Check all possible phone formats in users collection
     const usersRef = collection(db, 'users');
-    const phoneFormats = [
-      formattedPhone,                     // +94761120457
-      phone.trim(),                       // 0761120457
-      formattedPhone.replace('+94', '0'), // 0761120457
-      formattedPhone.replace('+', ''),    // 94761120457 (matches Firebase Auth email format)
-      phone.replace(/[\s\-\(\)]/g, '')    // cleaned input
-    ];
 
     for (const phoneFormat of phoneFormats) {
       console.log(`🔍 Checking users with phone: ${phoneFormat}`);
