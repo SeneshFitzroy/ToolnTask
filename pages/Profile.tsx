@@ -193,7 +193,9 @@ export default function Profile() {
 
   const handlePhotoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file || !user) return;
+    if (!file || !user) {
+      return;
+    }
 
     // Check file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
