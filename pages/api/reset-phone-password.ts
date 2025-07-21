@@ -34,6 +34,46 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(`🔐 Attempting password reset for: ${authEmail}`);
     console.log(`🔄 Reset email format: ${resetEmail}`);
 
+    // Check if the new password is the same as the current password
+    // We'll try to sign in with the original account and the new password
+    // If it succeeds, it means they're trying to use the same password
+    try {
+      console.log('🔍 Checking if new password is same as current password...');
+      const testSignIn = await signInWithEmailAndPassword(auth, authEmail, newPassword);
+      if (testSignIn.user) {
+        // Sign out immediately
+        await signOut(auth);
+        console.log('❌ User tried to use the same password');
+        return res.status(400).json({
+          success: false,
+          message: 'New password cannot be the same as your current password. Please choose a different password.',
+          error: 'SAME_PASSWORD'
+        });
+      }
+    } catch (signInError: unknown) {
+      const signInErr = signInError as { code?: string; message?: string };
+      // If sign in fails, it's good - means they're using a different password
+      // We'll also check reset accounts
+      console.log('✅ New password is different from original account password');
+      
+      // Also check if new password matches any existing reset account
+      try {
+        const resetSignIn = await signInWithEmailAndPassword(auth, resetEmail, newPassword);
+        if (resetSignIn.user) {
+          await signOut(auth);
+          console.log('❌ User tried to use the same password as existing reset account');
+          return res.status(400).json({
+            success: false,
+            message: 'New password cannot be the same as your current password. Please choose a different password.',
+            error: 'SAME_PASSWORD'
+          });
+        }
+      } catch (resetSignInError) {
+        // Good - new password is different from reset account too
+        console.log('✅ New password is different from reset account password');
+      }
+    }
+
     // First check if a reset account already exists
     const usersRef = collection(db, 'users');
     const resetQuery = query(usersRef, where('authEmail', '==', resetEmail));
