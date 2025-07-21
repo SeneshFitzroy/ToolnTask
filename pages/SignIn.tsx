@@ -176,8 +176,9 @@ export default function SignIn() {
         localStorage.removeItem('rememberMe');
       }
       
-      // Redirect to home page
-      router.push('/');
+      // Force full page refresh to ensure proper auth state loading
+      console.log('🔄 Regular Firebase Auth successful, redirecting with page refresh');
+      window.location.href = '/';
     } catch (error: unknown) {
       // Handle specific Firebase Auth errors with professional messages
       let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
