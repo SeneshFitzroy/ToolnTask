@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { 
-  Users, 
-  FileText, 
-  Eye, 
-  EyeOff, 
-  Trash2, 
-  Search,
-  BarChart3,
-  TrendingUp,
-  MapPin,
-  Clock,
-  DollarSign,
-  Star,
-  Phone,
-  CheckCircle,
-  XCircle,
-  ExternalLink
-} from 'lucide-react';
+import Navigation from '../../src/components/Navigation';
+import Footer from '../../src/components/Footer';
+import { Button } from '../../src/components/ui/button';
+import { auth, db } from '../../src/lib/firebase';
+import { onAuthStateChanged, User, signOut } from 'firebase/auth';
+import { collection, query, getDocs, orderBy, where, doc, updateDoc } from 'firebase/firestore';
 
 interface Advertisement {
   id: string;
