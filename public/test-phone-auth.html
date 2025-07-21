@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Authentication Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        input, button { margin: 10px 0; padding: 10px; width: 100%; }
+        .result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phone Authentication Test</h1>
+        
+        <h2>Step 1: Test Phone Lookup</h2>
+        <input type="text" id="phoneInput" placeholder="Enter phone number (e.g., 0771234567)" />
+        <button onclick="testPhoneLookup()">Test Phone Lookup</button>
+        <div id="lookupResult" class="result" style="display: none;"></div>
+        
+        <h2>Step 2: Test Authentication</h2>
+        <input type="text" id="authPhone" placeholder="Enter phone number" />
+        <input type="password" id="authPassword" placeholder="Enter password" />
+        <button onclick="testAuthentication()">Test Authentication</button>
+        <div id="authResult" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function testPhoneLookup() {
+            const phone = document.getElementById('phoneInput').value;
+            const resultDiv = document.getElementById('lookupResult');
+            
+            if (!phone) {
+                showResult('lookupResult', 'Please enter a phone number', 'error');
+                return;
+            }
+            
+            try {
+                showResult('lookupResult', 'Testing phone lookup...', '');
+                
+                const response = await fetch('/api/lookup-phone-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phone: phone }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    showResult('lookupResult', 
+                        `✅ Phone lookup successful!<br>
+                        Email: ${data.email}<br>
+                        AuthEmail: ${data.authEmail}<br>
+                        Phone: ${data.phone}`, 
+                        'success'
+                    );
+                } else {
+                    showResult('lookupResult', 
+                        `❌ Phone lookup failed: ${data.message || 'Unknown error'}`, 
+                        'error'
+                    );
+                }
+            } catch (error) {
+                showResult('lookupResult', 
+                    `🚨 Error: ${error.message}`, 
+                    'error'
+                );
+            }
+        }
+        
+        async function testAuthentication() {
+            const phone = document.getElementById('authPhone').value;
+            const password = document.getElementById('authPassword').value;
+            
+            if (!phone || !password) {
+                showResult('authResult', 'Please enter both phone number and password', 'error');
+                return;
+            }
+            
+            try {
+                showResult('authResult', 'Testing authentication...', '');
+                
+                // First, lookup the email
+                const lookupResponse = await fetch('/api/lookup-phone-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phone: phone }),
+                });
+                
+                const lookupData = await lookupResponse.json();
+                
+                if (!lookupResponse.ok || !lookupData.success) {
+                    showResult('authResult', 
+                        `❌ Phone lookup failed: ${lookupData.message || 'Phone not found'}`, 
+                        'error'
+                    );
+                    return;
+                }
+                
+                // Test the actual authentication logic
+                showResult('authResult', 
+                    `📧 Found email: ${lookupData.email}<br>
+                    🔐 You would now authenticate with Firebase using this email and your password.<br>
+                    ✅ Phone lookup successful! You can now try logging in on the main site.`, 
+                    'success'
+                );
+                
+            } catch (error) {
+                showResult('authResult', 
+                    `🚨 Error: ${error.message}`, 
+                    'error'
+                );
+            }
+        }
+        
+        function showResult(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = message;
+            element.className = `result ${type}`;
+            element.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -15,59 +15,40 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function testPhoneLookup() {
+// Test script to verify phone number lookup functionality
+const testPhoneLookup = async () => {
+  console.log('🧪 Testing phone number lookup functionality...');
+  
+  // Test phone number (replace with actual registered phone)
+  const testPhone = '0771234567'; // Example phone number
+  
   try {
-    const phone = "0761120457";
+    const response = await fetch('http://localhost:3001/api/lookup-phone-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ phone: testPhone }),
+    });
     
-    console.log('🧪 Testing phone lookup with all formats...');
+    console.log('Response status:', response.status);
     
-    // All possible formats to check
-    const phoneFormats = [
-      '+94761120457',    // International format
-      '0761120457',      // Local format (current in DB)
-      '94761120457',     // Auth email format (what we want for new accounts)
-      phone.trim()       // Original input
-    ];
-
-    console.log('📋 Checking these formats:', phoneFormats);
-
-    const usersRef = collection(db, 'users');
-    let foundUser = null;
-
-    for (const phoneFormat of phoneFormats) {
-      console.log(`🔍 Searching for phone: ${phoneFormat}`);
-      const q = query(usersRef, where('phone', '==', phoneFormat));
-      const querySnapshot = await getDocs(q);
-      
-      if (!querySnapshot.empty) {
-        const userDoc = querySnapshot.docs[0];
-        const userData = userDoc.data();
-        foundUser = {
-          phone: userData.phone,
-          email: userData.email,
-          authEmail: userData.authEmail
-        };
-        
-        console.log(`✅ FOUND USER with phone format: ${phoneFormat}`);
-        console.log(`📧 Auth email: ${userData.authEmail}`);
-        console.log(`📱 Stored phone: ${userData.phone}`);
-        console.log(`📧 User email: ${userData.email}`);
-        break;
-      } else {
-        console.log(`❌ No user found with phone: ${phoneFormat}`);
-      }
-    }
-
-    if (foundUser) {
-      console.log('\n🎯 SOLUTION: Use the authEmail for login lookup');
-      console.log(`✅ Login should work with: ${foundUser.authEmail}`);
+    if (response.ok) {
+      const data = await response.json();
+      console.log('✅ Phone lookup successful:', data);
+      console.log('- Email:', data.email);
+      console.log('- AuthEmail:', data.authEmail);
+      console.log('- Phone:', data.phone);
     } else {
-      console.log('\n❌ No user found with any phone format');
+      const errorData = await response.json();
+      console.log('❌ Phone lookup failed:', errorData);
     }
-
   } catch (error) {
-    console.error('❌ Error:', error);
+    console.error('🚨 Error during phone lookup test:', error);
   }
-}
+};
 
-testPhoneLookup();
+// Run the test if in browser environment
+if (typeof window !== 'undefined') {
+  testPhoneLookup();
+}
