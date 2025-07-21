@@ -200,15 +200,30 @@ export default function SignUp() {
 
     try {
       // For Firebase Auth, we need an email address
-      // If phone is primary and no email provided, create a temporary email
-      let authEmail = formData.email.trim();
-      if (!authEmail && formData.phone) {
-        // Create a temporary email based on phone number for Firebase Auth
+      let authEmail: string;
+      
+      if (registrationMethod === 'email') {
+        // Email registration - use the provided email
+        authEmail = formData.email.trim();
+      } else {
+        // Phone registration - create a Firebase-compatible email from phone
         const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, '');
-        authEmail = `phone_${cleanPhone}@toolntask.temp`;
+        let normalizedPhone = cleanPhone;
+        
+        if (cleanPhone.startsWith('+94')) {
+          normalizedPhone = cleanPhone.replace('+94', '94');
+        } else if (cleanPhone.startsWith('0094')) {
+          normalizedPhone = cleanPhone.replace('0094', '94');
+        } else if (cleanPhone.startsWith('0')) {
+          normalizedPhone = '94' + cleanPhone.substring(1);
+        } else if (!cleanPhone.startsWith('94')) {
+          normalizedPhone = '94' + cleanPhone;
+        }
+        
+        authEmail = `${normalizedPhone}@toolntask.app`;
       }
       
-      console.log('Attempting to create user with email:', authEmail);
+      console.log('Attempting to create user with auth email:', authEmail);
       
       // Create user with Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, authEmail, formData.password);
@@ -221,10 +236,10 @@ export default function SignUp() {
         displayName: `${formData.firstName} ${formData.lastName}`
       });
 
-      // Normalize phone number for consistent storage
-      let normalizedPhone = formData.phone.trim();
-      if (normalizedPhone) {
-        const cleanPhone = normalizedPhone.replace(/[\s\-\(\)]/g, '');
+      // Normalize phone number for consistent storage (if phone registration)
+      let normalizedPhone = null;
+      if (registrationMethod === 'phone' && formData.phone) {
+        const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, '');
         if (cleanPhone.startsWith('+94')) {
           normalizedPhone = '0' + cleanPhone.substring(3);
         } else if (cleanPhone.startsWith('0094')) {
@@ -236,12 +251,10 @@ export default function SignUp() {
         }
       }
 
-      // Save user data to Firestore with additional fields
-      await setDoc(doc(db, 'users', user.uid), {
+      // Save user data to Firestore with only the selected contact method
+      const userData: any = {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
-        email: formData.email ? formData.email.trim().toLowerCase() : null,
-        phone: normalizedPhone || null,
         authEmail: authEmail, // Store the auth email for reference
         primaryContact: registrationMethod,
         displayName: `${formData.firstName.trim()} ${formData.lastName.trim()}`,
@@ -252,12 +265,23 @@ export default function SignUp() {
         emailVerified: user.emailVerified,
         profileComplete: false,
         agreedToTermsAt: serverTimestamp()
-      });
+      };
+
+      // Add the appropriate contact field
+      if (registrationMethod === 'email') {
+        userData.email = formData.email.trim().toLowerCase();
+        userData.phone = null;
+      } else {
+        userData.phone = normalizedPhone;
+        userData.email = null;
+      }
+
+      await setDoc(doc(db, 'users', user.uid), userData);
 
       console.log('User data saved to Firestore successfully');
 
-      // Send welcome email if email is provided
-      if (formData.email) {
+      // Send appropriate welcome message
+      if (registrationMethod === 'email') {
         try {
           await sendWelcomeEmail(formData.firstName.trim(), formData.email.trim());
           console.log('Welcome email sent successfully');
@@ -265,10 +289,7 @@ export default function SignUp() {
           console.error('Failed to send welcome email:', emailError);
           // Don't fail registration if email fails
         }
-      }
-
-      // Send SMS notification if phone number is provided
-      if (normalizedPhone) {
+      } else {
         try {
           const smsResponse = await fetch('/api/phone-verify', {
             method: 'POST',
@@ -292,15 +313,11 @@ export default function SignUp() {
         }
       }
 
-      // Set appropriate success message based on contact methods
-      if (formData.email && normalizedPhone) {
-        setSuccessMessage('Account created successfully. Please check your email and phone for welcome messages.');
-      } else if (formData.email) {
-        setSuccessMessage('Account created successfully. Please check your email for welcome message.');
-      } else if (normalizedPhone) {
-        setSuccessMessage('Account created successfully. Please check your phone for welcome message.');
+      // Set appropriate success message
+      if (registrationMethod === 'email') {
+        setSuccessMessage('Account created successfully with email. Please check your email for welcome message.');
       } else {
-        setSuccessMessage('Account created successfully. Welcome to ToolNTask!');
+        setSuccessMessage('Account created successfully with phone number. Please check your phone for welcome message.');
       }
       
       // Show success message briefly before redirect
