@@ -591,10 +591,20 @@ export default function SignUp() {
               {error && (
                 <div className="p-4 rounded-lg text-sm font-medium text-center border-2 border-red-300" style={{ backgroundColor: '#FEE2E2', color: '#DC2626' }}>
                   <span>{error}</span>
-                  {error.includes('already registered') && (
-                    <div className="mt-3 text-xs">
-                      <Link href="/SignIn" className="inline-flex items-center gap-1 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-semibold text-sm">
-                        Sign In Instead
+                  {showSignInButton && (
+                    <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
+                      <Link 
+                        href="/SignIn" 
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        🔐 Sign In Instead
+                      </Link>
+                      <span className="text-xs text-gray-600">or</span>
+                      <Link 
+                        href="/SignIn?forgot=true" 
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200 font-semibold text-sm shadow-lg hover:shadow-xl transform hover:scale-105"
+                      >
+                        🔑 Reset Password
                       </Link>
                     </div>
                   )}
