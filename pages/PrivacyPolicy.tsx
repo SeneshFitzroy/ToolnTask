@@ -271,7 +271,7 @@ export default function PrivacyAndSafety() {
                         <li>• <strong>Unrealistic Offers:</strong> Be wary of deals that seem too good to be true</li>
                         <li>• <strong>Pressure Tactics:</strong> Avoid users who pressure for immediate decisions</li>
                         <li>• <strong>Poor Communication:</strong> Unclear, evasive, or hostile communication patterns</li>
-                        <li>• <strong>No Reviews/Ratings:</strong> Be cautious with users who have no transaction history</li>
+                        <li>• <strong>No Reviews/Ratings:</strong> Be cautious with users who have no platform history</li>
                       </ul>
                     </div>
                   </div>
