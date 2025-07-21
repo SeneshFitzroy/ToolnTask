@@ -103,45 +103,9 @@ export default function SignIn() {
         }
       }
       
-      // Use custom authentication API that handles password resets
-      const authResponse = await fetch('/api/auth-signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: loginIdentifier,
-          password: formData.password
-        }),
-      });
-
-      const authData = await authResponse.json();
-
-      if (authResponse.ok && authData.success) {
-        console.log('User signed in successfully via custom auth');
-        
-        // Handle "Remember me" functionality
-        if (rememberMe) {
-          localStorage.setItem('rememberedEmail', formData.email.trim());
-          localStorage.setItem('rememberMe', 'true');
-        } else {
-          localStorage.removeItem('rememberedEmail');
-          localStorage.removeItem('rememberMe');
-        }
-        
-        // If user was recreated, show a success message
-        if (authData.userRecreated) {
-          console.log('Account was updated with new password');
-        }
-        
-        // Redirect to home page
-        router.push('/');
-        return;
-      } else {
-        // If custom auth fails, try normal Firebase auth as fallback
-        await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-        console.log('User signed in successfully via Firebase Auth');
-      }
+      // Sign in with Firebase Auth using email (either provided directly or found by phone)
+      await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+      console.log('User signed in successfully');
       
       // Handle "Remember me" functionality
       if (rememberMe) {
