@@ -72,6 +72,44 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Good - new password is different from reset account too
         console.log('✅ New password is different from reset account password');
       }
+      
+      // Also check timestamped reset accounts to prevent reusing passwords
+      try {
+        const usersRef = collection(db, 'users');
+        const timestampedResetQuery = query(
+          usersRef, 
+          where('phone', '==', cleanedPhone),
+          where('isResetAccount', '==', true)
+        );
+        const timestampedResetSnapshot = await getDocs(timestampedResetQuery);
+        
+        if (!timestampedResetSnapshot.empty) {
+          console.log('🔍 Checking timestamped reset accounts for password reuse...');
+          for (const doc of timestampedResetSnapshot.docs) {
+            const resetData = doc.data();
+            if (resetData.authEmail) {
+              try {
+                const timestampedSignIn = await signInWithEmailAndPassword(auth, resetData.authEmail, newPassword);
+                if (timestampedSignIn.user) {
+                  await signOut(auth);
+                  console.log('❌ User tried to reuse password from a previous reset');
+                  return res.status(400).json({
+                    success: false,
+                    message: 'New password cannot be the same as any of your previous passwords. Please choose a different password.',
+                    error: 'SAME_PASSWORD_HISTORY'
+                  });
+                }
+              } catch (timestampedSignInError) {
+                // Good - password is different from this timestamped reset account
+                continue;
+              }
+            }
+          }
+          console.log('✅ New password is different from all previous reset accounts');
+        }
+      } catch (queryError) {
+        console.log('⚠️ Could not check timestamped reset accounts, proceeding...');
+      }
     }
 
     // First check if a reset account already exists
