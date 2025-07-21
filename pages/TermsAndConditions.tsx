@@ -8,6 +8,14 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 export default function TermsAndConditions() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const router = useRouter();
+                    5. Privacy</h2>ct';
+import Navigation from '../src/components/Navigation';
+import Footer from '../src/components/Footer';
+import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
+
+export default function TermsAndConditions() {
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const router = useRouter();
 
   const handleBack = () => {
     router.push('/SignUp');
