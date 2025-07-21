@@ -120,6 +120,9 @@ export default function ResetPassword() {
           setMessage('Password reset successful! You can now sign in with your new password.');
           setIsSuccess(true);
           
+          // Save phone for auto-fill in sign in
+          localStorage.setItem('lastPasswordResetEmail', phone);
+          
           setTimeout(() => {
             router.replace('/SignIn?message=password-reset-success');
           }, 2000);
