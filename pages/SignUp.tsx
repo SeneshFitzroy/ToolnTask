@@ -68,16 +68,34 @@ export default function SignUp() {
   useEffect(() => {
     setMounted(true);
     
-    // Check if returning from Terms page with acceptance
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('termsAccepted') === 'true') {
-      // Restore form data from localStorage if available
-      const savedFormData = localStorage.getItem('signupFormData');
-      if (savedFormData) {
+    // Restore form data from localStorage if available (from any page navigation)
+    const savedFormData = localStorage.getItem('signupFormData');
+    const savedRegistrationMethod = localStorage.getItem('signupRegistrationMethod');
+    const savedAgreedToTerms = localStorage.getItem('signupAgreedToTerms');
+    
+    if (savedFormData) {
+      try {
         const parsedData = JSON.parse(savedFormData);
+        console.log('🔄 Restoring saved form data:', parsedData);
         setFormData(parsedData);
-        localStorage.removeItem('signupFormData'); // Clean up
+      } catch (error) {
+        console.error('Error parsing saved form data:', error);
+        localStorage.removeItem('signupFormData');
       }
+    }
+    
+    if (savedRegistrationMethod) {
+      setRegistrationMethod(savedRegistrationMethod as 'email' | 'phone');
+    }
+    
+    if (savedAgreedToTerms === 'true') {
+      setAgreedToTerms(true);
+    }
+    
+    // Check if returning from Terms or Privacy page with acceptance
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('termsAccepted') === 'true' || urlParams.get('privacyAccepted') === 'true') {
+      setAgreedToTerms(true);
       // Clear the URL parameter
       router.replace('/SignUp', undefined, { shallow: true });
     }
@@ -96,6 +114,30 @@ export default function SignUp() {
     setPasswordValidation(validation);
   }, [formData.password, formData.confirmPassword]);
 
+  // Auto-save form data whenever it changes
+  useEffect(() => {
+    if (mounted && (formData.firstName || formData.lastName || formData.email || formData.phone)) {
+      console.log('💾 Auto-saving form data...');
+      localStorage.setItem('signupFormData', JSON.stringify(formData));
+      localStorage.setItem('signupRegistrationMethod', registrationMethod);
+      localStorage.setItem('signupAgreedToTerms', agreedToTerms.toString());
+    }
+  }, [formData, registrationMethod, agreedToTerms, mounted]);
+
+  // Save form data before navigation
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (formData.firstName || formData.lastName || formData.email || formData.phone) {
+        localStorage.setItem('signupFormData', JSON.stringify(formData));
+        localStorage.setItem('signupRegistrationMethod', registrationMethod);
+        localStorage.setItem('signupAgreedToTerms', agreedToTerms.toString());
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [formData, registrationMethod, agreedToTerms]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -108,8 +150,37 @@ export default function SignUp() {
     e.preventDefault();
     // Save current form data to localStorage
     localStorage.setItem('signupFormData', JSON.stringify(formData));
+    localStorage.setItem('signupRegistrationMethod', registrationMethod);
+    localStorage.setItem('signupAgreedToTerms', agreedToTerms.toString());
     // Navigate to Terms page
-    router.push('/TermsAndConditions');
+    router.push('/TermsAndConditions?from=signup');
+  };
+
+  const handlePrivacyClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Save current form data to localStorage
+    localStorage.setItem('signupFormData', JSON.stringify(formData));
+    localStorage.setItem('signupRegistrationMethod', registrationMethod);
+    localStorage.setItem('signupAgreedToTerms', agreedToTerms.toString());
+    // Navigate to Privacy page
+    router.push('/PrivacyPolicy?from=signup');
+  };
+
+  const clearSavedData = () => {
+    localStorage.removeItem('signupFormData');
+    localStorage.removeItem('signupRegistrationMethod');
+    localStorage.removeItem('signupAgreedToTerms');
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: ''
+    });
+    setRegistrationMethod('email');
+    setAgreedToTerms(false);
+    console.log('🗑️ Cleared all form data');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -343,6 +414,12 @@ export default function SignUp() {
       
       // Show success message briefly before redirect
       setTimeout(() => {
+        // Clear saved form data since registration was successful
+        localStorage.removeItem('signupFormData');
+        localStorage.removeItem('signupRegistrationMethod');
+        localStorage.removeItem('signupAgreedToTerms');
+        console.log('🗑️ Cleared saved form data after successful registration');
+        
         router.push('/SignIn?message=registration-success');
       }, 3000);
     } catch (error: unknown) {
@@ -760,7 +837,7 @@ export default function SignUp() {
                     Terms of Service
                   </Link>
                   {' '}and{' '}
-                  <Link href="/PrivacyPolicy?from=signup" className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
+                  <Link href="/PrivacyPolicy?from=signup" onClick={handlePrivacyClick} className="hover:underline font-semibold" style={{ color: '#FF5E14' }}>Privacy Policy</Link>
                   <div className="text-xs mt-1 opacity-75">
                     You must accept our terms before registering
                   </div>
