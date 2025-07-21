@@ -5,10 +5,10 @@ import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { updateProfile, updatePassword, onAuthStateChanged, User, signOut } from 'firebase/auth';
-import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { updateProfile, onAuthStateChanged, User, signOut } from 'firebase/auth';
+import { doc, updateDoc, getDoc, setDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../src/lib/firebase';
-import { Sun, Moon, Bookmark, Settings, User as UserIcon, Key, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
+import { Sun, Moon, Bookmark, Settings, User as UserIcon, MapPin, Clock, DollarSign, Bell, LogOut } from 'lucide-react';
 
 interface SavedGig {
   id: string;
@@ -20,6 +20,7 @@ interface SavedGig {
   description?: string;
   postedBy?: string;
   status?: 'available' | 'requested';
+  originalGigId?: string;
 }
 
 interface Notification {
@@ -30,6 +31,7 @@ interface Notification {
   timestamp: string;
   isRead: boolean;
   relatedGig?: string;
+  userId: string;
 }
 
 export default function Profile() {
@@ -49,97 +51,18 @@ export default function Profile() {
     isActive: true,
     role: 'user'
   });
-  const [passwordData, setPasswordData] = useState({
-    newPassword: '',
-    confirmPassword: ''
-  });
   const [activeTab, setActiveTab] = useState('profile');
   const [selectedLanguage, setSelectedLanguage] = useState('en');
-  const [mockNotifications, setMockNotifications] = useState<Notification[]>([
-    {
-      id: '1',
-      type: 'gig_match',
-      title: 'New Task Match Found!',
-      message: 'A construction task in Colombo matches your skills and location preferences.',
-      timestamp: '2 hours ago',
-      isRead: false,
-      relatedGig: 'task_123'
-    },
-    {
-      id: '2',
-      type: 'request',
-      title: 'Tool Rental Request',
-      message: 'Someone has requested to rent your drill from Kandy.',
-      timestamp: '1 day ago',
-      isRead: false,
-      relatedGig: 'tool_456'
-    },
-    {
-      id: '3',
-      type: 'approval',
-      title: 'Task Application Approved',
-      message: 'Your application for "Garden Cleaning in Galle" has been approved!',
-      timestamp: '2 days ago',
-      isRead: true,
-      relatedGig: 'task_789'
-    },
-    {
-      id: '4',
-      type: 'general',
-      title: 'Platform Update',
-      message: 'New features have been added to improve your experience on ToolnTask.',
-      timestamp: '1 week ago',
-      isRead: true
-    }
-  ]);
-  // Empty saved gigs array - will be populated when users save gigs
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [savedGigs, setSavedGigs] = useState<SavedGig[]>([]);
   
-  // Mock notifications for future implementation
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const notifications: Notification[] = [
-    {
-      id: '1',
-      type: 'gig_match',
-      title: 'New Tool Match',
-      message: 'A power drill matching your search criteria is now available in your area.',
-      timestamp: '2025-01-14T10:30:00Z',
-      isRead: false,
-      relatedGig: 'tool_123'
-    },
-    {
-      id: '2',
-      type: 'request',
-      title: 'Task Request',
-      message: 'Someone has requested your house cleaning services.',
-      timestamp: '2025-01-14T09:15:00Z',
-      isRead: false,
-      relatedGig: 'task_456'
-    },
-    {
-      id: '3',
-      type: 'approval',
-      title: 'Listing Approved',
-      message: 'Your tool listing has been approved and is now live.',
-      timestamp: '2025-01-13T16:45:00Z',
-      isRead: true,
-      relatedGig: 'tool_789'
-    }
-  ];
-
+  // Simplified language options: English, Sinhala, Tamil only
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'pt', name: 'Português', flag: '🇵🇹' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'zh', name: '中文', flag: '🇨🇳' },
-    { code: 'ja', name: '日本語', flag: '🇯🇵' },
-    { code: 'ko', name: '한국어', flag: '🇰🇷' },
-    { code: 'si', name: 'සිංහල', flag: '🇱🇰' }
+    { code: 'si', name: 'සිංහල', flag: '��' },
+    { code: 'ta', name: 'தமிழ்', flag: '🇱🇰' }
   ];
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -149,6 +72,8 @@ export default function Profile() {
       if (user) {
         setUser(user);
         fetchUserProfile(user);
+        fetchSavedGigs(user.uid);
+        fetchNotifications(user.uid);
       } else {
         router.push('/SignIn');
       }
@@ -172,9 +97,71 @@ export default function Profile() {
           isActive: userData.isActive || true,
           role: userData.role || 'user'
         });
+        // Load saved language preference
+        if (userData.preferredLanguage) {
+          setSelectedLanguage(userData.preferredLanguage);
+        }
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);
+    }
+  };
+
+  const fetchSavedGigs = async (userId: string) => {
+    try {
+      const savedGigsRef = collection(db, 'savedGigs');
+      const q = query(savedGigsRef, where('userId', '==', userId));
+      const querySnapshot = await getDocs(q);
+      
+      const gigsData: SavedGig[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        gigsData.push({
+          id: doc.id,
+          title: data.title,
+          type: data.type,
+          price: data.price,
+          location: data.location,
+          savedAt: data.savedAt,
+          description: data.description,
+          postedBy: data.postedBy,
+          status: data.status || 'available',
+          originalGigId: data.originalGigId
+        });
+      });
+      
+      setSavedGigs(gigsData);
+    } catch (error) {
+      console.error('Error fetching saved gigs:', error);
+    }
+  };
+
+  const fetchNotifications = async (userId: string) => {
+    try {
+      const notificationsRef = collection(db, 'notifications');
+      const q = query(notificationsRef, where('userId', '==', userId));
+      const querySnapshot = await getDocs(q);
+      
+      const notificationsData: Notification[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        notificationsData.push({
+          id: doc.id,
+          type: data.type,
+          title: data.title,
+          message: data.message,
+          timestamp: data.timestamp,
+          isRead: data.isRead || false,
+          relatedGig: data.relatedGig,
+          userId: data.userId
+        });
+      });
+      
+      // Sort by timestamp (newest first)
+      notificationsData.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+      setNotifications(notificationsData);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
     }
   };
 
