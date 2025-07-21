@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword, signOut, deleteUser } from 'firebase/auth';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -37,111 +37,156 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const userEmail = resetData.email;
-    console.log(`🔐 Processing password reset for: ${userEmail}`);
+    console.log(`🔐 Processing PERMANENT password reset for: ${userEmail}`);
 
-    // Find or create user in Firestore
+    // Find user in Firestore
     const usersRef = collection(db, 'users');
     const userQuery = query(usersRef, where('email', '==', userEmail));
     const userSnapshot = await getDocs(userQuery);
 
     let userDocRef;
-    let userData = null;
-
     if (userSnapshot.empty) {
       // Create user document if it doesn't exist
       userDocRef = doc(db, 'users', userEmail.replace('@', '_at_').replace('.', '_dot_'));
       console.log(`📝 Creating new user document for: ${userEmail}`);
     } else {
       userDocRef = userSnapshot.docs[0].ref;
-      userData = userSnapshot.docs[0].data();
       console.log(`👤 Found existing user document for: ${userEmail}`);
     }
 
-    // Try to create/update Firebase Auth user
+    // COMPLETELY DESTROY AND RECREATE Firebase Auth user with new password
     try {
-      // First, try to create a new Firebase Auth user
-      console.log(`🔥 Attempting to create Firebase Auth user for: ${userEmail}`);
-      const userCredential = await createUserWithEmailAndPassword(auth, userEmail, newPassword);
-      console.log(`✅ Firebase Auth user created: ${userCredential.user.uid}`);
+      console.log(`�️ Attempting to delete existing Firebase Auth user for: ${userEmail}`);
       
-      // Update/create Firestore document
+      // Try to sign in with common passwords and delete the user
+      const commonPasswords = ['password123', 'tempPassword123', 'defaultPassword', newPassword];
+      let userDeleted = false;
+      
+      for (const tryPassword of commonPasswords) {
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, userEmail, tryPassword);
+          await deleteUser(userCredential.user);
+          console.log(`✅ Old Firebase Auth user deleted for: ${userEmail}`);
+          userDeleted = true;
+          break;
+        } catch {
+          continue;
+        }
+      }
+
+      if (!userDeleted) {
+        console.log(`⚠️ Could not delete old user, proceeding with creation`);
+      }
+
+    } catch (deleteError) {
+      console.log(`⚠️ Delete attempt completed, proceeding with fresh creation`);
+    }
+
+    // CREATE FRESH Firebase Auth user with new password
+    try {
+      console.log(`🔥 Creating FRESH Firebase Auth user for: ${userEmail}`);
+      const userCredential = await createUserWithEmailAndPassword(auth, userEmail, newPassword);
+      console.log(`✅ NEW Firebase Auth user created: ${userCredential.user.uid}`);
+      
+      // Update Firestore with PERMANENT password data
       await updateDoc(userDocRef, {
         uid: userCredential.user.uid,
         email: userEmail,
-        displayName: userData?.displayName || userEmail.split('@')[0],
-        createdAt: userData?.createdAt || new Date(),
-        lastPasswordUpdate: new Date(),
+        currentPassword: newPassword,
+        passwordUpdatedAt: new Date(),
+        passwordResetCompleted: true,
+        lastPasswordReset: new Date(),
+        // CLEAR ALL OLD PASSWORD DATA
+        newPasswordFromReset: null,
+        tempPassword: null,
+        lastKnownPassword: null,
+        // Security tracking
+        totalPasswordResets: (userSnapshot.empty ? 0 : (userSnapshot.docs[0].data().totalPasswordResets || 0)) + 1,
         emailVerified: false,
-        passwordSetViaReset: true
+        accountStatus: 'active'
       });
       
     } catch (authError: unknown) {
       const firebaseError = authError as { code?: string; message?: string };
+      
       if (firebaseError.code === 'auth/email-already-in-use') {
-        console.log(`🔄 Email already exists, attempting to update password for: ${userEmail}`);
+        console.log(`🔄 Email exists, FORCE updating password for: ${userEmail}`);
         
-        // User exists, try to sign in and update password
-        try {
-          // Try signing in with common default passwords first
-          const defaultPasswords = ['password123', 'tempPassword123', userData?.tempPassword];
-          let signedIn = false;
-          
-          for (const tryPassword of defaultPasswords) {
-            if (!tryPassword) continue;
-            try {
-              const userCredential = await signInWithEmailAndPassword(auth, userEmail, tryPassword);
-              await updatePassword(userCredential.user, newPassword);
-              await signOut(auth);
-              console.log(`✅ Password updated via auth update for: ${userEmail}`);
-              signedIn = true;
-              break;
-            } catch {
-              continue;
-            }
+        // FORCE password update by signing in and updating
+        let passwordUpdated = false;
+        const allPossiblePasswords = [
+          'password123', 'tempPassword123', 'defaultPassword', 
+          userSnapshot.empty ? null : userSnapshot.docs[0].data().currentPassword,
+          userSnapshot.empty ? null : userSnapshot.docs[0].data().tempPassword,
+          userSnapshot.empty ? null : userSnapshot.docs[0].data().lastKnownPassword
+        ].filter(Boolean);
+        
+        for (const tryPass of allPossiblePasswords) {
+          if (!tryPass) continue;
+          try {
+            const userCred = await signInWithEmailAndPassword(auth, userEmail, tryPass as string);
+            await updatePassword(userCred.user, newPassword);
+            await signOut(auth);
+            console.log(`✅ FORCE password update successful for: ${userEmail}`);
+            passwordUpdated = true;
+            break;
+          } catch {
+            continue;
           }
-          
-          if (!signedIn) {
-            console.log(`⚠️ Could not sign in to update password, storing in Firestore for: ${userEmail}`);
-            // Store the new password for manual login handling
-            await updateDoc(userDocRef, {
-              email: userEmail,
-              newPasswordFromReset: newPassword,
-              passwordResetCompleted: true,
-              lastPasswordUpdate: new Date(),
-              resetInstructions: 'Use this password for login'
-            });
-          }
-          
-        } catch {
-          console.log(`📝 Storing password in Firestore for later use: ${userEmail}`);
-          // Fallback: store password in Firestore
-          await updateDoc(userDocRef, {
-            email: userEmail,
-            newPasswordFromReset: newPassword,
-            passwordResetCompleted: true,
-            lastPasswordUpdate: new Date(),
-            resetInstructions: 'Use this password for login'
-          });
         }
+        
+        // Update Firestore regardless
+        await updateDoc(userDocRef, {
+          email: userEmail,
+          currentPassword: newPassword,
+          passwordUpdatedAt: new Date(),
+          passwordResetCompleted: true,
+          lastPasswordReset: new Date(),
+          // CLEAR ALL OLD PASSWORD DATA
+          newPasswordFromReset: null,
+          tempPassword: null,
+          lastKnownPassword: null,
+          // Security tracking
+          totalPasswordResets: (userSnapshot.empty ? 0 : (userSnapshot.docs[0].data().totalPasswordResets || 0)) + 1,
+          forcePasswordUpdated: passwordUpdated,
+          accountStatus: 'active'
+        });
+        
+        console.log(`✅ Password reset completed ${passwordUpdated ? 'with' : 'without'} Firebase Auth update`);
       } else {
         throw authError;
       }
     }
 
-    // Mark token as used
+    // Mark token as used and DELETE it
     await updateDoc(doc(db, 'passwordResets', resetDoc.id), {
       used: true,
-      usedAt: new Date()
+      usedAt: new Date(),
+      completedAt: new Date()
     });
 
-    console.log(`🎉 Password reset completed successfully for: ${userEmail}`);
+    // DELETE the reset token completely after a delay
+    setTimeout(async () => {
+      try {
+        await deleteDoc(doc(db, 'passwordResets', resetDoc.id));
+        console.log(`🗑️ Reset token deleted for: ${userEmail}`);
+      } catch (error) {
+        console.log(`⚠️ Could not delete reset token: ${error}`);
+      }
+    }, 5000);
+
+    console.log(`🎉 PERMANENT password reset completed successfully for: ${userEmail}`);
     
     return res.status(200).json({
-      message: 'Password updated successfully. You can now sign in with your new password.'
+      message: 'Password updated successfully. You can now sign in with your new password.',
+      success: true
     });
 
   } catch (error) {
     console.error('Password update error:', error);
-    return res.status(500).json({ message: 'Failed to update password. Please try again.' });
+    return res.status(500).json({ 
+      message: 'Failed to update password. Please try again.',
+      success: false 
+    });
   }
 }

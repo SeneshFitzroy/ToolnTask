@@ -103,7 +103,7 @@ export default function SignIn() {
         }
       }
       
-      // For email logins, check for password resets in Firestore first
+      // For email logins, check for PERMANENT password resets in Firestore first
       if (isValidEmail && !isValidPhone) {
         try {
           const resetCheckResponse = await fetch('/api/check-reset-password', {
@@ -119,8 +119,9 @@ export default function SignIn() {
 
           if (resetCheckResponse.ok) {
             const resetData = await resetCheckResponse.json();
-            if (resetData.passwordMatch) {
-              console.log('🔐 Reset password matched, user authenticated');
+            
+            if (resetData.passwordMatch && resetData.isResetPassword) {
+              console.log('🔐 PERMANENT reset password matched, user authenticated');
               
               // Handle "Remember me" functionality
               if (rememberMe) {
@@ -134,34 +135,19 @@ export default function SignIn() {
               // Redirect to home page
               router.push('/');
               return;
-            } else {
-              // If reset password check returned false, this means user has reset password
-              // but provided wrong password - don't allow Firebase Auth fallback
-              const userCheckResponse = await fetch('/api/check-reset-password', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                  email: loginIdentifier, 
-                  password: 'CHECK_IF_USER_HAS_RESET' 
-                }),
-              });
-              
-              if (userCheckResponse.ok) {
-                const userCheckData = await userCheckResponse.json();
-                if (userCheckData.hasResetPassword) {
-                  throw new Error('Please use your new password from the password reset email');
-                }
-              }
+            } else if (resetData.hasResetPassword && !resetData.shouldFallbackToFirebase) {
+              // User has reset password but provided wrong password - block Firebase fallback
+              throw new Error('Please use your new password from the password reset email');
             }
+            
+            // If shouldFallbackToFirebase is true, continue to Firebase Auth below
           }
         } catch (error: unknown) {
           const errorMessage = error instanceof Error ? error.message : 'Unknown error';
           if (errorMessage === 'Please use your new password from the password reset email') {
             throw new Error(errorMessage);
           }
-          console.log('No reset password found, proceeding with normal Firebase Auth');
+          console.log('No reset password found or error occurred, proceeding with Firebase Auth');
         }
       }
       
