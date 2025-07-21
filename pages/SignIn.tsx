@@ -207,21 +207,24 @@ export default function SignIn() {
       }
       
       // Sign in with Firebase Auth using email (either provided directly or found by phone)
-      await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
-      console.log('User signed in successfully');
-      
-      // Handle "Remember me" functionality
-      if (rememberMe) {
-        localStorage.setItem('rememberedEmail', formData.email.trim());
-        localStorage.setItem('rememberMe', 'true');
-      } else {
-        localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('rememberMe');
+      // The email login check above handles reset passwords, so this is for regular logins
+      if (isValidPhone || !isValidEmail) {
+        await signInWithEmailAndPassword(auth, loginIdentifier, formData.password);
+        console.log('User signed in successfully');
+        
+        // Handle "Remember me" functionality
+        if (rememberMe) {
+          localStorage.setItem('rememberedEmail', formData.email.trim());
+          localStorage.setItem('rememberMe', 'true');
+        } else {
+          localStorage.removeItem('rememberedEmail');
+          localStorage.removeItem('rememberMe');
+        }
+        
+        // Force full page refresh to ensure proper auth state loading
+        console.log('🔄 Regular Firebase Auth successful, redirecting with page refresh');
+        window.location.href = '/';
       }
-      
-      // Force full page refresh to ensure proper auth state loading
-      console.log('🔄 Regular Firebase Auth successful, redirecting with page refresh');
-      window.location.href = '/';
     } catch (error: unknown) {
       // Handle specific Firebase Auth errors with professional messages
       let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
