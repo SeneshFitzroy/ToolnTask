@@ -139,7 +139,7 @@ export default function SignIn() {
               return;
             }
           }
-        } catch (tempError) {
+        } catch {
           console.log('No temporary password found, proceeding with normal login');
         }
       }
