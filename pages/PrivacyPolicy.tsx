@@ -267,7 +267,7 @@ export default function PrivacyAndSafety() {
                         Red Flags to Avoid
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Off-Platform Payments:</strong> Never pay outside of ToolNTask&apos;s secure system</li>
+                        <li>• <strong>Off-Platform Services:</strong> Always use ToolNTask for legitimate tool and service advertisements</li>
                         <li>• <strong>Unrealistic Offers:</strong> Be wary of deals that seem too good to be true</li>
                         <li>• <strong>Pressure Tactics:</strong> Avoid users who pressure for immediate decisions</li>
                         <li>• <strong>Poor Communication:</strong> Unclear, evasive, or hostile communication patterns</li>
