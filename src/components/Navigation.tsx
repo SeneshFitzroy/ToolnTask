@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { auth } from '../lib/firebase';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import Logo from './Logo';
-import LanguageSelector from './LanguageSelectorNew';
+import GlobalLanguageSelector from './GlobalLanguageSelector';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Navigation = () => {
@@ -329,7 +329,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-5 flex-shrink-0">
             {/* Language Selector */}
             <div className="hidden sm:block">
-              <LanguageSelector />
+              <GlobalLanguageSelector showLabel={false} size="sm" />
             </div>
             
             {/* Auth Buttons - Hidden on small screens */}
