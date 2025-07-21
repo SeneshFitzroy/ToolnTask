@@ -435,25 +435,29 @@ export default function SignUp() {
         
         switch (firebaseError.code) {
           case 'auth/email-already-in-use':
-            errorMessage = '🔒 This email is already registered with ToolNTask! Please sign in instead or use a different email address.';
+            if (registrationMethod === 'email') {
+              errorMessage = '✉️ This email is already registered! Please sign in instead or use "Forgot Password" if you need to reset your password.';
+            } else {
+              errorMessage = '📱 This phone number is already registered! Please sign in instead or use "Forgot Password" if you need to reset your password.';
+            }
             break;
           case 'auth/invalid-email':
-            errorMessage = 'Invalid email address format. Please check your email and try again.';
+            errorMessage = '❌ Invalid email address format. Please check your email and try again.';
             break;
           case 'auth/weak-password':
-            errorMessage = 'Password is too weak. Please choose a stronger password (at least 6 characters).';
+            errorMessage = '🔒 Password is too weak. Please choose a stronger password (at least 8 characters with uppercase, lowercase, numbers, and special characters).';
             break;
           case 'auth/network-request-failed':
-            errorMessage = 'Network error. Please check your internet connection and try again.';
+            errorMessage = '🌐 Network error. Please check your internet connection and try again.';
             break;
           case 'auth/operation-not-allowed':
-            errorMessage = 'Email/password accounts are not enabled. Please contact support.';
+            errorMessage = '⚠️ Registration is temporarily unavailable. Please contact support.';
             break;
           case 'auth/too-many-requests':
-            errorMessage = 'Too many failed attempts. Please wait a moment before trying again.';
+            errorMessage = '⏰ Too many failed attempts. Please wait a few minutes before trying again.';
             break;
           default:
-            errorMessage = firebaseError.message || 'An error occurred during registration. Please try again.';
+            errorMessage = '❌ ' + (firebaseError.message || 'An error occurred during registration. Please try again.');
         }
       } else if (error instanceof Error) {
         errorMessage = error.message;
