@@ -142,21 +142,12 @@ export default function TermsAndConditions() {
                   </ul>
                 </section>
 
-                {/* 5. Payments */}
-                <section>
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    5. Payments
-                  </h2>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    All payments are processed securely. We charge service fees and handle disputes fairly. 
-                    Refunds are given according to our refund policy.
-                  </p>
                 </section>
 
-                {/* 6. Privacy */}
+                {/* 5. Privacy */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    6. Privacy
+                    5. Privacy
                   </h2>
                   <p className="text-gray-700 dark:text-gray-300">
                     We protect your personal information as described in our Privacy Policy. 
@@ -164,11 +155,10 @@ export default function TermsAndConditions() {
                   </p>
                 </section>
 
-                {/* 7. Liability */}
+                {/* 6. Limitation of Liability */}
                 <section>
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    7. Limitation of Liability
-                  </h2>
+                    6. Limitation of Liability</h2>
                   <p className="text-gray-700 dark:text-gray-300">
                     ToolNTask is a platform connecting users. We are not responsible for the quality, 
                     safety, or completion of tasks. Our liability is limited to the maximum extent allowed by law.
