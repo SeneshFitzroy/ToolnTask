@@ -38,6 +38,7 @@ export default function Tools() {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tools] = useState<Tool[]>(mockTools);
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
