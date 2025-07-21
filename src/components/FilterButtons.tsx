@@ -11,7 +11,7 @@ interface FilterButtonsProps {
 
 const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange, activeFilter }) => {
   const { theme } = useTheme();
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
