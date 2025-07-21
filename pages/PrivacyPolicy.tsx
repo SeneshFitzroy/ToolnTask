@@ -127,9 +127,9 @@ export default function PrivacyAndSafety() {
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Account Information:</strong> Name, email, phone number, and profile photo</li>
                         <li>• <strong>Identity Verification:</strong> Government ID for enhanced security (optional)</li>
-                        <li>• <strong>Usage Data:</strong> Tasks posted, tools rented, transaction history</li>
+                        <li>• <strong>Usage Data:</strong> Tasks posted, tools advertised, promotion history</li>
                         <li>• <strong>Location Data:</strong> General location for task/tool matching (with consent)</li>
-                        <li>• <strong>Communication:</strong> Messages between users for transaction purposes</li>
+                        <li>• <strong>Communication:</strong> Messages between users for advertisement and promotion purposes</li>
                       </ul>
                     </div>
                   </div>
@@ -146,11 +146,11 @@ export default function PrivacyAndSafety() {
                         How We Use Your Information
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Platform Operations:</strong> Account management, transaction processing</li>
+                        <li>• <strong>Platform Operations:</strong> Account management, advertisement processing</li>
                         <li>• <strong>Safety & Security:</strong> Fraud prevention, user verification, dispute resolution</li>
                         <li>• <strong>Service Improvement:</strong> Analytics to enhance user experience</li>
-                        <li>• <strong>Communication:</strong> Important updates, transaction notifications</li>
-                        <li>• <strong>Customer Support:</strong> Assistance with account and transaction issues</li>
+                        <li>• <strong>Communication:</strong> Important updates, platform notifications</li>
+                        <li>• <strong>Customer Support:</strong> Assistance with account and platform issues</li>
                       </ul>
                     </div>
                   </div>
@@ -167,8 +167,8 @@ export default function PrivacyAndSafety() {
                         Information Sharing
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>With Other Users:</strong> Profile information necessary for transactions</li>
-                        <li>• <strong>Service Providers:</strong> Payment processors, identity verification services</li>
+                        <li>• <strong>With Other Users:</strong> Profile information necessary for advertisements</li>
+                        <li>• <strong>Service Providers:</strong> Identity verification services, platform maintenance</li>
                         <li>• <strong>Legal Requirements:</strong> When required by law or to protect user safety</li>
                         <li>• <strong>Business Transfers:</strong> In case of merger or acquisition (with notice)</li>
                         <li>• We never sell your personal information to third parties</li>
@@ -191,8 +191,6 @@ export default function PrivacyAndSafety() {
                         <li>• <strong>Access:</strong> Request a copy of your personal data</li>
                         <li>• <strong>Update:</strong> Modify your account information anytime</li>
                         <li>• <strong>Delete:</strong> Request account deletion (subject to legal requirements)</li>
-                        <li>• <strong>Portability:</strong> Export your data in a machine-readable format</li>
-                        <li>• <strong>Marketing:</strong> Opt-out of promotional communications</li>
                       </ul>
                     </div>
                   </div>
@@ -227,8 +225,8 @@ export default function PrivacyAndSafety() {
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>Meet in Public:</strong> Always meet in well-lit, public locations for initial meetings</li>
                         <li>• <strong>Verify Identity:</strong> Check user profiles, ratings, and reviews before engaging</li>
-                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don&apos;t proceed with the transaction</li>
-                        <li>• <strong>Bring a Friend:</strong> Consider bringing someone for high-value transactions</li>
+                        <li>• <strong>Trust Your Instincts:</strong> If something feels wrong, don&apos;t proceed with the meeting</li>
+                        <li>• <strong>Bring a Friend:</strong> Consider bringing someone for high-value tool demonstrations</li>
                         <li>• <strong>Share Plans:</strong> Inform someone about your meeting location and time</li>
                       </ul>
                     </div>
@@ -243,10 +241,10 @@ export default function PrivacyAndSafety() {
                     <CheckCircle className="w-6 h-6 mt-1" style={{ color: '#FE5F16' }} />
                     <div>
                       <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Transaction Safety
+                        Advertisement Safety
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Use Platform Payments:</strong> Always process payments through ToolNTask for protection</li>
+                        <li>• <strong>Use Platform Services:</strong> Always use ToolNTask for advertisement and promotion services</li>
                         <li>• <strong>Document Everything:</strong> Take photos of tools/work before and after</li>
                         <li>• <strong>Clear Agreements:</strong> Ensure all terms are clearly defined and agreed upon</li>
                         <li>• <strong>Report Issues:</strong> Contact support immediately if problems arise</li>
@@ -267,11 +265,11 @@ export default function PrivacyAndSafety() {
                         Red Flags to Avoid
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                        <li>• <strong>Off-Platform Payments:</strong> Never pay outside of ToolNTask&apos;s secure system</li>
+                        <li>• <strong>Off-Platform Services:</strong> Always use ToolNTask for legitimate tool and service advertisements</li>
                         <li>• <strong>Unrealistic Offers:</strong> Be wary of deals that seem too good to be true</li>
                         <li>• <strong>Pressure Tactics:</strong> Avoid users who pressure for immediate decisions</li>
                         <li>• <strong>Poor Communication:</strong> Unclear, evasive, or hostile communication patterns</li>
-                        <li>• <strong>No Reviews/Ratings:</strong> Be cautious with users who have no transaction history</li>
+                        <li>• <strong>No Reviews/Ratings:</strong> Be cautious with users who have no platform history</li>
                       </ul>
                     </div>
                   </div>
@@ -289,7 +287,7 @@ export default function PrivacyAndSafety() {
                       </h3>
                       <ul className="space-y-2 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         <li>• <strong>User Verification:</strong> Identity verification system for enhanced trust</li>
-                        <li>• <strong>Secure Payments:</strong> Encrypted payment processing with buyer protection</li>
+                        <li>• <strong>Secure Platform:</strong> Encrypted communication and data protection</li>
                         <li>• <strong>Rating System:</strong> Community-driven feedback for informed decisions</li>
                         <li>• <strong>24/7 Support:</strong> Dedicated support team for safety concerns</li>
                         <li>• <strong>Dispute Resolution:</strong> Fair and impartial resolution process</li>
@@ -377,12 +375,9 @@ export default function PrivacyAndSafety() {
                   If you&apos;re experiencing immediate safety concerns or threats, please contact local emergency services first, 
                   then reach out to our support team.
                 </p>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center">
                   <span className="text-sm font-medium" style={{ color: '#FE5F16' }}>
-                    Sri Lanka Emergency: 119
-                  </span>
-                  <span className="text-sm font-medium" style={{ color: '#FE5F16' }}>
-                    Police: 118
+                    Sri Lanka Police Emergency: 119
                   </span>
                 </div>
               </div>
