@@ -37,8 +37,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // First try to create a new user
           await createUserWithEmailAndPassword(auth, email, password);
           console.log(`✅ New Firebase Auth user created for: ${email}`);
-        } catch (authError: any) {
-          if (authError.code === 'auth/email-already-in-use') {
+        } catch (authError: unknown) {
+          const firebaseError = authError as { code?: string; message?: string };
+          if (firebaseError.code === 'auth/email-already-in-use') {
             // User exists, try to update their password
             console.log(`🔄 Updating existing Firebase Auth password for: ${email}`);
             

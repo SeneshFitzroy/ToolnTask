@@ -112,7 +112,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
           }
           
-        } catch (updateError) {
+        } catch {
           console.log(`📝 Storing password in Firestore for later use: ${userEmail}`);
           // Fallback: store password in Firestore
           await updateDoc(userDocRef, {
