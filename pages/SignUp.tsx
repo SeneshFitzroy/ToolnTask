@@ -714,6 +714,11 @@ export default function SignUp() {
                   </button>
                 </div>
 
+                {/* Password must be at least 8 characters caption */}
+                <p className="mt-2 text-xs" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                  Password must be at least 8 characters long
+                </p>
+
                 {/* Character Count */}
                 <div className="mt-1 text-xs text-right" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                   {formData.password.length}/50 characters
