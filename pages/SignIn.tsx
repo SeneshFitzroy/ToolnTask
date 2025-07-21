@@ -182,12 +182,21 @@ export default function SignIn() {
       // Redirect to home page
       router.push('/');
     } catch (error: unknown) {
+      console.error('Sign in error:', error);
+      
       // Handle specific Firebase Auth errors with professional messages
       let errorMessage = 'Authentication failed. Please verify your credentials and try again.';
       
       // Determine if user entered phone or email for better error messaging
       const isPhoneInput = phoneRegex.test(cleanedInput);
       const inputType = isPhoneInput ? 'phone number' : 'email';
+      
+      // Check if it's a phone number lookup error
+      if (error instanceof Error && error.message.includes('Phone number not registered')) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
       
       if (error && typeof error === 'object' && 'code' in error) {
         const firebaseError = error as { code: string; message?: string };
@@ -196,7 +205,11 @@ export default function SignIn() {
             errorMessage = `The ${inputType} and password combination is incorrect. Please check your credentials and try again.`;
             break;
           case 'auth/user-not-found':
-            errorMessage = `No account found with this ${inputType}. Please verify your information or create a new account.`;
+            if (isPhoneInput) {
+              errorMessage = 'Phone number not registered. Please check your number or create a new account.';
+            } else {
+              errorMessage = 'No account found with this email. Please verify your information or create a new account.';
+            }
             break;
           case 'auth/wrong-password':
             errorMessage = `Incorrect password for this ${inputType}. Please check your password or use "Forgot Password?" if needed.`;
