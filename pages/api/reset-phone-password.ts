@@ -51,7 +51,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
       }
     } catch (signInError: unknown) {
-      const signInErr = signInError as { code?: string; message?: string };
       // If sign in fails, it's good - means they're using a different password
       // We'll also check reset accounts
       console.log('✅ New password is different from original account password');
@@ -68,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             error: 'SAME_PASSWORD'
           });
         }
-      } catch (resetSignInError) {
+      } catch {
         // Good - new password is different from reset account too
         console.log('✅ New password is different from reset account password');
       }
@@ -99,7 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     error: 'SAME_PASSWORD_HISTORY'
                   });
                 }
-              } catch (timestampedSignInError) {
+              } catch {
                 // Good - password is different from this timestamped reset account
                 continue;
               }
@@ -107,7 +106,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
           console.log('✅ New password is different from all previous reset accounts');
         }
-      } catch (queryError) {
+      } catch {
         console.log('⚠️ Could not check timestamped reset accounts, proceeding...');
       }
     }
