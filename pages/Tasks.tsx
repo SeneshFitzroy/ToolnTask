@@ -1,11 +1,10 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
+import UniversalCard from '../src/components/UniversalCard';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Link from 'next/link';
-import { collection, query, onSnapshot, orderBy, where } from 'firebase/firestore';
+import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
 interface Task {

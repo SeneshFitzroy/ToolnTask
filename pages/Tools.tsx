@@ -1,10 +1,10 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
 import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
+import UniversalCard from '../src/components/UniversalCard';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import Image from 'next/image';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
@@ -474,155 +474,32 @@ export default function Tools() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTools().map((tool) => (
-                <div 
+                <UniversalCard
                   key={tool.id}
-                  className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg overflow-hidden ${
-                    theme === 'dark' 
-                      ? 'border-gray-700 bg-gray-800 hover:border-gray-600' 
-                      : 'border-gray-200 bg-white hover:border-gray-300'
-                  }`}
-                >
-                  {/* Tool Image */}
-                  {(tool.image || tool.type === 'available') && (
-                    <div className="mb-4 relative h-48 w-full rounded-lg overflow-hidden">
-                      <Image
-                        src={tool.image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop'}
-                        alt={tool.title || 'Tool'}
-                        fill
-                        className="object-cover transition-transform duration-300 hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      {/* Image overlay with type badge */}
-                      <div className="absolute top-2 right-2">
-                        {tool.type === 'available' && (
-                          <span className="bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-lg">
-                            Available
-                          </span>
-                        )}
-                        {tool.type === 'requested' && (
-                          <span className="bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-lg">
-                            Requested
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-start justify-between mb-4">
-                    <h2 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      {tool.title || 'Untitled Tool'}
-                    </h2>
-                    <div className="flex gap-2 flex-wrap">
-                      {!tool.image && tool.type === 'available' && (
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                          Available
-                        </span>
-                      )}
-                      {!tool.image && tool.type === 'requested' && (
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                          Requested
-                        </span>
-                      )}
-                      {(tool.isUrgent || tool.urgency === 'urgent') && (
-                        <span className="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                          Urgent
-                        </span>
-                      )}
-                      {tool.isPromoted && (
-                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
-                          Featured
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  
-                  <p className={`mb-4 line-clamp-3 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {tool.description || tool.details || 'No description available'}
-                  </p>
-                  
-                  <div className={`grid grid-cols-2 gap-4 mb-4 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {tool.type === 'available' ? (
-                      <>
-                        <div>
-                          <span className="font-medium">Price:</span>{' '}
-                          <span className="text-green-600 font-semibold">
-                            {tool.price || 'Contact for price'}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="font-medium">Duration:</span> {tool.time || tool.duration || 'Flexible'}
-                        </div>
-                        <div>
-                          <span className="font-medium">Location:</span> {tool.location || 'Location not specified'}
-                        </div>
-                        <div>
-                          <span className="font-medium">Category:</span>{' '}
-                          <span className="capitalize">{tool.category || 'Other'}</span>
-                        </div>
-                        {tool.condition && (
-                          <div className="col-span-2">
-                            <span className="font-medium">Condition:</span>{' '}
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              tool.condition === 'Excellent' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' :
-                              tool.condition === 'Good' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' :
-                              tool.condition === 'Fair' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' :
-                              'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
-                            }`}>
-                              {tool.condition}
-                            </span>
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <div>
-                          <span className="font-medium">Max Price:</span>{' '}
-                          <span className="text-blue-600 font-semibold">
-                            {tool.maxRentalPrice || 'Negotiable'}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="font-medium">Needed:</span> {tool.neededDate || 'ASAP'}
-                        </div>
-                        <div>
-                          <span className="font-medium">Return:</span> {tool.returnDate || 'Flexible'}
-                        </div>
-                        <div>
-                          <span className="font-medium">Category:</span>{' '}
-                          <span className="capitalize">{tool.category || 'Other'}</span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  
-                  {tool.specifications && tool.specifications.length > 0 && (
-                    <div className="mb-4">
-                      <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                        Specifications:
-                      </span>
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {tool.specifications.map((spec, index) => (
-                          <span key={index} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                      {tool.type === 'available' 
-                        ? `Offered by: ${tool.postedBy || tool.contact || 'Anonymous'}` 
-                        : `Requested by: ${tool.requestedBy || 'Anonymous'}`}
-                    </span>
-                    <Link href={`/tools/${tool.id}`}>
-                      <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        View Details
-                      </button>
-                    </Link>
-                  </div>
-                </div>
+                  id={tool.id}
+                  title={tool.title || 'Untitled Tool'}
+                  description={tool.description || tool.details || 'No description available'}
+                  type={tool.type}
+                  category={tool.category || 'Other'}
+                  price={tool.price}
+                  location={tool.location}
+                  image={tool.image}
+                  isActive={tool.isActive}
+                  postedBy={tool.postedBy}
+                  condition={tool.condition}
+                  specifications={tool.specifications}
+                  urgency={tool.urgency}
+                  isUrgent={tool.isUrgent}
+                  isPromoted={tool.isPromoted}
+                  maxRentalPrice={tool.maxRentalPrice}
+                  neededDate={tool.neededDate}
+                  returnDate={tool.returnDate}
+                  requestedBy={tool.requestedBy}
+                  time={tool.time}
+                  duration={tool.duration}
+                  contact={tool.contact}
+                  showActions={true}
+                />
               ))}
             </div>
           )}
