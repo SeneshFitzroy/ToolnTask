@@ -305,7 +305,7 @@ export default function ToolDetail${toolId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.price || !formData.brand) {
+    if (!formData.title || !formData.description || !formData.price || !formData.brand || !formData.location) {
       setError('Please fill in all required fields');
       setLoading(false);
       return;
