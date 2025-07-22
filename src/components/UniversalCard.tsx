@@ -179,7 +179,7 @@ export default function UniversalCard({
 
   const getDetailUrl = () => {
     const baseUrl = type === 'tool' || type === 'toolRequest' ? '/tools' : '/tasks';
-    return `${baseUrl}/${id}_enhanced`;
+    return `${baseUrl}/${id}`;
   };
 
   const getTypeInfo = () => {
