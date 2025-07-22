@@ -1,0 +1,451 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTheme } from 'next-themes';
+import Navigation from '../src/components/Navigation';
+import Footer from '../src/components/Footer';
+import { Button } from '../src/components/ui/button';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db, auth } from '../src/lib/firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
+
+export default function RequestTask() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    budget: '',
+    deadline: '',
+    location: '',
+    category: 'cleaning',
+    customCategory: '',
+    urgency: 'normal',
+    requirements: [''],
+    contactMethod: 'platform',
+    additionalInfo: {
+      frequency: '',
+      supplies: '',
+      notes: '',
+      preferredTime: ''
+    }
+  });
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      
+      if (mounted && !user) {
+        router.push('/SignIn');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router, mounted]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    
+    if (name.startsWith('additionalInfo.')) {
+      const field = name.replace('additionalInfo.', '');
+      setFormData(prev => ({
+        ...prev,
+        additionalInfo: {
+          ...prev.additionalInfo,
+          [field]: value
+        }
+      }));
+    } else if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData(prev => ({
+        ...prev,
+        [name]: checked
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const handleRequirementChange = (index: number, value: string) => {
+    const newRequirements = [...formData.requirements];
+    newRequirements[index] = value;
+    setFormData(prev => ({
+      ...prev,
+      requirements: newRequirements
+    }));
+  };
+
+  const addRequirement = () => {
+    setFormData(prev => ({
+      ...prev,
+      requirements: [...prev.requirements, '']
+    }));
+  };
+
+  const removeRequirement = (index: number) => {
+    const newRequirements = formData.requirements.filter((_, i) => i !== index);
+    setFormData(prev => ({
+      ...prev,
+      requirements: newRequirements
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      if (!user) {
+        setError('You must be logged in to request a task');
+        return;
+      }
+
+      const taskRequest = {
+        ...formData,
+        type: 'requested',
+        status: 'open',
+        requestedBy: user.uid,
+        requestedByEmail: user.email,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        responses: 0,
+        isActive: true
+      };
+
+      const docRef = await addDoc(collection(db, 'taskRequests'), taskRequest);
+      
+      setSuccess('Task request posted successfully! Service providers will be able to see your request.');
+      
+      // Reset form
+      setFormData({
+        title: '',
+        description: '',
+        budget: '',
+        deadline: '',
+        location: '',
+        category: 'cleaning',
+        customCategory: '',
+        urgency: 'normal',
+        requirements: [''],
+        contactMethod: 'platform',
+        additionalInfo: {
+          frequency: '',
+          supplies: '',
+          notes: '',
+          preferredTime: ''
+        }
+      });
+
+      // Redirect to tasks page after 2 seconds
+      setTimeout(() => {
+        router.push('/Tasks');
+      }, 2000);
+    } catch (error: unknown) {
+      console.error('Error requesting task:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred while posting your request';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!mounted) return null;
+
+  if (!user) {
+    return <div>Redirecting to login...</div>;
+  }
+
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+      <Navigation />
+      
+      <div className="py-12 sm:py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
+              Request a Task
+            </h1>
+            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#444444' }}>
+              Find skilled professionals to help you with your projects
+            </p>
+          </div>
+
+          <div className="rounded-3xl shadow-xl p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+            {success && (
+              <div className="mb-6 p-4 rounded-xl border-l-4 border-green-500 bg-green-50 text-green-700">
+                <p className="font-semibold">{success}</p>
+              </div>
+            )}
+            
+            {error && (
+              <div className="mb-6 p-4 rounded-xl border-l-4 border-red-500 bg-red-50 text-red-700">
+                <p className="font-semibold">{error}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    What do you need help with? *
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="e.g., House Cleaning Needed"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Location *
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="e.g., Colombo 03"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Budget Range
+                  </label>
+                  <input
+                    type="text"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="e.g., Rs. 5,000 - 10,000"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Deadline
+                  </label>
+                  <input
+                    type="date"
+                    name="deadline"
+                    value={formData.deadline}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Category *
+                  </label>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    <option value="cleaning">Cleaning</option>
+                    <option value="gardening">Gardening</option>
+                    <option value="repairs">Home Repairs</option>
+                    <option value="moving">Moving & Delivery</option>
+                    <option value="tutoring">Tutoring</option>
+                    <option value="photography">Photography</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="childcare">Childcare</option>
+                    <option value="petcare">Pet Care</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Urgency Level
+                  </label>
+                  <select
+                    name="urgency"
+                    value={formData.urgency}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    <option value="normal">Normal</option>
+                    <option value="high">High Priority</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Detailed Description *
+                </label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-vertical"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                  }}
+                  placeholder="Please provide as much detail as possible about what you need help with..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Requirements & Preferences
+                </label>
+                {formData.requirements.map((req, index) => (
+                  <div key={index} className="flex gap-2 mb-2">
+                    <input
+                      type="text"
+                      value={req}
+                      onChange={(e) => handleRequirementChange(index, e.target.value)}
+                      className="flex-1 px-4 py-3 border-2 rounded-xl focus:outline-none"
+                      style={{ 
+                        borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                        backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                        color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                      }}
+                      placeholder="e.g., Must have own supplies"
+                    />
+                    {formData.requirements.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeRequirement(index)}
+                        className="px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addRequirement}
+                  className="mt-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                >
+                  + Add Requirement
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Preferred Time
+                  </label>
+                  <input
+                    type="text"
+                    name="additionalInfo.preferredTime"
+                    value={formData.additionalInfo.preferredTime}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="e.g., Weekends, Morning hours"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Frequency
+                  </label>
+                  <select
+                    name="additionalInfo.frequency"
+                    value={formData.additionalInfo.frequency}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    <option value="">Select frequency</option>
+                    <option value="one-time">One-time</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="ongoing">Ongoing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 text-white"
+                  style={{ backgroundColor: loading ? '#cccccc' : '#10B981' }}
+                >
+                  {loading ? 'Posting Request...' : 'Post Task Request'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
+    </div>
+  );
+}
