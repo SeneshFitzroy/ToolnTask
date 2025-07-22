@@ -111,50 +111,100 @@ export default function ToolDetail() {
     trackContactClick(id as string, user?.uid, 'contact');
   };
 
-  if (!mounted) return null;
+  // Fetch tool data from Firestore
+  useEffect(() => {
+    const fetchTool = async () => {
+      if (!id) return;
+      
+      try {
+        const toolDoc = await getDoc(doc(db, 'tools', id as string));
+        if (toolDoc.exists()) {
+          const toolData = toolDoc.data() as ToolData;
+          setTool({
+            ...toolData,
+            id: toolDoc.id,
+            // Set default values for display
+            images: toolData.image ? [toolData.image] : ['/placeholder-tool.jpg'],
+            rating: toolData.rating || 4.5,
+            reviews: toolData.reviews || 89,
+            provider: {
+              name: toolData.owner?.name || 'Tool Owner',
+              rating: 4.5,
+              reviews: 89,
+              joinDate: '2022',
+              location: toolData.location || 'Sri Lanka'
+            }
+          });
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching tool:', error);
+        setLoading(false);
+      }
+    };
 
-  // Sample tool data (in a real app, this would come from an API)
-  const tool = {
-    id: id,
-    title: "Professional Power Drill Set",
-    brand: "DeWalt",
-    price: "Rs. 2,500/day",
-    rating: 4.8,
-    reviews: 156,
-    available: true,
-    category: "Power Tools",
-    images: [
-      "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1609010697446-11f2155278f0?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1583394838739-9ed14acade7c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
-    ],
-    description: "Professional-grade power drill set perfect for construction, woodworking, and DIY projects. Includes multiple drill bits, screwdriver attachments, and a durable carrying case.",
-    specifications: {
-      "Power": "18V Li-ion",
-      "Chuck Size": "13mm",
-      "Max Torque": "65 Nm",
-      "Speed": "0-400/1,500 RPM",
-      "Weight": "1.4 kg",
-      "Battery Life": "4-6 hours"
-    },
-    features: [
-      "LED work light for precision drilling",
-      "Ergonomic grip for comfort",
-      "Variable speed trigger",
-      "Reverse function",
-      "Belt clip included",
-      "Quick-change chuck"
-    ],
-    provider: {
-      name: "Ahmed Hassan",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      rating: 4.9,
-      reviews: 89,
-      joinDate: "2022",
-      location: "Colombo 07"
+    if (mounted && id) {
+      fetchTool();
     }
-  };
+  }, [mounted, id]);
+
+  // Fetch similar tools
+  useEffect(() => {
+    const fetchSimilarTools = async () => {
+      if (!tool || !tool.category) return;
+      
+      try {
+        const q = query(
+          collection(db, 'tools'),
+          where('category', '==', tool.category),
+          limit(3)
+        );
+        const querySnapshot = await getDocs(q);
+        const tools: ToolData[] = [];
+        
+        querySnapshot.forEach((doc) => {
+          if (doc.id !== tool.id) {
+            tools.push({
+              id: doc.id,
+              ...doc.data()
+            } as ToolData);
+          }
+        });
+        
+        setSimilarTools(tools);
+      } catch (error) {
+        console.error('Error fetching similar tools:', error);
+      }
+    };
+
+    if (tool && tool.category) {
+      fetchSimilarTools();
+    }
+  }, [tool]);
+
+  if (!mounted || loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading tool details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!tool) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl text-gray-600">Tool not found</p>
+          <Link href="/tools">
+            <Button className="mt-4">Back to Tools</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -212,21 +262,21 @@ export default function ToolDetail() {
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl mb-8 border-4" 
                  style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF', borderColor: '#FF5E14' }}>
               <Image
-                src={tool.images[currentImageIndex]}
+                src={tool.images && tool.images.length > 0 ? tool.images[currentImageIndex] : '/placeholder-tool.jpg'}
                 alt={tool.title}
                 fill
                 className="object-cover"
               />
-              {tool.images.length > 1 && (
+              {tool.images && tool.images.length > 1 && (
                 <>
                   <button
-                    onClick={() => setCurrentImageIndex((prev) => prev > 0 ? prev - 1 : tool.images.length - 1)}
+                    onClick={() => setCurrentImageIndex((prev) => prev > 0 ? prev - 1 : (tool.images?.length || 1) - 1)}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white flex items-center justify-center hover:bg-opacity-75 transition-all duration-300"
                   >
                     ←
                   </button>
                   <button
-                    onClick={() => setCurrentImageIndex((prev) => prev < tool.images.length - 1 ? prev + 1 : 0)}
+                    onClick={() => setCurrentImageIndex((prev) => prev < (tool.images?.length || 1) - 1 ? prev + 1 : 0)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white flex items-center justify-center hover:bg-opacity-75 transition-all duration-300"
                   >
                     →
@@ -236,25 +286,27 @@ export default function ToolDetail() {
             </div>
             
             {/* Thumbnail Navigation */}
-            <div className="flex gap-4 justify-center">
-              {tool.images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 hover:scale-110 ${
-                    index === currentImageIndex ? 'border-orange-500 shadow-lg' : 'border-gray-300'
-                  }`}
-                >
-                  <Image
-                    src={image}
-                    alt={`${tool.title} view ${index + 1}`}
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {tool.images && tool.images.length > 1 && (
+              <div className="flex gap-4 justify-center">
+                {tool.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 hover:scale-110 ${
+                      index === currentImageIndex ? 'border-orange-500 shadow-lg' : 'border-gray-300'
+                    }`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${tool.title} view ${index + 1}`}
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Action Section - Prominently placed */}
@@ -309,40 +361,84 @@ export default function ToolDetail() {
                 {tool.description}
               </p>
               
-              <h3 className="text-xl font-black mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                Features
-              </h3>
-              <ul className="space-y-3">
-                {tool.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="text-green-500 text-xl">✓</span>
-                    <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                      {feature}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {tool.features && Array.isArray(tool.features) && tool.features.length > 0 && (
+                <>
+                  <h3 className="text-xl font-black mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Features
+                  </h3>
+                  <ul className="space-y-3 mb-8">
+                    {tool.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <span className="text-green-500 text-xl">✓</span>
+                        <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {tool.condition && (
+                <div className="mb-6">
+                  <h3 className="text-xl font-black mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Condition
+                  </h3>
+                  <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    {tool.condition}
+                  </span>
+                </div>
+              )}
+
+              {tool.brand && (
+                <div className="mb-6">
+                  <h3 className="text-xl font-black mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                    Brand
+                  </h3>
+                  <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                    {tool.brand}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Specifications */}
-            <div className="p-8 rounded-3xl shadow-2xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-              <h2 className="text-2xl font-black mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                Specifications
-              </h2>
-              <div className="space-y-4">
-                {Object.entries(tool.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between items-center py-3 border-b" 
-                       style={{ borderColor: theme === 'dark' ? '#2A2A2A' : '#E5E7EB' }}>
-                    <span className="font-semibold text-lg" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      {key}
-                    </span>
-                    <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                      {value}
-                    </span>
-                  </div>
-                ))}
+            {tool.specifications && (
+              <div className="p-8 rounded-3xl shadow-2xl" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+                <h2 className="text-2xl font-black mb-6" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                  Specifications
+                </h2>
+                <div className="space-y-4">
+                  {typeof tool.specifications === 'object' ? (
+                    Object.entries(tool.specifications).map(([key, value]) => (
+                      <div key={key} className="flex justify-between items-center py-3 border-b" 
+                           style={{ borderColor: theme === 'dark' ? '#2A2A2A' : '#E5E7EB' }}>
+                        <span className="font-semibold text-lg" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                          {key}
+                        </span>
+                        <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                          {value}
+                        </span>
+                      </div>
+                    ))
+                  ) : Array.isArray(tool.specifications) ? (
+                    tool.specifications.map((spec, index) => (
+                      <div key={index} className="py-2">
+                        <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                          {spec}
+                        </span>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="py-2">
+                      <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                        {tool.specifications}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Tool Owner Profile */}
