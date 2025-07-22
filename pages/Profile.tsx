@@ -164,12 +164,15 @@ export default function Profile() {
 
   const fetchUserPosts = async (userId: string) => {
     try {
+      console.log('Fetching posts for user ID:', userId); // Debug log
       const posts: UserPost[] = [];
       
       // Fetch user's tools
       const toolsRef = collection(db, 'tools');
       const toolsQuery = query(toolsRef, where('postedBy', '==', userId));
       const toolsSnapshot = await getDocs(toolsQuery);
+      
+      console.log('Tools found:', toolsSnapshot.size); // Debug log
       
       toolsSnapshot.forEach((doc) => {
         const data = doc.data();
@@ -264,6 +267,8 @@ export default function Profile() {
         return 0;
       });
       
+      console.log('Total posts found:', posts.length); // Debug log
+      console.log('Posts data:', posts); // Debug log
       setUserPosts(posts);
     } catch (error) {
       console.error('Error fetching user posts:', error);
