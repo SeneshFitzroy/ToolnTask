@@ -309,7 +309,7 @@ export default function Profile() {
           : post
       ));
       
-      setSuccess(`Post ${!currentStatus ? 'activated' : 'deactivated'} successfully!`);
+      setSuccess(`Post ${currentStatus ? 'deactivated' : 'activated'} successfully!`);
       setTimeout(() => setSuccess(''), 3000);
     } catch (error) {
       console.error('Error toggling post status:', error);
