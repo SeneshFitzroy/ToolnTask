@@ -162,6 +162,161 @@ export default function Profile() {
     }
   };
 
+  const fetchUserPosts = async (userId: string) => {
+    try {
+      const posts: UserPost[] = [];
+      
+      // Fetch user's tools
+      const toolsRef = collection(db, 'tools');
+      const toolsQuery = query(toolsRef, where('postedBy', '==', userId));
+      const toolsSnapshot = await getDocs(toolsQuery);
+      
+      toolsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        posts.push({
+          id: doc.id,
+          title: data.title,
+          description: data.description,
+          type: 'tool',
+          category: data.category,
+          price: data.price,
+          location: data.location,
+          image: data.image,
+          isActive: data.isActive !== false, // Default to true if not specified
+          createdAt: data.createdAt,
+          postedBy: data.postedBy,
+          condition: data.condition,
+          brand: data.brand,
+          specifications: data.specifications,
+          features: data.features
+        });
+      });
+      
+      // Fetch user's tasks
+      const tasksRef = collection(db, 'tasks');
+      const tasksQuery = query(tasksRef, where('postedBy', '==', userId));
+      const tasksSnapshot = await getDocs(tasksQuery);
+      
+      tasksSnapshot.forEach((doc) => {
+        const data = doc.data();
+        posts.push({
+          id: doc.id,
+          title: data.title,
+          description: data.description,
+          type: 'task',
+          category: data.category,
+          price: data.price,
+          location: data.location,
+          image: data.image,
+          isActive: data.isActive !== false, // Default to true if not specified
+          createdAt: data.createdAt,
+          postedBy: data.postedBy
+        });
+      });
+      
+      // Fetch user's tool requests
+      const toolRequestsRef = collection(db, 'toolRequests');
+      const toolRequestsQuery = query(toolRequestsRef, where('requestedBy', '==', userId));
+      const toolRequestsSnapshot = await getDocs(toolRequestsQuery);
+      
+      toolRequestsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        posts.push({
+          id: doc.id,
+          title: data.title,
+          description: data.description,
+          type: 'toolRequest',
+          category: data.category,
+          price: data.maxRentalPrice,
+          location: data.location,
+          isActive: data.isActive !== false, // Default to true if not specified
+          createdAt: data.createdAt,
+          postedBy: data.requestedBy
+        });
+      });
+      
+      // Fetch user's task requests
+      const taskRequestsRef = collection(db, 'taskRequests');
+      const taskRequestsQuery = query(taskRequestsRef, where('requestedBy', '==', userId));
+      const taskRequestsSnapshot = await getDocs(taskRequestsQuery);
+      
+      taskRequestsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        posts.push({
+          id: doc.id,
+          title: data.title,
+          description: data.description,
+          type: 'taskRequest',
+          category: data.category,
+          price: data.budget,
+          location: data.location,
+          isActive: data.isActive !== false, // Default to true if not specified
+          createdAt: data.createdAt,
+          postedBy: data.requestedBy
+        });
+      });
+      
+      // Sort by creation date (newest first)
+      posts.sort((a, b) => {
+        if (a.createdAt && b.createdAt) {
+          return b.createdAt.toDate() - a.createdAt.toDate();
+        }
+        return 0;
+      });
+      
+      setUserPosts(posts);
+    } catch (error) {
+      console.error('Error fetching user posts:', error);
+    }
+  };
+
+  const togglePostStatus = async (postId: string, currentStatus: boolean, postType: string) => {
+    try {
+      setLoading(true);
+      
+      // Determine which collection to update
+      let collectionName = '';
+      switch (postType) {
+        case 'tool':
+          collectionName = 'tools';
+          break;
+        case 'task':
+          collectionName = 'tasks';
+          break;
+        case 'toolRequest':
+          collectionName = 'toolRequests';
+          break;
+        case 'taskRequest':
+          collectionName = 'taskRequests';
+          break;
+        default:
+          throw new Error('Invalid post type');
+      }
+      
+      const postRef = doc(db, collectionName, postId);
+      await updateDoc(postRef, {
+        isActive: !currentStatus,
+        updatedAt: serverTimestamp()
+      });
+      
+      // Update local state
+      setUserPosts(prev => prev.map(post => 
+        post.id === postId 
+          ? { ...post, isActive: !currentStatus }
+          : post
+      ));
+      
+      setSuccess(`Post ${!currentStatus ? 'activated' : 'deactivated'} successfully!`);
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (error) {
+      console.error('Error toggling post status:', error);
+      setError('Failed to update post status. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchNotifications = async (userId: string) => {
     try {
       const notificationsRef = collection(db, 'notifications');
