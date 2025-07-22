@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import { updateProfile, onAuthStateChanged, User, signOut } from 'firebase/auth';
 import { doc, updateDoc, getDoc, collection, query, where, getDocs, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
@@ -35,7 +36,7 @@ interface UserPost {
   location?: string;
   image?: string;
   isActive: boolean;
-  createdAt: any;
+  createdAt: Date | null;
   postedBy: string;
   condition?: string;
   brand?: string;
