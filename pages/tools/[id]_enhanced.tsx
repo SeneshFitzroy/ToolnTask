@@ -1,15 +1,28 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
-import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp, doc, getDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
-import { db, auth } from '../../src/lib/firebase';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { Heart, Share2, MapPin, Calendar, Star, CheckCircle, Bookmark, ArrowLeft, Phone, Mail, MessageCircle } from 'lucide-react';
-import Link from 'next/link';
+import { useEffect } from 'react';
+
+export default function ToolDetailEnhanced() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (id) {
+      // Redirect to the regular detail page
+      router.replace(`/tools/${id}`);
+    }
+  }, [id, router]);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto"></div>
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          Loading tool details...
+        </p>
+      </div>
+    </div>
+  );
+}
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
