@@ -74,11 +74,26 @@ export default function UniversalCard({
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      
+      // Check if this item is already saved by the user
+      if (user) {
+        try {
+          const savedGigsRef = collection(db, 'savedGigs');
+          const q = query(savedGigsRef, 
+            where('userId', '==', user.uid),
+            where('originalGigId', '==', id)
+          );
+          const querySnapshot = await getDocs(q);
+          setSaved(!querySnapshot.empty);
+        } catch (error) {
+          console.error('Error checking saved status:', error);
+        }
+      }
     });
     return () => unsubscribe();
-  }, []);
+  }, [id]);
 
   const handleSave = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -157,7 +172,9 @@ export default function UniversalCard({
       });
     }
     
-    if (onShare) onShare(id);
+    if (onShare) {
+      onShare(id);
+    }
   };
 
   const getDetailUrl = () => {
