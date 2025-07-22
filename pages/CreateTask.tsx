@@ -500,17 +500,6 @@ export default function TaskDetail${taskId}() {
                   </select>
                 </div>
               </div>
-                    value={formData.deadline}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                  />
-                </div>
-              </div>
 
               <div>
                 <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
