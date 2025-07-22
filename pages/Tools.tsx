@@ -436,7 +436,14 @@ export default function Tools() {
       {/* Tools List Section */}
       <div className="py-8" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {getFilteredTools().length === 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
+              <span className={`ml-4 text-lg ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Loading tools...
+              </span>
+            </div>
+          ) : getFilteredTools().length === 0 ? (
             <div className="text-center py-12 sm:py-16">
               <div className="mb-6">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
