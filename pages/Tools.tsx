@@ -479,12 +479,12 @@ export default function Tools() {
                   id={tool.id}
                   title={tool.title || 'Untitled Tool'}
                   description={tool.description || tool.details || 'No description available'}
-                  type={tool.type}
+                  type={tool.type === 'available' ? 'tool' : tool.type === 'requested' ? 'toolRequest' : 'tool'}
                   category={tool.category || 'Other'}
                   price={tool.price}
                   location={tool.location}
                   image={tool.image}
-                  isActive={tool.isActive}
+                  isActive={true}
                   postedBy={tool.postedBy}
                   condition={tool.condition}
                   specifications={tool.specifications}
