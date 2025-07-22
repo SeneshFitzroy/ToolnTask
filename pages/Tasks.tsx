@@ -5,44 +5,95 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
+import { collection, query, onSnapshot, orderBy, where } from 'firebase/firestore';
+import { db } from '../src/lib/firebase';
 
 interface Task {
   id: string;
   title: string;
   description: string;
-  price: string;
-  time: string;
+  price?: string;
+  budget?: string;
+  time?: string;
   location: string;
   isUrgent?: boolean;
+  urgency?: string;
   isPromoted?: boolean;
   image?: string;
   category: string;
   status?: string;
   type: 'available' | 'requested';
-  position: string;
-  timeframe: 'hours' | 'days' | 'weeks';
-  experience: string;
-  contact: string;
-  postedBy: string;
-  duration: string;
-  details: string;
+  position?: string;
+  timeframe?: 'hours' | 'days' | 'weeks';
+  experience?: string;
+  contact?: string;
+  postedBy?: string;
+  requestedBy?: string;
+  duration?: string;
+  details?: string;
+  deadline?: string;
+  createdAt?: any;
+  requirements?: string[];
+  additionalInfo?: any;
 }
-
-// Empty tasks array - will be populated when users create tasks
-const mockTasks: Task[] = [];
 
 export default function Tasks() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  const [tasks] = useState<Task[]>(mockTasks);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const fetchTasks = () => {
+      // Fetch provided tasks (from tasks collection)
+      const tasksQuery = query(
+        collection(db, 'tasks'),
+        orderBy('createdAt', 'desc')
+      );
+
+      // Fetch requested tasks (from taskRequests collection)
+      const requestsQuery = query(
+        collection(db, 'taskRequests'),
+        orderBy('createdAt', 'desc')
+      );
+
+      const unsubscribeTasks = onSnapshot(tasksQuery, (snapshot) => {
+        const providedTasks = snapshot.docs.map(doc => ({
+          id: doc.id,
+          type: 'available' as const,
+          ...doc.data()
+        })) as Task[];
+
+        const unsubscribeRequests = onSnapshot(requestsQuery, (snapshot) => {
+          const requestedTasks = snapshot.docs.map(doc => ({
+            id: doc.id,
+            type: 'requested' as const,
+            ...doc.data()
+          })) as Task[];
+
+          // Combine both types
+          setTasks([...providedTasks, ...requestedTasks]);
+          setLoading(false);
+        });
+
+        return () => unsubscribeRequests();
+      });
+
+      return () => unsubscribeTasks();
+    };
+
+    return fetchTasks();
+  }, [mounted]);
 
   if (!mounted) {
     return null;
