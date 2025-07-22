@@ -260,8 +260,8 @@ export default function Profile() {
       // Sort by creation date (newest first)
       posts.sort((a, b) => {
         if (a.createdAt && b.createdAt) {
-          const aDate = a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
-          const bDate = b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+          const aDate = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+          const bDate = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
           return bDate.getTime() - aDate.getTime();
         }
         return 0;
