@@ -97,6 +97,7 @@ export default function Profile() {
         setUser(user);
         fetchUserProfile(user);
         fetchSavedGigs(user.uid);
+        fetchUserPosts(user.uid);
         fetchNotifications(user.uid);
       } else {
         router.push('/SignIn');
