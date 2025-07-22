@@ -261,11 +261,11 @@ export default function Profile() {
       posts.sort((a, b) => {
         if (a.createdAt && b.createdAt) {
           // Handle both Firestore Timestamp and Date objects
-          const getTime = (dateValue: any) => {
-            if (dateValue && typeof dateValue.toDate === 'function') {
-              return dateValue.toDate().getTime();
+          const getTime = (dateValue: unknown) => {
+            if (dateValue && typeof (dateValue as { toDate?: () => Date }).toDate === 'function') {
+              return (dateValue as { toDate: () => Date }).toDate().getTime();
             }
-            return new Date(dateValue).getTime();
+            return new Date(dateValue as string | number | Date).getTime();
           };
           
           return getTime(b.createdAt) - getTime(a.createdAt);
