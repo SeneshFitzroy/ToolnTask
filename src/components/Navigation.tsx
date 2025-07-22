@@ -264,13 +264,14 @@ const Navigation = () => {
 
                 {/* Create Dropdown */}
                 {showCreateDropdown && (
-                  <div className="absolute right-0 top-full mt-2 w-56 rounded-lg shadow-lg border z-50 overflow-hidden"
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-lg shadow-lg border z-50 overflow-hidden"
                        style={{ 
                          backgroundColor: theme === 'dark' ? '#1f1f1f' : '#FFFFFF',
                          borderColor: theme === 'dark' ? '#374151' : '#e5e7eb'
                        }}>
                     
                     <div className="p-2">
+                      {/* Provide Task */}
                       <Link 
                         href="/CreateTask"
                         className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
@@ -289,11 +290,12 @@ const Navigation = () => {
                           <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
                         </div>
                         <div>
-                          <p className="font-semibold text-sm">Create Task</p>
-                          <p className="text-xs opacity-75">Post a job for others</p>
+                          <p className="font-semibold text-sm">Provide Task</p>
+                          <p className="text-xs opacity-75">Offer your services</p>
                         </div>
                       </Link>
                       
+                      {/* Provide Tool */}
                       <Link 
                         href="/CreateTool"
                         className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
@@ -312,8 +314,56 @@ const Navigation = () => {
                           <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
                         </div>
                         <div>
-                          <p className="font-semibold text-sm">Create Tool Listing</p>
+                          <p className="font-semibold text-sm">Provide Tool</p>
                           <p className="text-xs opacity-75">List your tools for rent</p>
+                        </div>
+                      </Link>
+                      
+                      {/* Request Task */}
+                      <Link 
+                        href="/RequestTask"
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
+                        style={{ 
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowCreateDropdown(false)}
+                      >
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#10B981' }}>
+                          <ClipboardList className="h-5 w-5 text-white" strokeWidth={2} />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">Request Task</p>
+                          <p className="text-xs opacity-75">Find someone to help</p>
+                        </div>
+                      </Link>
+                      
+                      {/* Request Tool */}
+                      <Link 
+                        href="/RequestTool"
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
+                        style={{ 
+                          color: theme === 'dark' ? '#e5e7eb' : '#374151'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#f9fafb';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                        }}
+                        onClick={() => setShowCreateDropdown(false)}
+                      >
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#8B5CF6' }}>
+                          <Wrench className="h-5 w-5 text-white" strokeWidth={2} />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">Request Tool</p>
+                          <p className="text-xs opacity-75">Find tools to rent</p>
                         </div>
                       </Link>
                     </div>
