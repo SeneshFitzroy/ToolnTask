@@ -570,8 +570,6 @@ export default function Tasks() {
                   time={request.time}
                   duration={request.duration}
                   contact={request.contact}
-                  timeframe={request.timeframe}
-                  experience={request.experience}
                   showActions={true}
                 />
               ))}
