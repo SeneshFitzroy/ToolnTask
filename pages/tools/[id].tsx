@@ -52,7 +52,7 @@ interface ToolData {
   brand?: string;
   image?: string;
   images?: string[];
-  specifications?: string[];
+  specifications?: string[] | Record<string, string> | string;
   features?: string[];
   rating?: number;
   reviews?: number;
@@ -113,7 +113,9 @@ export default function ToolDetail() {
   // Fetch tool data from Firestore
   useEffect(() => {
     const fetchTool = async () => {
-      if (!id) return;
+      if (!id) {
+        return;
+      }
       
       try {
         const toolDoc = await getDoc(doc(db, 'tools', id as string));
@@ -150,7 +152,9 @@ export default function ToolDetail() {
   // Fetch similar tools
   useEffect(() => {
     const fetchSimilarTools = async () => {
-      if (!tool || !tool.category) return;
+      if (!tool || !tool.category) {
+        return;
+      }
       
       try {
         const q = query(
