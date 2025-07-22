@@ -8,10 +8,9 @@ import Footer from '../../src/components/Footer';
 import Logo from '../../src/components/Logo';
 import TopBanner from '../../src/components/TopBanner';
 import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, limit } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { MapPin, Clock, Calendar, CheckCircle, Star } from 'lucide-react';
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
@@ -449,10 +448,10 @@ export default function ToolDetail() {
               </h3>
               
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden shadow-xl">
+                <div className="w-20 h-20 rounded-full overflow-hidden shadow-xl bg-gray-200">
                   <Image
-                    src={tool.provider.image}
-                    alt={tool.provider.name}
+                    src={tool.provider?.image || '/placeholder-user.jpg'}
+                    alt={tool.provider?.name || 'Tool Owner'}
                     width={80}
                     height={80}
                     className="w-full h-full object-cover"
@@ -460,24 +459,24 @@ export default function ToolDetail() {
                 </div>
                 <div>
                   <h4 className="text-xl font-black" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                    {tool.provider.name}
+                    {tool.provider?.name || 'Tool Owner'}
                   </h4>
                   <div className="flex items-center gap-3 mt-2">
                     <div className="flex items-center gap-1">
                       <span className="text-yellow-500 text-xl">⭐</span>
                       <span className="font-bold text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                        {tool.provider.rating}
+                        {tool.provider?.rating || tool.rating || 4.5}
                       </span>
                     </div>
                     <span className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                      ({tool.provider.reviews} reviews)
+                      ({tool.provider?.reviews || tool.reviews || 0} reviews)
                     </span>
                   </div>
                 </div>
               </div>
               
               <p className="text-lg" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
-                Member since {tool.provider.joinDate} • {tool.provider.location}
+                Member since {tool.provider?.joinDate || '2023'} • {tool.provider?.location || tool.location || 'Sri Lanka'}
               </p>
             </div>
           </div>
@@ -485,43 +484,50 @@ export default function ToolDetail() {
       </div>
 
       {/* Similar Tools Section */}
-      <div className="py-16 sm:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-black text-center mb-12 sm:mb-16" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-            Similar Tools
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {similarTools.map((similarTool) => (
-              <Link key={similarTool.id} href={`/tools/${similarTool.id}_enhanced`}>
-                <div className="p-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 cursor-pointer"
-                     style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-lg">
-                    <Image
-                      src={similarTool.image}
-                      alt={similarTool.title}
-                      fill
-                      className="object-cover"
-                    />
-                    {!similarTool.available && (
-                      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">Not Available</span>
-                      </div>
-                    )}
+      {similarTools.length > 0 && (
+        <div className="py-16 sm:py-20" style={{ backgroundColor: theme === 'dark' ? '#1A1818' : '#FFFFFF' }}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl sm:text-4xl font-black text-center mb-12 sm:mb-16" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+              Similar Tools
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {similarTools.map((similarTool) => (
+                <Link key={similarTool.id} href={`/tools/${similarTool.id}`}>
+                  <div className="p-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                       style={{ backgroundColor: theme === 'dark' ? '#0C0F16' : '#F2F3F5' }}>
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 shadow-lg">
+                      <Image
+                        src={similarTool.image || '/placeholder-tool.jpg'}
+                        alt={similarTool.title}
+                        fill
+                        className="object-cover"
+                      />
+                      {similarTool.status === 'unavailable' && (
+                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                          <span className="text-white font-bold text-lg">Not Available</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-black mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
+                        {similarTool.title}
+                      </h3>
+                      <p className="text-xl font-black" style={{ color: '#FF5E14' }}>
+                        {similarTool.price || 'Contact for Price'}
+                      </p>
+                      {similarTool.location && (
+                        <p className="text-sm mt-2" style={{ color: theme === 'dark' ? '#B3B5BC' : '#6B7280' }}>
+                          📍 {similarTool.location}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-black mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1A1818' }}>
-                      {similarTool.title}
-                    </h3>
-                    <p className="text-xl font-black" style={{ color: '#FF5E14' }}>
-                      {similarTool.price}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <Footer />
     </div>
