@@ -165,15 +165,12 @@ export default function Profile() {
 
   const fetchUserPosts = async (userId: string) => {
     try {
-      console.log('Fetching posts for user ID:', userId); // Debug log
       const posts: UserPost[] = [];
       
       // Fetch user's tools
       const toolsRef = collection(db, 'tools');
       const toolsQuery = query(toolsRef, where('owner.uid', '==', userId));
       const toolsSnapshot = await getDocs(toolsQuery);
-      
-      console.log('Tools found:', toolsSnapshot.size); // Debug log
       
       toolsSnapshot.forEach((doc) => {
         const data = doc.data();
