@@ -71,12 +71,65 @@ export default function UniversalCard({
 }: UniversalCardProps) {
   const { theme } = useTheme();
   const [saved, setSaved] = useState(isSaved);
+  const [user, setUser] = useState<User | null>(null);
 
-  const handleSave = (e: React.MouseEvent) => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSave = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setSaved(!saved);
-    if (onSave) onSave(id);
+    
+    if (!user) {
+      alert('Please sign in to save items');
+      return;
+    }
+
+    try {
+      if (saved) {
+        // Remove from saved items
+        const savedGigsRef = collection(db, 'savedGigs');
+        const q = query(savedGigsRef, 
+          where('userId', '==', user.uid),
+          where('originalGigId', '==', id)
+        );
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach(async (doc) => {
+          await deleteDoc(doc.ref);
+        });
+        
+        setSaved(false);
+      } else {
+        // Add to saved items
+        await addDoc(collection(db, 'savedGigs'), {
+          userId: user.uid,
+          originalGigId: id,
+          title,
+          description,
+          type,
+          price: price || maxRentalPrice || budget,
+          location,
+          image,
+          postedBy,
+          status: 'available',
+          savedAt: serverTimestamp()
+        });
+        
+        setSaved(true);
+      }
+    } catch (error) {
+      console.error('Error saving item:', error);
+      alert('Error saving item. Please try again.');
+    }
+
+    if (onSave) {
+      onSave(id);
+    }
   };
 
   const handleShare = (e: React.MouseEvent) => {
