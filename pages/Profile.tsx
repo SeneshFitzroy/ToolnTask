@@ -1429,14 +1429,14 @@ export default function Profile() {
                           <span className="mr-2">🔍</span>
                           Request Tool
                         </Link>
-                        <Linka
+                        <Link
                           href="/RequestTask"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
                           style={{ backgroundColor: '#10B981' }}
                         >
                           <span className="mr-2">🙋‍♂️</span>
                           Request Help
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   ) : (
