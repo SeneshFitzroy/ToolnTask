@@ -347,7 +347,8 @@ export default function ToolDetail${toolId}() {
         price: '',
         brand: '',
         condition: 'Good',
-        category: 'power',
+        category: 'provide-tool',
+        location: 'Colombo',
         image: '',
         specifications: {
           power: '',
