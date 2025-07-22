@@ -514,103 +514,30 @@ export default function Tasks() {
           <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((task) => (
-              <Link key={task.id} href={`/tasks/${task.id}_enhanced`}>
-                <div className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-800 cursor-pointer"
-                     style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
-                     onMouseEnter={(e) => {
-                       e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
-                     }}
-                     onMouseLeave={(e) => {
-                       e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-                     }}>
-                <div className="relative overflow-hidden">
-                  {task.image && (
-                    <Image 
-                      src={task.image} 
-                      alt={task.title}
-                      width={400}
-                      height={250}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  )}
-                  <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                      Available
-                    </span>
-                  </div>
-                  {task.isUrgent && (
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
-                        Urgent
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-orange-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                    {task.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-                    {task.description}
-                  </p>
-                  
-                  {/* Task Details */}
-                  <div className="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-300">
-                    <div className="flex items-center gap-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? 'rgba(255, 94, 20, 0.1)' : 'rgba(255, 94, 20, 0.05)' }}>
-                      <span className="text-lg">💰</span>
-                      <span className="text-xl font-bold" style={{ color: '#FF5E14' }}>{task.price}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>📍</span>
-                      <span>{task.position} • {task.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>⏱️</span>
-                      <span>{task.duration} {task.timeframe}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>👤</span>
-                      <span>{task.experience}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>�</span>
-                      <span>{task.contact}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 mb-4">
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      <strong>Details:</strong> {task.details}
-                    </p>
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <button
-                      className="flex-1 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
-                      style={{ 
-                        background: 'linear-gradient(135deg, #FF5E14 0%, #FF4500 100%)', 
-                        color: '#FFFFFF',
-                        boxShadow: '0 4px 15px rgba(255, 94, 20, 0.3)'
-                      }}
-                    >
-                      Apply Now
-                    </button>
-                    <button
-                      className="px-6 py-3 border-2 rounded-xl hover:scale-105 transition-all duration-300 font-semibold"
-                      style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
-                        color: theme === 'dark' ? '#D1D5DB' : '#4B5563',
-                        backgroundColor: theme === 'dark' ? 'transparent' : '#FFFFFF'
-                      }}
-                    >
-                      💬
-                    </button>
-                  </div>
-                </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                <UniversalCard
+                  key={task.id}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description || task.details || 'No description available'}
+                  type="task"
+                  category={task.category}
+                  price={task.price}
+                  location={task.location}
+                  image={task.image}
+                  postedBy={task.postedBy}
+                  urgency={task.urgency}
+                  isUrgent={task.isUrgent}
+                  isPromoted={task.isPromoted}
+                  budget={task.budget}
+                  time={task.time}
+                  duration={task.duration}
+                  contact={task.contact}
+                  position={task.position}
+                  timeframe={task.timeframe}
+                  showActions={true}
+                />
+              ))}
+            </div>
             
             {getFilteredTasks().length === 0 && (
               <div className="text-center py-12">
