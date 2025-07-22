@@ -40,14 +40,65 @@ export default function RequestTask() {
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      
-      if (mounted && !user) {
-        router.push('/SignIn');
-      }
     });
 
     return () => unsubscribe();
   }, [router, mounted]);
+
+  // Show loading state while checking authentication
+  if (!mounted) {
+    return null;
+  }
+
+  // Show sign-in prompt if not authenticated
+  if (!user) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+        <Navigation />
+        
+        <div className="flex items-center justify-center min-h-screen px-4">
+          <div className={`max-w-md w-full rounded-lg border p-8 text-center ${
+            theme === 'dark' 
+              ? 'border-gray-700 bg-gray-800' 
+              : 'border-gray-200 bg-white'
+          }`}>
+            <div className="mb-6">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-green-100">
+                <span className="text-2xl">🙋‍♂️</span>
+              </div>
+              <h2 className={`text-2xl font-bold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Sign In Required
+              </h2>
+              <p className={`${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                You need to sign in to request help with tasks. This helps us connect you with the right people and keep track of your requests.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <Button
+                onClick={() => router.push('/SignIn')}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3"
+              >
+                Sign In to Continue
+              </Button>
+              
+              <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                Don&apos;t have an account?{' '}
+                <button
+                  onClick={() => router.push('/SignUp')}
+                  className="text-green-600 hover:text-green-700 font-medium"
+                >
+                  Create one here
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <Footer />
+      </div>
+    );
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
