@@ -578,31 +578,8 @@ export default function Tasks() {
                   experience={request.experience}
                   showActions={true}
                 />
-                    <button
-                      className="flex-1 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
-                      style={{ 
-                        background: 'linear-gradient(135deg, #EAB308 0%, #D97706 100%)', 
-                        color: '#FFFFFF',
-                        boxShadow: '0 4px 15px rgba(234, 179, 8, 0.3)'
-                      }}
-                    >
-                      Offer Service
-                    </button>
-                    <button
-                      className="px-6 py-3 border-2 rounded-xl hover:scale-105 transition-all duration-300 font-semibold"
-                      style={{ 
-                        borderColor: theme === 'dark' ? '#4B5563' : '#D1D5DB',
-                        color: theme === 'dark' ? '#D1D5DB' : '#4B5563',
-                        backgroundColor: theme === 'dark' ? 'transparent' : '#FFFFFF'
-                      }}
-                    >
-                      💬
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
           
           {getFilteredTasks().length === 0 && (
             <div className="text-center py-12">
