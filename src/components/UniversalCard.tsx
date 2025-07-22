@@ -75,8 +75,9 @@ export default function UniversalCard({
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log('UniversalCard: Auth state changed:', user ? user.uid : 'no user');
       setUser(user);
-      
+
       // Check if this item is already saved by the user
       if (user) {
         try {
@@ -119,6 +120,7 @@ export default function UniversalCard({
         });
         
         setSaved(false);
+        console.log('Item removed from saved:', { id, title, type });
       } else {
         // Add to saved items
         await addDoc(collection(db, 'savedGigs'), {
@@ -136,6 +138,7 @@ export default function UniversalCard({
         });
         
         setSaved(true);
+        console.log('Item saved successfully:', { id, title, type });
       }
     } catch (error) {
       console.error('Error saving item:', error);

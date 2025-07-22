@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
-import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, limit } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { MapPin, Clock, Calendar, CheckCircle, Star } from 'lucide-react';
@@ -125,11 +125,10 @@ export default function TaskDetail() {
 
     const fetchSimilarTasks = async (category: string, currentTaskId: string) => {
       try {
-        // Fetch similar tasks from the same category
+        // Fetch similar tasks from the same category (without orderBy to avoid index requirement)
         const tasksQuery = query(
           collection(db, 'tasks'),
           where('category', '==', category),
-          orderBy('createdAt', 'desc'),
           limit(6)
         );
         
@@ -142,6 +141,18 @@ export default function TaskDetail() {
         setSimilarTasks(tasks);
       } catch (error) {
         console.error('Error fetching similar tasks:', error);
+        // Fallback: fetch any tasks if category query fails
+        try {
+          const fallbackQuery = query(collection(db, 'tasks'), limit(4));
+          const fallbackSnapshot = await getDocs(fallbackQuery);
+          const fallbackTasks = fallbackSnapshot.docs
+            .map(doc => ({ id: doc.id, ...doc.data() } as TaskData))
+            .filter(task => task.id !== currentTaskId)
+            .slice(0, 3);
+          setSimilarTasks(fallbackTasks);
+        } catch (fallbackError) {
+          console.error('Error fetching fallback tasks:', fallbackError);
+        }
       }
     };
 

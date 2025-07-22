@@ -94,6 +94,7 @@ export default function Profile() {
     setMounted(true);
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('Profile: Auth state changed:', user ? user.uid : 'no user');
       if (user) {
         setUser(user);
         fetchUserProfile(user);
@@ -136,13 +137,17 @@ export default function Profile() {
 
   const fetchSavedGigs = async (userId: string) => {
     try {
+      console.log('Fetching saved gigs for user:', userId);
       const savedGigsRef = collection(db, 'savedGigs');
       const q = query(savedGigsRef, where('userId', '==', userId));
       const querySnapshot = await getDocs(q);
       
+      console.log('Found saved gigs:', querySnapshot.size);
+      
       const gigsData: SavedGig[] = [];
       querySnapshot.forEach((doc) => {
         const data = doc.data();
+        console.log('Saved gig data:', data);
         gigsData.push({
           id: doc.id,
           title: data.title,
@@ -157,6 +162,7 @@ export default function Profile() {
         });
       });
       
+      console.log('Setting saved gigs:', gigsData);
       setSavedGigs(gigsData);
     } catch (error) {
       console.error('Error fetching saved gigs:', error);
@@ -798,7 +804,12 @@ export default function Profile() {
                   Settings
                 </button>
                 <button
-                  onClick={() => setActiveTab('saved')}
+                  onClick={() => {
+                    setActiveTab('saved');
+                    if (user) {
+                      fetchSavedGigs(user.uid);
+                    }
+                  }}
                   className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === 'saved'
                       ? 'border-orange-500 text-orange-500'
