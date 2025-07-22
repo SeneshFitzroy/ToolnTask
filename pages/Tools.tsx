@@ -476,23 +476,49 @@ export default function Tools() {
               {getFilteredTools().map((tool) => (
                 <div 
                   key={tool.id}
-                  className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg ${
+                  className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg overflow-hidden ${
                     theme === 'dark' 
                       ? 'border-gray-700 bg-gray-800 hover:border-gray-600' 
                       : 'border-gray-200 bg-white hover:border-gray-300'
                   }`}
                 >
+                  {/* Tool Image */}
+                  {(tool.image || tool.type === 'available') && (
+                    <div className="mb-4 relative h-48 w-full rounded-lg overflow-hidden">
+                      <Image
+                        src={tool.image || 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&h=600&fit=crop'}
+                        alt={tool.title || 'Tool'}
+                        fill
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      {/* Image overlay with type badge */}
+                      <div className="absolute top-2 right-2">
+                        {tool.type === 'available' && (
+                          <span className="bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-lg">
+                            Available
+                          </span>
+                        )}
+                        {tool.type === 'requested' && (
+                          <span className="bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-lg">
+                            Requested
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex items-start justify-between mb-4">
                     <h2 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                      {tool.title}
+                      {tool.title || 'Untitled Tool'}
                     </h2>
-                    <div className="flex gap-2">
-                      {tool.type === 'available' && (
+                    <div className="flex gap-2 flex-wrap">
+                      {!tool.image && tool.type === 'available' && (
                         <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                           Available
                         </span>
                       )}
-                      {tool.type === 'requested' && (
+                      {!tool.image && tool.type === 'requested' && (
                         <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                           Requested
                         </span>
@@ -510,39 +536,60 @@ export default function Tools() {
                     </div>
                   </div>
                   
-                  <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {tool.description || tool.details}
+                  <p className={`mb-4 line-clamp-3 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {tool.description || tool.details || 'No description available'}
                   </p>
                   
                   <div className={`grid grid-cols-2 gap-4 mb-4 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
                     {tool.type === 'available' ? (
                       <>
                         <div>
-                          <span className="font-medium">Price:</span> {tool.price || 'Contact for price'}
+                          <span className="font-medium">Price:</span>{' '}
+                          <span className="text-green-600 font-semibold">
+                            {tool.price || 'Contact for price'}
+                          </span>
                         </div>
                         <div>
-                          <span className="font-medium">Duration:</span> {tool.time || tool.duration}
+                          <span className="font-medium">Duration:</span> {tool.time || tool.duration || 'Flexible'}
                         </div>
                         <div>
-                          <span className="font-medium">Location:</span> {tool.location}
+                          <span className="font-medium">Location:</span> {tool.location || 'Location not specified'}
                         </div>
                         <div>
-                          <span className="font-medium">Category:</span> {tool.category}
+                          <span className="font-medium">Category:</span>{' '}
+                          <span className="capitalize">{tool.category || 'Other'}</span>
                         </div>
+                        {tool.condition && (
+                          <div className="col-span-2">
+                            <span className="font-medium">Condition:</span>{' '}
+                            <span className={`px-2 py-1 rounded text-xs ${
+                              tool.condition === 'Excellent' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' :
+                              tool.condition === 'Good' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300' :
+                              tool.condition === 'Fair' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300' :
+                              'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'
+                            }`}>
+                              {tool.condition}
+                            </span>
+                          </div>
+                        )}
                       </>
                     ) : (
                       <>
                         <div>
-                          <span className="font-medium">Max Price:</span> {tool.maxRentalPrice || 'Negotiable'}
+                          <span className="font-medium">Max Price:</span>{' '}
+                          <span className="text-blue-600 font-semibold">
+                            {tool.maxRentalPrice || 'Negotiable'}
+                          </span>
                         </div>
                         <div>
-                          <span className="font-medium">Needed:</span> {tool.neededDate}
+                          <span className="font-medium">Needed:</span> {tool.neededDate || 'ASAP'}
                         </div>
                         <div>
-                          <span className="font-medium">Return:</span> {tool.returnDate}
+                          <span className="font-medium">Return:</span> {tool.returnDate || 'Flexible'}
                         </div>
                         <div>
-                          <span className="font-medium">Category:</span> {tool.category}
+                          <span className="font-medium">Category:</span>{' '}
+                          <span className="capitalize">{tool.category || 'Other'}</span>
                         </div>
                       </>
                     )}
@@ -563,12 +610,14 @@ export default function Tools() {
                     </div>
                   )}
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto">
                     <span className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
-                      {tool.type === 'available' ? `Offered by: ${tool.postedBy || tool.contact}` : `Requested by: ${tool.requestedBy}`}
+                      {tool.type === 'available' 
+                        ? `Offered by: ${tool.postedBy || tool.contact || 'Anonymous'}` 
+                        : `Requested by: ${tool.requestedBy || 'Anonymous'}`}
                     </span>
                     <Link href={`/tools/${tool.id}`}>
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                      <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                         View Details
                       </button>
                     </Link>
