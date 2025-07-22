@@ -114,7 +114,7 @@ export default function Tools() {
         tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         tool.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        tool.details.toLowerCase().includes(searchTerm.toLowerCase())
+        (tool.details && tool.details.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
     
