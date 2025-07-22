@@ -8,6 +8,14 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
+// Sri Lankan Districts
+const sriLankanDistricts = [
+  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
+  'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 
+  'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 
+  'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+];
+
 export default function CreateTask() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -19,13 +27,10 @@ export default function CreateTask() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    price: '',
-    time: '',
-    location: '',
-    category: 'cleaning',
-    customCategory: '',
+    budget: '',
+    location: 'Colombo',
+    category: 'provide-task',
     image: '',
-    deadline: '',
     requirements: [''],
     isUrgent: false,
     additionalInfo: {
@@ -433,12 +438,12 @@ export default function TaskDetail${taskId}() {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Budget *
+                    Budget Range (LKR) *
                   </label>
                   <input
                     type="text"
-                    name="price"
-                    value={formData.price}
+                    name="budget"
+                    value={formData.budget}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
@@ -447,7 +452,7 @@ export default function TaskDetail${taskId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., Rs. 5,000"
+                    placeholder="e.g., 5000-10000"
                   />
                 </div>
 
