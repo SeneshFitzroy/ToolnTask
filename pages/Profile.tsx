@@ -800,6 +800,23 @@ export default function Profile() {
                     </span>
                   )}
                 </button>
+                <button
+                  onClick={() => setActiveTab('myads')}
+                  className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                    activeTab === 'myads'
+                      ? 'border-orange-500 text-orange-500'
+                      : 'border-transparent hover:border-gray-300'
+                  }`}
+                  style={{ color: activeTab === 'myads' ? '#FF5E14' : (theme === 'dark' ? '#CCCCCC' : '#6B7280') }}
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  My Ads
+                  <span className="ml-1 px-2 py-1 text-xs rounded-full bg-blue-500 text-white">
+                    {userPosts.length}
+                  </span>
+                </button>
               </nav>
             </div>
 
