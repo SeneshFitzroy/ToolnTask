@@ -260,9 +260,15 @@ export default function Profile() {
       // Sort by creation date (newest first)
       posts.sort((a, b) => {
         if (a.createdAt && b.createdAt) {
-          const aDate = (a.createdAt as any)?.toDate ? (a.createdAt as any).toDate() : new Date(a.createdAt);
-          const bDate = (b.createdAt as any)?.toDate ? (b.createdAt as any).toDate() : new Date(b.createdAt);
-          return bDate.getTime() - aDate.getTime();
+          // Handle both Firestore Timestamp and Date objects
+          const getTime = (dateValue: any) => {
+            if (dateValue && typeof dateValue.toDate === 'function') {
+              return dateValue.toDate().getTime();
+            }
+            return new Date(dateValue).getTime();
+          };
+          
+          return getTime(b.createdAt) - getTime(a.createdAt);
         }
         return 0;
       });
