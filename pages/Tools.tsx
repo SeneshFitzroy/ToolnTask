@@ -4,44 +4,97 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
+import { db } from '../src/lib/firebase';
 
 interface Tool {
   id: string;
   title: string;
   description: string;
-  price: string;
-  time: string;
+  price?: string;
+  maxRentalPrice?: string;
+  time?: string;
   location: string;
   isUrgent?: boolean;
+  urgency?: string;
   isPromoted?: boolean;
   image?: string;
   category: string;
   status?: string;
   type: 'available' | 'requested';
-  position: string;
-  timeframe: 'hours' | 'days' | 'weeks';
-  experience: string;
-  contact: string;
-  postedBy: string;
-  duration: string;
-  details: string;
+  position?: string;
+  timeframe?: 'hours' | 'days' | 'weeks';
+  experience?: string;
+  contact?: string;
+  postedBy?: string;
+  requestedBy?: string;
+  duration?: string;
+  details?: string;
+  neededDate?: string;
+  returnDate?: string;
+  createdAt?: any;
+  specifications?: string[];
+  condition?: string;
+  additionalInfo?: any;
 }
-
-// Empty tools array - will be populated when users create tools
-const mockTools: Tool[] = [];
 
 export default function Tools() {
   const [activeFilter, setActiveFilter] = useState<'available' | 'requested'>('available');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
-  const [tools] = useState<Tool[]>(mockTools);
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const fetchTools = () => {
+      // Fetch provided tools (from tools collection)
+      const toolsQuery = query(
+        collection(db, 'tools'),
+        orderBy('createdAt', 'desc')
+      );
+
+      // Fetch requested tools (from toolRequests collection)
+      const requestsQuery = query(
+        collection(db, 'toolRequests'),
+        orderBy('createdAt', 'desc')
+      );
+
+      const unsubscribeTools = onSnapshot(toolsQuery, (snapshot) => {
+        const providedTools = snapshot.docs.map(doc => ({
+          id: doc.id,
+          type: 'available' as const,
+          ...doc.data()
+        })) as Tool[];
+
+        const unsubscribeRequests = onSnapshot(requestsQuery, (snapshot) => {
+          const requestedTools = snapshot.docs.map(doc => ({
+            id: doc.id,
+            type: 'requested' as const,
+            ...doc.data()
+          })) as Tool[];
+
+          // Combine both types
+          setTools([...providedTools, ...requestedTools]);
+          setLoading(false);
+        });
+
+        return () => unsubscribeRequests();
+      });
+
+      return () => unsubscribeTools();
+    };
+
+    return fetchTools();
+  }, [mounted]);
 
   if (!mounted) {
     return null;
