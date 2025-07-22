@@ -31,9 +31,9 @@ interface Task {
   duration?: string;
   details?: string;
   deadline?: string;
-  createdAt?: any;
+  createdAt?: Date;
   requirements?: string[];
-  additionalInfo?: any;
+  additionalInfo?: Record<string, unknown>;
 }
 
 export default function Tasks() {
@@ -42,7 +42,6 @@ export default function Tasks() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -51,7 +50,9 @@ export default function Tasks() {
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) {
+      return;
+    }
 
     const fetchTasks = () => {
       // Fetch provided tasks (from tasks collection)
@@ -82,7 +83,7 @@ export default function Tasks() {
 
           // Combine both types
           setTasks([...providedTasks, ...requestedTasks]);
-          setLoading(false);
+          // Data loading completed
         });
 
         return () => unsubscribeRequests();
@@ -126,8 +127,6 @@ export default function Tasks() {
     
     return filtered;
   };
-
-  const filteredTasks = getFilteredTasks();
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
@@ -532,7 +531,6 @@ export default function Tasks() {
                   time={task.time}
                   duration={task.duration}
                   contact={task.contact}
-                  position={task.position}
                   timeframe={task.timeframe}
                   showActions={true}
                 />
@@ -573,7 +571,6 @@ export default function Tasks() {
                   time={request.time}
                   duration={request.duration}
                   contact={request.contact}
-                  position={request.position}
                   timeframe={request.timeframe}
                   experience={request.experience}
                   showActions={true}
