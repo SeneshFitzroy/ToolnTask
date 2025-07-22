@@ -260,13 +260,13 @@ export default function Profile() {
       // Sort by creation date (newest first)
       posts.sort((a, b) => {
         if (a.createdAt && b.createdAt) {
-          return b.createdAt.toDate() - a.createdAt.toDate();
+          const aDate = a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
+          const bDate = b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+          return bDate.getTime() - aDate.getTime();
         }
         return 0;
       });
       
-      console.log('Total posts found:', posts.length); // Debug log
-      console.log('Posts data:', posts); // Debug log
       setUserPosts(posts);
     } catch (error) {
       console.error('Error fetching user posts:', error);
