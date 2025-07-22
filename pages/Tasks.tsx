@@ -531,7 +531,6 @@ export default function Tasks() {
                   time={task.time}
                   duration={task.duration}
                   contact={task.contact}
-                  timeframe={task.timeframe}
                   showActions={true}
                 />
               ))}
