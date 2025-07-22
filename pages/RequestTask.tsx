@@ -189,10 +189,8 @@ export default function RequestTask() {
         title: '',
         description: '',
         budget: '',
-        deadline: '',
-        location: '',
-        category: 'cleaning',
-        customCategory: '',
+        location: 'Colombo',
+        category: 'request-task',
         urgency: 'normal',
         requirements: [''],
         contactMethod: 'platform',
@@ -272,32 +270,12 @@ export default function RequestTask() {
                     placeholder="e.g., House Cleaning Needed"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Location *
-                  </label>
-                  <input
-                    type="text"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                    placeholder="e.g., Colombo 03"
-                  />
-                </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Budget Range
+                    Budget Range (LKR)
                   </label>
                   <input
                     type="text"
@@ -310,33 +288,13 @@ export default function RequestTask() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., Rs. 5,000 - 10,000"
+                    placeholder="e.g., 5000-10000"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Deadline
-                  </label>
-                  <input
-                    type="date"
-                    name="deadline"
-                    value={formData.deadline}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Category *
+                    Service Type
                   </label>
                   <select
                     name="category"
@@ -350,27 +308,22 @@ export default function RequestTask() {
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
                   >
-                    <option value="cleaning">Cleaning</option>
-                    <option value="gardening">Gardening</option>
-                    <option value="repairs">Home Repairs</option>
-                    <option value="moving">Moving & Delivery</option>
-                    <option value="tutoring">Tutoring</option>
-                    <option value="photography">Photography</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="childcare">Childcare</option>
-                    <option value="petcare">Pet Care</option>
-                    <option value="other">Other</option>
+                    <option value="request-task">Request Task</option>
+                    <option value="request-tool">Request Tool</option>
+                    <option value="provide-task">Provide Task</option>
+                    <option value="provide-tool">Provide Tool</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Urgency Level
+                    Location (District) *
                   </label>
                   <select
-                    name="urgency"
-                    value={formData.urgency}
+                    name="location"
+                    value={formData.location}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
@@ -378,6 +331,12 @@ export default function RequestTask() {
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
                   >
+                    {sriLankanDistricts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
                     <option value="normal">Normal</option>
                     <option value="high">High Priority</option>
                     <option value="urgent">Urgent</option>
