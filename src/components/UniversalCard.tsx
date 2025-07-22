@@ -14,7 +14,7 @@ interface UniversalCardProps {
   location?: string;
   image?: string;
   isActive?: boolean;
-  createdAt?: any;
+  createdAt?: Date | null;
   postedBy?: string;
   condition?: string;
   brand?: string;
@@ -290,7 +290,7 @@ export default function UniversalCard({
                 }`}
                 title={saved ? 'Remove from saved' : 'Save'}
               >
-                {saved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+                {saved ? <Bookmark className="h-4 w-4 fill-current" /> : <Bookmark className="h-4 w-4" />}
               </button>
               
               <button
