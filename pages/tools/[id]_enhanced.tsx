@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
 import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp, doc, setDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { Heart, Share2, MapPin, Calendar, Star, CheckCircle } from 'lucide-react';
+import { Heart, Share2, MapPin, Calendar, Star, CheckCircle, Bookmark, ArrowLeft, Phone, Mail, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
-import { generateToolData, ToolData } from '../../src/lib/gigDataService';
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
@@ -41,6 +40,34 @@ const trackRentalClick = async (toolId: string, userId?: string, action: string 
   }
 };
 
+interface ToolDetail {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  brand?: string;
+  condition?: string;
+  category: string;
+  image?: string;
+  specifications?: any;
+  features?: string[];
+  available?: boolean;
+  owner?: {
+    name: string;
+    email: string;
+    uid: string;
+  };
+  requestedBy?: string;
+  maxRentalPrice?: string;
+  neededDate?: string;
+  returnDate?: string;
+  createdAt: any;
+  updatedAt: any;
+  status?: string;
+  location?: string;
+  type?: string;
+}
+
 export default function ToolDetailEnhanced() {
   const router = useRouter();
   const { id } = router.query;
@@ -48,7 +75,9 @@ export default function ToolDetailEnhanced() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [tool, setTool] = useState<ToolData | null>(null);
+  const [tool, setTool] = useState<ToolDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [isSaved, setIsSaved] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);

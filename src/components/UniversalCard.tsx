@@ -127,10 +127,10 @@ export default function UniversalCard({
           title,
           description,
           type,
-          price: price || maxRentalPrice || budget,
-          location,
-          image,
-          postedBy,
+          price: price || maxRentalPrice || budget || 'Not specified',
+          location: location || 'Not specified',
+          image: image || null, // Use null instead of undefined
+          postedBy: postedBy || 'Unknown',
           status: 'available',
           savedAt: serverTimestamp()
         });
