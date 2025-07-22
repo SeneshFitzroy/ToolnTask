@@ -154,7 +154,7 @@ export default function Profile() {
           type: data.type,
           price: data.price,
           location: data.location,
-          savedAt: data.savedAt?.toDate ? data.savedAt.toDate() : data.savedAt,
+          savedAt: data.savedAt,
           description: data.description,
           postedBy: data.postedBy,
           status: data.status || 'available',
@@ -190,7 +190,7 @@ export default function Profile() {
           location: data.location,
           image: data.image,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : data.createdAt,
+          createdAt: data.createdAt,
           postedBy: data.owner?.name || data.owner?.email || 'Unknown',
           condition: data.condition,
           brand: data.brand,
@@ -216,7 +216,7 @@ export default function Profile() {
           location: data.location,
           image: data.image,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : data.createdAt,
+          createdAt: data.createdAt,
           postedBy: data.creator?.name || data.creator?.email || 'Unknown'
         });
       });
