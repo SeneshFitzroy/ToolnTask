@@ -267,7 +267,7 @@ export default function TaskDetail${taskId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.price || !formData.location) {
+    if (!formData.title || !formData.description || !formData.budget || !formData.location) {
       setError('Please fill in all required fields');
       setLoading(false);
       return;
@@ -306,13 +306,10 @@ export default function TaskDetail${taskId}() {
       setFormData({
         title: '',
         description: '',
-        price: '',
-        time: '',
-        location: '',
-        category: 'cleaning',
-        customCategory: '',
+        budget: '',
+        location: 'Colombo',
+        category: 'provide-task',
         image: '',
-        deadline: '',
         requirements: [''],
         isUrgent: false,
         additionalInfo: {
