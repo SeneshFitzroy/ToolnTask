@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
+import Logo from '../../src/components/Logo';
+import TopBanner from '../../src/components/TopBanner';
 import { Button } from '../../src/components/ui/button';
 import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
@@ -48,10 +50,13 @@ interface ToolData {
   category: string;
   location: string;
   condition?: string;
+  brand?: string;
   image?: string;
   images?: string[];
   specifications?: string[];
   features?: string[];
+  rating?: number;
+  reviews?: number;
   owner?: {
     name: string;
     uid: string;
@@ -59,6 +64,14 @@ interface ToolData {
     image?: string;
     rating?: number;
     reviews?: number;
+  };
+  provider?: {
+    name: string;
+    image?: string;
+    rating?: number;
+    reviews?: number;
+    joinDate?: string;
+    location?: string;
   };
   createdAt?: Date | { toDate: () => Date };
   status?: string;
