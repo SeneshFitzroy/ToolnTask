@@ -1324,6 +1324,155 @@ export default function Profile() {
                   </div>
                 </div>
               )}
+
+              {/* My Ads Tab */}
+              {activeTab === 'myads' && (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                      My Ads & Posts
+                    </h2>
+                    <div className="flex gap-4 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                      <span>Total: {userPosts.length}</span>
+                      <span>Active: {userPosts.filter(p => p.isActive).length}</span>
+                      <span>Inactive: {userPosts.filter(p => !p.isActive).length}</span>
+                    </div>
+                  </div>
+
+                  {userPosts.length === 0 ? (
+                    <div className="text-center py-12">
+                      <div className="w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center" 
+                           style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#F3F4F6' }}>
+                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#FF5E14' }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                        No posts yet
+                      </h3>
+                      <p className="text-lg mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+                        Start creating your first tool or task listing!
+                      </p>
+                      <div className="flex gap-4 justify-center">
+                        <a
+                          href="/CreateTool"
+                          className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
+                          style={{ backgroundColor: '#FF5E14' }}
+                        >
+                          <span className="mr-2">🔧</span>
+                          List a Tool
+                        </a>
+                        <a
+                          href="/CreateTask"
+                          className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
+                          style={{ backgroundColor: '#8B5CF6' }}
+                        >
+                          <span className="mr-2">💼</span>
+                          Offer Service
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                      {userPosts.map((post) => (
+                        <div 
+                          key={post.id} 
+                          className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg ${
+                            theme === 'dark' 
+                              ? 'border-gray-700 bg-gray-800' 
+                              : 'border-gray-200 bg-white'
+                          } ${!post.isActive ? 'opacity-60' : ''}`}
+                        >
+                          {/* Post Image */}
+                          {post.image && (
+                            <div className="mb-4 relative h-40 w-full rounded-lg overflow-hidden">
+                              <Image
+                                src={post.image}
+                                alt={post.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              />
+                            </div>
+                          )}
+
+                          <div className="flex items-start justify-between mb-3">
+                            <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                              {post.title}
+                            </h3>
+                            <div className="flex gap-2">
+                              {post.type === 'tool' && (
+                                <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded dark:bg-orange-900 dark:text-orange-300">
+                                  Tool
+                                </span>
+                              )}
+                              {post.type === 'task' && (
+                                <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-300">
+                                  Service
+                                </span>
+                              )}
+                              {post.type === 'toolRequest' && (
+                                <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300">
+                                  Tool Request
+                                </span>
+                              )}
+                              {post.type === 'taskRequest' && (
+                                <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded dark:bg-green-900 dark:text-green-300">
+                                  Task Request
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          <p className={`mb-4 text-sm line-clamp-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                            {post.description}
+                          </p>
+
+                          <div className={`grid grid-cols-2 gap-3 mb-4 text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <div>
+                              <span className="font-medium">Price:</span> {post.price || 'Contact'}
+                            </div>
+                            <div>
+                              <span className="font-medium">Category:</span> {post.category}
+                            </div>
+                            {post.location && (
+                              <div className="col-span-2">
+                                <span className="font-medium">Location:</span> {post.location}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Status and Actions */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full ${post.isActive ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                              <span className={`text-sm font-medium ${
+                                post.isActive 
+                                  ? 'text-green-600 dark:text-green-400' 
+                                  : 'text-red-600 dark:text-red-400'
+                              }`}>
+                                {post.isActive ? 'Active' : 'Inactive'}
+                              </span>
+                            </div>
+                            
+                            <button
+                              onClick={() => togglePostStatus(post.id, post.isActive, post.type)}
+                              disabled={loading}
+                              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 ${
+                                post.isActive
+                                  ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
+                                  : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
+                              }`}
+                            >
+                              {loading ? 'Updating...' : (post.isActive ? 'Deactivate' : 'Activate')}
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
