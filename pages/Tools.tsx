@@ -33,10 +33,10 @@ interface Tool {
   details?: string;
   neededDate?: string;
   returnDate?: string;
-  createdAt?: any;
+  createdAt?: Date | { toDate: () => Date };
   specifications?: string[];
   condition?: string;
-  additionalInfo?: any;
+  additionalInfo?: Record<string, unknown>;
 }
 
 export default function Tools() {
