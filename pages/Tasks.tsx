@@ -554,80 +554,30 @@ export default function Tasks() {
           <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTasks().map((request) => (
-                <div key={request.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.03] transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-yellow-200 dark:hover:border-yellow-800"
-                     style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
-                     onMouseEnter={(e) => {
-                       e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
-                     }}
-                     onMouseLeave={(e) => {
-                       e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-                     }}>
-                  <div className="relative overflow-hidden">
-                    {request.image && (
-                      <Image 
-                        src={request.image} 
-                        alt={request.title}
-                        width={400}
-                        height={250}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    )}
-                    <div className="absolute top-3 right-3">
-                      <span className="px-3 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full shadow-lg">
-                        Requested
-                      </span>
-                    </div>
-                    {request.isUrgent && (
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full shadow-lg animate-pulse">
-                          Urgent
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-yellow-500 transition-colors duration-300" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1E293B' }}>
-                      {request.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-                      {request.description}
-                    </p>
-                  
-                  {/* Request Details */}
-                  <div className="space-y-3 mb-6 text-sm">
-                    <div className="flex items-center gap-3 p-2 rounded-lg" style={{ backgroundColor: theme === 'dark' ? 'rgba(234, 179, 8, 0.1)' : 'rgba(234, 179, 8, 0.05)' }}>
-                      <span className="text-lg">💰</span>
-                      <span className="text-xl font-bold" style={{ color: '#EAB308' }}>{request.price}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>📍</span>
-                      <span>{request.position} • {request.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>⏱️</span>
-                      <span>{request.duration} {request.timeframe}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>👤</span>
-                      <span>{request.experience}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>📧</span>
-                      <span>{request.contact}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span>👨‍💼</span>
-                      <span>Posted by: {request.postedBy}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="rounded-xl p-4 mb-6" style={{ backgroundColor: theme === 'dark' ? 'rgba(133, 77, 14, 0.2)' : 'rgba(254, 252, 232, 1)' }}>
-                    <p className="text-sm leading-relaxed" style={{ color: theme === 'dark' ? '#FDE68A' : '#92400E' }}>
-                      <strong style={{ color: theme === 'dark' ? '#FBBF24' : '#78350F' }}>Details:</strong> {request.details}
-                    </p>
-                  </div>
-                  
-                  <div className="flex gap-3">
+                <UniversalCard
+                  key={request.id}
+                  id={request.id}
+                  title={request.title}
+                  description={request.description || request.details || 'No description available'}
+                  type="taskRequest"
+                  category={request.category}
+                  price={request.price}
+                  location={request.location}
+                  image={request.image}
+                  postedBy={request.postedBy}
+                  requestedBy={request.requestedBy}
+                  urgency={request.urgency}
+                  isUrgent={request.isUrgent}
+                  isPromoted={request.isPromoted}
+                  budget={request.budget}
+                  time={request.time}
+                  duration={request.duration}
+                  contact={request.contact}
+                  position={request.position}
+                  timeframe={request.timeframe}
+                  experience={request.experience}
+                  showActions={true}
+                />
                     <button
                       className="flex-1 font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
                       style={{ 
