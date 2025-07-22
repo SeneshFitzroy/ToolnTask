@@ -324,6 +324,48 @@ export default function Profile() {
     }
   };
 
+  const deletePost = async (postId: string, postType: string) => {
+    if (!window.confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      let collectionName: string;
+      switch (postType) {
+        case 'tool':
+          collectionName = 'tools';
+          break;
+        case 'task':
+          collectionName = 'tasks';
+          break;
+        case 'toolRequest':
+          collectionName = 'toolRequests';
+          break;
+        case 'taskRequest':
+          collectionName = 'taskRequests';
+          break;
+        default:
+          throw new Error('Invalid post type');
+      }
+      
+      const postRef = doc(db, collectionName, postId);
+      await deleteDoc(postRef);
+      
+      // Update local state
+      setUserPosts(prev => prev.filter(post => post.id !== postId));
+      
+      setSuccess('Post deleted successfully!');
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      setError('Failed to delete post. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchNotifications = async (userId: string) => {
     try {
       const notificationsRef = collection(db, 'notifications');
@@ -579,17 +621,7 @@ export default function Profile() {
       
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>My Profile</span>
-              <Logo size="large" />
-            </div>
-            <p style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-              Manage your account settings and preferences
-            </p>
-          </div>
-
+          
           {/* Profile Card */}
           <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
@@ -1534,20 +1566,33 @@ export default function Profile() {
                                 </span>
                               </div>
                               
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  togglePostStatus(post.id, post.isActive, post.type);
-                                }}
-                                disabled={loading}
-                                className={`px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
-                                  post.isActive
-                                    ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
-                                    : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
-                                }`}
-                              >
-                                {loading ? '...' : (post.isActive ? 'Deactivate' : 'Activate')}
-                              </button>
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    togglePostStatus(post.id, post.isActive, post.type);
+                                  }}
+                                  disabled={loading}
+                                  className={`px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
+                                    post.isActive
+                                      ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
+                                      : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
+                                  }`}
+                                >
+                                  {loading ? '...' : (post.isActive ? 'Deactivate' : 'Activate')}
+                                </button>
+                                
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    deletePost(post.id, post.type);
+                                  }}
+                                  disabled={loading}
+                                  className="px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800"
+                                >
+                                  {loading ? '...' : 'Delete'}
+                                </button>
+                              </div>
                             </div>
                           </div>
                         ))}
