@@ -1,53 +1,28 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
-import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp, doc, setDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
-import { db, auth } from '../../src/lib/firebase';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { Heart, Share2, MapPin, Clock, Calendar, User as UserIcon, CheckCircle, ExternalLink } from 'lucide-react';
-import Link from 'next/link';
-import { generateTaskData, TaskData } from '../../src/lib/gigDataService';
-
-// Function to track task views
-const trackTaskView = async (taskId: string, userId?: string) => {
-  try {
-    await addDoc(collection(db, 'task_views'), {
-      taskId,
-      userId: userId || null,
-      timestamp: serverTimestamp(),
-      type: 'view'
-    });
-  } catch (error) {
-    console.error('Error tracking task view:', error);
-  }
-};
-
-// Function to track application clicks
-const trackApplicationClick = async (taskId: string, userId?: string, action: string = 'apply') => {
-  try {
-    await addDoc(collection(db, 'task_interactions'), {
-      taskId,
-      userId: userId || null,
-      action,
-      timestamp: serverTimestamp(),
-      type: 'application'
-    });
-  } catch (error) {
-    console.error('Error tracking application click:', error);
-  }
-};
+import { useEffect } from 'react';
 
 export default function TaskDetailEnhanced() {
   const router = useRouter();
   const { id } = router.query;
-  const isReady = router.isReady;
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    if (id) {
+      // Redirect to the regular detail page
+      router.replace(`/tasks/${id}`);
+    }
+  }, [id, router]);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-orange-500 mx-auto"></div>
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          Loading task details...
+        </p>
+      </div>
+    </div>
+  );
+}
   const [isSaved, setIsSaved] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
