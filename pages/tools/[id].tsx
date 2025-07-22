@@ -143,30 +143,6 @@ export default function ToolDetail() {
     }
   };
 
-  const similarTools = [
-    {
-      id: 2,
-      title: "Angle Grinder",
-      price: "Rs. 1,500/day",
-      image: "https://images.unsplash.com/photo-1583394838739-9ed14acade7c?w=400&h=300&fit=crop",
-      available: true
-    },
-    {
-      id: 3,
-      title: "Circular Saw",
-      price: "Rs. 1,800/day",
-      image: "https://images.unsplash.com/photo-1609010697446-11f2155278f0?w=400&h=300&fit=crop",
-      available: true
-    },
-    {
-      id: 4,
-      title: "Impact Driver",
-      price: "Rs. 1,300/day",
-      image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop",
-      available: false
-    }
-  ];
-
   return (
     <>
       {/* CSS for fade-in animation */}
