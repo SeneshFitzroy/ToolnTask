@@ -466,15 +466,104 @@ export default function Tools() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {getFilteredTools().map((tool) => (
-                <div key={tool.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-                  {/* Tool card content would go here */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-semibold mb-2">{tool.title}</h3>
-                    <p className="text-gray-600 mb-4">{tool.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-orange-600 font-bold">{tool.price}</span>
-                      <span className="text-sm text-gray-500">{tool.location}</span>
+                <div 
+                  key={tool.id}
+                  className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg ${
+                    theme === 'dark' 
+                      ? 'border-gray-700 bg-gray-800 hover:border-gray-600' 
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <h2 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      {tool.title}
+                    </h2>
+                    <div className="flex gap-2">
+                      {tool.type === 'available' && (
+                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                          Available
+                        </span>
+                      )}
+                      {tool.type === 'requested' && (
+                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                          Requested
+                        </span>
+                      )}
+                      {(tool.isUrgent || tool.urgency === 'urgent') && (
+                        <span className="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                          Urgent
+                        </span>
+                      )}
+                      {tool.isPromoted && (
+                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">
+                          Featured
+                        </span>
+                      )}
                     </div>
+                  </div>
+                  
+                  <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {tool.description || tool.details}
+                  </p>
+                  
+                  <div className={`grid grid-cols-2 gap-4 mb-4 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {tool.type === 'available' ? (
+                      <>
+                        <div>
+                          <span className="font-medium">Price:</span> {tool.price || 'Contact for price'}
+                        </div>
+                        <div>
+                          <span className="font-medium">Duration:</span> {tool.time || tool.duration}
+                        </div>
+                        <div>
+                          <span className="font-medium">Location:</span> {tool.location}
+                        </div>
+                        <div>
+                          <span className="font-medium">Category:</span> {tool.category}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <span className="font-medium">Max Price:</span> {tool.maxRentalPrice || 'Negotiable'}
+                        </div>
+                        <div>
+                          <span className="font-medium">Needed:</span> {tool.neededDate}
+                        </div>
+                        <div>
+                          <span className="font-medium">Return:</span> {tool.returnDate}
+                        </div>
+                        <div>
+                          <span className="font-medium">Category:</span> {tool.category}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  
+                  {tool.specifications && tool.specifications.length > 0 && (
+                    <div className="mb-4">
+                      <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                        Specifications:
+                      </span>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {tool.specifications.map((spec, index) => (
+                          <span key={index} className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded dark:bg-gray-700 dark:text-gray-300">
+                            {spec}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center justify-between">
+                    <span className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {tool.type === 'available' ? `Offered by: ${tool.postedBy || tool.contact}` : `Requested by: ${tool.requestedBy}`}
+                    </span>
+                    <Link href={`/tools/${tool.id}`}>
+                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        View Details
+                      </button>
+                    </Link>
                   </div>
                 </div>
               ))}
