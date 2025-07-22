@@ -4,6 +4,7 @@ import ToolsTasksChatAgent from '../src/components/ToolsTasksChatAgent';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
+import Image from 'next/image';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../src/lib/firebase';
 
