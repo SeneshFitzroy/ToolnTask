@@ -25,6 +25,24 @@ interface SavedGig {
   originalGigId?: string;
 }
 
+interface UserPost {
+  id: string;
+  title: string;
+  description: string;
+  type: 'tool' | 'task' | 'toolRequest' | 'taskRequest';
+  category: string;
+  price?: string;
+  location?: string;
+  image?: string;
+  isActive: boolean;
+  createdAt: any;
+  postedBy: string;
+  condition?: string;
+  brand?: string;
+  specifications?: string[];
+  features?: string[];
+}
+
 interface Notification {
   id: string;
   type: 'gig_match' | 'request' | 'approval' | 'general';
