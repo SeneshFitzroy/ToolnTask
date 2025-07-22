@@ -693,7 +693,7 @@ export default function TaskDetail${taskId}() {
                 className="w-full py-4 text-lg font-bold rounded-xl transition-all duration-300"
                 style={{ backgroundColor: loading ? '#ccc' : '#FF5E14', color: '#FFFFFF' }}
               >
-                {loading ? 'Creating Task...' : 'Create Task'}
+                {loading ? 'Publishing Service...' : 'Publish Service'}
               </Button>
             </form>
           </div>
