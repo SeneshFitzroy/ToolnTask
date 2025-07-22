@@ -89,7 +89,9 @@ export default function TaskDetail() {
   }, []);
 
   useEffect(() => {
-    if (!mounted || !id) return;
+    if (!mounted || !id) {
+      return;
+    }
 
     const fetchTaskData = async () => {
       setLoading(true);
@@ -169,7 +171,9 @@ export default function TaskDetail() {
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
   
   if (loading) {
     return (

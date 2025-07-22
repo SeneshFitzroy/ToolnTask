@@ -5,12 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
-import Logo from '../../src/components/Logo';
-import TopBanner from '../../src/components/TopBanner';
 import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 import { db, auth } from '../../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
+import { MapPin, Clock, Calendar, CheckCircle, Star } from 'lucide-react';
 
 // Function to track tool views
 const trackToolView = async (toolId: string, userId?: string) => {
@@ -41,6 +40,31 @@ const trackContactClick = async (toolId: string, userId?: string, action: string
   }
 };
 
+interface ToolData {
+  id: string;
+  title: string;
+  description: string;
+  price?: string;
+  category: string;
+  location: string;
+  condition?: string;
+  image?: string;
+  images?: string[];
+  specifications?: string[];
+  features?: string[];
+  owner?: {
+    name: string;
+    uid: string;
+    email?: string;
+    image?: string;
+    rating?: number;
+    reviews?: number;
+  };
+  createdAt?: Date | { toDate: () => Date };
+  status?: string;
+  available?: boolean;
+}
+
 export default function ToolDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -48,6 +72,9 @@ export default function ToolDetail() {
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [user, setUser] = useState<User | null>(null);
+  const [tool, setTool] = useState<ToolData | null>(null);
+  const [similarTools, setSimilarTools] = useState<ToolData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
