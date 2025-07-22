@@ -76,6 +76,7 @@ export default function Profile() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [savedGigs, setSavedGigs] = useState<SavedGig[]>([]);
+  const [userPosts, setUserPosts] = useState<UserPost[]>([]);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [showPhotoUpload, setShowPhotoUpload] = useState(false);
   
