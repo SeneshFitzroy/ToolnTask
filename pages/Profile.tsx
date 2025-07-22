@@ -1332,10 +1332,56 @@ export default function Profile() {
                     <h2 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                       My Ads & Posts
                     </h2>
-                    <div className="flex gap-4 text-sm" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
-                      <span>Total: {userPosts.length}</span>
-                      <span>Active: {userPosts.filter(p => p.isActive).length}</span>
-                      <span>Inactive: {userPosts.filter(p => !p.isActive).length}</span>
+                  </div>
+
+                  {/* Stats Overview */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div className={`p-4 rounded-lg border ${theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-orange-600">{userPosts.filter(p => p.type === 'tool').length}</div>
+                        <div className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Tools Listed</div>
+                      </div>
+                    </div>
+                    <div className={`p-4 rounded-lg border ${theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-purple-600">{userPosts.filter(p => p.type === 'task').length}</div>
+                        <div className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Services Offered</div>
+                      </div>
+                    </div>
+                    <div className={`p-4 rounded-lg border ${theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-blue-600">{userPosts.filter(p => p.type === 'toolRequest').length}</div>
+                        <div className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Tool Requests</div>
+                      </div>
+                    </div>
+                    <div className={`p-4 rounded-lg border ${theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-green-600">{userPosts.filter(p => p.type === 'taskRequest').length}</div>
+                        <div className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Task Requests</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Activity Summary */}
+                  <div className={`p-4 rounded-lg border ${theme === 'dark' ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Activity Summary</h3>
+                        <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                          Total: {userPosts.length} posts • Active: {userPosts.filter(p => p.isActive).length} • 
+                          Inactive: {userPosts.filter(p => !p.isActive).length}
+                        </p>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="flex items-center gap-1">
+                          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                          <span className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Active</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                          <span className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>Inactive</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -1353,7 +1399,7 @@ export default function Profile() {
                       <p className="text-lg mb-6" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
                         Start creating your first tool or task listing!
                       </p>
-                      <div className="flex gap-4 justify-center">
+                      <div className="flex gap-4 justify-center flex-wrap">
                         <a
                           href="/CreateTool"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
@@ -1370,105 +1416,130 @@ export default function Profile() {
                           <span className="mr-2">💼</span>
                           Offer Service
                         </a>
+                        <a
+                          href="/RequestTool"
+                          className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
+                          style={{ backgroundColor: '#3B82F6' }}
+                        >
+                          <span className="mr-2">🔍</span>
+                          Request Tool
+                        </a>
+                        <a
+                          href="/RequestTask"
+                          className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
+                          style={{ backgroundColor: '#10B981' }}
+                        >
+                          <span className="mr-2">🙋‍♂️</span>
+                          Request Help
+                        </a>
                       </div>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                      {userPosts.map((post) => (
-                        <div 
-                          key={post.id} 
-                          className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg ${
-                            theme === 'dark' 
-                              ? 'border-gray-700 bg-gray-800' 
-                              : 'border-gray-200 bg-white'
-                          } ${!post.isActive ? 'opacity-60' : ''}`}
-                        >
-                          {/* Post Image */}
-                          {post.image && (
-                            <div className="mb-4 relative h-40 w-full rounded-lg overflow-hidden">
-                              <Image
-                                src={post.image}
-                                alt={post.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              />
-                            </div>
-                          )}
-
-                          <div className="flex items-start justify-between mb-3">
-                            <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                              {post.title}
-                            </h3>
-                            <div className="flex gap-2">
-                              {post.type === 'tool' && (
-                                <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded dark:bg-orange-900 dark:text-orange-300">
-                                  Tool
-                                </span>
-                              )}
-                              {post.type === 'task' && (
-                                <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-300">
-                                  Service
-                                </span>
-                              )}
-                              {post.type === 'toolRequest' && (
-                                <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300">
-                                  Tool Request
-                                </span>
-                              )}
-                              {post.type === 'taskRequest' && (
-                                <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded dark:bg-green-900 dark:text-green-300">
-                                  Task Request
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          <p className={`mb-4 text-sm line-clamp-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                            {post.description}
-                          </p>
-
-                          <div className={`grid grid-cols-2 gap-3 mb-4 text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                            <div>
-                              <span className="font-medium">Price:</span> {post.price || 'Contact'}
-                            </div>
-                            <div>
-                              <span className="font-medium">Category:</span> {post.category}
-                            </div>
-                            {post.location && (
-                              <div className="col-span-2">
-                                <span className="font-medium">Location:</span> {post.location}
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        {userPosts.map((post) => (
+                          <div 
+                            key={post.id} 
+                            className={`rounded-lg border p-6 transition-all duration-300 hover:shadow-lg cursor-pointer ${
+                              theme === 'dark' 
+                                ? 'border-gray-700 bg-gray-800 hover:border-gray-600' 
+                                : 'border-gray-200 bg-white hover:border-gray-300'
+                            } ${!post.isActive ? 'opacity-60' : ''}`}
+                            onClick={() => {
+                              const baseUrl = post.type === 'tool' || post.type === 'toolRequest' ? '/tools' : '/tasks';
+                              window.open(`${baseUrl}/${post.id}`, '_blank');
+                            }}
+                          >
+                            {/* Post Image */}
+                            {post.image && (
+                              <div className="mb-4 relative h-40 w-full rounded-lg overflow-hidden">
+                                <Image
+                                  src={post.image}
+                                  alt={post.title}
+                                  fill
+                                  className="object-cover"
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
                               </div>
                             )}
-                          </div>
 
-                          {/* Status and Actions */}
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-full ${post.isActive ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                              <span className={`text-sm font-medium ${
-                                post.isActive 
-                                  ? 'text-green-600 dark:text-green-400' 
-                                  : 'text-red-600 dark:text-red-400'
-                              }`}>
-                                {post.isActive ? 'Active' : 'Inactive'}
-                              </span>
+                            <div className="flex items-start justify-between mb-3">
+                              <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                                {post.title}
+                              </h3>
+                              <div className="flex gap-2">
+                                {post.type === 'tool' && (
+                                  <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2 py-1 rounded dark:bg-orange-900 dark:text-orange-300">
+                                    Tool
+                                  </span>
+                                )}
+                                {post.type === 'task' && (
+                                  <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-300">
+                                    Service
+                                  </span>
+                                )}
+                                {post.type === 'toolRequest' && (
+                                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-300">
+                                    Tool Request
+                                  </span>
+                                )}
+                                {post.type === 'taskRequest' && (
+                                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded dark:bg-green-900 dark:text-green-300">
+                                    Task Request
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                            
-                            <button
-                              onClick={() => togglePostStatus(post.id, post.isActive, post.type)}
-                              disabled={loading}
-                              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 ${
-                                post.isActive
-                                  ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
-                                  : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
-                              }`}
-                            >
-                              {loading ? 'Updating...' : (post.isActive ? 'Deactivate' : 'Activate')}
-                            </button>
+
+                            <p className={`mb-4 text-sm line-clamp-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                              {post.description}
+                            </p>
+
+                            <div className={`grid grid-cols-2 gap-3 mb-4 text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                              <div>
+                                <span className="font-medium">Price:</span> {post.price || 'Contact'}
+                              </div>
+                              <div>
+                                <span className="font-medium">Category:</span> {post.category}
+                              </div>
+                              {post.location && (
+                                <div className="col-span-2">
+                                  <span className="font-medium">Location:</span> {post.location}
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Status and Actions */}
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-2 h-2 rounded-full ${post.isActive ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                                <span className={`text-sm font-medium ${
+                                  post.isActive 
+                                    ? 'text-green-600 dark:text-green-400' 
+                                    : 'text-red-600 dark:text-red-400'
+                                }`}>
+                                  {post.isActive ? 'Active' : 'Inactive'}
+                                </span>
+                              </div>
+                              
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  togglePostStatus(post.id, post.isActive, post.type);
+                                }}
+                                disabled={loading}
+                                className={`px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
+                                  post.isActive
+                                    ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
+                                    : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
+                                }`}
+                              >
+                                {loading ? '...' : (post.isActive ? 'Deactivate' : 'Activate')}
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
