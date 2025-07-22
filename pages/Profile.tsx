@@ -197,7 +197,7 @@ export default function Profile() {
       
       // Fetch user's tasks
       const tasksRef = collection(db, 'tasks');
-      const tasksQuery = query(tasksRef, where('postedBy', '==', userId));
+      const tasksQuery = query(tasksRef, where('creator.uid', '==', userId));
       const tasksSnapshot = await getDocs(tasksQuery);
       
       tasksSnapshot.forEach((doc) => {
@@ -213,7 +213,7 @@ export default function Profile() {
           image: data.image,
           isActive: data.isActive !== false, // Default to true if not specified
           createdAt: data.createdAt,
-          postedBy: data.postedBy
+          postedBy: data.creator?.name || data.creator?.email || 'Unknown'
         });
       });
       
