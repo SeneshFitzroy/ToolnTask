@@ -54,7 +54,9 @@ export default function Tools() {
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) {
+      return;
+    }
 
     const fetchTools = () => {
       // Fetch provided tools (from tools collection)
