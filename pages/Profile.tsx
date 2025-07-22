@@ -1405,31 +1405,31 @@ export default function Profile() {
                         Start creating your first tool or task listing!
                       </p>
                       <div className="flex gap-4 justify-center flex-wrap">
-                        <a
+                        <Link
                           href="/CreateTool"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
                           style={{ backgroundColor: '#FF5E14' }}
                         >
                           <span className="mr-2">🔧</span>
                           List a Tool
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           href="/CreateTask"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
                           style={{ backgroundColor: '#8B5CF6' }}
                         >
                           <span className="mr-2">💼</span>
                           Offer Service
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           href="/RequestTool"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
                           style={{ backgroundColor: '#3B82F6' }}
                         >
                           <span className="mr-2">🔍</span>
                           Request Tool
-                        </a>
-                        <a
+                        </Link>
+                        <Linka
                           href="/RequestTask"
                           className="inline-flex items-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-white hover:scale-105"
                           style={{ backgroundColor: '#10B981' }}
