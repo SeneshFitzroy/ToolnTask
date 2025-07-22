@@ -435,7 +435,7 @@ export default function TaskDetail${taskId}() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     Budget Range (LKR) *
@@ -458,26 +458,7 @@ export default function TaskDetail${taskId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Duration
-                  </label>
-                  <input
-                    type="text"
-                    name="time"
-                    value={formData.time}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                    placeholder="e.g., 2-3 hours"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Category
+                    Service Type
                   </label>
                   <select
                     name="category"
@@ -490,44 +471,35 @@ export default function TaskDetail${taskId}() {
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
                   >
-                    <option value="cleaning">Cleaning</option>
-                    <option value="gardening">Gardening</option>
-                    <option value="repairs">Repairs</option>
-                    <option value="babysitting">Babysitting</option>
-                    <option value="other">Other</option>
+                    <option value="provide-task">Provide Task</option>
+                    <option value="provide-tool">Provide Tool</option>
+                    <option value="request-task">Request Task</option>
+                    <option value="request-tool">Request Tool</option>
                   </select>
-                  
-                  {/* Conditional Other Category Field */}
-                  {formData.category === 'other' && (
-                    <div className="mt-4">
-                      <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                        Please specify category
-                      </label>
-                      <input
-                        type="text"
-                        name="customCategory"
-                        value={formData.customCategory}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                        style={{ 
-                          borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                          backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                          color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                        }}
-                        placeholder="e.g., Pet Care, Tutoring, Moving Help..."
-                        required
-                      />
-                    </div>
-                  )}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Deadline
+                    Location (District) *
                   </label>
-                  <input
-                    type="date"
-                    name="deadline"
+                  <select
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    {sriLankanDistricts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
                     value={formData.deadline}
                     onChange={handleInputChange}
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
