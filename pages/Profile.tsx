@@ -154,7 +154,7 @@ export default function Profile() {
           type: data.type,
           price: data.price,
           location: data.location,
-          savedAt: data.savedAt,
+          savedAt: data.savedAt?.toDate ? data.savedAt.toDate().toLocaleDateString() : 'Unknown',
           description: data.description,
           postedBy: data.postedBy,
           status: data.status || 'available',
@@ -190,7 +190,7 @@ export default function Profile() {
           location: data.location,
           image: data.image,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt,
+          createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'Unknown',
           postedBy: data.owner?.name || data.owner?.email || 'Unknown',
           condition: data.condition,
           brand: data.brand,
@@ -216,7 +216,7 @@ export default function Profile() {
           location: data.location,
           image: data.image,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt,
+          createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'Unknown',
           postedBy: data.creator?.name || data.creator?.email || 'Unknown'
         });
       });
@@ -237,7 +237,7 @@ export default function Profile() {
           price: data.maxRentalPrice,
           location: data.location,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt,
+          createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'Unknown',
           postedBy: data.requestedBy
         });
       });
@@ -258,23 +258,15 @@ export default function Profile() {
           price: data.budget,
           location: data.location,
           isActive: data.isActive !== false, // Default to true if not specified
-          createdAt: data.createdAt,
+          createdAt: data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString() : 'Unknown',
           postedBy: data.requestedBy
         });
       });
       
       // Sort by creation date (newest first)
       posts.sort((a, b) => {
-        if (a.createdAt && b.createdAt) {
-          // Handle both Firestore Timestamp and Date objects
-          const getTime = (dateValue: unknown) => {
-            if (dateValue && typeof (dateValue as { toDate?: () => Date }).toDate === 'function') {
-              return (dateValue as { toDate: () => Date }).toDate().getTime();
-            }
-            return new Date(dateValue as string | number | Date).getTime();
-          };
-          
-          return getTime(b.createdAt) - getTime(a.createdAt);
+        if (a.createdAt && b.createdAt && a.createdAt !== 'Unknown' && b.createdAt !== 'Unknown') {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         }
         return 0;
       });

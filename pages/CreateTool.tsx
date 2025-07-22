@@ -8,6 +8,14 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
+// Sri Lankan Districts
+const sriLankanDistricts = [
+  'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
+  'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 
+  'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 
+  'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+];
+
 export default function CreateTool() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -22,7 +30,8 @@ export default function CreateTool() {
     price: '',
     brand: '',
     condition: 'Good',
-    category: 'power',
+    category: 'provide-tool',
+    location: 'Colombo',
     image: '',
     specifications: {
       power: '',
