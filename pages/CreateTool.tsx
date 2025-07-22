@@ -474,7 +474,7 @@ export default function ToolDetail${toolId}() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Price per Day *
+                    Price per Day (LKR) *
                   </label>
                   <input
                     type="text"
@@ -488,13 +488,13 @@ export default function ToolDetail${toolId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., Rs. 1,500/day"
+                    placeholder="e.g., 1500/day"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Category
+                    Service Type
                   </label>
                   <select
                     name="category"
@@ -507,10 +507,31 @@ export default function ToolDetail${toolId}() {
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
                   >
-                    <option value="power">Power Tools</option>
-                    <option value="garden">Garden Tools</option>
-                    <option value="hand">Hand Tools</option>
-                    <option value="equipment">Equipment</option>
+                    <option value="provide-tool">Provide Tool</option>
+                    <option value="provide-task">Provide Task</option>
+                    <option value="request-tool">Request Tool</option>
+                    <option value="request-task">Request Task</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Location (District)
+                  </label>
+                  <select
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  >
+                    {sriLankanDistricts.map((district) => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
                   </select>
                 </div>
 
