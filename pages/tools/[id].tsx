@@ -87,6 +87,8 @@ export default function ToolDetail() {
   const [tool, setTool] = useState<ToolData | null>(null);
   const [similarTools, setSimilarTools] = useState<ToolData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);

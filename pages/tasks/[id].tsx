@@ -77,6 +77,8 @@ export default function TaskDetail() {
   const [similarTasks, setSimilarTasks] = useState<TaskData[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -169,6 +171,71 @@ export default function TaskDetail() {
     
     // Here you could implement actual application logic
     alert('Application functionality coming soon!');
+  };
+
+  const handleContactCreator = async () => {
+    if (!user) {
+      alert('Please sign in to contact the creator');
+      return;
+    }
+
+    if (!task?.creator?.uid) {
+      alert('Creator information not available');
+      return;
+    }
+
+    try {
+      // Check if user has already requested this contact info
+      const contactRequestsRef = collection(db, 'contactRequests');
+      const q = query(contactRequestsRef, 
+        where('requesterId', '==', user.uid),
+        where('creatorId', '==', task.creator.uid),
+        where('postId', '==', id)
+      );
+      const existingRequests = await getDocs(q);
+
+      if (!existingRequests.empty) {
+        // User has already requested, show the phone number
+        const requestDoc = existingRequests.docs[0];
+        const requestData = requestDoc.data();
+        if (requestData.phoneNumber) {
+          setPhoneNumber(requestData.phoneNumber);
+          setShowPhoneNumber(true);
+          return;
+        }
+      }
+
+      // Get creator's phone number from user document
+      const creatorDocRef = doc(db, 'users', task.creator.uid);
+      const creatorDoc = await getDoc(creatorDocRef);
+      
+      if (creatorDoc.exists()) {
+        const creatorData = creatorDoc.data();
+        const creatorPhone = creatorData.phoneNumber || creatorData.phone;
+        
+        if (creatorPhone) {
+          // Save the contact request
+          await addDoc(contactRequestsRef, {
+            requesterId: user.uid,
+            creatorId: task.creator.uid,
+            postId: id,
+            postType: 'task',
+            phoneNumber: creatorPhone,
+            requestedAt: serverTimestamp()
+          });
+
+          setPhoneNumber(creatorPhone);
+          setShowPhoneNumber(true);
+        } else {
+          alert('Phone number not available for this creator');
+        }
+      } else {
+        alert('Creator information not found');
+      }
+    } catch (error) {
+      console.error('Error getting contact info:', error);
+      alert('Error getting contact information. Please try again.');
+    }
   };
 
   const getDisplayImages = () => {
@@ -456,6 +523,7 @@ export default function TaskDetail() {
                 </div>
 
                 <Button
+                  onClick={handleContactCreator}
                   className="w-full py-2 rounded-lg"
                   style={{
                     backgroundColor: theme === 'dark' ? '#374151' : '#F3F4F6',
@@ -463,8 +531,26 @@ export default function TaskDetail() {
                     border: 'none'
                   }}
                 >
-                  Contact Creator
+                  {showPhoneNumber ? 'Contact Creator' : 'Get Contact Info'}
                 </Button>
+
+                {showPhoneNumber && phoneNumber && (
+                  <div className="mt-4 p-3 rounded-lg border" style={{
+                    backgroundColor: theme === 'dark' ? '#374151' : '#F0FDF4',
+                    borderColor: theme === 'dark' ? '#4B5563' : '#BBF7D0'
+                  }}>
+                    <p className="text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E5E7EB' : '#047857' }}>
+                      Creator&apos;s Phone Number:
+                    </p>
+                    <a 
+                      href={`tel:${phoneNumber}`}
+                      className="text-lg font-bold hover:underline"
+                      style={{ color: theme === 'dark' ? '#34D399' : '#059669' }}
+                    >
+                      {phoneNumber}
+                    </a>
+                  </div>
+                )}
               </div>
             )}
           </div>
