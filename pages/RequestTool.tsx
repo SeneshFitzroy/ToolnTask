@@ -29,7 +29,7 @@ export default function RequestTool() {
     description: '',
     maxRentalPrice: '',
     location: 'Colombo',
-    address: '',
+    phoneNumber: '',
     category: 'request-tool',
     urgency: 'normal',
     neededDate: '',
@@ -193,7 +193,7 @@ export default function RequestTool() {
         description: '',
         maxRentalPrice: '',
         location: 'Colombo',
-        address: '',
+        phoneNumber: '',
         category: 'request-tool',
         urgency: 'normal',
         neededDate: '',
@@ -365,16 +365,16 @@ export default function RequestTool() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Full Address *
+                    Phone Number *
                   </label>
-                  <textarea
-                    name="address"
-                    value={formData.address}
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    placeholder="Enter your full address (street, city, postal code)"
-                    rows={3}
+                    placeholder="Enter your phone number (e.g., +94 77 123 4567)"
                     required
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',

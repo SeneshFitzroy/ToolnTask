@@ -29,7 +29,7 @@ export default function CreateTask() {
     description: '',
     budget: '',
     location: 'Colombo',
-    address: '',
+    phoneNumber: '',
     category: 'provide-task',
     image: '',
     requirements: [''],
@@ -268,8 +268,8 @@ export default function TaskDetail${taskId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.budget || !formData.location || !formData.address) {
-      setError('Please fill in all required fields including the full address');
+    if (!formData.title || !formData.description || !formData.budget || !formData.location || !formData.phoneNumber) {
+      setError('Please fill in all required fields including the phone number');
       setLoading(false);
       return;
     }
@@ -309,7 +309,7 @@ export default function TaskDetail${taskId}() {
         description: '',
         budget: '',
         location: 'Colombo',
-        address: '',
+        phoneNumber: '',
         category: 'provide-task',
         image: '',
         requirements: [''],
@@ -501,16 +501,16 @@ export default function TaskDetail${taskId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Full Address *
+                    Phone Number *
                   </label>
-                  <textarea
-                    name="address"
-                    value={formData.address}
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    placeholder="Enter your full address (street, city, postal code)"
-                    rows={3}
+                    placeholder="Enter your phone number (e.g., +94 77 123 4567)"
                     required
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',

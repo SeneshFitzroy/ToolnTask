@@ -306,8 +306,8 @@ export default function ToolDetail${toolId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.price || !formData.brand || !formData.location || !formData.address) {
-      setError('Please fill in all required fields including the full address');
+    if (!formData.title || !formData.description || !formData.price || !formData.brand || !formData.location || !formData.phoneNumber) {
+      setError('Please fill in all required fields including the phone number');
       setLoading(false);
       return;
     }
@@ -350,7 +350,7 @@ export default function ToolDetail${toolId}() {
         condition: 'Good',
         category: 'provide-tool',
         location: 'Colombo',
-        address: '',
+        phoneNumber: '',
         image: '',
         specifications: {
           power: '',
@@ -540,15 +540,16 @@ export default function ToolDetail${toolId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Full Address
+                    Phone Number *
                   </label>
-                  <textarea
-                    name="address"
-                    value={formData.address}
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
-                    placeholder="Enter your full address (street, city, postal code)"
-                    rows={3}
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
+                    placeholder="Enter your phone number (e.g., +94 77 123 4567)"
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
