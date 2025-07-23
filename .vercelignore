@@ -13,3 +13,41 @@ test-links.*
 AdminDashboard.*
 Dashboard_backup.*
 Dashboard_new.*
+ProfileNew.*
+ProfileNewSimple.*
+ProfileRedirect.*
+ProfileTemp.*
+Profile_Clean.*
+Tasks_Updated.*
+Tools_Updated.*
+AdShowcase.*
+Home_fixed.*
+
+# Test and debug files
+test-*
+debug-*
+backup-files/
+
+# Specific problematic files mentioned in build error
+pages/AdShowcase.*
+pages/Home_fixed.*
+pages/ProfileNew.*
+pages/ProfileNewSimple.*
+pages/ProfileRedirect.*
+pages/ProfileTemp.*
+pages/Profile_Clean.*
+pages/Tasks_Updated.*
+pages/Tools_Updated.*
+pages/admin/AdminDashboard.*
+pages/admin/Dashboard_backup.*
+pages/admin/Dashboard_new.*
+pages/all-gig-links.*
+pages/debug-gig-data.*
+pages/tasks/[id]_enhanced_new.*
+pages/tasks/test-gig-detail.*
+pages/test-links.*
+pages/tools/[id]_enhanced_new.*
+
+# Build outputs
+.next/
+*.log
