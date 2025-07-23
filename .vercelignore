@@ -1,0 +1,15 @@
+# Ignore backup and incomplete files
+*.txt
+*_backup.*
+*_new.*
+*_clean.*
+*_old.*
+*_fixed.*
+*_temp.*
+*_test.*
+all-gig-links.*
+debug-gig-data.*
+test-links.*
+AdminDashboard.*
+Dashboard_backup.*
+Dashboard_new.*
