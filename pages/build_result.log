@@ -1,0 +1,35 @@
+
+> my-next-app@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.4
+   - Environments: .env.local
+
+   Skipping validation of types
+   Skipping linting
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.0s
+   Collecting page data ...
+
+> Build optimization failed: found pages without a React Component as default export in 
+pages/ProfileNew
+pages/ProfileNewSimple
+pages/ProfileRedirect
+pages/ProfileTemp
+pages/AdShowcase
+pages/Profile_Clean
+pages/Tasks_Updated
+pages/Tools_Updated
+pages/admin/AdminDashboard
+pages/admin/Dashboard_new
+pages/admin/Dashboard_backup
+pages/debug-gig-data
+pages/all-gig-links
+pages/tasks/[id]_enhanced_new
+pages/tasks/test-gig-detail
+pages/test-links
+pages/tools/[id]_enhanced_new
+pages/Home_fixed
+
+See https://nextjs.org/docs/messages/page-without-valid-component for more info.
+
