@@ -80,6 +80,17 @@ export default function Profile() {
   const [userPosts, setUserPosts] = useState<UserPost[]>([]);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [showPhotoUpload, setShowPhotoUpload] = useState(false);
+  const [editingPost, setEditingPost] = useState<UserPost | null>(null);
+  const [editFormData, setEditFormData] = useState({
+    title: '',
+    description: '',
+    price: '',
+    location: '',
+    phoneNumber: '',
+    brand: '',
+    condition: '',
+    category: ''
+  });
   
   // Simplified language options: English, Sinhala, Tamil only
   const languages = [
