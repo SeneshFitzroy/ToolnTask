@@ -1714,6 +1714,17 @@ export default function Profile() {
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
+                                    startEditing(post);
+                                  }}
+                                  disabled={loading}
+                                  className="px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800"
+                                >
+                                  Edit
+                                </button>
+                                
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
                                     togglePostStatus(post.id, post.isActive, post.type);
                                   }}
                                   disabled={loading}
