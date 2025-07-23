@@ -107,9 +107,72 @@ export default function ToolDetail() {
     }
   }, [mounted, id, user]);
 
-  const handleContactOwner = () => {
+  const handleContactOwner = async () => {
     // Track contact button click
     trackContactClick(id as string, user?.uid, 'contact');
+
+    if (!user) {
+      alert('Please sign in to contact the owner');
+      return;
+    }
+
+    if (!tool?.owner?.uid) {
+      alert('Owner information not available');
+      return;
+    }
+
+    try {
+      // Check if user has already requested this contact info
+      const contactRequestsRef = collection(db, 'contactRequests');
+      const q = query(contactRequestsRef, 
+        where('requesterId', '==', user.uid),
+        where('creatorId', '==', tool.owner.uid),
+        where('postId', '==', id)
+      );
+      const existingRequests = await getDocs(q);
+
+      if (!existingRequests.empty) {
+        // User has already requested, show the phone number
+        const requestDoc = existingRequests.docs[0];
+        const requestData = requestDoc.data();
+        if (requestData.phoneNumber) {
+          setPhoneNumber(requestData.phoneNumber);
+          setShowPhoneNumber(true);
+          return;
+        }
+      }
+
+      // Get owner's phone number from user document
+      const ownerDocRef = doc(db, 'users', tool.owner.uid);
+      const ownerDoc = await getDoc(ownerDocRef);
+      
+      if (ownerDoc.exists()) {
+        const ownerData = ownerDoc.data();
+        const ownerPhone = ownerData.phoneNumber || ownerData.phone;
+        
+        if (ownerPhone) {
+          // Save the contact request
+          await addDoc(contactRequestsRef, {
+            requesterId: user.uid,
+            creatorId: tool.owner.uid,
+            postId: id,
+            postType: 'tool',
+            phoneNumber: ownerPhone,
+            requestedAt: serverTimestamp()
+          });
+
+          setPhoneNumber(ownerPhone);
+          setShowPhoneNumber(true);
+        } else {
+          alert('Phone number not available for this owner');
+        }
+      } else {
+        alert('Owner information not found');
+      }
+    } catch (error) {
+      console.error('Error getting contact info:', error);
+      alert('Error getting contact information. Please try again.');
+    }
   };
 
   // Fetch tool data from Firestore
@@ -340,7 +403,7 @@ export default function ToolDetail() {
                   style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
                   onClick={handleContactOwner}
                 >
-                  Contact Owner
+                  {showPhoneNumber ? 'Contact Owner' : 'Get Contact Info'}
                 </Button>
                 <Button 
                   variant="outline"
@@ -351,6 +414,25 @@ export default function ToolDetail() {
                   Message Owner
                 </Button>
               </div>
+
+              {/* Phone Number Display */}
+              {showPhoneNumber && phoneNumber && (
+                <div className="mt-6 p-4 rounded-xl border" style={{
+                  backgroundColor: theme === 'dark' ? '#374151' : '#F0FDF4',
+                  borderColor: theme === 'dark' ? '#4B5563' : '#BBF7D0'
+                }}>
+                  <p className="text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E5E7EB' : '#047857' }}>
+                    Owner&apos;s Phone Number:
+                  </p>
+                  <a 
+                    href={`tel:${phoneNumber}`}
+                    className="text-xl font-bold hover:underline"
+                    style={{ color: theme === 'dark' ? '#34D399' : '#059669' }}
+                  >
+                    {phoneNumber}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
