@@ -32,7 +32,7 @@ export default function CreateTool() {
     condition: 'Good',
     category: 'provide-tool',
     location: 'Colombo',
-    address: '',
+    phoneNumber: '',
     image: '',
     specifications: {
       power: '',
