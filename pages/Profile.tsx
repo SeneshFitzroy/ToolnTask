@@ -1761,6 +1761,227 @@ export default function Profile() {
         </div>
       </div>
       
+      {/* Edit Post Modal */}
+      {editingPost && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg p-6 ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+          }`}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Edit {editingPost.type === 'tool' ? 'Tool' : editingPost.type === 'task' ? 'Service' : 
+                       editingPost.type === 'toolRequest' ? 'Tool Request' : 'Task Request'}
+              </h2>
+              <button
+                onClick={cancelEditing}
+                className={`p-2 rounded-lg ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {/* Title */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Title *
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  value={editFormData.title}
+                  onChange={handleEditInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  required
+                />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Description *
+                </label>
+                <textarea
+                  name="description"
+                  value={editFormData.description}
+                  onChange={handleEditInputChange}
+                  rows={4}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  required
+                />
+              </div>
+
+              {/* Price/Budget */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {editingPost.type === 'tool' || editingPost.type === 'toolRequest' ? 'Price (LKR)' : 'Budget (LKR)'} *
+                </label>
+                <input
+                  type="text"
+                  name="price"
+                  value={editFormData.price}
+                  onChange={handleEditInputChange}
+                  placeholder="e.g., 2500, 1000-3000"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  required
+                />
+              </div>
+
+              {/* Location */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Location *
+                </label>
+                <select
+                  name="location"
+                  value={editFormData.location}
+                  onChange={handleEditInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  required
+                >
+                  <option value="">Select District</option>
+                  {['Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
+                    'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 
+                    'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa', 
+                    'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'].map((district) => (
+                    <option key={district} value={district}>{district}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={editFormData.phoneNumber}
+                  onChange={handleEditInputChange}
+                  placeholder="e.g., +94 77 123 4567"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                  required
+                />
+              </div>
+
+              {/* Tool-specific fields */}
+              {editingPost.type === 'tool' && (
+                <>
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Brand
+                    </label>
+                    <input
+                      type="text"
+                      name="brand"
+                      value={editFormData.brand}
+                      onChange={handleEditInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                        theme === 'dark' 
+                          ? 'bg-gray-700 border-gray-600 text-white' 
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    />
+                  </div>
+
+                  <div>
+                    <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                      Condition
+                    </label>
+                    <select
+                      name="condition"
+                      value={editFormData.condition}
+                      onChange={handleEditInputChange}
+                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                        theme === 'dark' 
+                          ? 'bg-gray-700 border-gray-600 text-white' 
+                          : 'bg-white border-gray-300 text-gray-900'
+                      }`}
+                    >
+                      <option value="">Select Condition</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Fair">Fair</option>
+                    </select>
+                  </div>
+                </>
+              )}
+
+              {/* Category */}
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Category
+                </label>
+                <select
+                  name="category"
+                  value={editFormData.category}
+                  onChange={handleEditInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 ${
+                    theme === 'dark' 
+                      ? 'bg-gray-700 border-gray-600 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
+                >
+                  <option value="">Select Category</option>
+                  <option value="provide-tool">Provide Tool</option>
+                  <option value="provide-task">Provide Task</option>
+                  <option value="request-tool">Request Tool</option>
+                  <option value="request-task">Request Task</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex justify-end gap-3 mt-6">
+              <button
+                onClick={cancelEditing}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  theme === 'dark' 
+                    ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={saveEdit}
+                disabled={loading || !editFormData.title || !editFormData.description || !editFormData.location || !editFormData.phoneNumber}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 ${
+                  loading || !editFormData.title || !editFormData.description || !editFormData.location || !editFormData.phoneNumber
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-orange-600 hover:bg-orange-700 text-white'
+                }`}
+              >
+                {loading ? 'Saving...' : 'Save Changes'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <Footer />
     </div>
   );
