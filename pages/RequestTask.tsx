@@ -359,11 +359,27 @@ export default function RequestTask() {
                   />
                 </div>
               </div>
-                    <option value="normal">Normal</option>
-                    <option value="high">High Priority</option>
-                    <option value="urgent">Urgent</option>
-                  </select>
-                </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Urgency Level *
+                </label>
+                <select
+                  name="urgency"
+                  value={formData.urgency}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                  }}
+                >
+                  <option value="normal">Normal</option>
+                  <option value="high">High Priority</option>
+                  <option value="urgent">Urgent</option>
+                </select>
               </div>
 
               <div>
