@@ -29,8 +29,11 @@ export default function RequestTool() {
     description: '',
     maxRentalPrice: '',
     location: 'Colombo',
+    address: '',
     category: 'request-tool',
     urgency: 'normal',
+    neededDate: '',
+    returnDate: '',
     specifications: [''],
     condition: 'any',
     additionalInfo: {
@@ -190,8 +193,11 @@ export default function RequestTool() {
         description: '',
         maxRentalPrice: '',
         location: 'Colombo',
+        address: '',
         category: 'request-tool',
         urgency: 'normal',
+        neededDate: '',
+        returnDate: '',
         specifications: [''],
         condition: 'any',
         additionalInfo: {
@@ -355,6 +361,26 @@ export default function RequestTool() {
                       <option key={district} value={district}>{district}</option>
                     ))}
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Full Address *
+                  </label>
+                  <textarea
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    placeholder="Enter your full address (street, city, postal code)"
+                    rows={3}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                  />
                 </div>
               </div>
 
