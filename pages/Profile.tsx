@@ -377,6 +377,139 @@ export default function Profile() {
     }
   };
 
+  const startEditing = async (post: UserPost) => {
+    try {
+      // Fetch the full post data from Firestore
+      let collectionName: string;
+      switch (post.type) {
+        case 'tool':
+          collectionName = 'tools';
+          break;
+        case 'task':
+          collectionName = 'tasks';
+          break;
+        case 'toolRequest':
+          collectionName = 'toolRequests';
+          break;
+        case 'taskRequest':
+          collectionName = 'taskRequests';
+          break;
+        default:
+          throw new Error('Invalid post type');
+      }
+      
+      const postRef = doc(db, collectionName, post.id);
+      const postDoc = await getDoc(postRef);
+      
+      if (postDoc.exists()) {
+        const data = postDoc.data();
+        setEditFormData({
+          title: data.title || '',
+          description: data.description || '',
+          price: data.price || data.budget || '',
+          location: data.location || '',
+          phoneNumber: data.phoneNumber || '',
+          brand: data.brand || '',
+          condition: data.condition || '',
+          category: data.category || ''
+        });
+        setEditingPost(post);
+      }
+    } catch (error) {
+      console.error('Error fetching post data:', error);
+      setError('Failed to load post data for editing.');
+    }
+  };
+
+  const cancelEditing = () => {
+    setEditingPost(null);
+    setEditFormData({
+      title: '',
+      description: '',
+      price: '',
+      location: '',
+      phoneNumber: '',
+      brand: '',
+      condition: '',
+      category: ''
+    });
+  };
+
+  const saveEdit = async () => {
+    if (!editingPost) return;
+
+    try {
+      setLoading(true);
+      let collectionName: string;
+      switch (editingPost.type) {
+        case 'tool':
+          collectionName = 'tools';
+          break;
+        case 'task':
+          collectionName = 'tasks';
+          break;
+        case 'toolRequest':
+          collectionName = 'toolRequests';
+          break;
+        case 'taskRequest':
+          collectionName = 'taskRequests';
+          break;
+        default:
+          throw new Error('Invalid post type');
+      }
+      
+      const postRef = doc(db, collectionName, editingPost.id);
+      const updateData: any = {
+        title: editFormData.title,
+        description: editFormData.description,
+        location: editFormData.location,
+        phoneNumber: editFormData.phoneNumber,
+        category: editFormData.category,
+        updatedAt: serverTimestamp()
+      };
+
+      // Add price/budget based on post type
+      if (editingPost.type === 'tool' || editingPost.type === 'toolRequest') {
+        updateData.price = editFormData.price;
+      } else {
+        updateData.budget = editFormData.price;
+      }
+
+      // Add tool-specific fields
+      if (editingPost.type === 'tool') {
+        updateData.brand = editFormData.brand;
+        updateData.condition = editFormData.condition;
+      }
+
+      await updateDoc(postRef, updateData);
+      
+      // Update local state
+      setUserPosts(prev => prev.map(post => 
+        post.id === editingPost.id 
+          ? { ...post, title: editFormData.title, description: editFormData.description, price: editFormData.price, location: editFormData.location }
+          : post
+      ));
+      
+      setSuccess('Post updated successfully!');
+      setTimeout(() => setSuccess(''), 3000);
+      cancelEditing();
+    } catch (error) {
+      console.error('Error updating post:', error);
+      setError('Failed to update post. Please try again.');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setEditFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const fetchNotifications = async (userId: string) => {
     try {
       const notificationsRef = collection(db, 'notifications');
