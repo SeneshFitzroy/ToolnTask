@@ -361,8 +361,8 @@ export default function UniversalCard({
                 onClick={handleSave}
                 className={`p-2 rounded-lg transition-colors ${
                   saved 
-                    ? 'text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/20' 
-                    : 'text-gray-400 hover:text-orange-600 hover:bg-orange-100 dark:hover:text-orange-400 dark:hover:bg-orange-900/20'
+                    ? 'text-yellow-600 bg-gradient-to-r from-yellow-100 to-amber-100 dark:text-yellow-400 dark:bg-gradient-to-r dark:from-yellow-900/30 dark:to-amber-900/30 shadow-md' 
+                    : 'text-gray-400 hover:text-yellow-600 hover:bg-yellow-100 dark:hover:text-yellow-400 dark:hover:bg-yellow-900/20'
                 }`}
                 title={saved ? 'Remove from saved' : 'Save'}
               >
