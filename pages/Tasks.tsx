@@ -81,8 +81,26 @@ export default function Tasks() {
             ...doc.data()
           })) as Task[];
 
-          // Combine both types
-          setTasks([...providedTasks, ...requestedTasks]);
+          // Combine both types and sort promoted posts first
+          const allTasks = [...providedTasks, ...requestedTasks];
+          
+          // Sort tasks: promoted first, then by creation date
+          allTasks.sort((a, b) => {
+            // First, sort by promotion status
+            if (a.isPromoted && !b.isPromoted) {
+              return -1;
+            }
+            if (!a.isPromoted && b.isPromoted) {
+              return 1;
+            }
+            
+            // If both are promoted or both are not promoted, sort by creation date
+            const aDate = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const bDate = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return bDate - aDate;
+          });
+          
+          setTasks(allTasks);
           // Data loading completed
         });
 

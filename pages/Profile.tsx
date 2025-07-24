@@ -41,6 +41,11 @@ interface UserPost {
   brand?: string;
   specifications?: string[];
   features?: string[];
+  isPromoted?: boolean;
+  promotionStartDate?: Date;
+  promotionEndDate?: Date;
+  promotionPlan?: string;
+  promotionPrice?: number;
 }
 
 interface Notification {

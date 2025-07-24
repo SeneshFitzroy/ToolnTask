@@ -85,8 +85,28 @@ export default function Tools() {
             ...doc.data()
           })) as Tool[];
 
-          // Combine both types
-          setTools([...providedTools, ...requestedTools]);
+          // Combine both types and sort promoted posts first
+          const allTools = [...providedTools, ...requestedTools];
+          
+          // Sort tools: promoted first, then by creation date
+          allTools.sort((a, b) => {
+            // First, sort by promotion status
+            if (a.isPromoted && !b.isPromoted) {
+              return -1;
+            }
+            if (!a.isPromoted && b.isPromoted) {
+              return 1;
+            }
+            
+            // If both are promoted or both are not promoted, sort by creation date
+            const aDate = a.createdAt ? 
+              (a.createdAt instanceof Date ? a.createdAt.getTime() : a.createdAt.toDate().getTime()) : 0;
+            const bDate = b.createdAt ? 
+              (b.createdAt instanceof Date ? b.createdAt.getTime() : b.createdAt.toDate().getTime()) : 0;
+            return bDate - aDate;
+          });
+          
+          setTools(allTools);
           setLoading(false);
         });
 
