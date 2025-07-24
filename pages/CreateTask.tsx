@@ -396,12 +396,12 @@ export default function TaskDetail${taskId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Location *
+                    Address *
                   </label>
                   <input
                     type="text"
-                    name="location"
-                    value={formData.location}
+                    name="address"
+                    value={formData.address}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
@@ -410,7 +410,7 @@ export default function TaskDetail${taskId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., Colombo 03"
+                    placeholder="e.g., 123 Main Street, Colombo 03"
                   />
                 </div>
               </div>
