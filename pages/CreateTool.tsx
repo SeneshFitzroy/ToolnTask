@@ -307,7 +307,7 @@ export default function ToolDetail${toolId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.price || !formData.brand || !formData.location || !formData.phoneNumber) {
+    if (!formData.title || !formData.description || !formData.price || !formData.brand || !formData.address || !formData.district || !formData.phoneNumber) {
       setError('Please fill in all required fields including the phone number');
       setLoading(false);
       return;
@@ -350,7 +350,8 @@ export default function ToolDetail${toolId}() {
         brand: '',
         condition: 'Good',
         category: 'provide-tool',
-        location: 'Colombo',
+        address: '',
+        district: 'Colombo',
         phoneNumber: '',
         image: '',
         specifications: {
@@ -498,34 +499,33 @@ export default function ToolDetail${toolId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Service Type
+                    Brand *
                   </label>
-                  <select
-                    name="category"
-                    value={formData.category}
+                  <input
+                    type="text"
+                    name="brand"
+                    value={formData.brand}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                  >
-                    <option value="provide-tool">Provide Tool</option>
-                    <option value="provide-task">Provide Task</option>
-                    <option value="request-tool">Request Tool</option>
-                    <option value="request-task">Request Task</option>
-                  </select>
+                    placeholder="e.g., Bosch, DeWalt, Makita"
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Location (District)
+                    Location (District) *
                   </label>
                   <select
-                    name="location"
-                    value={formData.location}
+                    name="district"
+                    value={formData.district}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                     style={{ 
                       borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
@@ -538,16 +538,17 @@ export default function ToolDetail${toolId}() {
                     ))}
                   </select>
                 </div>
+              </div>
 
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
                     placeholder="Enter your phone number (e.g., +94 77 123 4567)"
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
