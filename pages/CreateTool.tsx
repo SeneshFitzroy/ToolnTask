@@ -61,6 +61,12 @@ export default function CreateTool() {
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData(prev => ({ ...prev, [name]: checked }));
+    } else if (name === 'phoneNumber') {
+      // Only allow phone number characters: digits, +, -, space, parentheses
+      const phoneRegex = /^[0-9+\-\s()]*$/;
+      if (phoneRegex.test(value)) {
+        setFormData(prev => ({ ...prev, [name]: value }));
+      }
     } else if (name.includes('.')) {
       const [parent, child] = name.split('.');
       setFormData(prev => ({
@@ -304,6 +310,8 @@ export default function CreateTool() {
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
                   placeholder="Enter your phone number (e.g., +94 77 123 4567)"
+                  pattern="[0-9+\-\s()]+"
+                  title="Please enter a valid phone number using only numbers, +, -, spaces, and parentheses"
                   required
                   className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
                   style={{ 
