@@ -760,14 +760,14 @@ export default function Profile() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
       <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative">
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-4xl mx-auto relative w-full">
           
           {/* Profile Card */}
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-visible relative" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-visible relative w-full" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
             {/* Profile Header */}
             <div className="p-6 sm:p-8 border-b relative overflow-visible" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
@@ -824,7 +824,7 @@ export default function Profile() {
 
                   {/* Photo Upload Menu */}
                   {showPhotoUpload && (
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 p-3 rounded-xl shadow-2xl border-2 z-50 min-w-[200px] max-w-[250px]"
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 p-3 rounded-xl shadow-2xl border-2 z-50 w-[240px] max-w-[90vw]"
                          style={{ 
                            backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                            borderColor: theme === 'dark' ? '#374151' : '#E2E8F0',
