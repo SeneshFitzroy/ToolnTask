@@ -824,7 +824,7 @@ export default function Profile() {
 
                   {/* Photo Upload Menu */}
                   {showPhotoUpload && (
-                    <div className="absolute top-full left-0 mt-2 p-3 rounded-xl shadow-2xl border-2 z-50 min-w-[200px]"
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 p-3 rounded-xl shadow-2xl border-2 z-50 min-w-[200px] max-w-[250px]"
                          style={{ 
                            backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF',
                            borderColor: theme === 'dark' ? '#374151' : '#E2E8F0',
