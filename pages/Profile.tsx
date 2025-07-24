@@ -763,11 +763,11 @@ export default function Profile() {
     <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F2F3F5' }}>
       <Navigation />
       
-      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <div className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-4xl mx-auto relative">
           
           {/* Profile Card */}
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-visible" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-visible relative" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
             {/* Profile Header */}
             <div className="p-6 sm:p-8 border-b relative overflow-visible" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
