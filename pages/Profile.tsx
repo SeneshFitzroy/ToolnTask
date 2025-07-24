@@ -1698,7 +1698,7 @@ export default function Profile() {
                             </div>
 
                             {/* Status and Actions */}
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                               <div className="flex items-center gap-2">
                                 <div className={`w-2 h-2 rounded-full ${post.isActive ? 'bg-green-500' : 'bg-red-500'}`}></div>
                                 <span className={`text-sm font-medium ${
@@ -1710,14 +1710,14 @@ export default function Profile() {
                                 </span>
                               </div>
                               
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     startEditing(post);
                                   }}
                                   disabled={loading}
-                                  className="px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800"
+                                  className="flex-1 sm:flex-none px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-300 dark:hover:bg-blue-800"
                                 >
                                   Edit
                                 </button>
@@ -1728,7 +1728,7 @@ export default function Profile() {
                                     togglePostStatus(post.id, post.isActive, post.type);
                                   }}
                                   disabled={loading}
-                                  className={`px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
+                                  className={`flex-1 sm:flex-none px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
                                     post.isActive
                                       ? 'bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800'
                                       : 'bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800'
@@ -1743,7 +1743,7 @@ export default function Profile() {
                                     deletePost(post.id, post.type);
                                   }}
                                   disabled={loading}
-                                  className="px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800"
+                                  className="flex-1 sm:flex-none px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800"
                                 >
                                   {loading ? '...' : 'Delete'}
                                 </button>
