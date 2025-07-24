@@ -873,7 +873,7 @@ export default function Profile() {
   };
 
   // Send promotion confirmation email
-  const sendPromotionConfirmationEmail = async (email: string, postTitle: string, plan: any) => {
+  const sendPromotionConfirmationEmail = async (email: string, postTitle: string, plan: { id: string; name: string; price: number; duration: number; description: string }) => {
     try {
       const response = await fetch('/api/send-promotion-email', {
         method: 'POST',
@@ -2145,6 +2145,116 @@ export default function Profile() {
               >
                 {loading ? 'Saving...' : 'Save Changes'}
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Promotion Modal */}
+      {promotingPost && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className={`w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg p-6 ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+          }`}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Promote Your Post
+              </h2>
+              <button
+                onClick={cancelPromotion}
+                className={`p-2 rounded-lg ${theme === 'dark' ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="mb-6">
+              <h3 className={`text-lg font-semibold mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                {promotingPost.title}
+              </h3>
+              <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                Choose a promotion plan to feature your post at the top of search results
+              </p>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              {promotionPlans.map((plan) => (
+                <div
+                  key={plan.id}
+                  className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                    selectedPromotionPlan === plan.id
+                      ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                      : 'border-gray-200 dark:border-gray-600 hover:border-purple-300'
+                  }`}
+                  onClick={() => setSelectedPromotionPlan(plan.id)}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className={`font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                      {plan.name}
+                    </h4>
+                    <span className="text-2xl font-bold text-purple-600">
+                      LKR {plan.price.toLocaleString()}
+                    </span>
+                  </div>
+                  <p className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {plan.description}
+                  </p>
+                  <div className="flex items-center mt-2">
+                    <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
+                      selectedPromotionPlan === plan.id
+                        ? 'border-purple-500 bg-purple-500'
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedPromotionPlan === plan.id && (
+                        <div className="w-2 h-2 bg-white rounded-full mx-auto mt-0.5"></div>
+                      )}
+                    </div>
+                    <span className={`text-sm font-medium ${
+                      selectedPromotionPlan === plan.id ? 'text-purple-600' : 'text-gray-500'
+                    }`}>
+                      Duration: {plan.duration} days
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={cancelPromotion}
+                disabled={promotionLoading}
+                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handlePromotionPayment}
+                disabled={!selectedPromotionPlan || promotionLoading}
+                className={`flex-1 px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 ${
+                  !selectedPromotionPlan || promotionLoading
+                    ? 'bg-gray-400 cursor-not-allowed text-white'
+                    : 'bg-purple-600 hover:bg-purple-700 text-white'
+                }`}
+              >
+                {promotionLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Processing Payment...
+                  </div>
+                ) : (
+                  selectedPromotionPlan 
+                    ? `Pay LKR ${promotionPlans.find(p => p.id === selectedPromotionPlan)?.price.toLocaleString()}`
+                    : 'Select a Plan'
+                )}
+              </button>
+            </div>
+
+            <div className={`mt-4 p-3 rounded-lg ${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-100'}`}>
+              <p className={`text-xs ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                <strong>Note:</strong> Payment will be processed securely. You will receive an email confirmation once your promotion is active. Promoted posts appear at the top of search results and get more visibility.
+              </p>
             </div>
           </div>
         </div>
