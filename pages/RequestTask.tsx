@@ -191,7 +191,8 @@ export default function RequestTask() {
         title: '',
         description: '',
         budget: '',
-        location: 'Colombo',
+        address: '',
+        district: 'Colombo',
         phoneNumber: '',
         category: 'request-task',
         urgency: 'normal',
@@ -323,8 +324,8 @@ export default function RequestTask() {
                     Location (District) *
                   </label>
                   <select
-                    name="location"
-                    value={formData.location}
+                    name="district"
+                    value={formData.district}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
