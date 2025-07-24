@@ -364,10 +364,8 @@ export default function ToolDetail${toolId}() {
         available: true
       });
 
-      // Redirect to the new tool detail page after 2 seconds
-      setTimeout(() => {
-        router.push(`/tools/${docRef.id}_enhanced`);
-      }, 2000);
+      // Redirect to the new tool detail page immediately
+      router.push(`/tools/${docRef.id}_enhanced`);
     } catch (error: unknown) {
       console.error('Error creating tool:', error);
       const errorMessage = error instanceof Error ? error.message : 'An error occurred while creating the tool';
