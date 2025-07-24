@@ -8,7 +8,6 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../src/lib/firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
-// Sri Lankan Districts
 const sriLankanDistricts = [
   'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha', 
   'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala', 
@@ -48,217 +47,48 @@ export default function CreateTask() {
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      
-      // Redirect to login if not authenticated
-      if (mounted && !user) {
+      if (!user) {
         router.push('/SignIn');
       }
     });
 
     return () => unsubscribe();
-  }, [mounted, router]);
+  }, [router]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
-    if (name.startsWith('additionalInfo.')) {
-      const infoField = name.split('.')[1];
+
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData(prev => ({ ...prev, [name]: checked }));
+    } else if (name.includes('.')) {
+      const [parent, child] = name.split('.');
       setFormData(prev => ({
         ...prev,
-        additionalInfo: {
-          ...prev.additionalInfo,
-          [infoField]: value
+        [parent]: {
+          ...prev[parent as keyof typeof prev] as object,
+          [child]: value
         }
       }));
-    } else if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData(prev => ({
-        ...prev,
-        [name]: checked
-      }));
     } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
   const handleRequirementChange = (index: number, value: string) => {
     const newRequirements = [...formData.requirements];
     newRequirements[index] = value;
-    setFormData(prev => ({
-      ...prev,
-      requirements: newRequirements
-    }));
+    setFormData(prev => ({ ...prev, requirements: newRequirements }));
   };
 
   const addRequirement = () => {
-    setFormData(prev => ({
-      ...prev,
-      requirements: [...prev.requirements, '']
-    }));
+    setFormData(prev => ({ ...prev, requirements: [...prev.requirements, ''] }));
   };
 
   const removeRequirement = (index: number) => {
-    const newRequirements = formData.requirements.filter((_, i) => i !== index);
-    setFormData(prev => ({
-      ...prev,
-      requirements: newRequirements
-    }));
-  };
-
-  const createTaskDetailPage = async (taskId: string, taskData: any) => {
-    try {
-      // Generate detail page content for the new task
-      const detailPageContent = `import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import Image from 'next/image';
-import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
-import { Button } from '../../src/components/ui/button';
-import { collection, addDoc, serverTimestamp, doc, setDoc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
-import { db, auth } from '../../src/lib/firebase';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import { Heart, Share2, MapPin, Clock, Calendar, CheckCircle } from 'lucide-react';
-import Link from 'next/link';
-
-// Auto-generated task detail page for: ${taskData.title}
-// Created on: ${new Date().toISOString()}
-
-export default function TaskDetail${taskId}() {
-  const router = useRouter();
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [isSaved, setIsSaved] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const task = {
-    id: '${taskId}',
-    title: '${taskData.title}',
-    price: '${taskData.price}',
-    category: '${taskData.category}',
-    urgent: ${taskData.isUrgent},
-    description: '${taskData.description}',
-    duration: '${taskData.additionalInfo.duration || taskData.time}',
-    location: '${taskData.location}',
-    deadline: '${taskData.deadline}',
-    images: ['${taskData.image || 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop'}'],
-    requirements: ${JSON.stringify(taskData.requirements)},
-    creator: {
-      name: '${taskData.creator.name}',
-      email: '${taskData.creator.email}',
-      uid: '${taskData.creator.uid}'
-    }
-  };
-
-  if (!mounted) return null;
-
-  return (
-    <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#0a0a0a' : '#F8FAFC' }}>
-      <Navigation />
-      
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-6">
-          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
-            {task.title}
-          </h1>
-          <div className="flex items-center gap-4 text-sm" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
-            <span className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
-              {task.location}
-            </span>
-            {task.duration && (
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                {task.duration}
-              </span>
-            )}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <div className="rounded-xl overflow-hidden mb-8">
-              <Image
-                src={task.images[0]}
-                alt={task.title}
-                width={800}
-                height={400}
-                className="object-cover w-full h-64 lg:h-80"
-              />
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
-                Description
-              </h2>
-              <p className="text-base leading-relaxed" style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>
-                {task.description}
-              </p>
-            </div>
-
-            {task.requirements.length > 0 && (
-              <div className="mb-8">
-                <h2 className="text-xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }}>
-                  Requirements
-                </h2>
-                <ul className="space-y-2">
-                  {task.requirements.map((requirement, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <span style={{ color: theme === 'dark' ? '#D1D5DB' : '#4B5563' }}>{requirement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-
-          <div className="lg:col-span-1">
-            <div className="rounded-xl p-6 border" style={{
-              backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
-              borderColor: theme === 'dark' ? '#374151' : '#E5E7EB'
-            }}>
-              <div className="text-center mb-6">
-                <div className="text-sm sm:text-base lg:text-lg font-bold mb-2" style={{ color: '#FF5E14' }}>
-                  {task.price}
-                </div>
-              </div>
-
-              <Button
-                className="w-full py-3 text-lg font-bold rounded-xl"
-                style={{ backgroundColor: '#FF5E14', color: '#FFFFFF' }}
-              >
-                Apply for this Task
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Footer />
-    </div>
-  );
-}`;
-      
-      // In a real implementation, you would save this to a file or database
-      console.log('Generated task detail page for:', taskId);
-      console.log('Detail page would be saved to:', `/pages/tasks/${taskId}.tsx`);
-      
-    } catch (error) {
-      console.error('Error creating task detail page:', error);
+    if (formData.requirements.length > 1) {
+      const newRequirements = formData.requirements.filter((_, i) => i !== index);
+      setFormData(prev => ({ ...prev, requirements: newRequirements }));
     }
   };
 
@@ -268,7 +98,6 @@ export default function TaskDetail${taskId}() {
     setError('');
     setSuccess('');
 
-    // Validate form
     if (!formData.title || !formData.description || !formData.budget || !formData.address || !formData.district || !formData.phoneNumber) {
       setError('Please fill in all required fields including the phone number');
       setLoading(false);
@@ -276,7 +105,6 @@ export default function TaskDetail${taskId}() {
     }
 
     try {
-      // Save task to Firebase
       const taskData = {
         ...formData,
         requirements: formData.requirements.filter(r => r.trim() !== ''),
@@ -292,19 +120,8 @@ export default function TaskDetail${taskId}() {
 
       const docRef = await addDoc(collection(db, 'tasks'), taskData);
       
-      // Auto-generate detail page for the new task
-      await createTaskDetailPage(docRef.id, {
-        ...taskData,
-        creator: {
-          name: user?.displayName || 'Anonymous',
-          email: user?.email || '',
-          uid: user?.uid
-        }
-      });
-
-      setSuccess('Task created successfully! A dedicated page has been generated for your task.');
+      setSuccess('Task posted successfully! Service providers will be able to see your task.');
       
-      // Reset form
       setFormData({
         title: '',
         description: '',
@@ -324,7 +141,6 @@ export default function TaskDetail${taskId}() {
         }
       });
 
-      // Redirect to the new task detail page immediately
       router.push(`/tasks/${docRef.id}_enhanced`);
     } catch (error: unknown) {
       console.error('Error creating task:', error);
@@ -335,7 +151,9 @@ export default function TaskDetail${taskId}() {
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   if (!user) {
     return <div>Redirecting to login...</div>;
@@ -349,22 +167,20 @@ export default function TaskDetail${taskId}() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold mb-4" style={{ color: theme === 'dark' ? '#FFFFFF' : '#001554' }}>
-              Provide Your Services
+              Create New Task
             </h1>
-            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#444444' }}>
-              Offer your skills and expertise to help others in your community
+            <p className="text-lg" style={{ color: theme === 'dark' ? '#CCCCCC' : '#6B7280' }}>
+              Post a task and get offers from service providers
             </p>
           </div>
 
           <div className="rounded-3xl shadow-xl p-8" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
-            {/* Success Message */}
             {success && (
               <div className="mb-6 p-4 rounded-xl border-l-4 border-green-500 bg-green-50 text-green-700">
                 <p className="font-semibold">{success}</p>
               </div>
             )}
             
-            {/* Error Message */}
             {error && (
               <div className="mb-6 p-4 rounded-xl border-l-4 border-red-500 bg-red-50 text-red-700">
                 <p className="font-semibold">{error}</p>
@@ -389,10 +205,52 @@ export default function TaskDetail${taskId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., House Cleaning Service"
+                    placeholder="e.g., House Cleaning, Garden Work"
                   />
                 </div>
 
+                <div>
+                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                    Budget (LKR) *
+                  </label>
+                  <input
+                    type="text"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                    style={{ 
+                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                    }}
+                    placeholder="e.g., 5000"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Task Description *
+                </label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  required
+                  rows={4}
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                  }}
+                  placeholder="Describe what you need done, any specific requirements, timeline, etc..."
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     Address *
@@ -409,49 +267,7 @@ export default function TaskDetail${taskId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., 123 Main Street, Colombo 03"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                  Description *
-                </label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  required
-                  rows={4}
-                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none resize-none"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                  }}
-                  placeholder="Describe the task, what needs to be done, and any specific requirements..."
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Budget Range (LKR) *
-                  </label>
-                  <input
-                    type="text"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                    placeholder="e.g., 5000-10000"
+                    placeholder="Enter your full address"
                   />
                 </div>
 
@@ -497,106 +313,6 @@ export default function TaskDetail${taskId}() {
                   }}
                 />
               </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                  Task Image
-                </label>
-                <div
-                  className="w-full p-8 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 hover:border-opacity-80"
-                  style={{ 
-                    borderColor: theme === 'dark' ? '#6366F1' : '#6366F1',
-                    backgroundColor: theme === 'dark' ? '#1a1a2e' : '#F0F4FF'
-                  }}
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                    e.currentTarget.style.borderColor = '#8B5CF6';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2a1f3f' : '#E0E7FF';
-                  }}
-                  onDragLeave={(e) => {
-                    e.preventDefault();
-                    e.currentTarget.style.borderColor = '#6366F1';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1a1a2e' : '#F0F4FF';
-                  }}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    e.currentTarget.style.borderColor = '#6366F1';
-                    e.currentTarget.style.backgroundColor = theme === 'dark' ? '#1a1a2e' : '#F0F4FF';
-                    const files = e.dataTransfer.files;
-                    if (files.length > 0) {
-                      const file = files[0];
-                      if (file.type.startsWith('image/')) {
-                        // Here you would typically upload to a service like Firebase Storage
-                        // For now, we'll create a preview URL
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                          setFormData(prev => ({
-                            ...prev,
-                            image: e.target?.result as string
-                          }));
-                        };
-                        reader.readAsDataURL(file);
-                      }
-                    }
-                  }}
-                  onClick={() => document.getElementById('task-image-upload')?.click()}
-                >
-                  <input
-                    id="task-image-upload"
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                          setFormData(prev => ({
-                            ...prev,
-                            image: e.target?.result as string
-                          }));
-                        };
-                        reader.readAsDataURL(file);
-                      }
-                    }}
-                  />
-                  <div className="text-center">
-                    {formData.image ? (
-                      <div className="space-y-3">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img 
-                          src={formData.image} 
-                          alt="Task preview" 
-                          className="max-w-full max-h-32 mx-auto rounded-lg shadow-lg"
-                        />
-                        <p className="text-sm font-medium" style={{ color: '#10B981' }}>
-                          ✅ Image uploaded successfully
-                        </p>
-                        <p className="text-xs" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
-                          Click to change image
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        <div className="mx-auto w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6366F1' }}>
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                          </svg>
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#374151' }}>
-                            Click to upload or drag and drop
-                          </p>
-                          <p className="text-xs mt-1" style={{ color: theme === 'dark' ? '#9CA3AF' : '#6B7280' }}>
-                            PNG, JPG, JPEG up to 10MB
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
 
               <div>
                 <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
@@ -608,57 +324,43 @@ export default function TaskDetail${taskId}() {
                       type="text"
                       value={requirement}
                       onChange={(e) => handleRequirementChange(index, e.target.value)}
-                      className="flex-1 px-4 py-2 border-2 rounded-xl focus:outline-none"
+                      className="flex-1 px-4 py-3 border-2 rounded-xl focus:outline-none"
                       style={{ 
                         borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
                         backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                         color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                       }}
-                      placeholder="Enter a requirement..."
+                      placeholder={`Requirement ${index + 1}`}
                     />
                     {formData.requirements.length > 1 && (
-                      <button
+                      <Button
                         type="button"
                         onClick={() => removeRequirement(index)}
-                        className="px-3 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600"
+                        className="px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl"
                       >
                         Remove
-                      </button>
+                      </Button>
                     )}
                   </div>
                 ))}
-                <button
+                <Button
                   type="button"
                   onClick={addRequirement}
-                  className="px-4 py-2 text-white rounded-xl hover:bg-orange-600"
-                  style={{ backgroundColor: '#FF5E14' }}
+                  className="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-xl"
                 >
                   Add Requirement
-                </button>
+                </Button>
               </div>
 
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="isUrgent"
-                  name="isUrgent"
-                  checked={formData.isUrgent}
-                  onChange={handleInputChange}
-                  className="w-5 h-5 text-orange-500 border-2 border-gray-300 rounded focus:ring-orange-500"
-                />
-                <label htmlFor="isUrgent" className="text-sm font-semibold" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                  Mark as Urgent
-                </label>
+              <div className="pt-6">
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                  {loading ? 'Creating Task...' : 'Create Task'}
+                </Button>
               </div>
-
-              <Button 
-                type="submit"
-                disabled={loading}
-                className="w-full py-4 text-lg font-bold rounded-xl transition-all duration-300"
-                style={{ backgroundColor: loading ? '#ccc' : '#FF5E14', color: '#FFFFFF' }}
-              >
-                {loading ? 'Publishing Service...' : 'Publish Service'}
-              </Button>
             </form>
           </div>
         </div>
