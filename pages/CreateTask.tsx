@@ -269,7 +269,7 @@ export default function TaskDetail${taskId}() {
     setSuccess('');
 
     // Validate form
-    if (!formData.title || !formData.description || !formData.budget || !formData.location || !formData.phoneNumber) {
+    if (!formData.title || !formData.description || !formData.budget || !formData.address || !formData.district || !formData.phoneNumber) {
       setError('Please fill in all required fields including the phone number');
       setLoading(false);
       return;
@@ -309,7 +309,8 @@ export default function TaskDetail${taskId}() {
         title: '',
         description: '',
         budget: '',
-        location: 'Colombo',
+        address: '',
+        district: 'Colombo',
         phoneNumber: '',
         category: 'provide-task',
         image: '',
@@ -435,7 +436,7 @@ export default function TaskDetail${taskId}() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     Budget Range (LKR) *
@@ -458,33 +459,11 @@ export default function TaskDetail${taskId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Service Type
-                  </label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                  >
-                    <option value="provide-task">Provide Task</option>
-                    <option value="provide-tool">Provide Tool</option>
-                    <option value="request-task">Request Task</option>
-                    <option value="request-tool">Request Tool</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
                     Location (District) *
                   </label>
                   <select
-                    name="location"
-                    value={formData.location}
+                    name="district"
+                    value={formData.district}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
@@ -499,26 +478,27 @@ export default function TaskDetail${taskId}() {
                     ))}
                   </select>
                 </div>
+              </div>
 
-                <div>
-                  <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                    placeholder="Enter your phone number (e.g., +94 77 123 4567)"
-                    required
-                    className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
-                    style={{ 
-                      borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
-                      backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
-                      color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
-                    }}
-                  />
-                </div>
+              <div>
+                <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number (e.g., +94 77 123 4567)"
+                  required
+                  className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
+                  style={{ 
+                    borderColor: theme === 'dark' ? '#444444' : '#B3B5BC',
+                    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
+                    color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
+                  }}
+                />
+              </div>
               </div>
 
               <div>

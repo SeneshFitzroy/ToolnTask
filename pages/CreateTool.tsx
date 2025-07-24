@@ -31,7 +31,8 @@ export default function CreateTool() {
     brand: '',
     condition: 'Good',
     category: 'provide-tool',
-    location: 'Colombo',
+    address: '',
+    district: 'Colombo',
     phoneNumber: '',
     image: '',
     specifications: {
