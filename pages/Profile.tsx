@@ -1899,6 +1899,22 @@ export default function Profile() {
                                 >
                                   {loading ? '...' : 'Delete'}
                                 </button>
+                                
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    startPromotion(post);
+                                  }}
+                                  disabled={loading || promotionLoading}
+                                  className={`flex-1 sm:flex-none px-3 py-1 rounded text-xs font-medium transition-colors disabled:opacity-50 ${
+                                    post.isPromoted
+                                      ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-300 dark:hover:bg-yellow-800'
+                                      : 'bg-purple-100 text-purple-700 hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-300 dark:hover:bg-purple-800'
+                                  }`}
+                                  title={post.isPromoted ? 'Already promoted' : 'Promote this post'}
+                                >
+                                  {post.isPromoted ? '★ Promoted' : 'Promote'}
+                                </button>
                               </div>
                             </div>
                           </div>
