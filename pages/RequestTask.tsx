@@ -298,11 +298,12 @@ export default function RequestTask() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Service Type
+                    Address *
                   </label>
-                  <select
-                    name="category"
-                    value={formData.category}
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
@@ -311,12 +312,8 @@ export default function RequestTask() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                  >
-                    <option value="request-task">Request Task</option>
-                    <option value="request-tool">Request Tool</option>
-                    <option value="provide-task">Provide Task</option>
-                    <option value="provide-tool">Provide Tool</option>
-                  </select>
+                    placeholder="Enter your full address"
+                  />
                 </div>
 
                 <div>
