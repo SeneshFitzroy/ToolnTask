@@ -767,13 +767,13 @@ export default function Profile() {
         <div className="max-w-4xl mx-auto">
           
           {/* Profile Card */}
-          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
+          <div className="rounded-2xl sm:rounded-3xl shadow-2xl overflow-visible" style={{ backgroundColor: theme === 'dark' ? '#1a1a1a' : '#FFFFFF' }}>
             
             {/* Profile Header */}
-            <div className="p-6 sm:p-8 border-b" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
+            <div className="p-6 sm:p-8 border-b relative overflow-visible" style={{ borderColor: theme === 'dark' ? '#444444' : '#E5E7EB' }}>
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
                 {/* Profile Photo with Upload */}
-                <div className="relative group">
+                <div className="relative group z-50">
                   <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden flex items-center justify-center text-white text-2xl sm:text-3xl font-bold relative" 
                        style={{ backgroundColor: '#FF5E14' }}>
                     {userProfile.profilePhotoURL ? (
