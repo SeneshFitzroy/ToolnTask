@@ -462,7 +462,14 @@ export default function Profile() {
       }
       
       const postRef = doc(db, collectionName, editingPost.id);
-      const updateData: any = {
+      const updateData: {
+        title: string;
+        description: string;
+        location: string;
+        phoneNumber: string;
+        category: string;
+        [key: string]: string | number;
+      } = {
         title: editFormData.title,
         description: editFormData.description,
         location: editFormData.location,
