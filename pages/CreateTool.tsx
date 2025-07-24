@@ -436,12 +436,12 @@ export default function ToolDetail${toolId}() {
 
                 <div>
                   <label className="block text-sm font-semibold mb-3" style={{ color: theme === 'dark' ? '#FFFFFF' : '#2D3748' }}>
-                    Brand *
+                    Address *
                   </label>
                   <input
                     type="text"
-                    name="brand"
-                    value={formData.brand}
+                    name="address"
+                    value={formData.address}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-4 border-2 rounded-xl focus:outline-none"
@@ -450,7 +450,7 @@ export default function ToolDetail${toolId}() {
                       backgroundColor: theme === 'dark' ? '#2a2a2a' : '#FFFFFF',
                       color: theme === 'dark' ? '#FFFFFF' : '#2D3748'
                     }}
-                    placeholder="e.g., Bosch, DeWalt, Makita"
+                    placeholder="e.g., 123 Main Street, Colombo 03"
                   />
                 </div>
               </div>
