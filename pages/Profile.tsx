@@ -784,6 +784,118 @@ export default function Profile() {
     }
   };
 
+  // Promotion system functions
+  const startPromotion = (post: UserPost) => {
+    setPromotingPost(post);
+    setSelectedPromotionPlan('');
+  };
+
+  const cancelPromotion = () => {
+    setPromotingPost(null);
+    setSelectedPromotionPlan('');
+    setPromotionLoading(false);
+  };
+
+  const handlePromotionPayment = async () => {
+    if (!promotingPost || !selectedPromotionPlan || !user) {
+      return;
+    }
+
+    setPromotionLoading(true);
+    
+    try {
+      const plan = promotionPlans.find(p => p.id === selectedPromotionPlan);
+      if (!plan) {
+        throw new Error('Invalid promotion plan selected');
+      }
+
+      // Simulate payment gateway integration
+      // In a real app, you would integrate with PayHere, Stripe, etc.
+      const paymentSuccessful = await simulatePaymentGateway(plan.price, user.email || '');
+      
+      if (paymentSuccessful) {
+        // Calculate promotion end date
+        const promotionEndDate = new Date();
+        promotionEndDate.setDate(promotionEndDate.getDate() + plan.duration);
+
+        // Update post with promotion data
+        const collectionName = promotingPost.type === 'tool' ? 'tools' : 'tasks';
+        const postRef = doc(db, collectionName, promotingPost.id);
+        
+        await updateDoc(postRef, {
+          isPromoted: true,
+          promotionStartDate: serverTimestamp(),
+          promotionEndDate: promotionEndDate,
+          promotionPlan: plan.id,
+          promotionPrice: plan.price,
+          updatedAt: serverTimestamp()
+        });
+
+        // Send confirmation email
+        await sendPromotionConfirmationEmail(user.email || '', promotingPost.title, plan);
+
+        // Update local state
+        setUserPosts(prev => prev.map(post => 
+          post.id === promotingPost.id 
+            ? { ...post, isPromoted: true, promotionEndDate: promotionEndDate }
+            : post
+        ));
+
+        setSuccess(`Post promoted successfully for ${plan.name}! Check your email for confirmation.`);
+        setTimeout(() => setSuccess(''), 5000);
+        cancelPromotion();
+      } else {
+        throw new Error('Payment failed');
+      }
+    } catch (error) {
+      console.error('Error promoting post:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Failed to promote post';
+      setError(errorMessage);
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setPromotionLoading(false);
+    }
+  };
+
+  // Simulate payment gateway (replace with real payment integration)
+  const simulatePaymentGateway = async (amount: number, email: string): Promise<boolean> => {
+    // Simulate payment processing delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // In a real app, integrate with PayHere:
+    // - Initialize PayHere payment
+    // - Handle payment success/failure callbacks
+    // - Verify payment with backend
+    
+    // For demo purposes, we'll simulate a successful payment
+    console.log(`Processing payment of LKR ${amount} for ${email}`);
+    return true; // Simulate successful payment
+  };
+
+  // Send promotion confirmation email
+  const sendPromotionConfirmationEmail = async (email: string, postTitle: string, plan: any) => {
+    try {
+      const response = await fetch('/api/send-promotion-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          postTitle,
+          plan,
+          userName: user?.displayName || 'User'
+        }),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to send promotion email');
+      }
+    } catch (error) {
+      console.error('Error sending promotion email:', error);
+    }
+  };
+
   if (!mounted) {
     return null;
   }
