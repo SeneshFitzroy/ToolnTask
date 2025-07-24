@@ -91,6 +91,36 @@ export default function Profile() {
     category: ''
   });
   
+  // Promotion system state
+  const [promotingPost, setPromotingPost] = useState<UserPost | null>(null);
+  const [selectedPromotionPlan, setSelectedPromotionPlan] = useState('');
+  const [promotionLoading, setPromotionLoading] = useState(false);
+  
+  // Promotion plans with pricing
+  const promotionPlans = [
+    { 
+      id: '1week', 
+      name: '1 Week Promotion', 
+      price: 1500, 
+      duration: 7,
+      description: 'Your post will be featured at the top for 1 week'
+    },
+    { 
+      id: '2weeks', 
+      name: '2 Weeks Promotion', 
+      price: 2500, 
+      duration: 14,
+      description: 'Your post will be featured at the top for 2 weeks'
+    },
+    { 
+      id: '1month', 
+      name: '1 Month Promotion', 
+      price: 4000, 
+      duration: 30,
+      description: 'Your post will be featured at the top for 1 month'
+    }
+  ];
+  
   // Simplified language options: English, Sinhala, Tamil only
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
