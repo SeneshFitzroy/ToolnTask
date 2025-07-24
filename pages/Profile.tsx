@@ -1,6 +1,5 @@
 import Navigation from '../src/components/Navigation';
 import Footer from '../src/components/Footer';
-import Logo from '../src/components/Logo';
 import { Button } from '../src/components/ui/button';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -276,8 +275,10 @@ export default function Profile() {
       
       // Sort by creation date (newest first)
       posts.sort((a, b) => {
-        if (a.createdAt && b.createdAt && a.createdAt !== 'Unknown' && b.createdAt !== 'Unknown') {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        if (a.createdAt && b.createdAt) {
+          const aTime = a.createdAt instanceof Date ? a.createdAt.getTime() : new Date(a.createdAt).getTime();
+          const bTime = b.createdAt instanceof Date ? b.createdAt.getTime() : new Date(b.createdAt).getTime();
+          return bTime - aTime;
         }
         return 0;
       });
