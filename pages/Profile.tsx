@@ -437,7 +437,9 @@ export default function Profile() {
   };
 
   const saveEdit = async () => {
-    if (!editingPost) return;
+    if (!editingPost) {
+      return;
+    }
 
     try {
       setLoading(true);
